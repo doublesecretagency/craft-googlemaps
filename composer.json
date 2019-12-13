@@ -1,0 +1,44 @@
+{
+    "name": "doublesecretagency/craft-googlemaps",
+    "description": "Maps in minutes. Powered by Google Maps.",
+    "type": "craft-plugin",
+    "version": "4.0.0-alpha.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "smartmap",
+        "smart-map",
+        "map",
+        "google-maps",
+        "proximity-search",
+        "geolocation",
+        "address",
+        "locations"
+    ],
+    "support": {
+        "docs": "https://plugins.doublesecretagency.com/google-maps",
+        "issues": "https://github.com/doublesecretagency/craft-googlemaps/issues"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Double Secret Agency",
+            "homepage": "https://plugins.doublesecretagency.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "doublesecretagency\\googlemaps\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Google Maps",
+        "handle": "google-maps",
+        "class": "doublesecretagency\\googlemaps\\GoogleMapsPlugin"
+    }
+}
