@@ -12,6 +12,8 @@
 namespace doublesecretagency\googlemaps\services;
 
 use craft\base\Component;
+use doublesecretagency\googlemaps\models\Address as AddressModel;
+use doublesecretagency\googlemaps\models\Lookup as LookupModel;
 
 /**
  * Class Geocoding
@@ -19,5 +21,13 @@ use craft\base\Component;
  */
 class Geocoding extends Component
 {
+
+    public static function lookup($target = null) {
+
+        // If null,
+
+
+        return new LookupModel;
+    }
 
 }

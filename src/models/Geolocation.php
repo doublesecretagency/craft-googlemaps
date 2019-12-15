@@ -11,13 +11,26 @@
 
 namespace doublesecretagency\googlemaps\models;
 
-use craft\base\Model;
-
 /**
  * Class Geolocation
  * @since 4.0.0
  */
-class Geolocation extends Model
+class Geolocation extends Location
 {
+
+    /**
+     * @var string|null The IP address of the geolocation lookup.
+     */
+    public $ip;
+
+    /**
+     * @var string|null The name of the service used to perform the geolocation.
+     */
+    public $service;
+
+    /**
+     * @var string|null The country determined by the geolocation lookup.
+     */
+    public $country;
 
 }

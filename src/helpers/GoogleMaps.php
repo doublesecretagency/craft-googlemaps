@@ -11,6 +11,9 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
+use doublesecretagency\googlemaps\services\Geocoding;
+
 /**
  * Class GoogleMaps
  * @since 4.0.0
@@ -31,11 +34,72 @@ class GoogleMaps
         // Not needed?
     }
 
+    // Generate Maps
+
     /**
      */
-    public static function dude()
+    public static function dynamic($locations, $options = [])
     {
-        return 'sweet';
+        return true;
+    }
+
+    /**
+     */
+    public static function static($locations, $options = [])
+    {
+        return true;
+    }
+
+    // Change a Marker Icon
+
+    /**
+     */
+    public static function setMarkerIcon($mapId, $markerId, $icon)
+    {
+        return true;
+    }
+
+    // Apply a KML file
+
+    /**
+     */
+    public static function loadKml($mapId, $kml, $options = [])
+    {
+        return true;
+    }
+
+    // Perform Visitor Geolocation
+
+    /**
+     */
+    public static function getGeolocation()
+    {
+        return new GeolocationModel;
+    }
+
+    // Geocoding (Address Lookups)
+
+    /**
+     */
+    public static function lookup($target = null)
+    {
+        return Geocoding::lookup($target);
+    }
+
+    // Override Google API keys
+
+    /**
+     */
+    public static function setServerKey($serverKey)
+    {
+        return true;
+    }
+
+    /**
+     */
+    public static function setBrowserKey($browserKey)
+    {
+        return true;
     }
 
 }

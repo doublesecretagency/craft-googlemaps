@@ -20,4 +20,37 @@ use craft\base\Model;
 class Location extends Model
 {
 
+    public function __toString(): string
+    {
+        return "{$this->lat}, {$this->lng}";
+    }
+
+    /**
+     * @var float|null Latitude of location.
+     */
+    public $lat;
+
+    /**
+     * @var float|null Longitude of location.
+     */
+    public $lng;
+
+    /**
+     * @var mixed|null The raw original data returned by the service which generated the model.
+     */
+    public $data;
+
+    /**
+     * Returns a formatted set of coordinates for this location.
+     *
+     * @return array
+     */
+    public function getCoords()
+    {
+        return [
+            'lat' => $this->lat,
+            'lng' => $this->lng,
+        ];
+    }
+
 }
