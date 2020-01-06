@@ -6,6 +6,7 @@ module.exports = {
 
 
 
+    base: '/google-maps/',
     title: 'Google Maps plugin for Craft CMS',
     plugins: [
         [
