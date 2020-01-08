@@ -16,7 +16,10 @@ modules:
             entryScript: 'index.php'
             projectConfig: {}
             migrations: []
-            plugins: []
+            plugins:
+                googlemaps:
+                    class: '\doublesecretagency\googlemaps\GoogleMapsPlugin'
+                    handle: google-maps
             cleanup: true
             transaction: true
-            dbSetup: {clean: false, setupCraft: false}
+#            dbSetup: {clean: true, setupCraft: true}
