@@ -23,12 +23,12 @@ class Settings extends Model
     /**
      * @var string|null Google API Server Key.
      */
-    public $googleServerKey;
+    public $serverKey;
 
     /**
      * @var string|null Google API Browser Key.
      */
-    public $googleBrowserKey;
+    public $browserKey;
 
     /**
      * @var string|null Currently selected geolocation service.

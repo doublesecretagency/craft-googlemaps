@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
 use doublesecretagency\googlemaps\services\Geocoding;
 
@@ -90,16 +91,30 @@ class GoogleMaps
 
     /**
      */
+    public static function getServerKey()
+    {
+        return GoogleMapsPlugin::$plugin->api->getServerKey();
+    }
+
+    /**
+     */
+    public static function getBrowserKey()
+    {
+        return GoogleMapsPlugin::$plugin->api->getBrowserKey();
+    }
+
+    /**
+     */
     public static function setServerKey($serverKey)
     {
-        return true;
+        return GoogleMapsPlugin::$plugin->api->setServerKey($serverKey);
     }
 
     /**
      */
     public static function setBrowserKey($browserKey)
     {
-        return true;
+        return GoogleMapsPlugin::$plugin->api->setBrowserKey($browserKey);
     }
 
 }

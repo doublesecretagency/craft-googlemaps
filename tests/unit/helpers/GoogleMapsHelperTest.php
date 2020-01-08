@@ -15,7 +15,7 @@ class GoogleMapsHelperTest extends Unit
      */
     protected $tester;
 
-//    public function testMethodDynamic()
+//    public function testDynamic()
 //    {
 //        // dynamic(locations, options)
 //        $this->assertSame(
@@ -23,7 +23,7 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 //
-//    public function testMethodStatic()
+//    public function testStatic()
 //    {
 //        // static(locations, options)
 //        $this->assertSame(
@@ -31,7 +31,7 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 //
-//    public function testMethodSetMarkerIcon()
+//    public function testSetMarkerIcon()
 //    {
 //        // setMarkerIcon(mapId, markerId, icon)
 //        $this->assertSame(
@@ -39,7 +39,7 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 //
-//    public function testMethodLoadKml()
+//    public function testLoadKml()
 //    {
 //        // loadKml(mapId, kml, options)
 //        $this->assertSame(
@@ -47,14 +47,14 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 
-    public function testMethodGetgeolocationReturnsAGeolocationModel()
+    public function testGetgeolocationReturnsAGeolocationModel()
     {
         $visitor = GoogleMaps::getGeolocation();
 
         $this->assertSame(GeolocationModel::class, get_class($visitor));
     }
 
-    public function testMethodLookupReturnsALookupModel()
+    public function testLookupCreatesALookupModel()
     {
         $target = '123 Main St.';
         $lookup = GoogleMaps::lookup($target);
@@ -62,7 +62,7 @@ class GoogleMapsHelperTest extends Unit
         $this->assertSame(LookupModel::class, get_class($lookup));
     }
 
-    public function testMethodLookupAllReturnsAnArrayOfAddressModels()
+    public function testLookupAllReturnsAnArrayOfAddressModels()
     {
         $target = '123 Main St.';
         $all = GoogleMaps::lookup($target)->all();
@@ -71,7 +71,7 @@ class GoogleMapsHelperTest extends Unit
         $this->assertSame(AddressModel::class, get_class($all[0]));
     }
 
-    public function testMethodLookupOneReturnsASingleAddressModel()
+    public function testLookupOneReturnsASingleAddressModel()
     {
         $target = '123 Main St.';
         $one = GoogleMaps::lookup($target)->one();
@@ -79,7 +79,7 @@ class GoogleMapsHelperTest extends Unit
         $this->assertSame(AddressModel::class, get_class($one));
     }
 
-    public function testMethodLookupCoordsReturnsASingleSetOfCoordinates()
+    public function testLookupCoordsReturnsASetOfCoordinates()
     {
         $target = '123 Main St.';
         $coords = GoogleMaps::lookup($target)->coords();
@@ -90,20 +90,22 @@ class GoogleMapsHelperTest extends Unit
         $this->assertArrayHasKey('lng', $coords);
     }
 
-//    public function testMethodSetServerKey()
-//    {
-//        // setServerKey('lorem')
-//        $this->assertSame(
-//            true,
-//            true);
-//    }
-//
-//    public function testMethodSetBrowserKey()
-//    {
-//        // setBrowserKey('ipsum')
-//        $this->assertSame(
-//            true,
-//            true);
-//    }
+    public function testSetAndGetTheServerKey()
+    {
+        $testKey = time(); // Random test key
+        GoogleMaps::setServerKey($testKey);
+        $key = GoogleMaps::getServerKey();
+
+        $this->assertSame($key, $testKey);
+    }
+
+    public function testSetAndGetTheBrowserKey()
+    {
+        $testKey = time(); // Random test key
+        GoogleMaps::setBrowserKey($testKey);
+        $key = GoogleMaps::getBrowserKey();
+
+        $this->assertSame($key, $testKey);
+    }
 
 }

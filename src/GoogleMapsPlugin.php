@@ -13,13 +13,15 @@ namespace doublesecretagency\googlemaps;
 
 use Craft;
 use craft\base\Plugin;
-//use doublesecretagency\googlemaps\models\Settings;
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
+use doublesecretagency\googlemaps\models\Settings;
+use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\web\twig\Extension;
 
 /**
  * Class GoogleMapsPlugin
  * @since 4.0.0
+ *
+ * @property Api $api
  */
 class GoogleMapsPlugin extends Plugin
 {
@@ -35,23 +37,34 @@ class GoogleMapsPlugin extends Plugin
     public $schemaVersion = '4.0.0-alpha.1';
 
     /**
+     * @var Plugin $plugin Self-referential plugin property.
+     */
+    public static $plugin;
+
+    /**
      * @inheritDoc
      */
     public function init()
     {
         parent::init();
+        self::$plugin = $this;
 
         // Load Twig extension
         Craft::$app->getView()->registerTwigExtension(new Extension());
+
+        // Load plugin components
+        $this->setComponents([
+            'api' => Api::class,
+        ]);
     }
 
-//    /**
-//     * @return Settings Plugin settings model.
-//     */
-//    protected function createSettingsModel(): Settings
-//    {
-//        return new Settings();
-//    }
+    /**
+     * @return Settings Plugin settings model.
+     */
+    protected function createSettingsModel(): Settings
+    {
+        return new Settings();
+    }
 
 //    /**
 //     * @return string The fully rendered settings template.

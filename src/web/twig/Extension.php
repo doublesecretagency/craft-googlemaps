@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\web\twig;
 
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
