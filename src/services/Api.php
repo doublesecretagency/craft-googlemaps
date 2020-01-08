@@ -21,23 +21,23 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 class Api extends Component
 {
 
-    public static function getServerKey()
+    public function getServerKey()
     {
         return GoogleMapsPlugin::$plugin->getSettings()->serverKey;
     }
 
-    public static function getBrowserKey()
+    public function getBrowserKey()
     {
         return GoogleMapsPlugin::$plugin->getSettings()->browserKey;
     }
 
-    public static function setServerKey($serverKey)
+    public function setServerKey($serverKey)
     {
         $settings = GoogleMapsPlugin::$plugin->getSettings();
         $settings->setAttributes(['serverKey' => $serverKey], false);
     }
 
-    public static function setBrowserKey($browserKey)
+    public function setBrowserKey($browserKey)
     {
         $settings = GoogleMapsPlugin::$plugin->getSettings();
         $settings->setAttributes(['browserKey' => $browserKey], false);

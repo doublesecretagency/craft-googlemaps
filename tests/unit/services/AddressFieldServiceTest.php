@@ -4,7 +4,7 @@ namespace doublesecretagency\googlemaps\tests;
 use Codeception\Test\Unit;
 use UnitTester;
 
-class AddressFieldServicesTest extends Unit
+class AddressFieldServiceTest extends Unit
 {
     /**
      * @var UnitTester

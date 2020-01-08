@@ -17,7 +17,7 @@ use craft\base\Component;
  * Class Maps
  * @since 4.0.0
  */
-class Maps extends Component
+class MapsJavascript extends Component
 {
 
 }
