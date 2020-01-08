@@ -79,3 +79,20 @@ If you need to override the Google API keys via Twig, you can...
 {# Override browser key #}
 {% do googleMaps.setBrowserKey('ipsum') %}
 ```
+
+There are parallel methods for retrieving the API keys...
+
+```twig
+{# Get server key #}
+{% set serverKey = googleMaps.getServerKey() %}
+
+{# Get browser key #}
+{% set browserKey = googleMaps.getBrowserKey() %}
+```
+
+And since Twig is very forgiving about using magic methods, you can abbreviate those even further...
+
+```twig
+{{ googleMaps.serverKey }}
+{{ googleMaps.browserKey }}
+```
