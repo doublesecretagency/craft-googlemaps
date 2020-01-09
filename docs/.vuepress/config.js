@@ -113,8 +113,13 @@ module.exports = {
             ],
             '/services/': [
                 '',
-                'api-services',
-                'geocoding-services',
+                'address-field-service',
+                'api-service',
+                'geocoding-service',
+                'geolocation-service',
+                'maps-javascript-service',
+                'maps-static-service',
+                'proximity-search-service',
             ],
             '/twig-object/': [
                 '',

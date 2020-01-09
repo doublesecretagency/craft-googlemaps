@@ -14,10 +14,10 @@ namespace doublesecretagency\googlemaps\services;
 use craft\base\Component;
 
 /**
- * Class MapsJavascript
+ * Class MapsStatic
  * @since 4.0.0
  */
-class MapsJavascript extends Component
+class MapsStatic extends Component
 {
 
 }

@@ -1,4 +1,4 @@
-# Geocoding Services
+# Geocoding Service
 
 These service methods can be accessed like so...
 

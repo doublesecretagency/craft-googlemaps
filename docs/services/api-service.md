@@ -1,4 +1,4 @@
-# API Services
+# API Service
 
 These service methods can be accessed like so...
 

@@ -14,16 +14,26 @@ namespace doublesecretagency\googlemaps;
 use Craft;
 use craft\base\Plugin;
 use doublesecretagency\googlemaps\models\Settings;
+use doublesecretagency\googlemaps\services\AddressField;
 use doublesecretagency\googlemaps\services\Api;
+use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
+use doublesecretagency\googlemaps\services\MapsJavascript;
+use doublesecretagency\googlemaps\services\MapsStatic;
+use doublesecretagency\googlemaps\services\ProximitySearch;
 use doublesecretagency\googlemaps\web\twig\Extension;
 
 /**
  * Class GoogleMapsPlugin
  * @since 4.0.0
  *
+ * @property AddressField $addressField
  * @property Api $api
+ * @property Geocoding $geocoding
  * @property Geolocation $geolocation
+ * @property MapsJavascript $mapsJavascript
+ * @property MapsStatic $mapsStatic
+ * @property ProximitySearch $proximitySearch
  */
 class GoogleMapsPlugin extends Plugin
 {
@@ -56,8 +66,13 @@ class GoogleMapsPlugin extends Plugin
 
         // Load plugin components
         $this->setComponents([
+            'addressField' => AddressField::class,
             'api' => Api::class,
+            'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,
+            'mapsJavascript' => MapsJavascript::class,
+            'mapsStatic' => MapsStatic::class,
+            'proximitySearch' => ProximitySearch::class,
         ]);
     }
 
