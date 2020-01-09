@@ -8,6 +8,11 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->geocoding->methodName()
 ```
 
+::: warning PARENT CLASS
+This service extends the [API Service](/services/api-service).
+:::
+
+
 ### `lookup()`
 
 #### Arguments

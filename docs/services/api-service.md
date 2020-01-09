@@ -8,6 +8,13 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->api->methodName()
 ```
 
+::: warning CHILD CLASSES
+This service is extended by the following classes:
+ - [Geocoding Service](/services/geocoding-service)
+ - [Maps Javascript Service](/services/maps-javascript-service)
+ - [Maps Static Service](/services/maps-static-service)
+:::
+
 ### `getServerKey()`
 
 Get the server key stored for the Google Maps API.

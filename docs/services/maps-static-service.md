@@ -7,3 +7,7 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 GoogleMapsPlugin::$plugin->mapsStatic->methodName()
 ```
+
+::: warning PARENT CLASS
+This service extends the [API Service](/services/api-service).
+:::
