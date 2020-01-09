@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\services;
 
+use Craft;
 use craft\base\Component;
 
 /**
@@ -19,5 +20,15 @@ use craft\base\Component;
  */
 class Geolocation extends Component
 {
+
+    public function getUserIP()
+    {
+        return Craft::$app->getRequest()->getUserIP();
+    }
+
+    public function geolocateIp($ip)
+    {
+        return true;
+    }
 
 }

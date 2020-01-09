@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use Craft;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
 use doublesecretagency\googlemaps\services\Geocoding;
@@ -36,6 +37,24 @@ class GoogleMaps
     }
 
     // Generate Maps
+
+
+
+
+
+
+
+    /**
+     */
+    public static function test()
+    {
+        return Craft::$app->getRequest()->getUserIP();
+    }
+
+
+
+
+
 
     /**
      */
@@ -105,16 +124,16 @@ class GoogleMaps
 
     /**
      */
-    public static function setServerKey($serverKey)
+    public static function setServerKey($key)
     {
-        return GoogleMapsPlugin::$plugin->api->setServerKey($serverKey);
+        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
     }
 
     /**
      */
-    public static function setBrowserKey($browserKey)
+    public static function setBrowserKey($key)
     {
-        return GoogleMapsPlugin::$plugin->api->setBrowserKey($browserKey);
+        return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
     }
 
 }

@@ -15,6 +15,7 @@ use Craft;
 use craft\base\Plugin;
 use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\services\Api;
+use doublesecretagency\googlemaps\services\Geolocation;
 use doublesecretagency\googlemaps\web\twig\Extension;
 
 /**
@@ -22,6 +23,7 @@ use doublesecretagency\googlemaps\web\twig\Extension;
  * @since 4.0.0
  *
  * @property Api $api
+ * @property Geolocation $geolocation
  */
 class GoogleMapsPlugin extends Plugin
 {
@@ -55,6 +57,7 @@ class GoogleMapsPlugin extends Plugin
         // Load plugin components
         $this->setComponents([
             'api' => Api::class,
+            'geolocation' => Geolocation::class,
         ]);
     }
 

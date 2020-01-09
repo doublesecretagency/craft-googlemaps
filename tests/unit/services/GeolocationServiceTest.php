@@ -14,11 +14,9 @@ class GeolocationServiceTest extends Unit
 
     public function testCanGetUsersIpAddress()
     {
-        $testKey = time(); // Random test key
-//        GoogleMapsPlugin::$plugin->api->setServerKey($testKey);
-//        $key = GoogleMapsPlugin::$plugin->api->getServerKey();
+        $ip = GoogleMapsPlugin::$plugin->geolocation->getUserIP();
 
-        $this->assertSame($testKey, $testKey);
+        $this->assertSame('1.1.1.1', $ip); // Assuming always run on LD laptop
     }
 
 //    public function testCanPerformGeolocation()

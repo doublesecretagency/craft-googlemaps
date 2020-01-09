@@ -1,10 +1,18 @@
-# Lookup Services
+# Geocoding Services
 
-## `__construct(parameters)`
+These service methods can be accessed like so...
 
-### Arguments
+```php
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
- - `parameters` - Can be either an [**array of parameters**](https://developers.google.com/maps/documentation/geocoding/intro#geocoding), or a **string** representing the geocode target. If the value is provided as a string, it will be interpreted directly as the `address` parameter, and all other parameters will be ignored.
+GoogleMapsPlugin::$plugin->geocoding->methodName()
+```
+
+### `lookup()`
+
+#### Arguments
+
+ - `$parameters` (_string_ or _array_) - Can be either an [**array of parameters**](https://developers.google.com/maps/documentation/geocoding/intro#geocoding), or a **string** representing the geocode target. If the value is provided as a string, it will be interpreted directly as the `address` parameter, and all other parameters will be ignored.
 
 The parameters are based on the [Google Maps Geocoding parameters](https://developers.google.com/maps/documentation/geocoding/intro#geocoding). You can pass through any optional parameters you see there.
 
@@ -52,32 +60,32 @@ That API endpoint will be pinged when the `all`/`one`/`coords` method is execute
 
 ---
 
-## `all()`
+### `all()`
 
 Perform lookup and return complete results. Addresses will be sorted by best match.
 
-### Returns
+#### Returns
 
- - `[doublesecretagency\googlemaps\models\Address]` – An array of [Address Models](), or `null` if nothing was found.
+`[doublesecretagency\googlemaps\models\Address]` - An array of [Address Models](), or `null` if nothing was found.
 
 **EXAMPLES:** [Twig](/geocoding/in-twig/#all) | [PHP](/geocoding/in-php/#all) | [AJAX](/geocoding/via-ajax/#all)
 
-## `one()`
+### `one()`
 
 Perform lookup and return only the first matching result. Generally speaking, the first address is typically the best match.
 
-### Returns
+#### Returns
 
- - `doublesecretagency\googlemaps\models\Address` – A single [Address Model](), or `null` if nothing was found.
+`doublesecretagency\googlemaps\models\Address` - A single [Address Model](), or `null` if nothing was found.
 
 **EXAMPLES:** [Twig](/geocoding/in-twig/#one) | [PHP](/geocoding/in-php/#one) | [AJAX](/geocoding/via-ajax/#one)
 
-## `coords()`
+### `coords()`
 
 Perform lookup and return only the coordinates of the first matching address.
 
-### Returns
+#### Returns
 
- - `coords` – A [coords](/models/coordinates/) object, or `null` if nothing was found.
+`coords` - A [coords](/models/coordinates/) object, or `null` if nothing was found.
 
 **EXAMPLES:** [Twig](/geocoding/in-twig/#coords) | [PHP](/geocoding/in-php/#coords) | [AJAX](/geocoding/via-ajax/#coords)

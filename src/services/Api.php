@@ -31,16 +31,16 @@ class Api extends Component
         return GoogleMapsPlugin::$plugin->getSettings()->browserKey;
     }
 
-    public function setServerKey($serverKey)
+    public function setServerKey($key)
     {
         $settings = GoogleMapsPlugin::$plugin->getSettings();
-        $settings->setAttributes(['serverKey' => $serverKey], false);
+        $settings->setAttributes(['serverKey' => $key], false);
     }
 
-    public function setBrowserKey($browserKey)
+    public function setBrowserKey($key)
     {
         $settings = GoogleMapsPlugin::$plugin->getSettings();
-        $settings->setAttributes(['browserKey' => $browserKey], false);
+        $settings->setAttributes(['browserKey' => $key], false);
     }
 
 }
