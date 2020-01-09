@@ -11,13 +11,17 @@
 
 namespace doublesecretagency\googlemaps\services;
 
-use craft\base\Component;
-
 /**
  * Class MapsStatic
  * @since 4.0.0
  */
-class MapsStatic extends Component
+class MapsStatic extends Api
 {
+
+    public function testing() {
+        // Server & browser keys are built in!
+        return $this->serverKey;
+//        return $this->browserKey;
+    }
 
 }

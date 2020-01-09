@@ -24,22 +24,9 @@ class GoogleMaps
 {
 
     /**
-     * @var string Current schema version of the plugin.
+     * @var string Description of variable.
      */
     public $property = 'value';
-
-    /**
-     * @inheritDoc
-     */
-    public function init()
-    {
-        // Not needed?
-    }
-
-    // Generate Maps
-
-
-
 
 
 
@@ -48,13 +35,16 @@ class GoogleMaps
      */
     public static function test()
     {
-        return Craft::$app->getRequest()->getUserIP();
+        return GoogleMapsPlugin::$plugin->mapsJavascript->testing();
+//        return Craft::$app->getRequest()->getUserIP();
     }
 
 
 
 
 
+
+    // Generate Maps
 
     /**
      */

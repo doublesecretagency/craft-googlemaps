@@ -11,13 +11,17 @@
 
 namespace doublesecretagency\googlemaps\services;
 
-use craft\base\Component;
-
 /**
  * Class MapsJavascript
  * @since 4.0.0
  */
-class MapsJavascript extends Component
+class MapsJavascript extends Api
 {
+
+    public function testing() {
+        // Server & browser keys are built in!
+        return $this->serverKey;
+//        return $this->browserKey;
+    }
 
 }
