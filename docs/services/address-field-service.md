@@ -5,5 +5,5 @@ These service methods can be accessed like so...
 ```php
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
-GoogleMapsPlugin::$plugin->addressField->methodName()
+GoogleMapsPlugin::$plugin->addressField->...
 ```

@@ -5,7 +5,7 @@ These service methods can be accessed like so...
 ```php
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
-GoogleMapsPlugin::$plugin->api->methodName()
+GoogleMapsPlugin::$plugin->api->...
 ```
 
 ::: warning CHILD CLASSES

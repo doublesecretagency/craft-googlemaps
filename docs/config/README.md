@@ -22,9 +22,18 @@ return [
 ];
 ```
 
-## Geolocation Services
+## Optional Geolocation Services
 
 If you are using a third-party visitor geolocation service, then you will want to specify those credentials as well. The credentials you include depend entirely on which geolocation service you are using.
+
+First, determine which third-party geolocation service you will be using...
+
+```php
+// Can be 'ipstack', 'maxmind', or null
+'geolocationService' => 'ipstack',
+```
+
+Then add the credentials for the specified geolocation service...
 
 ### ipstack
 
