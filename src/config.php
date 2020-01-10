@@ -20,6 +20,9 @@ return [
 //    'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
 //    'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY'),
 
+//    // Optional geolocation service ('ipstack', 'maxmind', or null)
+//    'geolocationService' => null,
+
 //    // ipstack (only if using the ipstack service)
 //    'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY'),
 

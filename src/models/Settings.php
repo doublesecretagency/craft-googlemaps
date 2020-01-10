@@ -37,9 +37,9 @@ class Settings extends Model
     public $browserKey;
 
     /**
-     * @var string|null Currently selected geolocation service.
+     * @var string|null Optional geolocation service. Can be 'ipstack', 'maxmind', or null.
      */
-    public $geolocation;
+    public $geolocationService;
 
     /**
      * @var string|null ipstack API Access Key.
