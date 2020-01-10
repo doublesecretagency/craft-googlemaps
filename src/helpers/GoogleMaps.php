@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
+use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
 use doublesecretagency\googlemaps\services\Geocoding;
@@ -35,8 +36,13 @@ class GoogleMaps
      */
     public static function test()
     {
-        return GoogleMapsPlugin::$plugin->mapsJavascript->testing();
-//        return Craft::$app->getRequest()->getUserIP();
+        $results = Geocoding::lookup('springfield')->all();
+
+
+        Craft::dd($results);
+
+
+        return Json::encode($results);
     }
 
 

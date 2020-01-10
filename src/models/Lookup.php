@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\models;
 
 use craft\base\Model;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
  * Class Lookup
@@ -24,6 +25,27 @@ class Lookup extends Model
 
     public function __construct($parameters = [], array $config = [])
     {
+        // If a string target was specified, convert to array
+        if (is_string($parameters)) {
+            $parameters = ['address' => $parameters];
+        }
+
+        // If parameters are not an array, bail
+        if (!is_array($parameters)) {
+            return;
+        }
+
+        // Get raw geocoding results
+        $rawResults = GoogleMapsPlugin::$plugin->geocoding->getApiResults($parameters);
+
+
+        // CONVERT RAW RESULTS INTO ADDRESS DATA
+
+
+        \Craft::dd($rawResults);
+
+
+
 //        if (is_array($attributes)) {
 //            foreach ($attributes as $key => $value) {
 //                if (property_exists($this, $key)) {
@@ -46,6 +68,12 @@ class Lookup extends Model
         ];
 
         parent::__construct($config);
+    }
+
+    /**
+     */
+    private function _pingApi()
+    {
     }
 
     /**

@@ -18,10 +18,4 @@ namespace doublesecretagency\googlemaps\services;
 class MapsStatic extends Api
 {
 
-    public function testing() {
-        // Server & browser keys are built in!
-        return $this->serverKey;
-//        return $this->browserKey;
-    }
-
 }
