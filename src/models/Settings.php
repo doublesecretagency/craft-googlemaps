@@ -42,24 +42,24 @@ class Settings extends Model
     public $geolocation;
 
     /**
-//     * @var string|null ipstack API Access Key.
-//     */
-//    public $ipstackAccessKey;
-//
-//    /**
-//     * @var string|null MaxMind Service.
-//     */
-//    public $maxmindService;
-//
-//    /**
-//     * @var string|null MaxMind User ID.
-//     */
-//    public $maxmindUserId;
-//
-//    /**
-//     * @var string|null MaxMind License Key.
-//     */
-//    public $maxmindLicenseKey;
+     * @var string|null ipstack API Access Key.
+     */
+    public $ipstackApiAccessKey;
+
+    /**
+     * @var string|null MaxMind Service.
+     */
+    public $maxmindService;
+
+    /**
+     * @var string|null MaxMind User ID.
+     */
+    public $maxmindUserId;
+
+    /**
+     * @var string|null MaxMind License Key.
+     */
+    public $maxmindLicenseKey;
 
 //    /**
 //     * @var string|null Route to debug page.

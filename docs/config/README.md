@@ -18,5 +18,24 @@ This file, like your `db.php` and `general.php`, is [environmentally aware](http
 return [
     'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
     'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY')
+    // Include geolocation service credentials (optional)
 ];
+```
+
+## Geolocation Services
+
+If you are using a third-party visitor geolocation service, then you will want to specify those credentials as well. The credentials you include depend entirely on which geolocation service you are using.
+
+### ipstack
+
+```php
+'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY')
+```
+
+### MaxMind
+
+```php
+'maxmindService' => getenv('MAXMIND_SERVICE'),
+'maxmindUserId' => getenv('MAXMIND_USERID'),
+'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY')
 ```
