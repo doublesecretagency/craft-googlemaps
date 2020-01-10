@@ -27,7 +27,7 @@ class Api extends Component
     public function getServerKey()
     {
         // Only load once
-        if (!$this->_serverKey) {
+        if (null === $this->_serverKey) {
             $this->_serverKey = GoogleMapsPlugin::$plugin->getSettings()->serverKey;
         }
         // Return key
@@ -37,7 +37,7 @@ class Api extends Component
     public function getBrowserKey()
     {
         // Only load once
-        if (!$this->_browserKey) {
+        if (null === $this->_browserKey) {
             $this->_browserKey = GoogleMapsPlugin::$plugin->getSettings()->browserKey;
         }
         // Return key
@@ -46,15 +46,11 @@ class Api extends Component
 
     public function setServerKey($key)
     {
-        $settings = GoogleMapsPlugin::$plugin->getSettings();
-        $settings->setAttributes(['serverKey' => $key], false);
         $this->_serverKey = $key;
     }
 
     public function setBrowserKey($key)
     {
-        $settings = GoogleMapsPlugin::$plugin->getSettings();
-        $settings->setAttributes(['browserKey' => $key], false);
         $this->_browserKey = $key;
     }
 

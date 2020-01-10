@@ -14,6 +14,12 @@ namespace doublesecretagency\googlemaps\models;
 use craft\base\Model;
 
 /**
+ * WARNING:
+ *
+ * ALL SETTINGS GET LOCKED DOWN WHEN PROJECT CONFIG IS DISABLED.
+ */
+
+/**
  * Class Settings
  * @since 4.0.0
  */
@@ -23,12 +29,12 @@ class Settings extends Model
     /**
      * @var string|null Google API Server Key.
      */
-    public $serverKey = 'lorem';
+    public $serverKey;
 
     /**
      * @var string|null Google API Browser Key.
      */
-    public $browserKey = 'ipsum';
+    public $browserKey;
 
     /**
      * @var string|null Currently selected geolocation service.

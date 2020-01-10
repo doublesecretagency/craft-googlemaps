@@ -40,6 +40,7 @@ module.exports = {
                     {text: 'Services', link: '/services/'},
                     {text: 'Twig Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
+                    {text: 'Config File', link: '/config/'},
                 ]
             },
             {
@@ -127,6 +128,9 @@ module.exports = {
             '/javascript-object/': [
                 '',
                 'google-maps-objects',
+            ],
+            '/config/': [
+                '',
             ],
 
             // Guides
