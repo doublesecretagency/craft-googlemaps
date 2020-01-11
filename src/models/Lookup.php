@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\models;
 
+use Craft;
 use craft\base\Model;
 use doublesecretagency\googlemaps\services\Geocoding;
 
@@ -39,11 +40,22 @@ class Lookup extends Model
         // If no results stored, perform lookup
         if (!$this->_results) {
 
-            // Get geocoding response
-            $response = Geocoding::pingEndpoint($this->_parameters);
+//            // Cache results // TODO: Uncomment
+//            $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+//            $this->_results = Craft::$app->getCache()->getOrSet(
+//                $this->_parameters,
+//                function() {
 
-            // Convert API response into address data
-            $this->_results = Geocoding::parseResponse($response);
+                    // Get geocoding response
+                    $response = Geocoding::pingEndpoint($this->_parameters);
+
+                    // Convert API response into address data
+//                    return Geocoding::parseResponse($response);
+                    $this->_results = Geocoding::parseResponse($response);
+
+//                },
+//                $cacheDuration
+//            );
 
             // If string was returned, set it as an error message
             if (is_string($this->_results)) {

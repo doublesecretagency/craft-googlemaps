@@ -75,21 +75,8 @@ class Geocoding extends Api
             return false;
         }
 
-//        // Cache results // TODO: Uncomment
-//        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
-//        return Craft::$app->getCache()->getOrSet(
-//            $parameters,
-//            function() use ($parameters) {
-
-
-                // Create a fresh lookup
-                return new Lookup($parameters);
-
-
-
-//            },
-//            $cacheDuration
-//        );
+        // Create a fresh lookup
+        return new Lookup($parameters);
     }
 
     /**
