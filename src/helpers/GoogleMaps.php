@@ -36,13 +36,14 @@ class GoogleMaps
      */
     public static function test()
     {
-        $results = Geocoding::lookup('springfield')->all();
-
-
-        Craft::dd($results);
-
-
-        return Json::encode($results);
+////        $results = Geocoding::lookup('springfield')->all();
+        $results = Geocoding::lookup('western blvd')->all();
+//
+//
+//        Craft::dd($results);
+//
+//
+        return $results;
     }
 
 

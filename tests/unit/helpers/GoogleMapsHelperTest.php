@@ -10,10 +10,31 @@ use UnitTester;
 
 class GoogleMapsHelperTest extends Unit
 {
+
+    // Properties
+    // =========================================================================
+
     /**
      * @var UnitTester
      */
     protected $tester;
+
+    /**
+     * @var string
+     */
+    private $_target = '123 Main St.';
+
+    // Protected methods
+    // =========================================================================
+
+    protected function _before()
+    {
+        parent::_before();
+        GoogleMaps::setServerKey(getenv('GOOGLEMAPS_SERVERKEY'));
+    }
+
+    // Public methods
+    // =========================================================================
 
 //    public function testDynamic()
 //    {
@@ -56,16 +77,14 @@ class GoogleMapsHelperTest extends Unit
 
     public function testLookupCreatesALookupModel()
     {
-        $target = '123 Main St.';
-        $lookup = GoogleMaps::lookup($target);
+        $lookup = GoogleMaps::lookup($this->_target);
 
         $this->assertSame(LookupModel::class, get_class($lookup));
     }
 
     public function testLookupAllReturnsAnArrayOfAddressModels()
     {
-        $target = '123 Main St.';
-        $all = GoogleMaps::lookup($target)->all();
+        $all = GoogleMaps::lookup($this->_target)->all();
 
         self::assertIsArray($all);
         $this->assertSame(AddressModel::class, get_class($all[0]));
@@ -73,16 +92,15 @@ class GoogleMapsHelperTest extends Unit
 
     public function testLookupOneReturnsASingleAddressModel()
     {
-        $target = '123 Main St.';
-        $one = GoogleMaps::lookup($target)->one();
+        $one = GoogleMaps::lookup($this->_target)->one();
 
+        self::assertIsObject($one);
         $this->assertSame(AddressModel::class, get_class($one));
     }
 
     public function testLookupCoordsReturnsASetOfCoordinates()
     {
-        $target = '123 Main St.';
-        $coords = GoogleMaps::lookup($target)->coords();
+        $coords = GoogleMaps::lookup($this->_target)->coords();
 
         self::assertIsArray($coords);
         $this->assertSame(2, count($coords));

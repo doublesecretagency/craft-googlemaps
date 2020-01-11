@@ -12,7 +12,7 @@
 namespace doublesecretagency\googlemaps\models;
 
 use craft\base\Model;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\services\Geocoding;
 
 /**
  * Class Lookup
@@ -21,59 +21,40 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 class Lookup extends Model
 {
 
+    private $_parameters;
     private $_results;
+    private $_error;
 
     public function __construct($parameters = [], array $config = [])
     {
-        // If a string target was specified, convert to array
-        if (is_string($parameters)) {
-            $parameters = ['address' => $parameters];
-        }
-
-        // If parameters are not an array, bail
-        if (!is_array($parameters)) {
-            return;
-        }
-
-        // Get raw geocoding results
-        $rawResults = GoogleMapsPlugin::$plugin->geocoding->getApiResults($parameters);
-
-
-        // CONVERT RAW RESULTS INTO ADDRESS DATA
-
-
-        \Craft::dd($rawResults);
-
-
-
-//        if (is_array($attributes)) {
-//            foreach ($attributes as $key => $value) {
-//                if (property_exists($this, $key)) {
-//                    $this[$key] = $value;
-//                }
-//            }
-//        }
-//
-//        if (null !== $this->lat && null !== $this->lng) {
-//            $this->coords = [$this->lat, $this->lng];
-//        }
-
-        $this->_results = [
-            new Address,
-            new Address,
-            new Address,
-            new Address,
-            new Address,
-            new Address,
-        ];
-
+        $this->_parameters = $parameters;
         parent::__construct($config);
     }
 
     /**
+     * Perform lookup.
      */
-    private function _pingApi()
+    private function _runLookup()
     {
+        // If no results stored, perform lookup
+        if (!$this->_results) {
+
+            // Get geocoding response
+            $response = Geocoding::pingEndpoint($this->_parameters);
+
+            // Convert API response into address data
+            $this->_results = Geocoding::parseResponse($response);
+
+            // If string was returned, set it as an error message
+            if (is_string($this->_results)) {
+                $this->_error = $this->_results;
+                $this->_results = false;
+            }
+
+        }
+
+        // Return lookup results
+        return $this->_results;
     }
 
     /**
@@ -83,13 +64,13 @@ class Lookup extends Model
      */
     public function all()
     {
-        // If no results, return false
-        if (empty($this->_results)) {
+        // If no geocoding results, return false
+        if (!$results = $this->_runLookup()) {
             return false;
         }
 
         // Return all of the results
-        return $this->_results;
+        return $results;
     }
 
     /**
@@ -99,13 +80,13 @@ class Lookup extends Model
      */
     public function one()
     {
-        // If no results, return false
-        if (empty($this->_results)) {
+        // If no geocoding results, return false
+        if (!$results = $this->_runLookup()) {
             return false;
         }
 
         /** @var Address $address */
-        $address = $this->_results[0];
+        $address = $results[0];
 
         // Return one single result
         return $address;
@@ -118,13 +99,13 @@ class Lookup extends Model
      */
     public function coords()
     {
-        // If no results, return false
-        if (empty($this->_results)) {
+        // If no geocoding results, return false
+        if (!$results = $this->_runLookup()) {
             return false;
         }
 
         /** @var Address $address */
-        $address = $this->_results[0];
+        $address = $results[0];
 
         // Return one single result
         return $address->getCoords();
