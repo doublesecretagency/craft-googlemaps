@@ -107,9 +107,10 @@ module.exports = {
             // Architecture
             '/models/': [
                 '',
-                'location-model',
                 'address-model',
                 'geolocation-model',
+                'location-model',
+                'lookup-model',
                 'coordinates',
             ],
             '/services/': [

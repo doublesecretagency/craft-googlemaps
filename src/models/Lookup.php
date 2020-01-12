@@ -32,42 +32,8 @@ class Lookup extends Model
         parent::__construct($config);
     }
 
-    /**
-     * Perform lookup.
-     */
-    private function _runLookup()
-    {
-        // If no results stored, perform lookup
-        if (!$this->_results) {
-
-//            // Cache results // TODO: Uncomment
-//            $cacheDuration = (30 * 24 * 60 * 60); // 30 days
-//            $this->_results = Craft::$app->getCache()->getOrSet(
-//                $this->_parameters,
-//                function() {
-
-                    // Get geocoding response
-                    $response = Geocoding::pingEndpoint($this->_parameters);
-
-                    // Convert API response into address data
-//                    return Geocoding::parseResponse($response);
-                    $this->_results = Geocoding::parseResponse($response);
-
-//                },
-//                $cacheDuration
-//            );
-
-            // If string was returned, set it as an error message
-            if (is_string($this->_results)) {
-                $this->_error = $this->_results;
-                $this->_results = false;
-            }
-
-        }
-
-        // Return lookup results
-        return $this->_results;
-    }
+    // Public Methods
+    // =========================================================================
 
     /**
      * Returns all results from geocoding lookup.
@@ -121,6 +87,46 @@ class Lookup extends Model
 
         // Return one single result
         return $address->getCoords();
+    }
+
+    // Private Methods
+    // =========================================================================
+
+    /**
+     * Perform lookup.
+     */
+    private function _runLookup()
+    {
+        // If no results stored, perform lookup
+        if (!$this->_results) {
+
+//            // Cache results // TODO: Uncomment
+//            $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+//            $this->_results = Craft::$app->getCache()->getOrSet(
+//                $this->_parameters,
+//                function() {
+
+            // Get geocoding response
+            $response = Geocoding::pingEndpoint($this->_parameters);
+
+            // Convert API response into address data
+//                    return Geocoding::parseResponse($response);
+            $this->_results = Geocoding::parseResponse($response);
+
+//                },
+//                $cacheDuration
+//            );
+
+            // If string was returned, set it as an error message
+            if (is_string($this->_results)) {
+                $this->_error = $this->_results;
+                $this->_results = false;
+            }
+
+        }
+
+        // Return lookup results
+        return $this->_results;
     }
 
 }
