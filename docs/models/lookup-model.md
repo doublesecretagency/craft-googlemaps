@@ -1,9 +1,15 @@
 # Lookup Model
 
-When a Lookup Model is initiated, it will be passed a collection of parameters which specify the lookup details.
+When a Lookup Model is initiated, it is passed a collection of parameters which specify the lookup details. This set of parameters is stored internally when the object is initially created.
 
 ```php
-->lookup($parameters)->all();
+$lookup = GoogleMaps::lookup($parameters);
+```
+
+Once you apply the `->all()` (or `->one()`, or `->coords()`) method, those parameters are used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding). The lookup results will be cached for 30 days.
+
+```php
+$results = $lookup->all();
 ```
 
 ## Public Methods
