@@ -11,12 +11,7 @@
 
 namespace doublesecretagency\googlemaps\services;
 
-use Craft;
-use craft\helpers\Json;
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
-use doublesecretagency\googlemaps\models\Address;
 use doublesecretagency\googlemaps\models\Lookup;
-use GuzzleHttp\Exception\RequestException;
 
 /**
  * Class Geocoding

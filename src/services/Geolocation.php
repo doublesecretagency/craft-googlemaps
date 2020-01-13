@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\services;
 
 use Craft;
 use craft\base\Component;
+use doublesecretagency\googlemaps\models\Ipstack;
 
 /**
  * Class Geolocation
@@ -21,14 +22,39 @@ use craft\base\Component;
 class Geolocation extends Component
 {
 
-    public function getUserIP()
+    /**
+     * @var string|null IP address of current user.
+     */
+    public $ip;
+
+    /**
+     * @inheritDoc
+     */
+    public function init()
     {
-        return Craft::$app->getRequest()->getUserIP();
+        // Get user's IP address
+        $this->ip = Craft::$app->getRequest()->getUserIP();
     }
 
-    public function geolocateIp($ip)
+    public function geolocateUser()
     {
-        return true;
+        $service = $this->_getServiceClass();
+        return $service::geolocate($this->ip);
+    }
+
+    private function _getServiceClass()
+    {
+        $selectedService = 'ipstack';
+
+        // Return selected geolocation service
+        switch ($selectedService) {
+            case 'ipstack':
+                return Ipstack::class;
+//            case 'maxmind':
+//                return MaxMind::class;
+            default:
+                return false;
+        }
     }
 
 }

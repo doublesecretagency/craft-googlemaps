@@ -14,7 +14,7 @@ class GeolocationServiceTest extends Unit
 
     public function testCanGetUsersIpAddress()
     {
-        $ip = GoogleMapsPlugin::$plugin->geolocation->getUserIP();
+        $ip = GoogleMapsPlugin::$plugin->geolocation->ip;
 
         $this->assertSame('1.1.1.1', $ip); // Assuming always run on LD laptop
     }

@@ -16,6 +16,7 @@ use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
 use doublesecretagency\googlemaps\services\Geocoding;
+use doublesecretagency\googlemaps\services\Geolocation;
 
 /**
  * Class GoogleMaps
@@ -36,14 +37,14 @@ class GoogleMaps
      */
     public static function test()
     {
-////        $results = Geocoding::lookup('springfield')->all();
-        $results = Geocoding::lookup('western blvd')->all();
-//
-//
-//        Craft::dd($results);
-//
-//
-        return $results;
+        $geo = GoogleMapsPlugin::$plugin->geolocation->geolocateUser();
+//        $results = Geocoding::lookup('western blvd')->all();
+
+
+        Craft::dd($geo);
+
+
+        return $geo;
     }
 
 
