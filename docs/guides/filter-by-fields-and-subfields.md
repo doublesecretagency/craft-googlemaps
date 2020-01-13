@@ -66,7 +66,7 @@ The values of subfields, much like the value of `fields`, can be either a _strin
 **Get the [visitor's current location](/geolocation/), then find the closest bars & casinos in Las Vegas:**
 
 ```twig
-{% set visitor = googleMaps.getGeolocation() %}
+{% set visitor = googleMaps.geolocateUser() %}
 
 {% set options = {
     target: visitor.getCoords(),

@@ -3,7 +3,7 @@
 If you want to know where your visitors are coming from, you can perform a geolocation lookup of their IP address.
 
 ```twig
-{% set visitor = googleMaps.getGeolocation() %}
+{% set visitor = googleMaps.geolocateUser() %}
 ```
 
 The `visitor` value contains the geolocation detection results in a [Geolocation Model](/models/geolocation-model/).

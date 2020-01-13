@@ -44,7 +44,7 @@ For more information, check out the documentation on [KML Files](/guides/kml-fil
 
 ```twig
 {# Do a visitor geolocation lookup #}
-{% set visitor = googleMaps.getGeolocation() %}
+{% set visitor = googleMaps.geolocateUser() %}
 ```
 
 For more information, check out the documentation on [Geolocation](/geolocation/).

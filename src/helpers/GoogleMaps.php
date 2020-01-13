@@ -90,9 +90,9 @@ class GoogleMaps
 
     /**
      */
-    public static function getGeolocation()
+    public static function geolocateUser()
     {
-        return new GeolocationModel;
+        return GoogleMapsPlugin::$plugin->geolocation->geolocateUser();
     }
 
     // Geocoding (Address Lookups)
