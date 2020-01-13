@@ -33,7 +33,8 @@ class Geolocation extends Component
     public function init()
     {
         // Get user's IP address
-        $this->ip = Craft::$app->getRequest()->getUserIP();
+//        $this->ip = Craft::$app->getRequest()->getUserIP();
+        $this->ip = '75.83.51.229'; // TEMP // TODO: Uncomment original
     }
 
     public function geolocateUser()

@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\models;
 use Craft;
 use craft\base\Model;
 use craft\helpers\Json;
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use GuzzleHttp\Exception\RequestException;
 
 /**
@@ -25,7 +25,6 @@ class Lookup extends Model
 {
 
     private $_parameters;
-    private $_results;
     private $_error;
 
     /**
@@ -136,35 +135,36 @@ class Lookup extends Model
      */
     private function _runLookup()
     {
-        // If no results stored, perform lookup
-        if (!$this->_results) {
+        // Get cache service
+        $cache = Craft::$app->getCache();
 
-            // Set cache duration
-            $cacheDuration = 4; // 4 seconds (TEMP) // TODO: Switch to correct cache duration
-//            $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+        // Set cache duration
+        $cacheDuration = 4; // 4 seconds (TEMP) // TODO: Switch to correct cache duration
+//        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
 
-            // Cache results
-            $this->_results = Craft::$app->getCache()->getOrSet(
-                $this->_parameters,
-                function() {
-                    // Get geocoding response
-                    $response = $this->_pingEndpoint($this->_parameters);
-                    // Convert API response into address data
-                    return $this->_parseResponse($response);
-                },
-                $cacheDuration
-            );
+        // Cache results
+        $results = $cache->getOrSet(
+            $this->_parameters,
+            function() {
+                // Get geocoding response
+                $response = $this->_pingEndpoint($this->_parameters);
+                // Convert API response into address data
+                return $this->_parseResponse($response);
+            },
+            $cacheDuration
+        );
 
-            // If string was returned, set it as an error message
-            if (is_string($this->_results)) {
-                $this->_error = $this->_results;
-                $this->_results = false;
-            }
-
+        // If error message was returned
+        if (is_string($results)) {
+            // Bust cache
+            $cache->delete($this->_parameters);
+            // Get error message from results
+            $this->_error = $results;
+            $results = false;
         }
 
         // Return lookup results
-        return $this->_results;
+        return $results;
     }
 
     /**
@@ -176,7 +176,7 @@ class Lookup extends Model
     private function _pingEndpoint($parameters)
     {
         // Append server key
-        $parameters['key'] = GoogleMaps::getServerKey();
+        $parameters['key'] = GoogleMapsPlugin::$plugin->api->getServerKey();
 
         // Compile endpoint URL
         $queryString = http_build_query($parameters);
