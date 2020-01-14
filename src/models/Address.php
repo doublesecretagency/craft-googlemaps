@@ -26,42 +26,42 @@ class Address extends Location
     }
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null Street name and number.
      */
     public $street1;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null Apartment or suite number.
      */
     public $street2;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null City.
      */
     public $city;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null State (or province, etc).
      */
     public $state;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null Zip code (or postal code, etc).
      */
     public $zip;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null Country.
      */
     public $country;
 
     /**
-     * @var string|null The IP address of the geolocation lookup.
+     * @var string|null Distance from another specified point.
      */
     public $distance;
 
     /**
-     * Nicely formats an address.
+     * Nicely formats the address.
      *
      * @return string
      */

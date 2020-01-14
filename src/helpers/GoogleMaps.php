@@ -41,7 +41,7 @@ class GoogleMaps
 //        $results = Geocoding::lookup('western blvd')->all();
 
 
-        Craft::dd($geo);
+        Craft::dd((string) $geo);
 
 
         return $geo;

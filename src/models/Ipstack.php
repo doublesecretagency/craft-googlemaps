@@ -140,6 +140,7 @@ class Ipstack extends Model
             'service' => static::$_service,
             'ip' => $response['ip'],
             'city' => $response['city'],
+            'state' => $response['region_name'],
             'country' => $response['country_name'],
             'lat' => $response['latitude'],
             'lng' => $response['longitude'],

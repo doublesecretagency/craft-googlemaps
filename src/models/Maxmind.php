@@ -151,6 +151,7 @@ class Maxmind extends Model
             'service' => static::$_service,
             'ip' => $response['traits']['ip_address'],
             'city' => $response['city']['names']['en'],
+            'state' => $response['subdivisions'][0]['names']['en'],
             'country' => $response['country']['names']['en'],
             'lat' => $response['location']['latitude'],
             'lng' => $response['location']['longitude'],

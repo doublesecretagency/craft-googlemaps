@@ -18,6 +18,21 @@ namespace doublesecretagency\googlemaps\models;
 class Geolocation extends Location
 {
 
+    public function __toString(): string
+    {
+        // Get location components
+        $location = [];
+        if ($this->city) {$location[] = $this->city;}
+        if ($this->state) {$location[] = $this->state;}
+        if ($this->country) {$location[] = $this->country;}
+
+        // Compile a pseudo-address string
+        $address = implode(', ', $location);
+
+        // Return string
+        return "[{$this->service}] {$this->ip} - {$address}";
+    }
+
     /**
      * @var string|null The name of the service used to perform the geolocation.
      */
@@ -32,6 +47,11 @@ class Geolocation extends Location
      * @var string|null The city determined by the geolocation lookup.
      */
     public $city;
+
+    /**
+     * @var string|null The state determined by the geolocation lookup.
+     */
+    public $state;
 
     /**
      * @var string|null The country determined by the geolocation lookup.
