@@ -19,14 +19,19 @@ class Geolocation extends Location
 {
 
     /**
+     * @var string|null The name of the service used to perform the geolocation.
+     */
+    public $service;
+
+    /**
      * @var string|null The IP address of the geolocation lookup.
      */
     public $ip;
 
     /**
-     * @var string|null The name of the service used to perform the geolocation.
+     * @var string|null The city determined by the geolocation lookup.
      */
-    public $service;
+    public $city;
 
     /**
      * @var string|null The country determined by the geolocation lookup.

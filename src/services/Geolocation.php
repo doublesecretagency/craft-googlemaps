@@ -14,6 +14,7 @@ namespace doublesecretagency\googlemaps\services;
 use Craft;
 use craft\base\Component;
 use doublesecretagency\googlemaps\models\Ipstack;
+use doublesecretagency\googlemaps\models\Maxmind;
 
 /**
  * Class Geolocation
@@ -34,7 +35,7 @@ class Geolocation extends Component
     {
         // Get user's IP address
 //        $this->ip = Craft::$app->getRequest()->getUserIP();
-        $this->ip = '75.83.51.229'; // TEMP // TODO: Uncomment original
+        $this->ip = '1.1.1.1'; // TEMP // TODO: Uncomment original
     }
 
     public function geolocateUser()
@@ -45,14 +46,14 @@ class Geolocation extends Component
 
     private function _getServiceClass()
     {
-        $selectedService = 'ipstack';
+        $selectedService = 'ipstack'; // GET FROM SETTINGS
 
         // Return selected geolocation service
         switch ($selectedService) {
             case 'ipstack':
                 return Ipstack::class;
-//            case 'maxmind':
-//                return MaxMind::class;
+            case 'maxmind':
+                return Maxmind::class;
             default:
                 return false;
         }

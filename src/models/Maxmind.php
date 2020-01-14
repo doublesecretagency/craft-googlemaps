@@ -18,20 +18,20 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use GuzzleHttp\Exception\RequestException;
 
 /**
- * Class Ipstack
+ * Class Maxmind
  * @since 4.0.0
  */
-class Ipstack extends Model
+class Maxmind extends Model
 {
 
-    private static $_service = 'ipstack';
+    private static $_service = 'maxmind';
 
     private static $_error;
 
     /**
-     * @var string ipstack API endpoint.
+     * @var string MaxMind API endpoint.
      */
-    private static $_endpoint = 'http://api.ipstack.com/';
+    private static $_endpoint = 'https://geoip.maxmind.com/geoip/v2.0/';
 
     /**
      * Get a Geolocation Model representing the user's location.
@@ -54,9 +54,9 @@ class Ipstack extends Model
         // Cache results
         $results = $cache->getOrSet(
             $cacheKey,
-            static function() use ($ip, $parameters) {
+            static function() use ($ip) {
                 // Get geolocation response
-                $response = static::_pingEndpoint($ip, $parameters);
+                $response = static::_pingEndpoint($ip);
                 // Convert API response into geolocation data
                 return static::_parseResponse($response);
             },
@@ -79,27 +79,38 @@ class Ipstack extends Model
     }
 
     /**
-     * Ping the ipstack API endpoint.
+     * Ping the MaxMind API endpoint.
      */
-    private static function _pingEndpoint($ip, $parameters)
+    private static function _pingEndpoint($ip)
     {
-        // Get ipstack access credentials
-        $parameters['access_key'] = GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey;
+        // Get MaxMind access credentials
+        $service = GoogleMapsPlugin::$plugin->getSettings()->maxmindService;
+        $userId = GoogleMapsPlugin::$plugin->getSettings()->maxmindUserId;
+        $licenseKey = GoogleMapsPlugin::$plugin->getSettings()->maxmindLicenseKey;
 
-        // If the IP is missing or invalid, use "check" to autodetect
+        // If service is disabled
+        if (!$service) {
+            static::$_error = 'Please select a MaxMind Web Service.';
+            return false;
+        }
+
+        // If the IP is missing or invalid, use "me" to autodetect
         if (!$ip || !filter_var($ip, FILTER_VALIDATE_IP)) {
-            $ip = 'check';
+            $ip = 'me';
         }
 
         // Compile endpoint URL
         $endpoint = static::$_endpoint;
-        $queryString = http_build_query($parameters);
-        $url = "{$endpoint}{$ip}?{$queryString}";
+        $url = "{$endpoint}{$service}/{$ip}";
+
+        // Set authorization token
+        $authorization = 'Basic '.base64_encode("{$userId}:{$licenseKey}");
 
         // Attempt to ping URL
         try {
             $client = Craft::createGuzzleClient(['timeout' => 4, 'connect_timeout' => 4]);
-            $response = $client->request('GET', $url);
+            $options = ['headers' => ['Authorization' => $authorization]];
+            $response = $client->request('GET', $url, $options);
         } catch (RequestException $e) {
             if (($response = $e->getResponse()) === null || $response->getStatusCode() === 500) {
                 throw $e;
@@ -111,7 +122,7 @@ class Ipstack extends Model
     }
 
     /**
-     * Interpret the response returned by the ipstack API.
+     * Interpret the response returned by the MaxMind API.
      *
      * @param $response
      * @return Geolocation|false
@@ -119,30 +130,30 @@ class Ipstack extends Model
     private static function _parseResponse($response)
     {
         // Determine whether API call was successful
-        if (array_key_exists('ip', $response) && array_key_exists('type', $response)) {
+        if (array_key_exists('location', $response) && array_key_exists('maxmind', $response)) {
             $success = true;
-        } else if (array_key_exists('success', $response) && array_key_exists('error', $response)) {
+        } else if (array_key_exists('code', $response) && array_key_exists('error', $response)) {
             $success = false;
         } else {
-            static::$_error = Craft::t('google-maps', 'Unable to parse ipstack API response.');
+            static::$_error = Craft::t('google-maps', 'Unable to parse MaxMind API response.');
             return false;
         }
 
         // If unsuccessful, return why
         if (!$success) {
-            // https://ipstack.com/documentation#errors
-            static::$_error = Craft::t('google-maps', $response['error']['info']);
+            // https://dev.maxmind.com/minfraud/#Errors
+            static::$_error = Craft::t('google-maps', $response['error']);
             return false;
         }
 
         // Return results as a Geolocation Model
         return new Geolocation([
             'service' => static::$_service,
-            'ip' => $response['ip'],
-            'city' => $response['city'],
-            'country' => $response['country_name'],
-            'lat' => $response['latitude'],
-            'lng' => $response['longitude'],
+            'ip' => $response['traits']['ip_address'],
+            'city' => $response['city']['names']['en'],
+            'country' => $response['country']['names']['en'],
+            'lat' => $response['location']['latitude'],
+            'lng' => $response['location']['longitude'],
             'data' => $response,
         ]);
     }

@@ -18,18 +18,22 @@ In all cases, `visitor` will be a Geolocation Model.
 ::: warning ADDITIONAL PROPERTIES AND METHODS
 The Geolocation Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.
 
-You can access `lat` and `lng` just as easily as `ip` or `service`.
+You can access `lat` and `lng` just as easily as `service` or `ip`.
 :::
 
 ## Public Properties
+
+### `service`
+
+_string_ - The name of the service used to perform the geolocation.
 
 ### `ip`
 
 _string_ - The IP address of the geolocation lookup.
 
-### `service`
+### `city`
 
-_string_ - The name of the service used to perform the geolocation.
+_string_ - The city determined by the geolocation lookup.
 
 ### `country`
 
