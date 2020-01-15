@@ -3,14 +3,14 @@
 The properties and methods of the Geolocation Model are identical whether you are accessing them via Twig or PHP.
 
 ```twig
-{% set visitor = googleMaps.geolocateUser() %}
+{% set visitor = googleMaps.getVisitor() %}
 ```
 
 ```php
-$visitor = GoogleMaps::geolocateUser();
+$visitor = GoogleMaps::getVisitor();
 
 // Which is an alias for...
-$visitor = GoogleMapsPlugin::$plugin->geolocation->geolocateUser();
+$visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
 ```
 
 In all cases, `visitor` will be a Geolocation Model.
@@ -34,6 +34,10 @@ _string_ - The IP address of the geolocation lookup.
 ### `city`
 
 _string_ - The city determined by the geolocation lookup.
+
+### `state`
+
+_string_ - The state determined by the geolocation lookup.
 
 ### `country`
 

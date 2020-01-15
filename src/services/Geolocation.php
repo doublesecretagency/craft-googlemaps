@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\services;
 
 use Craft;
 use craft\base\Component;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Ipstack;
 use doublesecretagency\googlemaps\models\Maxmind;
 
@@ -41,25 +42,37 @@ class Geolocation extends Component
 //        $this->ip = '138.197.201.111'; // TEMP
     }
 
-    public function geolocateUser()
+    public function getVisitor($config = [])
     {
-        $service = $this->_getServiceClass();
-        return $service::geolocate($this->ip);
+        // Set geolocation service
+        $selected = GoogleMapsPlugin::$plugin->getSettings()->geolocationService;
+        $service = ($config['service'] ?? $selected);
+
+        // Get API model of the specified geolocation service
+        $model = $this->_getApiModel($service);
+
+        // If a valid service model is not available, bail
+        if (!$model) {
+            return false;
+        }
+
+        // Set IP address
+        $ip = ($config['ip'] ?? $this->ip);
+
+        // Return the geolocation results
+        return $model::geolocate($ip);
     }
 
-    private function _getServiceClass()
+    private function _getApiModel($selected)
     {
-        $selectedService = 'ipstack'; // GET FROM SETTINGS
+        // Supported geolocation services
+        $supported = [
+            'ipstack' => Ipstack::class,
+            'maxmind' => Maxmind::class,
+        ];
 
         // Return selected geolocation service
-        switch ($selectedService) {
-            case 'ipstack':
-                return Ipstack::class;
-            case 'maxmind':
-                return Maxmind::class;
-            default:
-                return false;
-        }
+        return ($supported[$selected] ?? false);
     }
 
 }

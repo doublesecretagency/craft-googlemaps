@@ -43,8 +43,18 @@ For more information, check out the documentation on [KML Files](/guides/kml-fil
 ## Perform Visitor Geolocation
 
 ```twig
-{# Do a visitor geolocation lookup #}
-{% set visitor = googleMaps.geolocateUser() %}
+{# Get visitor geolocation information #}
+{% set visitor = googleMaps.visitor %}
+```
+
+You can optionally override the `service` and/or `ip` when performing a visitor geolocation.
+
+```twig
+{# It's the same method, but using optional overrides #}
+{% set visitor = googleMaps.getVisitor({
+    'service': 'ipstack',
+    'ip': '1.2.3.4'
+}) %}
 ```
 
 For more information, check out the documentation on [Geolocation](/geolocation/).

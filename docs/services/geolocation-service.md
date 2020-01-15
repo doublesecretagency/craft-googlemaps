@@ -16,9 +16,24 @@ _string_ - The user's IP address.
 
 ## Public Methods
 
-### `geolocateUser()`
+### `getVisitor()`
 
-Determine user's approximate location via a third-party geolocation service.
+Determine user's approximate location via a third-party geolocation service. By default, the method will automatically detect the visitor's IP address.
+
+#### Arguments
+
+ - `$config` (_array_) - Optional config settings to override the following:
+ 
+ 
+| Option    | Type     | Default              | Description                       |
+|-----------|:--------:|:--------------------:|-----------------------------------|
+| `service` | _string_ | (uses config setting) | Which geolocation service to use. |
+| `ip`      | _string_ | (autodetects)        | The visitor's IP address.         |
+
+ 
+::: tip SUPPORTED GEOLOCATION SERVICES
+At this time, the only accepted values are `"ipstack"`, `"maxmind"`, or _false_. Additional third-party geolocation services may be added in the future.
+:::
 
 #### Returns
 

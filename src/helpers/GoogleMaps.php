@@ -37,14 +37,10 @@ class GoogleMaps
      */
     public static function test()
     {
-        $geo = GoogleMapsPlugin::$plugin->geolocation->geolocateUser();
+        $visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
 //        $results = Geocoding::lookup('western blvd')->all();
 
-
-        Craft::dd((string) $geo);
-
-
-        return $geo;
+        return $visitor;
     }
 
 
@@ -90,9 +86,9 @@ class GoogleMaps
 
     /**
      */
-    public static function geolocateUser()
+    public static function getVisitor($config = [])
     {
-        return GoogleMapsPlugin::$plugin->geolocation->geolocateUser();
+        return GoogleMapsPlugin::$plugin->geolocation->getVisitor($config);
     }
 
     // Geocoding (Address Lookups)

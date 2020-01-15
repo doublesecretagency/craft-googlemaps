@@ -68,9 +68,9 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 
-    public function testGeolocateuserReturnsAGeolocationModel()
+    public function testGetvisitorReturnsAGeolocationModel()
     {
-        $visitor = GoogleMaps::geolocateUser();
+        $visitor = GoogleMaps::getVisitor();
 
         $this->assertSame(GeolocationModel::class, get_class($visitor));
     }

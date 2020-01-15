@@ -55,6 +55,7 @@ module.exports = {
                     {text: 'KML Files', link: '/guides/kml-files/'},
                     {text: 'Filter by Fields and Subfields', link: '/guides/filter-by-fields-and-subfields/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
+                    {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                 ]
             }
         ],
@@ -111,6 +112,8 @@ module.exports = {
                 'geolocation-model',
                 'location-model',
                 'lookup-model',
+                'ipstack-model',
+                'maxmind-model',
                 'coordinates',
             ],
             '/services/': [
@@ -146,6 +149,7 @@ module.exports = {
                 'kml-files',
                 'filter-by-fields-and-subfields',
                 'region-biasing',
+                'complex-geolocation',
             ],
 
             // // fallback
