@@ -15,6 +15,7 @@ use Craft;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
+use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
 
@@ -25,11 +26,6 @@ use doublesecretagency\googlemaps\services\Geolocation;
 class GoogleMaps
 {
 
-    /**
-     * @var string Description of variable.
-     */
-    public $property = 'value';
-
 
 
 
@@ -37,10 +33,16 @@ class GoogleMaps
      */
     public static function test()
     {
-        $visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
-//        $results = Geocoding::lookup('western blvd')->all();
 
-        return $visitor;
+        return static::map([
+            'id' => 'pancake',
+            'height' => 400,
+        ]);
+
+//        $visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
+////        $results = Geocoding::lookup('western blvd')->all();
+//
+//        return $visitor;
     }
 
 
@@ -52,10 +54,17 @@ class GoogleMaps
 
     /**
      */
-    public static function dynamic($locations, $options = [])
+    public static function map($options = [])
     {
-        return true;
+        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($options);
     }
+
+//    /**
+//     */
+//    public static function dynamic($locations, $options = [])
+//    {
+//        return true;
+//    }
 
     /**
      */
