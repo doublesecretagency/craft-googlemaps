@@ -12,25 +12,25 @@
 namespace doublesecretagency\googlemaps\models;
 
 /**
- * Class Geolocation
+ * Class Visitor
  * @since 4.0.0
  */
-class Geolocation extends Location
+class Visitor extends Location
 {
 
     public function __toString(): string
     {
         // Get location components
         $location = [];
-        if ($this->city) {$location[] = $this->city;}
-        if ($this->state) {$location[] = $this->state;}
+        if ($this->city)    {$location[] = $this->city;}
+        if ($this->state)   {$location[] = $this->state;}
         if ($this->country) {$location[] = $this->country;}
 
         // Compile a pseudo-address string
-        $address = implode(', ', $location);
+        $pseudoAddress = implode(', ', $location);
 
         // Return string
-        return "[{$this->service}] {$this->ip} - {$address}";
+        return "[{$this->service}] {$this->ip} - {$pseudoAddress}";
     }
 
     /**

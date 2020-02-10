@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\helpers;
 use Craft;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
-use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
+use doublesecretagency\googlemaps\models\Visitor;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;

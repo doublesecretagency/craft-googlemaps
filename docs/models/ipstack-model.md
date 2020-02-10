@@ -25,4 +25,4 @@ $visitor = Ipstack::geolocate($ipAddress);
 
 #### Returns
 
-_Geolocation_ - A [Geolocation Model](/models/geolocation-model/) representing the approximate location of a visitor.
+_Visitor_ - A [Visitor Model](/models/visitor-model/) containing the approximate location of a visitor.

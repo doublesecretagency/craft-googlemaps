@@ -1,6 +1,6 @@
-# Geolocation Model
+# Visitor Model
 
-The properties and methods of the Geolocation Model are identical whether you are accessing them via Twig or PHP.
+The properties and methods of the Visitor Model are identical whether you are accessing them via Twig or PHP.
 
 ```twig
 {% set visitor = googleMaps.getVisitor() %}
@@ -13,10 +13,10 @@ $visitor = GoogleMaps::getVisitor();
 $visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
 ```
 
-In all cases, `visitor` will be a Geolocation Model.
+In all cases, `visitor` will be a Visitor Model.
 
 ::: warning ADDITIONAL PROPERTIES AND METHODS
-The Geolocation Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.
+The Visitor Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.
 
 You can access `lat` and `lng` just as easily as `service` or `ip`.
 :::

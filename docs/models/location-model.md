@@ -1,6 +1,6 @@
 # Location Model
 
-Both the [Address Model](/models/address-model/) and [Geolocation Model](/models/geolocation-model/) are extensions of the Location Model.
+Both the [Address Model](/models/address-model/) and [Visitor Model](/models/visitor-model/) are extensions of the Location Model.
 
 ## Public Properties
 
@@ -23,7 +23,7 @@ _object_ - The raw original data returned by the service which generated the mod
 ::: tip What information is contained in "data"?
 If the model is an [Address Model](/models/address-model/), the `data` will contain a subset of the Google API geocoding results.
 
-If the model is a [Geolocation Model](/models/geolocation-model/), the `data` will contain whatever was returned by the geolocation service.
+If the model is a [Visitor Model](/models/visitor-model/), the `data` will contain whatever was returned by the geolocation service.
 :::
 
 ## Public Methods

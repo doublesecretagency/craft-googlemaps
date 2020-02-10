@@ -4,7 +4,7 @@ namespace doublesecretagency\googlemaps\tests;
 use Codeception\Test\Unit;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
-use doublesecretagency\googlemaps\models\Geolocation as GeolocationModel;
+use doublesecretagency\googlemaps\models\Visitor as VisitorModel;
 use doublesecretagency\googlemaps\models\Lookup as LookupModel;
 use UnitTester;
 
@@ -68,11 +68,11 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 
-    public function testGetvisitorReturnsAGeolocationModel()
+    public function testGetvisitorReturnsAVisitorModel()
     {
         $visitor = GoogleMaps::getVisitor();
 
-        $this->assertSame(GeolocationModel::class, get_class($visitor));
+        $this->assertSame(VisitorModel::class, get_class($visitor));
     }
 
     public function testLookupCreatesALookupModel()

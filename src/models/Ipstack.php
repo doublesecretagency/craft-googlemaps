@@ -34,9 +34,9 @@ class Ipstack extends Model
     private static $_endpoint = 'http://api.ipstack.com/';
 
     /**
-     * Get a Geolocation Model representing the user's location.
+     * Get a Visitor Model containing the visitor's location.
      */
-    public static function geolocate($ip, array $parameters = []): Geolocation
+    public static function geolocate($ip, array $parameters = []): Visitor
     {
         // Get cache service
         $cache = Craft::$app->getCache();
@@ -67,8 +67,8 @@ class Ipstack extends Model
         if (static::$_error) {
             // Bust cache
             $cache->delete($cacheKey);
-            // Create basic Geolocation Model
-            $results = new Geolocation([
+            // Create basic Visitor Model
+            $results = new Visitor([
                 'service' => static::$_service,
                 'ip' => $ip,
             ]);
@@ -114,7 +114,7 @@ class Ipstack extends Model
      * Interpret the response returned by the ipstack API.
      *
      * @param $response
-     * @return Geolocation|false
+     * @return Visitor|false
      */
     private static function _parseResponse($response)
     {
@@ -135,8 +135,8 @@ class Ipstack extends Model
             return false;
         }
 
-        // Return results as a Geolocation Model
-        return new Geolocation([
+        // Return results as a Visitor Model
+        return new Visitor([
             'service' => static::$_service,
             'ip' => $response['ip'],
             'city' => $response['city'],

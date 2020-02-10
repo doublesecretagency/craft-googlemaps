@@ -109,7 +109,7 @@ module.exports = {
             '/models/': [
                 '',
                 'address-model',
-                'geolocation-model',
+                'visitor-model',
                 'location-model',
                 'lookup-model',
                 'ipstack-model',
