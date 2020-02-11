@@ -1,13 +1,14 @@
 # Options
 
-| Option       | Type                                       | Default          | Description                                     |
-|--------------|:------------------------------------------:|:----------------:|-------------------------------------------------|
+| Option       | Type                 | Default   | Description                                               |
+|--------------|:--------------------:|:---------:|-----------------------------------------------------------|
 | `target`     | _string_, [coords](/models/coordinates/), or _null_ | `null` (autodetect) | Center point for the proximity search. |
-| `range`      | _int_                                      | `25`             | The search radius, measured in `units`.         |
-| `units`      | _string_                                   | `"miles"`        | Units of measurement ("miles" or "kilometers"). |
-| `fields`     | _string_ or _array_                        | `null`           | Only search against the specified field(s).     |
-| `subfields`  | _object_                                   | `null`           | An associative array of subfield filters.       |
-| `components` | _object_ or _string_                       | `null`           | An associative array of Google Maps components. |
+| `range`      | _int_                | `25`      | The search radius, measured in `units`.                   |
+| `units`      | _string_             | `"miles"` | Units of measurement ("miles" or "kilometers").           |
+| `fields`     | _string_ or _array_  | `null`    | Only search against the specified field(s).               |
+| `subfields`  | _object_             | `null`    | An associative array of subfield filters.                 |
+| `components` | _object_ or _string_ | `null`    | An associative array of Google Maps components.           |
+| `hasCoords`  | _bool_               | `false`   | Whether to filter out addresses with invalid coordinates. |
 
 ## `target`
 
@@ -59,3 +60,10 @@ Additional components that can be passed to the Google Maps API, in order to per
 
 ::: warning ONLY RELEVANT IF TARGET IS A STRING
 The `components` option only matters if the `target` value is a **string**. Using a string will force an [address lookup](/geocoding/), which is where the `components` are used in the geocoding process. Otherwise, `components` are irrelevant.
+:::
+
+## `hasCoords`
+
+### Default: `false`
+
+If set to `true`, all addresses with invalid coordinates will be omitted from the results. A set of coordinates is only considered valid if both the `latitude` and `longitude` values are populated. 
