@@ -38,6 +38,7 @@ module.exports = {
                 items: [
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
+                    {text: 'Events', link: '/events/'},
                     {text: 'Twig Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
                     {text: 'Config File', link: '/config/'},
@@ -125,6 +126,11 @@ module.exports = {
                 'maps-javascript-service',
                 'maps-static-service',
                 'proximity-search-service',
+            ],
+            '/events/': [
+                '',
+                'geocoding-event',
+                'geolocation-event',
             ],
             '/twig-object/': [
                 '',
