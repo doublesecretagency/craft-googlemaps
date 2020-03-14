@@ -1,14 +1,14 @@
 # Options
 
-| Option       | Type                 | Default   | Description                                               |
-|--------------|:--------------------:|:---------:|-----------------------------------------------------------|
+| Option       | Type                 | Default | Description                                               |
+|--------------|:--------------------:|:-------:|-----------------------------------------------------------|
 | `target`     | _string_, [coords](/models/coordinates/), or _null_ | `null` (autodetect) | Center point for the proximity search. |
-| `range`      | _int_                | `25`      | The search radius, measured in `units`.                   |
-| `units`      | _string_             | `"miles"` | Units of measurement ("miles" or "kilometers").           |
-| `fields`     | _string_ or _array_  | `null`    | Only search against the specified field(s).               |
-| `subfields`  | _object_             | `null`    | An associative array of subfield filters.                 |
-| `components` | _object_ or _string_ | `null`    | An associative array of Google Maps components.           |
-| `hasCoords`  | _bool_               | `false`   | Whether to filter out addresses with invalid coordinates. |
+| `range`      | _int_                | `500`   | The search radius, measured in `units`.                   |
+| `units`      | _string_             | `"mi"`  | Unit of measurement, either miles or kilometers.          |
+| `fields`     | _string_ or _array_  | `null`  | Only search against the specified field(s).               |
+| `subfields`  | _object_             | `null`  | An associative array of subfield filters.                 |
+| `components` | _object_ or _string_ | `null`  | An associative array of Google Maps components.           |
+| `hasCoords`  | _bool_               | `false` | Whether to filter out addresses with invalid coordinates. |
 
 ## `target`
 
@@ -22,15 +22,20 @@ If the `target` is **null**, the plugin will attempt to use [visitor geolocation
 
 ## `range`
 
-### Default: `25`
+### Default: `500`
 
 How wide of an area to conduct a proximity search within. The value represents the search radius, reaching outward from the `target` value. The units of measurement will be defined by `units`.
 
 ## `units`
 
-### Default: `"miles"`
+### Default: `"mi"`
 
-The unit of measurement by which to measure distances. Can be set to either `"miles"` or `"kilometers"`.
+The unit of measurement by which to measure distances. Any of the following options are valid:
+
+ - "mi"
+ - "km"
+ - "miles"
+ - "kilometers"
 
 ## `fields`
 
