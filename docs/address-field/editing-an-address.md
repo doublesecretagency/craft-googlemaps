@@ -4,7 +4,7 @@ After you've added the field to your field layout (of any element type),
 
 [Show gif or video of the Address field in use]
 
-![](/images/address-field/blueprint-address-field.png)
+<img :src="$withBase('/images/address-field/blueprint-address-field.png')" alt="Blueprint of Address Field">
 
 ## Search as you type
 

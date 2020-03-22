@@ -89,4 +89,4 @@ Here's an example of a more complex info window template...
 
 If you get Twig errors in your info window template, the error message will be generated inside of your info window. In addition to logging the error normally, you can also click on the marker to view the error.
 
-![](/images/maps/template-error.png)
+<img :src="$withBase('/images/maps/template-error.png')" alt="Screenshot of an info window Twig template error">

@@ -20,7 +20,7 @@ You'll need to enable the following services within the Google interface...
 
 Add your new API keys to the Settings page...
 
-![](/images/getting-started/api-fields.png)
+<img :src="$withBase('/images/getting-started/api-fields.png')" alt="Screenshot of Google Maps API keys as stored in the plugin's settings page">
 
 
 ## Testing your API keys

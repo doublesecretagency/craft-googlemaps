@@ -16,7 +16,7 @@ By default, you can set all markers to use the same icon when creating a map. Wi
 
 The value of `icon` can be anything allowed as the `icon` property of the Google Maps API [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon) interface.
 
-![](/images/guides/icon.png)
+<img :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon">
 
 **Complex Example:**
 

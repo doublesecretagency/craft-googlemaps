@@ -1,2 +1,2 @@
 # Ignore the entire `dist` folder
-dist/*
+dist

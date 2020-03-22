@@ -2,7 +2,7 @@
 
 You will often need to perform a geocoding lookup to get the full address (including coordinates) based on a partial address or postal code. Indeed, the Google Maps plugin itself uses these lookup methods frequently under the hood.
 
-![](/images/geocoding/flow-chart.png)
+<img :src="$withBase('/images/geocoding/flow-chart.png')" alt="How it works">
 
 If you want to get the complete set of geocoding results from Google, you would use the [`all()`](/models/lookup-model/#all) method. The results will be sorted in order of what Google considers to be the best match.
 

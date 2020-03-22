@@ -2,7 +2,7 @@
 
 When you create a new Address field, you will see the following settings...
 
-![](/images/address-field/field-settings.jpg)
+<img :src="$withBase('/images/address-field/field-settings.jpg')" alt="Screenshot of the address field's settings page">
 
 These fields only apply to the **content author**, or whomever is viewing the field in the control panel. These settings do not have any impact on how the address data is used on the front-end of your site.
 

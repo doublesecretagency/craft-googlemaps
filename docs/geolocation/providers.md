@@ -2,7 +2,7 @@
 
 There are several different companies which provide geolocation services.
 
-![](/images/geolocation/geolocation-services.png)
+<img :src="$withBase('/images/geolocation/geolocation-services.png')" alt="Screenshot of plugin's settings page featuring list of geolocation service provider options">
 
 ## ipstack
 
