@@ -2,9 +2,9 @@
 
 After you've added the field to your field layout (of any element type),
 
-![](/images/address-field/address-field-example.jpg)
-
 [Show gif or video of the Address field in use]
+
+![](/images/address-field/blueprint-address-field.png)
 
 ## Search as you type
 
