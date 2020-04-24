@@ -1,10 +1,12 @@
 module.exports = {
 
-    // markdown: {
-    //     slugify: ???
-    // },
-
-
+    markdown: {
+        anchor: { level: [2, 3] },
+        extendMarkdown(md) {
+            let markup = require("vuepress-theme-craftdocs/markup");
+            md.use(markup);
+        },
+    },
 
     base: '/google-maps/',
     title: 'Google Maps plugin for Craft CMS',
@@ -18,7 +20,13 @@ module.exports = {
             },
         ],
     ],
+    theme: "craftdocs",
     themeConfig: {
+        codeLanguages: {
+            php: "PHP",
+            twig: "Twig",
+            js: "JavaScript",
+        },
         logo: '/images/dsa-circle.png',
         searchMaxSuggestions: 10,
         nav: [
@@ -83,6 +91,15 @@ module.exports = {
                 'static',
                 'info-windows',
                 'linking-to-google',
+
+
+                'chaining',
+                'php',
+                'twig',
+                'twig-static',
+
+
+
             ],
             '/proximity-search/': [
                 '',
