@@ -1,4 +1,4 @@
-# Dynamic Maps
+# (DEL) Dynamic Maps
 
 You can create a dynamic map which contains as many markers as you'd like.
 

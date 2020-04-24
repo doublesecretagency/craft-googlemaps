@@ -1,4 +1,4 @@
-# Info Windows
+# (DEL) Info Windows
 
 ## Basic Usage
 

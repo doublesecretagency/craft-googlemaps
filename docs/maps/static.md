@@ -1,4 +1,4 @@
-# Static Maps
+# (DEL) Static Maps
 
 You can create a static map which contains as many markers as you'd like.
 
