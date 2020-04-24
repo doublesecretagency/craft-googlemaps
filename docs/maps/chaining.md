@@ -19,20 +19,17 @@ It's that simple! Take a look at the examples below, you will see how this patte
 
 ## Simple examples
 
-**PHP**
-```php
-$map = GoogleMaps::map($mapOptions)->markers($locations);
-```
-
-**Twig**
+::: code
 ```twig
 {% set map = googleMaps.map(mapOptions).markers(locations) %}
 ```
-
-**JavaScript**
 ```js
 var map = googleMaps.map(mapOptions).markers(locations);
 ```
+```php
+$map = GoogleMaps::map($mapOptions)->markers($locations);
+```
+:::
 
 When you call the `map` method, you can pass in a `mapOptions` array of properties to configure the map. Once you have a map object, you will be able to call `markers` to append new markers to the map.
 
