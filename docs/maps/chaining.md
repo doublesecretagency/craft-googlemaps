@@ -37,45 +37,39 @@ When you call the `map` method, you can pass in a `mapOptions` array of properti
 
 If you don't need anything fancy out of your markers, you can actually pass them in as the second parameter of your `map` function.
 
-**PHP**
-```php
-GoogleMaps::map($mapOptions, $locations)
-```
-
-**Twig**
+::: code
 ```twig
 googleMaps.map(mapOptions, locations)
 ```
-
-**JavaScript**
 ```js
 googleMaps.map(mapOptions, locations)
 ```
+```php
+GoogleMaps::map($mapOptions, $locations)
+```
+:::
 
 ## Formatting markers
 
 You can format your markers by passing in `markerOptions`.
 
-**PHP**
-```php
-$map->markers($locations, $markerOptions);
-```
-
-**Twig**
+::: code
 ```twig
 map.markers(locations, markerOptions)
 ```
-
-**JavaScript**
 ```js
 map.markers(locations, markerOptions)
 ```
+```php
+$map->markers($locations, $markerOptions);
+```
+:::
 
 ## Formatting groups of markers
 
 If you have multiple groups of markers, you can format an entire batch by specifying new marker options each time.
 
-** JavaScript **
+::: code
 ```js
 // Create a new map object
 var map = googleMaps.map(mapOptions);
@@ -86,4 +80,4 @@ map.markers(locationsOne, markerOptionsOne);
 // Add second group of locations with custom marker options
 map.markers(locationsTwo, markerOptionsTwo);
 ```
-
+:::

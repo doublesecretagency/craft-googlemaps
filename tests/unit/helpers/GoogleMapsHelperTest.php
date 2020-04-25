@@ -68,12 +68,12 @@ class GoogleMapsHelperTest extends Unit
 //            true);
 //    }
 
-    public function testGetvisitorReturnsAVisitorModel()
-    {
-        $visitor = GoogleMaps::getVisitor();
-
-        $this->assertSame(VisitorModel::class, get_class($visitor));
-    }
+//    public function testGetvisitorReturnsAVisitorModel()
+//    {
+//        $visitor = GoogleMaps::getVisitor();
+//
+//        $this->assertSame(VisitorModel::class, get_class($visitor));
+//    }
 
     public function testLookupCreatesALookupModel()
     {

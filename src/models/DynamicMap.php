@@ -18,6 +18,10 @@ use craft\helpers\Template;
 
 use Twig\Markup;
 
+/*
+ * KILLING IN FAVOR OF NEW CHAINING METHOD
+ */
+
 /**
  * Class DynamicMap
  * @since 4.0.0

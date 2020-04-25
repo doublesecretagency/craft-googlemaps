@@ -51,6 +51,21 @@ window.googleMapsPlugin = {
     // Render a specific map
     _renderMap: function (dna) {
 
+        var container = document.getElementById(dna.id);
+        var height = dna.height || 400;
+
+        new google.maps.Map(container, {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 6
+        });
+
+        container.setAttribute('style','display:block; height:'+height+'px');
+        container.style.height = height+'px';
+
+
+
+
+
         console.table(dna);
 
     },

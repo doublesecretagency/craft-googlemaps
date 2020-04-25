@@ -73,16 +73,16 @@ For more information, see [Complex JS in Twig...](/guides/complex-js-in-twig/)
 :::
 
 ::: tip GESTUREHANDLING
-```js
-mapOptions: {
-    gestureHandling: 'none'
-}
-```
-
 Setting the `gestureHandling` to `"none"` will have two notable effects...
 
  - The _scrollwheel_ of your mouse will no longer zoom the map in & out.
  - The map will no longer be _draggable_.
+ 
+```js
+    mapOptions: {
+        gestureHandling: 'none'
+    }
+```
  
 See the full details about `gestureHandling` in the [Google documentation...](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions.gestureHandling)
 :::
