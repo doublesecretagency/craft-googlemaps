@@ -65,6 +65,7 @@ module.exports = {
                     {text: 'Filter by Fields and Subfields', link: '/guides/filter-by-fields-and-subfields/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
+                    {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                 ]
             }
         ],
@@ -173,6 +174,7 @@ module.exports = {
                 'filter-by-fields-and-subfields',
                 'region-biasing',
                 'complex-geolocation',
+                'bermuda-triangle',
             ],
 
             // // fallback
