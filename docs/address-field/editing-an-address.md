@@ -10,6 +10,8 @@ After you've added the field to your field layout (of any element type),
 
 The Address field will perform an automatic lookup as you type, quickly narrowing down your search results to find the best match.
 
+Only the **first** subfield will conduct a lookup. This is usually the "Street Address", but the autocomplete mechanism will be bound to whatever subfield appears first.
+
 ## Latitude & Longitude
 
 Based on the field settings, the coordinates of each address will either:

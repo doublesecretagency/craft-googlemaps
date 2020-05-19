@@ -13,8 +13,11 @@ namespace doublesecretagency\googlemaps;
 
 use Craft;
 use craft\base\Plugin;
+use craft\events\RegisterComponentTypesEvent;
+use craft\services\Fields;
+use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
-use doublesecretagency\googlemaps\services\AddressField;
+//use doublesecretagency\googlemaps\services\AddressField;
 use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
@@ -22,6 +25,7 @@ use doublesecretagency\googlemaps\services\MapsJavascript;
 use doublesecretagency\googlemaps\services\MapsStatic;
 use doublesecretagency\googlemaps\services\ProximitySearch;
 use doublesecretagency\googlemaps\web\twig\Extension;
+use yii\base\Event;
 
 /**
  * Class GoogleMapsPlugin
@@ -66,7 +70,7 @@ class GoogleMapsPlugin extends Plugin
 
         // Load plugin components
         $this->setComponents([
-            'addressField' => AddressField::class,
+//            'addressField' => AddressField::class,
             'api' => Api::class,
             'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,
@@ -74,6 +78,15 @@ class GoogleMapsPlugin extends Plugin
             'mapsStatic' => MapsStatic::class,
             'proximitySearch' => ProximitySearch::class,
         ]);
+
+        // Register field type
+        Event::on(
+            Fields::class,
+            Fields::EVENT_REGISTER_FIELD_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+                $event->types[] = AddressField::class;
+            }
+        );
     }
 
     /**

@@ -1,0 +1,91 @@
+{% set data = {
+    'address': {
+        'street1' : null,
+        'street2' : null,
+        'city'    : null,
+        'state'   : null,
+        'zip'     : null,
+        'country' : null,
+    },
+    'coords': {
+        'lat'  : null,
+        'lng'  : null,
+        'zoom' : null,
+    }
+} %}
+
+{% set settings = {
+    'showMap': true,
+    'mapOnStart': 'open',
+    'mapOnSearch': 'open',
+    'coordinatesMode': 'editable',
+    'coordinatesDefault': {
+        'lat': 34.038136,
+        'lng': -118.243996,
+        'zoom': 11
+    },
+    'subfieldConfig': {
+        'street1': {
+            'label'    : 'Street Address',
+            'width'    : 100,
+            'position' : 1,
+            'enabled'  : 1,
+            'required' : false
+        },
+        'street2': {
+            'label'    : 'Apartment or Suite',
+            'width'    : 100,
+            'position' : 2,
+            'enabled'  : 1,
+            'required' : false
+        },
+        'city': {
+            'label'    : 'City',
+            'width'    : 50,
+            'position' : 3,
+            'enabled'  : 1,
+            'required' : false
+        },
+        'state': {
+            'label'    : 'State',
+            'width'    : 15,
+            'position' : 4,
+            'enabled'  : 1,
+            'required' : false
+        },
+        'zip': {
+            'label'    : 'Zip Code',
+            'width'    : 35,
+            'position' : 5,
+            'enabled'  : 1,
+            'required' : false
+        },
+        'country': {
+            'label'    : 'Country',
+            'width'    : 100,
+            'position' : 6,
+            'enabled'  : 1,
+            'required' : false
+        }
+    }
+} %}
+
+{% set assets = '@doublesecretagency/googlemaps/web/assets' %}
+{% set icons = {
+    'marker'       : view.getAssetManager().getPublishedUrl(assets, true, 'addressfield/dist/images/marker.svg'),
+    'markerHollow' : view.getAssetManager().getPublishedUrl(assets, true, 'addressfield/dist/images/marker-hollow.svg')
+} %}
+
+<script>
+    // Port PHP data to JS via Twig
+    var settings = {{ settings|json_encode|raw }};
+    var data = {{ data|json_encode|raw }};
+    var icons = {{ icons|json_encode|raw }};
+</script>
+<div id="address">
+    <address-field
+        :settings="settings"
+        :data="data"
+        :icons="icons"
+    ></address-field>
+</div>

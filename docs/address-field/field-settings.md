@@ -12,11 +12,23 @@ If checked, the address will automatically be shown on a map. If not checked, th
 
 When viewing the map, you can drag & drop the pin to alter the geographic coordinates (it will not change the address).
 
+## "Map Visibility Toggle"
+
+The map visibility toggle controls whether or not the map is currently being displayed.
+
+**Label & Icon** - Show both the textual and iconic representations of the visibility toggle.
+
+**Label Only** - Use only text to represent the toggle.
+
+**Icon Only** - Displays only the marker icon as the visibility toggle.
+
+**Disabled** - The map visibility toggle will be hidden entirely.
+
 ## "Show coordinates as..."
 
-**Input fields** - The coordinates will be _editable_ via standard form inputs. You will be able to manage the arrangement of these fields alongside the other subfields (see "Arrange subfield layout" below).
+**Input Fields** - The coordinates will be _editable_ via standard form inputs. You will be able to manage the arrangement of these fields alongside the other subfields (see "Arrange subfield layout" below).
 
-**Read-only text** - The coordinates will be visible, but _not editable_.
+**Read-Only Fields** - The coordinates will be visible, but _not editable_.
 
 **Hidden** - The coordinates will be hidden.
 
