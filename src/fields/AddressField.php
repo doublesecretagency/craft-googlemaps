@@ -128,12 +128,8 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function getSettingsHtml(): string
     {
-
-        return 'hi';
-
-
-//        // Reference assets
-//        $view = Craft::$app->getView();
+        // Reference assets
+        $view = Craft::$app->getView();
 //        $view->registerAssetBundle(GoogleMapsAssets::class);
 //        $view->registerAssetBundle(FieldSettingsAssets::class);
 //
@@ -143,13 +139,13 @@ class AddressField extends Field implements PreviewableFieldInterface
 //        // Restructure layout
 //        $layout = $this->_extractLayout($settings);
 //        unset($settings['layout']);
-//
-//        // Render fieldtype settings template
-//        return $view->renderTemplate('smart-map/address/fieldtype-settings', [
+
+        // Load fieldtype settings template
+        return $view->renderTemplate('google-maps/address-settings', [
 //            'settings' => $settings,
 //            'layout' => $layout,
 //            'containerId' => 'id-'.StringHelper::randomString(10),
-//        ]);
+        ]);
     }
 
     /**
@@ -185,7 +181,7 @@ class AddressField extends Field implements PreviewableFieldInterface
 //        $layout = $this->_extractLayout($settings);
 
 
-        // Load template
+        // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
 //            'name' => $this->handle,
 //            'value' => $value,

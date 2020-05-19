@@ -87,3 +87,10 @@
         }
     }
 </script>
+
+<style scoped>
+    .disabled {
+        opacity: 0.60;
+        background-color: #e4eaf4;
+    }
+</style>
