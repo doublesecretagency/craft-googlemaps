@@ -94,6 +94,13 @@
 
                 });
 
+                // Prevent address selection from attempting to submit the form
+                google.maps.event.addDomListener($first, 'keydown', function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                    }
+                });
+
             } catch (error) {
 
                 // Something went wrong

@@ -1306,8 +1306,7 @@ __webpack_require__.r(__webpack_exports__);
 /* ORIGINAL SOURCE:
  * https://markus.oberlehner.net/blog/using-the-google-maps-api-with-vue/
  */
-var API_KEY = 'AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ';
-var CALLBACK_NAME = 'gmapsCallback';
+var CALLBACK_NAME = 'initGoogleMaps';
 var initialized = !!window.google;
 var resolveInitPromise;
 var rejectInitPromise; // This promise handles the initialization
@@ -1328,17 +1327,8 @@ function init() {
 
   window[CALLBACK_NAME] = function () {
     return resolveInitPromise(window.google);
-  }; // We inject a new script tag into
-  // the `<head>` of our HTML to load
-  // the Google Maps script.
+  };
 
-
-  var script = document.createElement('script');
-  script.async = true;
-  script.defer = true;
-  script.src = "https://maps.googleapis.com/maps/api/js?key=".concat(API_KEY, "&libraries=places&callback=").concat(CALLBACK_NAME);
-  script.onerror = rejectInitPromise;
-  document.querySelector('head').appendChild(script);
   return initPromise;
 }
 
@@ -1945,23 +1935,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (true) {
                   _this.$root.$data.settings.showMap = true;
                 }
-              });
+              }); // Prevent address selection from attempting to submit the form
 
-              _context.next = 15;
+
+              google.maps.event.addDomListener($first, 'keydown', function (event) {
+                if (event.keyCode === 13) {
+                  event.preventDefault();
+                }
+              });
+              _context.next = 16;
               break;
 
-            case 12:
-              _context.prev = 12;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](0);
               // Something went wrong
               console.error(_context.t0);
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 12]]);
+      }, _callee, null, [[0, 13]]);
     }))();
   }
 });
