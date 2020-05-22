@@ -1948,11 +1948,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.autocomplete.addListener('place_changed', function () {
                 var place = _this.autocomplete.getPlace();
 
-                _this.setAddressData(place.address_components, place.geometry.location);
+                _this.setAddressData(place.address_components, place.geometry.location); // Get settings
 
-                if (true) {
-                  _this.$root.$data.settings.showMap = true;
-                }
+
+                var settings = _this.$root.$data.settings; // If not changing the map visibility, bail
+
+                if ('noChange' === settings.mapOnSearch) {
+                  return;
+                } // Change map visibility based on settings
+
+
+                settings.showMap = 'open' === settings.mapOnSearch;
               }); // Prevent address selection from attempting to submit the form
 
 

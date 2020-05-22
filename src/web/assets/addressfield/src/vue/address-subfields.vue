@@ -86,12 +86,16 @@
                     let place = this.autocomplete.getPlace();
                     this.setAddressData(place.address_components, place.geometry.location);
 
+                    // Get settings
+                    let settings = this.$root.$data.settings;
 
-                    if (true) {
-                        this.$root.$data.settings.showMap = true;
+                    // If not changing the map visibility, bail
+                    if ('noChange' === settings.mapOnSearch) {
+                        return;
                     }
 
-
+                    // Change map visibility based on settings
+                    settings.showMap = ('open' === settings.mapOnSearch);
                 });
 
                 // Prevent address selection from attempting to submit the form
