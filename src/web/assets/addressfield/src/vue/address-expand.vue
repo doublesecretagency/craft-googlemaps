@@ -1,13 +1,6 @@
 <template>
-    <!--
-     - DEFAULT
-     - Without CP Field Inspect:
-     -  'margin-right': '4px'
-     -->
-    <!--
-     - With CP Field Inspect:
-     -->
     <span
+        v-if="'hidden' !== toggleMode"
         @click="toggle()"
         :style="{
             'float': 'right',
@@ -16,10 +9,12 @@
             'cursor': 'pointer',
         }"
     >
-        {{ showMap ? 'Hide Map' : 'Show Map' }}
+        <span v-if="'icon' !== toggleMode">{{ toggleText }}</span>
         <img
-            :src="markerIcon"
+            v-if="'text' !== toggleMode"
             alt="Marker icon"
+            :title="'icon' === toggleMode ? toggleText : false"
+            :src="markerIcon"
             :style="{
                 'height': '14px',
                 'margin-left': '2px',
@@ -32,12 +27,16 @@
 <script>
     export default {
         data() {
-            let usingCpFieldInspect = true;
+            let settings = this.$root.$data.settings;
             return {
-                marginRight: (usingCpFieldInspect ? '18px' : '4px')
+                marginRight: (settings.usingCpFieldInspect ? '18px' : '4px'),
+                toggleMode: settings.visibilityToggle
             }
         },
         computed: {
+            toggleText() {
+                return (this.showMap ? 'Hide Map' : 'Show Map');
+            },
             showMap() {
                 return this.$root.$data.settings.showMap;
             },

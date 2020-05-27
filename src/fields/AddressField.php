@@ -15,15 +15,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
-use craft\elements\db\ElementQueryInterface;
-use craft\helpers\StringHelper;
 use doublesecretagency\googlemaps\web\assets\addressfield\AddressFieldAsset;
-
-//use doublesecretagency\googlemaps\SmartMap;
-//use doublesecretagency\googlemaps\enums\MeasurementUnit;
-//use doublesecretagency\googlemaps\web\assets\FieldInputAssets;
-//use doublesecretagency\googlemaps\web\assets\FieldSettingsAssets;
-//use doublesecretagency\googlemaps\web\assets\GoogleMapsAssets;
 
 /**
  * Class AddressField
@@ -32,39 +24,98 @@ use doublesecretagency\googlemaps\web\assets\addressfield\AddressFieldAsset;
 class AddressField extends Field implements PreviewableFieldInterface
 {
 
-//    /**
-//     * @var array|null
-//     */
-//    public $layout = [
-//        'street1' => ['enable' => 1, 'width' => 100, 'position' => 1],
-//        'street2' => ['enable' => 1, 'width' => 100, 'position' => 2],
-//        'city'    => ['enable' => 1, 'width' =>  50, 'position' => 3],
-//        'state'   => ['enable' => 1, 'width' =>  15, 'position' => 4],
-//        'zip'     => ['enable' => 1, 'width' =>  35, 'position' => 5],
-//        'country' => ['enable' => 1, 'width' => 100, 'position' => 6],
-//        'lat'     => ['enable' => 1, 'width' =>  50, 'position' => 7],
-//        'lng'     => ['enable' => 1, 'width' =>  50, 'position' => 8],
-//    ];
+    /**
+     * What should the map be
+     * when the field is initially loaded?
+     *
+     * @var string "open" or "close"
+     */
+    public $mapOnStart = 'close';
 
-//    /**
-//     * @var bool|null
-//     */
-//    public $dragPinDefault;
-//
-//    /**
-//     * @var float|null
-//     */
-//    public $dragPinLatitude;
-//
-//    /**
-//     * @var float|null
-//     */
-//    public $dragPinLongitude;
-//
-//    /**
-//     * @var int|null
-//     */
-//    public $dragPinZoom;
+    /**
+     * What should the map be
+     * when a geocode lookup is performed?
+     *
+     * @var string "open", "close" or "noChange"
+     */
+    public $mapOnSearch = 'noChange';
+
+    /**
+     * How should we display
+     * the map visibility toggle?
+     *
+     * @var string "both", "text", "icon" or "hidden"
+     */
+    public $visibilityToggle = 'both';
+
+    /**
+     * How should we display
+     * the coordinates fields?
+     *
+     * @var string "editable", "readOnly" or "hidden"
+     */
+    public $coordinatesMode = 'readOnly';
+
+    /**
+     * Default coordinates of a new Address field.
+     *
+     * @var array|null
+     */
+    public $coordinatesDefault = [
+        'lat' => 34.038136,
+        'lng' => -118.243996,
+        'zoom' => 11
+    ];
+
+    /**
+     * Full configuration of subfields.
+     *
+     * @var array|null
+     */
+    public $subfieldConfig = [
+        'street1'=> [
+            'label'    => 'Street Address',
+            'width'    => 100,
+            'position' => 1,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'street2'=> [
+            'label'    => 'Apartment or Suite',
+            'width'    => 100,
+            'position' => 2,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'city'=> [
+            'label'    => 'City',
+            'width'    => 50,
+            'position' => 3,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'state'=> [
+            'label'    => 'State',
+            'width'    => 15,
+            'position' => 4,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'zip'=> [
+            'label'    => 'Zip Code',
+            'width'    => 35,
+            'position' => 5,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'country'=> [
+            'label'    => 'Country',
+            'width'    => 100,
+            'position' => 6,
+            'enabled'  => 1,
+            'required' => false
+        ]
+    ];
 
     // ========================================================================= //
 
@@ -108,20 +159,20 @@ class AddressField extends Field implements PreviewableFieldInterface
 
     // ========================================================================= //
 
-    /**
-     * @inheritdoc
-     */
-    public function getSettings(): array
-    {
-        $settings = parent::getSettings();
-
-//        // Ensure layout is an array
-//        if (!is_array($settings['layout'])) {
-//            $settings['layout'] = json_decode($settings['layout'], true);
-//        }
-
-        return $settings;
-    }
+//    /**
+//     * @inheritdoc
+//     */
+//    public function getSettings(): array
+//    {
+//        $settings = parent::getSettings();
+//
+////        // Ensure layout is an array
+////        if (!is_array($settings['layout'])) {
+////            $settings['layout'] = json_decode($settings['layout'], true);
+////        }
+//
+//        return $settings;
+//    }
 
     /**
      * @inheritdoc
@@ -130,21 +181,11 @@ class AddressField extends Field implements PreviewableFieldInterface
     {
         // Reference assets
         $view = Craft::$app->getView();
-//        $view->registerAssetBundle(GoogleMapsAssets::class);
 //        $view->registerAssetBundle(FieldSettingsAssets::class);
-//
-//        // Get settings
-//        $settings = $this->getSettings();
-//
-//        // Restructure layout
-//        $layout = $this->_extractLayout($settings);
-//        unset($settings['layout']);
 
         // Load fieldtype settings template
         return $view->renderTemplate('google-maps/address-settings', [
-//            'settings' => $settings,
-//            'layout' => $layout,
-//            'containerId' => 'id-'.StringHelper::randomString(10),
+            'settings' => $this->getSettings(),
         ]);
     }
 
@@ -156,63 +197,38 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Reference assets
         $view = Craft::$app->getView();
         $view->registerAssetBundle(AddressFieldAsset::class);
-//        $view->registerAssetBundle(FieldInputAssets::class);
-//
-//        // Ensure geo data is loaded
-//        SmartMap::$plugin->smartMap->measurementUnit = MeasurementUnit::Miles;
-//        SmartMap::$plugin->smartMap->loadGeoData();
-//
-//        // Get visitor coordinates
-//        $visitor = SmartMap::$plugin->smartMap->visitor;
-//        if ($visitor['latitude'] && $visitor['longitude']) {
-//            $visitorJs = json_encode([
-//                'lat' => $visitor['latitude'],
-//                'lng' => $visitor['longitude'],
-//            ]);
-//        } else {
-//            $visitorJs = 'false';
-//        }
-//
-//        // Register visitor JS
-//        $view->registerJs('visitor = '.$visitorJs.';', $view::POS_END);
-//
-//        // Extract layout
-//        $settings = $this->getSettings();
-//        $layout = $this->_extractLayout($settings);
 
+        // Get published icon URLs
+        $icons = [
+            'marker'       => $this->_publishSvg('marker.svg'),
+            'markerHollow' => $this->_publishSvg('marker-hollow.svg')
+        ];
+
+        // Whether or not the CP Field Inspect is being used
+        $usingCpFieldInspect = Craft::$app->getPlugins()->isPluginEnabled('cp-field-inspect');
 
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
 //            'name' => $this->handle,
 //            'value' => $value,
-//            'field' => $this,
-//            'layout' => $layout,
+            'field' => $this,
+            'icons' => $icons,
+            'usingCpFieldInspect' => $usingCpFieldInspect,
         ]);
     }
 
     /**
-     * Extract layout data from settings
+     * Generate a published icon URL.
      *
-     * @param $settings
-     * @return array
+     * @param $filename
+     * @return string|false
      */
-    private function _extractLayout($settings)
+    private function _publishSvg($filename)
     {
-//        // Initialize
-//        $i = 0;
-//        $layout = [];
-//
-//        // Loop through layout data
-//        foreach ($settings['layout'] as $handle => $subfield) {
-//            $i++;
-//            $position = ($subfield['position'] ?? $i);
-//            $layout[$position] = array_merge($subfield, ['handle' => $handle]);
-//        }
-//
-//        // Cleanup
-//        ksort($layout);
-//
-//        return $layout;
+        $manager = Craft::$app->getAssetManager();
+        $assets = '@doublesecretagency/googlemaps/web/assets';
+        $markerSvg = "addressfield/dist/images/{$filename}";
+        return $manager->getPublishedUrl($assets, true, $markerSvg);
     }
 
     // ========================================================================= //

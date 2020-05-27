@@ -1602,19 +1602,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var usingCpFieldInspect = true;
+    var settings = this.$root.$data.settings;
     return {
-      marginRight: usingCpFieldInspect ? '18px' : '4px'
+      marginRight: settings.usingCpFieldInspect ? '18px' : '4px',
+      toggleMode: settings.visibilityToggle
     };
   },
   computed: {
+    toggleText: function toggleText() {
+      return this.showMap ? 'Hide Map' : 'Show Map';
+    },
     showMap: function showMap() {
       return this.$root.$data.settings.showMap;
     },
@@ -1958,7 +1957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } // Change map visibility based on settings
 
 
-                settings.showMap = 'open' === settings.mapOnSearch;
+                _this.$root.$data.settings.showMap = 'open' === settings.mapOnSearch;
               }); // Prevent address selection from attempting to submit the form
 
 
@@ -2805,35 +2804,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    {
-      style: {
-        float: "right",
-        "margin-top": "-25px",
-        "margin-right": _vm.marginRight,
-        cursor: "pointer"
-      },
-      on: {
-        click: function($event) {
-          return _vm.toggle()
-        }
-      }
-    },
-    [
-      _vm._v(
-        "\n    " + _vm._s(_vm.showMap ? "Hide Map" : "Show Map") + "\n    "
-      ),
-      _c("img", {
-        style: {
-          height: "14px",
-          "margin-left": "2px",
-          "margin-bottom": "-2px"
+  return "hidden" !== _vm.toggleMode
+    ? _c(
+        "span",
+        {
+          style: {
+            float: "right",
+            "margin-top": "-25px",
+            "margin-right": _vm.marginRight,
+            cursor: "pointer"
+          },
+          on: {
+            click: function($event) {
+              return _vm.toggle()
+            }
+          }
         },
-        attrs: { src: _vm.markerIcon, alt: "Marker icon" }
-      })
-    ]
-  )
+        [
+          "icon" !== _vm.toggleMode
+            ? _c("span", [_vm._v(_vm._s(_vm.toggleText))])
+            : _vm._e(),
+          _vm._v(" "),
+          "text" !== _vm.toggleMode
+            ? _c("img", {
+                style: {
+                  height: "14px",
+                  "margin-left": "2px",
+                  "margin-bottom": "-2px"
+                },
+                attrs: {
+                  alt: "Marker icon",
+                  title: "icon" === _vm.toggleMode ? _vm.toggleText : false,
+                  src: _vm.markerIcon
+                }
+              })
+            : _vm._e()
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

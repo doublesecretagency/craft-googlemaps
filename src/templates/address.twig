@@ -14,74 +14,21 @@
     }
 } %}
 
-{% set settings = {
-    'showMap': false,
-    'mapOnStart': 'close',
-    'mapOnSearch': 'open',
-    'coordinatesMode': 'readOnly',
-    'coordinatesDefault': {
-        'lat': 34.038136,
-        'lng': -118.243996,
-        'zoom': 11
-    },
-    'subfieldConfig': {
-        'street1': {
-            'label'    : 'Street Address',
-            'width'    : 100,
-            'position' : 1,
-            'enabled'  : 1,
-            'required' : false
-        },
-        'street2': {
-            'label'    : 'Apartment or Suite',
-            'width'    : 100,
-            'position' : 2,
-            'enabled'  : 1,
-            'required' : false
-        },
-        'city': {
-            'label'    : 'City',
-            'width'    : 50,
-            'position' : 3,
-            'enabled'  : 1,
-            'required' : false
-        },
-        'state': {
-            'label'    : 'State',
-            'width'    : 15,
-            'position' : 4,
-            'enabled'  : 1,
-            'required' : false
-        },
-        'zip': {
-            'label'    : 'Zip Code',
-            'width'    : 35,
-            'position' : 5,
-            'enabled'  : 1,
-            'required' : false
-        },
-        'country': {
-            'label'    : 'Country',
-            'width'    : 100,
-            'position' : 6,
-            'enabled'  : 1,
-            'required' : false
-        }
-    }
-} %}
-
-{% set assets = '@doublesecretagency/googlemaps/web/assets' %}
-{% set icons = {
-    'marker'       : view.getAssetManager().getPublishedUrl(assets, true, 'addressfield/dist/images/marker.svg'),
-    'markerHollow' : view.getAssetManager().getPublishedUrl(assets, true, 'addressfield/dist/images/marker-hollow.svg')
-} %}
-
 <script>
-    // Port PHP data to JS via Twig
-    var settings = {{ settings|json_encode|raw }};
-    var data = {{ data|json_encode|raw }};
-    var icons = {{ icons|json_encode|raw }};
+
+// Transfer PHP data to JavaScript via Twig
+var settings = {{ field.settings|json_encode|raw }};
+var data = {{ data|json_encode|raw }};
+var icons = {{ icons|json_encode|raw }};
+
+// Determine whether to show the map on initial load
+settings.showMap = ('open' === settings.mapOnStart);
+
+// Determine whether we're using CP Field Inspect
+settings.usingCpFieldInspect = {{ usingCpFieldInspect ? 'true' : 'false' }};
+
 </script>
+
 <div id="address">
     <address-field
         :settings="settings"

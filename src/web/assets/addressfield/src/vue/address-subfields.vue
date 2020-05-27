@@ -95,11 +95,11 @@
                     }
 
                     // Change map visibility based on settings
-                    settings.showMap = ('open' === settings.mapOnSearch);
+                    this.$root.$data.settings.showMap = ('open' === settings.mapOnSearch);
                 });
 
                 // Prevent address selection from attempting to submit the form
-                google.maps.event.addDomListener($first, 'keydown', function(event) {
+                google.maps.event.addDomListener($first, 'keydown', (event) => {
                     if (event.keyCode === 13) {
                         event.preventDefault();
                     }

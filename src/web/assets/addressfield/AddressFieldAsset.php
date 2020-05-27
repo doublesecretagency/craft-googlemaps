@@ -33,11 +33,12 @@ class AddressFieldAsset extends AssetBundle
         $this->sourcePath = '@doublesecretagency/googlemaps/web/assets';
         $this->depends = [
             CpAsset::class,
-            VueAsset::class,
+//            VueAsset::class,
             GoogleMapsAsset::class
         ];
 
         $this->js = [
+            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
             'addressfield/dist/js/address.js',
         ];
 

@@ -40,7 +40,7 @@ class GoogleMapsAsset extends AssetBundle
         // Load API
         $this->js = [$googleMapsApi];
         $this->jsOptions = [
-            'async' => true,
+//            'async' => true, // Possibly causing a race condition
             'defer' => true,
         ];
     }
