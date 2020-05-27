@@ -38,7 +38,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var string "open", "close" or "noChange"
      */
-    public $mapOnSearch = 'noChange';
+    public $mapOnSearch = 'open';
 
     /**
      * How should we display
@@ -61,10 +61,12 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var array|null
      */
+    // TODO: Should probably just be null, right? Let the fallback kick in later, in JS or PHP
+    // public $coordinatesDefault;
     public $coordinatesDefault = [
-        'lat' => 34.038136,
-        'lng' => -118.243996,
-        'zoom' => 11
+        'lat' => 32.3113966,
+        'lng' => -64.7527469,
+        'zoom' => 6
     ];
 
     /**
