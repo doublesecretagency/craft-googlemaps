@@ -1,4 +1,31 @@
-<div style="display: flex; flex-direction: row;">
+{% set data = {
+    'address': {
+        'street1' : null,
+        'street2' : null,
+        'city'    : null,
+        'state'   : null,
+        'zip'     : null,
+        'country' : null,
+    },
+    'coords': {
+        'lat'  : null,
+        'lng'  : null,
+        'zoom' : null,
+    }
+} %}
+
+<script>
+
+    // Transfer PHP data to JavaScript via Twig
+    var settings = {{ settings|json_encode|raw }};
+    var data = {{ data|json_encode|raw }};
+
+    // Determine whether to show the map on initial load
+    settings.showMap = ('open' === settings.mapOnStart);
+
+</script>
+
+<div id="address-settings" style="display: flex; flex-direction: row;">
     <div style="flex-direction: column; flex: 4; margin-right: 30px;">
         {% include 'google-maps/address-settings/config-fields' %}
     </div>
@@ -6,5 +33,3 @@
         {% include 'google-maps/address-settings/live-preview' %}
     </div>
 </div>
-
-

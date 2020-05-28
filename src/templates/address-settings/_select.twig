@@ -1,0 +1,18 @@
+{% from '_includes/forms' import selectField %}
+
+{# Merge attributes #}
+{% set attr = attr|join(' ') %}
+
+{# Configure dropdown #}
+{% set select %}
+    {{ selectField(config) }}
+{% endset %}
+
+{# Inject Vue model #}
+{% set select = select|replace(
+    "<select ",
+    "<select #{attr} "
+) %}
+
+{# Render dropdown #}
+{{ select|raw }}

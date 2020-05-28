@@ -5,7 +5,7 @@ Vue.config.productionTip = false;
 
 // Initialize Vue instance
 new Vue({
-    el: '#types-doublesecretagency-googlemaps-fields-AddressField-address',
+    el: '#types-doublesecretagency-googlemaps-fields-AddressField-address-settings',
     components: {
         'address-field': AddressField
     },

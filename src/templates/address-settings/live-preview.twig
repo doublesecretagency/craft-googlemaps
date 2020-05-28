@@ -1,33 +1,3 @@
-{% set data = {
-    'address': {
-        'street1' : null,
-        'street2' : null,
-        'city'    : null,
-        'state'   : null,
-        'zip'     : null,
-        'country' : null,
-    },
-    'coords': {
-        'lat'  : null,
-        'lng'  : null,
-        'zoom' : null,
-    }
-} %}
-
-<script>
-
-    // Transfer PHP data to JavaScript via Twig
-    var settings = {{ settings|json_encode|raw }};
-    var data = {{ data|json_encode|raw }};
-
-    // Determine whether to show the map on initial load
-    settings.showMap = ('open' === settings.mapOnStart);
-
-</script>
-
-
-
-
 <h3>Live Preview of Address Field</h3>
 <p>See your settings changing <strong>in real-time!</strong></p>
 <p>The changes you make to this field are immediately reflected below. You are seeing how the field will look when the content editor uses it.</p>
@@ -36,12 +6,10 @@
 {#    <div style="color: #606d7b; font-weight: bold; font-style: italic; margin: 110px auto 0;">[SUBFIELDS &amp; MAP]</div>#}
 {#</div>#}
 
-<div id="address">
-    <address-field
-        :settings="settings"
-        :data="data"
-    ></address-field>
-</div>
+<address-field
+    :settings="settings"
+    :data="data"
+></address-field>
 
 <h3>Setting a Default Location</h3>
 <p>You can <strong>use the demo field above</strong> to set the default coordinates &amp; zoom level for your Address field.</p>

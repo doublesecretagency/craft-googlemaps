@@ -953,75 +953,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue":
-/*!*******************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue ***!
-  \*******************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-expand.vue?vue&type=template&id=1f00ee58& */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58&");
-/* harmony import */ var _address_expand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-expand.vue?vue&type=script&lang=js& */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_sandbox_googlemaps_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _address_expand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sandbox_googlemaps_node_modules_babel_loader_lib_index_js_ref_4_0_sandbox_googlemaps_node_modules_vue_loader_lib_index_js_vue_loader_options_address_expand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../sandbox/googlemaps/node_modules/babel-loader/lib??ref--4-0!../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib??vue-loader-options!./address-expand.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_sandbox_googlemaps_node_modules_babel_loader_lib_index_js_ref_4_0_sandbox_googlemaps_node_modules_vue_loader_lib_index_js_vue_loader_options_address_expand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58&":
-/*!**************************************************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58& ***!
-  \**************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_sandbox_googlemaps_node_modules_vue_loader_lib_index_js_vue_loader_options_address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib??vue-loader-options!./address-expand.vue?vue&type=template&id=1f00ee58& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _sandbox_googlemaps_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_sandbox_googlemaps_node_modules_vue_loader_lib_index_js_vue_loader_options_address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _sandbox_googlemaps_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_sandbox_googlemaps_node_modules_vue_loader_lib_index_js_vue_loader_options_address_expand_vue_vue_type_template_id_1f00ee58___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue":
 /*!****************************************************************************************************!*\
   !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue ***!
@@ -1567,72 +1498,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!/Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    var settings = this.$root.$data.settings;
-    return {
-      marginRight: settings.usingCpFieldInspect ? '18px' : '4px',
-      toggleMode: settings.visibilityToggle
-    };
-  },
-  computed: {
-    toggleText: function toggleText() {
-      return this.showMap ? 'Hide Map' : 'Show Map';
-    },
-    showMap: function showMap() {
-      return this.$root.$data.settings.showMap;
-    },
-    markerIcon: function markerIcon() {
-      var icons = this.$root.$data.icons;
-      return this.showMap ? icons.markerHollow : icons.marker;
-    }
-  },
-  methods: {
-    toggle: function toggle() {
-      // Show or hide the map
-      var showMap = this.$root.$data.settings.showMap;
-      this.$root.$data.settings.showMap = !showMap;
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!/Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue?vue&type=script&lang=js& ***!
@@ -1996,10 +1861,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _address_expand__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-expand */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue");
-/* harmony import */ var _address_subfields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-subfields */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-subfields.vue");
-/* harmony import */ var _address_coords__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-coords */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-coords.vue");
-/* harmony import */ var _address_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./address-map */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue");
+/* harmony import */ var _address_subfields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-subfields */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-subfields.vue");
+/* harmony import */ var _address_coords__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-coords */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-coords.vue");
+/* harmony import */ var _address_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-map */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue");
 //
 //
 //
@@ -2010,17 +1874,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+// import AddressExpand from './address-expand';
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddressField',
   components: {
-    'address-expand': _address_expand__WEBPACK_IMPORTED_MODULE_0__["default"],
-    'address-subfields': _address_subfields__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'address-coords': _address_coords__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'address-map': _address_map__WEBPACK_IMPORTED_MODULE_3__["default"]
+    // 'address-expand': AddressExpand,
+    'address-subfields': _address_subfields__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'address-coords': _address_coords__WEBPACK_IMPORTED_MODULE_1__["default"],
+    'address-map': _address_map__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {};
@@ -2789,67 +2653,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58&":
-/*!********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!/Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-expand.vue?vue&type=template&id=1f00ee58& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return "hidden" !== _vm.toggleMode
-    ? _c(
-        "span",
-        {
-          style: {
-            float: "right",
-            "margin-top": "-25px",
-            "margin-right": _vm.marginRight,
-            cursor: "pointer"
-          },
-          on: {
-            click: function($event) {
-              return _vm.toggle()
-            }
-          }
-        },
-        [
-          "icon" !== _vm.toggleMode
-            ? _c("span", [_vm._v(_vm._s(_vm.toggleText))])
-            : _vm._e(),
-          _vm._v(" "),
-          "text" !== _vm.toggleMode
-            ? _c("img", {
-                style: {
-                  height: "14px",
-                  "margin-left": "2px",
-                  "margin-bottom": "-2px"
-                },
-                attrs: {
-                  alt: "Marker icon",
-                  title: "icon" === _vm.toggleMode ? _vm.toggleText : false,
-                  src: _vm.markerIcon
-                }
-              })
-            : _vm._e()
-        ]
-      )
-    : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue?vue&type=template&id=24c0b18e&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!/Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/address-map.vue?vue&type=template&id=24c0b18e&scoped=true& ***!
@@ -2967,8 +2770,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("address-expand"),
-      _vm._v(" "),
       _c("address-subfields"),
       _vm._v(" "),
       _c("address-coords"),
