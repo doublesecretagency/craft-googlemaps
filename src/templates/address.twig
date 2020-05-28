@@ -15,18 +15,14 @@
 } %}
 
 <script>
-
 // Transfer PHP data to JavaScript via Twig
-var settings = {{ field.settings|json_encode|raw }};
+var settings = {{ settings|json_encode|raw }};
 var data = {{ data|json_encode|raw }};
 var icons = {{ icons|json_encode|raw }};
-
 // Determine whether to show the map on initial load
 settings.showMap = ('open' === settings.mapOnStart);
-
 // Determine whether we're using CP Field Inspect
 settings.usingCpFieldInspect = {{ usingCpFieldInspect ? 'true' : 'false' }};
-
 </script>
 
 <div id="address">

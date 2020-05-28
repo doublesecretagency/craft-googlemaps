@@ -9,18 +9,17 @@
  * @copyright Copyright (c) 2014 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\web\assets\addressfield;
+namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 use craft\web\assets\vue\VueAsset;
-use doublesecretagency\googlemaps\web\assets\GoogleMapsAsset;
 
 /**
- * Class AddressFieldAsset
+ * Class AddressFieldSettingsAsset
  * @since 4.0.0
  */
-class AddressFieldAsset extends AssetBundle
+class AddressFieldSettingsAsset extends AssetBundle
 {
 
     /**
@@ -30,7 +29,7 @@ class AddressFieldAsset extends AssetBundle
     {
         parent::init();
 
-        $this->sourcePath = '@doublesecretagency/googlemaps/web/assets';
+        $this->sourcePath = '@doublesecretagency/googlemaps/web/assets/dist';
         $this->depends = [
             CpAsset::class,
 //            VueAsset::class,
@@ -39,7 +38,7 @@ class AddressFieldAsset extends AssetBundle
 
         $this->js = [
             'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
-            'addressfield/dist/js/address.js',
+            'js/address-settings.js',
         ];
 
     }

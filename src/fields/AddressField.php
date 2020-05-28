@@ -15,7 +15,8 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
-use doublesecretagency\googlemaps\web\assets\addressfield\AddressFieldAsset;
+use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
+use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
 
 /**
  * Class AddressField
@@ -183,11 +184,11 @@ class AddressField extends Field implements PreviewableFieldInterface
     {
         // Reference assets
         $view = Craft::$app->getView();
-//        $view->registerAssetBundle(FieldSettingsAssets::class);
+        $view->registerAssetBundle(AddressFieldSettingsAsset::class);
 
         // Load fieldtype settings template
         return $view->renderTemplate('google-maps/address-settings', [
-            'settings' => $this->getSettings(),
+            'settings' => $this->getSettings()
         ]);
     }
 
@@ -213,8 +214,8 @@ class AddressField extends Field implements PreviewableFieldInterface
         return $view->renderTemplate('google-maps/address', [
 //            'name' => $this->handle,
 //            'value' => $value,
-            'field' => $this,
             'icons' => $icons,
+            'settings' => $this->getSettings(),
             'usingCpFieldInspect' => $usingCpFieldInspect,
         ]);
     }
@@ -228,8 +229,8 @@ class AddressField extends Field implements PreviewableFieldInterface
     private function _publishSvg($filename)
     {
         $manager = Craft::$app->getAssetManager();
-        $assets = '@doublesecretagency/googlemaps/web/assets';
-        $markerSvg = "addressfield/dist/images/{$filename}";
+        $assets = '@doublesecretagency/googlemaps/web/assets/dist';
+        $markerSvg = "images/{$filename}";
         return $manager->getPublishedUrl($assets, true, $markerSvg);
     }
 

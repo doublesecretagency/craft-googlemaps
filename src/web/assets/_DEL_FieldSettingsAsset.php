@@ -18,7 +18,7 @@ use craft\web\assets\cp\CpAsset;
  * Class FieldSettingsAsset
  * @since 4.0.0
  */
-class FieldSettingsAsset extends AssetBundle
+class DELFieldSettingsAsset extends AssetBundle
 {
 
     /**

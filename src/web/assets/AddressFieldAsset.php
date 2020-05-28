@@ -13,12 +13,13 @@ namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
+use craft\web\assets\vue\VueAsset;
 
 /**
- * Class SettingsAsset
+ * Class AddressFieldAsset
  * @since 4.0.0
  */
-class SettingsAsset extends AssetBundle
+class AddressFieldAsset extends AssetBundle
 {
 
     /**
@@ -28,16 +29,18 @@ class SettingsAsset extends AssetBundle
     {
         parent::init();
 
-        $this->sourcePath = '@doublesecretagency/googlemaps/resources';
-        $this->depends = [CpAsset::class];
+        $this->sourcePath = '@doublesecretagency/googlemaps/web/assets/dist';
+        $this->depends = [
+            CpAsset::class,
+//            VueAsset::class,
+            GoogleMapsAsset::class
+        ];
 
-//        $this->css = [
-//            'css/settings.css',
-//        ];
-//
-//        $this->js = [
-//            'js/settings.js',
-//        ];
+        $this->js = [
+            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
+            'js/address.js',
+        ];
+
     }
 
 }

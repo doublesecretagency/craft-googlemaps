@@ -12,12 +12,13 @@
 namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
+use craft\web\assets\cp\CpAsset;
 
 /**
- * Class FrontEndAsset
+ * Class SettingsAsset
  * @since 4.0.0
  */
-class FrontEndAsset extends AssetBundle
+class DELSettingsAsset extends AssetBundle
 {
 
     /**
@@ -28,10 +29,15 @@ class FrontEndAsset extends AssetBundle
         parent::init();
 
         $this->sourcePath = '@doublesecretagency/googlemaps/resources';
+        $this->depends = [CpAsset::class];
 
-        $this->js = [
-            'js/smartmap.js',
-        ];
+//        $this->css = [
+//            'css/settings.css',
+//        ];
+//
+//        $this->js = [
+//            'js/settings.js',
+//        ];
     }
 
 }
