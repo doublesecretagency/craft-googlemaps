@@ -11,6 +11,7 @@ new Vue({
     },
     data: {
         settings: settings,
-        data: data
+        data: data,
+        icons: icons
     }
 });

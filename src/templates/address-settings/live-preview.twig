@@ -1,20 +1,32 @@
-<h3>Live Preview of Address Field</h3>
-<p>See your settings changing <strong>in real-time!</strong></p>
-<p>The changes you make to this field are immediately reflected below. You are seeing how the field will look when the content editor uses it.</p>
+<div class="field">
+    <div class="heading">
+        <label>Address Field Live Preview</label>
+        <div class="instructions">
+            <p>This is how the field will look when the content editor uses it...</p>
+        </div>
+    </div>
+    <div>
+        <address-field
+            :settings="settings"
+            :data="data"
+            :icons="icons"
+        ></address-field>
+    </div>
+</div>
 
-{#<div style="height: 240px; text-align: center; background-color: #f3f7fc; margin-top: 4px; border: 1px solid #D7DFE7; border-radius: 3px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);">#}
-{#    <div style="color: #606d7b; font-weight: bold; font-style: italic; margin: 110px auto 0;">[SUBFIELDS &amp; MAP]</div>#}
-{#</div>#}
+<p>&#8593;&nbsp; You can <strong style="text-decoration:underline">use this preview field</strong> to set the default map starting position! &#8593;</p>
 
-<address-field
-    :settings="settings"
-    :data="data"
-></address-field>
-
-<h3>Setting a Default Location</h3>
-<p>You can <strong>use the demo field above</strong> to set the default coordinates &amp; zoom level for your Address field.</p>
-<ul>
-    <li>Drag &amp; drop the pin to set a more precise location.</li>
-    <li>Zoom in or out to a comfortable default level.</li>
-</ul>
-<p><strong>Whatever position you save this map to will become the default map orientation for all instances of this field.</strong></p>
+<div class="field">
+    <div class="heading">
+        <label>Setting a Default Map Starting Position</label>
+        <div class="instructions">
+            <p>Use the demo field above to set the default coordinates &amp; zoom level...</p>
+            <ul>
+                <li>Search for a central starting location.</li>
+                <li>Drag &amp; drop the pin to set a more precise location.</li>
+                <li>Zoom in or out to a comfortable default viewing level.</li>
+            </ul>
+            <p>Whatever position you save this map to will become the default map orientation for all new instances of this field. The <strong>latitude</strong>, <strong>longitude</strong>, and <strong>zoom</strong> will set the default positioning when a new element is created.</p>
+        </div>
+    </div>
+</div>

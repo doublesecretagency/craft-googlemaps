@@ -15,6 +15,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
+use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
 
@@ -188,6 +189,7 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Load fieldtype settings template
         return $view->renderTemplate('google-maps/address-settings', [
+            'icons' => AddressHelper::visibilityIcons(),
             'settings' => $this->getSettings()
         ]);
     }
@@ -201,12 +203,6 @@ class AddressField extends Field implements PreviewableFieldInterface
         $view = Craft::$app->getView();
         $view->registerAssetBundle(AddressFieldAsset::class);
 
-        // Get published icon URLs
-        $icons = [
-            'marker'       => $this->_publishSvg('marker.svg'),
-            'markerHollow' => $this->_publishSvg('marker-hollow.svg')
-        ];
-
         // Whether or not the CP Field Inspect is being used
         $usingCpFieldInspect = Craft::$app->getPlugins()->isPluginEnabled('cp-field-inspect');
 
@@ -214,24 +210,10 @@ class AddressField extends Field implements PreviewableFieldInterface
         return $view->renderTemplate('google-maps/address', [
 //            'name' => $this->handle,
 //            'value' => $value,
-            'icons' => $icons,
+            'icons' => AddressHelper::visibilityIcons(),
             'settings' => $this->getSettings(),
             'usingCpFieldInspect' => $usingCpFieldInspect,
         ]);
-    }
-
-    /**
-     * Generate a published icon URL.
-     *
-     * @param $filename
-     * @return string|false
-     */
-    private function _publishSvg($filename)
-    {
-        $manager = Craft::$app->getAssetManager();
-        $assets = '@doublesecretagency/googlemaps/web/assets/dist';
-        $markerSvg = "images/{$filename}";
-        return $manager->getPublishedUrl($assets, true, $markerSvg);
     }
 
     // ========================================================================= //
