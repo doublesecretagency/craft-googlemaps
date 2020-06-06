@@ -19,8 +19,6 @@
 var settings = {{ settings|json_encode|raw }};
 var data = {{ data|json_encode|raw }};
 var icons = {{ icons|json_encode|raw }};
-// Determine whether to show the map on initial load
-settings.showMap = ('open' === settings.mapOnStart);
 </script>
 
 <div id="address-settings" style="display: flex; flex-direction: row;">

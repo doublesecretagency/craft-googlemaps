@@ -15,15 +15,20 @@
 } %}
 
 <script>
-// Transfer PHP data to JavaScript via Twig
-var settings = {{ settings|json_encode|raw }};
-var data = {{ data|json_encode|raw }};
-var icons = {{ icons|json_encode|raw }};
-var handle = '{{ handle }}';
-// Determine whether to show the map on initial load
-settings.showMap = ('open' === settings.mapOnStart);
-// Determine whether we're using CP Field Inspect
-settings.usingCpFieldInspect = {{ usingCpFieldInspect ? 'true' : 'false' }};
+
+    // Ensure Address field config array exists
+    if ('undefined' === typeof addressFieldConfigs) {
+        var addressFieldConfigs = [];
+    }
+
+    // Transfer PHP data to JavaScript via Twig
+    addressFieldConfigs.push({
+        'handle': '{{ handle }}',
+        'settings': {{ settings|json_encode|raw }},
+        'data': {{ data|json_encode|raw }},
+        'icons': {{ icons|json_encode|raw }},
+    });
+
 </script>
 
 <div id="address-{{ handle }}">

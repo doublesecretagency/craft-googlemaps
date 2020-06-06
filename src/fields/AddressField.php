@@ -190,7 +190,7 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Load fieldtype settings template
         return $view->renderTemplate('google-maps/address-settings', [
             'icons' => AddressHelper::visibilityIcons(),
-            'settings' => $this->getSettings()
+            'settings' => $this->_getExtraSettings()
         ]);
     }
 
@@ -203,17 +203,35 @@ class AddressField extends Field implements PreviewableFieldInterface
         $view = Craft::$app->getView();
         $view->registerAssetBundle(AddressFieldAsset::class);
 
-        // Whether or not the CP Field Inspect is being used
-        $usingCpFieldInspect = Craft::$app->getPlugins()->isPluginEnabled('cp-field-inspect');
-
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
 //            'value' => $value,
             'handle' => $this->handle,
             'icons' => AddressHelper::visibilityIcons(),
-            'settings' => $this->getSettings(),
-            'usingCpFieldInspect' => $usingCpFieldInspect,
+            'settings' => $this->_getExtraSettings(),
         ]);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Get the field settings with some extra information.
+     *
+     * @return array
+     */
+    private function _getExtraSettings(): array
+    {
+        // Get basic settings
+        $settings = $this->getSettings();
+
+        // Set whether to show the map on initial load
+        $settings['showMap'] = ('open' === $settings['mapOnStart']);
+
+        // Set whether we're using CP Field Inspect
+        $settings['usingCpFieldInspect'] = Craft::$app->getPlugins()->isPluginEnabled('cp-field-inspect');
+
+        // Return settings
+        return $settings;
     }
 
     // ========================================================================= //
