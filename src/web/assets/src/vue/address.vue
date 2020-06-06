@@ -1,6 +1,6 @@
 <template>
     <div>
-        <address-expand></address-expand>
+        <address-toggle></address-toggle>
         <address-subfields></address-subfields>
         <address-coords></address-coords>
         <div style="clear:both"></div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import AddressExpand from './address-expand';
+    import AddressToggle from './address-toggle';
     import AddressSubfields from './address-subfields';
     import AddressCoords from './address-coords';
     import AddressMap from './address-map';
@@ -17,7 +17,7 @@
     export default {
         name: 'AddressField',
         components: {
-            'address-expand': AddressExpand,
+            'address-toggle': AddressToggle,
             'address-subfields': AddressSubfields,
             'address-coords': AddressCoords,
             'address-map': AddressMap
