@@ -5,8 +5,8 @@
             :placeholder="coord.label"
             :type="getType"
             :readonly="getReadOnly"
+            :class="getInputClasses"
             v-model.number="$root.$data.data.coords[coord.key]"
-            :class="inputClasses"
             autocomplete="chrome-off"
             :name="`fields[${coord.key}]`"
             :style="coord.styles"
@@ -17,26 +17,7 @@
 <script>
     export default {
         data() {
-            // Get the coordinates mode from settings
-            let mode = this.$root.$data.settings.coordinatesMode;
-
-            // Initialize the input classes
-            let inputClasses = [];
-
-            // If the coordinates aren't hidden, add classes
-            if ('hidden' !== mode) {
-                inputClasses = [
-                    'text',
-                    'code',
-                    'fullwidth',
-                    ('editable' !== mode ? 'disabled' : null)
-                ];
-            }
-
-            // Return data
             return {
-                mode: mode,
-                inputClasses: inputClasses
             }
         },
         methods: {
@@ -78,11 +59,28 @@
         computed: {
             getType() {
                 // What type of input should the coordinate fields be?
-                return ('hidden' === this.mode ? 'hidden' : 'number');
+                return ('hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number');
             },
             getReadOnly() {
                 // Whether the coordinate fields should be read-only
-                return !['editable','hidden'].includes(this.mode)
+                return !['editable','hidden'].includes(this.$root.$data.settings.coordinatesMode);
+            },
+            getInputClasses() {
+                // Get the coordinates mode from settings
+                let mode = this.$root.$data.settings.coordinatesMode;
+
+                // If hidden, return empty array
+                if ('hidden' === mode) {
+                    return [];
+                }
+
+                // Return array of input classes
+                return [
+                    'text',
+                    'code',
+                    'fullwidth',
+                    ('editable' !== mode ? 'disabled' : null)
+                ];
             }
         }
     }

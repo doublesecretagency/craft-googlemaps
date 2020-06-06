@@ -29,11 +29,20 @@
         data() {
             let settings = this.$root.$data.settings;
             return {
-                marginRight: (settings.usingCpFieldInspect ? '18px' : '4px'),
-                toggleMode: settings.visibilityToggle
+                marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
+            }
+        },
+        methods: {
+            toggle() {
+                // Show or hide the map
+                let showMap = this.$root.$data.settings.showMap;
+                this.$root.$data.settings.showMap = !showMap;
             }
         },
         computed: {
+            toggleMode() {
+                return this.$root.$data.settings.visibilityToggle;
+            },
             toggleText() {
                 return (this.showMap ? 'Hide Map' : 'Show Map');
             },
@@ -44,13 +53,6 @@
                 let icons = this.$root.$data.icons;
                 return (this.showMap ? icons.markerHollow : icons.marker);
             },
-        },
-        methods: {
-            toggle() {
-                // Show or hide the map
-                let showMap = this.$root.$data.settings.showMap;
-                this.$root.$data.settings.showMap = !showMap;
-            }
         }
     }
 </script>

@@ -1506,20 +1506,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    // Get the coordinates mode from settings
-    var mode = this.$root.$data.settings.coordinatesMode; // Initialize the input classes
-
-    var inputClasses = []; // If the coordinates aren't hidden, add classes
-
-    if ('hidden' !== mode) {
-      inputClasses = ['text', 'code', 'fullwidth', 'editable' !== mode ? 'disabled' : null];
-    } // Return data
-
-
-    return {
-      mode: mode,
-      inputClasses: inputClasses
-    };
+    return {};
   },
   methods: {
     // Get the display array
@@ -1556,11 +1543,22 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getType: function getType() {
       // What type of input should the coordinate fields be?
-      return 'hidden' === this.mode ? 'hidden' : 'number';
+      return 'hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number';
     },
     getReadOnly: function getReadOnly() {
       // Whether the coordinate fields should be read-only
-      return !['editable', 'hidden'].includes(this.mode);
+      return !['editable', 'hidden'].includes(this.$root.$data.settings.coordinatesMode);
+    },
+    getInputClasses: function getInputClasses() {
+      // Get the coordinates mode from settings
+      var mode = this.$root.$data.settings.coordinatesMode; // If hidden, return empty array
+
+      if ('hidden' === mode) {
+        return [];
+      } // Return array of input classes
+
+
+      return ['text', 'code', 'fullwidth', 'editable' !== mode ? 'disabled' : null];
     }
   }
 });
@@ -1602,16 +1600,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var settings = this.$root.$data.settings;
     return {
-      marginRight: settings.usingCpFieldInspect ? '18px' : '4px',
-      toggleMode: settings.visibilityToggle
+      marginRight: settings.usingCpFieldInspect ? '18px' : '4px'
     };
   },
+  methods: {
+    toggle: function toggle() {
+      // Show or hide the map
+      var showMap = this.$root.$data.settings.showMap;
+      this.$root.$data.settings.showMap = !showMap;
+    }
+  },
   computed: {
+    toggleMode: function toggleMode() {
+      return this.$root.$data.settings.visibilityToggle;
+    },
     toggleText: function toggleText() {
       return this.showMap ? 'Hide Map' : 'Show Map';
     },
@@ -1621,13 +1627,6 @@ __webpack_require__.r(__webpack_exports__);
     markerIcon: function markerIcon() {
       var icons = this.$root.$data.icons;
       return this.showMap ? icons.markerHollow : icons.marker;
-    }
-  },
-  methods: {
-    toggle: function toggle() {
-      // Show or hide the map
-      var showMap = this.$root.$data.settings.showMap;
-      this.$root.$data.settings.showMap = !showMap;
     }
   }
 });
@@ -2753,7 +2752,7 @@ var render = function() {
             modifiers: { number: true }
           }
         ],
-        class: _vm.inputClasses,
+        class: _vm.getInputClasses,
         style: coord.styles,
         attrs: {
           placeholder: coord.label,
