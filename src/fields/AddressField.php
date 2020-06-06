@@ -208,8 +208,8 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
-//            'name' => $this->handle,
 //            'value' => $value,
+            'handle' => $this->handle,
             'icons' => AddressHelper::visibilityIcons(),
             'settings' => $this->getSettings(),
             'usingCpFieldInspect' => $usingCpFieldInspect,

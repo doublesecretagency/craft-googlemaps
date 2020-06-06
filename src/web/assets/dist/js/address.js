@@ -853,7 +853,7 @@ __webpack_require__.r(__webpack_exports__);
 Vue.config.productionTip = false; // Initialize Vue instance
 
 new Vue({
-  el: '#fields-address',
+  el: '#fields-address-' + handle,
   components: {
     'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"]
   },

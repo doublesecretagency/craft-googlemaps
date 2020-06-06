@@ -5,7 +5,7 @@ Vue.config.productionTip = false;
 
 // Initialize Vue instance
 new Vue({
-    el: '#fields-address',
+    el: '#fields-address-'+handle,
     components: {
         'address-field': AddressField
     },

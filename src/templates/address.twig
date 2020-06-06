@@ -19,13 +19,14 @@
 var settings = {{ settings|json_encode|raw }};
 var data = {{ data|json_encode|raw }};
 var icons = {{ icons|json_encode|raw }};
+var handle = '{{ handle }}';
 // Determine whether to show the map on initial load
 settings.showMap = ('open' === settings.mapOnStart);
 // Determine whether we're using CP Field Inspect
 settings.usingCpFieldInspect = {{ usingCpFieldInspect ? 'true' : 'false' }};
 </script>
 
-<div id="address">
+<div id="address-{{ handle }}">
     <address-field
         :settings="settings"
         :data="data"
