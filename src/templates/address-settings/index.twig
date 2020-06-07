@@ -23,7 +23,8 @@ var icons = {{ icons|json_encode|raw }};
 
 <div id="address-settings" style="display: flex; flex-direction: row;">
     <div style="flex-direction: column; flex: 4; margin-right: 30px;">
-        {% include 'google-maps/address-settings/config-fields' %}
+        {% include 'google-maps/address-settings/subfield-manager' %}
+        {% include 'google-maps/address-settings/dropdown-fields' %}
     </div>
     <div style="flex-direction: column; flex: 5;">
         {% include 'google-maps/address-settings/live-preview' %}
