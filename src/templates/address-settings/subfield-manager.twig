@@ -1,23 +1,13 @@
-
-{# THIS SHOULD BE A VUE TEMPLATE #}
-
-<table class="shadow-box editable">
-    <thead>
-        <tr>
-            <th>Label</th>
-            <th>Width</th>
-            <th>Enable</th>
-            <th>Require</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="text" value="Street Address" placeholder="subfieldHandle" /></td>
-            <td><input type="number" value="{# {{ subfield.width }} #}" /></td>
-            <td><input type="checkbox" value="1" {# {{ subfield.enabled ? 'checked="checked"'|raw }} #} /></td>
-            <td><input type="checkbox" value="1" {# {{ subfield.required ? 'checked="checked"'|raw }} #} /></td>
-            <td class="thin action"><a class="move icon" title="{{ 'Reorder'|t('google-maps') }}"></a></td>
-        </tr>
-    </tbody>
-</table>
+<div class="field">
+    <div class="heading">
+        <label>Subfield Manager</label>
+        <div class="instructions">
+            <p>Rename, resize, rearrange, require, or disable each subfield...</p>
+        </div>
+    </div>
+    <div>
+        <subfield-manager
+            :settings="settings"
+        ></subfield-manager>
+    </div>
+</div>

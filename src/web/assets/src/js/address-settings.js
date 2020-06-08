@@ -1,4 +1,5 @@
 import AddressField from './../vue/address';
+import SubfieldManager from './../vue/subfield-manager';
 
 // Disable silly message
 Vue.config.productionTip = false;
@@ -7,7 +8,8 @@ Vue.config.productionTip = false;
 new Vue({
     el: '#types-doublesecretagency-googlemaps-fields-AddressField-address-settings',
     components: {
-        'address-field': AddressField
+        'address-field': AddressField,
+        'subfield-manager': SubfieldManager
     },
     data: {
         settings: settings,
