@@ -1424,24 +1424,75 @@ function init() {
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js ***!
-  \*******************************************************************************************************************/
+/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js":
+/*!*************************************************************************************************************!*\
+  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js ***!
+  \*************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return configureArrangement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return subfieldConfig; });
 /**
  * DEFAULT
- * Configure the subfield arrangement.
+ * Configure the subfield display.
  *
  * @param subfields
  * @returns array
  */
-function configureArrangement(subfields) {
+function subfieldConfig(subfields) {
+  // Rearrange subfields according to their position
+  return rearrange(subfields);
+}
+/**
+ * Rearrange the subfield data.
+ *
+ * @param oldOrder
+ * @returns array
+ */
+
+function rearrange(oldOrder) {
+  // Backup position counter
+  var p = 100; // Initialize new order
+
+  var newOrder = []; // Loop through old arrangement
+
+  for (var key in oldOrder) {
+    // Get the subfield data
+    var subfield = oldOrder[key]; // Move key to within object
+
+    subfield.key = key; // Set the new subfield position
+
+    var position = parseInt(subfield.position || p++); // Move subfield
+
+    newOrder[position] = subfield;
+  } // Return new arrangement
+
+
+  return Object.values(newOrder);
+}
+
+/***/ }),
+
+/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js":
+/*!**************************************************************************************************************!*\
+  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return subfieldDisplay; });
+/**
+ * DEFAULT
+ * Configure the subfield display.
+ *
+ * @param subfields
+ * @returns array
+ */
+function subfieldDisplay(subfields) {
   // Rearrange subfields according to their position
   subfields = rearrange(subfields); // Return subfield display data
 
@@ -1851,7 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_api_connection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/api-connection */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js");
 /* harmony import */ var _utils_address_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/address-components */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js");
-/* harmony import */ var _utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/configure-arrangement */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js");
+/* harmony import */ var _utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/subfield-display */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1984,7 +2035,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Get the subfield arrangement
       var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
 
-      return Object(_utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
+      return Object(_utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
     }
   }
 });
@@ -2129,6 +2180,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/subfield-config */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js");
 //
 //
 //
@@ -2156,11 +2208,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['settings', 'data'],
   data: function data() {
-    console.log(this.$root.$data.settings.subfieldConfig); // let settings = this.$root.$data.settings;
-
+    // let settings = this.$root.$data.settings;
     return {// toggleOffset: -25,
       // marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
     };
@@ -2182,29 +2243,14 @@ __webpack_require__.r(__webpack_exports__);
     //     return (this.showMap ? icons.markerHollow : icons.marker);
     // }
   },
-  methods: {// adjustTogglePosition() {
-    //
-    //     // Find the field instructions div
-    //     let $container = this.$el.closest('.field');
-    //     let instructions = $container.getElementsByClassName('instructions');
-    //
-    //     // If no field instructions, bail
-    //     if (!instructions.length) {
-    //         return;
-    //     }
-    //
-    //     // Get height of instructions div
-    //     let height = instructions[0].clientHeight;
-    //
-    //     // Recalculate toggle offset
-    //     this.toggleOffset -= height;
-    //
-    // },
-    // toggle() {
-    //     // Show or hide the map
-    //     let showMap = this.$root.$data.settings.showMap;
-    //     this.$root.$data.settings.showMap = !showMap;
-    // }
+  methods: {
+    // Get the display array
+    subfieldConfig: function subfieldConfig() {
+      // Get the subfield arrangement
+      var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
+
+      return Object(_utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__["default"])(arrangement);
+    }
   }
 });
 
@@ -3182,51 +3228,344 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "table",
+    { staticClass: "editable fullwidth", attrs: { id: "fields-myTable" } },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.subfieldConfig(), function(subfield) {
+          return _c("tr", [
+            _c("td", { staticClass: "singleline-cell textual" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value:
+                      _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                        .label,
+                    expression:
+                      "$root.$data.settings.subfieldConfig[subfield.key].label"
+                  }
+                ],
+                staticStyle: { "min-height": "34px" },
+                attrs: { name: "", rows: "1", placeholder: subfield.key },
+                domProps: {
+                  value:
+                    _vm.$root.$data.settings.subfieldConfig[subfield.key].label
+                },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.$root.$data.settings.subfieldConfig[subfield.key],
+                      "label",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "textual code",
+                staticStyle: { width: "15%", "text-align": "right" }
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value:
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                          .width,
+                      expression:
+                        "$root.$data.settings.subfieldConfig[subfield.key].width"
+                    }
+                  ],
+                  staticStyle: {
+                    "min-height": "34px",
+                    "max-width": "60px",
+                    "text-align": "right",
+                    border: "none"
+                  },
+                  attrs: { type: "number", name: "" },
+                  domProps: {
+                    value:
+                      _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                        .width
+                  },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key],
+                        "width",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "checkbox-cell",
+                staticStyle: { width: "15%", "text-align": "center" }
+              },
+              [
+                _c("div", { staticClass: "checkbox-wrapper" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "", value: "" }
+                  }),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value:
+                          _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                            .enabled,
+                        expression:
+                          "$root.$data.settings.subfieldConfig[subfield.key].enabled"
+                      }
+                    ],
+                    staticClass: "checkbox",
+                    attrs: {
+                      type: "checkbox",
+                      id: "enabled-" + subfield.key,
+                      name: ""
+                    },
+                    domProps: {
+                      checked: Array.isArray(
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                          .enabled
+                      )
+                        ? _vm._i(
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ].enabled,
+                            null
+                          ) > -1
+                        : _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                            .enabled
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a =
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ].enabled,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.$root.$data.settings.subfieldConfig[
+                                  subfield.key
+                                ],
+                                "enabled",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.$root.$data.settings.subfieldConfig[
+                                  subfield.key
+                                ],
+                                "enabled",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ],
+                            "enabled",
+                            $$c
+                          )
+                        }
+                      }
+                    }
+                  }),
+                  _c("label", { attrs: { for: "enabled-" + subfield.key } })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "checkbox-cell",
+                staticStyle: { width: "15%", "text-align": "center" }
+              },
+              [
+                _c("div", { staticClass: "checkbox-wrapper" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "", value: "" }
+                  }),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value:
+                          _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                            .required,
+                        expression:
+                          "$root.$data.settings.subfieldConfig[subfield.key].required"
+                      }
+                    ],
+                    staticClass: "checkbox",
+                    attrs: {
+                      type: "checkbox",
+                      id: "required-" + subfield.key,
+                      name: ""
+                    },
+                    domProps: {
+                      checked: Array.isArray(
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                          .required
+                      )
+                        ? _vm._i(
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ].required,
+                            null
+                          ) > -1
+                        : _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                            .required
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a =
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ].required,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.$root.$data.settings.subfieldConfig[
+                                  subfield.key
+                                ],
+                                "required",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.$root.$data.settings.subfieldConfig[
+                                  subfield.key
+                                ],
+                                "required",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(
+                            _vm.$root.$data.settings.subfieldConfig[
+                              subfield.key
+                            ],
+                            "required",
+                            $$c
+                          )
+                        }
+                      }
+                    }
+                  }),
+                  _c("label", { attrs: { for: "required-" + subfield.key } })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "shadow-box editable" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("Label")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Width")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Enable")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Require")]),
-          _vm._v(" "),
-          _c("th", [_vm._v(" ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [
-            _c("input", {
-              attrs: {
-                type: "text",
-                value: "Street Address",
-                placeholder: "subfieldHandle"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("td", [_c("input", { attrs: { type: "number", value: "" } })]),
-          _vm._v(" "),
-          _c("td", [_c("input", { attrs: { type: "checkbox", value: "1" } })]),
-          _vm._v(" "),
-          _c("td", [_c("input", { attrs: { type: "checkbox", value: "1" } })]),
-          _vm._v(" "),
-          _c("td", { staticClass: "thin action" }, [
-            _c("a", { staticClass: "move icon", attrs: { title: "Reorder" } })
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c(
+          "th",
+          { staticClass: "singleline-cell textual", attrs: { scope: "col" } },
+          [_vm._v("Label")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "number-cell textual",
+            staticStyle: { "text-align": "right" },
+            attrs: { scope: "col" }
+          },
+          [_vm._v("Width")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "checkbox-cell",
+            staticStyle: { "text-align": "center" },
+            attrs: {
+              scope: "col",
+              title: "Include a subfield in the visible layout."
+            }
+          },
+          [_vm._v("Show")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "checkbox-cell",
+            staticStyle: { "text-align": "center" },
+            attrs: {
+              scope: "col",
+              title: "Require a subfield when saving an address."
+            }
+          },
+          [_vm._v("Req.")]
+        ),
+        _vm._v(" "),
+        _c("th", [_vm._v(" ")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "thin action" }, [
+      _c("a", { staticClass: "move icon", attrs: { title: "Reorder" } })
     ])
   }
 ]

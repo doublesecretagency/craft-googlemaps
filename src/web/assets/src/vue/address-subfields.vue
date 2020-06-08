@@ -16,7 +16,7 @@
 <script>
     import apiConnection from './utils/api-connection';
     import addressComponents from './utils/address-components';
-    import configureArrangement from './utils/configure-arrangement';
+    import subfieldDisplay from './utils/subfield-display';
 
     export default {
         data() {
@@ -109,7 +109,7 @@
                 // Get the subfield arrangement
                 let arrangement = this.$root.$data.settings.subfieldConfig;
                 // Return configured arrangement
-                return configureArrangement(arrangement);
+                return subfieldDisplay(arrangement);
             }
         }
     }

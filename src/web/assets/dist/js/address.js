@@ -1357,24 +1357,24 @@ function init() {
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js ***!
-  \*******************************************************************************************************************/
+/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js":
+/*!**************************************************************************************************************!*\
+  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js ***!
+  \**************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return configureArrangement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return subfieldDisplay; });
 /**
  * DEFAULT
- * Configure the subfield arrangement.
+ * Configure the subfield display.
  *
  * @param subfields
  * @returns array
  */
-function configureArrangement(subfields) {
+function subfieldDisplay(subfields) {
   // Rearrange subfields according to their position
   subfields = rearrange(subfields); // Return subfield display data
 
@@ -1784,7 +1784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_api_connection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/api-connection */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js");
 /* harmony import */ var _utils_address_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/address-components */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js");
-/* harmony import */ var _utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/configure-arrangement */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/configure-arrangement.js");
+/* harmony import */ var _utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/subfield-display */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1917,7 +1917,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Get the subfield arrangement
       var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
 
-      return Object(_utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
+      return Object(_utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
     }
   }
 });

@@ -1,11 +1,11 @@
 /**
  * DEFAULT
- * Configure the subfield arrangement.
+ * Configure the subfield display.
  *
  * @param subfields
  * @returns array
  */
-export default function configureArrangement(subfields) {
+export default function subfieldDisplay(subfields) {
     // Rearrange subfields according to their position
     subfields = rearrange(subfields);
     // Return subfield display data
