@@ -15,10 +15,15 @@
 } %}
 
 <script>
-// Transfer PHP data to JavaScript via Twig
-var settings = {{ settings|json_encode|raw }};
-var data = {{ data|json_encode|raw }};
-var icons = {{ icons|json_encode|raw }};
+
+    // Transfer PHP data to JavaScript via Twig
+    var settings = {{ settings|json_encode|raw }};
+    var data = {{ data|json_encode|raw }};
+    var icons = {{ icons|json_encode|raw }};
+
+    // Not using CP Field Inspect on the field settings page
+    settings.usingCpFieldInspect = false;
+
 </script>
 
 <div id="address-settings" style="display: flex; flex-direction: row;">
