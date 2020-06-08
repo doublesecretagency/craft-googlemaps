@@ -2221,27 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['settings', 'data'],
   data: function data() {
-    // let settings = this.$root.$data.settings;
-    return {// toggleOffset: -25,
-      // marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
-    };
-  },
-  computed: {// marginTop() {
-    //     return `${this.toggleOffset}px`;
-    // },
-    // toggleMode() {
-    //     return this.$root.$data.settings.visibilityToggle;
-    // },
-    // toggleText() {
-    //     return (this.showMap ? 'Hide Map' : 'Show Map');
-    // },
-    // showMap() {
-    //     return this.$root.$data.settings.showMap;
-    // },
-    // markerIcon() {
-    //     let icons = this.$root.$data.icons;
-    //     return (this.showMap ? icons.markerHollow : icons.marker);
-    // }
+    return {};
   },
   methods: {
     // Get the display array
@@ -3237,71 +3217,34 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.subfieldConfig(), function(subfield) {
-          return _c("tr", [
-            _c("td", { staticClass: "singleline-cell textual" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value:
-                      _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                        .label,
-                    expression:
-                      "$root.$data.settings.subfieldConfig[subfield.key].label"
-                  }
-                ],
-                staticStyle: { "min-height": "34px" },
-                attrs: { name: "", rows: "1", placeholder: subfield.key },
-                domProps: {
-                  value:
-                    _vm.$root.$data.settings.subfieldConfig[subfield.key].label
-                },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.$root.$data.settings.subfieldConfig[subfield.key],
-                      "label",
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "td",
-              {
-                staticClass: "textual code",
-                staticStyle: { width: "15%", "text-align": "right" }
-              },
-              [
-                _c("input", {
+          return _c(
+            "tr",
+            {
+              class: {
+                disabled: !_vm.$root.$data.settings.subfieldConfig[subfield.key]
+                  .enabled
+              }
+            },
+            [
+              _c("td", { staticClass: "singleline-cell textual" }, [
+                _c("textarea", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
                       value:
                         _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                          .width,
+                          .label,
                       expression:
-                        "$root.$data.settings.subfieldConfig[subfield.key].width"
+                        "$root.$data.settings.subfieldConfig[subfield.key].label"
                     }
                   ],
-                  staticStyle: {
-                    "min-height": "34px",
-                    "max-width": "60px",
-                    "text-align": "right",
-                    border: "none"
-                  },
-                  attrs: { type: "number", name: "" },
+                  staticStyle: { "min-height": "34px" },
+                  attrs: { name: "", rows: "1", placeholder: subfield.key },
                   domProps: {
                     value:
                       _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                        .width
+                        .label
                   },
                   on: {
                     input: function($event) {
@@ -3310,26 +3253,21 @@ var render = function() {
                       }
                       _vm.$set(
                         _vm.$root.$data.settings.subfieldConfig[subfield.key],
-                        "width",
+                        "label",
                         $event.target.value
                       )
                     }
                   }
                 })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "td",
-              {
-                staticClass: "checkbox-cell",
-                staticStyle: { width: "15%", "text-align": "center" }
-              },
-              [
-                _c("div", { staticClass: "checkbox-wrapper" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "", value: "" }
-                  }),
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "textual code",
+                  staticStyle: { width: "15%", "text-align": "right" }
+                },
+                [
                   _c("input", {
                     directives: [
                       {
@@ -3337,170 +3275,134 @@ var render = function() {
                         rawName: "v-model",
                         value:
                           _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                            .enabled,
+                            .width,
                         expression:
-                          "$root.$data.settings.subfieldConfig[subfield.key].enabled"
+                          "$root.$data.settings.subfieldConfig[subfield.key].width"
                       }
                     ],
-                    staticClass: "checkbox",
-                    attrs: {
-                      type: "checkbox",
-                      id: "enabled-" + subfield.key,
-                      name: ""
+                    staticStyle: {
+                      "min-height": "34px",
+                      "max-width": "60px",
+                      "text-align": "right",
+                      border: "none"
                     },
+                    attrs: { type: "number", name: "" },
                     domProps: {
-                      checked: Array.isArray(
+                      value:
                         _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                          .enabled
-                      )
-                        ? _vm._i(
+                          .width
+                    },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.$root.$data.settings.subfieldConfig[subfield.key],
+                          "width",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "checkbox-cell",
+                  staticStyle: { width: "15%", "text-align": "center" }
+                },
+                [
+                  _c("div", { staticClass: "checkbox-wrapper" }, [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "", value: "" }
+                    }),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
                             _vm.$root.$data.settings.subfieldConfig[
                               subfield.key
                             ].enabled,
-                            null
-                          ) > -1
-                        : _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                          expression:
+                            "$root.$data.settings.subfieldConfig[subfield.key].enabled"
+                        }
+                      ],
+                      staticClass: "checkbox",
+                      attrs: {
+                        type: "checkbox",
+                        id: "enabled-" + subfield.key,
+                        name: ""
+                      },
+                      domProps: {
+                        checked: Array.isArray(
+                          _vm.$root.$data.settings.subfieldConfig[subfield.key]
                             .enabled
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a =
-                            _vm.$root.$data.settings.subfieldConfig[
+                        )
+                          ? _vm._i(
+                              _vm.$root.$data.settings.subfieldConfig[
+                                subfield.key
+                              ].enabled,
+                              null
+                            ) > -1
+                          : _vm.$root.$data.settings.subfieldConfig[
                               subfield.key
-                            ].enabled,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.$root.$data.settings.subfieldConfig[
-                                  subfield.key
-                                ],
-                                "enabled",
-                                $$a.concat([$$v])
-                              )
+                            ].enabled
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a =
+                              _vm.$root.$data.settings.subfieldConfig[
+                                subfield.key
+                              ].enabled,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.$root.$data.settings.subfieldConfig[
+                                    subfield.key
+                                  ],
+                                  "enabled",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.$root.$data.settings.subfieldConfig[
+                                    subfield.key
+                                  ],
+                                  "enabled",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
                           } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.$root.$data.settings.subfieldConfig[
-                                  subfield.key
-                                ],
-                                "enabled",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                            _vm.$set(
+                              _vm.$root.$data.settings.subfieldConfig[
+                                subfield.key
+                              ],
+                              "enabled",
+                              $$c
+                            )
                           }
-                        } else {
-                          _vm.$set(
-                            _vm.$root.$data.settings.subfieldConfig[
-                              subfield.key
-                            ],
-                            "enabled",
-                            $$c
-                          )
                         }
                       }
-                    }
-                  }),
-                  _c("label", { attrs: { for: "enabled-" + subfield.key } })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "td",
-              {
-                staticClass: "checkbox-cell",
-                staticStyle: { width: "15%", "text-align": "center" }
-              },
-              [
-                _c("div", { staticClass: "checkbox-wrapper" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "", value: "" }
-                  }),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value:
-                          _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                            .required,
-                        expression:
-                          "$root.$data.settings.subfieldConfig[subfield.key].required"
-                      }
-                    ],
-                    staticClass: "checkbox",
-                    attrs: {
-                      type: "checkbox",
-                      id: "required-" + subfield.key,
-                      name: ""
-                    },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                          .required
-                      )
-                        ? _vm._i(
-                            _vm.$root.$data.settings.subfieldConfig[
-                              subfield.key
-                            ].required,
-                            null
-                          ) > -1
-                        : _vm.$root.$data.settings.subfieldConfig[subfield.key]
-                            .required
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a =
-                            _vm.$root.$data.settings.subfieldConfig[
-                              subfield.key
-                            ].required,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.$root.$data.settings.subfieldConfig[
-                                  subfield.key
-                                ],
-                                "required",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.$root.$data.settings.subfieldConfig[
-                                  subfield.key
-                                ],
-                                "required",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(
-                            _vm.$root.$data.settings.subfieldConfig[
-                              subfield.key
-                            ],
-                            "required",
-                            $$c
-                          )
-                        }
-                      }
-                    }
-                  }),
-                  _c("label", { attrs: { for: "required-" + subfield.key } })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(1, true)
-          ])
+                    }),
+                    _c("label", { attrs: { for: "enabled-" + subfield.key } })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true)
+            ]
+          )
         }),
         0
       )
@@ -3541,19 +3443,6 @@ var staticRenderFns = [
             }
           },
           [_vm._v("Show")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass: "checkbox-cell",
-            staticStyle: { "text-align": "center" },
-            attrs: {
-              scope: "col",
-              title: "Require a subfield when saving an address."
-            }
-          },
-          [_vm._v("Req.")]
         ),
         _vm._v(" "),
         _c("th", [_vm._v(" ")])
