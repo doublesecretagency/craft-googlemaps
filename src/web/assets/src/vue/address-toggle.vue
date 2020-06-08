@@ -4,7 +4,7 @@
         @click="toggle()"
         :style="{
             'float': 'right',
-            'margin-top': '-25px',
+            'margin-top': marginTop,
             'margin-right': marginRight,
             'cursor': 'pointer',
         }"
@@ -29,10 +29,29 @@
         data() {
             let settings = this.$root.$data.settings;
             return {
+                toggleOffset: -25,
                 marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
             }
         },
         methods: {
+            adjustTogglePosition() {
+
+                // Find the field instructions div
+                let $container = this.$el.closest('.field');
+                let instructions = $container.getElementsByClassName('instructions');
+
+                // If no field instructions, bail
+                if (!instructions.length) {
+                    return;
+                }
+
+                // Get height of instructions div
+                let height = instructions[0].clientHeight;
+
+                // Recalculate toggle offset
+                this.toggleOffset -= height;
+
+            },
             toggle() {
                 // Show or hide the map
                 let showMap = this.$root.$data.settings.showMap;
@@ -40,6 +59,9 @@
             }
         },
         computed: {
+            marginTop() {
+                return `${this.toggleOffset}px`;
+            },
             toggleMode() {
                 return this.$root.$data.settings.visibilityToggle;
             },
@@ -52,7 +74,10 @@
             markerIcon() {
                 let icons = this.$root.$data.icons;
                 return (this.showMap ? icons.markerHollow : icons.marker);
-            },
+            }
+        },
+        mounted() {
+            this.adjustTogglePosition();
         }
     }
 </script>

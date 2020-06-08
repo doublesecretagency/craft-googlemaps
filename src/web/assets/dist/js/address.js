@@ -1963,10 +1963,25 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     var settings = this.$root.$data.settings;
     return {
+      toggleOffset: -25,
       marginRight: settings.usingCpFieldInspect ? '18px' : '4px'
     };
   },
   methods: {
+    adjustTogglePosition: function adjustTogglePosition() {
+      // Find the field instructions div
+      var $container = this.$el.closest('.field');
+      var instructions = $container.getElementsByClassName('instructions'); // If no field instructions, bail
+
+      if (!instructions.length) {
+        return;
+      } // Get height of instructions div
+
+
+      var height = instructions[0].clientHeight; // Recalculate toggle offset
+
+      this.toggleOffset -= height;
+    },
     toggle: function toggle() {
       // Show or hide the map
       var showMap = this.$root.$data.settings.showMap;
@@ -1974,6 +1989,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    marginTop: function marginTop() {
+      return "".concat(this.toggleOffset, "px");
+    },
     toggleMode: function toggleMode() {
       return this.$root.$data.settings.visibilityToggle;
     },
@@ -1987,6 +2005,9 @@ __webpack_require__.r(__webpack_exports__);
       var icons = this.$root.$data.icons;
       return this.showMap ? icons.markerHollow : icons.marker;
     }
+  },
+  mounted: function mounted() {
+    this.adjustTogglePosition();
   }
 });
 
@@ -2914,7 +2935,7 @@ var render = function() {
         {
           style: {
             float: "right",
-            "margin-top": "-25px",
+            "margin-top": _vm.marginTop,
             "margin-right": _vm.marginRight,
             cursor: "pointer"
           },
