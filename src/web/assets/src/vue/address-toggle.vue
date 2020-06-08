@@ -33,6 +33,27 @@
                 marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
             }
         },
+        computed: {
+            marginTop() {
+                return `${this.toggleOffset}px`;
+            },
+            toggleMode() {
+                return this.$root.$data.settings.visibilityToggle;
+            },
+            toggleText() {
+                return (this.showMap ? 'Hide Map' : 'Show Map');
+            },
+            showMap() {
+                return this.$root.$data.settings.showMap;
+            },
+            markerIcon() {
+                let icons = this.$root.$data.icons;
+                return (this.showMap ? icons.markerHollow : icons.marker);
+            }
+        },
+        mounted() {
+            this.adjustTogglePosition();
+        },
         methods: {
             adjustTogglePosition() {
 
@@ -57,27 +78,6 @@
                 let showMap = this.$root.$data.settings.showMap;
                 this.$root.$data.settings.showMap = !showMap;
             }
-        },
-        computed: {
-            marginTop() {
-                return `${this.toggleOffset}px`;
-            },
-            toggleMode() {
-                return this.$root.$data.settings.visibilityToggle;
-            },
-            toggleText() {
-                return (this.showMap ? 'Hide Map' : 'Show Map');
-            },
-            showMap() {
-                return this.$root.$data.settings.showMap;
-            },
-            markerIcon() {
-                let icons = this.$root.$data.icons;
-                return (this.showMap ? icons.markerHollow : icons.marker);
-            }
-        },
-        mounted() {
-            this.adjustTogglePosition();
         }
     }
 </script>

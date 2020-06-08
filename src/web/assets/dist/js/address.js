@@ -1513,6 +1513,27 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
+  computed: {
+    getType: function getType() {
+      // What type of input should the coordinate fields be?
+      return 'hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number';
+    },
+    getReadOnly: function getReadOnly() {
+      // Whether the coordinate fields should be read-only
+      return !['editable', 'hidden'].includes(this.$root.$data.settings.coordinatesMode);
+    },
+    getInputClasses: function getInputClasses() {
+      // Get the coordinates mode from settings
+      var mode = this.$root.$data.settings.coordinatesMode; // If hidden, return empty array
+
+      if ('hidden' === mode) {
+        return [];
+      } // Return array of input classes
+
+
+      return ['text', 'code', 'fullwidth', 'editable' !== mode ? 'disabled' : null];
+    }
+  },
   methods: {
     // Get the display array
     coordinatesDisplay: function coordinatesDisplay() {
@@ -1543,27 +1564,6 @@ __webpack_require__.r(__webpack_exports__);
           'margin-top': '2px'
         }
       }];
-    }
-  },
-  computed: {
-    getType: function getType() {
-      // What type of input should the coordinate fields be?
-      return 'hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number';
-    },
-    getReadOnly: function getReadOnly() {
-      // Whether the coordinate fields should be read-only
-      return !['editable', 'hidden'].includes(this.$root.$data.settings.coordinatesMode);
-    },
-    getInputClasses: function getInputClasses() {
-      // Get the coordinates mode from settings
-      var mode = this.$root.$data.settings.coordinatesMode; // If hidden, return empty array
-
-      if ('hidden' === mode) {
-        return [];
-      } // Return array of input classes
-
-
-      return ['text', 'code', 'fullwidth', 'editable' !== mode ? 'disabled' : null];
     }
   }
 });
@@ -1629,6 +1629,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     zoom: function zoom() {
       this.updateZoomLevel();
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var google, startingPosition;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
+
+            case 3:
+              google = _context.sent;
+              // Get the initial marker position
+              startingPosition = _this.getStartingPosition(); // Create the map
+
+              _this.map = new google.maps.Map(_this.$el, {
+                streetViewControl: false,
+                fullscreenControl: false,
+                center: startingPosition,
+                zoom: startingPosition.zoom
+              }); // Create a draggable marker
+
+              _this.marker = new google.maps.Marker({
+                position: startingPosition,
+                map: _this.map,
+                draggable: true
+              }); // When marker is dropped, re-center the map
+
+              google.maps.event.addListener(_this.marker, 'dragend', function () {
+                var position = _this.marker.getPosition();
+
+                _this.$root.$data.data.coords = {
+                  'lat': parseFloat(position.lat().toFixed(7)),
+                  'lng': parseFloat(position.lng().toFixed(7)),
+                  'zoom': _this.map.getZoom()
+                };
+
+                _this.centerMap();
+              }); // When map is zoomed, update zoom value
+
+              google.maps.event.addListener(_this.map, 'zoom_changed', function () {
+                _this.$root.$data.data.coords['zoom'] = _this.map.getZoom();
+              });
+              _context.next = 14;
+              break;
+
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](0);
+              console.error(_context.t0);
+
+            case 14:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 11]]);
+    }))();
   },
   methods: {
     // getGeolocation() {
@@ -1704,68 +1766,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         zoom: 6
       };
     }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var google, startingPosition;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
-
-            case 3:
-              google = _context.sent;
-              // Get the initial marker position
-              startingPosition = _this.getStartingPosition(); // Create the map
-
-              _this.map = new google.maps.Map(_this.$el, {
-                streetViewControl: false,
-                fullscreenControl: false,
-                center: startingPosition,
-                zoom: startingPosition.zoom
-              }); // Create a draggable marker
-
-              _this.marker = new google.maps.Marker({
-                position: startingPosition,
-                map: _this.map,
-                draggable: true
-              }); // When marker is dropped, re-center the map
-
-              google.maps.event.addListener(_this.marker, 'dragend', function () {
-                var position = _this.marker.getPosition();
-
-                _this.$root.$data.data.coords = {
-                  'lat': parseFloat(position.lat().toFixed(7)),
-                  'lng': parseFloat(position.lng().toFixed(7)),
-                  'zoom': _this.map.getZoom()
-                };
-
-                _this.centerMap();
-              }); // When map is zoomed, update zoom value
-
-              google.maps.event.addListener(_this.map, 'zoom_changed', function () {
-                _this.$root.$data.data.coords['zoom'] = _this.map.getZoom();
-              });
-              _context.next = 14;
-              break;
-
-            case 11:
-              _context.prev = 11;
-              _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
-
-            case 14:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 11]]);
-    }))();
   }
 });
 
@@ -1815,24 +1815,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       autocomplete: false,
       inputClasses: ['text', 'fullwidth']
     };
-  },
-  methods: {
-    // Populate address data when Autocomplete selected
-    setAddressData: function setAddressData(components, coords) {
-      var data = this.$root.$data.data; // Set all subfield data
-
-      Object(_utils_address_components__WEBPACK_IMPORTED_MODULE_2__["default"])(components, data.address); // Set coordinates
-
-      data.coords.lat = parseFloat(coords.lat().toFixed(7));
-      data.coords.lng = parseFloat(coords.lng().toFixed(7));
-    },
-    // Get the display array
-    subfieldDisplay: function subfieldDisplay() {
-      // Get the subfield arrangement
-      var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
-
-      return Object(_utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
-    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -1919,6 +1901,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee, null, [[0, 13]]);
     }))();
+  },
+  methods: {
+    // Populate address data when Autocomplete selected
+    setAddressData: function setAddressData(components, coords) {
+      var data = this.$root.$data.data; // Set all subfield data
+
+      Object(_utils_address_components__WEBPACK_IMPORTED_MODULE_2__["default"])(components, data.address); // Set coordinates
+
+      data.coords.lat = parseFloat(coords.lat().toFixed(7));
+      data.coords.lng = parseFloat(coords.lng().toFixed(7));
+    },
+    // Get the display array
+    subfieldDisplay: function subfieldDisplay() {
+      // Get the subfield arrangement
+      var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
+
+      return Object(_utils_configure_arrangement__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
+    }
   }
 });
 
@@ -1967,27 +1967,6 @@ __webpack_require__.r(__webpack_exports__);
       marginRight: settings.usingCpFieldInspect ? '18px' : '4px'
     };
   },
-  methods: {
-    adjustTogglePosition: function adjustTogglePosition() {
-      // Find the field instructions div
-      var $container = this.$el.closest('.field');
-      var instructions = $container.getElementsByClassName('instructions'); // If no field instructions, bail
-
-      if (!instructions.length) {
-        return;
-      } // Get height of instructions div
-
-
-      var height = instructions[0].clientHeight; // Recalculate toggle offset
-
-      this.toggleOffset -= height;
-    },
-    toggle: function toggle() {
-      // Show or hide the map
-      var showMap = this.$root.$data.settings.showMap;
-      this.$root.$data.settings.showMap = !showMap;
-    }
-  },
   computed: {
     marginTop: function marginTop() {
       return "".concat(this.toggleOffset, "px");
@@ -2008,6 +1987,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.adjustTogglePosition();
+  },
+  methods: {
+    adjustTogglePosition: function adjustTogglePosition() {
+      // Find the field instructions div
+      var $container = this.$el.closest('.field');
+      var instructions = $container.getElementsByClassName('instructions'); // If no field instructions, bail
+
+      if (!instructions.length) {
+        return;
+      } // Get height of instructions div
+
+
+      var height = instructions[0].clientHeight; // Recalculate toggle offset
+
+      this.toggleOffset -= height;
+    },
+    toggle: function toggle() {
+      // Show or hide the map
+      var showMap = this.$root.$data.settings.showMap;
+      this.$root.$data.settings.showMap = !showMap;
+    }
   }
 });
 
@@ -2047,9 +2047,6 @@ __webpack_require__.r(__webpack_exports__);
     'address-subfields': _address_subfields__WEBPACK_IMPORTED_MODULE_1__["default"],
     'address-coords': _address_coords__WEBPACK_IMPORTED_MODULE_2__["default"],
     'address-map': _address_map__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
-  data: function data() {
-    return {};
   },
   props: ['settings', 'data']
 });

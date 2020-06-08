@@ -20,6 +20,33 @@
             return {
             }
         },
+        computed: {
+            getType() {
+                // What type of input should the coordinate fields be?
+                return ('hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number');
+            },
+            getReadOnly() {
+                // Whether the coordinate fields should be read-only
+                return !['editable','hidden'].includes(this.$root.$data.settings.coordinatesMode);
+            },
+            getInputClasses() {
+                // Get the coordinates mode from settings
+                let mode = this.$root.$data.settings.coordinatesMode;
+
+                // If hidden, return empty array
+                if ('hidden' === mode) {
+                    return [];
+                }
+
+                // Return array of input classes
+                return [
+                    'text',
+                    'code',
+                    'fullwidth',
+                    ('editable' !== mode ? 'disabled' : null)
+                ];
+            }
+        },
         methods: {
             // Get the display array
             coordinatesDisplay() {
@@ -53,33 +80,6 @@
                             'margin-top': '2px'
                         }
                     }
-                ];
-            }
-        },
-        computed: {
-            getType() {
-                // What type of input should the coordinate fields be?
-                return ('hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number');
-            },
-            getReadOnly() {
-                // Whether the coordinate fields should be read-only
-                return !['editable','hidden'].includes(this.$root.$data.settings.coordinatesMode);
-            },
-            getInputClasses() {
-                // Get the coordinates mode from settings
-                let mode = this.$root.$data.settings.coordinatesMode;
-
-                // If hidden, return empty array
-                if ('hidden' === mode) {
-                    return [];
-                }
-
-                // Return array of input classes
-                return [
-                    'text',
-                    'code',
-                    'fullwidth',
-                    ('editable' !== mode ? 'disabled' : null)
                 ];
             }
         }

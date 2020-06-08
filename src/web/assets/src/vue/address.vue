@@ -22,10 +22,6 @@
             'address-coords': AddressCoords,
             'address-map': AddressMap
         },
-        data() {
-            return {
-            }
-        },
         props: ['settings', 'data']
     }
 </script>

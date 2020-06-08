@@ -42,6 +42,48 @@
                 this.updateZoomLevel();
             }
         },
+        async mounted() {
+            try {
+                const google = await apiConnection();
+
+                // Get the initial marker position
+                let startingPosition = this.getStartingPosition();
+
+                // Create the map
+                this.map = new google.maps.Map(this.$el, {
+                    streetViewControl: false,
+                    fullscreenControl: false,
+                    center: startingPosition,
+                    zoom: startingPosition.zoom
+                });
+
+                // Create a draggable marker
+                this.marker = new google.maps.Marker({
+                    position: startingPosition,
+                    map: this.map,
+                    draggable: true
+                });
+
+                // When marker is dropped, re-center the map
+                google.maps.event.addListener(this.marker, 'dragend', () => {
+                    let position = this.marker.getPosition();
+                    this.$root.$data.data.coords = {
+                        'lat': parseFloat(position.lat().toFixed(7)),
+                        'lng': parseFloat(position.lng().toFixed(7)),
+                        'zoom': this.map.getZoom()
+                    };
+                    this.centerMap();
+                });
+
+                // When map is zoomed, update zoom value
+                google.maps.event.addListener(this.map, 'zoom_changed', () => {
+                    this.$root.$data.data.coords['zoom'] = this.map.getZoom();
+                });
+
+            } catch (error) {
+                console.error(error);
+            }
+        },
         methods: {
             // getGeolocation() {
             //     // Does the browser support geolocation?
@@ -125,49 +167,7 @@
                     zoom: 6
                 };
             }
-        },
-        async mounted() {
-            try {
-                const google = await apiConnection();
-
-                // Get the initial marker position
-                let startingPosition = this.getStartingPosition();
-
-                // Create the map
-                this.map = new google.maps.Map(this.$el, {
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                    center: startingPosition,
-                    zoom: startingPosition.zoom
-                });
-
-                // Create a draggable marker
-                this.marker = new google.maps.Marker({
-                    position: startingPosition,
-                    map: this.map,
-                    draggable: true
-                });
-
-                // When marker is dropped, re-center the map
-                google.maps.event.addListener(this.marker, 'dragend', () => {
-                    let position = this.marker.getPosition();
-                    this.$root.$data.data.coords = {
-                        'lat': parseFloat(position.lat().toFixed(7)),
-                        'lng': parseFloat(position.lng().toFixed(7)),
-                        'zoom': this.map.getZoom()
-                    };
-                    this.centerMap();
-                });
-
-                // When map is zoomed, update zoom value
-                google.maps.event.addListener(this.map, 'zoom_changed', () => {
-                    this.$root.$data.data.coords['zoom'] = this.map.getZoom();
-                });
-
-            } catch (error) {
-                console.error(error);
-            }
-        },
+        }
     };
 </script>
 

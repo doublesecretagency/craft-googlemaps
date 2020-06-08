@@ -28,26 +28,6 @@
                 ]
             }
         },
-        methods: {
-
-            // Populate address data when Autocomplete selected
-            setAddressData(components, coords) {
-                let data = this.$root.$data.data;
-                // Set all subfield data
-                addressComponents(components, data.address);
-                // Set coordinates
-                data.coords.lat = parseFloat(coords.lat().toFixed(7));
-                data.coords.lng = parseFloat(coords.lng().toFixed(7));
-            },
-
-            // Get the display array
-            subfieldDisplay() {
-                // Get the subfield arrangement
-                let arrangement = this.$root.$data.settings.subfieldConfig;
-                // Return configured arrangement
-                return configureArrangement(arrangement);
-            }
-        },
         async mounted() {
             try {
                 const google = await apiConnection();
@@ -110,6 +90,26 @@
                 // Something went wrong
                 console.error(error);
 
+            }
+        },
+        methods: {
+
+            // Populate address data when Autocomplete selected
+            setAddressData(components, coords) {
+                let data = this.$root.$data.data;
+                // Set all subfield data
+                addressComponents(components, data.address);
+                // Set coordinates
+                data.coords.lat = parseFloat(coords.lat().toFixed(7));
+                data.coords.lng = parseFloat(coords.lng().toFixed(7));
+            },
+
+            // Get the display array
+            subfieldDisplay() {
+                // Get the subfield arrangement
+                let arrangement = this.$root.$data.settings.subfieldConfig;
+                // Return configured arrangement
+                return configureArrangement(arrangement);
             }
         }
     }
