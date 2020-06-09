@@ -30,7 +30,7 @@
             let settings = this.$root.$data.settings;
             return {
                 toggleOffset: -25,
-                marginRight: (settings.usingCpFieldInspect ? '18px' : '4px')
+                marginRight: (settings.usingCpFieldInspect ? '22px' : '8px')
             }
         },
         computed: {

@@ -173,13 +173,15 @@
 
 <style lang="scss" scoped>
 .gm-map {
+    height: 240px;
+    width: 99%;
+    margin-right: 1%;
+    margin-top: 2px;
     text-align: center;
     background-color: #f3f7fc;
-    margin-top: 4px;
     border: 1px solid #D7DFE7;
     border-radius: 3px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-    height: 240px;
     div {
         color: #606d7b;
         font-weight: bold;

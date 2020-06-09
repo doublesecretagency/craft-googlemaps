@@ -54,31 +54,17 @@
                     {
                         key: 'lat',
                         label: 'Latitude',
-                        styles: {
-                            'float': 'left',
-                            'width': '44%',
-                            'margin-top': '2px'
-                        }
+                        styles: {'width': '43%'}
                     },
                     {
                         key: 'lng',
                         label: 'Longitude',
-                        styles: {
-                            'float': 'left',
-                            'width': '43%',
-                            'margin-left': '1%',
-                            'margin-top': '2px'
-                        }
+                        styles: {'width': '43%'}
                     },
                     {
                         key: 'zoom',
                         label: 'Zoom',
-                        styles: {
-                            'float': 'left',
-                            'width': '11%',
-                            'margin-left': '1%',
-                            'margin-top': '2px'
-                        }
+                        styles: {'width': '11%'}
                     }
                 ];
             }

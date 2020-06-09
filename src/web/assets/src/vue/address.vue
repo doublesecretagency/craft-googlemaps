@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="address-field">
         <address-toggle></address-toggle>
         <address-subfields></address-subfields>
         <address-coords></address-coords>
@@ -25,3 +25,13 @@
         props: ['settings', 'data']
     }
 </script>
+
+<style lang="scss">
+    .address-field {
+        width: 101%;
+        input {
+            margin-right: 1%;
+            margin-bottom: 2px;
+        }
+    }
+</style>
