@@ -38,6 +38,7 @@ class AddressFieldSettingsAsset extends AssetBundle
 
         $this->js = [
             'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
+            'js/Sortable.min.js',
             'js/address-settings.js',
         ];
 

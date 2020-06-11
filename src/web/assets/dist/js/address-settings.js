@@ -2213,6 +2213,16 @@ __webpack_require__.r(__webpack_exports__);
 
       return Object(_utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__["default"])(arrangement);
     }
+  },
+  mounted: function mounted() {
+    new Sortable(this.$refs.sortable, {
+      handle: '.move',
+      animation: 150,
+      ghostClass: 'sortable-ghost',
+      onUpdate: function onUpdate() {
+        console.log(this.el);
+      }
+    });
   }
 });
 
@@ -3248,6 +3258,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
+        { ref: "sortable" },
         _vm._l(_vm.subfieldConfig(), function(subfield) {
           return _c(
             "tr",

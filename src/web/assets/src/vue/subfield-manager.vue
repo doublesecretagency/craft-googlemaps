@@ -9,7 +9,7 @@
                 <th>&nbsp;</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody ref="sortable">
             <tr v-for="subfield in subfieldConfig()" :class="{'disabled': !$root.$data.settings.subfieldConfig[subfield.key].enabled}">
                 <td class="singleline-cell textual">
                     <textarea name="" v-model="$root.$data.settings.subfieldConfig[subfield.key].label" rows="1" style="min-height: 34px;" :placeholder="subfield.key"></textarea>
@@ -51,6 +51,18 @@
                 // Return configured arrangement
                 return subfieldConfig(arrangement);
             }
+        },
+        mounted() {
+            new Sortable(this.$refs.sortable, {
+                handle: '.move',
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                onUpdate: function () {
+
+                    console.log(this.el);
+
+                }
+            });
         }
     }
 </script>
