@@ -10,12 +10,12 @@
             </tr>
         </thead>
         <tbody ref="sortable">
-            <tr v-for="subfield in subfieldConfig()" :class="{'disabled': !$root.$data.settings.subfieldConfig[subfield.key].enabled}">
+            <tr v-for="subfield in subfieldConfig" :class="{'disabled': !$root.$data.settings.subfieldConfig[subfield.key].enabled}" :data-handle="subfield.key">
                 <td class="singleline-cell textual">
                     <textarea name="" v-model="$root.$data.settings.subfieldConfig[subfield.key].label" rows="1" style="min-height: 34px;" :placeholder="subfield.key"></textarea>
                 </td>
                 <td class="textual code" style="width:15%; text-align:right;">
-                    <input type="number" name="" v-model="$root.$data.settings.subfieldConfig[subfield.key].width" style="min-height: 34px; max-width:60px; text-align:right; border:none;">
+                    <input type="number" name="" v-model.number="$root.$data.settings.subfieldConfig[subfield.key].width" style="min-height: 34px; max-width:60px; text-align:right; border:none;">
                 </td>
                 <td class="checkbox-cell" style="width:15%; text-align:center;">
                     <div class="checkbox-wrapper">
@@ -27,7 +27,9 @@
 <!--                        <input type="hidden" name="" value="" /><input type="checkbox" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" name="" /><label :for="`required-${subfield.key}`"></label>-->
 <!--                    </div>-->
 <!--                </td>-->
-                <td class="thin action"><a class="move icon" title="Reorder"></a></td>
+                <td class="thin action">
+                    <a class="move icon" title="Reorder"></a>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -41,28 +43,46 @@
         props: ['settings', 'data'],
         data() {
             return {
+                subfieldConfig: []
             }
         },
         methods: {
-            // Get the display array
-            subfieldConfig() {
-                // Get the subfield arrangement
-                let arrangement = this.$root.$data.settings.subfieldConfig;
-                // Return configured arrangement
-                return subfieldConfig(arrangement);
+            updatePositions() {
+
+                // Get all subfield manager rows
+                let rows = Array.from(this.$refs.sortable.children);
+
+                // Loop through subfields as currently arranged
+                rows.forEach((currentValue, i) => {
+
+                    // Get current subfield handle
+                    let handle = currentValue.dataset.handle;
+
+                    // Get current subfield position
+                    let position = (i + 1);
+
+                    // Update subfield position
+                    this.$root.$data.settings.subfieldConfig[handle].position = position;
+
+                });
+
             }
         },
         mounted() {
+
+            // Activate sortable subfield manager
             new Sortable(this.$refs.sortable, {
                 handle: '.move',
                 animation: 150,
                 ghostClass: 'sortable-ghost',
-                onUpdate: function () {
-
-                    console.log(this.el);
-
-                }
+                onUpdate: this.updatePositions
             });
+
+            // Get the subfield arrangement
+            let arrangement = this.$root.$data.settings.subfieldConfig;
+
+            // Return configured arrangement
+            this.subfieldConfig = subfieldConfig(arrangement);
         }
     }
 </script>

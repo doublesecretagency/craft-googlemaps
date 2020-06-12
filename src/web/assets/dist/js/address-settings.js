@@ -2199,30 +2199,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['settings', 'data'],
   data: function data() {
-    return {};
+    return {
+      subfieldConfig: []
+    };
   },
   methods: {
-    // Get the display array
-    subfieldConfig: function subfieldConfig() {
-      // Get the subfield arrangement
-      var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
+    updatePositions: function updatePositions() {
+      var _this = this;
 
-      return Object(_utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__["default"])(arrangement);
+      // Get all subfield manager rows
+      var rows = Array.from(this.$refs.sortable.children); // Loop through subfields as currently arranged
+
+      rows.forEach(function (currentValue, i) {
+        // Get current subfield handle
+        var handle = currentValue.dataset.handle; // Get current subfield position
+
+        var position = i + 1; // Update subfield position
+
+        _this.$root.$data.settings.subfieldConfig[handle].position = position;
+      });
     }
   },
   mounted: function mounted() {
+    // Activate sortable subfield manager
     new Sortable(this.$refs.sortable, {
       handle: '.move',
       animation: 150,
       ghostClass: 'sortable-ghost',
-      onUpdate: function onUpdate() {
-        console.log(this.el);
-      }
-    });
+      onUpdate: this.updatePositions
+    }); // Get the subfield arrangement
+
+    var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
+
+    this.subfieldConfig = Object(_utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__["default"])(arrangement);
   }
 });
 
@@ -3259,14 +3274,15 @@ var render = function() {
       _c(
         "tbody",
         { ref: "sortable" },
-        _vm._l(_vm.subfieldConfig(), function(subfield) {
+        _vm._l(_vm.subfieldConfig, function(subfield) {
           return _c(
             "tr",
             {
               class: {
                 disabled: !_vm.$root.$data.settings.subfieldConfig[subfield.key]
                   .enabled
-              }
+              },
+              attrs: { "data-handle": subfield.key }
             },
             [
               _c("td", { staticClass: "singleline-cell textual" }, [
@@ -3315,12 +3331,13 @@ var render = function() {
                     directives: [
                       {
                         name: "model",
-                        rawName: "v-model",
+                        rawName: "v-model.number",
                         value:
                           _vm.$root.$data.settings.subfieldConfig[subfield.key]
                             .width,
                         expression:
-                          "$root.$data.settings.subfieldConfig[subfield.key].width"
+                          "$root.$data.settings.subfieldConfig[subfield.key].width",
+                        modifiers: { number: true }
                       }
                     ],
                     staticStyle: {
@@ -3343,8 +3360,11 @@ var render = function() {
                         _vm.$set(
                           _vm.$root.$data.settings.subfieldConfig[subfield.key],
                           "width",
-                          $event.target.value
+                          _vm._n($event.target.value)
                         )
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
                       }
                     }
                   })
