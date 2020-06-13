@@ -2210,6 +2210,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    fieldName: function fieldName(subfield, setting) {
+      var fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
+      return "types[".concat(fieldtype, "][subfieldConfig][").concat(subfield, "][").concat(setting, "]");
+    },
     updatePositions: function updatePositions() {
       var _this = this;
 
@@ -2217,10 +2221,10 @@ __webpack_require__.r(__webpack_exports__);
       var rows = Array.from(this.$refs.sortable.children); // Loop through subfields as currently arranged
 
       rows.forEach(function (currentValue, i) {
-        // Get current subfield handle
-        var handle = currentValue.dataset.handle; // Get current subfield position
+        // Get current subfield position
+        var position = i + 1; // Get current subfield handle
 
-        var position = i + 1; // Update subfield position
+        var handle = currentValue.dataset.handle; // Update subfield position
 
         _this.$root.$data.settings.subfieldConfig[handle].position = position;
       });
@@ -3299,7 +3303,11 @@ var render = function() {
                     }
                   ],
                   staticStyle: { "min-height": "34px" },
-                  attrs: { name: "", rows: "1", placeholder: subfield.key },
+                  attrs: {
+                    name: _vm.fieldName(subfield.key, "label"),
+                    rows: "1",
+                    placeholder: subfield.key
+                  },
                   domProps: {
                     value:
                       _vm.$root.$data.settings.subfieldConfig[subfield.key]
@@ -3346,7 +3354,10 @@ var render = function() {
                       "text-align": "right",
                       border: "none"
                     },
-                    attrs: { type: "number", name: "" },
+                    attrs: {
+                      type: "number",
+                      name: _vm.fieldName(subfield.key, "width")
+                    },
                     domProps: {
                       value:
                         _vm.$root.$data.settings.subfieldConfig[subfield.key]
@@ -3380,9 +3391,6 @@ var render = function() {
                 [
                   _c("div", { staticClass: "checkbox-wrapper" }, [
                     _c("input", {
-                      attrs: { type: "hidden", name: "", value: "" }
-                    }),
-                    _c("input", {
                       directives: [
                         {
                           name: "model",
@@ -3398,8 +3406,8 @@ var render = function() {
                       staticClass: "checkbox",
                       attrs: {
                         type: "checkbox",
-                        id: "enabled-" + subfield.key,
-                        name: ""
+                        name: _vm.fieldName(subfield.key, "enabled"),
+                        id: "enabled-" + subfield.key
                       },
                       domProps: {
                         checked: Array.isArray(
@@ -3463,7 +3471,47 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", { staticClass: "thin action" }, [
+                _c("a", {
+                  staticClass: "move icon",
+                  attrs: { title: "Reorder" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value:
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                          .position,
+                      expression:
+                        "$root.$data.settings.subfieldConfig[subfield.key].position"
+                    }
+                  ],
+                  attrs: {
+                    type: "hidden",
+                    name: _vm.fieldName(subfield.key, "position")
+                  },
+                  domProps: {
+                    value:
+                      _vm.$root.$data.settings.subfieldConfig[subfield.key]
+                        .position
+                  },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.$root.$data.settings.subfieldConfig[subfield.key],
+                        "position",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
             ]
           )
         }),
@@ -3510,14 +3558,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v(" ")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "thin action" }, [
-      _c("a", { staticClass: "move icon", attrs: { title: "Reorder" } })
     ])
   }
 ]

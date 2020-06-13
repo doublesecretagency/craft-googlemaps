@@ -12,28 +12,28 @@
         <tbody ref="sortable">
             <tr v-for="subfield in subfieldConfig" :class="{'disabled': !$root.$data.settings.subfieldConfig[subfield.key].enabled}" :data-handle="subfield.key">
                 <td class="singleline-cell textual">
-                    <textarea name="" v-model="$root.$data.settings.subfieldConfig[subfield.key].label" rows="1" style="min-height: 34px;" :placeholder="subfield.key"></textarea>
+                    <textarea :name="fieldName(subfield.key, 'label')" v-model="$root.$data.settings.subfieldConfig[subfield.key].label" rows="1" style="min-height: 34px;" :placeholder="subfield.key"></textarea>
                 </td>
                 <td class="textual code" style="width:15%; text-align:right;">
-                    <input type="number" name="" v-model.number="$root.$data.settings.subfieldConfig[subfield.key].width" style="min-height: 34px; max-width:60px; text-align:right; border:none;">
+                    <input type="number" :name="fieldName(subfield.key, 'width')" v-model.number="$root.$data.settings.subfieldConfig[subfield.key].width" style="min-height: 34px; max-width:60px; text-align:right; border:none;">
                 </td>
                 <td class="checkbox-cell" style="width:15%; text-align:center;">
                     <div class="checkbox-wrapper">
-                        <input type="hidden" name="" value="" /><input type="checkbox" v-model="$root.$data.settings.subfieldConfig[subfield.key].enabled" :id="`enabled-${subfield.key}`" class="checkbox" name="" /><label :for="`enabled-${subfield.key}`"></label>
+                        <input type="checkbox" :name="fieldName(subfield.key, 'enabled')" v-model="$root.$data.settings.subfieldConfig[subfield.key].enabled" :id="`enabled-${subfield.key}`" class="checkbox" /><label :for="`enabled-${subfield.key}`"></label>
                     </div>
                 </td>
 <!--                <td class="checkbox-cell" style="width:15%; text-align:center;">-->
 <!--                    <div class="checkbox-wrapper">-->
-<!--                        <input type="hidden" name="" value="" /><input type="checkbox" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" name="" /><label :for="`required-${subfield.key}`"></label>-->
+<!--                        <input type="checkbox" :name="fieldName(subfield.key, 'required')" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" /><label :for="`required-${subfield.key}`"></label>-->
 <!--                    </div>-->
 <!--                </td>-->
                 <td class="thin action">
                     <a class="move icon" title="Reorder"></a>
+                    <input type="hidden" :name="fieldName(subfield.key, 'position')" v-model="$root.$data.settings.subfieldConfig[subfield.key].position" />
                 </td>
             </tr>
         </tbody>
     </table>
-
 </template>
 
 <script>
@@ -47,6 +47,10 @@
             }
         },
         methods: {
+            fieldName(subfield, setting) {
+                const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
+                return `types[${fieldtype}][subfieldConfig][${subfield}][${setting}]`;
+            },
             updatePositions() {
 
                 // Get all subfield manager rows
@@ -55,11 +59,11 @@
                 // Loop through subfields as currently arranged
                 rows.forEach((currentValue, i) => {
 
-                    // Get current subfield handle
-                    let handle = currentValue.dataset.handle;
-
                     // Get current subfield position
                     let position = (i + 1);
+
+                    // Get current subfield handle
+                    let handle = currentValue.dataset.handle;
 
                     // Update subfield position
                     this.$root.$data.settings.subfieldConfig[handle].position = position;
