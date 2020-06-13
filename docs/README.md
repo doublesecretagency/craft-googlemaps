@@ -12,6 +12,8 @@ features:
   details: Finding the nearest location can be a breeze! Give customers an easy way to track down a store near them.
 - title: Compatible with everything!
   details: Import, export, GraphQL, Elements API.
+- title: Amazing Address field
+  details: Talk about the awesome address field.
 ---
 
 # More information about the plugin...
