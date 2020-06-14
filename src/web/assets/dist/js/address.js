@@ -1721,27 +1721,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // Determine starting point of the marker
     getStartingPosition: function getStartingPosition() {
-      // Get universal coordinates
-      var coords = this.$root.$data.data.coords; // If the field data already has coordinates, use them
-
-      if (coords['lat'] && coords['lng']) {
-        return {
-          lat: coords['lat'],
-          lng: coords['lng'],
-          zoom: coords['zoom']
-        };
-      } // If a default marker position is set, use that
-
-
-      if (this.settings.coordinatesDefault) {
-        return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
-      } // Attempt to get starting location
+      // // Get universal coordinates
+      // const coords = this.$root.$data.data.coords;
+      //
+      // // If the field data already has coordinates, use them
+      // if (coords['lat'] && coords['lng']) {
+      //     return {
+      //         lat: coords['lat'],
+      //         lng: coords['lng'],
+      //         zoom: coords['zoom']
+      //     };
+      // }
+      //
+      // // If a default marker position is set, use that
+      // if (this.settings.coordinatesDefault) {
+      //     return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
+      // }
+      // Attempt to get starting location
       // via HTML 5 user geolocation
       // this.getGeolocation();
       // Nothing else worked, send them to
       // the Bermuda Triangle as a fallback
-
-
       return {
         lat: 32.3113966,
         lng: -64.7527469,

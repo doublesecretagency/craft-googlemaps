@@ -138,26 +138,26 @@
             // Determine starting point of the marker
             getStartingPosition() {
 
-                // Get universal coordinates
-                const coords = this.$root.$data.data.coords;
+                // // Get universal coordinates
+                // const coords = this.$root.$data.data.coords;
+                //
+                // // If the field data already has coordinates, use them
+                // if (coords['lat'] && coords['lng']) {
+                //     return {
+                //         lat: coords['lat'],
+                //         lng: coords['lng'],
+                //         zoom: coords['zoom']
+                //     };
+                // }
+                //
+                // // If a default marker position is set, use that
+                // if (this.settings.coordinatesDefault) {
+                //     return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
+                // }
 
-                // If the field data already has coordinates, use them
-                if (coords['lat'] && coords['lng']) {
-                    return {
-                        lat: coords['lat'],
-                        lng: coords['lng'],
-                        zoom: coords['zoom']
-                    };
-                }
-
-                // If a default marker position is set, use that
-                if (this.settings.coordinatesDefault) {
-                    return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
-                }
-
-                // Attempt to get starting location
-                // via HTML 5 user geolocation
-                // this.getGeolocation();
+// Attempt to get starting location
+// via HTML 5 user geolocation
+// this.getGeolocation();
 
                 // Nothing else worked, send them to
                 // the Bermuda Triangle as a fallback

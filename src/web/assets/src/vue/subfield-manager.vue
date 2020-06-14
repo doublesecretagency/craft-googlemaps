@@ -46,6 +46,23 @@
                 subfieldConfig: []
             }
         },
+        mounted() {
+
+            // Activate sortable subfield manager
+            new Sortable(this.$refs.sortable, {
+                handle: '.move',
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                onUpdate: this.updatePositions
+            });
+
+            // Get the subfield arrangement
+            let arrangement = this.$root.$data.settings.subfieldConfig;
+
+            // Return configured arrangement
+            this.subfieldConfig = subfieldConfig(arrangement);
+
+        },
         methods: {
             fieldName(subfield, setting) {
                 const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
@@ -71,22 +88,6 @@
                 });
 
             }
-        },
-        mounted() {
-
-            // Activate sortable subfield manager
-            new Sortable(this.$refs.sortable, {
-                handle: '.move',
-                animation: 150,
-                ghostClass: 'sortable-ghost',
-                onUpdate: this.updatePositions
-            });
-
-            // Get the subfield arrangement
-            let arrangement = this.$root.$data.settings.subfieldConfig;
-
-            // Return configured arrangement
-            this.subfieldConfig = subfieldConfig(arrangement);
         }
     }
 </script>
