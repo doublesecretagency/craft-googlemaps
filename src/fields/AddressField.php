@@ -27,56 +27,18 @@ class AddressField extends Field implements PreviewableFieldInterface
 {
 
     /**
-     * What should the map be
-     * when the field is initially loaded?
-     *
-     * @var string "open" or "close"
+     * Default coordinates. (Bermuda Triangle)
      */
-    public $mapOnStart = 'close';
-
-    /**
-     * What should the map be
-     * when a geocode lookup is performed?
-     *
-     * @var string "open", "close" or "noChange"
-     */
-    public $mapOnSearch = 'open';
-
-    /**
-     * How should we display
-     * the map visibility toggle?
-     *
-     * @var string "both", "text", "icon" or "hidden"
-     */
-    public $visibilityToggle = 'both';
-
-    /**
-     * How should we display
-     * the coordinates fields?
-     *
-     * @var string "editable", "readOnly" or "hidden"
-     */
-    public $coordinatesMode = 'readOnly';
-
-    /**
-     * Default coordinates of a new Address field.
-     *
-     * @var array|null
-     */
-    // TODO: Should probably just be null, right? Let the fallback kick in later, in JS or PHP
-    // public $coordinatesDefault;
-    public $coordinatesDefault = [
+    const DEFAULT_COORDINATES = [
         'lat' => 32.3113966,
         'lng' => -64.7527469,
         'zoom' => 6
     ];
 
     /**
-     * Full configuration of subfields.
-     *
-     * @var array|null
+     * Default subfield configuration.
      */
-    public $subfieldConfig = [
+    const DEFAULT_SUBFIELD_CONFIG = [
         'street1'=> [
             'label'    => 'Street Address',
             'width'    => 100,
@@ -120,6 +82,56 @@ class AddressField extends Field implements PreviewableFieldInterface
             'required' => false
         ]
     ];
+
+    /**
+     * What should the map be
+     * when the field is initially loaded?
+     *
+     * @var string "open" or "close"
+     */
+    public $mapOnStart = 'close';
+
+    public $showMap;
+
+    /**
+     * What should the map be
+     * when a geocode lookup is performed?
+     *
+     * @var string "open", "close" or "noChange"
+     */
+    public $mapOnSearch = 'open';
+
+    /**
+     * How should we display
+     * the map visibility toggle?
+     *
+     * @var string "both", "text", "icon" or "hidden"
+     */
+    public $visibilityToggle = 'both';
+
+    /**
+     * How should we display
+     * the coordinates fields?
+     *
+     * @var string "editable", "readOnly" or "hidden"
+     */
+    public $coordinatesMode = 'readOnly';
+
+    /**
+     * Default coordinates of a new Address field.
+     *
+     * @var array|null
+     */
+    // TODO: Should probably just be null, right? Let the fallback kick in later, in JS or PHP
+    // public $coordinatesDefault;
+    public $coordinatesDefault = self::DEFAULT_COORDINATES;
+
+    /**
+     * Full configuration of subfields.
+     *
+     * @var array|null
+     */
+    public $subfieldConfig = self::DEFAULT_SUBFIELD_CONFIG;
 
     // ========================================================================= //
 
