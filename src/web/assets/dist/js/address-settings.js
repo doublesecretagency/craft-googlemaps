@@ -2244,23 +2244,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    // let coords = this.$root.$data.settings.coordinatesDefault;
-    var coords = {
-      'lat': null,
-      'lng': null,
-      'zoom': null
-    };
-    return {
-      coordinatesDefault: coords
+    return {// coordinatesDefault: getMapCenter(subfields)
     };
   },
+  computed: {
+    coordinatesDefault: function coordinatesDefault() {
+      return this.$root.$data.data.coords; // return getMapCenter(this.$root.$data);
+      // return this.$root.$data.settings.coordinatesDefault;
+    }
+  },
   watch: {
-    '$root.$data.data.coords': function $root$dataDataCoords(coords) {
+    coordsWatcher: function coordsWatcher(coords) {
       this.updateCoords(coords);
     }
   },
   // mounted: function () {
-  //     // this.coordinatesDefault = this.$root.$data.settings.coordinatesDefault;
+  //
+  //     let mapCenter = getMapCenter(this.$root.$data);
+  //
+  //     this.$root.$data.data.coords = mapCenter;
+  //
+  //     // console.log(mapCenter);
+  //     //
+  //     // this.coordinatesDefault = mapCenter;
+  //     // this.updateCoords(mapCenter);
   // },
   methods: {
     fieldName: function fieldName(subfield) {
@@ -2274,12 +2281,7 @@ __webpack_require__.r(__webpack_exports__);
         'zoom': coords.zoom
       };
     }
-  } // computed: {
-  //     coordinatesDefault: function () {
-  //         return this.$root.$data.settings.coordinatesDefault;
-  //     }
-  // }
-
+  }
 });
 
 /***/ }),
