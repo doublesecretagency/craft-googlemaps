@@ -1375,6 +1375,146 @@ function init() {
 
 /***/ }),
 
+/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js":
+/*!********************************************************************************************************!*\
+  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getMapCenter; });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * DEFAULT
+ * Determine the orientation of a map.
+ *
+ * @param $data
+ * @returns object
+ */
+function getMapCenter($data) {
+  // If available, get coords from the existing Address data
+  var dataCoords = getDataCoords($data.data);
+
+  if (dataCoords) {
+    return dataCoords;
+  } // If available, get default coords from the field settings
+
+
+  var settingsCoords = getSettingsCoords($data.settings);
+
+  if (settingsCoords) {
+    return settingsCoords;
+  } // If available, get user's current location
+
+
+  var geolocationCoords = getGeolocationCoords();
+
+  if (geolocationCoords) {
+    return geolocationCoords;
+  } // Nothing else worked, use the fallback
+
+
+  return useFallbackCoords();
+} // ========================================================================= //
+// Check whether single coordinate is valid
+
+function validCoord(coord) {
+  // If coordinate is not a number or string, return false
+  if (!['number', 'string'].includes(_typeof(coord))) {
+    return false;
+  } // If coordinate is not numeric, return false
+
+
+  if (isNaN(coord)) {
+    return false;
+  } // Coordinate is valid, return true
+
+
+  return true;
+}
+/**
+ * Get the coordinates from the existing field data.
+ *
+ * @returns object
+ */
+
+
+function getDataCoords(data) {
+  console.log('- getDataCoords -'); // console.log(data.coords.lat);
+  // console.log(typeof data.coords.lat);
+  // console.log('');
+  // Get coordinates from field data
+
+  var coords = data.coords; // If invalid coordinates, return false
+
+  if (!validCoord(coords.lat) || !validCoord(coords.lng)) {
+    return false;
+  } // Return coordinates
+
+
+  return coords;
+}
+/**
+ * Get the coordinates from the field's default settings.
+ *
+ * @param settings
+ * @returns object
+ */
+
+
+function getSettingsCoords(settings) {
+  console.log('- getSettingsCoords - SKIPPED BECAUSE IT\'S PERFECT');
+  return false; // Get coordinates from field settings
+
+  var coords = settings.coordinatesDefault; // If invalid coordinates, return false
+
+  if (!validCoord(coords.lat) || !validCoord(coords.lng)) {
+    return false;
+  } // Return coordinates
+
+
+  return coords;
+}
+/**
+ * Determine the coordinates via user geolocation.
+ *
+ * @returns object
+ */
+
+
+function getGeolocationCoords() {
+  console.log('- getGeolocationCoords -'); // console.log('TBD');
+  // console.log('');
+
+  return false; // return {
+  //     lat: 0,
+  //     lng: 0,
+  //     zoom: 0
+  // }
+}
+/**
+ * Use the generic fallback coordinates.
+ * https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
+ *
+ * @returns object
+ */
+
+
+function useFallbackCoords() {
+  console.log('- useFallbackCoords - WORKING AS INTENDED'); // Return fallback coordinates
+
+  return {
+    lat: 32.3113966,
+    lng: -64.7527469,
+    zoom: 6
+  };
+}
+
+/***/ }),
+
 /***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js":
 /*!**************************************************************************************************************!*\
   !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js ***!
@@ -1564,6 +1704,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "../../plugins/craft-googlemaps/node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_api_connection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/api-connection */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js");
+/* harmony import */ var _utils_map_center__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/map-center */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1576,6 +1717,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1616,7 +1758,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var google, startingPosition;
+      var google, startingPosition, mapCenter;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -1628,17 +1770,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 3:
               google = _context.sent;
               // Get the initial marker position
-              startingPosition = _this.getStartingPosition(); // Create the map
+              // let startingPosition = this.getStartingPosition();
+              startingPosition = Object(_utils_map_center__WEBPACK_IMPORTED_MODULE_2__["default"])(_this.$root.$data);
+              mapCenter = {
+                lat: parseFloat(startingPosition.lat),
+                lng: parseFloat(startingPosition.lng)
+              }; // console.log(mapCenter);
+              // Create the map
 
               _this.map = new google.maps.Map(_this.$el, {
                 streetViewControl: false,
                 fullscreenControl: false,
-                center: startingPosition,
-                zoom: startingPosition.zoom
+                center: mapCenter,
+                zoom: parseInt(startingPosition.zoom)
               }); // Create a draggable marker
 
               _this.marker = new google.maps.Marker({
-                position: startingPosition,
+                position: mapCenter,
                 map: _this.map,
                 draggable: true
               }); // When marker is dropped, re-center the map
@@ -1658,20 +1806,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               google.maps.event.addListener(_this.map, 'zoom_changed', function () {
                 _this.$root.$data.data.coords['zoom'] = _this.map.getZoom();
               });
-              _context.next = 14;
+              _context.next = 15;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
               console.error(_context.t0);
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 11]]);
+      }, _callee, null, [[0, 12]]);
     }))();
   },
   methods: {
@@ -1698,14 +1846,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateMarkerPosition: function updateMarkerPosition() {
       var coords = this.$root.$data.data.coords;
       this.marker.setPosition({
-        lat: parseFloat(coords['lat'].toFixed(7)),
-        lng: parseFloat(coords['lng'].toFixed(7))
+        lat: parseFloat(coords.lat.toFixed(7)),
+        lng: parseFloat(coords.lng.toFixed(7))
       });
       this.centerMap();
     },
     // Update the zoom level
     updateZoomLevel: function updateZoomLevel() {
-      this.map.setZoom(this.$root.$data.data.coords['zoom']);
+      var zoom = parseInt(this.$root.$data.data.coords['zoom']);
+      this.map.setZoom(zoom);
     },
     // Center map based on current marker position
     centerMap: function centerMap() {
@@ -1720,8 +1869,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.map.panTo(coords);
     },
     // Determine starting point of the marker
-    getStartingPosition: function getStartingPosition() {
-      // // Get universal coordinates
+    getStartingPosition: function getStartingPosition() {// // Get universal coordinates
       // const coords = this.$root.$data.data.coords;
       //
       // // If the field data already has coordinates, use them
@@ -1742,11 +1890,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // this.getGeolocation();
       // Nothing else worked, send them to
       // the Bermuda Triangle as a fallback
-      return {
-        lat: 32.3113966,
-        lng: -64.7527469,
-        zoom: 6
-      };
+      // return {
+      //     lat: 32.3113966,
+      //     lng: -64.7527469,
+      //     zoom: 6
+      // };
     }
   }
 });

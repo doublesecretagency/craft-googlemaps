@@ -6,6 +6,7 @@
 
 <script>
     import apiConnection from './utils/api-connection';
+    import getMapCenter from './utils/map-center';
 
     export default {
         data() {
@@ -47,19 +48,29 @@
                 const google = await apiConnection();
 
                 // Get the initial marker position
-                let startingPosition = this.getStartingPosition();
+                // let startingPosition = this.getStartingPosition();
+
+
+                let startingPosition = getMapCenter(this.$root.$data);
+                let mapCenter = {
+                    lat: parseFloat(startingPosition.lat),
+                    lng: parseFloat(startingPosition.lng)
+                }
+
+                // console.log(mapCenter);
+
 
                 // Create the map
                 this.map = new google.maps.Map(this.$el, {
                     streetViewControl: false,
                     fullscreenControl: false,
-                    center: startingPosition,
-                    zoom: startingPosition.zoom
+                    center: mapCenter,
+                    zoom: parseInt(startingPosition.zoom)
                 });
 
                 // Create a draggable marker
                 this.marker = new google.maps.Marker({
-                    position: startingPosition,
+                    position: mapCenter,
                     map: this.map,
                     draggable: true
                 });
@@ -109,15 +120,16 @@
             updateMarkerPosition() {
                 let coords = this.$root.$data.data.coords;
                 this.marker.setPosition({
-                    lat: parseFloat(coords['lat'].toFixed(7)),
-                    lng: parseFloat(coords['lng'].toFixed(7))
+                    lat: parseFloat(coords.lat.toFixed(7)),
+                    lng: parseFloat(coords.lng.toFixed(7))
                 });
                 this.centerMap();
             },
 
             // Update the zoom level
             updateZoomLevel() {
-                this.map.setZoom(this.$root.$data.data.coords['zoom']);
+                let zoom = parseInt(this.$root.$data.data.coords['zoom']);
+                this.map.setZoom(zoom);
             },
 
             // Center map based on current marker position
@@ -161,11 +173,11 @@
 
                 // Nothing else worked, send them to
                 // the Bermuda Triangle as a fallback
-                return {
-                    lat: 32.3113966,
-                    lng: -64.7527469,
-                    zoom: 6
-                };
+                // return {
+                //     lat: 32.3113966,
+                //     lng: -64.7527469,
+                //     zoom: 6
+                // };
             }
         }
     };
