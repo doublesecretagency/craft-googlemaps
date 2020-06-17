@@ -57,11 +57,17 @@
             // Attempt to get map center from user's current location
             let promise = await new Promise(function(resolve, reject) {
 
+                // Output console notification
+                console.log('Attempting geolocation...');
+
                 // Attempt geolocation
                 navigator.geolocation.getCurrentPosition(resolve, reject, {timeout: 5000});
 
             }).then(
                 result => {
+
+                    // Output console notification
+                    console.log('Success!');
 
                     // If coordinates are invalid, bail
                     if (!result.coords) {
@@ -182,7 +188,7 @@
     margin-top: 2px;
     text-align: center;
     background-color: #f3f7fc;
-    border: 1px solid #D7DFE7;
+    border: 1px solid #d7dfe7;
     border-radius: 3px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
     div {

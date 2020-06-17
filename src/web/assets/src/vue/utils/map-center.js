@@ -1,26 +1,25 @@
 /**
  * Attempt to get map center coordinates based on the field data or settings.
  *
- * @param $data
+ * @param field
  * @returns object
  */
-export function fromField($data) {
+export function fromField(field) {
 
-    // If available, get coords from the existing Address data
-    let dataCoords = _getDataCoords($data.data);
+    // If available, get coords from the existing field data
+    let dataCoords = _getDataCoords(field.data);
     if (dataCoords) {
         return dataCoords;
     }
 
     // If available, get default coords from the field settings
-    let settingsCoords = _getSettingsCoords($data.settings);
+    let settingsCoords = _getSettingsCoords(field.settings);
     if (settingsCoords) {
         return settingsCoords;
     }
 
-    // Unable to get coordinates from field
+    // Unable to get any coordinates from the field
     return false;
-
 }
 
 /**
@@ -43,6 +42,7 @@ export function fromFallback() {
 /**
  * Get the coordinates from the field's existing data.
  *
+ * @param data
  * @returns object
  */
 function _getDataCoords(data) {

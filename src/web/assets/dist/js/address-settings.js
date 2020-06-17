@@ -1518,78 +1518,69 @@ function init() {
 /*!********************************************************************************************************!*\
   !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js ***!
   \********************************************************************************************************/
-/*! exports provided: default */
+/*! exports provided: fromField, fromFallback */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getMapCenter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromField", function() { return fromField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromFallback", function() { return fromFallback; });
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
- * DEFAULT
- * Determine the orientation of a map.
+ * Attempt to get map center coordinates based on the field data or settings.
  *
- * @param $data
+ * @param field
  * @returns object
  */
-function getMapCenter($data) {
-  // If available, get coords from the existing Address data
-  var dataCoords = getDataCoords($data.data);
+function fromField(field) {
+  // If available, get coords from the existing field data
+  var dataCoords = _getDataCoords(field.data);
 
   if (dataCoords) {
     return dataCoords;
   } // If available, get default coords from the field settings
 
 
-  var settingsCoords = getSettingsCoords($data.settings);
+  var settingsCoords = _getSettingsCoords(field.settings);
 
   if (settingsCoords) {
     return settingsCoords;
-  } // If available, get user's current location
+  } // Unable to get any coordinates from the field
 
 
-  var geolocationCoords = getGeolocationCoords();
-
-  if (geolocationCoords) {
-    return geolocationCoords;
-  } // Nothing else worked, use the fallback
-
-
-  return useFallbackCoords();
-} // ========================================================================= //
-// Check whether single coordinate is valid
-
-function validCoord(coord) {
-  // If coordinate is not a number or string, return false
-  if (!['number', 'string'].includes(_typeof(coord))) {
-    return false;
-  } // If coordinate is not numeric, return false
-
-
-  if (isNaN(coord)) {
-    return false;
-  } // Coordinate is valid, return true
-
-
-  return true;
+  return false;
 }
 /**
- * Get the coordinates from the existing field data.
+ * Use the generic fallback coordinates.
+ * https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
  *
  * @returns object
  */
 
+function fromFallback() {
+  // Bermuda Triangle
+  return {
+    lat: 32.3113966,
+    lng: -64.7527469,
+    zoom: 6
+  };
+} // ========================================================================= //
 
-function getDataCoords(data) {
-  console.log('- getDataCoords -'); // console.log(data.coords.lat);
-  // console.log(typeof data.coords.lat);
-  // console.log('');
+/**
+ * Get the coordinates from the field's existing data.
+ *
+ * @param data
+ * @returns object
+ */
+
+function _getDataCoords(data) {
+  // TODO: Test this function again when SAVING the field data
+  // console.log('_getDataCoords');
   // Get coordinates from field data
-
   var coords = data.coords; // If invalid coordinates, return false
 
-  if (!validCoord(coords.lat) || !validCoord(coords.lng)) {
+  if (!_validCoord(coords.lat) || !_validCoord(coords.lng)) {
     return false;
   } // Return coordinates
 
@@ -1604,52 +1595,39 @@ function getDataCoords(data) {
  */
 
 
-function getSettingsCoords(settings) {
-  console.log('- getSettingsCoords - SKIPPED BECAUSE IT\'S PERFECT');
-  return false; // Get coordinates from field settings
-
+function _getSettingsCoords(settings) {
+  // Get coordinates from field settings
   var coords = settings.coordinatesDefault; // If invalid coordinates, return false
 
-  if (!validCoord(coords.lat) || !validCoord(coords.lng)) {
+  if (!_validCoord(coords.lat) || !_validCoord(coords.lng)) {
     return false;
   } // Return coordinates
 
 
   return coords;
-}
+} // ========================================================================= //
+
 /**
- * Determine the coordinates via user geolocation.
+ * Check whether a single coordinate is valid.
  *
- * @returns object
+ * @param coord
+ * @returns bool
  */
 
 
-function getGeolocationCoords() {
-  console.log('- getGeolocationCoords -'); // console.log('TBD');
-  // console.log('');
-
-  return false; // return {
-  //     lat: 0,
-  //     lng: 0,
-  //     zoom: 0
-  // }
-}
-/**
- * Use the generic fallback coordinates.
- * https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
- *
- * @returns object
- */
+function _validCoord(coord) {
+  // If coordinate is not a number or string, return false
+  if (!['number', 'string'].includes(_typeof(coord))) {
+    return false;
+  } // If coordinate is not numeric, return false
 
 
-function useFallbackCoords() {
-  console.log('- useFallbackCoords - WORKING AS INTENDED'); // Return fallback coordinates
+  if (isNaN(coord)) {
+    return false;
+  } // Coordinate is valid, return true
 
-  return {
-    lat: 32.3113966,
-    lng: -64.7527469,
-    zoom: 6
-  };
+
+  return true;
 }
 
 /***/ }),
@@ -1948,90 +1926,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var google, startingPosition, mapCenter;
+      var fieldPreference, promise;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
+              // Attempt to get map center from field
+              fieldPreference = _utils_map_center__WEBPACK_IMPORTED_MODULE_2__["fromField"](_this.$root.$data); // Initialize map using coordinates from field data or settings
 
-            case 3:
-              google = _context.sent;
-              // Get the initial marker position
-              // let startingPosition = this.getStartingPosition();
-              startingPosition = Object(_utils_map_center__WEBPACK_IMPORTED_MODULE_2__["default"])(_this.$root.$data);
-              mapCenter = {
-                lat: parseFloat(startingPosition.lat),
-                lng: parseFloat(startingPosition.lng)
-              }; // console.log(mapCenter);
-              // Create the map
+              if (!fieldPreference) {
+                _context.next = 4;
+                break;
+              }
 
-              _this.map = new google.maps.Map(_this.$el, {
-                streetViewControl: false,
-                fullscreenControl: false,
-                center: mapCenter,
-                zoom: parseInt(startingPosition.zoom)
-              }); // Create a draggable marker
+              _this.initMap(fieldPreference);
 
-              _this.marker = new google.maps.Marker({
-                position: mapCenter,
-                map: _this.map,
-                draggable: true
-              }); // When marker is dropped, re-center the map
+              return _context.abrupt("return");
 
-              google.maps.event.addListener(_this.marker, 'dragend', function () {
-                var position = _this.marker.getPosition();
+            case 4:
+              _context.next = 6;
+              return new Promise(function (resolve, reject) {
+                // Output console notification
+                console.log('Attempting geolocation...'); // Attempt geolocation
 
-                _this.$root.$data.data.coords = {
-                  'lat': parseFloat(position.lat().toFixed(7)),
-                  'lng': parseFloat(position.lng().toFixed(7)),
-                  'zoom': _this.map.getZoom()
-                };
+                navigator.geolocation.getCurrentPosition(resolve, reject, {
+                  timeout: 5000
+                });
+              }).then(function (result) {
+                // Output console notification
+                console.log('Success!'); // If coordinates are invalid, bail
 
-                _this.centerMap();
-              }); // When map is zoomed, update zoom value
+                if (!result.coords) {
+                  return;
+                } // Initialize map based on user's current location
 
-              google.maps.event.addListener(_this.map, 'zoom_changed', function () {
-                _this.$root.$data.data.coords['zoom'] = _this.map.getZoom();
+
+                _this.initMap({
+                  lat: result.coords.latitude,
+                  lng: result.coords.longitude,
+                  zoom: 10
+                });
+              }, function (error) {
+                // Output error message in console
+                console.log('Unable to perform HTML5 geolocation.'); // Nothing else worked, use the fallback
+
+                _this.initMap(_utils_map_center__WEBPACK_IMPORTED_MODULE_2__["fromFallback"]());
               });
-              _context.next = 15;
-              break;
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
+            case 6:
+              promise = _context.sent;
 
-            case 15:
+            case 7:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 12]]);
+      }, _callee);
     }))();
   },
   methods: {
-    // getGeolocation() {
-    //     // Does the browser support geolocation?
-    //     if (!('geolocation' in navigator)) {
-    //         // 'Geolocation is not available.';
-    //         return;
-    //     }
-    //     console.log('Starting geolocation...');
-    //     // This doesn't really work in local. Boo.
-    //     navigator.geolocation.getCurrentPosition(position => {
-    //         console.log('Geolocation successful');
-    //         console.log(position);
-    //     },error => {
-    //         console.log('Geolocation failed');
-    //         console.log(error);
-    //     },{
-    //         // Not worth waiting more than 3 seconds
-    //         timeout: 3000
-    //     })
-    // },
     // Update the marker position
     updateMarkerPosition: function updateMarkerPosition() {
       var coords = this.$root.$data.data.coords;
@@ -2058,33 +2011,72 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.map.panTo(coords);
     },
-    // Determine starting point of the marker
-    getStartingPosition: function getStartingPosition() {// // Get universal coordinates
-      // const coords = this.$root.$data.data.coords;
-      //
-      // // If the field data already has coordinates, use them
-      // if (coords['lat'] && coords['lng']) {
-      //     return {
-      //         lat: coords['lat'],
-      //         lng: coords['lng'],
-      //         zoom: coords['zoom']
-      //     };
-      // }
-      //
-      // // If a default marker position is set, use that
-      // if (this.settings.coordinatesDefault) {
-      //     return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
-      // }
-      // Attempt to get starting location
-      // via HTML 5 user geolocation
-      // this.getGeolocation();
-      // Nothing else worked, send them to
-      // the Bermuda Triangle as a fallback
-      // return {
-      //     lat: 32.3113966,
-      //     lng: -64.7527469,
-      //     zoom: 6
-      // };
+    // Initialize map
+    initMap: function initMap(startingPosition) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var google, mapCenter;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
+
+              case 3:
+                google = _context2.sent;
+                // Determine map center
+                mapCenter = {
+                  lat: parseFloat(startingPosition.lat),
+                  lng: parseFloat(startingPosition.lng)
+                }; // Create the map
+
+                _this2.map = new google.maps.Map(_this2.$el, {
+                  streetViewControl: false,
+                  fullscreenControl: false,
+                  center: mapCenter,
+                  zoom: parseInt(startingPosition.zoom)
+                }); // Create a draggable marker
+
+                _this2.marker = new google.maps.Marker({
+                  position: mapCenter,
+                  map: _this2.map,
+                  draggable: true
+                }); // When marker is dropped, re-center the map
+
+                google.maps.event.addListener(_this2.marker, 'dragend', function () {
+                  var position = _this2.marker.getPosition();
+
+                  _this2.$root.$data.data.coords = {
+                    'lat': parseFloat(position.lat().toFixed(7)),
+                    'lng': parseFloat(position.lng().toFixed(7)),
+                    'zoom': _this2.map.getZoom()
+                  };
+
+                  _this2.centerMap();
+                }); // When map is zoomed, update zoom value
+
+                google.maps.event.addListener(_this2.map, 'zoom_changed', function () {
+                  _this2.$root.$data.data.coords['zoom'] = _this2.map.getZoom();
+                });
+                _context2.next = 14;
+                break;
+
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](0);
+                // Unable to initialize the map
+                console.error(_context2.t0);
+
+              case 14:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 11]]);
+      }))();
     }
   }
 });
@@ -2540,7 +2532,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../sandbox/
 
 
 // module
-exports.push([module.i, ".gm-map[data-v-24c0b18e] {\n  height: 240px;\n  width: 99%;\n  margin-right: 1%;\n  margin-top: 2px;\n  text-align: center;\n  background-color: #f3f7fc;\n  border: 1px solid #D7DFE7;\n  border-radius: 3px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n}\n.gm-map div[data-v-24c0b18e] {\n  color: #606d7b;\n  font-weight: bold;\n  font-style: italic;\n  margin: 110px auto 0;\n}", ""]);
+exports.push([module.i, ".gm-map[data-v-24c0b18e] {\n  height: 240px;\n  width: 99%;\n  margin-right: 1%;\n  margin-top: 2px;\n  text-align: center;\n  background-color: #f3f7fc;\n  border: 1px solid #d7dfe7;\n  border-radius: 3px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n}\n.gm-map div[data-v-24c0b18e] {\n  color: #606d7b;\n  font-weight: bold;\n  font-style: italic;\n  margin: 110px auto 0;\n}", ""]);
 
 // exports
 
