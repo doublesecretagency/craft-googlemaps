@@ -6,7 +6,7 @@
 
 <script>
     import apiConnection from './utils/api-connection';
-    import getMapCenter from './utils/map-center';
+    import * as getCoordinates from './utils/map-center';
 
     export default {
         data() {
@@ -44,77 +44,51 @@
             }
         },
         async mounted() {
-            try {
-                const google = await apiConnection();
 
-                // Get the initial marker position
-                // let startingPosition = this.getStartingPosition();
+            // Attempt to get map center from field
+            let fieldPreference = getCoordinates.fromField(this.$root.$data);
 
-
-                let startingPosition = getMapCenter(this.$root.$data);
-                let mapCenter = {
-                    lat: parseFloat(startingPosition.lat),
-                    lng: parseFloat(startingPosition.lng)
-                }
-
-                // console.log(mapCenter);
-
-
-                // Create the map
-                this.map = new google.maps.Map(this.$el, {
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                    center: mapCenter,
-                    zoom: parseInt(startingPosition.zoom)
-                });
-
-                // Create a draggable marker
-                this.marker = new google.maps.Marker({
-                    position: mapCenter,
-                    map: this.map,
-                    draggable: true
-                });
-
-                // When marker is dropped, re-center the map
-                google.maps.event.addListener(this.marker, 'dragend', () => {
-                    let position = this.marker.getPosition();
-                    this.$root.$data.data.coords = {
-                        'lat': parseFloat(position.lat().toFixed(7)),
-                        'lng': parseFloat(position.lng().toFixed(7)),
-                        'zoom': this.map.getZoom()
-                    };
-                    this.centerMap();
-                });
-
-                // When map is zoomed, update zoom value
-                google.maps.event.addListener(this.map, 'zoom_changed', () => {
-                    this.$root.$data.data.coords['zoom'] = this.map.getZoom();
-                });
-
-            } catch (error) {
-                console.error(error);
+            // Initialize map using coordinates from field data or settings
+            if (fieldPreference) {
+                this.initMap(fieldPreference);
+                return;
             }
+
+            // Attempt to get map center from user's current location
+            let promise = await new Promise(function(resolve, reject) {
+
+                // Attempt geolocation
+                navigator.geolocation.getCurrentPosition(resolve, reject, {timeout: 5000});
+
+            }).then(
+                result => {
+
+                    // If coordinates are invalid, bail
+                    if (!result.coords) {
+                        return;
+                    }
+
+                    // Initialize map based on user's current location
+                    this.initMap({
+                        lat: result.coords.latitude,
+                        lng: result.coords.longitude,
+                        zoom: 10
+                    });
+
+                },
+                error => {
+
+                    // Output error message in console
+                    console.log('Unable to perform HTML5 geolocation.');
+
+                    // Nothing else worked, use the fallback
+                    this.initMap(getCoordinates.fromFallback());
+
+                }
+            );
+
         },
         methods: {
-            // getGeolocation() {
-            //     // Does the browser support geolocation?
-            //     if (!('geolocation' in navigator)) {
-            //         // 'Geolocation is not available.';
-            //         return;
-            //     }
-            //     console.log('Starting geolocation...');
-            //     // This doesn't really work in local. Boo.
-            //     navigator.geolocation.getCurrentPosition(position => {
-            //         console.log('Geolocation successful');
-            //         console.log(position);
-            //     },error => {
-            //         console.log('Geolocation failed');
-            //         console.log(error);
-            //     },{
-            //         // Not worth waiting more than 3 seconds
-            //         timeout: 3000
-            //     })
-            // },
 
             // Update the marker position
             updateMarkerPosition() {
@@ -147,37 +121,54 @@
                 this.map.panTo(coords);
             },
 
-            // Determine starting point of the marker
-            getStartingPosition() {
+            // Initialize map
+            async initMap(startingPosition) {
+                try {
+                    const google = await apiConnection();
 
-                // // Get universal coordinates
-                // const coords = this.$root.$data.data.coords;
-                //
-                // // If the field data already has coordinates, use them
-                // if (coords['lat'] && coords['lng']) {
-                //     return {
-                //         lat: coords['lat'],
-                //         lng: coords['lng'],
-                //         zoom: coords['zoom']
-                //     };
-                // }
-                //
-                // // If a default marker position is set, use that
-                // if (this.settings.coordinatesDefault) {
-                //     return JSON.parse(JSON.stringify(this.settings.coordinatesDefault));
-                // }
+                    // Determine map center
+                    let mapCenter = {
+                        lat: parseFloat(startingPosition.lat),
+                        lng: parseFloat(startingPosition.lng)
+                    }
 
-// Attempt to get starting location
-// via HTML 5 user geolocation
-// this.getGeolocation();
+                    // Create the map
+                    this.map = new google.maps.Map(this.$el, {
+                        streetViewControl: false,
+                        fullscreenControl: false,
+                        center: mapCenter,
+                        zoom: parseInt(startingPosition.zoom)
+                    });
 
-                // Nothing else worked, send them to
-                // the Bermuda Triangle as a fallback
-                // return {
-                //     lat: 32.3113966,
-                //     lng: -64.7527469,
-                //     zoom: 6
-                // };
+                    // Create a draggable marker
+                    this.marker = new google.maps.Marker({
+                        position: mapCenter,
+                        map: this.map,
+                        draggable: true
+                    });
+
+                    // When marker is dropped, re-center the map
+                    google.maps.event.addListener(this.marker, 'dragend', () => {
+                        let position = this.marker.getPosition();
+                        this.$root.$data.data.coords = {
+                            'lat': parseFloat(position.lat().toFixed(7)),
+                            'lng': parseFloat(position.lng().toFixed(7)),
+                            'zoom': this.map.getZoom()
+                        };
+                        this.centerMap();
+                    });
+
+                    // When map is zoomed, update zoom value
+                    google.maps.event.addListener(this.map, 'zoom_changed', () => {
+                        this.$root.$data.data.coords['zoom'] = this.map.getZoom();
+                    });
+
+                } catch (error) {
+
+                    // Unable to initialize the map
+                    console.error(error);
+
+                }
             }
         }
     };
