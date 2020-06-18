@@ -1347,28 +1347,28 @@ __webpack_require__.r(__webpack_exports__);
 /* ORIGINAL SOURCE:
  * https://markus.oberlehner.net/blog/using-the-google-maps-api-with-vue/
  */
-var CALLBACK_NAME = 'initGoogleMaps';
 var initialized = !!window.google;
 var resolveInitPromise;
-var rejectInitPromise; // This promise handles the initialization
-// status of the google maps script.
+var rejectInitPromise; // Promise to handle the initialization status
 
 var initPromise = new Promise(function (resolve, reject) {
   resolveInitPromise = resolve;
   rejectInitPromise = reject;
-});
-function init() {
-  // If Google Maps already is initialized
-  // the `initPromise` should get resolved
-  // eventually.
-  if (initialized) return initPromise;
-  initialized = true; // The callback function is called by
-  // the Google Maps script if it is
-  // successfully loaded.
+}); // Export init
 
-  window[CALLBACK_NAME] = function () {
+function init() {
+  // If already initialized, return the promise
+  if (initialized) {
+    return initPromise;
+  } // Mark as initialized
+
+
+  initialized = true; // Callback triggered by Google Maps script if successfully loaded
+
+  window['initGoogleMaps'] = function () {
     return resolveInitPromise(window.google);
-  };
+  }; // Return the promise
+
 
   return initPromise;
 }
