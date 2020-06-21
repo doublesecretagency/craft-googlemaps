@@ -53,7 +53,7 @@ In order to conduct a proximity search, specify your Address **field handle** wi
 Check out the full [list of options...](/proximity-search/options/)
 
 ::: warning PLACEHOLDER
-Please **do not** copy the exact parameter "myAddressField". That is simply a placeholder, since your actual field handle could be anything. When you see "myAddressField" used around these docs, always replace it with your **actual Address field handle**.
+Please **do not copy the exact handle** `myAddressField`. That is simply a placeholder, since your actual field handle could be anything. When you see `myAddressField` used around these docs, always replace it with your **actual Address field handle**.
 :::
 
 ::: tip ANY ADDRESS FIELD
