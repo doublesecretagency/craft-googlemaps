@@ -28,17 +28,11 @@ class GoogleMapsAsset extends AssetBundle
     {
         parent::init();
 
-        // Get browser key
-        $key = trim(GoogleMaps::getBrowserKey());
+        // Load Google Maps API
+        $this->js = [
+            GoogleMaps::getApiUrl()
+        ];
 
-        // Google Maps API
-        $googleMapsApi = 'https://maps.googleapis.com/maps/api/js';
-        $googleMapsApi .= "?key={$key}";
-        $googleMapsApi .= '&libraries=places';
-        $googleMapsApi .= '&callback=initGoogleMaps';
-
-        // Load API
-        $this->js = [$googleMapsApi];
         $this->jsOptions = [
 //            'async' => true, // Possibly causing a race condition
             'defer' => true,

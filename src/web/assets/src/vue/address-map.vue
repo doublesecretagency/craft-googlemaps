@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    import apiConnection from './utils/api-connection';
     import * as getCoordinates from './utils/map-center';
 
     export default {
@@ -128,9 +127,9 @@
             },
 
             // Initialize map
-            async initMap(startingPosition) {
+            initMap(startingPosition) {
                 try {
-                    const google = await apiConnection();
+                    const google = window.google;
 
                     // Determine map center
                     let mapCenter = {

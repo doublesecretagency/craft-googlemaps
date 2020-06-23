@@ -98,13 +98,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_address__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../vue/address */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address.vue");
  // Disable silly message
 
-Vue.config.productionTip = false; // Loop through all Address field configurations
+Vue.config.productionTip = false; // Initialize collection of Vue instances
+
+var vueAddressFields = []; // Loop through all Address field configurations
 
 for (var i in addressFieldConfigs) {
   // Get configuration of a single Address field
   var config = addressFieldConfigs[i]; // Initialize Vue instance for a single Address field
 
-  new Vue({
+  vueAddressFields[i] = new Vue({
     el: '#fields-address-' + config.handle,
     components: {
       'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -112,10 +114,22 @@ for (var i in addressFieldConfigs) {
     data: {
       settings: config.settings,
       data: config.data,
-      icons: config.icons
+      icons: config.icons,
+      google: false // initialized: false,
+
     }
   });
 }
+
+window.initAddressField = function () {
+  console.log('callback triggered when an Address field is loaded'); // Loop through all Address field configurations
+
+  for (var _i in addressFieldConfigs) {
+    // Share Google API with each Vue instance
+    vueAddressFields[_i].$data.google = window.google; // OR SHOULD WE JUST BE SETTING `initialized` TO `true`
+    // AND THEN REFER BACK TO THE GLOBAL `google` OBJECT?
+  }
+};
 
 /***/ }),
 
@@ -582,47 +596,6 @@ function addressComponents(components, data) {
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js":
-/*!************************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js ***!
-  \************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return init; });
-/* ORIGINAL SOURCE:
- * https://markus.oberlehner.net/blog/using-the-google-maps-api-with-vue/
- */
-var initialized = !!window.google;
-var resolveInitPromise;
-var rejectInitPromise; // Promise to handle the initialization status
-
-var initPromise = new Promise(function (resolve, reject) {
-  resolveInitPromise = resolve;
-  rejectInitPromise = reject;
-}); // Export init
-
-function init() {
-  // If already initialized, return the promise
-  if (initialized) {
-    return initPromise;
-  } // Mark as initialized
-
-
-  initialized = true; // Callback triggered by Google Maps script if successfully loaded
-
-  window['initGoogleMaps'] = function () {
-    return resolveInitPromise(window.google);
-  }; // Return the promise
-
-
-  return initPromise;
-}
-
-/***/ }),
-
 /***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js":
 /*!********************************************************************************************************!*\
   !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js ***!
@@ -941,8 +914,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_api_connection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/api-connection */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js");
-/* harmony import */ var _utils_map_center__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/map-center */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js");
+/* harmony import */ var _utils_map_center__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/map-center */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -955,7 +927,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1002,7 +973,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               // Attempt to get map center from field
-              fieldPreference = _utils_map_center__WEBPACK_IMPORTED_MODULE_2__["fromField"](_this.$root.$data); // Initialize map using coordinates from field data or settings
+              fieldPreference = _utils_map_center__WEBPACK_IMPORTED_MODULE_1__["fromField"](_this.$root.$data); // Initialize map using coordinates from field data or settings
 
               if (!fieldPreference) {
                 _context.next = 4;
@@ -1040,7 +1011,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // Output error message in console
                 console.log('Unable to perform HTML5 geolocation.'); // Nothing else worked, use the fallback
 
-                _this.initMap(_utils_map_center__WEBPACK_IMPORTED_MODULE_2__["fromFallback"]());
+                _this.initMap(_utils_map_center__WEBPACK_IMPORTED_MODULE_1__["fromFallback"]());
               });
 
             case 6:
@@ -1085,68 +1056,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     initMap: function initMap(startingPosition) {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var google, mapCenter;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      try {
+        var google = window.google; // Determine map center
 
-              case 3:
-                google = _context2.sent;
-                // Determine map center
-                mapCenter = {
-                  lat: parseFloat(startingPosition.lat),
-                  lng: parseFloat(startingPosition.lng)
-                }; // Create the map
+        var mapCenter = {
+          lat: parseFloat(startingPosition.lat),
+          lng: parseFloat(startingPosition.lng)
+        }; // Create the map
 
-                _this2.map = new google.maps.Map(_this2.$el, {
-                  streetViewControl: false,
-                  fullscreenControl: false,
-                  center: mapCenter,
-                  zoom: parseInt(startingPosition.zoom)
-                }); // Create a draggable marker
+        this.map = new google.maps.Map(this.$el, {
+          streetViewControl: false,
+          fullscreenControl: false,
+          center: mapCenter,
+          zoom: parseInt(startingPosition.zoom)
+        }); // Create a draggable marker
 
-                _this2.marker = new google.maps.Marker({
-                  position: mapCenter,
-                  map: _this2.map,
-                  draggable: true
-                }); // When marker is dropped, re-center the map
+        this.marker = new google.maps.Marker({
+          position: mapCenter,
+          map: this.map,
+          draggable: true
+        }); // When marker is dropped, re-center the map
 
-                google.maps.event.addListener(_this2.marker, 'dragend', function () {
-                  var position = _this2.marker.getPosition();
+        google.maps.event.addListener(this.marker, 'dragend', function () {
+          var position = _this2.marker.getPosition();
 
-                  _this2.$root.$data.data.coords = {
-                    'lat': parseFloat(position.lat().toFixed(7)),
-                    'lng': parseFloat(position.lng().toFixed(7)),
-                    'zoom': _this2.map.getZoom()
-                  };
+          _this2.$root.$data.data.coords = {
+            'lat': parseFloat(position.lat().toFixed(7)),
+            'lng': parseFloat(position.lng().toFixed(7)),
+            'zoom': _this2.map.getZoom()
+          };
 
-                  _this2.centerMap();
-                }); // When map is zoomed, update zoom value
+          _this2.centerMap();
+        }); // When map is zoomed, update zoom value
 
-                google.maps.event.addListener(_this2.map, 'zoom_changed', function () {
-                  _this2.$root.$data.data.coords['zoom'] = _this2.map.getZoom();
-                });
-                _context2.next = 14;
-                break;
-
-              case 11:
-                _context2.prev = 11;
-                _context2.t0 = _context2["catch"](0);
-                // Unable to initialize the map
-                console.error(_context2.t0);
-
-              case 14:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, null, [[0, 11]]);
-      }))();
+        google.maps.event.addListener(this.map, 'zoom_changed', function () {
+          _this2.$root.$data.data.coords['zoom'] = _this2.map.getZoom();
+        });
+      } catch (error) {
+        // Unable to initialize the map
+        console.error(error);
+      }
     }
   }
 });
@@ -1162,17 +1111,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_api_connection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/api-connection */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/api-connection.js");
-/* harmony import */ var _utils_address_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/address-components */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js");
-/* harmony import */ var _utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/subfield-display */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _utils_address_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/address-components */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js");
+/* harmony import */ var _utils_subfield_display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/subfield-display */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js");
 //
 //
 //
@@ -1188,7 +1128,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1201,95 +1140,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var google, options, $first;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return Object(_utils_api_connection__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    try {
+      var google = window.google;
+      var options = {
+        types: ['geocode'],
+        fields: ['address_components', 'geometry.location', 'formatted_address']
+      };
+      /**
+       * Add a hidden "formatted" field to contain the `formatted_address` data.
+       * Add a new "formatted" column to the database to hold the raw formatted address.
+       * If/when the coordinates are incomplete, erase the "formatted" value.
+       */
 
-            case 3:
-              google = _context.sent;
-              options = {
-                types: ['geocode'],
-                fields: ['address_components', 'geometry.location', 'formatted_address']
-              };
-              /**
-               * Add a hidden "formatted" field to contain the `formatted_address` data.
-               * Add a new "formatted" column to the database to hold the raw formatted address.
-               * If/when the coordinates are incomplete, erase the "formatted" value.
-               */
+      /**
+       * Add a new "raw" column to the database to hold a JSON string of the raw Google data.
+       */
 
-              /**
-               * Add a new "raw" column to the database to hold a JSON string of the raw Google data.
-               */
+      /**
+       * Add a new "zoom" column to the database to hold an integer of the map zoom level.
+       */
+      // If no subfields exist, bail
 
-              /**
-               * Add a new "zoom" column to the database to hold an integer of the map zoom level.
-               */
-              // If no subfields exist, bail
-
-              if (_this.$refs.autocomplete) {
-                _context.next = 7;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 7:
-              // Get first subfield
-              $first = _this.$refs.autocomplete[0]; // Create an Autocomplete object
-
-              _this.autocomplete = new google.maps.places.Autocomplete($first, options); // Listen for autocomplete trigger
-
-              _this.autocomplete.addListener('place_changed', function () {
-                var place = _this.autocomplete.getPlace();
-
-                _this.setAddressData(place.address_components, place.geometry.location); // Get settings
+      if (!this.$refs.autocomplete) {
+        return;
+      } // Get first subfield
 
 
-                var settings = _this.$root.$data.settings; // If not changing the map visibility, bail
+      var $first = this.$refs.autocomplete[0]; // Create an Autocomplete object
 
-                if ('noChange' === settings.mapOnSearch) {
-                  return;
-                } // Change map visibility based on settings
+      this.autocomplete = new google.maps.places.Autocomplete($first, options); // Listen for autocomplete trigger
+
+      this.autocomplete.addListener('place_changed', function () {
+        var place = _this.autocomplete.getPlace();
+
+        _this.setAddressData(place.address_components, place.geometry.location); // Get settings
 
 
-                _this.$root.$data.settings.showMap = 'open' === settings.mapOnSearch;
-              }); // Prevent address selection from attempting to submit the form
+        var settings = _this.$root.$data.settings; // If not changing the map visibility, bail
+
+        if ('noChange' === settings.mapOnSearch) {
+          return;
+        } // Change map visibility based on settings
 
 
-              google.maps.event.addDomListener($first, 'keydown', function (event) {
-                if (event.keyCode === 13) {
-                  event.preventDefault();
-                }
-              });
-              _context.next = 16;
-              break;
+        _this.$root.$data.settings.showMap = 'open' === settings.mapOnSearch;
+      }); // Prevent address selection from attempting to submit the form
 
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](0);
-              // Something went wrong
-              console.error(_context.t0);
-
-            case 16:
-            case "end":
-              return _context.stop();
-          }
+      google.maps.event.addDomListener($first, 'keydown', function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
         }
-      }, _callee, null, [[0, 13]]);
-    }))();
+      });
+    } catch (error) {
+      // Something went wrong
+      console.error(error);
+    }
   },
   methods: {
     // Populate address data when Autocomplete selected
     setAddressData: function setAddressData(components, coords) {
       var data = this.$root.$data.data; // Set all subfield data
 
-      Object(_utils_address_components__WEBPACK_IMPORTED_MODULE_2__["default"])(components, data.address); // Set coordinates
+      Object(_utils_address_components__WEBPACK_IMPORTED_MODULE_0__["default"])(components, data.address); // Set coordinates
 
       data.coords.lat = parseFloat(coords.lat().toFixed(7));
       data.coords.lng = parseFloat(coords.lng().toFixed(7));
@@ -1299,7 +1211,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Get the subfield arrangement
       var arrangement = this.$root.$data.settings.subfieldConfig; // Return configured arrangement
 
-      return Object(_utils_subfield_display__WEBPACK_IMPORTED_MODULE_3__["default"])(arrangement);
+      return Object(_utils_subfield_display__WEBPACK_IMPORTED_MODULE_1__["default"])(arrangement);
     }
   }
 });
@@ -1430,7 +1342,18 @@ __webpack_require__.r(__webpack_exports__);
     'address-coords': _address_coords__WEBPACK_IMPORTED_MODULE_2__["default"],
     'address-map': _address_map__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['settings', 'data']
+  props: ['settings', 'data'] // data() {
+  //     return {
+  //         // google: false,
+  //         initialized: false,
+  //     }
+  // },
+  // methods: {
+  //     loadGoogleMaps: () => {
+  //
+  //     }
+  // }
+
 });
 
 /***/ }),

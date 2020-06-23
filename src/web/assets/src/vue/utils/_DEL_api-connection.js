@@ -20,11 +20,11 @@ export default function init() {
         return initPromise;
     }
 
-    // Mark as initialized
-    initialized = true;
-
     // Callback triggered by Google Maps script if successfully loaded
     window['initGoogleMaps'] = () => resolveInitPromise(window.google);
+
+    // Mark as initialized
+    initialized = true;
 
     // Return the promise
     return initPromise;

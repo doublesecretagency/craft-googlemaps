@@ -14,7 +14,6 @@
 </template>
 
 <script>
-    import apiConnection from './utils/api-connection';
     import addressComponents from './utils/address-components';
     import subfieldDisplay from './utils/subfield-display';
 
@@ -28,9 +27,9 @@
                 ]
             }
         },
-        async mounted() {
+        mounted() {
             try {
-                const google = await apiConnection();
+                const google = window.google;
                 const options = {
                     types: ['geocode'],
                     fields: ['address_components','geometry.location','formatted_address']

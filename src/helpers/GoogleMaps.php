@@ -139,4 +139,11 @@ class GoogleMaps
         return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
     }
 
+    /**
+     */
+    public static function getApiUrl(array $params = []): string
+    {
+        return GoogleMapsPlugin::$plugin->api->getApiUrl($params);
+    }
+
 }

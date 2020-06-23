@@ -22,7 +22,18 @@
             'address-coords': AddressCoords,
             'address-map': AddressMap
         },
-        props: ['settings', 'data']
+        props: ['settings', 'data'],
+        // data() {
+        //     return {
+        //         // google: false,
+        //         initialized: false,
+        //     }
+        // },
+        // methods: {
+        //     loadGoogleMaps: () => {
+        //
+        //     }
+        // }
     }
 </script>
 

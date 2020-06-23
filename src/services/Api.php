@@ -54,4 +54,26 @@ class Api extends Component
         $this->_browserKey = $key;
     }
 
+    // ========================================================================= //
+
+    public function getApiUrl(array $params = []): string
+    {
+        // Get browser key
+        $key = trim($this->getBrowserKey());
+
+        // Set base URL of Google Maps API
+        $googleMapsApi = 'https://maps.googleapis.com/maps/api/js';
+        $googleMapsApi .= "?key={$key}";
+
+        // Optionally append additional parameters
+        if ($params) {
+            foreach ($params as $param => $value) {
+                $googleMapsApi .= "&{$param}={$value}";
+            }
+        }
+
+        // Return complete API URL
+        return $googleMapsApi;
+    }
+
 }

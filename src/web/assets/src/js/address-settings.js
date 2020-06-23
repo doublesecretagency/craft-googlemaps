@@ -5,9 +5,8 @@ import DefaultCoords from './../vue/default-coords';
 // Disable silly message
 Vue.config.productionTip = false;
 
-// Initialize Vue instance
-new Vue({
-    el: '#types-doublesecretagency-googlemaps-fields-AddressField-address-settings',
+// Create Vue instance
+window.addressFieldSettings = new Vue({
     components: {
         'address-field': AddressField,
         'subfield-manager': SubfieldManager,
@@ -19,3 +18,9 @@ new Vue({
         icons: icons
     }
 });
+
+// Initialize Vue instance
+window.initAddressFieldSettings = () => {
+    console.log('callback triggered!');
+    // window.addressFieldSettings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
+}
