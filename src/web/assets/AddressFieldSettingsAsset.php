@@ -33,17 +33,16 @@ class AddressFieldSettingsAsset extends AssetBundle
         $this->sourcePath = '@doublesecretagency/googlemaps/web/assets/dist';
         $this->depends = [
             CpAsset::class,
-//            VueAsset::class,
+            VueAsset::class,
         ];
 
         $this->js = [
+            'js/Sortable.min.js',
+            'js/address-settings.js',
             GoogleMaps::getApiUrl([
                 'libraries' => 'places',
                 'callback' => 'initAddressFieldSettings',
             ]),
-            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
-            'js/Sortable.min.js',
-            'js/address-settings.js',
         ];
 
     }

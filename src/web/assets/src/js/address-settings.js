@@ -7,6 +7,7 @@ Vue.config.productionTip = false;
 
 // Create Vue instance
 window.addressFieldSettings = new Vue({
+    el: '#types-doublesecretagency-googlemaps-fields-AddressField-address-settings',
     components: {
         'address-field': AddressField,
         'subfield-manager': SubfieldManager,
@@ -19,8 +20,9 @@ window.addressFieldSettings = new Vue({
     }
 });
 
-// Initialize Vue instance
-window.initAddressFieldSettings = () => {
-    console.log('callback triggered!');
-    // window.addressFieldSettings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
-}
+// // Initialize Vue instance
+// window.initAddressFieldSettings = () => {
+//     console.log('js callback');
+//     console.log(window.addressFieldSettings);
+//     // window.addressFieldSettings.$mount();
+// }

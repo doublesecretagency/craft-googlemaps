@@ -37,12 +37,12 @@ class AddressFieldAsset extends AssetBundle
         ];
 
         $this->js = [
+            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
+            'js/address.js',
             GoogleMaps::getApiUrl([
                 'libraries' => 'places',
                 'callback' => 'initAddressField',
             ]),
-            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
-            'js/address.js',
         ];
 
     }
