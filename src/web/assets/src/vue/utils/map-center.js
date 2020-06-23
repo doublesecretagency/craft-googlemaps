@@ -102,6 +102,11 @@ function _validCoord(coord) {
         return false;
     }
 
+    // If coordinate is an empty string, return false
+    if ('' === coord) {
+        return false;
+    }
+
     // Coordinate is valid, return true
     return true;
 }

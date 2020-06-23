@@ -706,6 +706,11 @@ function _validCoord(coord) {
 
   if (isNaN(coord)) {
     return false;
+  } // If coordinate is an empty string, return false
+
+
+  if ('' === coord) {
+    return false;
   } // Coordinate is valid, return true
 
 

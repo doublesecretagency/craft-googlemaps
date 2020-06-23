@@ -105,7 +105,6 @@ __webpack_require__.r(__webpack_exports__);
 Vue.config.productionTip = false; // Create Vue instance
 
 window.addressFieldSettings = new Vue({
-  el: '#types-doublesecretagency-googlemaps-fields-AddressField-address-settings',
   components: {
     'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"],
     'subfield-manager': _vue_subfield_manager__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -116,12 +115,11 @@ window.addressFieldSettings = new Vue({
     data: data,
     icons: icons
   }
-}); // // Initialize Vue instance
-// window.initAddressFieldSettings = () => {
-//     console.log('js callback');
-//     console.log(window.addressFieldSettings);
-//     // window.addressFieldSettings.$mount();
-// }
+}); // Initialize Vue instance
+
+window.initAddressFieldSettings = function () {
+  window.addressFieldSettings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
+};
 
 /***/ }),
 
@@ -835,6 +833,11 @@ function _validCoord(coord) {
 
 
   if (isNaN(coord)) {
+    return false;
+  } // If coordinate is an empty string, return false
+
+
+  if ('' === coord) {
     return false;
   } // Coordinate is valid, return true
 
