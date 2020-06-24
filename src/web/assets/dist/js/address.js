@@ -98,36 +98,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_address__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../vue/address */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address.vue");
  // Disable silly message
 
-Vue.config.productionTip = false; // Initialize collection of Vue instances
-
-var vueAddressFields = []; // Loop through all Address field configurations
-
-for (var i in addressFieldConfigs) {
-  // Get configuration of a single Address field
-  var config = addressFieldConfigs[i]; // Initialize Vue instance for a single Address field
-
-  vueAddressFields[i] = new Vue({
-    el: '#fields-address-' + config.handle,
-    components: {
-      'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"]
-    },
-    data: {
-      settings: config.settings,
-      data: config.data,
-      icons: config.icons,
-      google: false // initialized: false,
-
-    }
-  });
-}
+Vue.config.productionTip = false; // Initialize Vue instances
 
 window.initAddressField = function () {
-  console.log('callback triggered when an Address field is loaded'); // Loop through all Address field configurations
+  // Loop through all Address field configurations
+  for (var i in addressFieldConfigs) {
+    // Get configuration of a single Address field
+    var config = addressFieldConfigs[i]; // Initialize Vue instance for a single Address field
 
-  for (var _i in addressFieldConfigs) {
-    // Share Google API with each Vue instance
-    vueAddressFields[_i].$data.google = window.google; // OR SHOULD WE JUST BE SETTING `initialized` TO `true`
-    // AND THEN REFER BACK TO THE GLOBAL `google` OBJECT?
+    new Vue({
+      el: "#fields-address-".concat(config.handle),
+      components: {
+        'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"]
+      },
+      data: {
+        settings: config.settings,
+        data: config.data,
+        icons: config.icons
+      }
+    });
   }
 };
 
