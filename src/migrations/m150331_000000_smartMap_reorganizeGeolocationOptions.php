@@ -79,8 +79,8 @@ class m150331_000000_smartMap_reorganizeGeolocationOptions extends Migration
      */
     public function safeDown()
     {
-        echo "m150331_000000_smartMap_reorganizeGeolocationOptions cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 

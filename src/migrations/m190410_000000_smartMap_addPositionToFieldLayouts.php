@@ -109,6 +109,8 @@ class m190410_000000_smartMap_addPositionToFieldLayouts extends Migration
 
         }
 
+        // Return true
+        return true;
     }
 
     /**
@@ -116,8 +118,8 @@ class m190410_000000_smartMap_addPositionToFieldLayouts extends Migration
      */
     public function safeDown()
     {
-        echo "m190410_000000_smartMap_addPositionToFieldLayouts cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 

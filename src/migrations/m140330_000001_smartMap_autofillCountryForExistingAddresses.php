@@ -73,8 +73,8 @@ class m140330_000001_smartMap_autofillCountryForExistingAddresses extends Migrat
      */
     public function safeDown()
     {
-        echo "m140330_000001_smartMap_autofillCountryForExistingAddresses cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 

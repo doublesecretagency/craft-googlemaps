@@ -28,6 +28,7 @@ class m140330_000000_smartMap_addCountrySubfield extends Migration
         if (!$this->db->columnExists('{{%smartmap_addresses}}', 'country')) {
             $this->addColumn('{{%smartmap_addresses}}', 'country', $this->string()->after('zip'));
         }
+        return true;
     }
 
     /**
@@ -35,8 +36,8 @@ class m140330_000000_smartMap_addCountrySubfield extends Migration
      */
     public function safeDown()
     {
-        echo "m140330_000000_smartMap_addCountrySubfield cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 

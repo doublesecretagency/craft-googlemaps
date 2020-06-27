@@ -50,6 +50,7 @@ class m140811_000001_smartMap_changeHandleToFieldId extends Migration
             // Remove old column
             $this->dropColumn('{{%smartmap_addresses}}', 'handle');
         }
+        return true;
     }
 
     /**
@@ -57,8 +58,8 @@ class m140811_000001_smartMap_changeHandleToFieldId extends Migration
      */
     public function safeDown()
     {
-        echo "m140811_000001_smartMap_changeHandleToFieldId cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 

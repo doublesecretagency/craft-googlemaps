@@ -63,8 +63,8 @@ class m181124_000000_smartMap_replaceFreegeoipWithIpstack extends Migration
      */
     public function safeDown()
     {
-        echo "m181124_000000_smartMap_replaceFreegeoipWithIpstack cannot be reverted.\n";
-
+        $migration = (new \ReflectionClass($this))->getShortName();
+        echo "{$migration} cannot be reverted.\n";
         return false;
     }
 
