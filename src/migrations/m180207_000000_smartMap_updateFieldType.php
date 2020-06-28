@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\migrations;
 use craft\db\Migration;
 
 /**
- * Migration: Update field type for Craft 3 compatibility
+ * Migration: Update field type for Craft 3 compatibility.
  * @since 3.0.0
  */
 class m180207_000000_smartMap_updateFieldType extends Migration

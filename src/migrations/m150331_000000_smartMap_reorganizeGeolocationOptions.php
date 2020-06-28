@@ -16,7 +16,7 @@ use craft\db\Migration;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
- * Migration: Reorganize geolocation options
+ * Migration: Reorganize geolocation options.
  * @since 3.0.0
  */
 class m150331_000000_smartMap_reorganizeGeolocationOptions extends Migration
@@ -70,7 +70,7 @@ class m150331_000000_smartMap_reorganizeGeolocationOptions extends Migration
         // Save settings
         Craft::$app->getPlugins()->savePluginSettings(GoogleMapsPlugin::$plugin, $settings);
 
-        // Return true
+        // Success
         return true;
     }
 

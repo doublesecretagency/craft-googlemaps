@@ -15,7 +15,7 @@ use craft\db\Migration;
 use craft\db\Query;
 
 /**
- * Migration: Change handle to field ID
+ * Migration: Change handle to field ID.
  * @since 3.0.0
  */
 class m140811_000001_smartMap_changeHandleToFieldId extends Migration

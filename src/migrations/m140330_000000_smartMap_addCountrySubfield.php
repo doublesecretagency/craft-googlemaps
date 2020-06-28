@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\migrations;
 use craft\db\Migration;
 
 /**
- * Migration: Add country subfield
+ * Migration: Add country subfield.
  * @since 3.0.0
  */
 class m140330_000000_smartMap_addCountrySubfield extends Migration

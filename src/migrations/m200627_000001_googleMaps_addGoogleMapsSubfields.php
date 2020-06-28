@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\migrations;
 use craft\db\Migration;
 
 /**
- * Migration: Add new subfields for storing address data
+ * Migration: Add new subfields for storing address data.
  * @since 4.0.0
  */
 class m200627_000001_googleMaps_addGoogleMapsSubfields extends Migration

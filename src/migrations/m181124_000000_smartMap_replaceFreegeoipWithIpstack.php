@@ -16,7 +16,7 @@ use craft\db\Migration;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
- * Migration: Replace FreeGeoIp.net with ipstack
+ * Migration: Replace FreeGeoIp.net with ipstack.
  * @since 3.2.0
  */
 class m181124_000000_smartMap_replaceFreegeoipWithIpstack extends Migration
@@ -54,7 +54,7 @@ class m181124_000000_smartMap_replaceFreegeoipWithIpstack extends Migration
         // Save settings
         Craft::$app->getPlugins()->savePluginSettings(GoogleMapsPlugin::$plugin, $settings);
 
-        // Return true
+        // Success
         return true;
     }
 

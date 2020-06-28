@@ -15,7 +15,7 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * Migration: Add a `position` value to Address layout subfields
+ * Migration: Add a `position` value to Address layout subfields.
  * @since 3.2.3
  */
 class m190410_000000_smartMap_addPositionToFieldLayouts extends Migration
@@ -109,7 +109,7 @@ class m190410_000000_smartMap_addPositionToFieldLayouts extends Migration
 
         }
 
-        // Return true
+        // Success
         return true;
     }
 

@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\migrations;
 use craft\db\Migration;
 
 /**
- * Migration: Add a `position` value to Address layout subfields
+ * Migration: Add a `position` value to Address layout subfields.
  * @since 3.2.2
  */
 class m190310_000000_smartMap_addPositionToFieldLayouts extends Migration

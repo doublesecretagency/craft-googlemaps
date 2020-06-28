@@ -15,7 +15,7 @@ use craft\db\Migration;
 use craft\db\Query;
 
 /**
- * Migration: Autofill country for existing addresses
+ * Migration: Autofill country for existing addresses.
  * @since 3.0.0
  */
 class m140330_000001_smartMap_autofillCountryForExistingAddresses extends Migration

@@ -14,7 +14,7 @@ namespace doublesecretagency\googlemaps\migrations;
 use craft\db\Migration;
 
 /**
- * Migration: Rename table containing Address data
+ * Migration: Rename table containing Address data.
  * @since 4.0.0
  */
 class m200627_000000_googleMaps_renameToGoogleMaps extends Migration

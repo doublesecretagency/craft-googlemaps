@@ -16,7 +16,7 @@ use craft\db\Migration;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
- * Migration: Split Google API keys
+ * Migration: Split Google API keys.
  * @since 3.0.0
  */
 class m150329_000000_smartMap_splitGoogleApiKeys extends Migration
@@ -59,7 +59,7 @@ class m150329_000000_smartMap_splitGoogleApiKeys extends Migration
         // Save settings
         Craft::$app->getPlugins()->savePluginSettings(GoogleMapsPlugin::$plugin, $settings);
 
-        // Return true
+        // Success
         return true;
     }
 
