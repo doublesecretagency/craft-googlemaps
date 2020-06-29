@@ -19,12 +19,12 @@
                 </td>
                 <td class="checkbox-cell" style="width:15%; text-align:center;">
                     <div class="checkbox-wrapper">
-                        <input type="checkbox" :name="fieldName(subfield.key, 'enabled')" v-model="$root.$data.settings.subfieldConfig[subfield.key].enabled" :id="`enabled-${subfield.key}`" class="checkbox" /><label :for="`enabled-${subfield.key}`"></label>
+                        <input type="checkbox" :name="fieldName(subfield.key, 'enabled')" v-model="$root.$data.settings.subfieldConfig[subfield.key].enabled" :id="`enabled-${subfield.key}`" class="checkbox" value="1" /><label :for="`enabled-${subfield.key}`"></label>
                     </div>
                 </td>
 <!--                <td class="checkbox-cell" style="width:15%; text-align:center;">-->
 <!--                    <div class="checkbox-wrapper">-->
-<!--                        <input type="checkbox" :name="fieldName(subfield.key, 'required')" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" /><label :for="`required-${subfield.key}`"></label>-->
+<!--                        <input type="checkbox" :name="fieldName(subfield.key, 'required')" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" value=1" /><label :for="`required-${subfield.key}`"></label>-->
 <!--                    </div>-->
 <!--                </td>-->
                 <td class="thin action">
