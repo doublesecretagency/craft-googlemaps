@@ -52,20 +52,23 @@ class m200627_000002_googleMaps_updateAddressFieldSettings extends Migration
             $activeAddress   = ($fieldClass === static::SMARTMAP_ADDRESS);
             $inactiveAddress = ($fieldClass === MissingField::class) && ($field->expectedType === static::SMARTMAP_ADDRESS);
 
-            // If field is an active Address, update it
-            if ($activeAddress) {
-                $this->_updateActiveAddress($field);
-            }
+            // If field is an Address, update it
+            if ($activeAddress || $inactiveAddress) {
 
-            // If field is an inactive Address, update it
-            if ($inactiveAddress) {
-                $this->_updateInactiveAddress($field);
+                // Get Address field settings
+                $oldSettings = $field->getSettings();
+
+                // If Missing field, go one level deeper
+                if ($inactiveAddress) {
+                    $oldSettings = Json::decode($oldSettings['settings']);
+                }
+
+                // Update field type and settings
+                $this->_updateFieldConfig($field->id, $oldSettings);
+
             }
 
         }
-
-        // Set zoom for all existing addresses with valid coordinates
-        $this->_updateZoom();
 
         // Success
         return true;
@@ -81,42 +84,32 @@ class m200627_000002_googleMaps_updateAddressFieldSettings extends Migration
         return false;
     }
 
-    /**
-     * Update the configuration of an active Address field.
-     *
-     * @param $field
-     */
-    private function _updateActiveAddress($field)
-    {
-        // Do a bunch of stuff
-    }
+    // ========================================================================= //
 
     /**
-     * Update the configuration of an inactive Address field.
+     * Update existing field configurations.
      *
-     * @param $field
+     * @param int $id ID of field
+     * @param array $old Original field settings
      */
-    private function _updateInactiveAddress($field)
+    private function _updateFieldConfig(int $id, array $old)
     {
-        // Get Missing field settings
-        $settings = $field->getSettings();
-
-        // Get Address field settings
-        $s = Json::decode($settings['settings']);
+        // Whether the old settings contain valid coordinates
+        $validCoords = (
+            isset($old['dragPinLatitude'])  && $old['dragPinLatitude'] &&
+            isset($old['dragPinLongitude']) && $old['dragPinLongitude']
+        );
 
         // If coordinates are valid
-        if (
-            isset($s['dragPinLatitude'])  && $s['dragPinLatitude'] &&
-            isset($s['dragPinLongitude']) && $s['dragPinLongitude']
-        ) {
-            // Port valid coordinates
+        if ($validCoords) {
+            // Port existing coordinates
             $coordinates = [
-                'lat' => (float) ($s['dragPinLatitude'] ?? null),
-                'lng' => (float) ($s['dragPinLongitude'] ?? null),
-                'zoom' => (int) ($s['dragPinZoom'] ?? null),
+                'lat' => (float) ($old['dragPinLatitude'] ?? null),
+                'lng' => (float) ($old['dragPinLongitude'] ?? null),
+                'zoom' => (int) ($old['dragPinZoom'] ?? null),
             ];
         } else {
-            // Otherwise, no coordinates by default
+            // Otherwise, use empty coordinates
             $coordinates = [
                 'lat' => null,
                 'lng' => null,
@@ -125,7 +118,7 @@ class m200627_000002_googleMaps_updateAddressFieldSettings extends Migration
         }
 
         // Update field settings
-        $this->_updateField($field->id, [
+        $newSettings = [
             'showMap' => null,
             'mapOnStart' => 'close',
             'mapOnSearch' => 'open',
@@ -135,72 +128,49 @@ class m200627_000002_googleMaps_updateAddressFieldSettings extends Migration
             'subfieldConfig' => [
                 'street1' => [
                     'label' => 'Street Address',
-                    'width' => (int) ($s['layout']['street1']['width'] ?? 100),
-                    'enabled' => (int) ($s['layout']['street1']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['street1']['position'] ?? 1),
+                    'width' => (int) ($old['layout']['street1']['width'] ?? 100),
+                    'enabled' => (int) ($old['layout']['street1']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['street1']['position'] ?? 1),
                 ],
                 'street2' => [
                     'label' => 'Apartment or Suite',
-                    'width' => (int) ($s['layout']['street2']['width'] ?? 100),
-                    'enabled' => (int) ($s['layout']['street2']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['street2']['position'] ?? 2),
+                    'width' => (int) ($old['layout']['street2']['width'] ?? 100),
+                    'enabled' => (int) ($old['layout']['street2']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['street2']['position'] ?? 2),
                 ],
                 'city' => [
                     'label' => 'City',
-                    'width' => (int) ($s['layout']['city']['width'] ?? 50),
-                    'enabled' => (int) ($s['layout']['city']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['city']['position'] ?? 3),
+                    'width' => (int) ($old['layout']['city']['width'] ?? 50),
+                    'enabled' => (int) ($old['layout']['city']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['city']['position'] ?? 3),
                 ],
                 'state' => [
                     'label' => 'State',
-                    'width' => (int) ($s['layout']['state']['width'] ?? 15),
-                    'enabled' => (int) ($s['layout']['state']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['state']['position'] ?? 4),
+                    'width' => (int) ($old['layout']['state']['width'] ?? 15),
+                    'enabled' => (int) ($old['layout']['state']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['state']['position'] ?? 4),
                 ],
                 'zip' => [
                     'label' => 'Zip Code',
-                    'width' => (int) ($s['layout']['zip']['width'] ?? 35),
-                    'enabled' => (int) ($s['layout']['zip']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['zip']['position'] ?? 5),
+                    'width' => (int) ($old['layout']['zip']['width'] ?? 35),
+                    'enabled' => (int) ($old['layout']['zip']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['zip']['position'] ?? 5),
                 ],
                 'country' => [
                     'label' => 'Country',
-                    'width' => (int) ($s['layout']['country']['width'] ?? 100),
-                    'enabled' => (int) ($s['layout']['country']['enable'] ?? 1),
-                    'position' => (int) ($s['layout']['country']['position'] ?? 6),
+                    'width' => (int) ($old['layout']['country']['width'] ?? 100),
+                    'enabled' => (int) ($old['layout']['country']['enable'] ?? 1),
+                    'position' => (int) ($old['layout']['country']['position'] ?? 6),
                 ]
             ]
-        ]);
+        ];
 
-    }
-
-    /**
-     * Directly update existing field configurations.
-     *
-     * @param $fieldId
-     * @param $newSettings
-     */
-    private function _updateField($fieldId, $newSettings)
-    {
+        // Update field configuration
         $this->update('{{%fields}}', [
             'type' => static::GOOGLEMAPS_ADDRESS,
             'settings' => Json::encode($newSettings)
         ], [
-            'id' => $fieldId
-        ], [], false);
-    }
-
-    /**
-     * Set the zoom level for all existing Address values.
-     */
-    private function _updateZoom()
-    {
-        $this->update('{{%googlemaps_addresses}}', [
-            'zoom' => 11
-        ], ['and',
-            ['zoom' => null],
-            ['not', ['lat' => null]],
-            ['not', ['lng' => null]],
+            'id' => $id
         ], [], false);
     }
 

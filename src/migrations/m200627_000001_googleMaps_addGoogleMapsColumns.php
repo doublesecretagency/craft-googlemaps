@@ -58,6 +58,15 @@ class m200627_000001_googleMaps_addGoogleMapsColumns extends Migration
             );
         }
 
+        // Set zoom for existing addresses with valid coordinates
+        $this->update('{{%googlemaps_addresses}}', [
+            'zoom' => 11
+        ], ['and',
+            ['zoom' => null],
+            ['not', ['lat' => null]],
+            ['not', ['lng' => null]],
+        ], [], false);
+
         // Success
         return true;
     }
