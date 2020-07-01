@@ -17,7 +17,7 @@ use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
-//use doublesecretagency\googlemaps\services\AddressField;
+use doublesecretagency\googlemaps\services\Address;
 use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
@@ -31,7 +31,7 @@ use yii\base\Event;
  * Class GoogleMapsPlugin
  * @since 4.0.0
  *
- * @property AddressField $addressField
+ * @property Address $address
  * @property Api $api
  * @property Geocoding $geocoding
  * @property Geolocation $geolocation
@@ -70,7 +70,7 @@ class GoogleMapsPlugin extends Plugin
 
         // Load plugin components
         $this->setComponents([
-//            'addressField' => AddressField::class,
+            'address' => Address::class,
             'api' => Api::class,
             'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,

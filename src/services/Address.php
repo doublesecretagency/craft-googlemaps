@@ -14,10 +14,10 @@ namespace doublesecretagency\googlemaps\services;
 use craft\base\Component;
 
 /**
- * Class AddressField
+ * Class Address
  * @since 4.0.0
  */
-class AddressField extends Component
+class Address extends Component
 {
 
 }

@@ -15,7 +15,10 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
+use doublesecretagency\googlemaps\models\Address as AddressModel;
+use doublesecretagency\googlemaps\records\Address as AddressRecord;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
 
@@ -170,25 +173,44 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function normalizeValue($value, ElementInterface $element = null)
     {
-//        return SmartMap::$plugin->smartMap->getAddressField($this, $element, $value);
+        // If no element or no field ID, bail
+        if (!$element || !$this->id) {
+            return null;
+        }
+
+        // Attempt to load existing record
+        $record = AddressRecord::findOne([
+            'elementId' => $element->id,
+            'fieldId' => $this->id,
+        ]);
+
+        // If no matching record exists, bail
+        if (!$record) {
+            return null;
+        }
+
+        // Get the record attributes
+        $omitColumns = ['dateCreated','dateUpdated','uid'];
+        $attr = $record->getAttributes(null, $omitColumns);
+
+        // Convert coordinates to floats
+        $attr['lat'] = ($attr['lat'] ? (float) $attr['lat'] : null);
+        $attr['lng'] = ($attr['lng'] ? (float) $attr['lng'] : null);
+
+
+//        // If part of a proximity search, get the distance
+//        if ($value) {
+//            $attr['distance'] = (float) $value;
+//        }
+
+        // ALSO, SHOULD `data` BE MERGED INTO `raw`? NO NEED TO HAVE BOTH.
+
+
+        // Return an Address model
+        return new AddressModel($attr);
     }
 
     // ========================================================================= //
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function getSettings(): array
-//    {
-//        $settings = parent::getSettings();
-//
-////        // Ensure layout is an array
-////        if (!is_array($settings['layout'])) {
-////            $settings['layout'] = json_decode($settings['layout'], true);
-////        }
-//
-//        return $settings;
-//    }
 
     /**
      * @inheritdoc

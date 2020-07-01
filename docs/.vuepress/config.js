@@ -137,7 +137,7 @@ module.exports = {
             ],
             '/services/': [
                 '',
-                'address-field-service',
+                'address-service',
                 'api-service',
                 'geocoding-service',
                 'geolocation-service',

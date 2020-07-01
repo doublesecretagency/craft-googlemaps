@@ -1,8 +1,8 @@
 # Services
 
-## [Address Field Service](/services/address-field-service/)
+## [Address Service](/services/address-service/)
 
-The Address Field Service is responsible for all underlying functionality of the Address Field.
+The Address Service is responsible for all underlying functionality of the Address Field.
 
 ## [API Service](/services/api-service/)
 
