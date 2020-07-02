@@ -7,7 +7,7 @@
             v-model="$root.$data.data.address[subfield.key]"
             :class="inputClasses"
             autocomplete="chrome-off"
-            :name="`fields[${subfield.key}]`"
+            :name="`fields[${handle}][${subfield.key}]`"
             :style="subfield.styles"
         />
     </div>
@@ -20,6 +20,7 @@
     export default {
         data() {
             return {
+                handle: this.$root.$data.handle,
                 autocomplete: false,
                 inputClasses: [
                     'text',

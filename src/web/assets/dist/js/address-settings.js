@@ -1036,7 +1036,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      handle: this.$root.$data.handle
+    };
   },
   computed: {
     getType: function getType() {
@@ -1317,6 +1319,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      handle: this.$root.$data.handle,
       autocomplete: false,
       inputClasses: ['text', 'fullwidth']
     };
@@ -3215,7 +3218,7 @@ var render = function() {
           type: _vm.getType,
           readonly: _vm.getReadOnly,
           autocomplete: "chrome-off",
-          name: "fields[" + coord.key + "]"
+          name: "fields[" + _vm.handle + "][" + coord.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.coords[coord.key] },
         on: {
@@ -3317,7 +3320,7 @@ var render = function() {
         attrs: {
           placeholder: subfield.label,
           autocomplete: "chrome-off",
-          name: "fields[" + subfield.key + "]"
+          name: "fields[" + _vm.handle + "][" + subfield.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.address[subfield.key] },
         on: {
@@ -3684,7 +3687,8 @@ var render = function() {
                       attrs: {
                         type: "checkbox",
                         name: _vm.fieldName(subfield.key, "enabled"),
-                        id: "enabled-" + subfield.key
+                        id: "enabled-" + subfield.key,
+                        value: "1"
                       },
                       domProps: {
                         checked: Array.isArray(
@@ -3695,7 +3699,7 @@ var render = function() {
                               _vm.$root.$data.settings.subfieldConfig[
                                 subfield.key
                               ].enabled,
-                              null
+                              "1"
                             ) > -1
                           : _vm.$root.$data.settings.subfieldConfig[
                               subfield.key
@@ -3710,7 +3714,7 @@ var render = function() {
                             $$el = $event.target,
                             $$c = $$el.checked ? true : false
                           if (Array.isArray($$a)) {
-                            var $$v = null,
+                            var $$v = "1",
                               $$i = _vm._i($$a, $$v)
                             if ($$el.checked) {
                               $$i < 0 &&

@@ -15,6 +15,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
+use craft\elements\Entry;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
@@ -163,7 +164,48 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function afterElementSave(ElementInterface $element, bool $isNew)
     {
-//        SmartMap::$plugin->smartMap->saveAddressField($this, $element);
+        /** @var Entry $element */
+
+        // Get field data
+        $data = $element->getFieldValue($this->handle);
+
+        // If data doesn't exist, bail
+        if (!$data) {
+            return;
+        }
+
+
+//        Craft::dd($data);
+
+
+        // Attempt to load an existing record
+        $record = AddressRecord::findOne([
+            'elementId' => $element->id,
+            'fieldId'   => $this->id,
+        ]);
+
+        // If no record exists, create a new record
+        if (!$record) {
+            $record = new AddressRecord([
+                'elementId' => $element->id,
+                'fieldId'   => $this->id,
+            ]);
+        }
+
+        // Set record attributes
+        $record->setAttributes([
+            'street1' => $data['street1'],
+            'street2' => $data['street2'],
+            'city'    => $data['city'],
+            'state'   => $data['state'],
+            'zip'     => $data['zip'],
+            'country' => $data['country'],
+            'lat'     => $data['lat'],
+            'lng'     => $data['lng'],
+        ], false);
+
+        // Save record
+        $record->save();
     }
 
     /**
@@ -239,7 +281,7 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
-//            'value' => $value,
+            'address' => $value,
             'handle' => $this->handle,
             'icons' => AddressHelper::visibilityIcons(),
             'settings' => $this->_getExtraSettings(),

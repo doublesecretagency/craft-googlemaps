@@ -19,6 +19,7 @@ window.initAddressField = () => {
                 'address-field': AddressField
             },
             data: {
+                handle: config.handle,
                 settings: config.settings,
                 data: config.data,
                 icons: config.icons

@@ -112,6 +112,7 @@ window.initAddressField = function () {
         'address-field': _vue_address__WEBPACK_IMPORTED_MODULE_0__["default"]
       },
       data: {
+        handle: config.handle,
         settings: config.settings,
         data: config.data,
         icons: config.icons
@@ -846,7 +847,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      handle: this.$root.$data.handle
+    };
   },
   computed: {
     getType: function getType() {
@@ -1127,6 +1130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      handle: this.$root.$data.handle,
       autocomplete: false,
       inputClasses: ['text', 'fullwidth']
     };
@@ -2870,7 +2874,7 @@ var render = function() {
           type: _vm.getType,
           readonly: _vm.getReadOnly,
           autocomplete: "chrome-off",
-          name: "fields[" + coord.key + "]"
+          name: "fields[" + _vm.handle + "][" + coord.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.coords[coord.key] },
         on: {
@@ -2972,7 +2976,7 @@ var render = function() {
         attrs: {
           placeholder: subfield.label,
           autocomplete: "chrome-off",
-          name: "fields[" + subfield.key + "]"
+          name: "fields[" + _vm.handle + "][" + subfield.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.address[subfield.key] },
         on: {

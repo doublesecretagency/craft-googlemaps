@@ -8,7 +8,7 @@
             :class="getInputClasses"
             v-model.number="$root.$data.data.coords[coord.key]"
             autocomplete="chrome-off"
-            :name="`fields[${coord.key}]`"
+            :name="`fields[${handle}][${coord.key}]`"
             :style="coord.styles"
         />
     </div>
@@ -18,6 +18,7 @@
     export default {
         data() {
             return {
+                handle: this.$root.$data.handle
             }
         },
         computed: {
