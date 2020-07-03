@@ -174,10 +174,6 @@ class AddressField extends Field implements PreviewableFieldInterface
             return;
         }
 
-
-//        Craft::dd($data);
-
-
         // Attempt to load an existing record
         $record = AddressRecord::findOne([
             'elementId' => $element->id,
@@ -194,14 +190,15 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Set record attributes
         $record->setAttributes([
-            'street1' => $data['street1'],
-            'street2' => $data['street2'],
-            'city'    => $data['city'],
-            'state'   => $data['state'],
-            'zip'     => $data['zip'],
-            'country' => $data['country'],
-            'lat'     => $data['lat'],
-            'lng'     => $data['lng'],
+            'street1' => ($data['street1'] ?: null),
+            'street2' => ($data['street2'] ?: null),
+            'city'    => ($data['city'] ?: null),
+            'state'   => ($data['state'] ?: null),
+            'zip'     => ($data['zip'] ?: null),
+            'country' => ($data['country'] ?: null),
+            'lat'     => ($data['lat'] ?: null),
+            'lng'     => ($data['lng'] ?: null),
+            'zoom'    => ($data['zoom'] ?: null),
         ], false);
 
         // Save record
@@ -215,6 +212,23 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function normalizeValue($value, ElementInterface $element = null)
     {
+        // If value is an array, load it directly into an Address model
+        if (is_array($value)) {
+            return new AddressModel([
+                'elementId' => (int) ($element->id ?? null),
+                'fieldId' => (int) ($this->id ?? null),
+                'street1' => ($value['street1'] ?? null),
+                'street2' => ($value['street2'] ?? null),
+                'city' => ($value['city'] ?? null),
+                'state' => ($value['state'] ?? null),
+                'zip' => ($value['zip'] ?? null),
+                'country' => ($value['country'] ?? null),
+                'lat' => (float) ($value['lat'] ?? null),
+                'lng' => (float) ($value['lng'] ?? null),
+                'zoom' => (int) ($value['zoom'] ?? null),
+            ]);
+        }
+
         // If no element or no field ID, bail
         if (!$element || !$this->id) {
             return null;

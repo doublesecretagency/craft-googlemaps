@@ -1034,7 +1034,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // Update the zoom level
     updateZoomLevel: function updateZoomLevel() {
-      var zoom = parseInt(this.$root.$data.data.coords['zoom']);
+      // Get zoom level from field data
+      var zoom = parseInt(this.$root.$data.data.coords['zoom']); // Corrections for incorrect zoom value
+
+      if (0 === zoom || zoom < 0) {
+        // Fallback when zoom is too low
+        zoom = 0;
+      } else if (!zoom || isNaN(zoom)) {
+        // Fallback when zoom is invalid
+        zoom = 11;
+      } // Set map zoom level
+
+
       this.map.setZoom(zoom);
     },
     // Center map based on current marker position
@@ -1256,7 +1267,7 @@ __webpack_require__.r(__webpack_exports__);
     var settings = this.$root.$data.settings;
     return {
       toggleOffset: -25,
-      marginRight: settings.usingCpFieldInspect ? '22px' : '8px'
+      marginRight: settings.usingCpFieldInspect ? '25px' : '8px'
     };
   },
   computed: {

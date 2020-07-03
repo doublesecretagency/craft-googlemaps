@@ -107,7 +107,20 @@
 
             // Update the zoom level
             updateZoomLevel() {
+
+                // Get zoom level from field data
                 let zoom = parseInt(this.$root.$data.data.coords['zoom']);
+
+                // Corrections for incorrect zoom value
+                if (0 === zoom || zoom < 0) {
+                    // Fallback when zoom is too low
+                    zoom = 0;
+                } else if (!zoom || isNaN(zoom)) {
+                    // Fallback when zoom is invalid
+                    zoom = 11;
+                }
+
+                // Set map zoom level
                 this.map.setZoom(zoom);
             },
 
