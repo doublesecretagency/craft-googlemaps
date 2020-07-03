@@ -1564,13 +1564,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {// coordinatesDefault: getMapCenter(subfields)
-    };
+    return {};
   },
   computed: {
     coordinatesDefault: function coordinatesDefault() {
-      return this.$root.$data.data.coords; // return getMapCenter(this.$root.$data);
-      // return this.$root.$data.settings.coordinatesDefault;
+      // Get all potential coordinates options
+      var settingsCoords = this.$root.$data.settings.coordinatesDefault;
+      var dataCoords = this.$root.$data.data.coords; // If coordinates from data are valid, return them
+
+      if (dataCoords['lat'] && dataCoords['lng']) {
+        return dataCoords;
+      } // If coordinates from settings are valid, return them
+
+
+      if (settingsCoords['lat'] && settingsCoords['lng']) {
+        return settingsCoords;
+      } // Return empty coordinates
+
+
+      return {
+        lat: null,
+        lng: null,
+        zoom: null
+      };
     }
   },
   watch: {
@@ -1578,17 +1594,6 @@ __webpack_require__.r(__webpack_exports__);
       this.updateCoords(coords);
     }
   },
-  // mounted: function () {
-  //
-  //     let mapCenter = getMapCenter(this.$root.$data);
-  //
-  //     this.$root.$data.data.coords = mapCenter;
-  //
-  //     // console.log(mapCenter);
-  //     //
-  //     // this.coordinatesDefault = mapCenter;
-  //     // this.updateCoords(mapCenter);
-  // },
   methods: {
     fieldName: function fieldName(subfield) {
       var fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';

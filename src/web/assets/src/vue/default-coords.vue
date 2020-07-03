@@ -10,15 +10,31 @@
     export default {
         data() {
             return {
-                // coordinatesDefault: getMapCenter(subfields)
             }
         },
         computed: {
             coordinatesDefault() {
-                return this.$root.$data.data.coords;
 
-                // return getMapCenter(this.$root.$data);
-                // return this.$root.$data.settings.coordinatesDefault;
+                // Get all potential coordinates options
+                const settingsCoords = this.$root.$data.settings.coordinatesDefault;
+                const dataCoords     = this.$root.$data.data.coords;
+
+                // If coordinates from data are valid, return them
+                if (dataCoords['lat'] && dataCoords['lng']) {
+                    return dataCoords;
+                }
+
+                // If coordinates from settings are valid, return them
+                if (settingsCoords['lat'] && settingsCoords['lng']) {
+                    return settingsCoords;
+                }
+
+                // Return empty coordinates
+                return {
+                    lat: null,
+                    lng: null,
+                    zoom: null
+                };
             }
         },
         watch: {
@@ -26,17 +42,6 @@
                 this.updateCoords(coords);
             }
         },
-        // mounted: function () {
-        //
-        //     let mapCenter = getMapCenter(this.$root.$data);
-        //
-        //     this.$root.$data.data.coords = mapCenter;
-        //
-        //     // console.log(mapCenter);
-        //     //
-        //     // this.coordinatesDefault = mapCenter;
-        //     // this.updateCoords(mapCenter);
-        // },
         methods: {
             fieldName(subfield) {
                 const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
