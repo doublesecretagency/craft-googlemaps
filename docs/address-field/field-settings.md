@@ -2,42 +2,69 @@
 
 When you create a new Address field, you will see the following settings...
 
-<img :src="$withBase('/images/address-field/field-settings.jpg')" alt="Screenshot of the address field's settings page">
+<img :src="$withBase('/images/address-field/address-settings.png')" alt="Screenshot of Address Field Settings">
 
 These fields only apply to the **content author**, or whomever is viewing the field in the control panel. These settings do not have any impact on how the address data is used on the front-end of your site.
 
-## "Show map by default"
+-----
 
-If checked, the address will automatically be shown on a map. If not checked, the map can be revealed by clicking on the "See on a map" link.
+## Address Field Live Preview
+
+Pay close attention to this section, you will see all of your selections reflected here in real-time. When you change any of the related settings, those changes will appear here immediately.
+
+This area is a snapshot of the final Address field. What you see here is a direct representation of how your content editors will see this field.
+
+## Subfield Manager
+
+You can use the subfield manager to finely customize all of the address component fields. With this tool, you can...
+
+ - Change the text label of each subfield.
+ - Change the width of each subfield.
+ - Set whether each subfield is visible.
+ - Rearrange the order of all subfields.
+
+Feel free to move these subfields into whatever configuration you see fit!
+
+## Show map on initial load?
+
+This dropdown allows you to select how the map should appear when the edit page is initially loaded.
+
+ - `Open` - The map will be open when the page is loaded.
+ - `Closed` (default) - The map will be closed when the page is loaded.
+
+## Show map when address search is triggered?
+
+This dropdown allows you to select how the map should react when an address lookup is performed.
+
+ - `Open` (default) - The map will automatically open when a lookup is performed.
+ - `Close` - The map will automatically close when a lookup is performed.
+ - `No Change` - The map will not react when a lookup is performed.
+
+## Map Visibility Toggle
+
+The map visibility toggle appears just above the address component subfields, in the upper-right corner of the field...
+
+<img :src="$withBase('/images/address-field/map-visibility-toggle.png')" alt="Screenshot of the Map Visibility Toggle" width="327" height="177">
+
+You can control how the toggle is displayed by selecting whether to show the text label, icon, both, or neither.
+
+ - `Text & Icon` (default) - Show both the text label and icon.
+ - `Text Only` - Show only the text label.
+ - `Icon Only` - Show only the icon.
+ - `Hidden` - Neither the text label nor icon are shown.
+
+## Display Coordinates
+
+The location coordinates appear directly below the address components subfields, and can be shown in one of three ways.
+
+ - `Editable` - The coordinates and zoom fields are directly editable by the content editor.
+ - `Read Only` (default) - The values of the coordinates and zoom fields will be visible, but not editable by the content author.
+ - `Hidden` - The location coordinates and zoom will not be displayed at all. Note that while the coordinate fields are _visually_ hidden, the data will continue to be saved normally.
+
+If you select `Hidden`, bear in mind that this does not prevent the coordinates or zoom from being saved in the database. The field will still save that data normally, as if the coordinates were actually visible. The coordinates and zoom fields will simply be invisible to the content editor.
 
 When viewing the map, you can drag & drop the pin to alter the geographic coordinates (it will not change the address).
 
-## "Map Visibility Toggle"
+## Setting a Default Map Starting Position
 
-The map visibility toggle controls whether or not the map is currently being displayed.
-
-**Label & Icon** - Show both the textual and iconic representations of the visibility toggle.
-
-**Label Only** - Use only text to represent the toggle.
-
-**Icon Only** - Displays only the marker icon as the visibility toggle.
-
-**Disabled** - The map visibility toggle will be hidden entirely.
-
-## "Show coordinates as..."
-
-**Input Fields** - The coordinates will be _editable_ via standard form inputs. You will be able to manage the arrangement of these fields alongside the other subfields (see "Arrange subfield layout" below).
-
-**Read-Only Fields** - The coordinates will be visible, but _not editable_.
-
-**Hidden** - The coordinates will be hidden.
-
-## "Arrange subfield layout"
-
-You can manage the subfields here. Drag & drop to put the fields in a specific order. Change the numeric value to control the field width percentage.
-
-## "Set map center default position?"
-
-If checked, this will immediately reveal a map with a draggable marker. Move the marker to where you would like the center of the map to be (by default).
-
-You will also be able to set the default zoom level of the map. Remember, this only affects the content author in the control panel.
+When a brand new Address is being added to the system, it's possible for the map to have a default location.
