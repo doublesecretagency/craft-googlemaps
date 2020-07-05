@@ -14,8 +14,8 @@
 </template>
 
 <script>
-    import addressComponents from './utils/address-components';
-    import subfieldDisplay from './utils/subfield-display';
+    import addressComponents from './../utils/address-components';
+    import subfieldDisplay from './../utils/subfield-display';
 
     export default {
         data() {

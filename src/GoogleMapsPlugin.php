@@ -102,9 +102,14 @@ class GoogleMapsPlugin extends Plugin
      */
     protected function settingsHtml(): string
     {
+        // Reference assets
         $view = Craft::$app->getView();
-//        $view->registerAssetBundle(SettingsAssets::class);
+//        $view->registerAssetBundle(SettingsAsset::class);
+
+        // Get data from config file
         $file = Craft::$app->getConfig()->getConfigFromFile('google-maps');
+
+        // Load plugin settings template
         return $view->renderTemplate('google-maps/settings', [
             'file' => $file,
             'settings' => $this->getSettings(),

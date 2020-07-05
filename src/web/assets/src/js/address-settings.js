@@ -1,6 +1,6 @@
-import AddressField from './../vue/address';
-import SubfieldManager from './../vue/subfield-manager';
-import DefaultCoords from './../vue/default-coords';
+import AddressField from './../vue/address/address';
+import SubfieldManager from './../vue/address-settings/subfield-manager';
+import DefaultCoords from './../vue/address-settings/default-coords';
 
 // Disable silly message
 Vue.config.productionTip = false;

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import subfieldConfig from './utils/subfield-config';
+    import subfieldConfig from './../utils/subfield-config';
 
     export default {
         props: ['settings', 'data'],

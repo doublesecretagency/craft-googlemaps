@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import * as getCoordinates from './utils/map-center';
+    import * as getCoordinates from './../utils/map-center';
 
     export default {
         data() {
