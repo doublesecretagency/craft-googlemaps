@@ -24,7 +24,7 @@ class AddressFieldAsset extends AssetBundle
 {
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function init()
     {

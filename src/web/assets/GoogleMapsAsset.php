@@ -22,7 +22,7 @@ class GoogleMapsAsset extends AssetBundle
 {
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function init()
     {

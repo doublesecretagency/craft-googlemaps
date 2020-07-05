@@ -30,7 +30,7 @@ class Geolocation extends Component
     public $ip;
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function init()
     {

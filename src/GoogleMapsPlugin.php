@@ -45,7 +45,7 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @var bool The plugin has a settings page.
      */
-//    public $hasCpSettings = true;
+    public $hasCpSettings = true;
 
     /**
      * @var string Current schema version of the plugin.
@@ -58,7 +58,7 @@ class GoogleMapsPlugin extends Plugin
     public static $plugin;
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function init()
     {
@@ -90,26 +90,25 @@ class GoogleMapsPlugin extends Plugin
     }
 
     /**
-     * @return Settings Plugin settings model.
+     * @inheritdoc
      */
     protected function createSettingsModel(): Settings
     {
         return new Settings();
     }
 
-//    /**
-//     * @return string The fully rendered settings template.
-//     */
-//    protected function settingsHtml(): string
-//    {
-//        $view = Craft::$app->getView();
+    /**
+     * @inheritdoc
+     */
+    protected function settingsHtml(): string
+    {
+        $view = Craft::$app->getView();
 //        $view->registerAssetBundle(SettingsAssets::class);
-//        $overrideKeys = array_keys(Craft::$app->getConfig()->getConfigFromFile('smart-map'));
-//        return $view->renderTemplate('smart-map/settings', [
-//            'settings' => $this->getSettings(),
-//            'overrideKeys' => $overrideKeys,
-//            'docsUrl' => $this->documentationUrl,
-//        ]);
-//    }
+        $file = Craft::$app->getConfig()->getConfigFromFile('google-maps');
+        return $view->renderTemplate('google-maps/settings', [
+            'file' => $file,
+            'settings' => $this->getSettings(),
+        ]);
+    }
 
 }
