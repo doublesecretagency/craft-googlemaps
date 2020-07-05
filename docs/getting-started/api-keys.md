@@ -25,4 +25,4 @@ Add your new API keys to the Settings page...
 
 ## Testing your API keys
 
-If you have any problems with your Google Maps API keys, you can check out the [Diagnostics tool](/getting-started/diagnostics.md#testing-your-google-maps-api-keys) to get it all sorted out.
+If you have any problems with your Google Maps API keys, you can check out the [Diagnostics tool](/getting-started/diagnostics#testing-your-google-maps-api-keys) to get it all sorted out.

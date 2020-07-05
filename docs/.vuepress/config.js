@@ -80,8 +80,7 @@ module.exports = {
             // Major Concepts
             '/address-field/': [
                 '',
-                'field-settings',
-                'editing-an-address',
+                'settings',
                 'using-an-address-in-twig',
                 'frontend-form',
                 'vue',
