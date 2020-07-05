@@ -6,7 +6,7 @@
  *
  * @author    Double Secret Agency
  * @link      https://plugins.doublesecretagency.com/
- * @copyright Copyright (c) 2014 Double Secret Agency
+ * @copyright Copyright (c) 2014, 2020 Double Secret Agency
  */
 
 namespace doublesecretagency\googlemaps;
