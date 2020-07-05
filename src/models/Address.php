@@ -116,6 +116,12 @@ class Address extends Location
      */
     public function getElement()
     {
+        // If element ID does not exist, bail
+        if (!$this->elementId) {
+            return null;
+        }
+
+        // Return element containing this address
         return Craft::$app->getElements()->getElementById($this->elementId);
     }
 
@@ -126,6 +132,12 @@ class Address extends Location
      */
     public function getField()
     {
+        // If field ID does not exist, bail
+        if (!$this->fieldId) {
+            return null;
+        }
+
+        // Return field containing this address
         return Craft::$app->getFields()->getFieldById($this->fieldId);
     }
 

@@ -48,6 +48,14 @@ _float_ - Alias for `getDistance()`.
 
 ## Public Methods
 
+### `getElement()`
+
+Get the corrosponding element which contains this Address. It's possible that no element ID exists (for example, if the Address is created manually, instead of using data in the database).
+
+### `getField()`
+
+Get the corrosponding field which contains this Address. It's possible that no field ID exists (for example, if the Address is created manually, instead of using data in the database).
+
 ### `getDistance(coords = false, units = 'miles')`
 
 The distance between this address and your proximity search target. Will be returned in whatever unit of measurement (miles or kilometers) was specified in the proximity search parameters.
