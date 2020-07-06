@@ -16,6 +16,10 @@ The Location Model underpins both the Address Model and Visitor Model. This give
 
 The Lookup Model is a conduit for the [Geocoding Service](/services/geocoding-service/) to talk to the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start).
 
+## [Settings Model](/models/settings-model/)
+
+The Settings Model is primarily for internal use. You can generally ignore this model.
+
 # Pseudo-Model
 
 ## [Coordinates](/models/coordinates/)

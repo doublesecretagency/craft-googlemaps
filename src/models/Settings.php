@@ -61,9 +61,4 @@ class Settings extends Model
      */
     public $maxmindLicenseKey;
 
-//    /**
-//     * @var string|null Route to debug page.
-//     */
-//    public $debugRoute = 'smart-map/debug';
-
 }

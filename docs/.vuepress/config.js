@@ -132,6 +132,7 @@ module.exports = {
                 'lookup-model',
                 'ipstack-model',
                 'maxmind-model',
+                'settings-model',
                 'coordinates',
             ],
             '/services/': [
