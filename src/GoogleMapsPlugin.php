@@ -24,6 +24,7 @@ use doublesecretagency\googlemaps\services\Geolocation;
 use doublesecretagency\googlemaps\services\MapsJavascript;
 use doublesecretagency\googlemaps\services\MapsStatic;
 use doublesecretagency\googlemaps\services\ProximitySearch;
+use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
 use yii\base\Event;
 
@@ -104,14 +105,14 @@ class GoogleMapsPlugin extends Plugin
     {
         // Reference assets
         $view = Craft::$app->getView();
-//        $view->registerAssetBundle(SettingsAsset::class);
+        $view->registerAssetBundle(SettingsAsset::class);
 
         // Get data from config file
-        $file = Craft::$app->getConfig()->getConfigFromFile('google-maps');
+        $configFile = Craft::$app->getConfig()->getConfigFromFile('google-maps');
 
         // Load plugin settings template
         return $view->renderTemplate('google-maps/settings', [
-            'file' => $file,
+            'configFile' => $configFile,
             'settings' => $this->getSettings(),
         ]);
     }

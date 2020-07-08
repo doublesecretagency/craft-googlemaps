@@ -1,10 +1,110 @@
-{# file.serverKey           : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# file.browserKey          : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# file.geolocationService  : ipstack #}
-{# file.ipstackApiAccessKey : 7a7461cdcc19c69a10df9410be7837b1 #}
-{# file.maxmindService      : city #}
-{# file.maxmindUserId       : 94331 #}
-{# file.maxmindLicenseKey   : HHCPYPmfa9aO #}
+{% import '_includes/forms' as forms %}
+{% set dropdown = 'google-maps/_select' %}
+
+<h2>Google API Keys</h2>
+
+{{ forms.autosuggestField({
+    label: "Google API Server Key"|t('google-maps'),
+    instructions: "Used for address lookups"|t('google-maps'),
+    id: 'googleServerKey',
+    name: 'googleServerKey',
+    suggestEnvVars: true
+}) }}
+{#value: settings.googleServerKey,#}
+{#disabled: 'googleServerKey' in overrideKeys,#}
+{#warning: 'googleServerKey' in overrideKeys ? configWarning('googleServerKey', docsUrl),#}
+
+{{ forms.autosuggestField({
+    label: "Google API Browser Key"|t('google-maps'),
+    instructions: "Used for static & dynamic map rendering"|t('google-maps'),
+    id: 'googleBrowserKey',
+    name: 'googleBrowserKey',
+    suggestEnvVars: true
+}) }}
+{#value: settings.googleBrowserKey,#}
+{#disabled: 'googleBrowserKey' in overrideKeys,#}
+{#warning: 'googleBrowserKey' in overrideKeys ? configWarning('googleBrowserKey', docsUrl),#}
+
+<hr>
+
+<h2>Visitor Geolocation</h2>
+<p>Using a third-party geolocation service, it's possible to keep track of where your visitors are coming from.</p>
+
+{% include dropdown with {
+    attr: [
+        'v-model="settings.geolocationService"',
+        '@change="settings.showMap = (\'open\' === settings.geolocationService)"'
+    ],
+    config: {
+        label: "Geolocation Service"|t('google-maps'),
+        id: 'geolocation-service',
+        name: 'geolocationService',
+        instructions: "Select an external service to power the visitor geolocation."|t('google-maps'),
+        value: settings.geolocationService ?? '',
+        options: [
+            { value: '',  label: "None"|t('google-maps') },
+            { value: 'ipstack',  label: "ipstack" },
+            { value: 'maxmind', label: "MaxMind" },
+        ],
+    }
+} %}
+
+{#<div id="ipstack" v-show="'ipstack' === geolocationService">#}
+<div id="ipstack">
+    {{ forms.autosuggestField({
+        label: "API Access Key"|t,
+        id: 'ipstackAccessKey',
+        name: 'ipstackAccessKey',
+        suggestEnvVars: true
+    }) }}
+{#    value: settings.ipstackAccessKey,#}
+{#    disabled: 'ipstackAccessKey' in overrideKeys,#}
+{#    warning: 'ipstackAccessKey' in overrideKeys ? configWarning('ipstackAccessKey', docsUrl),#}
+</div>
+
+{#<div id="maxmind" v-show="'maxmind' === geolocationService">#}
+<div id="maxmind">
+    {{ forms.selectField({
+        id: 'maxmindService',
+        name: 'maxmindService',
+        options: {
+            ''             : '(service disabled)'|t('google-maps'),
+            'country'      : 'GeoIP2 Country',
+            'city'         : 'GeoIP2 City',
+            'city_isp_org' : 'GeoIP2 City/ISP/Org',
+            'omni'         : 'GeoIP2 Omni',
+        },
+    }) }}
+{#    value: settings.maxmindService,#}
+{#    disabled: 'maxmindService' in overrideKeys,#}
+{#    warning: 'maxmindService' in overrideKeys ? configWarning('maxmindService', docsUrl)#}
+    {{ forms.autosuggestField({
+        label: "User ID"|t('google-maps'),
+        id: 'maxmindUserId',
+        name: 'maxmindUserId',
+        suggestEnvVars: true
+    }) }}
+{#    value: settings.maxmindUserId,#}
+{#    disabled: 'maxmindUserId' in overrideKeys,#}
+{#    warning: 'maxmindUserId' in overrideKeys ? configWarning('maxmindUserId', docsUrl),#}
+    {{ forms.autosuggestField({
+        label: "License Key"|t('google-maps'),
+        id: 'maxmindLicenseKey',
+        name: 'maxmindLicenseKey',
+        suggestEnvVars: true
+    }) }}
+{#    value: settings.maxmindLicenseKey,#}
+{#    disabled: 'maxmindLicenseKey' in overrideKeys,#}
+{#    warning: 'maxmindLicenseKey' in overrideKeys ? configWarning('maxmindLicenseKey', docsUrl),#}
+</div>
+
+{# configFile.serverKey           : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
+{# configFile.browserKey          : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
+{# configFile.geolocationService  : ipstack #}
+{# configFile.ipstackApiAccessKey : 7a7461cdcc19c69a10df9410be7837b1 #}
+{# configFile.maxmindService      : city #}
+{# configFile.maxmindUserId       : 94331 #}
+{# configFile.maxmindLicenseKey   : HHCPYPmfa9aO #}
 
 {# settings.serverKey           : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
 {# settings.browserKey          : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
@@ -13,27 +113,3 @@
 {# settings.maxmindService      : city #}
 {# settings.maxmindUserId       : 94331 #}
 {# settings.maxmindLicenseKey   : HHCPYPmfa9aO #}
-
-<p>plugin settings go here</p>
-
-<div>
-    {{ file.browserKey }}
-</div>
-<div>
-{#    {% dd(settings) %}#}
-</div>
-
-<ul style="margin-top:20px">
-    <li>- Google API keys</li>
-    <li>
-        - Geolocation API keys
-        <ul>
-            <li>--- ipstack</li>
-            <li>--- MaxMind</li>
-        </ul>
-    </li>
-</ul>
-
-<p>Use Vue to power Geolocation options?</p>
-
-<p>Ditch the troubleshooting page(s) for now.</p>
