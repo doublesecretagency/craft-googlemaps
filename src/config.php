@@ -16,19 +16,19 @@
 
 return [
 
-//    // Google Maps API keys (required)
-//    'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
-//    'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY'),
+    // Google Maps API keys (required)
+    //'googleApiServerKey' => getenv('GOOGLEMAPS_GOOGLEAPISERVERKEY'),
+    //'googleApiBrowserKey' => getenv('GOOGLEMAPS_GOOGLEAPIBROWSERKEY'),
 
-//    // Optional geolocation service ('ipstack', 'maxmind', or null)
-//    'geolocationService' => null,
+    // Optional geolocation service ('ipstack', 'maxmind', or null)
+    //'geolocationService' => null,
 
-//    // ipstack (only if using the ipstack service)
-//    'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY'),
+    // ipstack (only needed if using the ipstack service)
+    //'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY'),
 
-//    // MaxMind (only if using the MaxMind service)
-//    'maxmindService' => getenv('MAXMIND_SERVICE'),
-//    'maxmindUserId' => getenv('MAXMIND_USERID'),
-//    'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
+    // MaxMind (only needed if using the MaxMind service)
+    //'maxmindService' => getenv('MAXMIND_SERVICE'),
+    //'maxmindUserId' => getenv('MAXMIND_USERID'),
+    //'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
 
 ];

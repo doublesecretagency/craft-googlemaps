@@ -1,0 +1,23 @@
+{% from '_includes/forms' import autosuggestField %}
+
+{# Field to be referenced in the settings #}
+{% set key = config.name %}
+
+{# Determine whether a config value is set #}
+{% set configOverride = (key in configFile|keys) %}
+
+{# Config override warning message #}
+{% set message = "This is being set in the config file. [{file}]"|t('google-maps', {
+    file: '`config/google-maps.php`'
+}) %}
+
+{# Append additional config settings #}
+{% set config = config|merge({
+    value: ((configFile[key] ?? settings[key] ?? null) ?: null),
+    disabled: configOverride,
+    warning: (configOverride ? message),
+    suggestEnvVars: not configOverride
+}) %}
+
+{# Render input field #}
+{{ autosuggestField(config) }}

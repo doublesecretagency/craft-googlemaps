@@ -29,12 +29,12 @@ class Settings extends Model
     /**
      * @var string|null Google API Server Key.
      */
-    public $serverKey;
+    public $googleApiServerKey;
 
     /**
      * @var string|null Google API Browser Key.
      */
-    public $browserKey;
+    public $googleApiBrowserKey;
 
     /**
      * @var string|null Optional geolocation service. Can be 'ipstack', 'maxmind', or null.

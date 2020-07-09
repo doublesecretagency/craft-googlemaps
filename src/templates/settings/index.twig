@@ -1,29 +1,23 @@
 {% import '_includes/forms' as forms %}
-{% set dropdown = 'google-maps/_select' %}
+{% set autosuggest = 'google-maps/_form/autosuggest' %}
+{% set dropdown = 'google-maps/_form/select' %}
 
 <h2>Google API Keys</h2>
 
-{{ forms.autosuggestField({
-    label: "Google API Server Key"|t('google-maps'),
-    instructions: "Used for address lookups"|t('google-maps'),
-    id: 'googleServerKey',
-    name: 'googleServerKey',
-    suggestEnvVars: true
-}) }}
-{#value: settings.googleServerKey,#}
-{#disabled: 'googleServerKey' in overrideKeys,#}
-{#warning: 'googleServerKey' in overrideKeys ? configWarning('googleServerKey', docsUrl),#}
-
-{{ forms.autosuggestField({
-    label: "Google API Browser Key"|t('google-maps'),
-    instructions: "Used for static & dynamic map rendering"|t('google-maps'),
-    id: 'googleBrowserKey',
-    name: 'googleBrowserKey',
-    suggestEnvVars: true
-}) }}
-{#value: settings.googleBrowserKey,#}
-{#disabled: 'googleBrowserKey' in overrideKeys,#}
-{#warning: 'googleBrowserKey' in overrideKeys ? configWarning('googleBrowserKey', docsUrl),#}
+{% include autosuggest with {
+    config: {
+        label: "Google API Server Key"|t('google-maps'),
+        instructions: "Used for address lookups"|t('google-maps'),
+        name: 'googleApiServerKey',
+    }
+} %}
+{% include autosuggest with {
+    config: {
+        label: "Google API Browser Key"|t('google-maps'),
+        instructions: "Used for static & dynamic map rendering"|t('google-maps'),
+        name: 'googleApiBrowserKey',
+    }
+} %}
 
 <hr>
 
@@ -42,74 +36,53 @@
         instructions: "Select an external service to power the visitor geolocation."|t('google-maps'),
         value: settings.geolocationService ?? '',
         options: [
-            { value: '',  label: "None"|t('google-maps') },
-            { value: 'ipstack',  label: "ipstack" },
+            { value: '',        label: "None"|t('google-maps') },
+            { value: 'ipstack', label: "ipstack" },
             { value: 'maxmind', label: "MaxMind" },
         ],
     }
 } %}
 
-{#<div id="ipstack" v-show="'ipstack' === geolocationService">#}
-<div id="ipstack">
-    {{ forms.autosuggestField({
-        label: "API Access Key"|t,
-        id: 'ipstackAccessKey',
-        name: 'ipstackAccessKey',
-        suggestEnvVars: true
-    }) }}
-{#    value: settings.ipstackAccessKey,#}
-{#    disabled: 'ipstackAccessKey' in overrideKeys,#}
-{#    warning: 'ipstackAccessKey' in overrideKeys ? configWarning('ipstackAccessKey', docsUrl),#}
+{#<div id="ipstack" class="field" v-show="'ipstack' === geolocationService">#}
+<div id="ipstack" class="field">
+    <h2>ipstack Settings</h2>
+    {% include autosuggest with {
+        config: {
+            label: "API Access Key"|t,
+            name: 'ipstackApiAccessKey',
+        }
+    } %}
 </div>
 
-{#<div id="maxmind" v-show="'maxmind' === geolocationService">#}
-<div id="maxmind">
-    {{ forms.selectField({
-        id: 'maxmindService',
-        name: 'maxmindService',
-        options: {
-            ''             : '(service disabled)'|t('google-maps'),
-            'country'      : 'GeoIP2 Country',
-            'city'         : 'GeoIP2 City',
-            'city_isp_org' : 'GeoIP2 City/ISP/Org',
-            'omni'         : 'GeoIP2 Omni',
-        },
-    }) }}
-{#    value: settings.maxmindService,#}
-{#    disabled: 'maxmindService' in overrideKeys,#}
-{#    warning: 'maxmindService' in overrideKeys ? configWarning('maxmindService', docsUrl)#}
-    {{ forms.autosuggestField({
-        label: "User ID"|t('google-maps'),
-        id: 'maxmindUserId',
-        name: 'maxmindUserId',
-        suggestEnvVars: true
-    }) }}
-{#    value: settings.maxmindUserId,#}
-{#    disabled: 'maxmindUserId' in overrideKeys,#}
-{#    warning: 'maxmindUserId' in overrideKeys ? configWarning('maxmindUserId', docsUrl),#}
-    {{ forms.autosuggestField({
-        label: "License Key"|t('google-maps'),
-        id: 'maxmindLicenseKey',
-        name: 'maxmindLicenseKey',
-        suggestEnvVars: true
-    }) }}
-{#    value: settings.maxmindLicenseKey,#}
-{#    disabled: 'maxmindLicenseKey' in overrideKeys,#}
-{#    warning: 'maxmindLicenseKey' in overrideKeys ? configWarning('maxmindLicenseKey', docsUrl),#}
+{#<div id="maxmind" class="field" v-show="'maxmind' === geolocationService">#}
+<div id="maxmind" class="field">
+    <h2>MaxMind Settings</h2>
+    {% include dropdown with {
+        config: {
+            label: "GeoIP2 Service",
+            id: 'maxmind-service',
+            name: 'maxmindService',
+            instructions: "Please specify which GeoIP2 Precision Web Service you have subscribed to."|t('google-maps'),
+            value: settings.maxmindService ?? '',
+            options: [
+                { value: '',              label: ''},
+                { value: 'country',       label: 'GeoIP2 Country'},
+                { value: 'city',          label: 'GeoIP2 City'},
+                { value: 'city_isp_org',  label: 'GeoIP2 City/ISP/Org'},
+                { value: 'omni',          label: 'GeoIP2 Omni'},
+            ],
+        }
+    } %}
+    {% include autosuggest with {
+        config: {
+            label: "User ID"|t('google-maps'),
+            name: 'maxmindUserId',
+        }
+    } %}
+    {% include autosuggest with {
+        config: {
+            label: "License Key"|t('google-maps'),
+            name: 'maxmindLicenseKey',
+        }
+    } %}
 </div>
-
-{# configFile.serverKey           : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# configFile.browserKey          : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# configFile.geolocationService  : ipstack #}
-{# configFile.ipstackApiAccessKey : 7a7461cdcc19c69a10df9410be7837b1 #}
-{# configFile.maxmindService      : city #}
-{# configFile.maxmindUserId       : 94331 #}
-{# configFile.maxmindLicenseKey   : HHCPYPmfa9aO #}
-
-{# settings.serverKey           : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# settings.browserKey          : AIzaSyBh87GCM8PQKSGre408EtpK0Fpr2Y7vAmQ #}
-{# settings.geolocationService  : ipstack #}
-{# settings.ipstackApiAccessKey : 7a7461cdcc19c69a10df9410be7837b1 #}
-{# settings.maxmindService      : city #}
-{# settings.maxmindUserId       : 94331 #}
-{# settings.maxmindLicenseKey   : HHCPYPmfa9aO #}
