@@ -10,13 +10,13 @@ If you need to dynamically update the Google API Keys, take a look at the method
 
 ## Public Properties
 
-### `serverKey`
+### `googleApiServerKey`
 
-_string_ - Google API Server Key.
+_string_ - (Required) Google API Server Key.
 
-### `browserKey`
+### `googleApiBrowserKey`
 
-_string_ - Google API Browser Key.
+_string_ - (Required) Google API Browser Key.
 
 ::: warning REQUIRED API KEYS
 The Google API Server Key and Google API Browser Key are both **required**. Please make sure your setup includes valid API keys to access the Google services.
