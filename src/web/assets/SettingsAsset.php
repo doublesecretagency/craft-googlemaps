@@ -32,11 +32,9 @@ class SettingsAsset extends AssetBundle
         $this->sourcePath = '@doublesecretagency/googlemaps/web/assets/dist';
         $this->depends = [
             CpAsset::class,
-//            VueAsset::class,
         ];
 
         $this->js = [
-            'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', // TEMP for development
             'js/settings.js',
         ];
 
