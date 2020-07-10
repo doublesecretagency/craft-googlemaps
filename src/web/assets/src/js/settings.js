@@ -1,26 +1,34 @@
-// import AddressField from './../vue/address/address';
-// import SubfieldManager from './../vue/address-settings/subfield-manager';
-// import DefaultCoords from './../vue/address-settings/default-coords';
+// List of all valid geolocation services
+var validServices = ['','ipstack','maxmind'];
 
-// Disable silly message
-Vue.config.productionTip = false;
+// Dropdown menu of geolocation services
+var dropdown = document.getElementById('settings-geolocation-service');
 
-// Create Vue instance
-window.settings = new Vue({
-    el: '#main-content',
-    components: {
-        // 'address-field': AddressField,
-        // 'subfield-manager': SubfieldManager,
-        // 'default-coords': DefaultCoords
-    },
-    data: {
-        // settings: settings,
-        // data: data,
-        // icons: icons
+// Display settings of the currently selected service
+window.updateGeolocationService = function () {
+
+    // Get specified service
+    var newService = dropdown.value;
+
+    // If invalid service, bail
+    if (-1 === validServices.indexOf(newService)) {
+        console.log('Invalid service specified.');
+        return;
     }
-});
 
-// // Initialize Vue instance
-// window.initAddressFieldSettings = () => {
-//     window.settings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
-// }
+    // Get DOM elements
+    var settings = {
+        'ipstack': document.getElementById('settings-ipstack'),
+        'maxmind': document.getElementById('settings-maxmind'),
+    }
+
+    // Hide all optional settings
+    settings['ipstack'].style.display = 'none';
+    settings['maxmind'].style.display = 'none';
+
+    // If a service was specified (not null), show it
+    if (newService) {
+        settings[newService].style.display = 'block';
+    }
+
+}

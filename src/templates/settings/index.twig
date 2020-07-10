@@ -2,8 +2,11 @@
 {% set autosuggest = 'google-maps/_form/autosuggest' %}
 {% set dropdown = 'google-maps/_form/select' %}
 
-<h2>Google API Keys</h2>
+{# On page load, show correct geolocation settings pane #}
+{% js 'updateGeolocationService()' %}
 
+<h2>Google API Keys</h2>
+<p>In order to use the various Google Maps APIs, you will need to create adequate access credentials.</p>
 {% include autosuggest with {
     config: {
         label: "Google API Server Key"|t('google-maps'),
@@ -23,11 +26,9 @@
 
 <h2>Visitor Geolocation</h2>
 <p>Using a third-party geolocation service, it's possible to keep track of where your visitors are coming from.</p>
-
 {% include dropdown with {
     attr: [
-        'v-model="settings.geolocationService"',
-        '@change="settings.showMap = (\'open\' === settings.geolocationService)"'
+        'onchange="updateGeolocationService()"'
     ],
     config: {
         label: "Geolocation Service"|t('google-maps'),
@@ -36,15 +37,14 @@
         instructions: "Select an external service to power the visitor geolocation."|t('google-maps'),
         value: settings.geolocationService ?? '',
         options: [
-            { value: '',        label: "None"|t('google-maps') },
-            { value: 'ipstack', label: "ipstack" },
-            { value: 'maxmind', label: "MaxMind" },
+            { value: '',        label: 'None'|t('google-maps') },
+            { value: 'ipstack', label: 'ipstack' },
+            { value: 'maxmind', label: 'MaxMind' },
         ],
     }
 } %}
 
-{#<div id="ipstack" class="field" v-show="'ipstack' === geolocationService">#}
-<div id="ipstack" class="field">
+<div id="ipstack" class="pane" style="display:none">
     <h2>ipstack Settings</h2>
     {% include autosuggest with {
         config: {
@@ -54,8 +54,7 @@
     } %}
 </div>
 
-{#<div id="maxmind" class="field" v-show="'maxmind' === geolocationService">#}
-<div id="maxmind" class="field">
+<div id="maxmind" class="pane" style="display:none">
     <h2>MaxMind Settings</h2>
     {% include dropdown with {
         config: {
@@ -65,11 +64,11 @@
             instructions: "Please specify which GeoIP2 Precision Web Service you have subscribed to."|t('google-maps'),
             value: settings.maxmindService ?? '',
             options: [
-                { value: '',              label: ''},
-                { value: 'country',       label: 'GeoIP2 Country'},
-                { value: 'city',          label: 'GeoIP2 City'},
-                { value: 'city_isp_org',  label: 'GeoIP2 City/ISP/Org'},
-                { value: 'omni',          label: 'GeoIP2 Omni'},
+                { value: '',              label: '' },
+                { value: 'country',       label: 'GeoIP2 Country' },
+                { value: 'city',          label: 'GeoIP2 City' },
+                { value: 'city_isp_org',  label: 'GeoIP2 City/ISP/Org' },
+                { value: 'omni',          label: 'GeoIP2 Omni' },
             ],
         }
     } %}
