@@ -50,6 +50,7 @@ module.exports = {
                     {text: 'Twig Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
                     {text: 'Config File', link: '/config/'},
+                    {text: 'Plugin Settings', link: '/settings/'},
                 ]
             },
             {
@@ -111,7 +112,7 @@ module.exports = {
             ],
             '/geolocation/': [
                 '',
-                'providers',
+                'service-providers',
                 'html5',
                 'cookie',
                 'diagnostics',
@@ -158,6 +159,9 @@ module.exports = {
                 'google-maps-objects',
             ],
             '/config/': [
+                '',
+            ],
+            '/settings/': [
                 '',
             ],
 
