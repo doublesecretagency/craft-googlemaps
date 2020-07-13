@@ -6,7 +6,9 @@ Here's how you'll go about creating both keys, and entering them into the plugin
 
 ## Generating your API keys
 
-[Instructions and screenshots of the Google interface]
+(INSTRUCTIONS)
+
+(SCREENSHOTS OF THE GOOGLE INTERFACE)
 
 ## Selecting which services to authorize
 
@@ -20,9 +22,16 @@ You'll need to enable the following services within the Google interface...
 
 Add your new API keys to the Settings page...
 
-<img :src="$withBase('/images/getting-started/api-fields.png')" alt="Screenshot of Google Maps API keys as stored in the plugin's settings page">
+<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
 
+You can find the settings page by visiting [Settings > Google Maps](/settings/) in your control panel.
+
+<!--
+
+@TODO: Create API key diagnostics tool
 
 ## Testing your API keys
 
-If you have any problems with your Google Maps API keys, you can check out the [Diagnostics tool](/getting-started/diagnostics#testing-your-google-maps-api-keys) to get it all sorted out.
+If you have any problems with your Google Maps API keys, you can check out the [Diagnostics tool](/getting-started/diagnostics/#testing-your-google-maps-api-keys) to get it all sorted out.
+
+-->

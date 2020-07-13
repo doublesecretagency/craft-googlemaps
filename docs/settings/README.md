@@ -1,12 +1,14 @@
 # Plugin Settings
 
-The plugin's Settings page is a standard part of many Craft plugins.
+In order to access the settings, log in to the control panel and visit **Settings > Google Maps**. This is where you will be able to manage all API connection information regarding the Google API, as well as any credentials for whichever geolocation service you may be using. 
 
-## Settings > Google Maps
+## Google API Keys
 
-(SCREENSHOT OF FIRST IMPRESSION)
+In order to use the Google API, access keys **are required**. You will need to ensure that the credentials are configured correctly, and have access to the correct Google APIs. 
 
-All about the plugin Settings page.
+<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
+
+For more information about configuring the Google API keys, please [read more here...](/getting-started/api-keys/)
 
 ## Geolocation Services
 
@@ -18,21 +20,25 @@ If you selected "None", then there are no other settings to configure. IP-based 
 
 ### ipstack
 
-(SCREENSHOT OF IPSTACK SETTINGS PANE)
+<img :src="$withBase('/images/geolocation/ipstack-settings.png')" alt="Screenshot of Google API keys settings">
 
-Brief overview of what the settings mean.
+ - **API Access Key** - (paraphrase description from their website)
 
 ### MaxMind
 
-(SCREENSHOT OF MAXMIND SETTINGS PANE)
+<img :src="$withBase('/images/geolocation/maxmind-settings.png')" alt="Screenshot of Google API keys settings">
 
-Brief overview of what the settings mean.
+ - **GeoIP2 Service** - (paraphrase description from their website)
+ - **User ID** - (paraphrase description from their website)
+ - **License Key** - (paraphrase description from their website)
 
 :::warning MORE INFORMATION
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).
 :::
 
 ## PHP Config File
+
+You can also configure all of this using an environmentally-aware [PHP config file...](/config/)
 
 :::tip SETTINGS MODEL
 Internally, the plugin's settings are managed by the [Settings Model](/models/settings-model/). However, you will never need to interact with the Settings Model directly. Your settings should be handled exclusively via the control panel page, and/or a PHP config file.
