@@ -1,14 +1,15 @@
 # Address Model
 
-The properties and methods of the Address Model are identical whether you are accessing them via Twig or PHP.
+The properties and methods of an Address Model are identical whether you are accessing them via Twig or PHP.
 
+::: code
 ```twig
 {% set address = entry.myAddressField %}
 ```
-
 ```php
 $address = $entry->myAddressField;
 ```
+:::
 
 ::: warning ADDITIONAL PROPERTIES AND METHODS
 The Address Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.

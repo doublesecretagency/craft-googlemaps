@@ -4,42 +4,44 @@ In order to access the settings, log in to the control panel and visit **Setting
 
 ## Google API Keys
 
-In order to use the Google API, access keys **are required**. You will need to ensure that the credentials are configured correctly, and have access to the correct Google APIs. 
-
-<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
+In order to use the Google API, access keys **are required**. You will need to ensure that the credentials are configured correctly, and have access to the correct Google APIs.
 
 For more information about configuring the Google API keys, please [read more here...](/getting-started/api-keys/)
 
+<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
+
 ## Geolocation Services
 
-All about the various services.
+Need to know where your visitors are coming from? Using a third-party geolocation service, you can (roughly) pinpoint those visitors. With that data in hand, you can then use it to better control the experience of your users.
+
+For more information, see the [Visitor Geolocation docs...](/geolocation/)
+
+<img :src="$withBase('/images/geolocation/geolocation-services-dropdown.png')" alt="Screenshot of geolocation service provider options" style="max-width:600px">
 
 ### None
 
-If you selected "None", then there are no other settings to configure. IP-based geolocation will not be performed. This is the default setting.
+No IP-based geolocation will be performed. **This is the default value.**
 
 ### ipstack
 
 <img :src="$withBase('/images/geolocation/ipstack-settings.png')" alt="Screenshot of Google API keys settings">
 
- - **API Access Key** - (paraphrase description from their website)
+ - **API Access Key** - The unique authentication key used to gain access to the ipstack API.
 
 ### MaxMind
 
 <img :src="$withBase('/images/geolocation/maxmind-settings.png')" alt="Screenshot of Google API keys settings">
 
- - **GeoIP2 Service** - (paraphrase description from their website)
- - **User ID** - (paraphrase description from their website)
- - **License Key** - (paraphrase description from their website)
+ - **GeoIP2 Service** - Select which GeoIP2 Precision Service has been subscribed to.
+ - **User ID** - Your user ID for pinging the MaxMind API.
+ - **License Key** - Your license key for pinging the MaxMind API.
 
 :::warning MORE INFORMATION
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).
 :::
 
-## PHP Config File
+---
 
-You can also configure all of this using an environmentally-aware [PHP config file...](/config/)
-
-:::tip SETTINGS MODEL
+:::tip FOR INTERNAL USE ONLY
 Internally, the plugin's settings are managed by the [Settings Model](/models/settings-model/). However, you will never need to interact with the Settings Model directly. Your settings should be handled exclusively via the control panel page, and/or a PHP config file.
 :::

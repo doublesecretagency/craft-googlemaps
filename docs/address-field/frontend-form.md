@@ -7,25 +7,18 @@ If you'd like to use an Address field in a standard [front-end form](https://doc
 ```html
 <label>Street Address</label>
 <input type="text" name="fields[myAddressField][street1]">
-
 <label>Apartment or Suite</label>
 <input type="text" name="fields[myAddressField][street2]">
-
 <label>City</label>
 <input type="text" name="fields[myAddressField][city]">
-
 <label>State</label>
 <input type="text" name="fields[myAddressField][state]">
-
 <label>Zip Code</label>
 <input type="text" name="fields[myAddressField][zip]">
-
 <label>Country</label>
 <input type="text" name="fields[myAddressField][country]">
-
 <label>Latitude</label>
 <input type="text" name="fields[myAddressField][lat]">
-
 <label>Longitude</label>
 <input type="text" name="fields[myAddressField][lng]">
 ```

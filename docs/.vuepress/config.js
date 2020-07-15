@@ -44,13 +44,12 @@ module.exports = {
             {
                 text: 'Architecture',
                 items: [
+                    {text: 'Settings', link: '/settings/'},
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
                     {text: 'Events', link: '/events/'},
                     {text: 'Twig Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
-                    {text: 'Config File', link: '/config/'},
-                    {text: 'Plugin Settings', link: '/settings/'},
                 ]
             },
             {
@@ -158,11 +157,9 @@ module.exports = {
                 '',
                 'google-maps-objects',
             ],
-            '/config/': [
-                '',
-            ],
             '/settings/': [
                 '',
+                'config',
             ],
 
             // Guides
