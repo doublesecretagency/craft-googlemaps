@@ -12,7 +12,7 @@ For more information about configuring the Google API keys, please [read more he
 
 ## Geolocation Services
 
-Need to know where your visitors are coming from? Using a third-party geolocation service, you can (roughly) pinpoint those visitors. With that data in hand, you can then use it to better control the experience of your users.
+Need to know where your visitors are coming from? You can use a third-party geolocation service to (roughly) pinpoint each visitor. Once you have the visitor geolocation results, you can use that data to better personalize a visitor's experience.
 
 For more information, see the [Visitor Geolocation docs...](/geolocation/)
 

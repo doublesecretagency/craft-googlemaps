@@ -112,9 +112,9 @@ module.exports = {
             '/geolocation/': [
                 '',
                 'service-providers',
-                'html5',
+                // 'html5', // TODO: Add HTML5 geolocation (?)
                 'cookie',
-                'diagnostics',
+                // 'diagnostics', // TODO: Add diagnostics tools
             ],
             '/geocoding/': [
                 '',

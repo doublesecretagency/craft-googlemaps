@@ -19,8 +19,14 @@ If you are not using geolocation, simply set this to "None". This will be the de
 
 ## ipstack
 
-Lorem ipsum about ipstack.
+The quickest and easiest way to add visitor geolocation to your site. [ipstack](https://ipstack.com/) provides solid and consistent geolocation results. This is the **recommended** solution, because it is free and easy to use.
 
 ## MaxMind
 
-Lorem ipsum about MaxMind.
+Another option is to use the [MaxMind](https://www.maxmind.com/) geolocation service. It's a bit more complicated to set up, with a recurring monthly cost associated. MaxMind is a slightly older, enterprise-level solution.
+
+<hr>
+
+:::tip YOUR CHOICE
+If you choose to enable visitor geolocation, the choice of geolocation services is entirely up to you. Both services will return reliable, high-quality geolocation data.
+:::

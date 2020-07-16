@@ -1,6 +1,6 @@
 # PHP Config File
 
-All of the config settings available on the plugin's [Settings page](/settings/) can also be managed via PHP in a config file. By setting these values in `google-maps.php`, they take precedence over whatever may be set in the control panel.
+All of the config settings available on the plugin's [Settings page](/settings/) can also be managed via PHP in a config file. By setting these values in `config/google-maps.php`, they take precedence over whatever may be set in the control panel.
 
 ```shell
 # Copy this file...
@@ -10,7 +10,7 @@ All of the config settings available on the plugin's [Settings page](/settings/)
 /config/google-maps.php
 ```
 
-The `google-maps.php` file, much like your `db.php` and `general.php` files, is [environmentally aware](https://docs.craftcms.com/v3/config/environments.html#config-files). You can also pass in environment values using the `getenv` PHP method.
+Much like the `db.php` and `general.php` files, `google-maps.php` is [environmentally aware](https://docs.craftcms.com/v3/config/environments.html#config-files). You can also pass in environment values using the `getenv` PHP method.
 
 :::warning OPTIONAL GEOLOCATION SERVICES
 If you are using a third-party visitor geolocation service, then you may want to specify those credentials as well. The credentials you include depend entirely on which geolocation service you are using.
