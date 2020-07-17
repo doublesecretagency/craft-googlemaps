@@ -87,8 +87,8 @@ class Maxmind extends Model
         $settings = GoogleMapsPlugin::$plugin->getSettings();
 
         // Get MaxMind access credentials
-        $userId = $settings->maxmindUserId;
-        $licenseKey = $settings->maxmindLicenseKey;
+        $userId = Craft::parseEnv($settings->maxmindUserId);
+        $licenseKey = Craft::parseEnv($settings->maxmindLicenseKey);
         $service = $settings->maxmindService;
 
         // If service is disabled

@@ -84,7 +84,7 @@ class Ipstack extends Model
     private static function _pingEndpoint($ip, $parameters)
     {
         // Get ipstack access credentials
-        $parameters['access_key'] = GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey;
+        $parameters['access_key'] = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey);
 
         // If the IP is missing or invalid, use "check" to autodetect
         if (!$ip || !filter_var($ip, FILTER_VALIDATE_IP)) {
