@@ -58,12 +58,7 @@ class Address extends Location
     public $fieldId;
 
     /**
-     * @var string|null Properly formatted address according to the Google API.
-     */
-    public $formatted;
-
-    /**
-     * @var string|null Complete raw JSON address info from Google API.
+     * @var array|null Raw JSON response data from original Google API call.
      */
     public $raw;
 
@@ -142,6 +137,23 @@ class Address extends Location
     }
 
     // ========================================================================= //
+
+    /**
+     * Returns the address in a single nicely-formatted line.
+     *
+     * @return string
+     */
+    public function getFormatted(): string
+    {
+//        1. Properly formatted address according to the Google API.
+//        2. Formatted according to old-school `format()` method.
+//        3. Fallback to empty string
+        return '';
+
+        // MUST RETURN A SINGLE LINE, WITH NO LINE BREAKS!!
+
+        // Does this replace the `format()` method entirely?
+    }
 
     /**
      * Manually formats the address.

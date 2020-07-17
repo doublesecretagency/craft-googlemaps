@@ -29,7 +29,7 @@ googleMaps.lookup('123 Main St')
 ```php
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
-GoogleMaps::lookup('123 Main St')
+$results = GoogleMaps::lookup('123 Main St');
 ```
 
 [_See more Geocoding in PHP..._](/geocoding/in-php/)
@@ -38,17 +38,18 @@ The `googleMaps.lookup` Twig method is the same function as the `GoogleMaps::loo
 
 The following two approaches are also identical. The first example is the "quicker" way to call the `lookup` method, but the second example is the more "traditional" way. Either approach is acceptable, they both point to the exact same function. 
 
+:::code
 ```php
 use doublesecretagency\googlemaps\services\Geocoding;
 
-Geocoding::lookup('123 Main St')
+$results = Geocoding::lookup('123 Main St');
 ```
-
 ```php
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
-GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St')
+$results = GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St');
 ```
+:::
 
 All of these `lookup` methods will return the same thing: a [Lookup Model](/models/lookup-model/). There isn't much you can do with a Lookup Model directly, until you append `.all()` (or `.one()`, or `.coords()`) onto the end of it.
 

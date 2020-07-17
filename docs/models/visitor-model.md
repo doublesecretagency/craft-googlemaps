@@ -2,16 +2,16 @@
 
 The properties and methods of the Visitor Model are identical whether you are accessing them via Twig or PHP.
 
+:::code
 ```twig
 {% set visitor = googleMaps.getVisitor() %}
 ```
-
 ```php
-$visitor = GoogleMaps::getVisitor();
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
-// Which is an alias for...
-$visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
+$visitor = GoogleMaps::getVisitor();
 ```
+:::
 
 In all cases, `visitor` will be a Visitor Model.
 
@@ -42,3 +42,7 @@ _string_ - The state determined by the geolocation lookup.
 ### `country`
 
 _string_ - The country determined by the geolocation lookup.
+
+### `raw`
+
+_object_ - The original data used to create this Visitor Model. Contains the full response from the original geolocation service.

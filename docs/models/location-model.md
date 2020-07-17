@@ -16,16 +16,6 @@ _float_ - Longitude of location.
 
 _object_ - Alias for `getCoords()`.
 
-### `data`
-
-_object_ - The raw original data returned by the service which generated the model.
-
-::: tip What information is contained in "data"?
-If the model is an [Address Model](/models/address-model/), the `data` will contain a subset of the Google API geocoding results.
-
-If the model is a [Visitor Model](/models/visitor-model/), the `data` will contain whatever was returned by the geolocation service.
-:::
-
 ## Public Methods
 
 ### `hasCoords()`

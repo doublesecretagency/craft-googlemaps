@@ -19,6 +19,10 @@ You can access `lat` and `lng` just as easily as `street1` and `street2`.
 
 ## Public Properties
 
+### `raw`
+
+_object_ - The original data used to create this Address Model. Contains the full response from the original Google API call.
+
 ### `street1`
 
 _string_ - The first line of the street address. Usually contains the street name & number of the location.

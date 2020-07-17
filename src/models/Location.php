@@ -36,11 +36,6 @@ class Location extends Model
     public $lng;
 
     /**
-     * @var mixed|null The raw original data returned by the service which generated the model.
-     */
-    public $data;
-
-    /**
      * Returns a formatted set of coordinates for this location.
      *
      * @return array

@@ -58,4 +58,9 @@ class Visitor extends Location
      */
     public $country;
 
+    /**
+     * @var array|null Raw JSON response data from original call to the geolocation service.
+     */
+    public $raw;
+
 }
