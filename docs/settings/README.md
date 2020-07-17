@@ -32,9 +32,9 @@ No IP-based geolocation will be performed. **This is the default value.**
 
 <img :src="$withBase('/images/geolocation/maxmind-settings.png')" alt="Screenshot of Google API keys settings">
 
- - **GeoIP2 Service** - Select which GeoIP2 Precision Service has been subscribed to.
  - **User ID** - Your user ID for pinging the MaxMind API.
  - **License Key** - Your license key for pinging the MaxMind API.
+ - **GeoIP2 Service** - Select which GeoIP2 Precision Service has been subscribed to.
 
 :::warning MORE INFORMATION
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).

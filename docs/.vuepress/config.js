@@ -74,7 +74,7 @@ module.exports = {
             '/getting-started/': [
                 '',
                 'api-keys',
-                'diagnostics',
+                // 'diagnostics', // TODO: Add diagnostics tools
             ],
 
             // Major Concepts
