@@ -2,20 +2,28 @@
 {% set autosuggest = 'google-maps/_form/autosuggest' %}
 {% set dropdown = 'google-maps/_form/select' %}
 
+{# Whether to display the page in "Welcome" mode #}
+{% set welcome = craft.app.request.getQueryParam('welcome') %}
+
 {# Path to documentation #}
 {% set docs = 'https://plugins.doublesecretagency.com/google-maps' %}
 
 {# On page load, show correct geolocation settings pane #}
 {% js 'updateGeolocationService()' %}
 
-{% if true %}
+{# Show intro message #}
+{% if welcome %}
+    {% set iconUrl = view.getAssetManager().getPublishedUrl('@doublesecretagency/googlemaps/icon.svg', true) %}
     <div class="pane" style="">
-        <h2>Welcome! Thanks for using the Google Maps plugin. &nbsp;🎉</h2>
-        <p>Follow the instructions below to get started. If you haven't already, take a look at our <a href="{{ docs }}/" target="_blank">complete documentation...</a></p>
-        <ol>
-            <li><strong>Create and add a pair of Google API Keys.</strong> See the instructions for <a href="{{ docs }}/getting-started/api-keys/" target="_blank">how to create Google API keys</a>. These keys are required in order to ping the Google API.</li>
-            <li>If using a geolocation service, <strong>add those credentials as well</strong>. If you're unsure of how to implement it, check out the docs regarding <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</li>
-        </ol>
+        <img src="{{ iconUrl }}" alt="" width="120" style="float:left; margin:12px;">
+        <div style="padding-left: 160px">
+            <h2>Welcome! Thanks for using the Google Maps plugin. &nbsp;🎉</h2>
+            <p>Follow the instructions below to get started. If you haven't already, take a look at our <a href="{{ docs }}/" target="_blank">complete documentation...</a></p>
+            <ol>
+                <li><strong>Create and add a pair of Google API Keys.</strong> See the instructions for <a href="{{ docs }}/getting-started/api-keys/" target="_blank">how to create Google API keys</a>. These keys are required in order to ping the Google API.</li>
+                <li>If you're using a geolocation service, <strong>add those credentials as well</strong>. Not sure how to implement it? Check out the complete docs regarding <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</li>
+            </ol>
+        </div>
     </div>
 
     <hr>
@@ -52,7 +60,7 @@
         label: "Geolocation Service"|t('google-maps'),
         id: 'geolocation-service',
         name: 'geolocationService',
-        instructions: "Select which third-party service will be providing geolocation results. [See full description of options...]({docs}/geolocation/service-providers/)"|t('google-maps', {'docs':docs}),
+        instructions: "Select which third-party service will be providing geolocation results. [See the complete description of these options...]({docs}/geolocation/service-providers/)"|t('google-maps', {'docs':docs}),
         value: settings.geolocationService ?? '',
         options: [
             { value: '',        label: 'None'|t('google-maps') },
@@ -63,7 +71,7 @@
 } %}
 
 <div id="ipstack" class="pane" style="display:none">
-    <h2>ipstack Settings</h2>
+    <h2>ipstack API Configuration Settings</h2>
     <p style="font-style: italic">Required if using the ipstack geolocation service.</p>
     {% include autosuggest with {
         config: {
@@ -74,7 +82,7 @@
 </div>
 
 <div id="maxmind" class="pane" style="display:none">
-    <h2>MaxMind Settings</h2>
+    <h2>MaxMind API Configuration Settings</h2>
     <p style="font-style: italic">Required if using the MaxMind geolocation service.</p>
     {% include autosuggest with {
         config: {

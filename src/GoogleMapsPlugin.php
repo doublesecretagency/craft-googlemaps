@@ -13,8 +13,11 @@ namespace doublesecretagency\googlemaps;
 
 use Craft;
 use craft\base\Plugin;
+use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
+use craft\helpers\UrlHelper;
 use craft\services\Fields;
+use craft\services\Plugins;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\services\Address;
@@ -84,8 +87,20 @@ class GoogleMapsPlugin extends Plugin
         Event::on(
             Fields::class,
             Fields::EVENT_REGISTER_FIELD_TYPES,
-            function (RegisterComponentTypesEvent $event) {
+            static function (RegisterComponentTypesEvent $event) {
                 $event->types[] = AddressField::class;
+            }
+        );
+
+        // Redirect after install
+        Event::on(
+            Plugins::class,
+            Plugins::EVENT_AFTER_INSTALL_PLUGIN,
+            function (PluginEvent $event) {
+                if ($event->plugin === $this) {
+                    $welcomePage = UrlHelper::cpUrl('settings/plugins/google-maps', ['welcome' => 1]);
+                    Craft::$app->getResponse()->redirect($welcomePage)->send();
+                }
             }
         );
     }
