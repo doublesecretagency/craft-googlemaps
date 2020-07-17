@@ -83,10 +83,13 @@ class Maxmind extends Model
      */
     private static function _pingEndpoint($ip)
     {
+        // Get plugin settings
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
         // Get MaxMind access credentials
-        $service = GoogleMapsPlugin::$plugin->getSettings()->maxmindService;
-        $userId = GoogleMapsPlugin::$plugin->getSettings()->maxmindUserId;
-        $licenseKey = GoogleMapsPlugin::$plugin->getSettings()->maxmindLicenseKey;
+        $userId = $settings->maxmindUserId;
+        $licenseKey = $settings->maxmindLicenseKey;
+        $service = $settings->maxmindService;
 
         // If service is disabled
         if (!$service) {

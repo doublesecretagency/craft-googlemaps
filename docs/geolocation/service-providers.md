@@ -27,6 +27,6 @@ Another option is to use the [MaxMind](https://www.maxmind.com/) geolocation ser
 
 <hr>
 
-:::tip YOUR CHOICE
-If you choose to enable visitor geolocation, the choice of geolocation services is entirely up to you. Both services will return reliable, high-quality geolocation data.
+:::tip
+If you choose to enable visitor geolocation, both **ipstack** and **MaxMind** are equally solid options. Both services return reliable, high-quality data.
 :::

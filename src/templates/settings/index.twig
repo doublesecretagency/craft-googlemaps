@@ -8,28 +8,42 @@
 {# On page load, show correct geolocation settings pane #}
 {% js 'updateGeolocationService()' %}
 
+{% if true %}
+    <div class="pane" style="">
+        <h2>Welcome! Thanks for using the Google Maps plugin. &nbsp;🎉</h2>
+        <p>Follow the instructions below to get started. If you haven't already, take a look at our <a href="{{ docs }}/" target="_blank">complete documentation...</a></p>
+        <ol>
+            <li><strong>Create and add a pair of Google API Keys.</strong> See the instructions for <a href="{{ docs }}/getting-started/api-keys/" target="_blank">how to create Google API keys</a>. These keys are required in order to ping the Google API.</li>
+            <li>If using a geolocation service, <strong>add those credentials as well</strong>. If you're unsure of how to implement it, check out the docs regarding <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</li>
+        </ol>
+    </div>
+
+    <hr>
+{% endif %}
+
 <h2>Google API Keys</h2>
-<p>In order to use the various Google Maps APIs, you will need to create adequate access credentials.</p>
+<p>In order to use the Google API, you will need to create two separate API keys. The <strong>server key</strong> handles API calls made from the back-end, whereas the <strong>browser key</strong> handles API calls made from the front-end. For full details, please consult the documentation regarding <a href="{{ docs }}/getting-started/api-keys/" target="_blank">Google Maps API keys</a>.</p>
 {% include autosuggest with {
     config: {
         label: "Google API Server Key"|t('google-maps'),
-        instructions: "Used for address lookups"|t('google-maps'),
+        instructions: "Required for performing address lookups."|t('google-maps'),
         name: 'googleApiServerKey',
+        required: true
     }
 } %}
 {% include autosuggest with {
     config: {
         label: "Google API Browser Key"|t('google-maps'),
-        instructions: "Used for static & dynamic map rendering"|t('google-maps'),
+        instructions: "Required for rendering static & dynamic maps."|t('google-maps'),
         name: 'googleApiBrowserKey',
+        required: true
     }
 } %}
 
 <hr>
 
 <h2>Visitor Geolocation</h2>
-<p>Using a third-party geolocation service, it's possible to keep track of where your visitors are coming from.</p>
-<p><a href="{{ docs }}/geolocation/" target="_blank">More information about visitor geolocation....</a></p>
+<p>You can use a third-party service to provide geolocation for your visitors, based on their detected IP address. IP-based geolocation is generally accurate to within a few miles/kilometers, which will be sufficient for the majority of purposes. For more information, please check out the complete documentation on <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</p>
 {% include dropdown with {
     attr: [
         'onchange="updateGeolocationService()"'
@@ -38,7 +52,7 @@
         label: "Geolocation Service"|t('google-maps'),
         id: 'geolocation-service',
         name: 'geolocationService',
-        instructions: "Select an external service to power the visitor geolocation."|t('google-maps'),
+        instructions: "Select which third-party service will be providing geolocation results. [See full description of options...]({docs}/geolocation/service-providers/)"|t('google-maps', {'docs':docs}),
         value: settings.geolocationService ?? '',
         options: [
             { value: '',        label: 'None'|t('google-maps') },
@@ -50,6 +64,7 @@
 
 <div id="ipstack" class="pane" style="display:none">
     <h2>ipstack Settings</h2>
+    <p style="font-style: italic">Required if using the ipstack geolocation service.</p>
     {% include autosuggest with {
         config: {
             label: "API Access Key"|t,
@@ -60,6 +75,19 @@
 
 <div id="maxmind" class="pane" style="display:none">
     <h2>MaxMind Settings</h2>
+    <p style="font-style: italic">Required if using the MaxMind geolocation service.</p>
+    {% include autosuggest with {
+        config: {
+            label: "User ID"|t('google-maps'),
+            name: 'maxmindUserId',
+        }
+    } %}
+    {% include autosuggest with {
+        config: {
+            label: "License Key"|t('google-maps'),
+            name: 'maxmindLicenseKey',
+        }
+    } %}
     {% include dropdown with {
         config: {
             label: "GeoIP2 Service",
@@ -74,18 +102,6 @@
                 { value: 'city_isp_org',  label: 'GeoIP2 City/ISP/Org' },
                 { value: 'omni',          label: 'GeoIP2 Omni' },
             ],
-        }
-    } %}
-    {% include autosuggest with {
-        config: {
-            label: "User ID"|t('google-maps'),
-            name: 'maxmindUserId',
-        }
-    } %}
-    {% include autosuggest with {
-        config: {
-            label: "License Key"|t('google-maps'),
-            name: 'maxmindLicenseKey',
         }
     } %}
 </div>

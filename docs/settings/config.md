@@ -31,9 +31,9 @@ return [
     'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY'),
 
     // If using MaxMind
-    'maxmindService' => getenv('MAXMIND_SERVICE'),
     'maxmindUserId' => getenv('MAXMIND_USERID'),
-    'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY')
+    'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
+    'maxmindService' => getenv('MAXMIND_SERVICE'),
 
 ];
 ```

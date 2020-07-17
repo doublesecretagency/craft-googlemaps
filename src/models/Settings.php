@@ -47,11 +47,6 @@ class Settings extends Model
     public $ipstackApiAccessKey;
 
     /**
-     * @var string|null MaxMind Service.
-     */
-    public $maxmindService;
-
-    /**
      * @var string|null MaxMind User ID.
      */
     public $maxmindUserId;
@@ -60,5 +55,10 @@ class Settings extends Model
      * @var string|null MaxMind License Key.
      */
     public $maxmindLicenseKey;
+
+    /**
+     * @var string|null MaxMind Service.
+     */
+    public $maxmindService;
 
 }

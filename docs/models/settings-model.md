@@ -36,10 +36,6 @@ The value specified here will determine the relevance of any settings related to
 
 _string_ - ipstack API Access Key. Only relevant if `geolocationService` is set to **ipstack**.
 
-### `maxmindService`
-
-_string_ - MaxMind Service. Only relevant if `geolocationService` is set to **maxmind**.
-
 ### `maxmindUserId`
 
 _string_ - MaxMind User ID. Only relevant if `geolocationService` is set to **maxmind**.
@@ -47,3 +43,7 @@ _string_ - MaxMind User ID. Only relevant if `geolocationService` is set to **ma
 ### `maxmindLicenseKey`
 
 _string_ - MaxMind License Key. Only relevant if `geolocationService` is set to **maxmind**.
+
+### `maxmindService`
+
+_string_ - MaxMind Service. Only relevant if `geolocationService` is set to **maxmind**.
