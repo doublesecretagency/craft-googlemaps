@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\services;
 
+use Craft;
 use craft\base\Component;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
@@ -28,7 +29,7 @@ class Api extends Component
     {
         // Only load once
         if (null === $this->_serverKey) {
-            $this->_serverKey = GoogleMapsPlugin::$plugin->getSettings()->serverKey;
+            $this->_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
         }
         // Return key
         return $this->_serverKey;
@@ -38,7 +39,7 @@ class Api extends Component
     {
         // Only load once
         if (null === $this->_browserKey) {
-            $this->_browserKey = GoogleMapsPlugin::$plugin->getSettings()->browserKey;
+            $this->_browserKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->browserKey);
         }
         // Return key
         return $this->_browserKey;
