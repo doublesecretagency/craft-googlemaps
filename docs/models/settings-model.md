@@ -12,11 +12,11 @@ If you need to dynamically update the Google API Keys, take a look at the method
 
 ## Public Properties
 
-### `googleApiServerKey`
+### `serverKey`
 
 _string_ - (Required) Google API Server Key.
 
-### `googleApiBrowserKey`
+### `browserKey`
 
 _string_ - (Required) Google API Browser Key.
 

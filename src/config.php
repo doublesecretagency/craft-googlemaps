@@ -17,8 +17,8 @@
 return [
 
     // Google Maps API keys (required)
-    //'googleApiServerKey' => getenv('GOOGLEAPI_SERVERKEY'),
-    //'googleApiBrowserKey' => getenv('GOOGLEAPI_BROWSERKEY'),
+    //'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
+    //'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY'),
 
     // Optional geolocation service ('ipstack', 'maxmind', or null)
     //'geolocationService' => null,
