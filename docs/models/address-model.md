@@ -19,6 +19,10 @@ You can access `lat` and `lng` just as easily as `street1` and `street2`.
 
 ## Public Properties
 
+### `formatted`
+
+_string_ - A nicely-formatted single-line interpretation of the address, provided by Google during the initial geocoding.
+
 ### `raw`
 
 _object_ - The original data used to create this Address Model. Contains the full response from the original Google API call.
@@ -85,11 +89,11 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 
 ```twig
 {% if not address.isEmpty %}
-    {{ address.format() }}
+    {{ address.multiline() }}
 {% endif %}
 ```
 
-### `format(mergeUnit = false, mergeCity = false)`
+### `multiline(mergeUnit = false, mergeCity = false)`
 
 - `mergeUnit` - Whether to merge the apartment or suite number into the preceding line.
 - `mergeCity` - Whether to merge the city and state into the preceding line.
@@ -98,7 +102,7 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 
 ```twig
 {# Line breaks before both the unit number and the city #}
-{{ address.format() }}
+{{ address.multiline() }}
 ```
 
 >123 Main St<br>
@@ -107,7 +111,7 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 
 ```twig
 {# Line break just before the city #}
-{{ address.format(true) }}
+{{ address.multiline(true) }}
 ```
 
 >123 Main St, Suite #101<br>
@@ -115,13 +119,13 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 
 ```twig
 {# No line breaks #}
-{{ address.format(true, true) }}
+{{ address.multiline(true, true) }}
 ```
 
 >123 Main St, Suite #101, Springfield, CO 81073
 
 ::: tip NOTE
-You will rarely need to use `.format(true, true)`. If you really want to render the address on a single line, just **output the model directly** instead (see below).
+You will rarely need to use `.multiline(true, true)`. If you really want to render the address on a single line, just **output the model directly** instead (see below).
 :::
 
 ## Outputting the model directly
@@ -133,12 +137,6 @@ When you output the model directly, it will render the entire address on a singl
 {# 123 Main St, Suite #101, Springfield, CO 81073 #}
 ```
 
-In other words, these two statements are identical...
+If there is a Google-supplied `formatted` address, that value will be used as the single-line interpretation of the Address model.
 
-```twig
-{{ entry.myAddressField }}
-{# ... is just an alias of... #}
-{{ entry.myAddressField.format(true, true) }}
-```
-
-You will rarely need to use `.format(true, true)`. If possible, it's always preferred to simply output the model directly.
+Otherwise, `multiline(true, true)` will be used to generate a single-line version of the Address.

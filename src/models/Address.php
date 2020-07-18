@@ -25,7 +25,7 @@ class Address extends Location
 {
 
     /**
-     * Automatically format this address on a single line (if possible).
+     * Automatically format the address on a single line (if possible).
      *
      * @return string
      */
@@ -151,23 +151,6 @@ class Address extends Location
     }
 
     // ========================================================================= //
-
-    /**
-     * Returns the address in a single nicely-formatted line.
-     *
-     * @return string
-     */
-    public function getFormatted(): string
-    {
-//        1. Properly formatted address according to the Google API.
-//        2. Formatted according to old-school `format()` method.
-//        3. Fallback to empty string
-        return '';
-
-        // MUST RETURN A SINGLE LINE, WITH NO LINE BREAKS!!
-
-        // Does this replace the `format()` method entirely?
-    }
 
     /**
      * Format the Address as a multiline HTML string.
