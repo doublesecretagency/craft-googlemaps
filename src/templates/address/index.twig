@@ -1,11 +1,13 @@
 {% set data = {
     'address': {
-        'street1' : (address.street1 ?? null),
-        'street2' : (address.street2 ?? null),
-        'city'    : (address.city ?? null),
-        'state'   : (address.state ?? null),
-        'zip'     : (address.zip ?? null),
-        'country' : (address.country ?? null),
+        'formatted' : (address.formatted ?? null),
+        'raw'       : (address.raw ?? null),
+        'street1'   : (address.street1 ?? null),
+        'street2'   : (address.street2 ?? null),
+        'city'      : (address.city ?? null),
+        'state'     : (address.state ?? null),
+        'zip'       : (address.zip ?? null),
+        'country'   : (address.country ?? null),
     },
     'coords': {
         'lat'  : (address.lat ?? null),

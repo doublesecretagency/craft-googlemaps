@@ -16,6 +16,7 @@ use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 use craft\elements\Entry;
+use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
@@ -190,15 +191,17 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Set record attributes
         $record->setAttributes([
-            'street1' => ($data['street1'] ?: null),
-            'street2' => ($data['street2'] ?: null),
-            'city'    => ($data['city'] ?: null),
-            'state'   => ($data['state'] ?: null),
-            'zip'     => ($data['zip'] ?: null),
-            'country' => ($data['country'] ?: null),
-            'lat'     => ($data['lat'] ?: null),
-            'lng'     => ($data['lng'] ?: null),
-            'zoom'    => ($data['zoom'] ?: null),
+            'formatted' => ($data['formatted'] ?: null),
+            'raw'       => ($data['raw'] ?: null),
+            'street1'   => ($data['street1'] ?: null),
+            'street2'   => ($data['street2'] ?: null),
+            'city'      => ($data['city'] ?: null),
+            'state'     => ($data['state'] ?: null),
+            'zip'       => ($data['zip'] ?: null),
+            'country'   => ($data['country'] ?: null),
+            'lat'       => ($data['lat'] ?: null),
+            'lng'       => ($data['lng'] ?: null),
+            'zoom'      => ($data['zoom'] ?: null),
         ], false);
 
         // Save record
@@ -212,20 +215,24 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function normalizeValue($value, ElementInterface $element = null)
     {
+        /** @var Entry $element */
+
         // If value is an array, load it directly into an Address model
         if (is_array($value)) {
             return new AddressModel([
                 'elementId' => (int) ($element->id ?? null),
-                'fieldId' => (int) ($this->id ?? null),
-                'street1' => ($value['street1'] ?? null),
-                'street2' => ($value['street2'] ?? null),
-                'city' => ($value['city'] ?? null),
-                'state' => ($value['state'] ?? null),
-                'zip' => ($value['zip'] ?? null),
-                'country' => ($value['country'] ?? null),
-                'lat' => (float) ($value['lat'] ?? null),
-                'lng' => (float) ($value['lng'] ?? null),
-                'zoom' => (int) ($value['zoom'] ?? null),
+                'fieldId'   => (int) ($this->id ?? null),
+                'formatted' => ($value['formatted'] ?: null),
+                'raw'       => ($value['raw'] ?: null),
+                'street1'   => ($value['street1'] ?? null),
+                'street2'   => ($value['street2'] ?? null),
+                'city'      => ($value['city'] ?? null),
+                'state'     => ($value['state'] ?? null),
+                'zip'       => ($value['zip'] ?? null),
+                'country'   => ($value['country'] ?? null),
+                'lat'       => (float) ($value['lat'] ?? null),
+                'lng'       => (float) ($value['lng'] ?? null),
+                'zoom'      => (int) ($value['zoom'] ?? null),
             ]);
         }
 
@@ -254,12 +261,14 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['lng'] = ($attr['lng'] ? (float) $attr['lng'] : null);
 
 
+//        $attr['raw'] = ($attr['raw'] ? Json::decode($attr['raw']) : null);
+
+
+
 //        // If part of a proximity search, get the distance
 //        if ($value) {
 //            $attr['distance'] = (float) $value;
 //        }
-
-        // ALSO, SHOULD `data` BE MERGED INTO `raw`? NO NEED TO HAVE BOTH.
 
 
         // Return an Address model

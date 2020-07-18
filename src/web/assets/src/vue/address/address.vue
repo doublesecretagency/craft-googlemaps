@@ -3,6 +3,7 @@
         <address-toggle></address-toggle>
         <address-subfields></address-subfields>
         <address-coords></address-coords>
+        <address-meta></address-meta>
         <div style="clear:both"></div>
         <address-map></address-map>
     </div>
@@ -12,6 +13,7 @@
     import AddressToggle from './address-toggle';
     import AddressSubfields from './address-subfields';
     import AddressCoords from './address-coords';
+    import AddressMeta from './address-meta';
     import AddressMap from './address-map';
 
     export default {
@@ -20,6 +22,7 @@
             'address-toggle': AddressToggle,
             'address-subfields': AddressSubfields,
             'address-coords': AddressCoords,
+            'address-meta': AddressMeta,
             'address-map': AddressMap
         },
         props: ['settings', 'data'],

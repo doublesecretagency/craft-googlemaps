@@ -33,22 +33,13 @@
                 const google = window.google;
                 const options = {
                     types: ['geocode'],
-                    fields: ['address_components','geometry.location','formatted_address']
+                    fields: [
+                        'formatted_address',
+                        'address_components',
+                        'geometry.location',
+                        'place_id'
+                    ]
                 };
-
-                /**
-                 * Add a hidden "formatted" field to contain the `formatted_address` data.
-                 * Add a new "formatted" column to the database to hold the raw formatted address.
-                 * If/when the coordinates are incomplete, erase the "formatted" value.
-                 */
-
-                /**
-                 * Add a new "raw" column to the database to hold a JSON string of the raw Google data.
-                 */
-
-                /**
-                 * Add a new "zoom" column to the database to hold an integer of the map zoom level.
-                 */
 
                 // If no subfields exist, bail
                 if (!this.$refs.autocomplete) {
@@ -63,8 +54,12 @@
 
                 // Listen for autocomplete trigger
                 this.autocomplete.addListener('place_changed', () => {
+
+                    // Get newly selected place
                     let place = this.autocomplete.getPlace();
-                    this.setAddressData(place.address_components, place.geometry.location);
+
+                    // Configure address data based on place
+                    this.setAddressData(place);
 
                     // Get settings
                     let settings = this.$root.$data.settings;
@@ -95,10 +90,28 @@
         methods: {
 
             // Populate address data when Autocomplete selected
-            setAddressData(components, coords) {
+            setAddressData(place) {
+
+                // Get data object
                 let data = this.$root.$data.data;
+
+                // Get new address info
+                let components = place.address_components;
+                let coords = place.geometry.location;
+
                 // Set all subfield data
                 addressComponents(components, data.address);
+
+
+
+                /**
+                 * If/when the coordinates are incomplete, erase the "formatted" and "raw" values.
+                 */
+
+                // Append address meta data
+                data.address['formatted'] = place.formatted_address;
+                data.address['raw'] = JSON.stringify(place);
+
                 // Set coordinates
                 data.coords.lat = parseFloat(coords.lat().toFixed(7));
                 data.coords.lng = parseFloat(coords.lng().toFixed(7));
