@@ -15,6 +15,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\FieldInterface;
 use craft\helpers\Template;
+use Twig\Markup;
 
 /**
  * Class Address
@@ -24,7 +25,7 @@ class Address extends Location
 {
 
     /**
-     * Automatically format this address if possible.
+     * Automatically format this address on a single line (if possible).
      *
      * @return string
      */
@@ -38,8 +39,16 @@ class Address extends Location
             return $googleFormatted;
         }
 
-        // Return manually formatted address
-        return (string) $this->format(true, true);
+        // Get multiline-formatted address
+        $multilineFormatted = (string) $this->multiline(true, true);
+
+        // If able to format via `multiline` method, return it
+        if ($multilineFormatted) {
+            return $multilineFormatted;
+        }
+
+        // Return an empty string
+        return '';
     }
 
     /**
@@ -56,6 +65,11 @@ class Address extends Location
      * @var int|null ID of field containing address.
      */
     public $fieldId;
+
+    /**
+     * @var string|null Pre-formatted single-line address pulled directly from Google API results.
+     */
+    public $formatted;
 
     /**
      * @var array|null Raw JSON response data from original Google API call.
@@ -156,18 +170,23 @@ class Address extends Location
     }
 
     /**
-     * Manually formats the address.
+     * Format the Address as a multiline HTML string.
      *
-     * @return string
+     * @param bool $mergeUnit
+     * @param bool $mergeCity
+     * @return Markup
      */
-    public function format($mergeUnit = false, $mergeCity = false)
+    public function multiline($mergeUnit = false, $mergeCity = false)
     {
+        // Determine glue for each part
         $unitGlue = ($mergeUnit ? ', ' : '<br />');
         $cityGlue = ($mergeCity ? ', ' : '<br />');
 
+        // Whether the address has street info and city/state info
         $hasStreet = ($this->street1 || $this->street2);
         $hasCityState = ($this->city || $this->state || $this->zip);
 
+        // Manually format multi-line address
         $formatted  = '';
         $formatted .= ($this->street1 ? $this->street1 : '');
         $formatted .= ($this->street1 && $this->street2 ? $unitGlue : '');
@@ -185,6 +204,7 @@ class Address extends Location
         // Eliminate trailing comma
         $formatted = preg_replace('/, $/', '', $formatted);
 
+        // Return a formatted multiline address
         return Template::raw(trim($formatted));
     }
 
