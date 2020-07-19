@@ -138,13 +138,13 @@ class Ipstack extends Model
         // Return results as a Visitor Model
         return new Visitor([
             'service' => static::$_service,
-            'ip' => $response['ip'],
-            'city' => $response['city'],
-            'state' => $response['region_name'],
-            'country' => $response['country_name'],
-            'lat' => $response['latitude'],
-            'lng' => $response['longitude'],
-            'data' => $response,
+            'ip'      => ($response['ip'] ?? null),
+            'city'    => ($response['city'] ?? null),
+            'state'   => ($response['region_name'] ?? null),
+            'country' => ($response['country_name'] ?? null),
+            'lat'     => ($response['latitude'] ?? null),
+            'lng'     => ($response['longitude'] ?? null),
+            'raw'     => $response,
         ]);
     }
 

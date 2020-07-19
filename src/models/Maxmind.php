@@ -152,13 +152,13 @@ class Maxmind extends Model
         // Return results as a Visitor Model
         return new Visitor([
             'service' => static::$_service,
-            'ip' => $response['traits']['ip_address'],
-            'city' => $response['city']['names']['en'],
-            'state' => $response['subdivisions'][0]['names']['en'],
-            'country' => $response['country']['names']['en'],
-            'lat' => $response['location']['latitude'],
-            'lng' => $response['location']['longitude'],
-            'data' => $response,
+            'ip'      => ($response['traits']['ip_address'] ?? null),
+            'city'    => ($response['city']['names']['en'] ?? null),
+            'state'   => ($response['subdivisions'][0]['names']['en'] ?? null),
+            'country' => ($response['country']['names']['en'] ?? null),
+            'lat'     => ($response['location']['latitude'] ?? null),
+            'lng'     => ($response['location']['longitude'] ?? null),
+            'raw'     => $response,
         ]);
     }
 

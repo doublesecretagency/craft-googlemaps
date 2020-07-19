@@ -315,7 +315,7 @@ class Lookup extends Model
             'country' => $country,
             'lat'     => $lat,
             'lng'     => $lng,
-//            'data'    => $unformatted, // TODO: Uncomment
+//            'raw'    => $unformatted, // TODO: Uncomment
         ];
     }
 
