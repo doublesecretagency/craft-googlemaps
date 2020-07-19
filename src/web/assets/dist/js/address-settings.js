@@ -793,129 +793,6 @@ function addressComponents(components, data) {
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js":
-/*!********************************************************************************************************!*\
-  !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js ***!
-  \********************************************************************************************************/
-/*! exports provided: fromField, fromFallback */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromField", function() { return fromField; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromFallback", function() { return fromFallback; });
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * Attempt to get map center coordinates based on the field data or settings.
- *
- * @param field
- * @returns object
- */
-function fromField(field) {
-  // If available, get coords from the existing field data
-  var dataCoords = _getDataCoords(field.data);
-
-  if (dataCoords) {
-    return dataCoords;
-  } // If available, get default coords from the field settings
-
-
-  var settingsCoords = _getSettingsCoords(field.settings);
-
-  if (settingsCoords) {
-    return settingsCoords;
-  } // Unable to get any coordinates from the field
-
-
-  return false;
-}
-/**
- * Use the generic fallback coordinates.
- * https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
- *
- * @returns object
- */
-
-function fromFallback() {
-  // Bermuda Triangle
-  return {
-    lat: 32.3113966,
-    lng: -64.7527469,
-    zoom: 6
-  };
-} // ========================================================================= //
-
-/**
- * Get the coordinates from the field's existing data.
- *
- * @param data
- * @returns object
- */
-
-function _getDataCoords(data) {
-  // TODO: Test this function again when SAVING the field data
-  // console.log('_getDataCoords');
-  // Get coordinates from field data
-  var coords = data.coords; // If invalid coordinates, return false
-
-  if (!_validCoord(coords.lat) || !_validCoord(coords.lng)) {
-    return false;
-  } // Return coordinates
-
-
-  return coords;
-}
-/**
- * Get the coordinates from the field's default settings.
- *
- * @param settings
- * @returns object
- */
-
-
-function _getSettingsCoords(settings) {
-  // Get coordinates from field settings
-  var coords = settings.coordinatesDefault; // If invalid coordinates, return false
-
-  if (!_validCoord(coords.lat) || !_validCoord(coords.lng)) {
-    return false;
-  } // Return coordinates
-
-
-  return coords;
-} // ========================================================================= //
-
-/**
- * Check whether a single coordinate is valid.
- *
- * @param coord
- * @returns bool
- */
-
-
-function _validCoord(coord) {
-  // If coordinate is not a number or string, return false
-  if (!['number', 'string'].includes(_typeof(coord))) {
-    return false;
-  } // If coordinate is not numeric, return false
-
-
-  if (isNaN(coord)) {
-    return false;
-  } // If coordinate is an empty string, return false
-
-
-  if ('' === coord) {
-    return false;
-  } // Coordinate is valid, return true
-
-
-  return true;
-}
-
-/***/ }),
-
 /***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js":
 /*!*************************************************************************************************************!*\
   !*** /Users/lindseydiloreto/Sites/plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js ***!
@@ -1329,8 +1206,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_map_center__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/map-center */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/map-center.js");
 
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1342,7 +1220,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     // Make map & marker universally available
@@ -1388,7 +1265,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               // Attempt to get map center from field
-              fieldPreference = _utils_map_center__WEBPACK_IMPORTED_MODULE_1__["fromField"](_this.$root.$data); // Initialize map using coordinates from field data or settings
+              fieldPreference = _this.fromField(_this.$root.$data); // Initialize map using coordinates from field data or settings
 
               if (!fieldPreference) {
                 _context.next = 4;
@@ -1426,7 +1303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // Output error message in console
                 console.log('Unable to perform HTML5 geolocation.'); // Nothing else worked, use the fallback
 
-                _this.initMap(_utils_map_center__WEBPACK_IMPORTED_MODULE_1__["fromFallback"]());
+                _this.initMap(_this.fromFallback());
               });
 
             case 6:
@@ -1449,6 +1326,81 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         lng: parseFloat(coords.lng.toFixed(7))
       });
       this.centerMap();
+    },
+    // Check whether a single coordinate is valid
+    _validCoord: function _validCoord(coord) {
+      // If coordinate is not a number or string, return false
+      if (!['number', 'string'].includes(_typeof(coord))) {
+        return false;
+      } // If coordinate is not numeric, return false
+
+
+      if (isNaN(coord)) {
+        return false;
+      } // If coordinate is an empty string, return false
+
+
+      if ('' === coord) {
+        return false;
+      } // Coordinate is valid, return true
+
+
+      return true;
+    },
+    // Get the coordinates from the field's existing data
+    _getDataCoords: function _getDataCoords(data) {
+      // TODO: Test this function again when SAVING the field data
+      // console.log('_getDataCoords');
+      // Get coordinates from field data
+      var coords = data.coords; // If invalid coordinates, return false
+
+      if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+        return false;
+      } // Return coordinates
+
+
+      return coords;
+    },
+    // Get the coordinates from the field's default settings
+    _getSettingsCoords: function _getSettingsCoords(settings) {
+      // Get coordinates from field settings
+      var coords = settings.coordinatesDefault; // If invalid coordinates, return false
+
+      if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+        return false;
+      } // Return coordinates
+
+
+      return coords;
+    },
+    // Attempt to get map center coordinates based on the field data or settings
+    fromField: function fromField(field) {
+      // If available, get coords from the existing field data
+      var dataCoords = this._getDataCoords(field.data);
+
+      if (dataCoords) {
+        return dataCoords;
+      } // If available, get default coords from the field settings
+
+
+      var settingsCoords = this._getSettingsCoords(field.settings);
+
+      if (settingsCoords) {
+        return settingsCoords;
+      } // Unable to get any coordinates from the field
+
+
+      return false;
+    },
+    // Use the generic fallback coordinates
+    // https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
+    fromFallback: function fromFallback() {
+      // Bermuda Triangle
+      return {
+        lat: 32.3113966,
+        lng: -64.7527469,
+        zoom: 6
+      };
     },
     // Update the zoom level
     updateZoomLevel: function updateZoomLevel() {
@@ -1809,6 +1761,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _address_coords__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-coords */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-coords.vue");
 /* harmony import */ var _address_meta__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./address-meta */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-meta.vue");
 /* harmony import */ var _address_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./address-map */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-map.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -1834,18 +1788,72 @@ __webpack_require__.r(__webpack_exports__);
     'address-meta': _address_meta__WEBPACK_IMPORTED_MODULE_3__["default"],
     'address-map': _address_map__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  props: ['settings', 'data'] // data() {
+  props: ['settings', 'data'],
+  // data() {
   //     return {
   //         // google: false,
   //         initialized: false,
   //     }
   // },
-  // methods: {
-  //     loadGoogleMaps: () => {
-  //
-  //     }
-  // }
+  computed: {
+    // Compute coordinates locally, so we can watch them
+    lat: function lat() {
+      return this.data.coords['lat'];
+    },
+    lng: function lng() {
+      return this.data.coords['lng'];
+    }
+  },
+  watch: {
+    // When coordinates are changed, update the marker
+    lat: function lat() {
+      console.log(this.validCoords());
+    },
+    lng: function lng() {
+      console.log(this.validCoords());
+    }
+  },
+  methods: {
+    // Check whether coordinates are valid
+    validCoords: function validCoords(coords) {
+      // If no coordinates specified
+      if (!coords) {
+        // Use internal coordinates
+        coords = {
+          'lat': this.data.coords['lat'],
+          'lng': this.data.coords['lng']
+        };
+      } // Loop through coordinates
 
+
+      for (var key in coords) {
+        // Ignore the zoom value
+        if ('zoom' === key) {
+          continue;
+        } // Get individual coordinate
+
+
+        var coord = coords[key]; // If coordinate is not a number or string, return false
+
+        if (!['number', 'string'].includes(_typeof(coord))) {
+          return false;
+        } // If coordinate is not numeric, return false
+
+
+        if (isNaN(coord)) {
+          return false;
+        } // If coordinate is an empty string, return false
+
+
+        if ('' === coord) {
+          return false;
+        }
+      } // Coordinates are valid!
+
+
+      return true;
+    }
+  }
 });
 
 /***/ }),

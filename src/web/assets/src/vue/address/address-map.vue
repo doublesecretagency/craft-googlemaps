@@ -5,8 +5,6 @@
 </template>
 
 <script>
-    import * as getCoordinates from './../utils/map-center';
-
     export default {
         data() {
             // Make map & marker universally available
@@ -45,7 +43,7 @@
         async mounted() {
 
             // Attempt to get map center from field
-            let fieldPreference = getCoordinates.fromField(this.$root.$data);
+            let fieldPreference = this.fromField(this.$root.$data);
 
             // Initialize map using coordinates from field data or settings
             if (fieldPreference) {
@@ -87,7 +85,7 @@
                     console.log('Unable to perform HTML5 geolocation.');
 
                     // Nothing else worked, use the fallback
-                    this.initMap(getCoordinates.fromFallback());
+                    this.initMap(this.fromFallback());
 
                 }
             );
@@ -103,6 +101,95 @@
                     lng: parseFloat(coords.lng.toFixed(7))
                 });
                 this.centerMap();
+            },
+
+            // Check whether a single coordinate is valid
+            _validCoord(coord) {
+
+                // If coordinate is not a number or string, return false
+                if (!['number','string'].includes(typeof coord)) {
+                    return false;
+                }
+
+                // If coordinate is not numeric, return false
+                if (isNaN(coord)) {
+                    return false;
+                }
+
+                // If coordinate is an empty string, return false
+                if ('' === coord) {
+                    return false;
+                }
+
+                // Coordinate is valid, return true
+                return true;
+
+            },
+
+            // Get the coordinates from the field's existing data
+            _getDataCoords(data) {
+
+                // TODO: Test this function again when SAVING the field data
+                // console.log('_getDataCoords');
+
+                // Get coordinates from field data
+                const coords = data.coords;
+
+                // If invalid coordinates, return false
+                if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+                    return false;
+                }
+
+                // Return coordinates
+                return coords;
+
+            },
+
+            // Get the coordinates from the field's default settings
+            _getSettingsCoords(settings) {
+
+                // Get coordinates from field settings
+                const coords = settings.coordinatesDefault;
+
+                // If invalid coordinates, return false
+                if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+                    return false;
+                }
+
+                // Return coordinates
+                return coords;
+
+            },
+
+            // Attempt to get map center coordinates based on the field data or settings
+            fromField(field) {
+
+                // If available, get coords from the existing field data
+                let dataCoords = this._getDataCoords(field.data);
+                if (dataCoords) {
+                    return dataCoords;
+                }
+
+                // If available, get default coords from the field settings
+                let settingsCoords = this._getSettingsCoords(field.settings);
+                if (settingsCoords) {
+                    return settingsCoords;
+                }
+
+                // Unable to get any coordinates from the field
+                return false;
+
+            },
+
+            // Use the generic fallback coordinates
+            // https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
+            fromFallback() {
+                // Bermuda Triangle
+                return {
+                    lat: 32.3113966,
+                    lng: -64.7527469,
+                    zoom: 6
+                }
             },
 
             // Update the zoom level
