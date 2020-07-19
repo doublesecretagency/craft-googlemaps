@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input type="text" :name="`fields[${handle}][formatted]`" v-model="$root.$data.data.address['formatted']" />
-        <input type="text" :name="`fields[${handle}][raw]`" v-model="$root.$data.data.address['raw']" />
+        <input type="hidden" :name="`fields[${handle}][formatted]`" v-model="$root.$data.data.address['formatted']" />
+        <input type="hidden" :name="`fields[${handle}][raw]`" v-model="$root.$data.data.address['raw']" />
     </div>
 </template>
 
@@ -12,44 +12,23 @@
                 handle: this.$root.$data.handle
             }
         },
-        computed: {
-            // coordinatesDefault() {
-            //
-            //     // Get all potential coordinates options
-            //     const settingsCoords = this.$root.$data.settings.coordinatesDefault;
-            //     const dataCoords     = this.$root.$data.data.coords;
-            //
-            //     // If coordinates from data are valid, return them
-            //     if (dataCoords['lat'] && dataCoords['lng']) {
-            //         return dataCoords;
-            //     }
-            //
-            //     // If coordinates from settings are valid, return them
-            //     if (settingsCoords['lat'] && settingsCoords['lng']) {
-            //         return settingsCoords;
-            //     }
-            //
-            //     // Return empty coordinates
-            //     return {
-            //         lat: null,
-            //         lng: null,
-            //         zoom: null
-            //     };
-            // }
-        },
         watch: {
-            // coordsWatcher: function (coords) {
-            //     this.updateCoords(coords);
-            // }
+            '$parent.lat': function () {
+                this.validateMeta();
+            },
+            '$parent.lng': function () {
+                this.validateMeta();
+            }
         },
         methods: {
-            // updateCoords: function (coords) {
-            //     this.coordinatesDefault = {
-            //         'lat': coords.lat,
-            //         'lng': coords.lng,
-            //         'zoom': coords.zoom
-            //     }
-            // }
+            validateMeta: function () {
+                // If coordinates are invalid
+                if (!this.$parent.validCoords()) {
+                    // Reset meta fields
+                    this.$root.$data.data.address['formatted'] = null;
+                    this.$root.$data.data.address['raw'] = null;
+                }
+            }
         }
     }
 </script>

@@ -1230,24 +1230,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
-    // Compute coordinates locally, so we can watch them
-    lat: function lat() {
-      return this.$root.$data.data.coords['lat'];
-    },
-    lng: function lng() {
-      return this.$root.$data.data.coords['lng'];
-    },
+    // Compute locally for watching
     zoom: function zoom() {
       return this.$root.$data.data.coords['zoom'];
     }
   },
   watch: {
     // When coordinates are changed, update the marker
-    lat: function lat() {
+    '$parent.lat': function $parentLat() {
       this.updateMarkerPosition();
       this.$root.$data.data.coords['zoom'] = this.map.getZoom();
     },
-    lng: function lng() {
+    '$parent.lng': function $parentLng() {
       this.updateMarkerPosition();
       this.$root.$data.data.coords['zoom'] = this.map.getZoom();
     },
@@ -1320,11 +1314,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     // Update the marker position
     updateMarkerPosition: function updateMarkerPosition() {
-      var coords = this.$root.$data.data.coords;
+      // If coordinates are invalid, bail
+      if (!this.$parent.validCoords()) {
+        return;
+      } // Get coordinates
+
+
+      var coords = this.$root.$data.data.coords; // Set marker position
+
       this.marker.setPosition({
         lat: parseFloat(coords.lat.toFixed(7)),
         lng: parseFloat(coords.lng.toFixed(7))
-      });
+      }); // Center map
+
       this.centerMap();
     },
     // Check whether a single coordinate is valid
@@ -1502,41 +1504,23 @@ __webpack_require__.r(__webpack_exports__);
       handle: this.$root.$data.handle
     };
   },
-  computed: {// coordinatesDefault() {
-    //
-    //     // Get all potential coordinates options
-    //     const settingsCoords = this.$root.$data.settings.coordinatesDefault;
-    //     const dataCoords     = this.$root.$data.data.coords;
-    //
-    //     // If coordinates from data are valid, return them
-    //     if (dataCoords['lat'] && dataCoords['lng']) {
-    //         return dataCoords;
-    //     }
-    //
-    //     // If coordinates from settings are valid, return them
-    //     if (settingsCoords['lat'] && settingsCoords['lng']) {
-    //         return settingsCoords;
-    //     }
-    //
-    //     // Return empty coordinates
-    //     return {
-    //         lat: null,
-    //         lng: null,
-    //         zoom: null
-    //     };
-    // }
+  watch: {
+    '$parent.lat': function $parentLat() {
+      this.validateMeta();
+    },
+    '$parent.lng': function $parentLng() {
+      this.validateMeta();
+    }
   },
-  watch: {// coordsWatcher: function (coords) {
-    //     this.updateCoords(coords);
-    // }
-  },
-  methods: {// updateCoords: function (coords) {
-    //     this.coordinatesDefault = {
-    //         'lat': coords.lat,
-    //         'lng': coords.lng,
-    //         'zoom': coords.zoom
-    //     }
-    // }
+  methods: {
+    validateMeta: function validateMeta() {
+      // If coordinates are invalid
+      if (!this.$parent.validCoords()) {
+        // Reset meta fields
+        this.$root.$data.data.address['formatted'] = null;
+        this.$root.$data.data.address['raw'] = null;
+      }
+    }
   }
 });
 
@@ -1796,21 +1780,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   //     }
   // },
   computed: {
-    // Compute coordinates locally, so we can watch them
+    // Compute locally for watching
     lat: function lat() {
       return this.data.coords['lat'];
     },
     lng: function lng() {
       return this.data.coords['lng'];
-    }
-  },
-  watch: {
-    // When coordinates are changed, update the marker
-    lat: function lat() {
-      console.log(this.validCoords());
-    },
-    lng: function lng() {
-      console.log(this.validCoords());
     }
   },
   methods: {
@@ -3870,7 +3845,7 @@ var render = function() {
           expression: "$root.$data.data.address['formatted']"
         }
       ],
-      attrs: { type: "text", name: "fields[" + _vm.handle + "][formatted]" },
+      attrs: { type: "hidden", name: "fields[" + _vm.handle + "][formatted]" },
       domProps: { value: _vm.$root.$data.data.address["formatted"] },
       on: {
         input: function($event) {
@@ -3895,7 +3870,7 @@ var render = function() {
           expression: "$root.$data.data.address['raw']"
         }
       ],
-      attrs: { type: "text", name: "fields[" + _vm.handle + "][raw]" },
+      attrs: { type: "hidden", name: "fields[" + _vm.handle + "][raw]" },
       domProps: { value: _vm.$root.$data.data.address["raw"] },
       on: {
         input: function($event) {

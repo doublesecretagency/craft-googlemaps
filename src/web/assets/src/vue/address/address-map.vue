@@ -15,24 +15,18 @@
             }
         },
         computed: {
-            // Compute coordinates locally, so we can watch them
-            lat() {
-                return this.$root.$data.data.coords['lat'];
-            },
-            lng() {
-                return this.$root.$data.data.coords['lng'];
-            },
+            // Compute locally for watching
             zoom() {
                 return this.$root.$data.data.coords['zoom'];
             }
         },
         watch: {
             // When coordinates are changed, update the marker
-            lat() {
+            '$parent.lat': function () {
                 this.updateMarkerPosition();
                 this.$root.$data.data.coords['zoom'] = this.map.getZoom();
             },
-            lng() {
+            '$parent.lng': function () {
                 this.updateMarkerPosition();
                 this.$root.$data.data.coords['zoom'] = this.map.getZoom();
             },
@@ -95,11 +89,18 @@
 
             // Update the marker position
             updateMarkerPosition() {
+                // If coordinates are invalid, bail
+                if (!this.$parent.validCoords()) {
+                    return;
+                }
+                // Get coordinates
                 let coords = this.$root.$data.data.coords;
+                // Set marker position
                 this.marker.setPosition({
                     lat: parseFloat(coords.lat.toFixed(7)),
                     lng: parseFloat(coords.lng.toFixed(7))
                 });
+                // Center map
                 this.centerMap();
             },
 

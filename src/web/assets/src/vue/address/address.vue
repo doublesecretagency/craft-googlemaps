@@ -33,21 +33,12 @@
         //     }
         // },
         computed: {
-            // Compute coordinates locally, so we can watch them
+            // Compute locally for watching
             lat() {
                 return this.data.coords['lat'];
             },
             lng() {
                 return this.data.coords['lng'];
-            }
-        },
-        watch: {
-            // When coordinates are changed, update the marker
-            lat() {
-                console.log(this.validCoords());
-            },
-            lng() {
-                console.log(this.validCoords());
             }
         },
         methods: {
