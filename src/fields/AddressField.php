@@ -260,8 +260,12 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['lat'] = ($attr['lat'] ? (float) $attr['lat'] : null);
         $attr['lng'] = ($attr['lng'] ? (float) $attr['lng'] : null);
 
+        // Check if JSON is valid
+        // Must use this function to validate (I know it's redundant)
+        $valid = json_decode($attr['raw']);
 
-//        $attr['raw'] = ($attr['raw'] ? Json::decode($attr['raw']) : null);
+        // Convert raw data to an array
+        $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
 
 
 
