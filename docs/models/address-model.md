@@ -25,7 +25,7 @@ _string_ - A nicely-formatted single-line interpretation of the address, provide
 
 ### `raw`
 
-_object_ - The original data used to create this Address Model. Contains the full response from the original Google API call.
+_array_ - The original data used to create this Address Model. Contains the full response from the original Google API call.
 
 ### `street1`
 
