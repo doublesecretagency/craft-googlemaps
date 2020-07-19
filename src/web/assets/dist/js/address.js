@@ -859,8 +859,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -980,46 +978,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.centerMap();
     },
-    // Check whether a single coordinate is valid
-    _validCoord: function _validCoord(coord) {
-      // If coordinate is not a number or string, return false
-      if (!['number', 'string'].includes(_typeof(coord))) {
-        return false;
-      } // If coordinate is not numeric, return false
-
-
-      if (isNaN(coord)) {
-        return false;
-      } // If coordinate is an empty string, return false
-
-
-      if ('' === coord) {
-        return false;
-      } // Coordinate is valid, return true
-
-
-      return true;
-    },
-    // Get the coordinates from the field's existing data
-    _getDataCoords: function _getDataCoords(data) {
-      // TODO: Test this function again when SAVING the field data
-      // console.log('_getDataCoords');
-      // Get coordinates from field data
-      var coords = data.coords; // If invalid coordinates, return false
-
-      if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
-        return false;
-      } // Return coordinates
-
-
-      return coords;
-    },
-    // Get the coordinates from the field's default settings
-    _getSettingsCoords: function _getSettingsCoords(settings) {
-      // Get coordinates from field settings
-      var coords = settings.coordinatesDefault; // If invalid coordinates, return false
-
-      if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+    // Attempt to get coordinates
+    _getCoords: function _getCoords(coords) {
+      // If invalid coordinates, return false
+      if (!this.$parent.validCoords(coords)) {
         return false;
       } // Return coordinates
 
@@ -1029,14 +991,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // Attempt to get map center coordinates based on the field data or settings
     fromField: function fromField(field) {
       // If available, get coords from the existing field data
-      var dataCoords = this._getDataCoords(field.data);
+      var dataCoords = this._getCoords(field.data.coords);
 
       if (dataCoords) {
         return dataCoords;
       } // If available, get default coords from the field settings
 
 
-      var settingsCoords = this._getSettingsCoords(field.settings);
+      var settingsCoords = this._getCoords(field.settings.coordinatesDefault);
 
       if (settingsCoords) {
         return settingsCoords;

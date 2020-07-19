@@ -104,75 +104,27 @@
                 this.centerMap();
             },
 
-            // Check whether a single coordinate is valid
-            _validCoord(coord) {
-
-                // If coordinate is not a number or string, return false
-                if (!['number','string'].includes(typeof coord)) {
-                    return false;
-                }
-
-                // If coordinate is not numeric, return false
-                if (isNaN(coord)) {
-                    return false;
-                }
-
-                // If coordinate is an empty string, return false
-                if ('' === coord) {
-                    return false;
-                }
-
-                // Coordinate is valid, return true
-                return true;
-
-            },
-
-            // Get the coordinates from the field's existing data
-            _getDataCoords(data) {
-
-                // TODO: Test this function again when SAVING the field data
-                // console.log('_getDataCoords');
-
-                // Get coordinates from field data
-                const coords = data.coords;
-
+            // Attempt to get coordinates
+            _getCoords(coords) {
                 // If invalid coordinates, return false
-                if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
+                if (!this.$parent.validCoords(coords)) {
                     return false;
                 }
-
                 // Return coordinates
                 return coords;
-
-            },
-
-            // Get the coordinates from the field's default settings
-            _getSettingsCoords(settings) {
-
-                // Get coordinates from field settings
-                const coords = settings.coordinatesDefault;
-
-                // If invalid coordinates, return false
-                if (!this._validCoord(coords.lat) || !this._validCoord(coords.lng)) {
-                    return false;
-                }
-
-                // Return coordinates
-                return coords;
-
             },
 
             // Attempt to get map center coordinates based on the field data or settings
             fromField(field) {
 
                 // If available, get coords from the existing field data
-                let dataCoords = this._getDataCoords(field.data);
+                let dataCoords = this._getCoords(field.data.coords);
                 if (dataCoords) {
                     return dataCoords;
                 }
 
                 // If available, get default coords from the field settings
-                let settingsCoords = this._getSettingsCoords(field.settings);
+                let settingsCoords = this._getCoords(field.settings.coordinatesDefault);
                 if (settingsCoords) {
                     return settingsCoords;
                 }
