@@ -8,14 +8,13 @@ It's possible to use **IP address detection and geolocation** in an attempt to p
 Keep in mind, the accuracy of IP-based geolocation is highly variable... it's very normal for a user's IP geolocation to report the location of their local _internet service provider_, instead of the user's exact location. Do not be suprised if a user's reported location is several miles/kilometers from their actual location.
 :::
 
+There are several companies which provide geolocation services. You can set which service your website is using by visiting [Settings > Google Maps](/settings/#visitor-geolocation) in your control panel.
 
-There are several companies which provide geolocation services. You can set which service your website is using by visiting [Settings > Google Maps](/settings/) in your control panel.
-
-<img :src="$withBase('/images/geolocation/geolocation-services-dropdown.png')" alt="Screenshot of geolocation service provider options" style="max-width:600px">
+<img class="dropshadow" :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
 
 ## None
 
-If you are not using geolocation, simply set this to "None". This will be the default value when the plugin is first installed.
+If you are not using geolocation, simply select "None". This will be the default value when the plugin is first installed.
 
 ## ipstack
 

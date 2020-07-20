@@ -8,7 +8,7 @@ In order to use the Google API, access keys **are required**. You will need to e
 
 For more information about configuring the Google API keys, please [read more here...](/getting-started/api-keys/)
 
-<img :src="$withBase('/images/settings/google-api-keys.png')" alt="Screenshot of Google API keys settings">
+<img class="dropshadow" :src="$withBase('/images/settings/google-api-keys.png')" alt="Screenshot of Google API keys settings">
 
 ## Visitor Geolocation
 
@@ -16,7 +16,7 @@ Need to know where your visitors are coming from? You can use a third-party geol
 
 For more information, see the [Visitor Geolocation docs...](/geolocation/)
 
-<img :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
+<img class="dropshadow" :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
 
 ## "Geolocation Service" dropdown options
 
@@ -30,7 +30,7 @@ If visitor geolocation is enabled, it will be necessary to enter the API credent
 
  - **API Access Key** - Enter the unique authentication key used to gain access to the ipstack API.
 
-<img :src="$withBase('/images/settings/ipstack-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
+<img class="dropshadow" :src="$withBase('/images/settings/ipstack-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
 
 ### `MaxMind`
 
@@ -38,7 +38,7 @@ If visitor geolocation is enabled, it will be necessary to enter the API credent
  - **License Key** - Enter your license key for calling the MaxMind API.
  - **GeoIP2 Service** - Select which GeoIP2 Precision Service has been subscribed to.
 
-<img :src="$withBase('/images/settings/maxmind-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
+<img class="dropshadow" :src="$withBase('/images/settings/maxmind-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
 
 :::warning MORE INFORMATION
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).

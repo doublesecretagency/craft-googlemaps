@@ -17,4 +17,4 @@ In the example below, the `address` variable is being set to an [Address Model](
 
 The result will look something like this...
 
-<img :src="$withBase('/images/address-field/empire-example.png')" alt="Example using the address of the Empire State Building">
+<img class="dropshadow" :src="$withBase('/images/address-field/empire-example.png')" alt="Example using the address of the Empire State Building">

@@ -2,7 +2,7 @@
 
 In other words, _"You are lost."_
 
-<img :src="$withBase('/images/guides/bermuda-triangle.png')" alt="Screenshot of a Google Map displaying the Bermuda Triangle">
+<img class="dropshadow" :src="$withBase('/images/guides/bermuda-triangle.png')" alt="Screenshot of a Google Map displaying the Bermuda Triangle">
 
 ## Why does my map just say "Bermuda" in the middle of the ocean?
 

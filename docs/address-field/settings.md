@@ -2,7 +2,7 @@
 
 When you create a new Address field, you will see the following settings...
 
-<img :src="$withBase('/images/address-field/address-settings.png')" alt="Screenshot of Address Field Settings">
+<img class="dropshadow" :src="$withBase('/images/address-field/address-settings.png')" alt="Screenshot of Address Field Settings">
 
 These fields only apply to the **content author**, or whomever is viewing the field in the control panel. These settings do not have any impact on how the address data is used on the front-end of your site.
 
@@ -44,7 +44,7 @@ This dropdown allows you to select how the map should react when an address look
 
 The map visibility toggle appears just above the address component subfields, in the upper-right corner of the field...
 
-<img :src="$withBase('/images/address-field/map-visibility-toggle.png')" alt="Screenshot of the Map Visibility Toggle" width="327" height="177">
+<img class="dropshadow" :src="$withBase('/images/address-field/map-visibility-toggle.png')" alt="Screenshot of the Map Visibility Toggle" width="327" height="177">
 
 You can control how the toggle is displayed by selecting whether to show the text label, icon, both, or neither.
 

@@ -20,11 +20,9 @@ You'll need to enable the following services within the Google interface...
 
 ## Adding your API keys into Craft
 
-Add your new API keys to the Settings page...
+To add your newly created Google API keys into the Google Maps plugin, go to the settings page by visiting [Settings > Google Maps](/settings/#google-api-keys) in your control panel...
 
-<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
-
-You can find the settings page by visiting [Settings > Google Maps](/settings/) in your control panel.
+<img class="dropshadow" :src="$withBase('/images/settings/google-api-keys.png')" alt="Screenshot of Google API keys settings">
 
 <!--
 
