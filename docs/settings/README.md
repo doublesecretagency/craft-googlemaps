@@ -8,33 +8,37 @@ In order to use the Google API, access keys **are required**. You will need to e
 
 For more information about configuring the Google API keys, please [read more here...](/getting-started/api-keys/)
 
-<img :src="$withBase('/images/getting-started/google-api-keys.png')" alt="Screenshot of Google API keys settings">
+<img :src="$withBase('/images/settings/google-api-keys.png')" alt="Screenshot of Google API keys settings">
 
-## Geolocation Services
+## Visitor Geolocation
 
 Need to know where your visitors are coming from? You can use a third-party geolocation service to (roughly) pinpoint each visitor. Once you have the visitor geolocation results, you can use that data to better personalize a visitor's experience.
 
 For more information, see the [Visitor Geolocation docs...](/geolocation/)
 
-<img :src="$withBase('/images/geolocation/geolocation-services-dropdown.png')" alt="Screenshot of geolocation service provider options" style="max-width:600px">
+<img :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
 
-### None
+## "Geolocation Service" dropdown options
 
-No IP-based geolocation will be performed. **This is the default value.**
+If visitor geolocation is enabled, it will be necessary to enter the API credentials for the geolocation service of your choosing.
 
-### ipstack
+### `None`
 
-<img :src="$withBase('/images/geolocation/ipstack-settings.png')" alt="Screenshot of Google API keys settings">
+**Default.** No IP-based geolocation will be performed.
 
- - **API Access Key** - The unique authentication key used to gain access to the ipstack API.
+### `ipstack`
 
-### MaxMind
+ - **API Access Key** - Enter the unique authentication key used to gain access to the ipstack API.
 
-<img :src="$withBase('/images/geolocation/maxmind-settings.png')" alt="Screenshot of Google API keys settings">
+<img :src="$withBase('/images/settings/ipstack-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
 
- - **User ID** - Your user ID for pinging the MaxMind API.
- - **License Key** - Your license key for pinging the MaxMind API.
+### `MaxMind`
+
+ - **User ID** - Enter your user ID for calling the MaxMind API.
+ - **License Key** - Enter your license key for calling the MaxMind API.
  - **GeoIP2 Service** - Select which GeoIP2 Precision Service has been subscribed to.
+
+<img :src="$withBase('/images/settings/maxmind-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
 
 :::warning MORE INFORMATION
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).
