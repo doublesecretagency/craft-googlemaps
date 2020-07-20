@@ -66,6 +66,7 @@ module.exports = {
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
+                    {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
                 ]
             }
         ],
@@ -176,6 +177,7 @@ module.exports = {
                 'region-biasing',
                 'complex-geolocation',
                 'bermuda-triangle',
+                'updating-from-smart-map',
             ],
 
             // // fallback

@@ -19,6 +19,18 @@ You can access `lat` and `lng` just as easily as `street1` and `street2`.
 
 ## Public Properties
 
+### `id`
+
+_int_ - ID of the address.
+
+### `elementId`
+
+_int_ - ID of the element containing the address.
+
+### `fieldId`
+
+_int_ - ID of the field containing the address.
+
 ### `formatted`
 
 _string_ - A nicely-formatted single-line interpretation of the address, provided by Google during the initial geocoding.
@@ -54,6 +66,10 @@ _string_ - The country of the location.
 ### `distance`
 
 _float_ - Alias for `getDistance()`.
+
+### `zoom`
+
+_int_ - Zoom level of the map as shown in the control panel.
 
 ## Public Methods
 
@@ -93,50 +109,78 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 {% endif %}
 ```
 
-### `multiline(mergeUnit = false, mergeCity = false)`
+### `multiline(numberOfLines)`
 
-- `mergeUnit` - Whether to merge the apartment or suite number into the preceding line.
-- `mergeCity` - Whether to merge the city and state into the preceding line.
+- `numberOfLines` - Number of lines (1-4) allocated to display the address.
 
-**Examples:**
+:::code
+```twig 1
+{{ address.multiline(1) }}
 
-```twig
-{# Line breaks before both the unit number and the city #}
-{{ address.multiline() }}
+   123 Main St, Suite #101, Springfield, CO 81073
 ```
+```twig 2
+{{ address.multiline(2) }}
 
->123 Main St<br>
->Suite #101<br>
->Springfield, CO 81073
-
-```twig
-{# Line break just before the city #}
-{{ address.multiline(true) }}
+   123 Main St, Suite #101
+   Springfield, CO 81073
 ```
+```twig 3
+{{ address.multiline(3) }}
 
->123 Main St, Suite #101<br>
->Springfield, CO 81073
-
-```twig
-{# No line breaks #}
-{{ address.multiline(true, true) }}
+   123 Main St
+   Suite #101
+   Springfield, CO 81073
 ```
+```twig 4
+{{ address.multiline(4) }}
 
->123 Main St, Suite #101, Springfield, CO 81073
+   123 Main St
+   Suite #101
+   Springfield, CO 81073
+   United States
+```
+:::
 
-::: tip NOTE
-You will rarely need to use `.multiline(true, true)`. If you really want to render the address on a single line, just **output the model directly** instead (see below).
+### `1`
+
+All information is condensed into a single line. Very similar to `formatted`, although the `country` value will be omitted here. Other minor formatting differences are also possible, since the formatting is being handled by different sources.
+
+### `2`
+
+The `street1` and `street2` will appear on the first line, everything else (except `country`) will appear on the second line.
+
+### `3`
+
+If a `street2` value exists, it will be given its own line. Otherwise, that line will be skipped.
+
+### `4`
+
+Exactly like `3`, with only the addition of the `country` value.
+
+<hr>
+
+:::warning Two ways to display a single line.
+If you need to output an address on a single line, `multiline` may not be the best choice. Consider just **outputting the model directly** instead.
 :::
 
 ## Outputting the model directly
 
-When you output the model directly, it will render the entire address on a single line.
+When you output the model directly, it will render the entire address on a single line. The internal `__toString` method attempts to use the `formatted` value if it exists. Otherwise, it will generate a single line address by using the `multiline` method.
 
-```twig
-{{ address }}
+:::code
+```twig By outputting directly
+{{ entry.address }}
+
+{# 123 Main St, Suite #101, Springfield, CO 81073, USA #}
+```
+```twig By using multiline
+{{ entry.address.multiline(1) }}
+
 {# 123 Main St, Suite #101, Springfield, CO 81073 #}
 ```
+:::
 
-If there is a Google-supplied `formatted` address, that value will be used as the single-line interpretation of the Address model.
+If the model contains a Google-supplied `formatted` address, that value will be used as the single-line interpretation of the Address model.
 
-Otherwise, `multiline(true, true)` will be used to generate a single-line version of the Address.
+Otherwise, `multiline(1)` will be used to generate a single-line version of the Address.
