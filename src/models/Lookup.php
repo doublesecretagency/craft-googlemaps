@@ -286,20 +286,26 @@ class Lookup extends Model
         $zip          = ($formatted['postal_code'] ?? null);
         $country      = ($formatted['country'] ?? null);
 
+        // Country-specific adjustments
+        switch ($country) {
+            case 'United Kingdom':
+                $city  = ($formatted['postal_town'] ?? null);
+                $state = ($formatted['administrative_area_level_2'] ?? null);
+                break;
+        }
+
         // Get coordinates
         $lat = ($unformatted['geometry']['location']['lat'] ?? null);
         $lng = ($unformatted['geometry']['location']['lng'] ?? null);
 
-        // Format street address according to country
+        // Default street format
+        $street1 = "{$streetName} {$streetNumber}";
+
+        // If country uses a different street format, apply that format instead
         if (in_array($country, $this->_countriesWithNumberFirst)) {
-            // If country puts the street number first
             $street1 = "{$streetNumber} {$streetName}";
         } else if (in_array($country, $this->_companiesWithCommaAfterStreet)) {
-            // If country puts a comma after the street name
             $street1 = "{$streetName}, {$streetNumber}";
-        } else {
-            // Default
-            $street1 = "{$streetName} {$streetNumber}";
         }
 
         // Trim whitespace from street
@@ -315,7 +321,7 @@ class Lookup extends Model
             'country' => $country,
             'lat'     => $lat,
             'lng'     => $lng,
-//            'raw'    => $unformatted, // TODO: Uncomment
+            'raw'     => $unformatted,
         ];
     }
 
