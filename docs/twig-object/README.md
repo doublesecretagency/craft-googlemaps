@@ -1,6 +1,12 @@
-# Twig Object
+# Twig Helper Object
 
 As long as the plugin is installed and enabled, the `googleMaps` object will be predefined in Twig.
+
+:::warning Should I use the helper method?
+Yes, probably. If there is a helper method which directly addresses the problem that you are trying to solve, it is preferable to use the helper method rather than the underlying service method (or whatever the helper method is wrapping). The goal of this is to bring consistency and uniformity across projects.
+
+If your use case is _not_ covered by this collection of helper methods, then by all means rely directly on the underlying service methods.
+:::
 
 ---
 

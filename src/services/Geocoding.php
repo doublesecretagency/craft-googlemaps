@@ -20,6 +20,12 @@ use doublesecretagency\googlemaps\models\Lookup;
 class Geocoding extends Api
 {
 
+    /**
+     * Initialize a geocoding lookup by configuring a Lookup Model.
+     *
+     * @param array|string $parameters
+     * @return Lookup|false
+     */
     public static function lookup($parameters = [])
     {
         // If a string target was specified, convert to array

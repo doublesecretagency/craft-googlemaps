@@ -48,7 +48,7 @@ module.exports = {
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
                     {text: 'Events', link: '/events/'},
-                    {text: 'Twig Object', link: '/twig-object/'},
+                    {text: 'Twig Helper Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
                 ]
             },

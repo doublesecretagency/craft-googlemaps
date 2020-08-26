@@ -20,7 +20,7 @@ Perform lookup and return complete results. Addresses will be sorted by best mat
 
 #### Returns
 
-`Address[]` - An array of [Address Models](), or `null` if nothing was found.
+`Address[]` - An array of [Address Models](/models/address-model/), or `null` if nothing was found.
 
 **EXAMPLES:** [Twig](/geocoding/in-twig/#all) | [PHP](/geocoding/in-php/#all) | [AJAX](/geocoding/via-ajax/#all)
 
@@ -30,7 +30,7 @@ Perform lookup and return only the first matching result. Generally speaking, th
 
 #### Returns
 
-`Address` - A single [Address Model](), or `null` if nothing was found.
+`Address` - A single [Address Model](/models/address-model/), or `null` if nothing was found.
 
 **EXAMPLES:** [Twig](/geocoding/in-twig/#one) | [PHP](/geocoding/in-php/#one) | [AJAX](/geocoding/via-ajax/#one)
 
