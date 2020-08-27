@@ -1,8 +1,23 @@
 # Geocoding (Address Lookups)
 
-You will often need to perform a geocoding lookup to get the full address (including coordinates) based on a partial address or postal code. Indeed, the Google Maps plugin itself uses these lookup methods frequently under the hood.
+The concept of **geocoding** is fairly straightforward... For example, say you want to take a partial address ("123 Main St") and determine the precise details of that geographic location. This is commonly referred to as an "address lookup".
 
-<img class="dropshadow" :src="$withBase('/images/geocoding/flow-chart.png')" alt="How it works">
+You can perform a geocoding lookup to get a complete address (including geographic coordinates) based on a partial address or postal code. The basic geocoding process can be extremely simple:
+
+:::code
+```twig
+{% set address = googleMaps.lookup('123 Main St').one() %}
+```
+```php
+$address = GoogleMaps::lookup('123 Main St')->one();
+```
+:::
+
+There are three `lookup` methods that can be performed (`all`, `one`, `coords`). To see the complete details of each method, see the [Lookup Model](/models/lookup-model/) documentation for more information.
+
+Internally, this plugin uses the `lookup` methods quite frequently under the hood. Here is a rough diagram of how a geocoding request flows through the plugin... 
+
+<img class="dropshadow" :src="$withBase('/images/geocoding/perform-address-lookup-internal.png')" alt="How it works internally">
 
 If you want to get the complete set of geocoding results from Google, you would use the [`all()`](/models/lookup-model/#all) method. The results will be sorted in order of what Google considers to be the best match.
 
@@ -22,7 +37,7 @@ There are many ways to access the `lookup` method, all of them are equally valid
 googleMaps.lookup('123 Main St')
 ```
 
-[_See more Geocoding in Twig..._](/geocoding/in-twig/)
+[_See more Geocoding in Twig..._](/geocoding/methods/)
 
 **PHP**
 
@@ -32,7 +47,7 @@ use doublesecretagency\googlemaps\helpers\GoogleMaps;
 $results = GoogleMaps::lookup('123 Main St');
 ```
 
-[_See more Geocoding in PHP..._](/geocoding/in-php/)
+[_See more Geocoding in PHP..._](/geocoding/methods/)
 
 The `googleMaps.lookup` Twig method is the same function as the `GoogleMaps::lookup` PHP equivalent. In fact, the `googleMaps` Twig object is an instance of the `GoogleMaps` PHP helper class.
 

@@ -45,10 +45,10 @@ module.exports = {
                 text: 'Architecture',
                 items: [
                     {text: 'Settings', link: '/settings/'},
+                    {text: 'Helper', link: '/helper/'},
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
                     {text: 'Events', link: '/events/'},
-                    {text: 'Twig Helper Object', link: '/twig-object/'},
                     {text: 'JavaScript Object', link: '/javascript-object/'},
                 ]
             },
@@ -119,12 +119,18 @@ module.exports = {
             ],
             '/geocoding/': [
                 '',
-                'in-twig',
-                'in-php',
+                'methods',
                 'via-ajax',
             ],
 
             // Architecture
+            '/settings/': [
+                '',
+                'config',
+            ],
+            '/helper/': [
+                '',
+            ],
             '/models/': [
                 '',
                 'address-model',
@@ -151,16 +157,9 @@ module.exports = {
                 'geocoding-event',
                 'geolocation-event',
             ],
-            '/twig-object/': [
-                '',
-            ],
             '/javascript-object/': [
                 '',
                 'google-maps-objects',
-            ],
-            '/settings/': [
-                '',
-                'config',
             ],
 
             // Guides

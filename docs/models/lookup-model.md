@@ -1,45 +1,50 @@
 # Lookup Model
 
-When a Lookup Model is initiated, it is passed a collection of parameters which specify the lookup details. This set of parameters is stored internally when the object is initially created.
+When a Lookup Model is initialized, it should be passed a collection of parameters which specify the lookup details. These parameters will be stored internally once the object is created.
 
-```php
-$lookup = GoogleMaps::lookup($parameters);
+:::code
+```twig
+{# Configure Lookup Model #}
+{% set lookup = GoogleMaps::lookup(parameters) %}
+
+{# Perform the geocoding lookup #}
+{% set results = lookup.all() %}
 ```
-
-Once you apply the `->all()` (or `->one()`, or `->coords()`) method, those parameters are used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding). The lookup results will be cached for 30 days.
-
 ```php
+// Configure Lookup Model
+$lookup = GoogleMaps::lookup($parameters);
+
+// Perform the geocoding lookup
 $results = $lookup->all();
 ```
+:::
+
+Once you apply the `all` (or `one`, or `coords`) method, those parameters will be used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding). The results of each lookup will be cached for 30 days, in order to ease the load on the API.
+
+For more information, see the [Geocoding Methods](/geocoding/methods/) page.
 
 ## Public Methods
 
 ### `all()`
 
-Perform lookup and return complete results. Addresses will be sorted by best match.
+Perform lookup and return **complete results**. Addresses will be sorted by best match.
 
 #### Returns
 
 `Address[]` - An array of [Address Models](/models/address-model/), or `null` if nothing was found.
 
-**EXAMPLES:** [Twig](/geocoding/in-twig/#all) | [PHP](/geocoding/in-php/#all) | [AJAX](/geocoding/via-ajax/#all)
-
 ### `one()`
 
-Perform lookup and return only the first matching result. Generally speaking, the first address is typically the best match.
+Perform lookup and return only the **first matching result**. Generally speaking, the first address is typically the best match.
 
 #### Returns
 
 `Address` - A single [Address Model](/models/address-model/), or `null` if nothing was found.
 
-**EXAMPLES:** [Twig](/geocoding/in-twig/#one) | [PHP](/geocoding/in-php/#one) | [AJAX](/geocoding/via-ajax/#one)
-
 ### `coords()`
 
-Perform lookup and return only the coordinates of the first matching address.
+Perform lookup and return only the **coordinates** of the **first matching result**.
 
 #### Returns
 
 `coords` - A [coords](/models/coordinates/) object, or `null` if nothing was found.
-
-**EXAMPLES:** [Twig](/geocoding/in-twig/#coords) | [PHP](/geocoding/in-php/#coords) | [AJAX](/geocoding/via-ajax/#coords)
