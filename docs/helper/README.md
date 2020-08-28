@@ -26,6 +26,7 @@ However, if your use case is _not_ covered by this collection of helper methods,
 
 ## Generate Maps
 
+:::code
 ```twig
 {# Generate a dynamic map #}
 {{ googleMaps.dynamic(locations, options) }}
@@ -33,6 +34,14 @@ However, if your use case is _not_ covered by this collection of helper methods,
 {# Generate a static map #}
 {{ googleMaps.static(locations, options) }}
 ```
+```php
+// Generate a dynamic map
+GoogleMaps::dynamic($locations, $options);
+
+// Generate a static map
+GoogleMaps::static($locations, $options);
+```
+:::
 
 For more information, check out the documentation on [Dynamic Maps](/maps/dynamic/) and [Static Maps](/maps/static/).
 
@@ -40,10 +49,16 @@ For more information, check out the documentation on [Dynamic Maps](/maps/dynami
 
 ## Change a Marker Icon
 
+:::code
 ```twig
 {# Set the icon of a specific marker #}
 {% do googleMaps.setMarkerIcon(mapId, markerId, icon) %}
 ```
+```php
+// Set the icon of a specific marker
+GoogleMaps::setMarkerIcon($mapId, $markerId, $icon);
+```
+:::
 
 For more information, check out the documentation on [Setting Marker Icons](/guides/setting-marker-icons/#change-a-marker-icon).
 
@@ -51,10 +66,16 @@ For more information, check out the documentation on [Setting Marker Icons](/gui
 
 ## Apply a KML file
 
+:::code
 ```twig
 {# Load a KML file into the specified map #}
 {% do googleMaps.loadKml(mapId, kml, options) %}
 ```
+```php
+// Load a KML file into the specified map
+GoogleMaps::loadKml($mapId, $kml, $options);
+```
+:::
 
 For more information, check out the documentation on [KML Files](/guides/kml-files/).
 
@@ -62,20 +83,32 @@ For more information, check out the documentation on [KML Files](/guides/kml-fil
 
 ## Perform Visitor Geolocation
 
+The `visitor` attribute relies on the magic getter of `getVisitor`. They are functionally identical.
+
+Optionally, you can override the `service` and/or `ip` when performing a visitor geolocation.
+
+:::code
 ```twig
 {# Get visitor geolocation information #}
 {% set visitor = googleMaps.visitor %}
-```
 
-You can optionally override the `service` and/or `ip` when performing a visitor geolocation.
-
-```twig
-{# It's the same method, but using optional overrides #}
+{# The exact same method, with optional overrides #}
 {% set visitor = googleMaps.getVisitor({
     'service': 'ipstack',
     'ip': '1.2.3.4'
 }) %}
 ```
+```php
+// Get visitor geolocation information
+$visitor = GoogleMaps::visitor;
+
+// The exact same method, with optional overrides
+$visitor = GoogleMaps::getVisitor([
+    'service' => 'ipstack',
+    'ip' => '1.2.3.4'
+]);
+```
+:::
 
 For more information, check out the documentation on [Geolocation](/geolocation/).
 
@@ -83,6 +116,7 @@ For more information, check out the documentation on [Geolocation](/geolocation/
 
 ## Geocoding (Address Lookups)
 
+:::code
 ```twig
 {# Get all matching results (sorted by best match) #}
 {% set allMatches = googleMaps.lookup(target).all() %}
@@ -93,6 +127,17 @@ For more information, check out the documentation on [Geolocation](/geolocation/
 {# Get only the coordinates of the first matching address #}
 {% set coords = googleMaps.lookup(target).coords() %}
 ```
+```php
+// Get all matching results (sorted by best match)
+$allMatches = GoogleMaps::lookup($target).all();
+
+// Get the first (best) matching result
+$bestMatch = GoogleMaps::lookup($target).one();
+
+// Get only the coordinates of the first matching address
+$coords = GoogleMaps::lookup($target).coords();
+```
+:::
 
 For more information, check out the documentation on [Geocoding](/geocoding/).
 
@@ -102,6 +147,7 @@ For more information, check out the documentation on [Geocoding](/geocoding/).
 
 If you need to override the Google API keys via Twig, you can...
 
+:::code
 ```twig
 {# Override server key #}
 {% do googleMaps.setServerKey('lorem') %}
@@ -109,9 +155,18 @@ If you need to override the Google API keys via Twig, you can...
 {# Override browser key #}
 {% do googleMaps.setBrowserKey('ipsum') %}
 ```
+```php
+// Override server key
+GoogleMaps::setServerKey('lorem');
+
+// Override browser key
+GoogleMaps::setBrowserKey('ipsum');
+```
+:::
 
 There are parallel methods for retrieving the API keys...
 
+:::code
 ```twig
 {# Get server key #}
 {% set serverKey = googleMaps.getServerKey() %}
@@ -119,10 +174,24 @@ There are parallel methods for retrieving the API keys...
 {# Get browser key #}
 {% set browserKey = googleMaps.getBrowserKey() %}
 ```
+```php
+// Get server key
+$serverKey = GoogleMaps::getServerKey();
+
+// Get browser key
+$browserKey = GoogleMaps::getBrowserKey();
+```
+:::
 
 And since Twig is very forgiving about using magic methods, you can abbreviate those even further...
 
+:::code
 ```twig
 {{ googleMaps.serverKey }}
 {{ googleMaps.browserKey }}
 ```
+```php
+GoogleMaps::serverKey;
+GoogleMaps::browserKey;
+```
+:::

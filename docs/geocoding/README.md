@@ -29,42 +29,45 @@ And if all you really need are the _coordinates_ of the _best possible match_, t
 
 Most of the lookup behavior is handled by the [Geocoding Service](/services/geocoding-service/). Specifically, the `lookup` method is the only one you really need to worry about.
 
-There are many ways to access the `lookup` method, all of them are equally valid.
+There are many ways to access the `lookup` method, all of them are equally valid. For more information on the available methods, take a look at the [Geocoding Methods](/geocoding/methods/) documentation.
 
-**Twig**
-
+:::code
 ```twig
-googleMaps.lookup('123 Main St')
+{% set address = googleMaps.lookup('123 Main St').one() %}
 ```
-
-[_See more Geocoding in Twig..._](/geocoding/methods/)
-
-**PHP**
-
 ```php
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
-
-$results = GoogleMaps::lookup('123 Main St');
+$address = GoogleMaps::lookup('123 Main St')->one();
 ```
-
-[_See more Geocoding in PHP..._](/geocoding/methods/)
+:::
 
 The `googleMaps.lookup` Twig method is the same function as the `GoogleMaps::lookup` PHP equivalent. In fact, the `googleMaps` Twig object is an instance of the `GoogleMaps` PHP helper class.
 
-The following two approaches are also identical. The first example is the "quicker" way to call the `lookup` method, but the second example is the more "traditional" way. Either approach is acceptable, they both point to the exact same function. 
+### Geocoding Service
+
+The `GoogleMaps::lookup` method shown above is actually just a _wrapper_ for the `Geocoding::lookup` service method. They are functionally identical. To learn more about why this wrapper exists, read about the [Helper Class](/helper/).
+
+Additionally, there is yet another way to access the same service method. This approach follows the _traditional_ approach for accessing service methods in PHP...
+
+```php
+GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St')
+```
+
+Here is a side-by-side view of how to use all three methods...
 
 :::code
-```php
+```php via Helper
 use doublesecretagency\googlemaps\services\Geocoding;
 
 $results = Geocoding::lookup('123 Main St');
 ```
-```php
+```php via Service
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 $results = GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St');
 ```
 :::
+
+While they are each valid approaches (and will return the exact same result), it is preferred to use the `GoogleMaps` Helper class whenever possible.
 
 All of these `lookup` methods will return the same thing: a [Lookup Model](/models/lookup-model/). There isn't much you can do with a Lookup Model directly, until you append `.all()` (or `.one()`, or `.coords()`) onto the end of it.
 
