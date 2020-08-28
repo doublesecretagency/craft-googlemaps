@@ -106,8 +106,10 @@ class GoogleMaps
      */
     public static function lookup($target = null)
     {
-        return Geocoding::lookup($target);
+        return GoogleMapsPlugin::$plugin->geocoding->lookup($target);
     }
+
+
 
     // Override Google API keys
 

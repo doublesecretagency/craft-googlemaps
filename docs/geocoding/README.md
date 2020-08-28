@@ -2,7 +2,7 @@
 
 The concept of **geocoding** is fairly straightforward... For example, say you want to take a partial address ("123 Main St") and determine the precise details of that geographic location. This is commonly referred to as an "address lookup".
 
-You can perform a geocoding lookup to get a complete address (including geographic coordinates) based on a partial address or postal code. The basic geocoding process can be extremely simple:
+You can perform a geocoding lookup to get a complete address (including latitude & longitude) based on a partial address or postal code. The basic geocoding process can be extremely simple:
 
 :::code
 ```twig
@@ -15,65 +15,48 @@ $address = GoogleMaps::lookup('123 Main St')->one();
 
 There are three `lookup` methods that can be performed (`all`, `one`, `coords`). To see the complete details of each method, see the [Lookup Model](/models/lookup-model/) documentation for more information.
 
-Internally, this plugin uses the `lookup` methods quite frequently under the hood. Here is a rough diagram of how a geocoding request flows through the plugin... 
+Internally, this plugin uses the `lookup` methods quite frequently under the hood. The examples above use the [`GoogleMaps` Helper Class](/helper/), which is acting as a wrapper for the [Geocoding Service](/services/geocoding-service/). Here is a rough diagram of how a geocoding request flows through the plugin... 
 
 <img class="dropshadow" :src="$withBase('/images/geocoding/perform-address-lookup-internal.png')" alt="How it works internally">
 
-If you want to get the complete set of geocoding results from Google, you would use the [`all()`](/models/lookup-model/#all) method. The results will be sorted in order of what Google considers to be the best match.
+The `Geocoding::lookup` method will create a [Lookup Model](/models/lookup-model/), which contains everything the geocoding request needs to call the Google Geocoding API. The model also has three classes, which determine how you will receive the API results.
 
-Generally (but not always), it's safe to assume that Google hunch is correct, and the _first_ result is likely to be the correct match. In this case, you may feel comfortable using the [`one()`](/models/lookup-model/#one) method.
-
-And if all you really need are the _coordinates_ of the _best possible match_, then it's probably safe to use the [`coords()`](/models/lookup-model/#coords) method.
-
-## Geocoding Service
-
-Most of the lookup behavior is handled by the [Geocoding Service](/services/geocoding-service/). Specifically, the `lookup` method is the only one you really need to worry about.
-
-There are many ways to access the `lookup` method, all of them are equally valid. For more information on the available methods, take a look at the [Geocoding Methods](/geocoding/methods/) documentation.
-
-:::code
-```twig
-{% set address = googleMaps.lookup('123 Main St').one() %}
-```
-```php
-$address = GoogleMaps::lookup('123 Main St')->one();
-```
-:::
-
-The `googleMaps.lookup` Twig method is the same function as the `GoogleMaps::lookup` PHP equivalent. In fact, the `googleMaps` Twig object is an instance of the `GoogleMaps` PHP helper class.
-
-### Geocoding Service
+ - If you want to get the complete set of results from Google, you would use the [`all()`](/models/lookup-model/#all) method. The results will be an array of [Address Models](/models/address-model/), sorted in order of what Google considers to be the best match.
+ - Generally (but not always), it's safe to assume that Google's hunch is correct, and the _first_ result is likely to be the correct match. In this case, you may feel comfortable using the [`one()`](/models/lookup-model/#one) method. This will return only a single [Address Model](/models/address-model/).
+ - And if all you really need are the _coordinates_ of the _best possible match_, then it's probably safe to use the [`coords()`](/models/lookup-model/#coords) method. This returns a pseudo-model (aka: a glorified array) of [Coordinates](/models/coordinates/).
 
 The `GoogleMaps::lookup` method shown above is actually just a _wrapper_ for the `Geocoding::lookup` service method. They are functionally identical. To learn more about why this wrapper exists, read about the [Helper Class](/helper/).
 
-Additionally, there is yet another way to access the same service method. This approach follows the _traditional_ approach for accessing service methods in PHP...
+## Geocoding Service
 
-```php
-GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St')
-```
+The lookup behavior is handled by the [Geocoding Service](/services/geocoding-service/), specifically the `lookup` method. It creates and returns a [Lookup Model](/models/lookup-model/) in preparation for a Google API request.
 
-Here is a side-by-side view of how to use all three methods...
+There are multiple ways to access the `lookup` service method, each of them are equally valid. For more information on the available methods, take a look at the [Geocoding Methods](/geocoding/methods/) documentation.
+
+Although it is preferable to rely on the helper method, it is also possible to use the underlying service method directly. Here is a side-by-side view of both approaches...
 
 :::code
 ```php via Helper
-use doublesecretagency\googlemaps\services\Geocoding;
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
-$results = Geocoding::lookup('123 Main St');
+$lookupModel = GoogleMaps::lookup('123 Main St');
 ```
 ```php via Service
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
-$results = GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St');
+$lookupModel = GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St');
 ```
 :::
 
-While they are each valid approaches (and will return the exact same result), it is preferred to use the `GoogleMaps` Helper class whenever possible.
+:::warning Use the Helper Class (if possible)
+While those are both valid approaches (and will return the exact same result), it is preferred to use the [`GoogleMaps` Helper Class](/helper/) whenever possible. This promotes consistency between PHP and Twig, and sets a common practice for other developers to follow.
+:::
 
-All of these `lookup` methods will return the same thing: a [Lookup Model](/models/lookup-model/). There isn't much you can do with a Lookup Model directly, until you append `.all()` (or `.one()`, or `.coords()`) onto the end of it.
+Both of these `lookup` approaches will return the same thing: a [Lookup Model](/models/lookup-model/). There isn't much you can do with a Lookup Model directly, until you append `.all()` (or `.one()`, or `.coords()`) onto the end of it.
 
 ## How the `lookup` method works
 
-This service method prepares a lookup API call based on the specified `parameters`. It will use a [Lookup Model](/models/lookup-model/) to compile all of the parameters specified into a Google Geocoding API endpoint URL. A fully compiled URL will look something like this...
+This service method prepares a lookup API call based on the specified `parameters`. It creates a [Lookup Model](/models/lookup-model/) to compile all of the parameters specified into a Google Geocoding API endpoint URL. A fully compiled URL will look something like this...
 
 ```html
 https://maps.googleapis.com/maps/api/geocode/json?address={ADDRESS}&key={KEY}
@@ -81,34 +64,38 @@ https://maps.googleapis.com/maps/api/geocode/json?address={ADDRESS}&key={KEY}
 
 The fully-compiled endpoint will be pinged as soon as the `all` (or `one`, or `coords`) method is executed.
 
-::: warning OMIT THE KEY
-You don't need to manually specify the `key` value. It is stored internally, and appended to the API endpoint URL automatically.
-:::
+## Value of `parameters`
 
-### Example using a string:
+When generating a [Lookup Model](/models/lookup-model/), you only need to pass in a single parameter. However, that parameter can either be _string_ or an _array_, depending on whether or not you need granular control over the API call. 
 
-If you don't need any other parameters, then it's perfectly acceptable to pass in a string directly.
+### Using a simple string
+
+This is the simplest, and most straightforward approach. It will send the specified string to the Google API with no other requirements. For the vast majority of cases, you won't need to pass in anything more complex than a target string.
 
 ```twig
 {# Lookup based on simple string #}
-{% do googleMaps.lookup('123 Main St') %}
+{% set results = googleMaps.lookup('123 Main St').all() %}
 
 {# Generates the following API URL: #}
 https://maps.googleapis.com/maps/api/geocode/json?address=123+Main+St&key={KEY}
 ```
 
-### Example using an array of parameters:
+### Using an array of parameters
 
-If your lookup needs are more complex, you can pass in any values [allowed by the API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding).
+If your lookup needs are more complex, you can pass in any values [allowed by the Google API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding).
 
 ```twig
 {# Lookup based on complex array #}
-{% do googleMaps.lookup({
-    'address': '123 Main St',
-    'language': 'de',
-    'components': 'country:DE'
-}) %}
+{% set results = googleMaps.lookup({
+   'address': '123 Main St',
+   'language': 'de',
+   'components': 'country:DE'
+}).all() %}
 
 {# Generates the following API URL: #}
 https://maps.googleapis.com/maps/api/geocode/json?address=123+Main+St&language=de&components=country:DE&key={KEY}
 ```
+
+::: warning Do not specify the API key here
+When adding requirements for your `lookup`, you do not need to manually specify the `key` value. It is stored internally, and will be appended to the API endpoint URL automatically.
+:::

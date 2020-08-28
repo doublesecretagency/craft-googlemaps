@@ -26,7 +26,7 @@ class Geocoding extends Api
      * @param array|string $parameters
      * @return Lookup|false
      */
-    public static function lookup($parameters = [])
+    public function lookup($parameters = [])
     {
         // If a string target was specified, convert to array
         if (is_string($parameters)) {
