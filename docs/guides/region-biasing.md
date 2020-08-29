@@ -1,5 +1,10 @@
 # Region Biasing
 
+
+[Component Filtering](https://developers.google.com/maps/documentation/geocoding/overview#component-filtering)
+
+
+
 ## What is region biasing?
 
 Sometimes your [proximity search](/proximity-search/) lookups don't match the expected target. Instead, the lookup may be matching a different, but similarly named, geographic location. This is often because the specified target shares a similar name as a more well-known area.
@@ -10,10 +15,12 @@ You can specify which region to hone in on by using the `components` option...
 
 ```twig
 {% set options = {
-    target: 'Venice',
-    components: {
-        country: 'US',
-        administrative_area: 'California',
+    'target': {
+        'address': 'Venice'
+        'components': {
+            'country': 'US',
+            'administrative_area': 'California',
+        },
     },
 } %}
 ```

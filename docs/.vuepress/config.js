@@ -104,11 +104,10 @@ module.exports = {
             ],
             '/proximity-search/': [
                 '',
+                'query-parameters',
                 'options',
-                'in-twig',
-                'in-php',
-                'in-javascript',
-                'in-graphql',
+                // 'in-javascript', // TODO: Support JS methods
+                // 'in-graphql', // TODO: Support GraphQL
             ],
             '/geolocation/': [
                 '',

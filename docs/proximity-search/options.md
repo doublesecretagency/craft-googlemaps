@@ -1,24 +1,27 @@
 # Options
 
-| Option       | Type                 | Default | Description                                               |
-|--------------|:--------------------:|:-------:|-----------------------------------------------------------|
-| `target`     | _string_, [coords](/models/coordinates/), or _null_ | `null` (autodetect) | Center point for the proximity search. |
-| `range`      | _int_                | `500`   | The search radius, measured in `units`.                   |
-| `units`      | _string_             | `"mi"`  | Unit of measurement, either miles or kilometers.          |
-| `fields`     | _string_ or _array_  | `null`  | Only search against the specified field(s).               |
-| `subfields`  | _object_             | `null`  | An associative array of subfield filters.                 |
-| `components` | _object_ or _string_ | `null`  | An associative array of Google Maps components.           |
-| `hasCoords`  | _bool_               | `false` | Whether to filter out addresses with invalid coordinates. |
+| Option       | Type                | Default | Description                                            |
+|--------------|:-------------------:|:-------:|--------------------------------------------------------|
+| `target`     | _mixed_             | `null`  | Center point for the proximity search.                 |
+| `range`      | _int_               | `500`   | The search radius, measured in `units`.                |
+| `units`      | _string_            | `'mi'`  | Unit of measurement, either miles or kilometers.       |
+| `fields`     | _string_ or _array_ | `null`  | Filter by specified Address field(s).                  |
+| `subfields`  | _array_             | `null`  | Filter by contents of specific subfields.              |
+| `hasCoords`  | _bool_              | `false` | Whether to exclude Addresses with invalid coordinates. |
 
 ## `target`
 
 ### Default: `null`
 
-If the `target` is a **string**, the plugin will perform an [address lookup](/geocoding/) to determine the center point of the proximity search. The string can be anything that translates into a full or partial address. Front-end users will often enter a postal code or partial address.
+If the `target` is **null**, the plugin will automatically attempt to use [Visitor Geolocation](/geolocation/) in order to determine a reasonable center point for the proximity search.
 
-If the `target` is a set of [coordinates](/models/coordinates/), those coordinates will be used as the center point of the proximity search. No API calls are necessary, the proximity search is handled using internal data.
+If the `target` is a **set of [coordinates](/models/coordinates/)**, those coordinates will be directly used as the center point for the proximity search. No API calls will be necessary, the entire proximity search can be handled internally.
 
-If the `target` is **null**, the plugin will attempt to use [visitor geolocation](/geolocation/) to determine a reasonable center point for the proximity search.
+If the `target` is a **string** or a **set of parameters**, the plugin will perform an address lookup to determine the center point for the proximity search. Please see the [Geocoding Parameters](/geocoding/parameters/) for more information on what is allowed.
+
+:::tip Region Biasing
+Worried about the proximity search starting from the right place? Check out [Region Biasing...](/guides/region-biasing/)
+:::
 
 ## `range`
 
@@ -28,22 +31,23 @@ How wide of an area to conduct a proximity search within. The value represents t
 
 ## `units`
 
-### Default: `"mi"`
+### Default: `'mi'`
 
-The unit of measurement by which to measure distances. Any of the following options are valid:
+The unit of measurement by which to measure distances. Accepts the following values:
 
- - "mi"
- - "km"
- - "miles"
- - "kilometers"
+ - `'mi'` or `'miles'`
+ - `'km'` or `'kilometers'`
 
 ## `fields`
 
 ### Default: `null`
 
-The `fields` option will restrain the proximity search to only the Address field(s) specified here. If you omit this option, it will conduct the proximity search across _all_ fields in that section by default.
+The `fields` option will restrain the proximity search to only the specified Address field(s). The value can be either a field handle **string**, or an **array** of field handles.
 
-Value can be either a field handle **string**, or an **array** of field handles. If no value is specified, all Address fields will be included by default.
+ - `'businessAddress'`
+ - `['businessAddress', 'homeAddress']`
+
+If you omit this option, the proximity search will be conducted across _all_ Address fields in that section by default.
 
 [See how it works...](/guides/filter-by-fields-and-subfields/)
 
@@ -51,21 +55,39 @@ Value can be either a field handle **string**, or an **array** of field handles.
 
 ### Default: `null`
 
-The `subfields` option will exclude results which don't _exactly match_ the specified subfields. It allows you to filter the proximity search results based on existing subfield values of the Address field.
+The `subfields` option will exclude results which don't _exactly match_ the specified subfields. It allows you to filter the proximity search results based on existing subfield values of the Address field. The value must be an array of `subfield => value` pairs:
+
+:::code
+```twig
+'subfields': {
+    'city': 'Los Angeles',
+    'state': 'CA',
+}
+```
+```php
+'subfields' => [
+    'city' => 'Los Angeles',
+    'state' => 'CA',
+]
+```
+:::
+
+The filter value of each subfield can also be an array if necessary:
+
+:::code
+```twig
+'subfields': {
+    'state': ['CA', 'OR', 'WA'],
+}
+```
+```php
+'subfields' => [
+    'state' => ['CA', 'OR', 'WA'],
+]
+```
+:::
 
 [See how it works...](/guides/filter-by-fields-and-subfields/)
-
-## `components`
-
-### Default: `null`
-
-Additional components that can be passed to the Google Maps API, in order to perform techniques like Region Biasing.
-
-[See how it works...](/guides/region-biasing/)
-
-::: warning ONLY RELEVANT IF TARGET IS A STRING
-The `components` option only matters if the `target` value is a **string**. Using a string will force an [address lookup](/geocoding/), which is where the `components` are used in the geocoding process. Otherwise, `components` are irrelevant.
-:::
 
 ## `hasCoords`
 
