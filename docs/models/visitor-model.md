@@ -7,8 +7,6 @@ The properties and methods of the Visitor Model are identical whether you are ac
 {% set visitor = googleMaps.getVisitor() %}
 ```
 ```php
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
-
 $visitor = GoogleMaps::getVisitor();
 ```
 :::

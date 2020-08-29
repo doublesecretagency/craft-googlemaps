@@ -84,7 +84,7 @@ module.exports = {
                 'settings',
                 'using-an-address-in-twig',
                 'frontend-form',
-                'vue',
+                // 'vue', // TODO: Probably delete this page?
             ],
             '/maps/': [
                 '',
@@ -114,7 +114,7 @@ module.exports = {
                 '',
                 'service-providers',
                 // 'html5', // TODO: Add HTML5 geolocation (?)
-                'cookie',
+                // 'cookie', // TODO: Refine cookie & cache implementation
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
             '/geocoding/': [

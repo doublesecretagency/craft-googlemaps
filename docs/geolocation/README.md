@@ -9,8 +9,6 @@ If you want to know where your visitors are coming from, you can perform a geolo
 {% set visitor = googleMaps.getVisitor() %}
 ```
 ```php
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
-
 $visitor = GoogleMaps::getVisitor();
 ```
 :::
