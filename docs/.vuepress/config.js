@@ -119,8 +119,9 @@ module.exports = {
             ],
             '/geocoding/': [
                 '',
+                'parameters',
                 'methods',
-                'via-ajax',
+                // 'via-ajax', // TODO: Support AJAX endpoints
             ],
 
             // Architecture

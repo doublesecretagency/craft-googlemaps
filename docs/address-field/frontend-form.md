@@ -34,6 +34,7 @@ If you want to pre-populate an existing address in Twig, it would probably look 
 <input type="text" name="fields[myAddressField][city]" value="{{ entry.myAddressField.city }}">
 ```
 
+<!-- TODO: Support AJAX endpoints
 ## Dynamically updating via JavaScript
 
 You may want to populate the front-end Address fields dynamically using something a bit more complex. Perhaps you are doing an [address lookup](/geocoding/) on the front-end, and want to automatically fill in your form fields. Fortunately, the data returned from your lookup will fit nicely into the form fields shown above.
@@ -45,3 +46,4 @@ Most likely, you will want to call the `/one` endpoint via AJAX. This will give 
 ::: tip 
 The Google Maps plugin is unopinionated about which JavaScript framework or approach you use. How you choose to return the data from your AJAX call into the form is entirely up to you.
 :::
+-->

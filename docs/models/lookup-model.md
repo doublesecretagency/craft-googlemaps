@@ -19,7 +19,7 @@ $results = $lookup->all();
 ```
 :::
 
-Once you apply the `all` (or `one`, or `coords`) method, those parameters will be used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro#geocoding). The results of each lookup will be cached for 30 days, in order to ease the load on the API.
+Once you apply the `all` (or `one`, or `coords`) method, those parameters will be used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview). The results of each lookup will be cached for 30 days, in order to ease the load on the API.
 
 For more information, see the [Geocoding Methods](/geocoding/methods/) page.
 
