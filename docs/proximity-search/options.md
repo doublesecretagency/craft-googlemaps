@@ -1,13 +1,13 @@
 # Options
 
-| Option       | Type                | Default | Description                                            |
-|--------------|:-------------------:|:-------:|--------------------------------------------------------|
-| `target`     | _mixed_             | `null`  | Center point for the proximity search.                 |
-| `range`      | _int_               | `500`   | The search radius, measured in `units`.                |
-| `units`      | _string_            | `'mi'`  | Unit of measurement, either miles or kilometers.       |
-| `fields`     | _string_ or _array_ | `null`  | Filter by specified Address field(s).                  |
-| `subfields`  | _array_             | `null`  | Filter by contents of specific subfields.              |
-| `hasCoords`  | _bool_              | `false` | Whether to exclude Addresses with invalid coordinates. |
+| Option          | Type                | Default | Description                                             |
+|-----------------|:-------------------:|:-------:|---------------------------------------------------------|
+| `target`        | _mixed_             | `null`  | Center point for the proximity search.                  |
+| `range`         | _int_               | `500`   | The search radius, measured in `units`.                 |
+| `units`         | _string_            | `'mi'`  | Unit of measurement, either miles or kilometers.        |
+| `fields`        | _string_ or _array_ | `null`  | Filter by specified Address field(s).                   |
+| `subfields`     | _array_             | `null`  | Filter by contents of specific subfields.               |
+| `requireCoords` | _bool_              | `false` | Whether results should only include Addresses with valid coordinates. |
 
 ## `target`
 
@@ -89,8 +89,10 @@ The filter value of each subfield can also be an array if necessary:
 
 [See how it works...](/guides/filter-by-fields-and-subfields/)
 
-## `hasCoords`
+## `requireCoords`
 
 ### Default: `false`
 
-If set to `true`, all addresses with invalid coordinates will be omitted from the results. A set of coordinates is only considered valid if both the `latitude` and `longitude` values are populated. 
+Determines whether a valid set of coordinates is required. If set to `true`, the results will only include Addresses that have valid coordinates.
+
+A set of coordinates is considered valid only if both the `latitude` and `longitude` values are populated.
