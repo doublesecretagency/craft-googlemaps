@@ -20,9 +20,9 @@ In this case, we need to tell Google which region to focus on. We can do that by
         'address': 'Venice',
         'components': {
             'country': 'US',
-            'administrative_area': 'California',
-        },
-    },
+            'administrative_area': 'California'
+        }
+    }
 } %}
 
 {# Run the proximity search #}
@@ -39,9 +39,9 @@ $options = [
         'address' => 'Venice',
         'components' => [
             'country' => 'US',
-            'administrative_area' => 'California',
-        ],
-    ],
+            'administrative_area' => 'California'
+        ]
+    ]
 ];
 
 // Run the proximity search
@@ -75,52 +75,55 @@ You can read more about the acceptable filter values on the [Google documentatio
 
 ## Formatting options
 
-This is just a normal Geocoding request, although it's important to note that we are passing **an array of parameters** into the `lookup` method (instead of a simple string address). There are two ways to specify the `components` data.
-
-The first approach is to use an **associative array of Google Maps components**.
+Since the underlying Google API is ultimately looking for a string of components, you are allowed to specify the `components` value as a **string**. Or for readability, you may find it easier to specify the `components` value as an **associative array**. Either way is perfectly valid approach.
 
 :::code
 ```twig
+{# Components as a string #}
 {% set options = {
-    'target': 'Venice',
-    'components': {
-        'country': 'US',
-        'administrative_area': 'California',
+    'target': {
+        'address': 'Venice',
+        'components': 'country:US|administrative_area:California'
+    }
+} %}
+
+{# Components as an associative array #}
+{% set options = {
+    'target': {
+        'address': 'Venice',
+        'components': {
+            'country': 'US',
+            'administrative_area': 'California'
+        }
     }
 } %}
 ```
 ```php
+// Components as a string
 $options = [
-    'target' => 'Venice',
-    'components' => [
-        'country' => 'US',
-        'administrative_area' => 'California',
+    'target' => [
+        'address' => 'Venice',
+        'components' => 'country:US|administrative_area:California'
+    ]
+];
+
+// Components as an associative array
+$options = [
+    'target' => [
+        'address' => 'Venice',
+        'components' => [
+            'country' => 'US',
+            'administrative_area' => 'California'
+        ]
     ]
 ];
 ```
 :::
 
-The second approach is to pass the entire `components` value as a **string**. This is possible because the underlying API specifications accept a string format.
+It makes no difference whether the `components` are specified as a **string** or an **array**. Both formats will accomplish the same thing. If specified as a string, it will be passed directly into the Google Maps Geocoding API.
 
-:::code
-```twig
-{% set options = {
-    'target': 'Venice',
-    'components': 'country:US|administrative_area:California'
-} %}
-```
-```php
-$options = [
-    'target' => 'Venice',
-    'components' => 'country:US|administrative_area:California'
-];
-```
-:::
-
-**From the Geocoding API docs:**
+When specifying `components` as a string, be sure to follow the pattern described in the Google API docs:
 
 >A filter consists of a list of `component:value` pairs separated by a pipe (`|`).
-
-It makes no difference whether the `components` are specified as a **string** or **array**. Both formats will accomplish the same thing. If `components` is already a string, the plugin will not parse it down any further before handing it off to the Google Maps Geocoding API.
 
 For more information, see the official Google docs on [Component Filtering...](https://developers.google.com/maps/documentation/geocoding/overview#component-filtering)
