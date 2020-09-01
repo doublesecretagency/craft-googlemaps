@@ -12,8 +12,7 @@ In order to trigger the proximity search, there are two additional parameters wh
         'range': 50
     })
     .orderBy('distance')
-    .all()
-%}
+    .all() %}
 ```
 ```php
 $entries = Entry::find()
@@ -22,8 +21,7 @@ $entries = Entry::find()
         'range' => 50
     ])
     ->orderBy('distance')
-    ->all()
-;
+    ->all();
 ```
 :::
 
@@ -37,11 +35,10 @@ Each time you see a proximity search in these docs, you'll notice the use of the
 So if your Address field handle is `businessAddress`, your query might look like this:
 
 ```twig
-{% set entries = craft.entries
-    .businessAddress(options)
-    .orderBy('distance')
-    .all()
-%}
+    {% set entries = craft.entries
+        .businessAddress(options)
+        .orderBy('distance')
+        .all() %}
 ``` 
 :::
 
