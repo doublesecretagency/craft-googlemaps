@@ -15,11 +15,14 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
+use craft\elements\db\ElementQueryInterface;
+use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
+use doublesecretagency\googlemaps\models\QueryParser;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
@@ -339,24 +342,31 @@ class AddressField extends Field implements PreviewableFieldInterface
 
     // ========================================================================= //
 
-//    /**
-//     * @inheritdoc
-//     */
-//    public function modifyElementsQuery(ElementQueryInterface $query, $params)
-//    {
-//        // If no params, bail
-//        if (!$params) {
-//            return null;
-//        }
-//        // If params are not an array, bail
-//        if (!is_array($params)) {
-//            return null;
-//        }
+    /**
+     * @inheritdoc
+     */
+    public function modifyElementsQuery(ElementQueryInterface $query, $options)
+    {
+
+        // TEMP
+        // Bail if not entry query
+        if (EntryQuery::class !== get_class($query)) {
+            return false;
+        }
+        // ENDTEMP
+
+
+        new QueryParser($query, $options);
+
+
 //        // Modify the query
 //        $params['fieldId']     = $this->id;
 //        $params['fieldHandle'] = $this->handle;
 //        SmartMap::$plugin->smartMap->modifyQuery($query, $params);
-//    }
+
+
+        return null;
+    }
 
     // ========================================================================= //
 
