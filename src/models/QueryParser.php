@@ -65,6 +65,7 @@ class QueryParser extends Model
             $this->_applyRequireCoords($options['requireCoords']);
         }
 
+        // Close the loop
         parent::__construct($config);
     }
 
@@ -95,6 +96,9 @@ class QueryParser extends Model
     }
 
     /**
+     * Filter by contents of specific subfields.
+     *
+     * @param array|null $subfields
      */
     private function _applySubfields($subfields)
     {
@@ -145,8 +149,11 @@ class QueryParser extends Model
     }
 
     /**
+     * Filter to only include Addresses which have valid coordinates.
+     *
+     * @param bool $requireCoords
      */
-    private function _applyRequireCoords($requireCoords)
+    private function _applyRequireCoords(bool $requireCoords)
     {
         // If coordinates are not required, bail
         if (!$requireCoords) {
