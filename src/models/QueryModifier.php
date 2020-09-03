@@ -15,6 +15,7 @@ use Craft;
 use craft\base\Model;
 use craft\elements\db\ElementQueryInterface;
 use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**
  * Class QueryModifier
@@ -45,20 +46,20 @@ class QueryModifier extends Model
         // Apply all proximity search options
         $this->_applyProximitySearch($options);
 
-//        // Apply 'fields' option
-//        if (isset($options['fields'])) {
-//            $this->_applyFields($options['fields']);
-//        }
-//
-//        // Apply 'subfields' option
-//        if (isset($options['subfields'])) {
-//            $this->_applySubfields($options['subfields']);
-//        }
-//
-//        // Apply 'requireCoords' option
-//        if (isset($options['requireCoords'])) {
-//            $this->_applyRequireCoords($options['requireCoords']);
-//        }
+        // Apply 'fields' option
+        if (isset($options['fields'])) {
+            $this->_applyFields($options['fields']);
+        }
+
+        // Apply 'subfields' option
+        if (isset($options['subfields'])) {
+            $this->_applySubfields($options['subfields']);
+        }
+
+        // Apply 'requireCoords' option
+        if (isset($options['requireCoords'])) {
+            $this->_applyRequireCoords($options['requireCoords']);
+        }
 
         // Close the loop
         parent::__construct($config);
@@ -107,18 +108,49 @@ class QueryModifier extends Model
         )";
     }
 
+    /**
+     * Based on the target provided, determine a center point for the proximity search.
+     *
+     * @param mixed $target
+     * @return array Set of coordinates to use as center of proximity search.
+     */
     private function _getTargetCoords($target)
     {
+        // Get coordinates based on type of target specified
+        switch (gettype($target)) {
 
-//        $filter = $this->_parseFilter($params); // ???
+            // Target specified as a string
+            case 'string':
 
+                // Perform geocoding based on target string, return coordinates
+                return GoogleMaps::lookup($target)->coords();
 
-//        $center = ['lat' => 34.190508,'lng' => -118.8774345]; // North Hollywood
-//        $center = ['lat' => 34.142969,'lng' => -118.6411256]; // Calabasas
-        $center = ['lat' => 34.459565,'lng' => -118.6252711]; // Castaic
-//        $center = ['lat' => 34.168362,'lng' => -118.8229630]; // Westlake Village
+            // Target specified as an array
+            case 'array':
 
-        return $center;
+                // If coordinates were specified directly, return them as-is
+                if (isset($target['lat']) && isset($target['lng'])) {
+                    return $target;
+                }
+                // Perform geocoding based on target array, return coordinates
+                return GoogleMaps::lookup($target)->coords();
+
+            // No target specified
+            case 'NULL':
+
+                // Get the current visitor via geolocation
+                $visitor = GoogleMaps::getVisitor();
+                // If no visitor, return default coordinates
+                if (!$visitor) {
+                    return AddressField::DEFAULT_COORDINATES;
+                }
+                // Return visitor coordinates
+                return $visitor->getCoords();
+
+        }
+
+        // Something's not right, return default coordinates
+        return AddressField::DEFAULT_COORDINATES;
     }
 
     // ========================================================================= //
@@ -178,7 +210,7 @@ class QueryModifier extends Model
             )
         ;
 
-        // Temporarily store the distance under the field handle
+        // Briefly store the distance under the field handle
         $this->_query->query
             ->addSelect(
                 "[[subquery.distance]] AS [[{$this->_field->handle}]]"
