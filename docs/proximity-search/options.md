@@ -12,7 +12,7 @@
 
 ### Default: `null`
 
-If the `target` is **null**, the plugin will automatically attempt to use [Visitor Geolocation](/geolocation/) in order to determine a reasonable center point for the proximity search.
+If the `target` is **null**, a target-based proximity search will not be conducted. You will still be able to use the `subfields` and `requireCoords` options effectively. However, the `range` and `units` options will be rendered irrelevant and ineffective.
 
 If the `target` is a **set of [coordinates](/models/coordinates/)**, those coordinates will be directly used as the center point for the proximity search. No API calls will be necessary, the entire proximity search can be handled internally.
 

@@ -11,7 +11,6 @@
 
 namespace doublesecretagency\googlemaps\models;
 
-use Craft;
 use craft\base\Model;
 use craft\elements\db\ElementQueryInterface;
 use doublesecretagency\googlemaps\fields\AddressField;
@@ -25,15 +24,23 @@ class QueryModifier extends Model
 {
 
     /**
-     * @var ElementQueryInterface
+     * @var ElementQueryInterface The actual element query (passed by reference) which is being called.
      */
     private $_query;
 
     /**
-     * @var AddressField
+     * @var AddressField The field used to generate a proximity search. (aka "myAddressField")
      */
     private $_field;
 
+    /**
+     * Build a Query Modifier from scratch.
+     *
+     * @param $query
+     * @param $options
+     * @param $field
+     * @param array $config
+     */
     public function __construct($query, $options, $field, array $config = [])
     {
         // Internalize objects
@@ -41,10 +48,16 @@ class QueryModifier extends Model
         $this->_field = $field;
 
         // Join with plugin table
-        $this->_query->subQuery->leftJoin('{{%googlemaps_addresses}} addresses', '[[addresses.elementId]] = [[elements.id]]');
+        $this->_query->subQuery->leftJoin(
+            '{{%googlemaps_addresses}} addresses',
+            '[[addresses.elementId]] = [[elements.id]] AND [[addresses.fieldId]] = :fieldId',
+            [':fieldId' => $field->id]
+        );
 
         // Apply all proximity search options
-        $this->_applyProximitySearch($options);
+        if (isset($options['target'])) {
+            $this->_applyProximitySearch($options);
+        }
 
         // Apply 'subfields' option
         if (isset($options['subfields'])) {
@@ -63,7 +76,7 @@ class QueryModifier extends Model
     // ========================================================================= //
 
     /**
-     * Conduct the complete proximity search.
+     * Conduct a target-based proximity search.
      *
      * @param array $options
      */
@@ -71,15 +84,19 @@ class QueryModifier extends Model
     {
         // Set defaults
         $default = [
-            'target' => null,
             'range'  => 500,
             'units'  => 'mi',
         ];
 
         // Get specified values
-        $target = ($options['target'] ?? $default['target']);
+        $target = ($options['target'] ?? null);
         $range  = ($options['range']  ?? $default['range']);
         $units  = ($options['units']  ?? $default['units']);
+
+        // If no target exists, bail
+        if (!$target) {
+            return;
+        }
 
         // Ensure range is valid
         if (!is_numeric($range) || $range < 1) {
@@ -226,18 +243,6 @@ class QueryModifier extends Model
                 }
                 // Perform geocoding based on target array, return coordinates
                 return GoogleMaps::lookup($target)->coords();
-
-            // No target specified
-            case 'NULL':
-
-                // Get the current visitor via geolocation
-                $visitor = GoogleMaps::getVisitor();
-                // If no visitor, return default coordinates
-                if (!$visitor) {
-                    return AddressField::DEFAULT_COORDINATES;
-                }
-                // Return visitor coordinates
-                return $visitor->getCoords();
 
         }
 
