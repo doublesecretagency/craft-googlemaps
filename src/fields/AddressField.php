@@ -22,7 +22,7 @@ use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
-use doublesecretagency\googlemaps\models\QueryParser;
+use doublesecretagency\googlemaps\models\QueryModifier;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
@@ -270,13 +270,10 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Convert raw data to an array
         $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
 
-
-
-//        // If part of a proximity search, get the distance
-//        if ($value) {
-//            $attr['distance'] = (float) $value;
-//        }
-
+        // If part of a proximity search, get the distance
+        if ($value || is_numeric($value)) {
+            $attr['distance'] = (float) $value;
+        }
 
         // Return an Address model
         return new AddressModel($attr);
@@ -347,22 +344,39 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     public function modifyElementsQuery(ElementQueryInterface $query, $options)
     {
+        // If no options specified, bail
+        if (empty($options)) {
+            return null;
+        }
+
+        // ^^ should that be permanent?
+
 
         // TEMP
         // Bail if not entry query
-        if (EntryQuery::class !== get_class($query)) {
-            return false;
+        // This will kick you out of the CP!
+        // (but have no effect on the front end)
+        if (
+            EntryQuery::class !== get_class($query) ||
+            Craft::$app->getRequest()->getIsCpRequest()
+        ) {
+            return null;
         }
         // ENDTEMP
 
 
-        new QueryParser($query, $options);
+        // NOT HELPFUL?
+//        // If already parsed, DO NOT modify the query further
+//        if ($this->_parsedQuery) {
+//            return null;
+//        }
 
 
-//        // Modify the query
-//        $params['fieldId']     = $this->id;
-//        $params['fieldHandle'] = $this->handle;
-//        SmartMap::$plugin->smartMap->modifyQuery($query, $params);
+
+
+        // Modify the element query
+        new QueryModifier($query, $options, $this);
+//        $this->_parsedQuery = new QueryParser($query, $options);
 
 
         return null;
