@@ -1,13 +1,12 @@
 # Options
 
-| Option          | Type                | Default | Description                                             |
-|-----------------|:-------------------:|:-------:|---------------------------------------------------------|
-| `target`        | _mixed_             | `null`  | Center point for the proximity search.                  |
-| `range`         | _int_               | `500`   | The search radius, measured in `units`.                 |
-| `units`         | _string_            | `'mi'`  | Unit of measurement, either miles or kilometers.        |
-| `fields`        | _string_ or _array_ | `null`  | Filter by specified Address field(s).                   |
-| `subfields`     | _array_             | `null`  | Filter by contents of specific subfields.               |
-| `requireCoords` | _bool_              | `false` | Whether results should only include Addresses with valid coordinates. |
+| Option                            | Type     | Default | Description                                      |
+|-----------------------------------|:--------:|:-------:|--------------------------------------------------|
+| [`target`](#target)               | _mixed_  | `null`  | Center point for the proximity search.           |
+| [`range`](#range)                 | _int_    | `500`   | The search radius, measured in `units`.          |
+| [`units`](#units)                 | _string_ | `'mi'`  | Unit of measurement, either miles or kilometers. |
+| [`subfields`](#subfields)         | _array_  | `null`  | Filter by contents of specific subfields.        |
+| [`requireCoords`](#requirecoords) | _bool_   | `false` | Whether results should only include Addresses with valid coordinates. |
 
 ## `target`
 
@@ -38,56 +37,45 @@ The unit of measurement by which to measure distances. Accepts the following val
  - `'mi'` or `'miles'`
  - `'km'` or `'kilometers'`
 
-## `fields`
-
-### Default: `null`
-
-The `fields` option will restrain the proximity search to only the specified Address field(s). The value can be either a field handle **string**, or an **array** of field handles.
-
- - `'businessAddress'`
- - `['businessAddress', 'homeAddress']`
-
-If you omit this option, the proximity search will be conducted across _all_ Address fields in that section by default.
-
-[See how it works...](/guides/filter-by-fields-and-subfields/)
-
 ## `subfields`
 
 ### Default: `null`
 
-The `subfields` option will exclude results which don't _exactly match_ the specified subfields. It allows you to filter the proximity search results based on existing subfield values of the Address field. The value must be an array of `subfield => value` pairs:
+The `subfields` option allows you to filter the proximity search results based on specific subfield values of the Address field. It ensures that the query returns only the results which **exactly match** the specified subfield values.
+
+You can specify these filters as a collection of `subfield: value` pairs:
 
 :::code
 ```twig
 'subfields': {
     'city': 'Los Angeles',
-    'state': 'CA',
+    'state': 'CA'
 }
 ```
 ```php
 'subfields' => [
     'city' => 'Los Angeles',
-    'state' => 'CA',
+    'state' => 'CA'
 ]
 ```
 :::
 
-The filter value of each subfield can also be an array if necessary:
+Each subfield can also be specified as an array, which allows multiple valid matches:
 
 :::code
 ```twig
 'subfields': {
-    'state': ['CA', 'OR', 'WA'],
+    'state': ['CA', 'OR', 'WA']
 }
 ```
 ```php
 'subfields' => [
-    'state' => ['CA', 'OR', 'WA'],
+    'state' => ['CA', 'OR', 'WA']
 ]
 ```
 :::
 
-[See how it works...](/guides/filter-by-fields-and-subfields/)
+Read more about [filtering by subfields...](/guides/filter-by-subfields/)
 
 ## `requireCoords`
 

@@ -46,11 +46,6 @@ class QueryModifier extends Model
         // Apply all proximity search options
         $this->_applyProximitySearch($options);
 
-        // Apply 'fields' option
-        if (isset($options['fields'])) {
-            $this->_applyFields($options['fields']);
-        }
-
         // Apply 'subfields' option
         if (isset($options['subfields'])) {
             $this->_applySubfields($options['subfields']);
@@ -63,94 +58,6 @@ class QueryModifier extends Model
 
         // Close the loop
         parent::__construct($config);
-    }
-
-    // ========================================================================= //
-
-    /**
-     * Apply haversine formula via SQL.
-     *
-     * @param float $lat
-     * @param float $lng
-     * @param string $units
-     * @return string
-     */
-    private function _haversineSql(float $lat, float $lng, string $units = 'mi'): string
-    {
-        // Determine unit of measurement
-        switch ($units) {
-            case 'km':
-            case 'kilometers':
-                $unitVal = 6371;
-                break;
-            case 'mi':
-            case 'miles':
-            default:
-                $unitVal = 3959;
-                break;
-        }
-
-        // Calculate haversine formula
-        return "(
-            {$unitVal} * acos(
-                cos(
-                    radians({$lat})
-                ) * cos(
-                    radians([[addresses.lat]])
-                ) * cos(
-                    radians([[addresses.lng]]) - radians({$lng})
-                ) + sin(
-                    radians({$lat})
-                ) * sin(
-                    radians([[addresses.lat]])
-                )
-            )
-        )";
-    }
-
-    /**
-     * Based on the target provided, determine a center point for the proximity search.
-     *
-     * @param mixed $target
-     * @return array Set of coordinates to use as center of proximity search.
-     */
-    private function _getTargetCoords($target)
-    {
-        // Get coordinates based on type of target specified
-        switch (gettype($target)) {
-
-            // Target specified as a string
-            case 'string':
-
-                // Perform geocoding based on target string, return coordinates
-                return GoogleMaps::lookup($target)->coords();
-
-            // Target specified as an array
-            case 'array':
-
-                // If coordinates were specified directly, return them as-is
-                if (isset($target['lat']) && isset($target['lng'])) {
-                    return $target;
-                }
-                // Perform geocoding based on target array, return coordinates
-                return GoogleMaps::lookup($target)->coords();
-
-            // No target specified
-            case 'NULL':
-
-                // Get the current visitor via geolocation
-                $visitor = GoogleMaps::getVisitor();
-                // If no visitor, return default coordinates
-                if (!$visitor) {
-                    return AddressField::DEFAULT_COORDINATES;
-                }
-                // Return visitor coordinates
-                return $visitor->getCoords();
-
-        }
-
-        // Something's not right, return default coordinates
-        return AddressField::DEFAULT_COORDINATES;
     }
 
     // ========================================================================= //
@@ -216,15 +123,6 @@ class QueryModifier extends Model
                 "[[subquery.distance]] AS [[{$this->_field->handle}]]"
             )
         ;
-    }
-
-    /**
-     */
-    private function _applyFields($fields)
-    {
-
-        // Filter by specified Address fields.
-
     }
 
     /**
@@ -298,6 +196,94 @@ class QueryModifier extends Model
             ['lat' => null],
             ['lng' => null]
         ]]);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Based on the target provided, determine a center point for the proximity search.
+     *
+     * @param mixed $target
+     * @return array Set of coordinates to use as center of proximity search.
+     */
+    private function _getTargetCoords($target)
+    {
+        // Get coordinates based on type of target specified
+        switch (gettype($target)) {
+
+            // Target specified as a string
+            case 'string':
+
+                // Perform geocoding based on target string, return coordinates
+                return GoogleMaps::lookup($target)->coords();
+
+            // Target specified as an array
+            case 'array':
+
+                // If coordinates were specified directly, return them as-is
+                if (isset($target['lat']) && isset($target['lng'])) {
+                    return $target;
+                }
+                // Perform geocoding based on target array, return coordinates
+                return GoogleMaps::lookup($target)->coords();
+
+            // No target specified
+            case 'NULL':
+
+                // Get the current visitor via geolocation
+                $visitor = GoogleMaps::getVisitor();
+                // If no visitor, return default coordinates
+                if (!$visitor) {
+                    return AddressField::DEFAULT_COORDINATES;
+                }
+                // Return visitor coordinates
+                return $visitor->getCoords();
+
+        }
+
+        // Something's not right, return default coordinates
+        return AddressField::DEFAULT_COORDINATES;
+    }
+
+    /**
+     * Apply haversine formula via SQL.
+     *
+     * @param float $lat
+     * @param float $lng
+     * @param string $units
+     * @return string The haversine formula portion of an SQL query.
+     */
+    private function _haversineSql(float $lat, float $lng, string $units = 'mi'): string
+    {
+        // Determine unit of measurement
+        switch ($units) {
+            case 'km':
+            case 'kilometers':
+                $unitVal = 6371;
+                break;
+            case 'mi':
+            case 'miles':
+            default:
+                $unitVal = 3959;
+                break;
+        }
+
+        // Calculate haversine formula
+        return "(
+            {$unitVal} * acos(
+                cos(
+                    radians({$lat})
+                ) * cos(
+                    radians([[addresses.lat]])
+                ) * cos(
+                    radians([[addresses.lng]]) - radians({$lng})
+                ) + sin(
+                    radians({$lat})
+                ) * sin(
+                    radians([[addresses.lat]])
+                )
+            )
+        )";
     }
 
 }
