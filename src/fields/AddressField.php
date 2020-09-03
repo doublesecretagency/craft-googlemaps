@@ -342,44 +342,15 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function modifyElementsQuery(ElementQueryInterface $query, $options)
+    public function modifyElementsQuery(ElementQueryInterface $query, $options = [])
     {
-        // If no options specified, bail
-        if (empty($options)) {
-            return null;
+        // If options are not properly specified, bail
+        if (!is_array($options)) {
+            return;
         }
-
-        // ^^ should that be permanent?
-
-
-        // TEMP
-        // Bail if not entry query
-        // This will kick you out of the CP!
-        // (but have no effect on the front end)
-        if (
-            EntryQuery::class !== get_class($query) ||
-            Craft::$app->getRequest()->getIsCpRequest()
-        ) {
-            return null;
-        }
-        // ENDTEMP
-
-
-        // NOT HELPFUL?
-//        // If already parsed, DO NOT modify the query further
-//        if ($this->_parsedQuery) {
-//            return null;
-//        }
-
-
-
 
         // Modify the element query
         new QueryModifier($query, $options, $this);
-//        $this->_parsedQuery = new QueryParser($query, $options);
-
-
-        return null;
     }
 
     // ========================================================================= //
