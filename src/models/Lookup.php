@@ -178,6 +178,11 @@ class Lookup extends Model
         // Append server key
         $parameters['key'] = GoogleMapsPlugin::$plugin->api->getServerKey();
 
+        // Ensure components are properly formatted
+        if (isset($parameters['components'])) {
+            $parameters['components'] = $this->_formatComponents($parameters['components']);
+        }
+
         // Compile endpoint URL
         $queryString = http_build_query($parameters);
         $url = "{$this->_endpoint}?{$queryString}";
@@ -194,6 +199,36 @@ class Lookup extends Model
 
         // Return raw geocoding results
         return Json::decode((string) $response->getBody());
+    }
+
+    /**
+     * Properly format a string of components.
+     *
+     * @param $components
+     * @return string Formatted string of components.
+     */
+    private function _formatComponents($components): string
+    {
+        // Already formatted properly, return as-is
+        if (is_string($components)) {
+            return $components;
+        }
+
+        // Can't be formatted properly, return as empty string
+        if (!is_array($components)) {
+            return '';
+        }
+
+        // Initialize array of component strings
+        $c = [];
+
+        // Compile each component
+        foreach ($components as $component => $value) {
+            $c[] = "{$component}:{$value}";
+        }
+
+        // Return compiled string of components
+        return (string) implode('|', $c);
     }
 
     /**
