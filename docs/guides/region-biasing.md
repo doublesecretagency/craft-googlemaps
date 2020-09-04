@@ -75,7 +75,7 @@ You can read more about the acceptable filter values on the [Google documentatio
 
 ## Formatting options
 
-Since the underlying Google API is ultimately looking for a string of components, you are allowed to specify the `components` value as a **string**. Or for readability, you may find it easier to specify the `components` value as an **associative array**. Either way is perfectly valid approach.
+Since the underlying Google API is ultimately looking for a string of components, you are allowed to specify the `components` value as a **string**. Or for readability, you may find it easier to specify the `components` value as an **associative array**. Either way can be a perfectly valid approach.
 
 :::code
 ```twig
@@ -120,10 +120,12 @@ $options = [
 ```
 :::
 
-It makes no difference whether the `components` are specified as a **string** or an **array**. Both formats will accomplish the same thing. If specified as a string, it will be passed directly into the Google Maps Geocoding API.
+It makes no difference whether the `components` are specified as a **string** or an **array**. Both formats will accomplish the same thing. If specified as a string, it will be passed directly into the Google Maps Geocoding API. See the [Geocoding Parameters](/geocoding/parameters/) page for more information on the formatting options.
 
-When specifying `components` as a string, be sure to follow the pattern described in the Google API docs:
+:::tip For strings, use the Google-specified format
+When specifying `components` as a string, be sure to follow the pattern described in the Google API docs...
 
 >A filter consists of a list of `component:value` pairs separated by a pipe (`|`).
+:::
 
 For more information, see the official Google docs on [Component Filtering...](https://developers.google.com/maps/documentation/geocoding/overview#component-filtering)
