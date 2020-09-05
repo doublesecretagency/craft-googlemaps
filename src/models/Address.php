@@ -158,7 +158,7 @@ class Address extends Location
      * @param int $maxLines The maximum number of lines to be allocated.
      * @return Markup
      */
-    public function multiline($maxLines = 3)
+    public function multiline(int $maxLines = 3): Markup
     {
         // Determine glue for each part
         $cityGlue = (2 <= $maxLines ? '<br />' : ', ');
