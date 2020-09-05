@@ -13,7 +13,13 @@ window.googleMaps = {
     // Create a new map object
     map: function(mapOptions, locations, markerOptions) {
 
+        // Set default values
+        mapOptions.zoom = mapOptions.zoom || 5;
+
+
+
         var mapId = this.testMapId; // TEMP
+
 
 
         // Initialize internal map object
@@ -25,11 +31,6 @@ window.googleMaps = {
 
         // Get map container
         var container = document.getElementById('googleMap');
-
-        // Set map options
-        var mapOptions = {
-            zoom: 5,
-        };
 
         // Initialize map
         this.maps[mapId].map = new google.maps.Map(container,mapOptions);
@@ -171,9 +172,6 @@ window.googleMaps = {
         container.style.height = height+'px';
 
 
-
-
-
         console.table(dna);
 
     },
@@ -218,7 +216,6 @@ addEventListener('load', function () {
 
     // Set up all maps on the page
     googleMaps.setup();
-
 
 
 

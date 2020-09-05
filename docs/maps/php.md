@@ -15,3 +15,28 @@ $map->markers($locations, $markerOptions);
 // Set all locations when you create a new map
 $map = GoogleMaps::map($mapOptions, $locations);
 ```
+
+
+:::code
+```js
+var map = googleMaps.map(options).markers(locations, markerOptions);
+```
+```twig
+{% set map = googleMaps.map(options).markers(locations, markerOptions) %}
+```
+```php
+$map = GoogleMaps::map($options)->markers($locations, $markerOptions);
+```
+:::
+
+:::code
+```js
+var map = googleMaps.map().markers(locations).kml(link);
+```
+```twig
+{% set map = googleMaps.map().markers(locations).kml(link) %}
+```
+```php
+$map = GoogleMaps::map()->markers($locations).kml($link);
+```
+:::
