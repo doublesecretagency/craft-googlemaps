@@ -20,11 +20,6 @@ use craft\base\Model;
 class Location extends Model
 {
 
-    public function __toString(): string
-    {
-        return "{$this->lat}, {$this->lng}";
-    }
-
     /**
      * @var float|null Latitude of location.
      */
@@ -34,6 +29,29 @@ class Location extends Model
      * @var float|null Longitude of location.
      */
     public $lng;
+
+    /**
+     * Automatically display coordinates as a string.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return "{$this->lat}, {$this->lng}";
+    }
+
+    /**
+     * Whether this location contains a valid set of coordinates.
+     *
+     * @return bool
+     */
+    public function hasCoords(): bool
+    {
+        return (
+            is_numeric($this->lat) &&
+            is_numeric($this->lng)
+        );
+    }
 
     /**
      * Returns a formatted set of coordinates for this location.
