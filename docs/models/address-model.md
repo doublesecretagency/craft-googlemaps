@@ -109,9 +109,9 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 {% endif %}
 ```
 
-### `multiline(numberOfLines)`
+### `multiline(maxLines)`
 
-- `numberOfLines` - Number of lines (1-4) allocated to display the address.
+- `maxLines` - Maximum number of lines (1-4) allocated to display the address.
 
 :::code
 ```twig 1

@@ -40,7 +40,7 @@ class Address extends Location
         }
 
         // Get multiline-formatted address
-        $multilineFormatted = (string) $this->multiline(true, true);
+        $multilineFormatted = (string) $this->multiline();
 
         // If able to format via `multiline` method, return it
         if ($multilineFormatted) {
@@ -155,15 +155,14 @@ class Address extends Location
     /**
      * Format the Address as a multiline HTML string.
      *
-     * @param bool $mergeUnit
-     * @param bool $mergeCity
+     * @param int $maxLines The maximum number of lines to be allocated.
      * @return Markup
      */
-    public function multiline($mergeUnit = false, $mergeCity = false)
+    public function multiline($maxLines = 3)
     {
         // Determine glue for each part
-        $unitGlue = ($mergeUnit ? ', ' : '<br />');
-        $cityGlue = ($mergeCity ? ', ' : '<br />');
+        $cityGlue = (2 <= $maxLines ? '<br />' : ', ');
+        $unitGlue = (3 <= $maxLines ? '<br />' : ', ');
 
         // Whether the address has street info and city/state info
         $hasStreet = ($this->street1 || $this->street2);
@@ -179,6 +178,11 @@ class Address extends Location
         $formatted .= (($this->city && $this->state) ? ', ' : '');
         $formatted .= ($this->state ? $this->state : '').' ';
         $formatted .= ($this->zip ? $this->zip : '');
+
+        // Optionally append country
+        if (4 <= $maxLines) {
+            $formatted .= ($this->country ? "<br />{$this->country}" : '');
+        }
 
         // Merge repeated commas
         $formatted = preg_replace('/(, ){2,}/', ', ', $formatted);
