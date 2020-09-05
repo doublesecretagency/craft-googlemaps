@@ -4,7 +4,7 @@ In order to provide consistency between languages, the following functions are e
 
 ```js
 // Create a new map object
-map(mapOptions = {}, locations = null)
+map(mapOptions = {}, locations = null, markerOptions = {})
 
 // Add markers to a map object
 markers(locations, markerOptions = {})
@@ -20,14 +20,20 @@ It's that simple! Take a look at the examples below, you will see how this patte
 ## Simple examples
 
 ::: code
-```twig
-{% set map = googleMaps.map(mapOptions).markers(locations) %}
-```
 ```js
-var map = googleMaps.map(mapOptions).markers(locations);
+var map = googleMaps.map(mapOptions).markers(locations, markerOptions);
+// or
+var map = googleMaps.map(mapOptions, locations, markerOptions);
+```
+```twig
+{% set map = googleMaps.map(mapOptions).markers(locations, markerOptions) %}
+{# or #}
+{% set map = googleMaps.map(mapOptions, locations, markerOptions) %}
 ```
 ```php
-$map = GoogleMaps::map($mapOptions)->markers($locations);
+$map = GoogleMaps::map($mapOptions)->markers($locations, $markerOptions);
+// or
+$map = GoogleMaps::map($mapOptions, $locations, $markerOptions);
 ```
 :::
 
@@ -38,10 +44,10 @@ When you call the `map` method, you can pass in a `mapOptions` array of properti
 If you don't need anything fancy out of your markers, you can actually pass them in as the second parameter of your `map` function.
 
 ::: code
-```twig
+```js
 googleMaps.map(mapOptions, locations)
 ```
-```js
+```twig
 googleMaps.map(mapOptions, locations)
 ```
 ```php
@@ -54,10 +60,10 @@ GoogleMaps::map($mapOptions, $locations)
 You can format your markers by passing in `markerOptions`.
 
 ::: code
-```twig
+```js
 map.markers(locations, markerOptions)
 ```
-```js
+```twig
 map.markers(locations, markerOptions)
 ```
 ```php
