@@ -1,27 +1,58 @@
-# (DEL) Static Maps
+# Static Maps
 
-You can create a static map which contains as many markers as you'd like.
+## Basic Examples
 
-## googleMaps.static
+Here's how to use a static map in its simplest form...
 
-``` twig
-{{ googleMaps.static(locations, options = {}) }}
+```twig
+{{ googleMaps.img(locations).tag() }}
 ```
 
-### `locations`
+The `img` method will generate a [Static Map Model](/models/static-map-model/). You can create a static map containing a set of markers, then render it as either the `src` attribute or the entire `<img>` tag.
 
-Can be any of the following...
+If you only want the `src` generated to fetch the static map, do it like this...
 
- - An individual Address Model
- - An array of Address Models
- - An individual element (ie: an Entry)
+```twig
+{{ googleMaps.img(locations).src() }}
+```
+
+These methods are equally available in both Twig and PHP.
+
+:::code
+```twig
+{# Get the entire <img> tag #}
+{% set tag = googleMaps.img(locations).tag() %}
+
+{# Get just the `src` attribute value #}
+{% set src = googleMaps.img(locations).src() %}
+```
+```php
+// Get the entire <img> tag
+$tag = GoogleMaps::img($locations)->tag();
+
+// Get just the `src` attribute value
+$src = GoogleMaps::img($locations)->src();
+```
+:::
+
+## Public Methods
+
+### `img(locations, options = {})`
+
+#### `locations`
+
+Any of the following will be considered valid `locations`:
+
  - An array of elements
+ - An individual element (ie: an Entry)
+ - An array of [Address Models](/models/address-model/)
+ - An individual [Address Model](/models/address-model/)
  
 If you skip the `locations` parameter by passing in _null_, the map will try its best to render without any markers.
  
-### `options`
+#### `options`
 
-An object containing any of the following...
+An object containing any of these optional configurations:
 
 | Option    | Type                | Default     | Description |
 |-----------|:-------------------:|:-----------:|-------------|
@@ -34,4 +65,10 @@ An object containing any of the following...
 | `imgSrc`  | _int_               | _false_     | If set to _true_, the method will return the map `src` URL directly (instead of the full `<img>` tag). |
 | `field`   | _string_ or _array_ | _null_      | Which field(s) of the element(s) should be included on map? (_null_ will include all Address fields) |
 
-## Basic Example
+### `tag()`
+
+Returns the static map as a completely rendered `<img>` tag.
+
+### `src()`
+
+Returns the static map as only the `src` attribute. The remainder of the `<img>` tag must be compiled manually.

@@ -90,15 +90,15 @@ module.exports = {
                 '',
                 'dynamic',
                 'static',
-                'info-windows',
+                'chaining',
+
+
                 'linking-to-google',
 
 
-                'chaining',
-                'php',
-                'twig',
-                'twig-static',
-
+                'info-windows',
+                'old-code',
+                'dynamic-extra',
 
 
             ],
@@ -140,6 +140,8 @@ module.exports = {
                 'ipstack-model',
                 'maxmind-model',
                 'settings-model',
+                'dynamic-map-model',
+                'static-map-model',
                 'coordinates',
             ],
             '/services/': [

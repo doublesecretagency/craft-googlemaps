@@ -14,8 +14,9 @@ namespace doublesecretagency\googlemaps\helpers;
 use Craft;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
-use doublesecretagency\googlemaps\models\Visitor;
 use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\models\Visitor;
+use doublesecretagency\googlemaps\models\_OLD_DynamicMap;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
 
@@ -56,7 +57,8 @@ class GoogleMaps
      */
     public static function map($options = [])
     {
-        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($options);
+//        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($options);
+        return new DynamicMap();
     }
 
 //    /**

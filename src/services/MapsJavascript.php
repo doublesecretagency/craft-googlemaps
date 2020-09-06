@@ -11,7 +11,7 @@
 
 namespace doublesecretagency\googlemaps\services;
 
-use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\models\_OLD_DynamicMap;
 
 /**
  * Class MapsJavascript
@@ -34,7 +34,7 @@ class MapsJavascript extends Api
      * Get a Dynamic Map model (new or existing).
      *
      * @param array|string $options
-     * @return DynamicMap|false
+     * @return _OLD_DynamicMap|false
      */
     public function getMap($options = [])
     {
@@ -45,7 +45,7 @@ class MapsJavascript extends Api
         }
 
         // Generate a new dynamic map
-        $map = new DynamicMap($options);
+        $map = new _OLD_DynamicMap($options);
 
         // Alias for map ID
         $id =& $map->dna['id'];

@@ -1,27 +1,39 @@
-# (DEL) Dynamic Maps
+# Dynamic Maps
 
-You can create a dynamic map which contains as many markers as you'd like.
+## Basic Examples
 
-## googleMaps.dynamic
+Here's how to use a dynamic map in its simplest form...
 
-``` twig
-{{ googleMaps.dynamic(locations, options = {}) }}
+```twig
+{{ googleMaps.map(locations).tag() }}
 ```
 
-### `locations`
+The `map` method will generate a [Dynamic Map Model](/models/dynamic-map-model/). You can create a dynamic map containing a set of markers, then render the `<div>` container tag.
 
-Can be any of the following...
+## Chaining
 
- - An individual Address Model
- - An array of Address Models
- - An individual element (ie: an Entry)
+There are several methods on the Dynamic Map Model that can be chained together. When combining these methods, it will be possible for you to mix & match information in order to build the map in any way you please.
+
+For complete information, see the page regarding [Chaining...](/maps/chaining/)
+
+## Public Methods
+
+### `map(locations, options = {})`
+
+#### `locations`
+
+Any of the following will be considered valid `locations`:
+
  - An array of elements
+ - An individual element (ie: an Entry)
+ - An array of [Address Models](/models/address-model/)
+ - An individual [Address Model](/models/address-model/)
  
 If you skip the `locations` parameter by passing in _null_, the map will try its best to render without any markers.
  
-### `options`
+#### `options`
 
-An object containing any of the following...
+An object containing any of these optional configurations:
 
 | Option               | Type                | Default            | Description |
 |----------------------|:-------------------:|:------------------:|------------|
@@ -37,52 +49,6 @@ An object containing any of the following...
 | `infoWindowTemplate` | _string_            | _null_             | Template path to use for creating [info windows](/maps/info-windows/). |
 | `fields`             | _string_ or _array_ | _null_             | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
 
-## Basic Example
+### `tag()`
 
-Here is a general example of how you'd use the method...
-
-```twig
-{% set options = {
-    height: 300,
-    zoom: 4,
-    mapOptions: {
-        gestureHandling: 'none',
-        mapTypeId: 'google.maps.MapTypeId.HYBRID'
-    },
-    markerOptions: {
-        icon: {
-            url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
-            scaledSize: 'new google.maps.Size(32,32)'
-        }
-    },
-    infoWindowOptions: {
-        maxWidth: 200
-    },
-    infoWindowTemplate: 'path/to/info-window.twig'
-} %}
-
-{{ googleMaps.dynamic(locations, options) }}
-```
-
-The `mapOptions`, `markerOptions`, and `infoWindowOptions` values will be passed directly through to the Google Maps API. Whatever values you provide in Twig will be converted directly into JavaScript.
-
-::: warning JAVASCRIPT OBJECTS
-All `google.maps` values need to be enclosed in strings. At runtime, Twig will parse each of them down as ordinary JavaScript.
-
-For more information, see [Complex JS in Twig...](/guides/complex-js-in-twig/)
-:::
-
-::: tip GESTUREHANDLING
-Setting the `gestureHandling` to `"none"` will have two notable effects...
-
- - The _scrollwheel_ of your mouse will no longer zoom the map in & out.
- - The map will no longer be _draggable_.
- 
-```js
-    mapOptions: {
-        gestureHandling: 'none'
-    }
-```
- 
-See the full details about `gestureHandling` in the [Google documentation...](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions.gestureHandling)
-:::
+Returns the dynamic map as a completely rendered `<div>` tag.

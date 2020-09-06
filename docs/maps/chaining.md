@@ -1,4 +1,45 @@
-# Chaining objects to create a map
+# Chaining Methods
+
+Whether you are using JavaScript, Twig, or PHP, the same format can be used to create a map...
+
+:::code
+```js
+var map = googleMaps.map(mapOptions).markers(locations);
+```
+```twig
+{% set map = googleMaps.map(mapOptions).markers(locations) %}
+```
+```php
+$map = GoogleMaps::map($mapOptions).markers($locations);
+```
+:::
+
+This is an extremely simple example. Chaining methods allows you to build a map in whichever way is required. There are several compatible methods which can be chained in any order.
+
+## `map`
+
+This is the method which starts the chain. On its own, it creates a [Map Model]().
+
+### `map(mapOptions = {}, locations = null, markerOptions = {})`
+
+
+
+## `markers`
+
+This method allows you to append markers onto an existing map object. You can pass a single location, or an array of locations.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 In order to provide consistency between languages, the following functions are equally available in PHP, Twig, and JavaScript.
 

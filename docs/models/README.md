@@ -20,6 +20,14 @@ The Lookup Model is a conduit for the [Geocoding Service](/services/geocoding-se
 
 The Settings Model is primarily for internal use. You can generally ignore this model.
 
+## [Dynamic Map Model](/models/dynamic-map-model/)
+
+@TODO
+
+## [Static Map Model](/models/static-map-model/)
+
+@TODO
+
 # Pseudo-Model
 
 ## [Coordinates](/models/coordinates/)
