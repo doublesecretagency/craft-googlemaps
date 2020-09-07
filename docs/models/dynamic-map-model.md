@@ -66,12 +66,13 @@ Append markers to an existing map object.
  - `$locations` (_mixed_) - See a description of acceptable [locations...](/maps/locations/)
  - `$options` (_array_) - Optional parameters to configure the markers. (see below)
  
-| Option               | Type                | Default | Description |
-|----------------------|:-------------------:|:-------:|-------------|
-| `markerOptions`      | _object_            | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | _object_            | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | _string_            | _null_  | Template path to use for creating [info windows](/maps/info-windows/). |
-| `fields`             | _string_ or _array_ | _null_  | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
+| Option               | Type                 | Default | Description |
+|----------------------|:--------------------:|:-------:|-------------|
+| `icon`               | _object_ or _string_ | _null_  | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
+| `markerOptions`      | _object_             | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
+| `infoWindowOptions`  | _object_             | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
+| `infoWindowTemplate` | _string_             | _null_  | Template path to use for creating [info windows](/maps/info-windows/). |
+| `fields`             | _string_ or _array_  | _null_  | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
 
 #### Returns
 

@@ -53,7 +53,7 @@ window.googleMaps = {
     },
 
     // Create a set of marker objects
-    markers: function(locations, markerOptions) {
+    markers: function(locations, options) {
 
         var mapId = this.testMapId; // TEMP
 
@@ -74,6 +74,7 @@ window.googleMaps = {
 
             // object.hasOwnProperty('lat')
 
+            // var markerOptions = options['markerOptions'];
             var markerOptions = {
                 position: coords,
                 map: this.maps[mapId].map
@@ -108,7 +109,9 @@ window.googleMaps = {
 
 
 
-
+    // ========================================================================= //
+    // ========================================================================= //
+    // ========================================================================= //
 
 
 
@@ -116,15 +119,6 @@ window.googleMaps = {
     actionUrl: '/actions/',
     // No CSRF token by default
     csrfToken: false,
-    // Whether setup has been completed
-    setupComplete: false,
-    // Initialize maps on page
-    setup: function () {
-        // Configure all maps on page
-        this.init();
-        // Mark setup as complete!
-        this.setupComplete = true;
-    },
     // Determine which maps to compile
     _whichMaps: function (selection) {
         // No map containers by default
@@ -211,17 +205,9 @@ window.googleMaps = {
     },
 };
 
-// On page load, optionally preload Upvote data
+// ========================================================================= //
+
+// On page load, initialize all maps on the page
 addEventListener('load', function () {
-
-    // Set up all maps on the page
-    googleMaps.setup();
-
-
-
-    // Determine whether to preload data
-    var checkPreloadSetting = function () {
-
-    };
-
+    googleMaps.init();
 });
