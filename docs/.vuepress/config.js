@@ -91,6 +91,7 @@ module.exports = {
                 'dynamic',
                 'static',
                 'chaining',
+                'locations',
 
 
                 'linking-to-google',

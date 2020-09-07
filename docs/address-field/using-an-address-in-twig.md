@@ -3,6 +3,7 @@
 In the example below, the `address` variable is being set to an [Address Model](/models/address-model/). Anything you can do with an Address Model can be done with Twig.
 
 ```twig
+{# Get an Address Model from the `myAddressField` field #}
 {% set address = entry.myAddressField %}
 
 <h1>{{ entry.title }}</h1>

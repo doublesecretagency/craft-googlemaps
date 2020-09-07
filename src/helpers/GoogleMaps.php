@@ -54,6 +54,9 @@ class GoogleMaps
     // Generate Maps
 
     /**
+     * @param string|string[]|Section|null $value The property value
+     * @return static self reference
+     * @uses $sectionId
      */
     public static function map($options = [])
     {

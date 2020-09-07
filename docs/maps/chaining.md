@@ -4,35 +4,62 @@ Whether you are using JavaScript, Twig, or PHP, the same format can be used to c
 
 :::code
 ```js
-var map = googleMaps.map(mapOptions).markers(locations);
+// Very basic
+var map = googleMaps.map().markers(locations, options);
+
+// More complex
+var map = googleMaps.map()
+    .markers(locations, options)
+    .kml(files)
+    .styles(stylesArray);
 ```
 ```twig
-{% set map = googleMaps.map(mapOptions).markers(locations) %}
+{# Very basic #}
+{% set map = googleMaps.map().markers(locations, options) %}
+
+{# More complex #}
+{% set map = googleMaps.map()
+    .markers(locations, options)
+    .kml(files)
+    .styles(stylesArray) %}
 ```
 ```php
-$map = GoogleMaps::map($mapOptions).markers($locations);
+// Very basic
+$map = GoogleMaps::map().markers($locations, $options);
+
+// More complex
+$map = GoogleMaps::map()
+    ->markers($locations, $options)
+    ->kml($files)
+    ->styles($stylesArray);
 ```
 :::
 
-This is an extremely simple example. Chaining methods allows you to build a map in whichever way is required. There are several compatible methods which can be chained in any order.
+Chaining methods allows you to build a map in whichever way is required. There are several compatible methods which can be chained in any order.
 
 ## `map`
 
-This is the method which starts the chain. On its own, it creates a [Map Model]().
+This is the method which starts the chain. On its own, it creates a [Dynamic Map Model](/models/dynamic-map-model/).
 
-### `map(mapOptions = {}, locations = null, markerOptions = {})`
+### `map(locations, options = {})`
 
 
 
 ## `markers`
 
+### `markers(locations, options = {})`
+
+Append additional markers to an existing map. You can specify the `locations` is a set of locations, `options` is a set of options.
+
 This method allows you to append markers onto an existing map object. You can pass a single location, or an array of locations.
 
 
 
+## `kml`
+### `kml(files, options = {})`
 
-
-
+## `styles`
+### `styles(styles)`
 
 
 
@@ -58,61 +85,47 @@ Across PHP, Twig, and JavaScript, there is a common syntax for building your map
 
 It's that simple! Take a look at the examples below, you will see how this pattern translates across programming languages.
 
-## Simple examples
+## Simple Examples
 
 ::: code
 ```js
-var map = googleMaps.map(mapOptions).markers(locations, markerOptions);
-// or
-var map = googleMaps.map(mapOptions, locations, markerOptions);
+var map = googleMaps.map().markers(locations, options);
 ```
 ```twig
-{% set map = googleMaps.map(mapOptions).markers(locations, markerOptions) %}
-{# or #}
-{% set map = googleMaps.map(mapOptions, locations, markerOptions) %}
+{% set map = googleMaps.map().markers(locations, options) %}
 ```
 ```php
-$map = GoogleMaps::map($mapOptions)->markers($locations, $markerOptions);
-// or
-$map = GoogleMaps::map($mapOptions, $locations, $markerOptions);
+$map = GoogleMaps::map()->markers($locations, $options);
 ```
 :::
 
-When you call the `map` method, you can pass in a `mapOptions` array of properties to configure the map. Once you have a map object, you will be able to call `markers` to append new markers to the map.
-
-## Passing markers directly
-
-If you don't need anything fancy out of your markers, you can actually pass them in as the second parameter of your `map` function.
+### Configuring a Map
 
 ::: code
 ```js
-googleMaps.map(mapOptions, locations)
+googleMaps.map(locations, options)
 ```
 ```twig
-googleMaps.map(mapOptions, locations)
+googleMaps.map(locations, options)
 ```
 ```php
-GoogleMaps::map($mapOptions, $locations)
+GoogleMaps::map($locations, $options)
 ```
 :::
 
-## Formatting markers
-
-You can format your markers by passing in `markerOptions`.
+### Formatting a group of markers
 
 ::: code
 ```js
-map.markers(locations, markerOptions)
+googleMaps.map().markers(locations, options)
 ```
 ```twig
-map.markers(locations, markerOptions)
+googleMaps.map().markers(locations, options)
 ```
 ```php
-$map->markers($locations, $markerOptions);
+GoogleMaps::map()->markers($locations, $options);
 ```
 :::
-
-## Formatting groups of markers
 
 If you have multiple groups of markers, you can format an entire batch by specifying new marker options each time.
 
