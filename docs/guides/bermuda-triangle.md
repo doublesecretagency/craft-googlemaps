@@ -12,9 +12,11 @@ We use this fallback location as our **default coordinates**, in case we are una
 
 ## Fallback Coordinates
 
-```json
+:::code
+```js JSON
 {
     "lat": 32.3113966,
     "lng": -64.7527469
 }
 ```
+:::

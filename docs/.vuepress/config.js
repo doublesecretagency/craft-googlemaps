@@ -144,6 +144,7 @@ module.exports = {
                 'dynamic-map-model',
                 'static-map-model',
                 'coordinates',
+                'javascript',
             ],
             '/services/': [
                 '',

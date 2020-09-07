@@ -1,26 +1,27 @@
-# Dynamic Map Model
+# JavaScript
 
-The Dynamic Map Model is critical for generating a [Dynamic Map](/maps/dynamic/). Thanks to the magic of [chaining](/maps/chaining/), it allows you to build maps that are as complex as they need to be.
+There is a JavaScript file which gets automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. It will be dynamically loaded into the `cpresources` folder...
+
+```
+/cpresources/******/js/googlemaps.js"
+```
+
+This will load an object called `googleMaps`. It contains the following methods...
 
 ## Public Methods
 
-### `__construct($locations = [], $options = [])`
+### `map(locations = [], options = [])`
 
-This method will be called when you initialize a `new DynamicMap`. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
+Calling this method will create a new map object. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
 
 :::code
-```twig
-{# Using a helper method to wrap `new DynamicMap` #}
-{% set map = googleMaps.map(locations) %}
-```
-```php
-// Using a helper method to wrap `new DynamicMap`
-$map = GoogleMaps::map($locations);
+```js
+var map = googleMaps.map(locations);
 ```
 :::
 
 :::warning The "map" variable
-For each of the remaining examples on this page, the `map` variable will be an instance of a **Dynamic Map Model**. In each example, you will see how map methods can be chained at will.
+For each of the remaining examples on this page, the `map` variable will be an instance of the `googleMaps` object. In each example, you will see how map methods can be chained at will.
 
 It will be assumed that the `map` object has already been initialized, as demonstrated above.
 :::
@@ -29,8 +30,8 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Arguments
 
- - `$locations` (_mixed_) - See a description of acceptable [locations...](/maps/locations/)
- - `$options` (_array_) - Optional parameters to configure the map. (see below)
+ - `locations` (_array_|_coords_) - See a description of acceptable [locations...](/maps/locations/)
+ - `options` (_array_) - Optional parameters to configure the map. (see below)
 
 | Option               | Type                | Default            | Description |
 |----------------------|:-------------------:|:------------------:|-------------|
@@ -48,7 +49,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
 :::tip Locations are Skippable
 If you skip the `locations` parameter, a blank map will be created.
@@ -57,14 +58,14 @@ If you skip the `locations` parameter, a blank map will be created.
 ---
 ---
 
-### `markers($locations, $options = [])`
+### `markers(locations, options = [])`
 
 Append markers to an existing map object.
 
 #### Arguments
 
- - `$locations` (_mixed_) - See a description of acceptable [locations...](/maps/locations/)
- - `$options` (_array_) - Optional parameters to configure the markers. (see below)
+ - `locations` (_array_|_coords_) - See a description of acceptable [locations...](/maps/locations/)
+ - `options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type                 | Default | Description |
 |----------------------|:--------------------:|:-------:|-------------|
@@ -76,28 +77,25 @@ Append markers to an existing map object.
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
 :::code
-```twig
-{% do map.markers(locations) %}
-```
-```php
-$map->markers($locations);
+```js
+map.markers(locations);
 ```
 :::
 
 ---
 ---
 
-### `kml($files, $options = [])`
+### `kml(files, options = [])`
 
 Append one or more KML layers to an existing map object.
 
 #### Arguments
 
- - `$files` (_mixed_)
- - `$options` (_array_) - Optional parameters to configure the KML layers. (see below)
+ - `files` (_array_|_string_)
+ - `options` (_array_) - Optional parameters to configure the KML layers. (see below)
  
 | Option             | Type     | Default | Description |
 |--------------------|:--------:|:-------:|-------------|
@@ -105,21 +103,18 @@ Append one or more KML layers to an existing map object.
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
 :::code
-```twig
-{% do map.kml(files) %}
-```
-```php
-$map->kml($files);
+```js
+map.kml(files);
 ```
 :::
 
 ---
 ---
 
-### `styles($stylesArray)`
+### `styles(stylesArray)`
 
 Style a map based on a given array of styles.
 
@@ -132,41 +127,38 @@ There are many ways to generate an array of map styles. The most popular approac
 
 #### Arguments
 
- - `$stylesArray` (_array_) - A set of styles to be applied to the map.
+ - `stylesArray` (_array_) - A set of styles to be applied to the map.
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
 :::code
-```twig
-{% do map.styles(stylesArray) %}
-```
-```php
-$map->styles($stylesArray);
+```js
+map.styles(stylesArray);
 ```
 :::
 
 ---
 ---
 
-### `html($init = true)`
+### `html()`
 
-Render the necessary `<div>` container to hold the map.
-
-#### Arguments
-
- - `$init` (_bool_) - Whether to automatically initialize the map DNA via JavaScript. If this is set to `false`, the map DNA will need to be manually initialized at some point in the future.
+Creates a new `<div>` element, waiting to be placed in the DOM.
 
 #### Returns
 
-_Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}`).
+_node_ - A DOM element.
 
 :::code
-```twig
-{{ map.html() }}
-```
-```php
-$twigMarkup = $map->html();
+```js
+// Get your map container
+var container = document.getElementById('your-map-container');
+
+// A div element containing the fully-rendered map
+var mapDiv = map.html();
+
+// Add the map to your container
+container.appendChild(mapDiv);
 ```
 :::
