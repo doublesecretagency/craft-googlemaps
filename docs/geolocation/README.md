@@ -6,10 +6,22 @@ If you want to know where your visitors are coming from, you can perform a geolo
 
 :::code
 ```twig
-{% set visitor = googleMaps.getVisitor() %}
+{# Autodetect IP address #}
+{% set visitor = googleMaps.visitor %}
+
+{# Specify override info #}
+{% set visitor = googleMaps.getVisitor({
+    'ip': '1.2.3.4'
+}) %}
 ```
 ```php
+// Autodetect IP address
 $visitor = GoogleMaps::getVisitor();
+
+// Specify override info
+$visitor = GoogleMaps::getVisitor([
+    'ip' => '1.2.3.4'
+]);
 ```
 :::
 

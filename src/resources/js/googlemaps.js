@@ -121,7 +121,7 @@ window.googleMaps = {
     // Initialize maps on page
     setup: function () {
         // Configure all maps on page
-        this.compileMaps();
+        this.init();
         // Mark setup as complete!
         this.setupComplete = true;
     },
@@ -175,8 +175,8 @@ window.googleMaps = {
         console.table(dna);
 
     },
-    // Configure specified maps
-    compileMaps: function (selection) {
+    // Initialize specified maps
+    init: function (selection) {
         // Initialize
         var dna;
         // Get selected map containers

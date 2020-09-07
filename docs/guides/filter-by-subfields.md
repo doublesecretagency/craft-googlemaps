@@ -98,7 +98,7 @@ $entries = Entry::find()
 :::code
 ```twig
 {# Get visitor info via geolocation #}
-{% set visitor = googleMaps.getVisitor() %}
+{% set visitor = googleMaps.visitor %}
 
 {# Search near the visitor, but only in Los Angeles #}
 {% set options = {

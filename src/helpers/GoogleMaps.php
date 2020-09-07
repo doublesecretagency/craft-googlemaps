@@ -11,14 +11,8 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
-use Craft;
-use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
-use doublesecretagency\googlemaps\models\Visitor;
-use doublesecretagency\googlemaps\models\_OLD_DynamicMap;
-use doublesecretagency\googlemaps\services\Geocoding;
-use doublesecretagency\googlemaps\services\Geolocation;
 
 /**
  * Class GoogleMaps
@@ -27,74 +21,26 @@ use doublesecretagency\googlemaps\services\Geolocation;
 class GoogleMaps
 {
 
-
-
-
-    /**
-     */
-    public static function test()
-    {
-
-        return static::map([
-            'id' => 'pancake',
-            'height' => 400,
-        ]);
-
-//        $visitor = GoogleMapsPlugin::$plugin->geolocation->getVisitor();
-////        $results = Geocoding::lookup('western blvd')->all();
-//
-//        return $visitor;
-    }
-
-
-
-
-
+    // ========================================================================= //
 
     // Generate Maps
 
     /**
-     * @param string|string[]|Section|null $value The property value
-     * @return static self reference
-     * @uses $sectionId
      */
-    public static function map($options = [])
+    public static function map($locations = [], $options = [])
     {
-//        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($options);
-        return new DynamicMap();
+//        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($locations, $options);
+        return new DynamicMap($locations, $options);
     }
-
-//    /**
-//     */
-//    public static function dynamic($locations, $options = [])
-//    {
-//        return true;
-//    }
 
     /**
      */
-    public static function static($locations, $options = [])
+    public static function img($locations = [], $options = [])
     {
         return true;
     }
 
-    // Change a Marker Icon
-
-    /**
-     */
-    public static function setMarkerIcon($mapId, $markerId, $icon)
-    {
-        return true;
-    }
-
-    // Apply a KML file
-
-    /**
-     */
-    public static function loadKml($mapId, $kml, $options = [])
-    {
-        return true;
-    }
+    // ========================================================================= //
 
     // Perform Visitor Geolocation
 
@@ -105,6 +51,8 @@ class GoogleMaps
         return GoogleMapsPlugin::$plugin->geolocation->getVisitor($config);
     }
 
+    // ========================================================================= //
+
     // Geocoding (Address Lookups)
 
     /**
@@ -114,7 +62,7 @@ class GoogleMaps
         return GoogleMapsPlugin::$plugin->geocoding->lookup($target);
     }
 
-
+    // ========================================================================= //
 
     // Override Google API keys
 
@@ -146,11 +94,17 @@ class GoogleMaps
         return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
     }
 
+    // ========================================================================= //
+
+    // Get Google API URL
+
     /**
      */
     public static function getApiUrl(array $params = []): string
     {
         return GoogleMapsPlugin::$plugin->api->getApiUrl($params);
     }
+
+    // ========================================================================= //
 
 }

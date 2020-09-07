@@ -57,6 +57,12 @@ class Api extends Component
 
     // ========================================================================= //
 
+    /**
+     * Compile a URL for pinging the Google Maps API.
+     *
+     * @param array $params
+     * @return string The fully compiled URL.
+     */
     public function getApiUrl(array $params = []): string
     {
         // Get browser key

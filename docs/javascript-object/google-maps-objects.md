@@ -11,13 +11,13 @@ Read more information about the Google Maps [Map Object...](https://developers.g
 **Formatting Example:**
 
 ```js
-googleMapsPlugin.maps['<MAP-ID>']
+googleMaps.maps['<MAP-ID>']
 ```
 
 **Functional Example:**
 
 ```js
-var map = googleMapsPlugin.maps['gm-map-1'];
+var map = googleMaps.maps['gm-map-1'];
 map.setZoom(12);
 ```
 
@@ -42,13 +42,13 @@ Read more information about the Google Maps [Marker Object...](https://developer
 **Formatting Example:**
 
 ```js
-googleMapsPlugin.markers['<MAP-ID>']['<MARKER-ID>']
+googleMaps.markers['<MAP-ID>']['<MARKER-ID>']
 ```
 
 **Functional Example:**
 
 ```js
-var marker = googleMapsPlugin.markers['gm-map-1']['42.myAddressField'];
+var marker = googleMaps.markers['gm-map-1']['42.myAddressField'];
 marker.setDraggable(true);
 ```
 
@@ -71,13 +71,13 @@ Read more information about the Google Maps [Info Window Object...](https://deve
 **Formatting Example:**
 
 ```js
-googleMapsPlugin.infoWindows['<MAP-ID>']['<MARKER-ID>']
+googleMaps.infoWindows['<MAP-ID>']['<MARKER-ID>']
 ```
 
 **Functional Example:**
 
 ```js
-var infoWindow = googleMapsPlugin.infoWindows['gm-map-1']['42.myAddressField'];
+var infoWindow = googleMaps.infoWindows['gm-map-1']['42.myAddressField'];
 infoWindow.setContent('<h2>New Info</h2>');
 ```
 
