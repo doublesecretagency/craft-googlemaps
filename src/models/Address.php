@@ -25,33 +25,6 @@ class Address extends Location
 {
 
     /**
-     * Automatically format the address on a single line (if possible).
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        // Get Google-formatted address
-        $googleFormatted = (string) trim($this->formatted);
-
-        // If Google-formatted address exists, return it
-        if ($googleFormatted) {
-            return $googleFormatted;
-        }
-
-        // Get multiline-formatted address
-        $multilineFormatted = (string) $this->multiline();
-
-        // If able to format via `multiline` method, return it
-        if ($multilineFormatted) {
-            return $multilineFormatted;
-        }
-
-        // Return an empty string
-        return '';
-    }
-
-    /**
      * @var int|null ID of address.
      */
     public $id;
@@ -115,6 +88,35 @@ class Address extends Location
      * @var int|null Zoom level of map.
      */
     public $zoom;
+
+    // ========================================================================= //
+
+    /**
+     * Automatically format the address on a single line (if possible).
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        // Get Google-formatted address
+        $googleFormatted = (string) trim($this->formatted);
+
+        // If Google-formatted address exists, return it
+        if ($googleFormatted) {
+            return $googleFormatted;
+        }
+
+        // Get multiline-formatted address
+        $multilineFormatted = (string) $this->multiline();
+
+        // If able to format via `multiline` method, return it
+        if ($multilineFormatted) {
+            return $multilineFormatted;
+        }
+
+        // Return an empty string
+        return '';
+    }
 
     // ========================================================================= //
 
