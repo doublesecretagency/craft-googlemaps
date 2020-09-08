@@ -93,8 +93,7 @@ module.exports = {
                 'chaining',
                 'locations',
 
-
-
+                // TO BE SCAVENGED & DELETED:
                 'info-windows',
                 'old-code',
                 'dynamic-extra',
@@ -168,7 +167,7 @@ module.exports = {
                 'complex-js-in-twig',
                 'complex-geolocation',
                 'setting-marker-icons',
-                'getting-directions',
+                'getting-directions', // TODO: Reassess this functionality (Google Maps URL API?)
                 'styling-a-map',
                 'kml-files',
                 'region-biasing',

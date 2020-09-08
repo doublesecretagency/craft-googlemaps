@@ -75,6 +75,8 @@ class Location extends Model
     public function linkToDirections($options = []): string
     {
 
+        // @TODO: Reassess both of these functions
+
         // THESE SHOULD REALLY JUST BE BOTH USING THE GOOGLE URL API
 
         return 'https://www.google.com/maps/dir/14.9704507,102.1049483/@14.9702797,102.1036072,17z';
