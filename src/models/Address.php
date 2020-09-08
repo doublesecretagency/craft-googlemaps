@@ -153,6 +153,23 @@ class Address extends Location
     // ========================================================================= //
 
     /**
+     * Checks whether address is empty.
+     *
+     * @return bool
+     */
+    public function isEmpty(): bool
+    {
+        return (
+            empty($this->street1) &&
+            empty($this->street2) &&
+            empty($this->city) &&
+            empty($this->state) &&
+            empty($this->zip) &&
+            empty($this->country)
+        );
+    }
+
+    /**
      * Format the Address as a multiline HTML string.
      *
      * @param int $maxLines The maximum number of lines to be allocated.

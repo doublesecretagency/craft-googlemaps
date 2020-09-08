@@ -11,11 +11,14 @@ $address = $entry->myAddressField;
 ```
 :::
 
-::: warning ADDITIONAL PROPERTIES AND METHODS
+:::warning Additional Properties and Methods
 The Address Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.
 
 You can access `lat` and `lng` just as easily as `street1` and `street2`.
 :::
+
+---
+---
 
 ## Public Properties
 
@@ -71,21 +74,30 @@ _float_ - Alias for `getDistance()`.
 
 _int_ - Zoom level of the map as shown in the control panel.
 
+---
+---
+
 ## Public Methods
 
 ### `getElement()`
 
-Get the corrosponding element which contains this Address. It's possible that no element ID exists (for example, if the Address is created manually, instead of using data in the database).
+Get the corresponding **element** which contains this Address. It's possible that no element ID exists (for example, if the Address Model was created manually, instead of using data from the database).
+
+---
+---
 
 ### `getField()`
 
-Get the corrosponding field which contains this Address. It's possible that no field ID exists (for example, if the Address is created manually, instead of using data in the database).
+Get the corresponding **field** which contains this Address. It's possible that no field ID exists (for example, if the Address Model was created manually, instead of using data from the database).
+
+---
+---
 
 ### `getDistance(coords = false, units = 'miles')`
 
-The distance between this address and your proximity search target. Will be returned in whatever unit of measurement (miles or kilometers) was specified in the proximity search parameters.
+The distance between this address, and your proximity search target. Will be returned in whatever unit of measurement (miles or kilometers) was specified in the proximity search parameters.
 
-::: warning PROXIMITY SEARCH ONLY
+:::warning Proximity Search Only
 This value will only be available if the address was returned as part of a [proximity search](/proximity-search/). Otherwise, the value for `distance` will be null.
 :::
 
@@ -93,21 +105,35 @@ Behaves just as described in the [Location Model](/models/location-model/#getdis
 
 If the address has been returned as part of a proximity search, the method will use the coordinates of your search target by default.
 
+---
+---
+
 ### `isEmpty()`
 
-_bool_ - Returns whether _all_ of the address fields (excluding `country`) are empty, or whether they contain any data at all. Specifically looks for data in any of the following subfields:
+_bool_ - Returns whether _all_ of the non-coordinate address fields are empty, or whether they contain any data at all. Specifically looks to see if data exists in any of the following subfields:
 
  - `street1`
  - `street2`
  - `city`
  - `state`
  - `zip`
+ - `country`
 
+:::code
 ```twig
 {% if not address.isEmpty %}
     {{ address.multiline() }}
 {% endif %}
 ```
+```php
+if (!$address->isEmpty) {
+    return $address->multiline();
+}
+```
+:::
+
+---
+---
 
 ### `multiline(maxLines)`
 
@@ -144,7 +170,7 @@ _bool_ - Returns whether _all_ of the address fields (excluding `country`) are e
 
 ### `1`
 
-All information is condensed into a single line. Very similar to `formatted`, although the `country` value will be omitted here. Other minor formatting differences are also possible, since the formatting is being handled by different sources.
+All information will be condensed into a single line. Very similar to `formatted`, although the `country` value will be omitted here. Other minor formatting differences are also possible, since the formatting is being handled by different sources.
 
 ### `2`
 
@@ -160,7 +186,7 @@ Exactly like `3`, with only the addition of the `country` value.
 
 <hr>
 
-:::warning Two ways to display a single line.
+:::warning Two ways to display a single line
 If you need to output an address on a single line, `multiline` may not be the best choice. Consider just **outputting the model directly** instead.
 :::
 
@@ -184,3 +210,9 @@ When you output the model directly, it will render the entire address on a singl
 If the model contains a Google-supplied `formatted` address, that value will be used as the single-line interpretation of the Address model.
 
 Otherwise, `multiline(1)` will be used to generate a single-line version of the Address.
+
+:::warning Multiline vs. Formatted
+When using the `multiline` method, the various subfield components are explicitly compiled as described above.
+
+When using the `formatted` property, you will get a complete one-line string that has been pre-formatted by the Google API. 
+:::
