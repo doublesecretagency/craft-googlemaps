@@ -44,18 +44,19 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
-                    {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
-                    {text: 'Internationalization Support', link: '/guides/internationalization-support/'},
-                    {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
-                    {text: 'Styling a Map', link: '/guides/styling-a-map/'},
-                    {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
-                    {text: 'KML Files', link: '/guides/kml-files/'},
-                    {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
+                    {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
+                    {text: 'Getting Directions', link: '/guides/getting-directions/'},
+                    {text: 'Styling a Map', link: '/guides/styling-a-map/'},
+                    {text: 'KML Files', link: '/guides/kml-files/'},
+                    {text: 'Region Biasing', link: '/guides/region-biasing/'},
+                    {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
+                    {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
+                    {text: 'Internationalization Support', link: '/guides/internationalization-support/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
+                    // {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
                 ]
             },
             {
@@ -92,8 +93,6 @@ module.exports = {
                 'chaining',
                 'locations',
 
-
-                'linking-to-google',
 
 
                 'info-windows',
@@ -166,18 +165,19 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
-                'importing-addresses',
-                'internationalization-support',
-                'address-in-a-matrix-field',
-                'styling-a-map',
-                'setting-marker-icons',
                 'complex-js-in-twig',
-                'kml-files',
-                'filter-by-subfields',
-                'region-biasing',
                 'complex-geolocation',
+                'setting-marker-icons',
+                'getting-directions',
+                'styling-a-map',
+                'kml-files',
+                'region-biasing',
+                'filter-by-subfields',
+                'address-in-a-matrix-field',
+                'internationalization-support',
                 'bermuda-triangle',
                 'updating-from-smart-map',
+                // 'importing-addresses',
             ],
 
             // // fallback

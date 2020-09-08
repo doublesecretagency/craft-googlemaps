@@ -1,4 +1,4 @@
-# Linking to Google
+# Getting Directions
 
 As long as you have a valid [Location Model](/models/location-model/), you can easily link back to Google Maps itself.
 
