@@ -1,4 +1,4 @@
-# JavaScript Object
+# (OLD) JavaScript Object
 
 Under the hood, the Google Maps plugin is just a giant wrapper for the Google Maps API. The plugin is simply creating all of the necessary JavaScript objects for you, automatically.
 

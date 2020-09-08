@@ -1,4 +1,4 @@
-# Google Maps Objects
+# (OLD) Google Maps Objects
 
 When the map is created, there are several Google Maps objects which are created in JavaScript. After the map has been rendered on the page, you are free to continue manipulating it further using JavaScript.
 

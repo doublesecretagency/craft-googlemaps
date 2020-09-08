@@ -42,17 +42,6 @@ module.exports = {
                 ]
             },
             {
-                text: 'Architecture',
-                items: [
-                    {text: 'Settings', link: '/settings/'},
-                    {text: 'Helper', link: '/helper/'},
-                    {text: 'Models', link: '/models/'},
-                    {text: 'Services', link: '/services/'},
-                    {text: 'Events', link: '/events/'},
-                    {text: 'JavaScript Object', link: '/javascript-object/'},
-                ]
-            },
-            {
                 text: 'Guides',
                 items: [
                     {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
@@ -68,7 +57,17 @@ module.exports = {
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
                 ]
-            }
+            },
+            {
+                text: 'Architecture',
+                items: [
+                    {text: 'Settings', link: '/settings/'},
+                    {text: 'Helper', link: '/helper/'},
+                    {text: 'Models', link: '/models/'},
+                    {text: 'Services', link: '/services/'},
+                    {text: 'Events', link: '/events/'},
+                ]
+            },
         ],
         sidebar: {
             // Getting Started
@@ -100,6 +99,8 @@ module.exports = {
                 'info-windows',
                 'old-code',
                 'dynamic-extra',
+                'old-javascript-object',
+                'old-google-maps-objects',
 
 
             ],
@@ -160,10 +161,6 @@ module.exports = {
                 '',
                 'geocoding-event',
                 'geolocation-event',
-            ],
-            '/javascript-object/': [
-                '',
-                'google-maps-objects',
             ],
 
             // Guides

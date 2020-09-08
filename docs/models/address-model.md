@@ -184,35 +184,41 @@ If a `street2` value exists, it will be given its own line. Otherwise, that line
 
 Exactly like `3`, with only the addition of the `country` value.
 
-<hr>
+## Multiline vs. Formatted
 
-:::warning Two ways to display a single line
-If you need to output an address on a single line, `multiline` may not be the best choice. Consider just **outputting the model directly** instead.
-:::
+When using the `multiline` method, the various subfield components will be explicitly compiled as described in the examples above.
 
-## Outputting the model directly
+When using the `formatted` property, you will get a pre-formatted string which was originally set by the Google API.
 
-When you output the model directly, it will render the entire address on a single line. The internal `__toString` method attempts to use the `formatted` value if it exists. Otherwise, it will generate a single line address by using the `multiline` method.
 
 :::code
-```twig By outputting directly
-{{ entry.address }}
-
-{# 123 Main St, Suite #101, Springfield, CO 81073, USA #}
-```
-```twig By using multiline
-{{ entry.address.multiline(1) }}
+```twig Multiline
+{{ address.multiline(1) }}
 
 {# 123 Main St, Suite #101, Springfield, CO 81073 #}
 ```
+```twig Formatted
+{{ address.formatted }}
+
+{# 123 Main St, Suite #101, Springfield, CO 81073, USA #}
+```
 :::
 
-If the model contains a Google-supplied `formatted` address, that value will be used as the single-line interpretation of the Address model.
+The differences between the two are subtle, but they do exist. We can't know how Google compiles each `formatted` value, but we have a very specific formula to follow when using `multiline`.
 
-Otherwise, `multiline(1)` will be used to generate a single-line version of the Address.
+Please be mindful of these differences when deciding which to use. When in doubt, you can always just output the model directly as a string.
 
-:::warning Multiline vs. Formatted
-When using the `multiline` method, the various subfield components are explicitly compiled as described above.
+## Output as a String
 
-When using the `formatted` property, you will get a complete one-line string that has been pre-formatted by the Google API. 
+```twig
+{{ address }}
+```
+
+When you output the model directly, it attempts to render the entire address on a single line. This triggers the internal `__toString` method, which then does one of the following things...
+
+1. If the `formatted` value exists, that will be returned.
+2. Otherwise, it will generate a single line address by using the `multiline(1)` method.
+
+:::warning Google Formatted Preferred 
+The `formatted` value will be preferred, because it was supplied by Google as a pre-compiled string. However, the end result of `multiline(1)` should (theoretically) be similar enough for a reasonable fallback. 
 :::
