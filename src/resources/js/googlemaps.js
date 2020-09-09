@@ -47,11 +47,6 @@ window.googleMaps = {
         return this;
     },
 
-    // Automatically fit map according to bounds
-    fitBounds: function(mapId) {
-        this.maps[mapId].map.fitBounds(this.maps[mapId].bounds);
-    },
-
     // Create a set of marker objects
     markers: function(locations, options) {
 
@@ -94,10 +89,16 @@ window.googleMaps = {
         // Keep the party going
         return this;
     },
+
     // kml: function() {
     //     // Do whatever
     //     return this;
     // },
+
+    // Automatically fit map according to bounds
+    fitBounds: function(mapId) {
+        this.maps[mapId].map.fitBounds(this.maps[mapId].bounds);
+    },
 
 
 
