@@ -120,6 +120,40 @@ window.googleMaps = {
     actionUrl: '/actions/',
     // No CSRF token by default
     csrfToken: false,
+    // Initialize specified maps
+    init: function (selection) {
+        // Initialize
+        var dna;
+        // Get selected map containers
+        var containers = this._whichMaps(selection);
+        // Loop through containers
+        for (var i in containers) {
+            // Get map DNA
+            dna = JSON.parse(containers[i].dataset.dna);
+            // Render the map
+            this._renderMap(dna);
+        }
+    },
+    // Submit AJAX with fresh CSRF token
+    getCsrf: function (callback) {
+        // Make object available to callback
+        var that = this;
+        // Fetch a new CSRF token
+        ajax
+            .get(this.actionUrl+'google-maps/page/csrf')
+            .end(function(err, res){
+                // If something went wrong, bail
+                if (!res.ok) {
+                    console.log('Error retrieving CSRF token:', err);
+                    return;
+                }
+                // Set global CSRF token
+                that.csrfToken = res.body;
+                // Run callback
+                callback();
+            })
+        ;
+    },
     // Determine which maps to compile
     _whichMaps: function (selection) {
         // No map containers by default
@@ -158,51 +192,40 @@ window.googleMaps = {
         var container = document.getElementById(dna.id);
         var height = dna.height || 400;
 
-        new google.maps.Map(container, {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 6
-        });
-
+        // Set height of map
         container.setAttribute('style','display:block; height:'+height+'px');
         container.style.height = height+'px';
 
 
+
+        // PARSE OUT THE `dna` VALUE TO CONFIGURE THE MAP.
+        // LOOP OVER THE MARKERS TO CONFIGURE EACH ONE.
+
+
+        // ========================================== //
+        // TEMP
+
+        var coords = {lat: 33.397, lng: -118.644};
+
+        var map = new google.maps.Map(container, {
+            center: coords,
+            zoom: 8
+        });
+
+        // Put a new marker on the map
+        var marker = new google.maps.Marker({
+            position: coords,
+            map: map
+        });
+
+        // ENDTEMP
+        // ========================================== //
+
+
+
+
         console.table(dna);
 
-    },
-    // Initialize specified maps
-    init: function (selection) {
-        // Initialize
-        var dna;
-        // Get selected map containers
-        var containers = this._whichMaps(selection);
-        // Loop through containers
-        for (var i in containers) {
-            // Get map DNA
-            dna = JSON.parse(containers[i].dataset.dna);
-            // Render the map
-            this._renderMap(dna);
-        }
-    },
-    // Submit AJAX with fresh CSRF token
-    getCsrf: function (callback) {
-        // Make object available to callback
-        var that = this;
-        // Fetch a new CSRF token
-        ajax
-            .get(this.actionUrl+'google-maps/page/csrf')
-            .end(function(err, res){
-                // If something went wrong, bail
-                if (!res.ok) {
-                    console.log('Error retrieving CSRF token:', err);
-                    return;
-                }
-                // Set global CSRF token
-                that.csrfToken = res.body;
-                // Run callback
-                callback();
-            })
-        ;
     },
 };
 

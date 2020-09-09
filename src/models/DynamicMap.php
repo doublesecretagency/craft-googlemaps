@@ -87,11 +87,6 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
-    /**
-     * Render a fully-functional map container.
-     *
-     * @return Markup
-     */
     public function html(): Markup
     {
 
@@ -110,6 +105,16 @@ class DynamicMap extends Model
         return Template::raw($html);
     }
 
+    /**
+     * Return the immutable DNA array.
+     *
+     * @return array
+     */
+    public function getDna(): array
+    {
+        return $this->_dna;
+    }
+
     // ========================================================================= //
 
     /**
@@ -126,10 +131,13 @@ class DynamicMap extends Model
 //            $this->_markers[] = new Marker;
 //        }
 
-        $coords = $locations; // TEMP
+        // Loop through all locations
+        foreach ([$locations] as $coords) { // TEMP
 
-        // Add marker to collection
-        $this->_dna['markers'][] = $this->_configureMarker($coords, $options);
+            // Add marker to collection
+            $this->_dna['markers'][] = $this->_configureMarker($coords, $options);
+
+        }
     }
 
     // ========================================================================= //
