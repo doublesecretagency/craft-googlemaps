@@ -8,32 +8,34 @@ window.googleMaps = {
     // Initialize collection of maps
     maps: {},
 
-    testMapId: 'gm-map-1',
+    // Create a new internal map object
+    _createMap: function(mapId, container, options) {
+
+        // Initialize internal map object
+        this.maps[mapId] = {
+            map: new google.maps.Map(container, options),
+            markers: {},
+            bounds: new google.maps.LatLngBounds()
+        }
+
+    },
 
     // Create a new map object
     map: function(mapOptions, locations, markerOptions) {
 
         // Set default values
+        mapOptions.id = mapOptions.id || 'gm-map-1';
         mapOptions.zoom = mapOptions.zoom || 5;
 
 
+        var mapId = mapOptions.id; // TEMP
 
-        var mapId = this.testMapId; // TEMP
-
-
-
-        // Initialize internal map object
-        this.maps[mapId] = {
-            map: null,
-            markers: [],
-            bounds: new google.maps.LatLngBounds()
-        }
 
         // Get map container
         var container = document.getElementById('googleMap');
 
-        // Initialize map
-        this.maps[mapId].map = new google.maps.Map(container,mapOptions);
+        // Create a new Google Map object
+        this._createMap(mapId, container, mapOptions);
 
         // If locations were specified, add markers
         if (locations) {
@@ -50,7 +52,7 @@ window.googleMaps = {
     // Create a set of marker objects
     markers: function(locations, options) {
 
-        var mapId = this.testMapId; // TEMP
+        var mapId = options.mapId || 'gm-map-1'; // TEMP
 
         // Array.isArray([1, 2, 3]);  // true
         // Array.isArray({foo: 123}); // false
@@ -67,22 +69,8 @@ window.googleMaps = {
             // Get individual coordinates
             var coords = locations[i];
 
-            // object.hasOwnProperty('lat')
-
-            // var markerOptions = options['markerOptions'];
-            var markerOptions = {
-                position: coords,
-                map: this.maps[mapId].map
-            };
-
-            // Extend bounds
-            this.maps[mapId].bounds.extend(coords);
-
-            // Put a new marker on the map
-            var marker = new google.maps.Marker(markerOptions);
-
-            // Add to marker collection
-            this.maps[mapId].markers.push(marker);
+            // Create a marker on specified map
+            this._renderMarker(mapId, coords, markerOptions);
 
         }
 
@@ -100,6 +88,16 @@ window.googleMaps = {
         this.maps[mapId].map.fitBounds(this.maps[mapId].bounds);
     },
 
+
+
+    // Get a specified map object
+    getMap: function(mapId) {
+        return this.maps[mapId].map;
+    },
+    // Get a specified marker object
+    getMarker: function(mapId, markerId) {
+        return this.maps[mapId].markers[markerId];
+    },
 
 
 
@@ -189,12 +187,26 @@ window.googleMaps = {
     // Render a specific map
     _renderMap: function (dna) {
 
-        var container = document.getElementById(dna.id);
+        var mapId = dna.id;
+
+        var container = document.getElementById(mapId);
         var height = dna.height || 400;
 
-        // Set height of map
-        container.setAttribute('style','display:block; height:'+height+'px');
-        container.style.height = height+'px';
+        // Configure map container
+        container.style.display = 'block';
+        container.style.height = `${height}px`;
+
+        // Optionally set width of container
+        if (dna.width) {
+            container.style.width = `${dna.width}px`;
+        }
+
+        // Initialize internal map object
+        this.maps[mapId] = {
+            map: null,
+            markers: {},
+            bounds: new google.maps.LatLngBounds()
+        }
 
 
 
@@ -207,24 +219,57 @@ window.googleMaps = {
 
         var coords = {lat: 33.397, lng: -118.644};
 
-        var map = new google.maps.Map(container, {
+        var mapOptions = {
             center: coords,
             zoom: 8
-        });
-
-        // Put a new marker on the map
-        var marker = new google.maps.Marker({
-            position: coords,
-            map: map
-        });
+        };
 
         // ENDTEMP
         // ========================================== //
 
 
+        // Initialize map
+        this._createMap(mapId, container, mapOptions);
+
+        // Fit according to bounds
+        this.fitBounds(mapId);
+
+        // Loop through markers
+        for (var i in dna.markers) {
+            // Get marker DNA
+            marker = dna.markers[i];
+            // Render the map
+            this._renderMarker(mapId, marker.coords);
+        }
+
+    },
+    // Render a specific marker
+    _renderMarker: function (mapId, coords, options) {
+
+        // If coordinates are not valid, bail
+        // object.hasOwnProperty('lat')
+
+        // TEMP
+        var elementId = 16;
+        var fieldHandle = 'address';
+        // ENDTEMP
 
 
-        console.table(dna);
+        // Set marker ID
+        var markerId = `${elementId}.${fieldHandle}`;
+
+        // Ensure options are valid
+        options = options || {};
+
+        // Set map and marker position
+        options.map = options.map || this.getMap(mapId);
+        options.position = options.position || coords;
+
+        // Put a new marker on the map
+        this.maps[mapId].markers[markerId] = new google.maps.Marker(options);
+
+        // Extend bounds
+        this.maps[mapId].bounds.extend(coords);
 
     },
 };

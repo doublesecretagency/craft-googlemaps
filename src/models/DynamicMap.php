@@ -93,6 +93,8 @@ class DynamicMap extends Model
 
         // COMPILE DNA AT THE LAST MINUTE
 
+//        \Craft::dd($this->_dna);
+
 
         // Compile map container
         $html = Html::modifyTagAttributes('<div>Loading map...</div>', [
@@ -125,57 +127,75 @@ class DynamicMap extends Model
      */
     public function markers($locations, array $options = [])
     {
+        // If no locations were specified, bail
+        if (!$locations) {
+            return;
+        }
 
-//        // Parse $locations into an array of Marker objects
-//        if ($locations) {
-//            $this->_markers[] = new Marker;
-//        }
+        // Force an array structure
+        if (!is_array($locations)) {
+            $locations = [$locations];
+        }
 
         // Loop through all locations
-        foreach ([$locations] as $coords) { // TEMP
+        foreach ($locations as $location) {
 
-            // Add marker to collection
-            $this->_dna['markers'][] = $this->_configureMarker($coords, $options);
+            // Get coordinates (or collection of coordinates) from location
+            $coordinates = $this->_getLocationCoords($location, $options);
+
+            // If invalid coordinates, skip location
+            if (!$coordinates) {
+                continue;
+            }
+
+            // Add each marker to collection
+            foreach ($coordinates as $coords) {
+                $this->_dna['markers'][] = $this->_configureMarker($coords, $options);
+            }
 
         }
     }
 
+    // Always return coordinates within a parent array,
+    // to compensate for Elements with multiple Addresses.
+    private function _getLocationCoords($location, $options)
+    {
+        // If location was specified as coordinates, return them as-is
+        if (isset($location['lat']) && isset($location['lng'])) {
+            return [$location];
+        }
+
+
+        // CHECK TO SEE WHAT KIND OF THING $location IS
+
+        // GET THE COORDS OF WHATEVER IT IS
+
+        \Craft::dd($location);
+
+
+
+
+    }
+
     // ========================================================================= //
 
-    /**
-     * Create the DNA based on options specified
-     * by the user during initialization.
-     *
-     * @param array $options
-     */
     private function _configureMap(array $options = [])
     {
-        // TEMP
-        $options = [
-            // string - Set the id attribute of the map container.
-            'id' => 'gm-map-1',
-            // int - Set the width of the map (in px).
-            'width' => null,
-            // int - Set the height of the map (in px).
-            'height' => null,
-            // int - Set the default zoom level of the map. (1 - 16)
-            'zoom' => null, // (uses fitBounds by default)
-            // coords - Set the center position of the map.
-            'center' => null, // (uses fitBounds by default)
-            // array - An array of map styles.
-            'styles' => null,
-            // object - Accepts any google.maps.MapOptions properties.
-            'mapOptions' => null,
-            // object - Accepts any google.maps.MarkerOptions properties.
-            'markerOptions' => null,
-            // object - Accepts any google.maps.InfoWindowOptions properties.
-            'infoWindowOptions' => null,
-            // string - Template path to use for creating info windows.
-            'infoWindowTemplate' => null,
-            // string or array - Which field(s) of the element(s) should be included on the map. (null will include all Address fields)
-            'fields' => null,
-        ];
-        // ENDTEMP
+//        // TEMP
+//        $options = [
+//            'id' => 'gm-map-1',
+//            'width' => null,
+//            'height' => null,
+//            'zoom' => null, // (uses fitBounds by default)
+//            'center' => null, // (uses fitBounds by default)
+//            'styles' => null,
+//            'mapOptions' => null,
+//            'markerOptions' => null,
+//            'infoWindowOptions' => null,
+//            'infoWindowTemplate' => null,
+//            'fields' => null,
+//        ];
+//        // ENDTEMP
 
 
         // Set the map ID
@@ -188,12 +208,12 @@ class DynamicMap extends Model
 
         // If the width is specified
         if (isset($options['width'])) {
-            // Apply width
+            $this->_dna['width'] = $options['width'];
         }
 
         // If the height is specified
         if (isset($options['height'])) {
-            // Apply height
+            $this->_dna['height'] = $options['height'];
         }
 
         // If the zoom is specified
@@ -247,20 +267,15 @@ class DynamicMap extends Model
      */
     private function _configureMarker($coords, array $options = []): array
     {
-        // TEMP
-        $options = [
-            // string - An icon as defined by google.maps.MarkerOptions.
-            'icon' => null,
-            // object - Accepts any google.maps.MarkerOptions properties.
-            'markerOptions' => null,
-            // object - Accepts any google.maps.InfoWindowOptions properties.
-            'infoWindowOptions' => null,
-            // string - Template path to use for creating info windows.
-            'infoWindowTemplate' => null,
-            // string or array - Which field(s) of the element(s) should be included on the map. (null will include all Address fields)
-            'fields' => null,
-        ];
-        // ENDTEMP
+//        // TEMP
+//        $options = [
+//            'icon' => null,
+//            'markerOptions' => null,
+//            'infoWindowOptions' => null,
+//            'infoWindowTemplate' => null,
+//            'fields' => null,
+//        ];
+//        // ENDTEMP
 
         // Set values
         $markerOptions      = ($options['markerOptions']      ?? $this->_defaultMarkerOptions      ?? null);
