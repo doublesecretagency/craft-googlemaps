@@ -25,7 +25,7 @@ window.googleMaps = {
 
         // Set default values
         mapOptions.id = mapOptions.id || 'gm-map-1';
-        mapOptions.zoom = mapOptions.zoom || 5;
+        mapOptions.zoom = mapOptions.zoom || null;
 
 
         var mapId = mapOptions.id; // TEMP
@@ -42,8 +42,10 @@ window.googleMaps = {
             this.markers(locations, markerOptions);
         }
 
-        // Fit according to bounds
-        this.fitBounds(mapId);
+        // If no zoom specified, fit according to bounds
+        if (!mapOptions.zoom) {
+            this.fitBounds(mapId);
+        }
 
         // Keep the party going
         return this;
@@ -85,7 +87,8 @@ window.googleMaps = {
 
     // Automatically fit map according to bounds
     fitBounds: function(mapId) {
-        this.maps[mapId].map.fitBounds(this.maps[mapId].bounds);
+        var map = this.maps[mapId];
+        map.map.fitBounds(map.bounds);
     },
 
 
@@ -217,11 +220,9 @@ window.googleMaps = {
         // ========================================== //
         // TEMP
 
-        var coords = {lat: 33.397, lng: -118.644};
-
         var mapOptions = {
-            center: coords,
-            zoom: 8
+            center: {lat: 33.397, lng: -118.644},
+            zoom: dna.zoom || null
         };
 
         // ENDTEMP
@@ -231,8 +232,10 @@ window.googleMaps = {
         // Initialize map
         this._createMap(mapId, container, mapOptions);
 
-        // Fit according to bounds
-        this.fitBounds(mapId);
+        // If no zoom specified, fit according to bounds
+        if (!mapOptions.zoom) {
+            this.fitBounds(mapId);
+        }
 
         // Loop through markers
         for (var i in dna.markers) {

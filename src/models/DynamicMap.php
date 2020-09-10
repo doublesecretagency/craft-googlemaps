@@ -132,6 +132,11 @@ class DynamicMap extends Model
             return;
         }
 
+        // If location was specified as coordinates, nest them in an array
+        if (isset($locations['lat']) && isset($locations['lng'])) {
+            $locations = [$locations];
+        }
+
         // Force an array structure
         if (!is_array($locations)) {
             $locations = [$locations];
@@ -218,7 +223,7 @@ class DynamicMap extends Model
 
         // If the zoom is specified
         if (isset($options['zoom'])) {
-            // Apply zoom
+            $this->_dna['zoom'] = $options['zoom'];
         }
 
         // If the center is specified
