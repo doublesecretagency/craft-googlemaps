@@ -132,7 +132,9 @@ window.googleMaps = {
             // Get map DNA
             dna = JSON.parse(containers[i].dataset.dna);
             // Render the map
-            this._renderMap(dna);
+            this._renderMap(dna.map);
+            // Render the markers
+            this._renderMarkers(dna.markers);
         }
     },
     // Submit AJAX with fresh CSRF token
@@ -237,17 +239,31 @@ window.googleMaps = {
             this.fitBounds(mapId);
         }
 
-        // Loop through markers
-        for (var i in dna.markers) {
-            // Get marker DNA
-            marker = dna.markers[i];
-            // Render the map
-            this._renderMarker(mapId, marker.coords);
-        }
 
     },
+    // Render a group of markers
+    _renderMarkers: function (dna, options) {
+
+        console.table(dna);
+
+
+        // Loop through markers
+        for (var i in dna) {
+            // Get marker DNA
+            marker = dna[i];
+            // Render the map
+            this._renderMarker(mapId, marker.coords, options);
+        }
+    },
     // Render a specific marker
-    _renderMarker: function (mapId, coords, options) {
+    _renderMarker: function (coords, options) {
+
+        // Get map ID from marker options
+        var mapId = options.mapId;
+
+
+        console.log('did we make it here?');
+
 
         // If coordinates are not valid, bail
         // object.hasOwnProperty('lat')

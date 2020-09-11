@@ -28,12 +28,17 @@ class DynamicMap extends Model
     /**
      * @var array Collection of internal data representing a map to be rendered.
      */
-    private $_dna = [];
+    private $_dna;
 
-//    /**
-//     * @var array Collection of markers stored internally.
-//     */
-//    private $_markers = [];
+    /*
+     * TODO: Can these 3 properties be combined?
+     *
+     * $_default = [
+     *     'markerOptions' => ...,
+     *     'infoWindowOptions' => ...,
+     *     'infoWindowTemplate' => ...,
+     * ]
+     */
 
     /**
      * @var array|null A set of marker options to be used as the fallback.
@@ -61,13 +66,12 @@ class DynamicMap extends Model
      */
     public function __construct($locations = [], array $options = [], array $config = [])
     {
-        // Configure map based on given options
-        $this->_configureMap($options);
+        // Initialize DNA
+        $this->_dna = [];
 
-        // If locations were specified, add markers to the map
-        if ($locations) {
-            $this->markers($locations);
-        }
+        // Set the initial map and marker DNA
+        $this->_setMapDna($options);
+        $this->_setMarkersDna($locations);
 
         // Call parent constructor
         parent::__construct($config);
@@ -98,7 +102,7 @@ class DynamicMap extends Model
 
         // Compile map container
         $html = Html::modifyTagAttributes('<div>Loading map...</div>', [
-            'id' => $this->_dna['id'],
+            'id' => $this->_dna['map']['id'],
             'class' => 'gm-map',
             'data-dna' => Json::encode($this->_dna),
         ]);
@@ -129,63 +133,20 @@ class DynamicMap extends Model
     {
         // If no locations were specified, bail
         if (!$locations) {
-            return;
+            return $this;
         }
 
-        // If location was specified as coordinates, nest them in an array
-        if (isset($locations['lat']) && isset($locations['lng'])) {
-            $locations = [$locations];
-        }
+        $this->_setMarkersDna($locations, $options);
 
-        // Force an array structure
-        if (!is_array($locations)) {
-            $locations = [$locations];
-        }
-
-        // Loop through all locations
-        foreach ($locations as $location) {
-
-            // Get coordinates (or collection of coordinates) from location
-            $coordinates = $this->_getLocationCoords($location, $options);
-
-            // If invalid coordinates, skip location
-            if (!$coordinates) {
-                continue;
-            }
-
-            // Add each marker to collection
-            foreach ($coordinates as $coords) {
-                $this->_dna['markers'][] = $this->_configureMarker($coords, $options);
-            }
-
-        }
-    }
-
-    // Always return coordinates within a parent array,
-    // to compensate for Elements with multiple Addresses.
-    private function _getLocationCoords($location, $options)
-    {
-        // If location was specified as coordinates, return them as-is
-        if (isset($location['lat']) && isset($location['lng'])) {
-            return [$location];
-        }
-
-
-        // CHECK TO SEE WHAT KIND OF THING $location IS
-
-        // GET THE COORDS OF WHATEVER IT IS
-
-        \Craft::dd($location);
-
-
-
-
+        return $this;
     }
 
     // ========================================================================= //
 
-    private function _configureMap(array $options = [])
+    private function _setMapDna($options)
     {
+        $mapDna = [];
+
 //        // TEMP
 //        $options = [
 //            'id' => 'gm-map-1',
@@ -205,25 +166,25 @@ class DynamicMap extends Model
 
         // Set the map ID
         if (isset($options['id'])) {
-            $this->_dna['id'] = $options['id'];
+            $mapDna['id'] = $options['id'];
         } else {
             $mapCounter = 1; // TEMP
-            $this->_dna['id'] = "gm-map-{$mapCounter}";
+            $mapDna['id'] = "gm-map-{$mapCounter}";
         }
 
         // If the width is specified
         if (isset($options['width'])) {
-            $this->_dna['width'] = $options['width'];
+            $mapDna['width'] = $options['width'];
         }
 
         // If the height is specified
         if (isset($options['height'])) {
-            $this->_dna['height'] = $options['height'];
+            $mapDna['height'] = $options['height'];
         }
 
         // If the zoom is specified
         if (isset($options['zoom'])) {
-            $this->_dna['zoom'] = $options['zoom'];
+            $mapDna['zoom'] = $options['zoom'];
         }
 
         // If the center is specified
@@ -261,6 +222,44 @@ class DynamicMap extends Model
             // Apply fields
         }
 
+//        \Craft::dd($mapDna);
+
+        $this->_dna['map'] = $mapDna;
+
+    }
+
+    private function _setMarkersDna($locations, $options = [])
+    {
+        $markersDna = [];
+
+        // If location was specified as coordinates, nest them in an array
+        if (isset($locations['lat']) && isset($locations['lng'])) {
+            $locations = [$locations];
+        }
+
+        // Force an array structure
+        if (!is_array($locations)) {
+            $locations = [$locations];
+        }
+
+        // Loop through all locations
+        foreach ($locations as $location) {
+
+            // Get coordinates (or collection of coordinates) from location
+            $coordinates = $this->_setLocationCoords($location, $options);
+
+            // If invalid coordinates, skip location
+            if (!$coordinates) {
+                continue;
+            }
+
+            // Add each marker to collection
+            foreach ($coordinates as $coords) {
+                $this->_dna['markers'][] = $this->_markerDna($coords, $options);
+            }
+
+        }
+
     }
 
     /**
@@ -270,7 +269,7 @@ class DynamicMap extends Model
      * @param array $options
      * @return array
      */
-    private function _configureMarker($coords, array $options = []): array
+    private function _markerDna($coords, array $options = []): array
     {
 //        // TEMP
 //        $options = [
@@ -293,6 +292,27 @@ class DynamicMap extends Model
             'coords' => $coords,
             'markerOptions' => $markerOptions,
         ];
+    }
+
+    // Always return coordinates within a parent array,
+    // to compensate for Elements with multiple Addresses.
+    private function _setLocationCoords($location, $options)
+    {
+        // If location was specified as coordinates, return them as-is
+        if (isset($location['lat']) && isset($location['lng'])) {
+            return [$location];
+        }
+
+
+        // CHECK TO SEE WHAT KIND OF THING $location IS
+
+        // GET THE COORDS OF WHATEVER IT IS
+
+        \Craft::dd($location);
+
+
+
+
     }
 
 }
