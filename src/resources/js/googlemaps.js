@@ -5,45 +5,105 @@ var ajax = window.superagent;
 window.googleMaps = {
 
 
-    // Initialize collection of maps
-    maps: {},
+    // ========================================================================= //
+
+    // // Default action url
+    // actionUrl: '/actions/',
+    // // No CSRF token by default
+    // csrfToken: false,
+    // // Submit AJAX with fresh CSRF token
+    // getCsrf: function (callback) {
+    //     // Make object available to callback
+    //     var that = this;
+    //     // Fetch a new CSRF token
+    //     ajax
+    //         .get(this.actionUrl+'google-maps/page/csrf')
+    //         .end(function(err, res){
+    //             // If something went wrong, bail
+    //             if (!res.ok) {
+    //                 console.error('[GM] Error retrieving CSRF token:', err);
+    //                 return;
+    //             }
+    //             // Set global CSRF token
+    //             that.csrfToken = res.body;
+    //             // Run callback
+    //             callback();
+    //         })
+    //     ;
+    // },
+
+    // ========================================================================= //
+
+
+    // Initialize collections
+    _maps: {},
+    _markers: {},
+
+    // Initialize empty defaults
+    _defaultMarkerOptions: {},
+    _defaultInfoWindowOptions: {},
 
     // Internal instance of object
-    instance: null,
+    _instance: null,
 
-    // Create a new internal map object
-    _createMap: function(mapId, container, options) {
-
-        // Initialize internal map object
-        this.instance = this.maps[mapId] = {
-            map: new google.maps.Map(container, options),
-            markers: {},
-            bounds: new google.maps.LatLngBounds()
+    // Initialize specified maps
+    init: function (selection) {
+        // Initialize
+        var dna;
+        // Get selected map containers
+        var containers = this._whichMaps(selection);
+        // Loop through containers
+        for (var i in containers) {
+            // Get map DNA
+            dna = containers[i].dataset.dna;
+            // If no DNA exists, skip this container
+            if (!dna) {
+                continue;
+            }
+            // Render the map
+            this._unpackDna(dna);
         }
-
     },
+
+    // ========================================================================= //
 
     // Create a new map object
     map: function(locations, options) {
 
+        // Ensure options are valid
+        options = options || {};
+
         // Set default values
-        options.id = options.id || 'gm-map-1';
         options.zoom = options.zoom || null;
 
-
-        var mapId = options.id; // TEMP
-
-
-
-
-
         // Get map container
-        var container = document.getElementById(mapId);
+        var container = document.getElementById(options.id);
+
+        // If container does not exist
+        if (!container) {
+
+            // If no map ID exists, generate one
+            if (!options.id) {
+                options.id = this._generateId();
+            }
+
+            // Create new container from scratch
+            container = document.createElement('div');
+
+
+            // TEMP: This belongs somewhere else?
+            document.getElementById('just-js').appendChild(container);
+            // ENDTEMP
+
+
+        }
 
         // Ensure height property exists // TODO: Should this be removed? Set height via CSS?
         var height = options.height || 400;
 
         // Configure map container
+        container.id = options.id;
+        container.classList.add('gm-map');
         container.style.display = 'block';
         container.style.height = `${height}px`;
 
@@ -53,21 +113,16 @@ window.googleMaps = {
         }
 
         // Create a new Google Map object
-        this._createMap(mapId, container, options);
+        this._createMap(options.id, container, options);
 
         // If locations were specified, add markers
         if (locations) {
             this.markers(locations);
         }
 
-
-        console.table(locations);
-        console.table(options);
-
-
         // If no zoom specified, fit according to bounds
         // if (!options.zoom) {
-            this.fitBounds(mapId);
+            this.fitBounds(options.id);
         // }
 
         // Keep the party going
@@ -77,7 +132,14 @@ window.googleMaps = {
     // Create a set of marker objects
     markers: function(locations, options) {
 
-        // Force array structure
+        // Ensure options are valid
+        options = options || {};
+
+        // Set map
+        // options.map = options.map || this.getMap(mapId);
+        options.map = this._instance.map;
+
+        // Force locations to be an array structure
         if (!Array.isArray(locations)) {
             locations = [locations];
         }
@@ -93,8 +155,8 @@ window.googleMaps = {
                 continue;
             }
 
-            // Create a marker on specified map
-            this._renderMarker(coords, options);
+            // Create a new marker
+            this._createMarker(coords, options);
 
         }
 
@@ -107,182 +169,60 @@ window.googleMaps = {
     //     return this;
     // },
 
+    // ========================================================================= //
+
     // Automatically fit map according to bounds
     fitBounds: function(mapId) {
-        var map = this.maps[mapId];
+        var map = this.getMap(mapId);
         map.map.fitBounds(map.bounds);
     },
 
-
+    // ========================================================================= //
 
     // Get a specified map object
     getMap: function(mapId) {
-        return this.maps[mapId].map;
+        return this._maps[mapId];
     },
     // Get a specified marker object
     getMarker: function(mapId, markerId) {
-        return this.maps[mapId].markers[markerId];
+        return this._markers[mapId][markerId];
     },
-
-
-
-
-
-
-
-
-
 
     // ========================================================================= //
-    // ========================================================================= //
-    // ========================================================================= //
 
+    // Create a new map object
+    _createMap: function(mapId, container, options) {
 
-
-    // Default action url
-    actionUrl: '/actions/',
-    // No CSRF token by default
-    csrfToken: false,
-    // Submit AJAX with fresh CSRF token
-    getCsrf: function (callback) {
-        // Make object available to callback
-        var that = this;
-        // Fetch a new CSRF token
-        ajax
-            .get(this.actionUrl+'google-maps/page/csrf')
-            .end(function(err, res){
-                // If something went wrong, bail
-                if (!res.ok) {
-                    console.log('Error retrieving CSRF token:', err);
-                    return;
-                }
-                // Set global CSRF token
-                that.csrfToken = res.body;
-                // Run callback
-                callback();
-            })
-        ;
-    },
-    // Initialize specified maps
-    init: function (selection) {
-        // Initialize
-        var dna;
-        // Get selected map containers
-        var containers = this._whichMaps(selection);
-        // Loop through containers
-        for (var i in containers) {
-            // Get map DNA
-            dna = JSON.parse(containers[i].dataset.dna);
-            // Render the map
-            this._unpackDna(dna);
-            // // Render the map
-            // this._renderMap(dna.map);
-            // // Render the markers
-            // this._renderMarkers(dna.markers);
-        }
-    },
-    // Unpack and initialize map DNA
-    _unpackDna: function (dna) {
-
-        // If no DNA exists, error and bail
-        if (!dna) {
-            console.error('No map DNA provided.');
-            return;
-        }
-
-        // Get map DNA
-        var map = dna[0];
-
-        // If first block is not a map, error and bail
-        if ('map' !== map.type) {
-            console.error('Map DNA is misconfigured.');
-            return;
-        }
-
-        // this._renderMap(map);
-
-        // Render a map from DNA, store internally
-        this.map(map.locations, map.options);
-
-
-        // console.table(dna);
-        // console.log(this.instance);
-    },
-    // Render a specific map
-    _renderMap: function (mapDna) {
-
-        // var mapId = mapDna.map.id;
-
-        // var container = document.getElementById(mapId);
-
-        if (!container) {
-            console.error(`Unable to find map container "${mapDna.map.id}".`);
-        }
-
-
-
-
-        // Initialize internal map object
-        this.maps[mapId] = {
-            map: null,
+        // Initialize map object
+        var map = {
+            container: container,
+            map: new google.maps.Map(container, options),
             markers: {},
             bounds: new google.maps.LatLngBounds()
         }
 
+        // Add map to master collection
+        this._maps[mapId] = map;
 
-
-        // PARSE OUT THE `mapDna` VALUE TO CONFIGURE THE MAP.
-        // LOOP OVER THE MARKERS TO CONFIGURE EACH ONE.
-
-
-        // ========================================== //
-        // TEMP
-
-        var mapOptions = {
-            center: {lat: 33.397, lng: -118.644},
-            zoom: mapDna.zoom || null
-        };
-
-        // ENDTEMP
-        // ========================================== //
-
-
-        // Initialize map
-        this._createMap(mapId, container, mapOptions);
-
-        // If no zoom specified, fit according to bounds
-        if (!mapOptions.zoom) {
-            this.fitBounds(mapId);
-        }
-
+        // Set internal map instance
+        this._instance = map;
 
     },
-    // Render a group of markers
-    _renderMarkers: function (dna, options) {
 
-        // console.table(dna);
+    // Create a new marker object
+    _createMarker: function(coords, options) {
 
+        // Set marker position based on coordinates
+        options.position = coords;
 
-        // Loop through markers
-        for (var i in dna) {
-            // Get marker DNA
-            marker = dna[i];
-            // Render the map
-            this._renderMarker(marker.coords, options);
-        }
-    },
-    // Render a specific marker
-    _renderMarker: function (coords, options) {
+        // Extend map boundaries
+        this._instance.bounds.extend(coords);
 
         // Get the map ID
-        var mapId = this.instance.map.id;
-
-        // console.log('did we make it here?');
+        var mapId = this._instance.map.id;
 
 
-        // console.log(coords);
-        // debugger;
-
+        console.log(this._instance);
 
         // TEMP
         var elementId = 16;
@@ -293,77 +233,115 @@ window.googleMaps = {
         // Set marker ID
         var markerId = `${elementId}.${fieldHandle}`;
 
-        // Ensure options are valid
-        options = options || {};
 
-        // Set map
-        options.map = this.instance.map;
+        // Initialize marker object
+        var marker = new google.maps.Marker(options);
 
-        // Set position
-        // options.map = options.map || this.getMap(mapId);
-        options.position = options.position || coords;
+        // Ensure map is accounted for
+        // if (!this._markers[mapId]) {
+        //     this._markers[mapId] = {};
+        // }
 
+        // Add marker to master collection
+        // return this._markers[mapId][markerId];
 
-
-
-        // console.log(coords);
-        // console.log(options);
-        // console.log(this.instance.markers);
-
-
-
-
-
-
-
-
-
-        // Put a new marker on the map
-        this.maps[mapId].markers[markerId] = new google.maps.Marker(options);
-
-        // this.instance.markers.push(this.maps[mapId].markers[markerId]);
-
-        // Extend bounds
-        // this.maps[mapId].bounds.extend(coords);
-        this.instance.bounds.extend(coords);
+        // Add marker to internal instance
+        // this._instance.markers.push(marker);
 
     },
 
+    // ========================================================================= //
 
     // Determine which maps to compile
     _whichMaps: function (selection) {
+
         // No map containers by default
         var containers = [];
+
         // Switch according to how map IDs were specified
         switch (typeof selection) {
+
             // Individual map
             case 'string':
                 containers = [document.getElementById(selection)];
                 break;
+
             // Selection of maps
             case 'object':
+
+                // Add each map container to collection
                 var c;
-                // Add map container to collection
                 for (var i in selection) {
                     c = document.getElementById(selection[i]);
                     containers.push(c);
                 }
                 break;
+
             // All maps
             case 'undefined':
                 var allMaps = document.getElementsByClassName('gm-map');
                 containers = Array.prototype.slice.call(allMaps);
                 break;
+
             // Something went wrong
             default:
                 containers = [];
                 break;
+
         }
+
         // Return collection
         return containers;
     },
+
+    // Unpack and initialize map DNA
+    _unpackDna: function (dna) {
+
+        // Unpack the DNA sequence
+        var sequence = JSON.parse(dna);
+
+        // If no DNA exists, error and bail
+        if (!sequence) {
+            console.error('[GM] No map DNA provided.');
+            return;
+        }
+
+        // Get map DNA
+        var map = sequence[0];
+
+        // If first block is not a map, error and bail
+        if ('map' !== map.type) {
+            console.error('[GM] Map DNA is misconfigured.');
+            return;
+        }
+
+        // Render a map from DNA, store internally
+        this.map(map.locations, map.options);
+    },
+
+    // Generate a new random map ID
+    _generateId: function() {
+
+        // Initialize random ID
+        var randomId = '';
+
+        // Create an array of the alphabet
+        var alpha = 'abcdefghijklmnopqrstuvwxyz';
+        var alphabet = alpha.split('');
+
+        // Add six randomly selected characters
+        for (char = 0; char < 6; char++) {
+            var i = Math.floor(Math.random() * 25);
+            randomId += alphabet[i];
+        }
+
+        // Return randomly generated map ID
+        return `gm-map-${randomId}`;
+    },
+
 };
 
+// ========================================================================= //
 // ========================================================================= //
 
 // On page load, initialize all maps on the page
