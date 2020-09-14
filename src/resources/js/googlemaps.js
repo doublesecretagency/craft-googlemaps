@@ -167,6 +167,11 @@ window.googleMaps = {
     //     return this;
     // },
 
+    // styles: function() {
+    //     // Do whatever
+    //     return this;
+    // },
+
     // ========================================================================= //
 
     // Fit map according to bounds
@@ -200,18 +205,6 @@ window.googleMaps = {
 
     },
 
-    // // Fit map according to bounds
-    // fitBounds: function(mapId) {
-    //     var map = this.getMap(mapId);
-    //     map.map.fitBounds(map.bounds);
-    // },
-    //
-    // // Set zoom level of map
-    // setZoom: function(options) {
-    //     var map = this.getMap(options.id);
-    //     map.map.setZoom(options.zoom);
-    // },
-
     // ========================================================================= //
 
     // Get a specified map object
@@ -228,26 +221,14 @@ window.googleMaps = {
     // Create a new map object
     _createMap: function(container, options) {
 
-
-
-
-
-        // console.log(options.zoom);
-
-
-        // options.center = {lat:33,lng:-118};
-
-
+        // Get the specified map ID
         var mapId = options.id;
 
         // Initialize map object
         var map = {
-            container: container,
             map: new google.maps.Map(container, options),
-            markers: {},
             bounds: new google.maps.LatLngBounds()
         }
-
 
         // Add map to master collection
         this._maps[mapId] = map;
@@ -270,7 +251,9 @@ window.googleMaps = {
         var mapId = this._instance.map.id;
 
 
-        // console.log(this._instance);
+        console.log(mapId);
+
+
 
         // TEMP
         var elementId = 16;
