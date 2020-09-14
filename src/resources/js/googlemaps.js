@@ -113,17 +113,15 @@ window.googleMaps = {
         }
 
         // Create a new Google Map object
-        this._createMap(options.id, container, options);
+        this._createMap(container, options);
 
         // If locations were specified, add markers
         if (locations) {
             this.markers(locations);
         }
 
-        // If no zoom specified, fit according to bounds
-        // if (!options.zoom) {
-            this.fitBounds(options.id);
-        // }
+        // Fit map boundaries to markers
+        this.fit(options);
 
         // Keep the party going
         return this;
@@ -171,11 +169,48 @@ window.googleMaps = {
 
     // ========================================================================= //
 
-    // Automatically fit map according to bounds
-    fitBounds: function(mapId) {
-        var map = this.getMap(mapId);
-        map.map.fitBounds(map.bounds);
+    // Fit map according to bounds
+    fit: function(options) {
+
+        /*
+         * NOTE: Zoom & center values are required
+         * to render a map without fitting bounds.
+         */
+
+        // Get map data
+        var mapData = this.getMap(options.id);
+        var map = mapData.map;
+
+        // If no zoom and no center
+        if (!options.zoom && !options.center) {
+
+            // Just fit to boundaries and bail
+            map.fitBounds(mapData.bounds);
+            return;
+
+        }
+
+        // Set fallback zoom and center
+        options.zoom = options.zoom || 4;
+        options.center = options.center || mapData.bounds.getCenter();
+
+        // Center and zoom map
+        map.setCenter(options.center);
+        map.setZoom(options.zoom);
+
     },
+
+    // // Fit map according to bounds
+    // fitBounds: function(mapId) {
+    //     var map = this.getMap(mapId);
+    //     map.map.fitBounds(map.bounds);
+    // },
+    //
+    // // Set zoom level of map
+    // setZoom: function(options) {
+    //     var map = this.getMap(options.id);
+    //     map.map.setZoom(options.zoom);
+    // },
 
     // ========================================================================= //
 
@@ -191,7 +226,19 @@ window.googleMaps = {
     // ========================================================================= //
 
     // Create a new map object
-    _createMap: function(mapId, container, options) {
+    _createMap: function(container, options) {
+
+
+
+
+
+        // console.log(options.zoom);
+
+
+        // options.center = {lat:33,lng:-118};
+
+
+        var mapId = options.id;
 
         // Initialize map object
         var map = {
@@ -200,6 +247,7 @@ window.googleMaps = {
             markers: {},
             bounds: new google.maps.LatLngBounds()
         }
+
 
         // Add map to master collection
         this._maps[mapId] = map;
@@ -222,7 +270,7 @@ window.googleMaps = {
         var mapId = this._instance.map.id;
 
 
-        console.log(this._instance);
+        // console.log(this._instance);
 
         // TEMP
         var elementId = 16;
