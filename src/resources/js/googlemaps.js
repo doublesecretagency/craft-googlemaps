@@ -35,34 +35,44 @@ window.googleMaps = {
     // ========================================================================= //
 
 
-    // Initialize collections
+    // Initialize collection
     _maps: {},
-    _markers: {},
 
     // Initialize empty defaults
-    _defaultMarkerOptions: {},
-    _defaultInfoWindowOptions: {},
+    _defaults: {},
+    // _defaultMarkerOptions: {},
+    // _defaultInfoWindowOptions: {},
 
     // Internal instance of object
     _instance: null,
 
     // Initialize specified maps
     init: function (selection) {
+
         // Initialize
         var dna;
+
         // Get selected map containers
         var containers = this._whichMaps(selection);
+
         // Loop through containers
         for (var i in containers) {
-            // Get map DNA
+
+            // Get DNA of each map
             dna = containers[i].dataset.dna;
+
             // If no DNA exists, skip this container
             if (!dna) {
                 continue;
             }
-            // Render the map
+
+            // Render each map
             this._unpackDna(dna);
+
         }
+
+        // console.log(this._maps);
+
     },
 
     // ========================================================================= //
@@ -84,7 +94,7 @@ window.googleMaps = {
 
             // If no map ID exists, generate one
             if (!options.id) {
-                options.id = this._generateId();
+                options.id = this._generateId('map');
             }
 
             // Create new container from scratch
@@ -183,7 +193,7 @@ window.googleMaps = {
          */
 
         // Get map data
-        var mapData = this.getMap(options.id);
+        var mapData = this._maps[options.id];
         var map = mapData.map;
 
         // If no zoom and no center
@@ -209,11 +219,12 @@ window.googleMaps = {
 
     // Get a specified map object
     getMap: function(mapId) {
-        return this._maps[mapId];
+        return this._maps[mapId].map;
     },
+
     // Get a specified marker object
     getMarker: function(mapId, markerId) {
-        return this._markers[mapId][markerId];
+        return this._markers[mapId].markers[markerId];
     },
 
     // ========================================================================= //
@@ -227,7 +238,8 @@ window.googleMaps = {
         // Initialize map object
         var map = {
             map: new google.maps.Map(container, options),
-            bounds: new google.maps.LatLngBounds()
+            bounds: new google.maps.LatLngBounds(),
+            markers: []
         }
 
         // Add map to master collection
@@ -241,6 +253,15 @@ window.googleMaps = {
     // Create a new marker object
     _createMarker: function(coords, options) {
 
+
+        console.log(options);
+
+
+        // If marker ID exists with coordinates, use it as a fallback
+        if (coords.hasOwnProperty('id')) {
+            options.id = options.id || coords.id;
+        }
+
         // Set marker position based on coordinates
         options.position = coords;
 
@@ -250,28 +271,32 @@ window.googleMaps = {
         // Get the map ID
         var mapId = this._instance.map.id;
 
-
-        console.log(mapId);
-
+        // Get map data
+        var data = this._maps[mapId];
 
 
         // TEMP
-        var elementId = 16;
-        var fieldHandle = 'address';
+        // COMPILE `markerId` IN PHP
+        // var elementId = 16;
+        // var fieldHandle = 'address';
+        // var markerId = `${elementId}.${fieldHandle}`;
         // ENDTEMP
 
+        // Get marker ID or generate a random one
+        var markerId = options.id || this._generateId('marker');
 
-        // Set marker ID
-        var markerId = `${elementId}.${fieldHandle}`;
+        // Ensure map is accounted for
+        if (!data) {
+            console.error(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
+            return;
+        }
 
 
         // Initialize marker object
         var marker = new google.maps.Marker(options);
 
-        // Ensure map is accounted for
-        // if (!this._markers[mapId]) {
-        //     this._markers[mapId] = {};
-        // }
+        // Add marker to master collection
+        data.markers[markerId] = marker;
 
         // Add marker to master collection
         // return this._markers[mapId][markerId];
@@ -351,7 +376,7 @@ window.googleMaps = {
     },
 
     // Generate a new random map ID
-    _generateId: function() {
+    _generateId: function(prefix) {
 
         // Initialize random ID
         var randomId = '';
@@ -366,8 +391,8 @@ window.googleMaps = {
             randomId += alphabet[i];
         }
 
-        // Return randomly generated map ID
-        return `gm-map-${randomId}`;
+        // Return new ID (with optional prefix)
+        return (prefix ? `${prefix}-${randomId}` : randomId);
     },
 
 };

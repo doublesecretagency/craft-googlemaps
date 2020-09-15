@@ -305,7 +305,7 @@ class DynamicMap extends Model
         // If no ID, automatically generate a random one
         if (!isset($options['id'])) {
             $hash = StringHelper::randomString(6);
-            $options['id'] = "gm-map-{$hash}";
+            $options['id'] = "map-{$hash}";
         }
 
         // Add map to DNA
