@@ -17,6 +17,7 @@ use craft\helpers\Html;
 use craft\helpers\Json;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
+use doublesecretagency\googlemaps\fields\AddressField;
 use Twig\Markup;
 use yii\base\Exception;
 
@@ -31,31 +32,6 @@ class DynamicMap extends Model
      * @var array Collection of internal data representing a map to be rendered.
      */
     private $_dna = [];
-
-    /*
-     * TODO: Can these 3 properties be combined?
-     *
-     * $_default = [
-     *     'markerOptions' => ...,
-     *     'infoWindowOptions' => ...,
-     *     'infoWindowTemplate' => ...,
-     * ]
-     */
-
-    /**
-     * @var array|null A set of marker options to be used as the fallback.
-     */
-    private $_defaultMarkerOptions;
-
-    /**
-     * @var array|null A set of info window options to be used as the fallback.
-     */
-    private $_defaultInfoWindowOptions;
-
-    /**
-     * @var string|null A Twig template to be used as the fallback for the info window.
-     */
-    private $_defaultInfoWindowTemplate;
 
     // ========================================================================= //
 
@@ -142,159 +118,6 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
-//    private function _setMapDna($options)
-//    {
-//        $mapDna = [];
-//
-////        // TEMP
-////        $options = [
-////            'id' => 'gm-map-1',
-////            'width' => null,
-////            'height' => null,
-////            'zoom' => null, // (uses fitBounds by default)
-////            'center' => null, // (uses fitBounds by default)
-////            'styles' => null,
-////            'mapOptions' => null,
-////            'markerOptions' => null,
-////            'infoWindowOptions' => null,
-////            'infoWindowTemplate' => null,
-////            'fields' => null,
-////        ];
-////        // ENDTEMP
-//
-//
-//        // Set the map ID
-//        if (isset($options['id'])) {
-//            $mapDna['id'] = $options['id'];
-//        } else {
-//            $mapCounter = 1; // TEMP
-//            $mapDna['id'] = "gm-map-{$mapCounter}";
-//        }
-//
-//        // If the width is specified
-//        if (isset($options['width'])) {
-//            $mapDna['width'] = $options['width'];
-//        }
-//
-//        // If the height is specified
-//        if (isset($options['height'])) {
-//            $mapDna['height'] = $options['height'];
-//        }
-//
-//        // If the zoom is specified
-//        if (isset($options['zoom'])) {
-//            $mapDna['zoom'] = $options['zoom'];
-//        }
-//
-//        // If the center is specified
-//        if (isset($options['center'])) {
-//            // Apply center
-//        }
-//
-//        // If the styles are specified
-//        if (isset($options['styles'])) {
-//            // Apply styles
-//        }
-//
-//        // If map options are specified
-//        if (isset($options['mapOptions'])) {
-//            // Apply map options
-//        }
-//
-//        // If marker options are specified, set as internal fallback
-//        if (isset($options['markerOptions'])) {
-//            $this->_defaultMarkerOptions = $options['markerOptions'];
-//        }
-//
-//        // If info window options are specified, set as internal fallback
-//        if (isset($options['infoWindowOptions'])) {
-//            $this->_defaultInfoWindowOptions = $options['infoWindowOptions'];
-//        }
-//
-//        // If the info window template is specified
-//        if (isset($options['infoWindowTemplate'])) {
-//            $this->_defaultInfoWindowTemplate = $options['infoWindowTemplate'];
-//        }
-//
-//        // If the fields are specified
-//        if (isset($options['fields'])) {
-//            // Apply fields
-//        }
-//
-////        \Craft::dd($mapDna);
-//
-//        $this->_dna['map'] = $mapDna;
-//
-//    }
-
-//    private function _setMarkersDna($locations, $options = [])
-//    {
-//        $markersDna = [];
-//
-//        // If location was specified as coordinates, nest them in an array
-//        if (isset($locations['lat']) && isset($locations['lng'])) {
-//            $locations = [$locations];
-//        }
-//
-//        // Force an array structure
-//        if (!is_array($locations)) {
-//            $locations = [$locations];
-//        }
-//
-//        // Loop through all locations
-//        foreach ($locations as $location) {
-//
-//            // Get coordinates (or collection of coordinates) from location
-//            $coordinates = $this->_setLocationCoords($location, $options);
-//
-//            // If invalid coordinates, skip location
-//            if (!$coordinates) {
-//                continue;
-//            }
-//
-//            // Add each marker to collection
-//            foreach ($coordinates as $coords) {
-//                $this->_dna['markers'][] = $this->_markerDna($coords, $options);
-//            }
-//
-//        }
-//
-//    }
-
-//    /**
-//     * Configure the DNA of a single marker.
-//     *
-//     * @param $coords
-//     * @param array $options
-//     * @return array
-//     */
-//    private function _markerDna($coords, array $options = []): array
-//    {
-////        // TEMP
-////        $options = [
-////            'icon' => null,
-////            'markerOptions' => null,
-////            'infoWindowOptions' => null,
-////            'infoWindowTemplate' => null,
-////            'fields' => null,
-////        ];
-////        // ENDTEMP
-//
-//        // Set values
-//        $markerOptions      = ($options['markerOptions']      ?? $this->_defaultMarkerOptions      ?? null);
-//        $infoWindowOptions  = ($options['infoWindowOptions']  ?? $this->_defaultInfoWindowOptions  ?? null);
-//        $infoWindowTemplate = ($options['infoWindowTemplate'] ?? $this->_defaultInfoWindowTemplate ?? null);
-//
-//
-//        // Return compiled marker DNA
-//        return [
-//            'coords' => $coords,
-//            'markerOptions' => $markerOptions,
-//        ];
-//    }
-
-    // ========================================================================= //
-
     private function _addMap($locations, $options)
     {
         // Ensure options are a valid array
@@ -320,7 +143,7 @@ class DynamicMap extends Model
     {
         // If no locations were specified, bail
         if (!$locations) {
-            return $this;
+            return;
         }
 
         // Add markers to DNA
@@ -334,25 +157,69 @@ class DynamicMap extends Model
 
     // Always return coordinates within a parent array,
     // to compensate for Elements with multiple Addresses.
-    private function _convertToCoords($locations)
+    private function _convertToCoords($locations): array
     {
+        // If it's a Location Model, return the coordinates
+        if (is_a($locations, Location::class)) {
+            return [$locations->getCoords()];
+        }
 
-        // If location was specified as coordinates, return them as-is
-        if (isset($locations['lat']) && isset($locations['lng'])) {
+        // If it's a natural set of coordinates, return as-is
+        if (is_array($locations) && isset($locations['lat']) && isset($locations['lng'])) {
             return [$locations];
         }
 
-        return $locations;
+        // Force array syntax
+        if (!is_array($locations)) {
+            $locations = [$locations];
+        }
 
+        // Initialize results array
+        $results = [];
 
-        // CHECK TO SEE WHAT KIND OF THING $location IS
+        // Loop through all locations
+        foreach ($locations as $location) {
 
-        // GET THE COORDS OF WHATEVER IT IS
+            // If it's a Location Model, add the coordinates to results
+            if (is_a($location, Location::class)) {
+                $results[] = $location->getCoords();
+            }
 
+            // If it's a natural set of coordinates, add them to results as-is
+            if (is_array($location) && isset($location['lat']) && isset($location['lng'])) {
+                $results[] = $location;
+            }
 
-        \Craft::dd($locations);
+            // If not an Element, skip it
+            if (!is_a($location, Element::class)) {
+                continue;
+            }
 
+            // Get all fields associated with Element
+            $fields = $location->getFieldLayout()->getFields();
 
+            // Loop through all relevant fields
+            foreach ($fields as $field) {
+                // If not an Address Field, skip it
+                if (!is_a($field, AddressField::class)) {
+                    continue;
+                }
+                // Get value of Address Field
+                $address = $location->{$field->handle};
+                // If no Address, skip
+                if (!$address) {
+                    continue;
+                }
+                // Add coordinates to results
+                if ($address->hasCoords()) {
+                    $results[] = $address->getCoords();
+                }
+            }
+
+        }
+
+        // Return final results
+        return $results;
     }
 
 }

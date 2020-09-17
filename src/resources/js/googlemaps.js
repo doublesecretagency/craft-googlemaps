@@ -21,7 +21,7 @@ window.googleMaps = {
     //         .end(function(err, res){
     //             // If something went wrong, bail
     //             if (!res.ok) {
-    //                 console.error('[GM] Error retrieving CSRF token:', err);
+    //                 console.warn('[GM] Error retrieving CSRF token:', err);
     //                 return;
     //             }
     //             // Set global CSRF token
@@ -71,8 +71,6 @@ window.googleMaps = {
 
         }
 
-        // console.log(this._maps);
-
     },
 
     // ========================================================================= //
@@ -101,21 +99,29 @@ window.googleMaps = {
             container = document.createElement('div');
 
 
-            // TEMP: This belongs somewhere else?
-            document.getElementById('just-js').appendChild(container);
+            // TEMP
+            // TODO: This belongs somewhere else?
+            var supercontainerName = 'just-js';
+            var supercontainer = document.getElementById(supercontainerName);
+            if (supercontainer) {
+                supercontainer.appendChild(container);
+            } else {
+                console.warn('[GM] Unable to find parent container:', supercontainerName);
+            }
             // ENDTEMP
 
 
         }
 
-        // Ensure height property exists // TODO: Should this be removed? Set height via CSS?
-        var height = options.height || 400;
-
         // Configure map container
         container.id = options.id;
         container.classList.add('gm-map');
         container.style.display = 'block';
-        container.style.height = `${height}px`;
+
+        // Optionally set container height
+        if (options.height) {
+            container.style.height = `${options.height}px`;
+        }
 
         // Optionally set width of container
         if (options.width) {
@@ -144,7 +150,6 @@ window.googleMaps = {
         options = options || {};
 
         // Set map
-        // options.map = options.map || this.getMap(mapId);
         options.map = this._instance.map;
 
         // Force locations to be an array structure
@@ -193,25 +198,26 @@ window.googleMaps = {
          */
 
         // Get map data
-        var mapData = this._maps[options.id];
-        var map = mapData.map;
+        var data = this.getMap(options.id);
 
-        // If no zoom and no center
-        if (!options.zoom && !options.center) {
-
-            // Just fit to boundaries and bail
-            map.fitBounds(mapData.bounds);
+        if (!data) {
             return;
+        }
 
+        // If neither zoom nor center was specified
+        if (!options.zoom && !options.center) {
+            // Just fit to boundaries and bail
+            data.map.fitBounds(data.bounds);
+            return;
         }
 
         // Set fallback zoom and center
         options.zoom = options.zoom || 4;
-        options.center = options.center || mapData.bounds.getCenter();
+        options.center = options.center || data.bounds.getCenter();
 
         // Center and zoom map
-        map.setCenter(options.center);
-        map.setZoom(options.zoom);
+        data.map.setCenter(options.center);
+        data.map.setZoom(options.zoom);
 
     },
 
@@ -219,12 +225,12 @@ window.googleMaps = {
 
     // Get a specified map object
     getMap: function(mapId) {
-        return this._maps[mapId].map;
+        return this._maps[mapId];
     },
 
     // Get a specified marker object
     getMarker: function(mapId, markerId) {
-        return this._markers[mapId].markers[markerId];
+        return this._maps[mapId].markers[markerId];
     },
 
     // ========================================================================= //
@@ -235,27 +241,23 @@ window.googleMaps = {
         // Get the specified map ID
         var mapId = options.id;
 
-        // Initialize map object
-        var map = {
+        // Initialize map data
+        var data = {
             map: new google.maps.Map(container, options),
             bounds: new google.maps.LatLngBounds(),
             markers: []
         }
 
-        // Add map to master collection
-        this._maps[mapId] = map;
+        // Add map externally
+        this._maps[mapId] = data;
 
-        // Set internal map instance
-        this._instance = map;
+        // Add map internally
+        this._instance = data;
 
     },
 
     // Create a new marker object
     _createMarker: function(coords, options) {
-
-
-        console.log(options);
-
 
         // If marker ID exists with coordinates, use it as a fallback
         if (coords.hasOwnProperty('id')) {
@@ -276,7 +278,7 @@ window.googleMaps = {
 
 
         // TEMP
-        // COMPILE `markerId` IN PHP
+        // TODO: COMPILE `markerId` IN PHP
         // var elementId = 16;
         // var fieldHandle = 'address';
         // var markerId = `${elementId}.${fieldHandle}`;
@@ -287,22 +289,19 @@ window.googleMaps = {
 
         // Ensure map is accounted for
         if (!data) {
-            console.error(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
+            console.warn(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
             return;
         }
-
 
         // Initialize marker object
         var marker = new google.maps.Marker(options);
 
-        // Add marker to master collection
-        data.markers[markerId] = marker;
+        // Add marker to external array
+        this._maps[mapId].markers[markerId] = marker;
+        // data.markers[markerId] = marker;
 
-        // Add marker to master collection
-        // return this._markers[mapId][markerId];
-
-        // Add marker to internal instance
-        // this._instance.markers.push(marker);
+        // Add marker to internal array
+        this._instance.markers[markerId] = marker;
 
     },
 
@@ -358,7 +357,7 @@ window.googleMaps = {
 
         // If no DNA exists, error and bail
         if (!sequence) {
-            console.error('[GM] No map DNA provided.');
+            console.warn('[GM] No map DNA provided.');
             return;
         }
 
@@ -367,7 +366,7 @@ window.googleMaps = {
 
         // If first block is not a map, error and bail
         if ('map' !== map.type) {
-            console.error('[GM] Map DNA is misconfigured.');
+            console.warn('[GM] Map DNA is misconfigured.');
             return;
         }
 
