@@ -88,12 +88,13 @@ module.exports = {
             ],
             '/maps/': [
                 '',
+                'api',
+                'locations',
                 'dynamic',
                 'static',
-                'chaining',
-                'locations',
 
                 // TO BE SCAVENGED & DELETED:
+                'chaining',
                 'info-windows',
                 'old-code',
                 'dynamic-extra',

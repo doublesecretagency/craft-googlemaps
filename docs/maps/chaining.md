@@ -1,39 +1,7 @@
-# Chaining Methods
+# (OLD) Chaining
 
-Whether you are using JavaScript, Twig, or PHP, the same format can be used to create a map...
 
-:::code
-```js
-// Very basic
-var map = googleMaps.map().markers(locations, options);
 
-// More complex
-var map = googleMaps.map()
-    .markers(locations, options)
-    .kml(files)
-    .styles(stylesArray);
-```
-```twig
-{# Very basic #}
-{% set map = googleMaps.map().markers(locations, options) %}
-
-{# More complex #}
-{% set map = googleMaps.map()
-    .markers(locations, options)
-    .kml(files)
-    .styles(stylesArray) %}
-```
-```php
-// Very basic
-$map = GoogleMaps::map().markers($locations, $options);
-
-// More complex
-$map = GoogleMaps::map()
-    ->markers($locations, $options)
-    ->kml($files)
-    ->styles($stylesArray);
-```
-:::
 
 Chaining methods allows you to build a map in whichever way is required. There are several compatible methods which can be chained in any order.
 

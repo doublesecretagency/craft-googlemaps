@@ -4,7 +4,7 @@ Whether you are working in Twig or PHP, the `GoogleMaps` helper class exists to 
 
 ### When using it in Twig
 
-As long as this plugin is installed and enabled, the `googleMaps` object will be globally available in Twig.
+As long as this plugin is installed and enabled, the `googleMaps` object will be globally available in Twig. Nothing else needs to be done to instantiate it.
 
 ### When using it in PHP
 
