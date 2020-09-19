@@ -241,18 +241,22 @@ window.googleMaps = {
         // Get the specified map ID
         var mapId = options.id;
 
+        // Ensure mapOptions are valid
+        options.mapOptions = options.mapOptions || {};
+
         // Initialize map data
         var data = {
-            map: new google.maps.Map(container, options),
+            id: mapId,
+            map: new google.maps.Map(container, options.mapOptions),
             bounds: new google.maps.LatLngBounds(),
             markers: []
         }
 
-        // Add map externally
-        this._maps[mapId] = data;
-
         // Add map internally
         this._instance = data;
+
+        // Add map externally
+        this._maps[mapId] = data;
 
     },
 
@@ -270,38 +274,38 @@ window.googleMaps = {
         // Extend map boundaries
         this._instance.bounds.extend(coords);
 
-        // Get the map ID
-        var mapId = this._instance.map.id;
-
-        // Get map data
-        var data = this._maps[mapId];
-
 
         // TEMP
         // TODO: COMPILE `markerId` IN PHP
         // var elementId = 16;
         // var fieldHandle = 'address';
         // var markerId = `${elementId}.${fieldHandle}`;
+        //
+        // If no marker ID exists, generate a random one:
+        // "marker-{random}"
         // ENDTEMP
+
+
+        // // Get map ID
+        // var mapId = this._instance.map.id;
 
         // Get marker ID or generate a random one
         var markerId = options.id || this._generateId('marker');
 
-        // Ensure map is accounted for
-        if (!data) {
-            console.warn(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
-            return;
-        }
+        // // Ensure map is accounted for
+        // if (!this._instance) {
+        //     console.warn(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
+        //     return;
+        // }
 
         // Initialize marker object
         var marker = new google.maps.Marker(options);
 
-        // Add marker to external array
-        this._maps[mapId].markers[markerId] = marker;
-        // data.markers[markerId] = marker;
-
         // Add marker to internal array
         this._instance.markers[markerId] = marker;
+
+        // Add marker to external array
+        // this._maps[mapId].markers[markerId] = marker;
 
     },
 

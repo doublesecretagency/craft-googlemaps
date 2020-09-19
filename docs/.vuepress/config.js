@@ -53,6 +53,7 @@ module.exports = {
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
                     {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
+                    {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Internationalization Support', link: '/guides/internationalization-support/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
@@ -89,18 +90,18 @@ module.exports = {
             '/maps/': [
                 '',
                 'api',
+                'universal-methods',
+                'javascript-methods',
+                'twig-php-methods',
                 'locations',
                 'dynamic',
                 'static',
 
                 // TO BE SCAVENGED & DELETED:
-                'chaining',
-                'info-windows',
                 'old-code',
-                'dynamic-extra',
-                'old-javascript-object',
-                'old-google-maps-objects',
+                'chaining',
 
+                'info-windows',
 
             ],
             '/proximity-search/': [
@@ -174,6 +175,7 @@ module.exports = {
                 'region-biasing',
                 'filter-by-subfields',
                 'address-in-a-matrix-field',
+                'prevent-zoom-when-scrolling',
                 'internationalization-support',
                 'bermuda-triangle',
                 'updating-from-smart-map',

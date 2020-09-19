@@ -34,7 +34,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 | Option               | Type                | Default            | Description |
 |----------------------|:-------------------:|:------------------:|-------------|
-| `id`                 | _string_            | <span style="white-space:nowrap">`"gm-map-1"`</span> | Set the `id` attribute of the map container. |
+| `id`                 | _string_            | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
 | `width`              | _int_               | _null_             | Set the width of the map (in px). |
 | `height`             | _int_               | _null_             | Set the height of the map (in px). |
 | `zoom`               | _int_               | (uses `fitBounds`) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1` - `16`)</span> |
@@ -68,6 +68,7 @@ Append markers to an existing map object.
  
 | Option               | Type                 | Default | Description |
 |----------------------|:--------------------:|:-------:|-------------|
+| `id`                 | _string_            | <span style="white-space:nowrap">`"marker-{random}"`</span> | Reference point for each marker |
 | `icon`               | _object_ or _string_ | _null_  | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `markerOptions`      | _object_             | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | _object_             | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
@@ -151,6 +152,13 @@ $map->styles($stylesArray);
 ---
 
 ### `html($init = true)`
+
+:::warning LD TODO
+Is "tag" better than "html"?
+ - Shorter
+ - Easier to pronounce
+ - Consistent with `img`
+:::
 
 Render the necessary `<div>` container to hold the map.
 
