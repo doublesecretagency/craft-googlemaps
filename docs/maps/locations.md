@@ -17,7 +17,7 @@ The `locations` value can be a set of [coordinates](/models/coordinates/), or an
 ```
 :::
 
-:::warning Coordinates Only for JavaScript
+:::warning In JavaScript, you can only use Coordinates
 If you are working in JavaScript, then your only option is to work with coordinates. It is physically impossible to translate Address Models and Elements into JavaScript.
 :::
 

@@ -29,38 +29,21 @@ However, if your use case is _not_ covered by this collection of helper methods,
 :::code
 ```twig
 {# Generate a dynamic map #}
-{{ googleMaps.dynamic(locations, options) }}
+{{ googleMaps.map(locations).html() }}
 
 {# Generate a static map #}
-{{ googleMaps.static(locations, options) }}
+{{ googleMaps.img(locations).html() }}
 ```
 ```php
 // Generate a dynamic map
-GoogleMaps::dynamic($locations, $options);
+GoogleMaps::map($locations)->html();
 
 // Generate a static map
-GoogleMaps::static($locations, $options);
+GoogleMaps::img($locations)->html();
 ```
 :::
 
-For more information, check out the documentation on [Dynamic Maps](/maps/dynamic/) and [Static Maps](/maps/static/).
-
----
-
-## Change a Marker Icon
-
-:::code
-```twig
-{# Set the icon of a specific marker #}
-{% do googleMaps.setMarkerIcon(mapId, markerId, icon) %}
-```
-```php
-// Set the icon of a specific marker
-GoogleMaps::setMarkerIcon($mapId, $markerId, $icon);
-```
-:::
-
-For more information, check out the documentation on [Setting Marker Icons](/guides/setting-marker-icons/#change-a-marker-icon).
+For more information, check out the documentation on [Dynamic Maps](/maps/dynamic/), [Static Maps](/maps/static/), and the maps [API](/maps/api/).
 
 ---
 

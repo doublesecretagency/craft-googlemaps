@@ -1,6 +1,13 @@
 # Styling a Map
 
-It's very common for people to want their maps to look a specific way. In fact there are services (ie: [Snazzy Maps](https://snazzymaps.com/)) which allow you to customize a map however you see fit. These services will generate a JSON snippet containing all of your styles. You can then apply that JSON snippet to your map in either JavaScript or Twig.
+It's very common for people to want their maps to look a specific way. In fact, there are services which allow you to customize a map however you see fit. These services will generate a JSON snippet containing all of your styles.
+
+Here are a few services which can help you create a collection of custom styles...
+
+ - [Google Styling Wizard](https://mapstyle.withgoogle.com)
+ - [Snazzy Maps](https://snazzymaps.com/)
+ 
+Once you have generated your map styles, copy the JSON snippet and apply it to your map.
 
 ## Styling a map in JavaScript
 
