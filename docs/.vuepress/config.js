@@ -98,9 +98,6 @@ module.exports = {
                 'static',
 
                 // TO BE SCAVENGED & DELETED:
-                'old-code',
-                'chaining',
-
                 'info-windows',
 
             ],

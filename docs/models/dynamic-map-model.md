@@ -172,9 +172,9 @@ _Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}
 
 :::code
 ```twig
-{{ map.html() }}
+{{ map.tag() }}
 ```
 ```php
-$twigMarkup = $map->html();
+$twigMarkup = $map->tag();
 ```
 :::

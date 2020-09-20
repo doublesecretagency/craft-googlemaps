@@ -58,7 +58,7 @@ An object containing any of these optional configurations:
 |-----------|:-------------------:|:-----------:|-------------|
 | `width`   | _int_               | `480`       | Set the width of the map (in px). |
 | `height`  | _int_               | `320`       | Set the height of the map (in px). |
-| `zoom`    | _int_               | `??`        | Set the zoom level of the map. (1 - 16) |
+| `zoom`    | _int_               | `11`        | Set the zoom level of the map. [(1 - 22)](https://stackoverflow.com/a/32407072/3467557) |
 | `center`  | [coords](/models/coordinates/) | automatic   | Set the center position of the map. |
 | `maptype` | _string_            | `"roadmap"` | Type of map ("roadmap", "satellite", "hybrid", "terrain"). |
 | `scale`   | _int_               | `2`         | 2 = Retina, 1 = Non-retina |

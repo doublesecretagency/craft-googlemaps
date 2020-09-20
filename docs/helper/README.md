@@ -29,17 +29,17 @@ However, if your use case is _not_ covered by this collection of helper methods,
 :::code
 ```twig
 {# Generate a dynamic map #}
-{{ googleMaps.map(locations).html() }}
+{{ googleMaps.map(locations).tag() }}
 
 {# Generate a static map #}
-{{ googleMaps.img(locations).html() }}
+{{ googleMaps.img(locations).tag() }}
 ```
 ```php
 // Generate a dynamic map
-GoogleMaps::map($locations)->html();
+GoogleMaps::map($locations)->tag();
 
 // Generate a static map
-GoogleMaps::img($locations)->html();
+GoogleMaps::img($locations)->tag();
 ```
 :::
 

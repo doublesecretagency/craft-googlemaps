@@ -89,7 +89,7 @@ class StaticMap extends Model
 //     */
 //    public function __toString()
 //    {
-//        return 'To display a map, append `.html()` to the map object.';
+//        return 'To display a map, append `.tag()` to the map object.';
 //    }
 //
 //    /**
@@ -97,7 +97,7 @@ class StaticMap extends Model
 //     *
 //     * @return Markup
 //     */
-//    public function html(): Markup
+//    public function tag(): Markup
 //    {
 //
 //

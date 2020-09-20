@@ -20,12 +20,6 @@ $map = GoogleMaps::map($locations, $options);
 
 **Everything starts here.** Use the `map` method to create a new map object.
 
-:::warning Two flavors of "map object"
-Internally, there are really two different things that are being referred to as the "map object". When working with Twig or PHP, it will be a [Dynamic Map Model](/models/dynamic-map-model/). But in JavaScript, the map object is actually a self-reference to the `googleMaps` model.
-
- The structure of this object varies greatly between JS and PHP/Twig, but the API has been designed to make usage nearly identical regardless of language.
-:::
-
 :::tip PHP Helper
 The PHP version of the API flows through the [`GoogleMaps` Helper Class](/helper/).
 :::
@@ -196,3 +190,38 @@ var marker = map.getMarker(markerId);
 $marker = $map->getMarker($markerId);
 ```
 :::
+
+## `tag()`
+
+:::code
+```js
+// Creates a new element to be placed in the DOM
+var mapDiv = map.tag();
+```
+```twig
+{# Renders a map in the Twig template #}
+{{ map.tag() }}
+```
+```php
+// Creates a new Twig\Markup object
+$twigMarkup = $map->tag();
+```
+:::
+
+Output the complete map. Please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
+
+> I think these need to be split up, because they are so different.
+> Put a `tag` on the JS page, and a `tag` on the Twig/PHP page.
+> The Twig/PHP version has an additional parameter, the JS doesn't.
+
+:::warning What to Expect
+In **JavaScript**, `tag` creates a new element, to be placed in the DOM as you wish.
+
+In **Twig**, `tag` renders a finished map.
+
+In **PHP**, `tag` creates a new `Twig\Markup` object.
+:::
+
+#### Returns
+
+ - A finished map.

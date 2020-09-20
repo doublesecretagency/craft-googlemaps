@@ -4,7 +4,7 @@ In addition to all the [Universal Methods](/maps/universal-methods/) available i
 
 This method has no JavaScript equivalent because it is unnecessary within the JavaScript context.
 
-### `getDna()` (magically aliased as `dna` property)
+## `getDna()` (magically aliased as `dna` property)
 
 :::code
 ```twig

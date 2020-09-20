@@ -142,7 +142,7 @@ map.styles(stylesArray);
 ---
 ---
 
-### `html()`
+### `tag()`
 
 Creates a new `<div>` element, waiting to be placed in the DOM.
 
@@ -156,7 +156,7 @@ _node_ - A DOM element.
 var container = document.getElementById('your-map-container');
 
 // A div element containing the fully-rendered map
-var mapDiv = map.html();
+var mapDiv = map.tag();
 
 // Add the map to your container
 container.appendChild(mapDiv);

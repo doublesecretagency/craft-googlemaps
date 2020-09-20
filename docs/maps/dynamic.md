@@ -9,7 +9,7 @@
 {% set locations = craft.entries.section('locations').all() %}
 
 {# Display them on a map #}
-{{ googleMaps.map(locations).html() }}
+{{ googleMaps.map(locations).tag() }}
 ```
 
 ### Complex:
@@ -22,7 +22,7 @@
 %}
 
 {# Render map #}
-{{ map.html() }}
+{{ map.tag() }}
 ```
 
 :::warning The Magic of Chaining

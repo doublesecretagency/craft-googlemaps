@@ -44,7 +44,7 @@ class DynamicMap extends Model
      */
     public function __toString()
     {
-        return 'To display a map, append `.html()` to the map object.';
+        return 'To display a map, append `.tag()` to the map object.';
     }
 
     /**
@@ -78,7 +78,7 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
-    public function html(): Markup
+    public function tag(): Markup
     {
         // If no DNA, throw an error
         if (!$this->_dna) {

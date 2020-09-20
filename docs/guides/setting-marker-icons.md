@@ -1,5 +1,31 @@
 # Setting Marker Icons
 
+## NEWER
+
+
+If you have multiple groups of markers, you can format an entire batch by specifying new marker options each time.
+
+::: code
+```js
+// Create a new map
+var map = googleMaps.map();
+
+// Add first group of markers, with custom marker options
+map.markers(firstLocations, firstOptions);
+
+// Add second group of markers, with custom marker options
+map.markers(secondLocations, secondOptions);
+```
+:::
+
+
+
+
+
+
+## OLDER
+
+
 ## Set a default marker icon
 
 By default, you can set all markers to use the same icon when creating a map. Within the [dynamic map options](/maps/dynamic/#options), you can define the value of `markerOptions.icon`.
