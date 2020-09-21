@@ -1,4 +1,4 @@
-# (DEL) Info Windows
+# Using Info Windows
 
 ## Basic Usage
 
@@ -25,15 +25,15 @@ The info window template can be as simple or complex as you want...
 
 ## Available Variables
 
-These variables are predefined in your info window template:
+These variables will be predefined in your info window template:
 
 | Variable               | Type     | Description                           |
-|------------|:--------:|---------------------------------------|
+|------------------------|:--------:|---------------------------------------|
 | `mapId`                | _string_ | The unique ID of the map              |
 | `markerId`             | _string_ | The unique ID of the marker           |
 | `coords`               | [coords](/models/coordinates/) | Coordinates of the marker |
 | `element`              | _object_ | Full element data (see below)         |
-| _alias for_ `element`  | _object_ | See explanation below :arrow_down:         |
+| _alias for_ `element`  | _object_ | See explanation below :arrow_down:    |
 
 ### Automatic aliasing of the `element` variable
 

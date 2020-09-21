@@ -4,6 +4,29 @@ In addition to all the [Universal Methods](/maps/universal-methods/) available i
 
 These methods have no PHP or Twig equivalent because they make no sense outside of the JavaScript context.
 
+## `init(mapId = null)`
+
+```js
+googleMaps.init();
+```
+
+Initialize a map, or a group of maps. This will be automatically run (unless disabled) for each map on the page.
+
+#### `mapId`
+
+Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
+
+```js
+// String - Initialize only the specified map
+mapId = 'my-custom-map';
+
+// Array - Initialize all specified maps
+mapId = ['map-one', 'map-two', 'map-three'];
+
+// Null - Initialize all maps on the page
+mapId = null;
+```
+
 ## `refresh()`
 
 ```js
@@ -51,3 +74,19 @@ map.zoom(level);
 ```
 
 Change the map's zoom level. The `level` value must be an integer between 1 - 22.
+
+## `tag()`
+
+```js
+var mapDiv = map.tag();
+```
+
+Creates a new `<div>` element, to be placed in the DOM as you wish.
+
+#### Returns
+
+ - A new `<div>` element which holds the fully-rendered map.
+ 
+:::warning Must be placed manually
+The new element will be created as an orphan. It will not exist in the DOM until you place it somewhere.
+::: 

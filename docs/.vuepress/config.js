@@ -44,6 +44,7 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    {text: 'Using Info Windows', link: '/guides/using-info-windows/'},
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -93,13 +94,9 @@ module.exports = {
                 'universal-methods',
                 'javascript-methods',
                 'twig-php-methods',
-                'locations',
                 'dynamic',
                 'static',
-
-                // TO BE SCAVENGED & DELETED:
-                'info-windows',
-
+                'locations',
             ],
             '/proximity-search/': [
                 '',
@@ -163,6 +160,7 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
+                'using-info-windows',
                 'complex-js-in-twig',
                 'complex-geolocation',
                 'setting-marker-icons',

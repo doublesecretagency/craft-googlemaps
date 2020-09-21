@@ -67,21 +67,34 @@ Internally, there are really two different things that are being referred to as 
 
 ## Ending a Chain
 
-A chain may end differently depending on which language you are working in...
+Not all chains need to be concluded. You may sometimes find it helpful to keep a chain alive long enough to perform more operations on the map object. Eventually though, you'll probably want to end the chain.
+
+To end the chain, apply the `tag` method to wrap it all up. Depending on which language you are working in, you'll notice properties unique to that language.
 
 :::code
 ```js
-var map = googleMaps.map(locations, options);
+// Creates a new element to be placed in the DOM
+var mapDiv = map.tag();
 ```
 ```twig
-{% set map = googleMaps.map(locations, options) %}
+{# Renders a map in the Twig template #}
+{{ map.tag() }}
 ```
 ```php
-$map = GoogleMaps::map($locations, $options);
+// Creates a new Twig\Markup object
+$twigMarkup = $map->tag();
 ```
 :::
 
+The `tag` method will output the complete map. But please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
 
+:::warning What to Expect
+In [JavaScript](/maps/javascript-methods/#tag), `tag` creates a new element, to be placed in the DOM as you wish.
+
+In [Twig](/maps/twig-php-methods/#tag-autorender-true), `tag` renders a finished map.
+
+In [PHP](/maps/twig-php-methods/#tag-autorender-true), `tag` creates a new `Twig\Markup` object.
+:::
 
 ## Languages
 

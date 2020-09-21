@@ -190,38 +190,3 @@ var marker = map.getMarker(markerId);
 $marker = $map->getMarker($markerId);
 ```
 :::
-
-## `tag()`
-
-:::code
-```js
-// Creates a new element to be placed in the DOM
-var mapDiv = map.tag();
-```
-```twig
-{# Renders a map in the Twig template #}
-{{ map.tag() }}
-```
-```php
-// Creates a new Twig\Markup object
-$twigMarkup = $map->tag();
-```
-:::
-
-Output the complete map. Please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
-
-> I think these need to be split up, because they are so different.
-> Put a `tag` on the JS page, and a `tag` on the Twig/PHP page.
-> The Twig/PHP version has an additional parameter, the JS doesn't.
-
-:::warning What to Expect
-In **JavaScript**, `tag` creates a new element, to be placed in the DOM as you wish.
-
-In **Twig**, `tag` renders a finished map.
-
-In **PHP**, `tag` creates a new `Twig\Markup` object.
-:::
-
-#### Returns
-
- - A finished map.
