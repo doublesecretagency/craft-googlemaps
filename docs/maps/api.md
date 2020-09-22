@@ -86,7 +86,7 @@ $twigMarkup = $map->tag();
 ```
 :::
 
-The `tag` method will output the complete map. But please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
+The `tag` method will create a `<div>` tag containing the finished map. But please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
 
 :::warning What to Expect
 In [JavaScript](/maps/javascript-methods/#tag), `tag` creates a new element, to be placed in the DOM as you wish.

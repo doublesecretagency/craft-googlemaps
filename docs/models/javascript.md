@@ -14,11 +14,9 @@ This will load an object called `googleMaps`. It contains the following methods.
 
 Calling this method will create a new map object. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
 
-:::code
 ```js
 var map = googleMaps.map(locations);
 ```
-:::
 
 :::warning The "map" variable
 For each of the remaining examples on this page, the `map` variable will be an instance of the `googleMaps` object. In each example, you will see how map methods can be chained at will.
@@ -105,11 +103,9 @@ Append one or more KML layers to an existing map object.
 
 _self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
-:::code
 ```js
 map.kml(files);
 ```
-:::
 
 ---
 ---
@@ -133,11 +129,9 @@ There are many ways to generate an array of map styles. The most popular approac
 
 _self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
 
-:::code
 ```js
 map.styles(stylesArray);
 ```
-:::
 
 ---
 ---
@@ -150,7 +144,6 @@ Creates a new `<div>` element, waiting to be placed in the DOM.
 
 _node_ - A DOM element.
 
-:::code
 ```js
 // Get your map container
 var container = document.getElementById('your-map-container');
@@ -161,4 +154,3 @@ var mapDiv = map.tag();
 // Add the map to your container
 container.appendChild(mapDiv);
 ```
-:::

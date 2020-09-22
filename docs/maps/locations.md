@@ -9,15 +9,48 @@ What are "locations"? Glad you asked.
 The `locations` value can be a set of [coordinates](/models/coordinates/), or an array of coordinate sets.
 
 :::code
-```js JSON
-{
-    "lat": 32.3113966,
-    "lng": -64.7527469
-}
+```js
+// Just one set of coordinates
+var locations = {
+    'lat':  32.3113966,
+    'lng': -64.7527469
+};
+
+// An array of coordinate sets
+var locations = [
+    {'lat': 37.2430548, 'lng': -115.7930198},
+    {'lat': 57.3009274, 'lng':   -4.4496567}
+];
+```
+```twig
+{# Just one set of coordinates #}
+{% set locations = {
+    'lat':  32.3113966,
+    'lng': -64.7527469
+} %}
+
+{# An array of coordinate sets #}
+{% set locations = [
+    {'lat': 37.2430548, 'lng': -115.7930198},
+    {'lat': 57.3009274, 'lng':   -4.4496567}
+] %}
+```
+```php
+// Just one set of coordinates
+$locations = [
+    'lat' =>  32.3113966,
+    'lng' => -64.7527469
+];
+
+// An array of coordinate sets
+$locations = [
+    ['lat' => 37.2430548, 'lng' => -115.7930198],
+    ['lat' => 57.3009274, 'lng' =>   -4.4496567]
+];
 ```
 :::
 
-:::warning In JavaScript, you can only use Coordinates
+:::warning In JavaScript, you may only use Coordinates
 If you are working in JavaScript, then your only option is to work with coordinates. It is physically impossible to translate Address Models and Elements into JavaScript.
 :::
 

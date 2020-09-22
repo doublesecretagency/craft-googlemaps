@@ -41,12 +41,7 @@ $src = GoogleMaps::img($locations)->src();
 
 #### `locations`
 
-Any of the following will be considered valid `locations`:
-
- - An array of elements
- - An individual element (ie: an Entry)
- - An array of [Address Models](/models/address-model/)
- - An individual [Address Model](/models/address-model/)
+ - Location(s) to appear on the map. See the [Locations](/maps/locations/) page for detailed information.
  
 If you skip the `locations` parameter by passing in _null_, the map will try its best to render without any markers.
  

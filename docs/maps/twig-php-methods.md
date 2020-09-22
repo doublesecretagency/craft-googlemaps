@@ -1,8 +1,6 @@
 # Twig & PHP Methods
 
-In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there is only one method that is available exclusively in Twig and PHP.
-
-This method has no JavaScript equivalent because it is unnecessary within the JavaScript context.
+In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.
 
 ## `getDna()`
 
@@ -21,7 +19,7 @@ $dna = $map->getDna();
 
 #### Returns
 
- - An array of data containing the complete map details. It is used to hydrate a map's container in the DOM.
+ - An array of data containing the complete map details. It will be used to hydrate a map's container in the DOM.
 
 ## `tag(autorender = true)`
 
