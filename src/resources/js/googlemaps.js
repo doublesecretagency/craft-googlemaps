@@ -97,20 +97,6 @@ window.googleMaps = {
 
             // Create new container from scratch
             container = document.createElement('div');
-
-
-            // TEMP
-            // TODO: This belongs somewhere else?
-            var supercontainerName = 'just-js';
-            var supercontainer = document.getElementById(supercontainerName);
-            if (supercontainer) {
-                supercontainer.appendChild(container);
-            } else {
-                console.warn('[GM] Unable to find parent container:', supercontainerName);
-            }
-            // ENDTEMP
-
-
         }
 
         // Configure map container
@@ -187,6 +173,28 @@ window.googleMaps = {
     //     return this;
     // },
 
+    // Generate a complete map
+    tag: function(parentId) {
+
+        // If no valid parent container specified, return the element as-is
+        if (!parentId || 'string' !== typeof parentId) {
+            return this._instance.container;
+        }
+
+        // Get specified parent container
+        var parent = document.getElementById(parentId);
+
+        // If parent container exists, populate it
+        if (parent) {
+            parent.appendChild(this._instance.container);
+        } else {
+            console.warn(`[GM] Unable to find target container #${parentId}`);
+        }
+
+        // Return map container
+        return this._instance.container;
+    },
+
     // ========================================================================= //
 
     // Fit map according to bounds
@@ -247,6 +255,7 @@ window.googleMaps = {
         // Initialize map data
         var data = {
             id: mapId,
+            container: container,
             map: new google.maps.Map(container, options.mapOptions),
             bounds: new google.maps.LatLngBounds(),
             markers: []

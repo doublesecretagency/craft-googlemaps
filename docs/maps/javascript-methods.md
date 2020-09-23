@@ -75,18 +75,25 @@ map.zoom(level);
 
 Change the map's zoom level. The `level` value must be an integer between 1 - 22.
 
-## `tag()`
+## `tag(parentId = null)`
 
 ```js
+// Place the map element automatically
+map.tag('my-target-div');
+
+// Place the map element manually
 var mapDiv = map.tag();
+document.getElementById('my-target-div').appendChild(mapDiv);
 ```
 
 Creates a new `<div>` element, to be placed in the DOM as you wish.
 
+#### `parentId`
+
+Automatically inject the map element into the DOM container with the specified `id` attribute.
+
+If `parentId` is specified, the new map will be automatically be placed into that container.
+
 #### Returns
 
- - A new `<div>` element which holds the fully-rendered map.
- 
-:::warning Must be placed manually
-The new element will be created as an orphan. It will not exist in the DOM until you place it somewhere.
-::: 
+ - A new `<div>` element which holds the fully-rendered map. If no `parentId` was specified, it will need to be added to the DOM manually.
