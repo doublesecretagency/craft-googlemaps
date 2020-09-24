@@ -35,8 +35,9 @@ window.googleMaps = {
     // ========================================================================= //
 
 
-    // Initialize collection
+    // Initialize collections
     _maps: {},
+    _markers: {},
 
     // Initialize empty defaults
     _defaults: {},
@@ -123,7 +124,8 @@ window.googleMaps = {
         }
 
         // Fit map boundaries to markers
-        this.fit(options);
+        // this.fit(options); // TODO: DELETE?
+        this.fit();
 
         // Keep the party going
         return this;
@@ -197,48 +199,146 @@ window.googleMaps = {
 
     // ========================================================================= //
 
-    // Fit map according to bounds
-    fit: function(options) {
+    // Hide a marker
+    hideMarker: function(markerId) {
 
-        /*
-         * NOTE: Zoom & center values are required
-         * to render a map without fitting bounds.
-         */
+        // Get specified marker
+        var marker = this.getMarker(markerId);
 
-        // Get map data
-        var data = this.getMap(options.id);
+        // Detach marker from map
+        marker.setMap(null);
 
-        if (!data) {
-            return;
-        }
-
-        // If neither zoom nor center was specified
-        if (!options.zoom && !options.center) {
-            // Just fit to boundaries and bail
-            data.map.fitBounds(data.bounds);
-            return;
-        }
-
-        // Set fallback zoom and center
-        options.zoom = options.zoom || 4;
-        options.center = options.center || data.bounds.getCenter();
-
-        // Center and zoom map
-        data.map.setCenter(options.center);
-        data.map.setZoom(options.zoom);
-
+        // Keep the party going
+        return this;
     },
+
+    // Show a marker
+    showMarker: function(markerId) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Attach marker to current map
+        marker.setMap(this._instance.map);
+
+        // Keep the party going
+        return this;
+    },
+
+    // Pan map to center on a specific marker
+    panToMarker: function(markerId) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Pan map to marker position
+        this._instance.map.panTo(marker.position);
+
+        // Keep the party going
+        return this;
+    },
+
+    // ========================================================================= //
+
+    // Apply a batch of styles to the map
+    styles: function(stylesArray) {
+
+        // Ensure styles are valid
+        stylesArray = stylesArray || {};
+
+        // Apply collection of styles
+        this._instance.map.setOptions({styles: stylesArray});
+
+        // Keep the party going
+        return this;
+    },
+
+    // Zoom map to specified level
+    zoom: function(level) {
+
+        // Ensure level is valid
+        level = level || 4;
+
+        // Set zoom level of current map
+        this._instance.map.setZoom(level);
+
+        // Keep the party going
+        return this;
+    },
+
+    // Fit map according to bounds
+    fit: function() {
+
+        // Fit bounds of current map
+        this._instance.map.fitBounds(this._instance.bounds);
+
+        // Keep the party going
+        return this;
+    },
+
+    // Refresh the map
+    refresh: function() {
+
+        // Refresh the current map
+        google.maps.event.trigger(this._instance.map, 'resize');
+
+        // Keep the party going
+        return this;
+    },
+
+    // PROBABLY SOME USEFUL STUFF IN HERE?
+
+    // // Fit map according to bounds
+    // fit_OLD: function(options) {
+    //
+    //     /*
+    //      * NOTE: Zoom & center values are required
+    //      * to render a map without fitting bounds.
+    //      */
+    //
+    //     // Ensure options are valid
+    //     options = options || {};
+    //
+    //     // Get map data
+    //     var map = this.getMap(options.id);
+    //
+    //     // If no map exists, bail
+    //     if (!map) {
+    //         return;
+    //     }
+    //
+    //     // Get map data
+    //     var data = map._instance;
+    //
+    //     // If neither zoom nor center was specified
+    //     if (!options.zoom && !options.center) {
+    //         // Just fit to boundaries and bail
+    //         data.map.fitBounds(data.bounds);
+    //         return;
+    //     }
+    //
+    //     // Set fallback zoom and center
+    //     options.zoom = options.zoom || 4;
+    //     options.center = options.center || data.bounds.getCenter();
+    //
+    //     // Center and zoom map
+    //     data.map.setCenter(options.center);
+    //     data.map.setZoom(options.zoom);
+    //
+    // },
 
     // ========================================================================= //
 
     // Get a specified map object
     getMap: function(mapId) {
-        return this._maps[mapId];
+        this._instance = this._maps[mapId];
+        return this;
     },
 
     // Get a specified marker object
-    getMarker: function(mapId, markerId) {
-        return this._maps[mapId].markers[markerId];
+    getMarker: function(markerId) {
+        var mapId = this._instance.id;
+        return this._markers[mapId][markerId];
     },
 
     // ========================================================================= //
@@ -288,15 +388,15 @@ window.googleMaps = {
         // TODO: COMPILE `markerId` IN PHP
         // var elementId = 16;
         // var fieldHandle = 'address';
-        // var markerId = `${elementId}.${fieldHandle}`;
+        // var markerId = `${elementId}-${fieldHandle}`; // 16-address
         //
         // If no marker ID exists, generate a random one:
         // "marker-{random}"
         // ENDTEMP
 
 
-        // // Get map ID
-        // var mapId = this._instance.map.id;
+        // Get map ID
+        var mapId = this._instance.id;
 
         // Get marker ID or generate a random one
         var markerId = options.id || this._generateId('marker');
@@ -310,11 +410,12 @@ window.googleMaps = {
         // Initialize marker object
         var marker = new google.maps.Marker(options);
 
-        // Add marker to internal array
+        // Add marker internally
         this._instance.markers[markerId] = marker;
 
-        // Add marker to external array
-        // this._maps[mapId].markers[markerId] = marker;
+        // Add marker externally
+        this._markers[mapId] = this._markers[mapId] || {};
+        this._markers[mapId][markerId] = marker;
 
     },
 

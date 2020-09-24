@@ -75,6 +75,14 @@ map.zoom(level);
 
 Change the map's zoom level. The `level` value must be an integer between 1 - 22.
 
+## `fit()`
+
+```js
+map.fit();
+```
+
+Zoom map to automatically fit all markers within the viewing area.
+
 ## `tag(parentId = null)`
 
 ```js

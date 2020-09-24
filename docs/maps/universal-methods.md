@@ -148,23 +148,22 @@ Retrieve an existing map object.
 
  - Map object (for chaining)
 
-## `getMarker(mapId, markerId)`
+## `getMarker(markerId)`
 
 :::code
 ```js
-var marker = googleMaps.getMarker(mapId, markerId);
+var map = googleMaps.getMap(mapId);
+var marker = map.getMarker(markerId);
 ```
 ```twig
-{% set marker = googleMaps.getMarker(mapId, markerId) %}
+{% set map = googleMaps.getMap(mapId) %}
+{% set marker = map.getMarker(markerId) %}
 ```
 ```php
-$marker = GoogleMaps::getMarker($mapId, $markerId);
+$map = GoogleMaps::getMap($mapId);
+$marker = $map->getMarker($markerId);
 ```
 :::
-
-#### `mapId`
-
- - The ID of the map that contains the marker.
 
 #### `markerId`
 
@@ -174,19 +173,3 @@ $marker = GoogleMaps::getMarker($mapId, $markerId);
 
  - In JavaScript, returns a Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
  - In Twig/PHP, returns an array of marker data.
-
-**Alternate Usage**
-
-It is also possible to call `getMarker` directly from an existing map object...
-
-:::code
-```js
-var marker = map.getMarker(markerId);
-```
-```twig
-{% set marker = map.getMarker(markerId) %}
-```
-```php
-$marker = $map->getMarker($markerId);
-```
-:::
