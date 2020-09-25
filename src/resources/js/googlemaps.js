@@ -38,6 +38,7 @@ window.googleMaps = {
     // Initialize collections
     _maps: {},
     _markers: {},
+    _kmls: {},
 
     // Initialize empty defaults
     _defaults: {},
@@ -165,15 +166,23 @@ window.googleMaps = {
         return this;
     },
 
-    // kml: function() {
-    //     // Do whatever
-    //     return this;
-    // },
+    kml: function(url, options) {
 
-    // styles: function() {
-    //     // Do whatever
-    //     return this;
-    // },
+        // Ensure options are valid
+        options = options || {};
+
+        // Apply file URL
+        options.url = options.url || url;
+
+        // Set map
+        options.map = this._instance.map;
+
+        // Create a new KML layer
+        this._createKml(url, options);
+
+        // Keep the party going
+        return this;
+    },
 
     // Generate a complete map
     tag: function(parentId) {
@@ -371,7 +380,8 @@ window.googleMaps = {
             container: container,
             map: new google.maps.Map(container, options.mapOptions),
             bounds: new google.maps.LatLngBounds(),
-            markers: []
+            markers: [],
+            kmls: []
         }
 
         // Add map internally
@@ -429,6 +439,27 @@ window.googleMaps = {
         // Add marker externally
         this._markers[mapId] = this._markers[mapId] || {};
         this._markers[mapId][markerId] = marker;
+
+    },
+
+    // Create a new KML layer
+    _createKml: function(url, options) {
+
+        // Get map ID
+        var mapId = this._instance.id;
+
+        // Get KML ID or generate a random one
+        var kmlId = options.id || this._generateId('kml');
+
+        // Initialize KML object
+        var kml = new google.maps.KmlLayer(options);
+
+        // Add KML internally
+        this._instance.kmls[kmlId] = kml;
+
+        // Add KML externally
+        this._kmls[mapId] = this._kmls[mapId] || {};
+        this._kmls[mapId][kmlId] = kml;
 
     },
 
