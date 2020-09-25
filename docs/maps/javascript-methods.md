@@ -27,21 +27,17 @@ mapId = ['map-one', 'map-two', 'map-three'];
 mapId = null;
 ```
 
-## `refresh()`
-
-```js
-map.refresh();
-```
-
-Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
-
 ## `hideMarker(markerId)`
 
 ```js
 map.hideMarker(markerId);
 ```
 
-Hide a marker. The marker will not be destroyed, it will simply be removed from the map.
+Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+
+#### `markerId`
+
+ - The ID of the marker that you want to hide.
 
 ## `showMarker(markerId)`
 
@@ -49,15 +45,27 @@ Hide a marker. The marker will not be destroyed, it will simply be removed from 
 map.showMarker(markerId);
 ```
 
-Show a marker. The marker will be placed back onto the map.
+Show a marker. The marker will be re-attached to the map.
 
-## `setMarkerIcon(markerId, options)`
+#### `markerId`
+
+ - The ID of the marker that you want to show.
+
+## `setMarkerIcon(markerId, icon)`
 
 ```js
-map.setMarkerIcon(markerId, options);
+map.setMarkerIcon(markerId, icon);
 ```
 
-Set the icon of an existing marker. The `options` object should take the form of a Google [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon). You can pass a collection of `key:value` pairs to specify the icon details.
+Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
+
+#### `markerId`
+
+ - The ID of the marker that you want to set the icon for.
+
+#### `icon`
+
+ - The icon to set on the specified marker. Can be either a _string_ or an [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
 
 ## `panToMarker(markerId)`
 
@@ -67,13 +75,26 @@ map.panToMarker(markerId);
 
 Re-center map on the specified marker.
 
+#### `markerId`
+
+ - The ID of the marker that you want to pan to.
+
 ## `zoom(level)`
 
 ```js
 map.zoom(level);
 ```
 
-Change the map's zoom level. The `level` value must be an integer between 1 - 22.
+Change the map's zoom level.
+
+#### `level`
+
+ - The new zoom level. Must be an integer between `1` - `22`.
+ 
+:::tip Zoom Level Reference
+ - `1` is zoomed out, a view of the entire planet.
+ - `22` is zoomed in, as close to the ground as possible.
+:::
 
 ## `fit()`
 
@@ -81,7 +102,15 @@ Change the map's zoom level. The `level` value must be an integer between 1 - 22
 map.fit();
 ```
 
-Zoom map to automatically fit all markers within the viewing area.
+Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+
+## `refresh()`
+
+```js
+map.refresh();
+```
+
+Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
 
 ## `tag(parentId = null)`
 
@@ -94,14 +123,16 @@ var mapDiv = map.tag();
 document.getElementById('my-target-div').appendChild(mapDiv);
 ```
 
-Creates a new `<div>` element, to be placed in the DOM as you wish.
+**Ends the map chain.** Creates a new `<div>` element, to be placed in the DOM as you wish.
 
 #### `parentId`
 
-Automatically inject the map element into the DOM container with the specified `id` attribute.
+ - Automatically inject the map element into the DOM container with the specified `id` attribute.
 
-If `parentId` is specified, the new map will be automatically be placed into that container.
+:::tip Automatic Placement
+If `parentId` is specified, the new map will be automatically appended to that container.
+:::
 
 #### Returns
 
- - A new `<div>` element which holds the fully-rendered map. If no `parentId` was specified, it will need to be added to the DOM manually.
+ - A new `<div>` element which holds the fully-rendered map. If no `parentId` was specified, the element will need to be manually added to the DOM.

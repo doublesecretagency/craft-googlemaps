@@ -225,6 +225,19 @@ window.googleMaps = {
         return this;
     },
 
+    // Set the icon of an existing marker
+    setMarkerIcon: function(markerId, icon) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Set marker icon
+        marker.setIcon(icon);
+
+        // Keep the party going
+        return this;
+    },
+
     // Pan map to center on a specific marker
     panToMarker: function(markerId) {
 
