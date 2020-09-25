@@ -30,9 +30,9 @@ module.exports = {
         logo: '/images/dsa-circle.png',
         searchMaxSuggestions: 10,
         nav: [
-            {text: 'Getting Started', link: '/getting-started/'},
+            {text: 'Getting Started ➡️', link: '/getting-started/'},
             {
-                text: 'Major Concepts',
+                text: 'Major Concepts 🌎',
                 items: [
                     {text: 'Address Field', link: '/address-field/'},
                     {text: 'Maps', link: '/maps/'},
@@ -42,7 +42,7 @@ module.exports = {
                 ]
             },
             {
-                text: 'Guides',
+                text: '[WIP] Guides 🗺️',
                 items: [
                     {text: 'Using Info Windows', link: '/guides/using-info-windows/'},
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
@@ -62,7 +62,7 @@ module.exports = {
                 ]
             },
             {
-                text: 'Architecture',
+                text: 'Architecture 🏛️',
                 items: [
                     {text: 'Settings', link: '/settings/'},
                     {text: 'Helper', link: '/helper/'},
