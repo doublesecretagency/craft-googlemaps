@@ -96,11 +96,21 @@ class GoogleMapsPlugin extends Plugin
         Event::on(
             Plugins::class,
             Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-            function (PluginEvent $event) {
-                if ($event->plugin === $this) {
-                    $welcomePage = UrlHelper::cpUrl('settings/plugins/google-maps', ['welcome' => 1]);
-                    Craft::$app->getResponse()->redirect($welcomePage)->send();
+            static function (PluginEvent $event) {
+
+                // If console request, bail
+                if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+                    return;
                 }
+
+                // If not Google Maps, bail
+                if ('google-maps' != $event->plugin->handle) {
+                    return;
+                }
+
+                // Redirect to the plugin's settings page (with a welcome message)
+                $url = UrlHelper::cpUrl('settings/plugins/google-maps', ['welcome' => 1]);
+                Craft::$app->getResponse()->redirect($url)->send();
             }
         );
     }
