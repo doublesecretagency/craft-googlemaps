@@ -92,7 +92,7 @@ Applies a KML layer to the map.
 
 #### `url`
 
- - The URL of a given KML layer. It **must** be hosted remotely, and **must** be served over an SSL connection.
+ - The URL of a given KML layer. It **must** be hosted remotely. The KML file will not work if hosted locally.
  
 #### `options`
 
