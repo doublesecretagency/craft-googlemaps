@@ -212,7 +212,10 @@ class DynamicMap extends Model
                 }
                 // Add coordinates to results
                 if ($address->hasCoords()) {
-                    $results[] = $address->getCoords();
+                    $results[] = array_merge(
+                        $address->getCoords(),
+                        ['id' => "{$location->id}-{$field->handle}"]
+                    );
                 }
             }
 

@@ -1,39 +1,8 @@
-// Load AJAX library
-var ajax = window.superagent;
-
 // Google Maps plugin JS object
 window.googleMaps = {
 
-
-    // ========================================================================= //
-
-    // // Default action url
-    // actionUrl: '/actions/',
-    // // No CSRF token by default
-    // csrfToken: false,
-    // // Submit AJAX with fresh CSRF token
-    // getCsrf: function (callback) {
-    //     // Make object available to callback
-    //     var that = this;
-    //     // Fetch a new CSRF token
-    //     ajax
-    //         .get(this.actionUrl+'google-maps/page/csrf')
-    //         .end(function(err, res){
-    //             // If something went wrong, bail
-    //             if (!res.ok) {
-    //                 console.warn('[GM] Error retrieving CSRF token:', err);
-    //                 return;
-    //             }
-    //             // Set global CSRF token
-    //             that.csrfToken = res.body;
-    //             // Run callback
-    //             callback();
-    //         })
-    //     ;
-    // },
-
-    // ========================================================================= //
-
+    // Logs errors when in devMode
+    _devMode: true,
 
     // Initialize collections
     _maps: {},
@@ -41,9 +10,12 @@ window.googleMaps = {
     _kmls: {},
 
     // Initialize empty defaults
-    _defaults: {},
-    // _defaultMarkerOptions: {},
-    // _defaultInfoWindowOptions: {},
+    _default: {
+        zoom: 4,
+        center: null,
+        markerOptions: {},
+        infoWindowOptions: {},
+    },
 
     // Internal instance of object
     _instance: null,
@@ -124,9 +96,26 @@ window.googleMaps = {
             this.markers(locations);
         }
 
-        // Fit map boundaries to markers
-        // this.fit(options); // TODO: DELETE?
+        // Fit map to marker boundaries
         this.fit();
+
+        // Pass object to nested functions
+        var mapObject = this;
+
+        // Wait for fitbounds to finish
+        google.maps.event.addListenerOnce(this._instance.map, 'bounds_changed', function() {
+
+            // Optionally zoom the map
+            if (options.zoom) {
+                mapObject.zoom(options.zoom);
+            }
+
+            // Optionally center the map
+            if (options.center) {
+                mapObject.center(options.center);
+            }
+
+        });
 
         // Keep the party going
         return this;
@@ -200,6 +189,11 @@ window.googleMaps = {
             parent.appendChild(this._instance.container);
         } else {
             console.warn(`[GM] Unable to find target container #${parentId}`);
+        }
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Rendered map "${this._instance.id}"`);
         }
 
         // Return map container
@@ -279,10 +273,39 @@ window.googleMaps = {
     zoom: function(level) {
 
         // Ensure level is valid
-        level = level || 4;
+        level = level || this._default.zoom;
 
         // Set zoom level of current map
         this._instance.map.setZoom(level);
+
+        // Update default zoom level
+        this._default.zoom = level;
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Set map "${this._instance.id}" zoom level:`, level);
+        }
+
+        // Keep the party going
+        return this;
+    },
+
+    // Center the map on a set of coordinates
+    center: function(coords) {
+
+        // Ensure coordinates are valid
+        coords = coords || this._default.center || this._instance.bounds.getCenter();
+
+        // Re-center current map
+        this._instance.map.setCenter(coords);
+
+        // Update default center coordinates
+        this._default.center = coords;
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Set map "${this._instance.id}" center coordinates:`, coords);
+        }
 
         // Keep the party going
         return this;
@@ -293,6 +316,11 @@ window.googleMaps = {
 
         // Fit bounds of current map
         this._instance.map.fitBounds(this._instance.bounds);
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Fit map "${this._instance.id}" to existing marker boundaries`);
+        }
 
         // Keep the party going
         return this;
@@ -308,58 +336,35 @@ window.googleMaps = {
         return this;
     },
 
-    // PROBABLY SOME USEFUL STUFF IN HERE?
-
-    // // Fit map according to bounds
-    // fit_OLD: function(options) {
-    //
-    //     /*
-    //      * NOTE: Zoom & center values are required
-    //      * to render a map without fitting bounds.
-    //      */
-    //
-    //     // Ensure options are valid
-    //     options = options || {};
-    //
-    //     // Get map data
-    //     var map = this.getMap(options.id);
-    //
-    //     // If no map exists, bail
-    //     if (!map) {
-    //         return;
-    //     }
-    //
-    //     // Get map data
-    //     var data = map._instance;
-    //
-    //     // If neither zoom nor center was specified
-    //     if (!options.zoom && !options.center) {
-    //         // Just fit to boundaries and bail
-    //         data.map.fitBounds(data.bounds);
-    //         return;
-    //     }
-    //
-    //     // Set fallback zoom and center
-    //     options.zoom = options.zoom || 4;
-    //     options.center = options.center || data.bounds.getCenter();
-    //
-    //     // Center and zoom map
-    //     data.map.setCenter(options.center);
-    //     data.map.setZoom(options.zoom);
-    //
-    // },
-
     // ========================================================================= //
 
     // Get a specified map object
     getMap: function(mapId) {
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Getting existing map "${mapId}"`);
+        }
+
+        // Load the specified map
         this._instance = this._maps[mapId];
+
+        // Return map
         return this;
     },
 
     // Get a specified marker object
     getMarker: function(markerId) {
+
+        // Get the current map ID
         var mapId = this._instance.id;
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Getting existing marker "${markerId}" from map "${mapId}"`);
+        }
+
+        // Return marker
         return this._markers[mapId][markerId];
     },
 
@@ -370,6 +375,11 @@ window.googleMaps = {
 
         // Get the specified map ID
         var mapId = options.id;
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Creating map "${mapId}"`);
+        }
 
         // Ensure mapOptions are valid
         options.mapOptions = options.mapOptions || {};
@@ -395,9 +405,9 @@ window.googleMaps = {
     // Create a new marker object
     _createMarker: function(coords, options) {
 
-        // If marker ID exists with coordinates, use it as a fallback
+        // If marker ID is hiding in coordinates, use it
         if (coords.hasOwnProperty('id')) {
-            options.id = options.id || coords.id;
+            options.id = coords.id;
         }
 
         // Set marker position based on coordinates
@@ -406,29 +416,16 @@ window.googleMaps = {
         // Extend map boundaries
         this._instance.bounds.extend(coords);
 
-
-        // TEMP
-        // TODO: COMPILE `markerId` IN PHP
-        // var elementId = 16;
-        // var fieldHandle = 'address';
-        // var markerId = `${elementId}-${fieldHandle}`; // 16-address
-        //
-        // If no marker ID exists, generate a random one:
-        // "marker-{random}"
-        // ENDTEMP
-
-
         // Get map ID
         var mapId = this._instance.id;
 
         // Get marker ID or generate a random one
         var markerId = options.id || this._generateId('marker');
 
-        // // Ensure map is accounted for
-        // if (!this._instance) {
-        //     console.warn(`[GM] Unable to attach marker "${markerId}" to map "${mapId}".`);
-        //     return;
-        // }
+        // Log status
+        if (this._devMode) {
+            console.log(`Adding to map "${mapId}", marker "${markerId}"`);
+        }
 
         // Initialize marker object
         var marker = new google.maps.Marker(options);
@@ -450,6 +447,11 @@ window.googleMaps = {
 
         // Get KML ID or generate a random one
         var kmlId = options.id || this._generateId('kml');
+
+        // Log status
+        if (this._devMode) {
+            console.log(`Adding to map "${mapId}", KML layer "${kmlId}"`);
+        }
 
         // Initialize KML object
         var kml = new google.maps.KmlLayer(options);
