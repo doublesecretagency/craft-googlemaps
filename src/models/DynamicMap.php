@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\models;
 
+use Craft;
 use craft\base\Element;
 use craft\base\Model;
 use craft\helpers\Html;
@@ -18,6 +19,7 @@ use craft\helpers\Json;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
 use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Markup;
 use yii\base\Exception;
 
@@ -56,6 +58,24 @@ class DynamicMap extends Model
      */
     public function __construct($locations = [], array $options = [], array $config = [])
     {
+        // Get view service
+        $view = Craft::$app->getView();
+
+        // Unless otherwise specified, preload the necessary JavaScript
+        if (!isset($options['js']) || !is_bool($options['js'])) {
+            $options['js'] = true;
+        }
+
+        // Load assets
+        if ($options['js']) {
+            $view->registerAssetBundle(JsApiAsset::class);
+        }
+
+        // If in devMode, enable JS logging
+        if (Craft::$app->getConfig()->general->devMode) {
+            $view->registerJs('googleMaps._log = true;', $view::POS_END);
+        }
+
         // Initialize map
         $this->_addMap($locations, $options);
 

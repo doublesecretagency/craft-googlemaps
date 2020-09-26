@@ -1,8 +1,8 @@
 // Google Maps plugin JS object
 window.googleMaps = {
 
-    // Logs errors when in devMode
-    _devMode: true,
+    // Logs progress to console (enabled in devMode)
+    _log: false,
 
     // Initialize collections
     _maps: {},
@@ -192,7 +192,7 @@ window.googleMaps = {
         }
 
         // Log status
-        if (this._devMode) {
+        if (this._log) {
             console.log(`Rendered map "${this._instance.id}"`);
         }
 
@@ -262,6 +262,11 @@ window.googleMaps = {
         // Ensure styles are valid
         stylesArray = stylesArray || {};
 
+        // Log status
+        if (this._log) {
+            console.log(`Setting map "${this._instance.id}" styles:`, stylesArray);
+        }
+
         // Apply collection of styles
         this._instance.map.setOptions({styles: stylesArray});
 
@@ -275,16 +280,16 @@ window.googleMaps = {
         // Ensure level is valid
         level = level || this._default.zoom;
 
+        // Log status
+        if (this._log) {
+            console.log(`Setting map "${this._instance.id}" zoom level:`, level);
+        }
+
         // Set zoom level of current map
         this._instance.map.setZoom(level);
 
         // Update default zoom level
         this._default.zoom = level;
-
-        // Log status
-        if (this._devMode) {
-            console.log(`Set map "${this._instance.id}" zoom level:`, level);
-        }
 
         // Keep the party going
         return this;
@@ -296,16 +301,16 @@ window.googleMaps = {
         // Ensure coordinates are valid
         coords = coords || this._default.center || this._instance.bounds.getCenter();
 
+        // Log status
+        if (this._log) {
+            console.log(`Setting map "${this._instance.id}" center coordinates:`, coords);
+        }
+
         // Re-center current map
         this._instance.map.setCenter(coords);
 
         // Update default center coordinates
         this._default.center = coords;
-
-        // Log status
-        if (this._devMode) {
-            console.log(`Set map "${this._instance.id}" center coordinates:`, coords);
-        }
 
         // Keep the party going
         return this;
@@ -314,13 +319,13 @@ window.googleMaps = {
     // Fit map according to bounds
     fit: function() {
 
+        // Log status
+        if (this._log) {
+            console.log(`Fitting map "${this._instance.id}" to existing marker boundaries`);
+        }
+
         // Fit bounds of current map
         this._instance.map.fitBounds(this._instance.bounds);
-
-        // Log status
-        if (this._devMode) {
-            console.log(`Fit map "${this._instance.id}" to existing marker boundaries`);
-        }
 
         // Keep the party going
         return this;
@@ -328,6 +333,11 @@ window.googleMaps = {
 
     // Refresh the map
     refresh: function() {
+
+        // Log status
+        if (this._log) {
+            console.log(`Refreshing map "${this._instance.id}"`);
+        }
 
         // Refresh the current map
         google.maps.event.trigger(this._instance.map, 'resize');
@@ -342,7 +352,7 @@ window.googleMaps = {
     getMap: function(mapId) {
 
         // Log status
-        if (this._devMode) {
+        if (this._log) {
             console.log(`Getting existing map "${mapId}"`);
         }
 
@@ -360,7 +370,7 @@ window.googleMaps = {
         var mapId = this._instance.id;
 
         // Log status
-        if (this._devMode) {
+        if (this._log) {
             console.log(`Getting existing marker "${markerId}" from map "${mapId}"`);
         }
 
@@ -377,7 +387,7 @@ window.googleMaps = {
         var mapId = options.id;
 
         // Log status
-        if (this._devMode) {
+        if (this._log) {
             console.log(`Creating map "${mapId}"`);
         }
 
@@ -405,9 +415,20 @@ window.googleMaps = {
     // Create a new marker object
     _createMarker: function(coords, options) {
 
+        // Get map ID
+        var mapId = this._instance.id;
+
         // If marker ID is hiding in coordinates, use it
         if (coords.hasOwnProperty('id')) {
             options.id = coords.id;
+        }
+
+        // Get marker ID or generate a random one
+        var markerId = options.id || this._generateId('marker');
+
+        // Log status
+        if (this._log) {
+            console.log(`Adding to map "${mapId}", marker "${markerId}"`);
         }
 
         // Set marker position based on coordinates
@@ -415,17 +436,6 @@ window.googleMaps = {
 
         // Extend map boundaries
         this._instance.bounds.extend(coords);
-
-        // Get map ID
-        var mapId = this._instance.id;
-
-        // Get marker ID or generate a random one
-        var markerId = options.id || this._generateId('marker');
-
-        // Log status
-        if (this._devMode) {
-            console.log(`Adding to map "${mapId}", marker "${markerId}"`);
-        }
 
         // Initialize marker object
         var marker = new google.maps.Marker(options);
@@ -449,7 +459,7 @@ window.googleMaps = {
         var kmlId = options.id || this._generateId('kml');
 
         // Log status
-        if (this._devMode) {
+        if (this._log) {
             console.log(`Adding to map "${mapId}", KML layer "${kmlId}"`);
         }
 
