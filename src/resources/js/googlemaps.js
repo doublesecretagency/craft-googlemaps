@@ -24,7 +24,7 @@ window.googleMaps = {
     init: function (selection) {
 
         // Initialize
-        var dna;
+        var map, dna;
 
         // Get selected map containers
         var containers = this._whichMaps(selection);
@@ -32,16 +32,31 @@ window.googleMaps = {
         // Loop through containers
         for (var i in containers) {
 
+            // Get each map
+            map = containers[i];
+
+            // Log status
+            if (this._log) {
+                console.log(`--------------------------------------------------`);
+                console.log(`Initializing map "${map.id}"`);
+            }
+
             // Get DNA of each map
-            dna = containers[i].dataset.dna;
+            dna = map.dataset.dna;
 
             // If no DNA exists, skip this container
             if (!dna) {
+                console.warn(`[GM] Map container #${map.id} is missing DNA`);
                 continue;
             }
 
             // Render each map
             this._unpackDna(dna);
+
+            // Log status
+            if (this._log) {
+                console.log(`Finished initializing map "${map.id}" 👍`);
+            }
 
         }
 
@@ -121,7 +136,7 @@ window.googleMaps = {
         return this;
     },
 
-    // Create a set of marker objects
+    // Add a set of markers to the map
     markers: function(locations, options) {
 
         // Ensure options are valid
@@ -155,6 +170,7 @@ window.googleMaps = {
         return this;
     },
 
+    // Add a KML layer to the map
     kml: function(url, options) {
 
         // Ensure options are valid
@@ -173,12 +189,25 @@ window.googleMaps = {
         return this;
     },
 
-    // Generate a complete map
+    // Generate a complete map element
     tag: function(parentId) {
 
-        // If no valid parent container specified, return the element as-is
+        // Log status
+        if (this._log) {
+            console.log(`Rendering map "${this._instance.id}"`);
+        }
+
+        // If no valid parent container specified,
         if (!parentId || 'string' !== typeof parentId) {
+
+            // Log status
+            if (this._log) {
+                console.log(`Finished initializing map "${this._instance.id}".`);
+            }
+
+            // Return the element as-is
             return this._instance.container;
+
         }
 
         // Get specified parent container
@@ -193,7 +222,7 @@ window.googleMaps = {
 
         // Log status
         if (this._log) {
-            console.log(`Rendered map "${this._instance.id}"`);
+            console.log(`Finished initializing map "${this._instance.id}" in container "${parentId}".`);
         }
 
         // Return map container
@@ -208,6 +237,11 @@ window.googleMaps = {
         // Get specified marker
         var marker = this.getMarker(markerId);
 
+        // Log status
+        if (this._log) {
+            console.log(`On map "${this._instance.id}", hiding marker "${markerId}"`);
+        }
+
         // Detach marker from map
         marker.setMap(null);
 
@@ -220,6 +254,11 @@ window.googleMaps = {
 
         // Get specified marker
         var marker = this.getMarker(markerId);
+
+        // Log status
+        if (this._log) {
+            console.log(`On map "${this._instance.id}", showing marker "${markerId}"`);
+        }
 
         // Attach marker to current map
         marker.setMap(this._instance.map);
@@ -234,6 +273,11 @@ window.googleMaps = {
         // Get specified marker
         var marker = this.getMarker(markerId);
 
+        // Log status
+        if (this._log) {
+            console.log(`On map "${this._instance.id}", setting icon for marker "${markerId}":`, icon);
+        }
+
         // Set marker icon
         marker.setIcon(icon);
 
@@ -246,6 +290,11 @@ window.googleMaps = {
 
         // Get specified marker
         var marker = this.getMarker(markerId);
+
+        // Log status
+        if (this._log) {
+            console.log(`On map "${this._instance.id}", panning to marker "${markerId}"`);
+        }
 
         // Pan map to marker position
         this._instance.map.panTo(marker.position);
@@ -321,7 +370,7 @@ window.googleMaps = {
 
         // Log status
         if (this._log) {
-            console.log(`Fitting map "${this._instance.id}" to existing marker boundaries`);
+            console.log(`Fitting map "${this._instance.id}" to existing boundaries`);
         }
 
         // Fit bounds of current map
@@ -371,7 +420,7 @@ window.googleMaps = {
 
         // Log status
         if (this._log) {
-            console.log(`Getting existing marker "${markerId}" from map "${mapId}"`);
+            console.log(`From map "${mapId}", getting existing marker "${markerId}"`);
         }
 
         // Return marker
@@ -428,7 +477,7 @@ window.googleMaps = {
 
         // Log status
         if (this._log) {
-            console.log(`Adding to map "${mapId}", marker "${markerId}"`);
+            console.log(`On map "${mapId}", adding marker "${markerId}"`);
         }
 
         // Set marker position based on coordinates
@@ -460,7 +509,7 @@ window.googleMaps = {
 
         // Log status
         if (this._log) {
-            console.log(`Adding to map "${mapId}", KML layer "${kmlId}"`);
+            console.log(`On map "${mapId}", adding KML layer "${kmlId}"`);
         }
 
         // Initialize KML object
