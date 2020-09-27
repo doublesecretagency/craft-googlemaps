@@ -21,7 +21,7 @@ $dna = $map->getDna();
 
  - An array of data containing the complete map details. It will be used to hydrate a map's container in the DOM.
 
-## `tag(autorender = true)`
+## `tag(init = true)`
 
 :::code
 ```twig
@@ -42,7 +42,7 @@ Regardless of whether you are using Twig or PHP, this will create a new `Twig\Ma
 If you are working in Twig, you can use curly braces to output the map directly.
 :::
 
-#### `autorender`
+#### `init`
 
 Set to `true` by default. Allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig.
 

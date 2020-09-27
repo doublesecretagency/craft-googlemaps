@@ -98,7 +98,7 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
-    public function tag(): Markup
+    public function tag($init = true): Markup
     {
         // If no DNA, throw an error
         if (!$this->_dna) {

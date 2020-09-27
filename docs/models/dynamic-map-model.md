@@ -154,14 +154,7 @@ $map->styles($stylesArray);
 ---
 ---
 
-### `html($init = true)`
-
-:::warning LD TODO
-Is "tag" better than "html"?
- - Shorter
- - Easier to pronounce
- - Consistent with `img`
-:::
+### `tag($init = true)`
 
 Render the necessary `<div>` container to hold the map.
 
