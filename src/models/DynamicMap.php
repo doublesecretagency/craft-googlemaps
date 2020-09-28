@@ -31,6 +31,11 @@ class DynamicMap extends Model
 {
 
     /**
+     * @var string The ID of this map model.
+     */
+    public $id;
+
+    /**
      * @var array Collection of internal data representing a map to be rendered.
      */
     private $_dna = [];
@@ -58,13 +63,27 @@ class DynamicMap extends Model
      */
     public function __construct($locations = [], array $options = [], array $config = [])
     {
-        // Get view service
-        $view = Craft::$app->getView();
+        // Ensure options are a valid array
+        if (!$options || !is_array($options)) {
+            $options = [];
+        }
+
+        // If no ID, automatically generate a random one
+        if (!isset($options['id'])) {
+            $hash = StringHelper::randomString(6);
+            $options['id'] = "map-{$hash}";
+        }
+
+        // Set internal map ID
+        $this->id = $options['id'];
 
         // Unless otherwise specified, preload the necessary JavaScript
         if (!isset($options['js']) || !is_bool($options['js'])) {
             $options['js'] = true;
         }
+
+        // Get view service
+        $view = Craft::$app->getView();
 
         // Load assets
         if ($options['js']) {
@@ -73,7 +92,7 @@ class DynamicMap extends Model
 
         // If in devMode, enable JS logging
         if (Craft::$app->getConfig()->general->devMode) {
-            $view->registerJs('googleMaps._log = true;', $view::POS_END);
+            $view->registerJs('googleMaps.log = true;', $view::POS_END);
         }
 
         // Initialize map
@@ -110,15 +129,22 @@ class DynamicMap extends Model
 
         // If the first item is not a map, throw an error
         if ('map' != $map['type']) {
-            throw new Exception('Map model misconfigured. The chain must begin with a `.map()` segment.');
+            throw new Exception('Map model misconfigured. The chain must begin with a `map()` segment.');
         }
 
         // Compile map container
         $html = Html::modifyTagAttributes('<div>Loading map...</div>', [
-            'id' => $map['options']['id'],
+            'id' => $this->id,
             'class' => 'gm-map',
             'data-dna' => Json::encode($this->_dna),
         ]);
+
+        // Initialize map (unless suppressed)
+        if ($init) {
+            $view = Craft::$app->getView();
+            $js = "addEventListener('load', function(){googleMaps.init('{$this->id}')});";
+            $view->registerJs($js, $view::POS_END);
+        }
 
         // Return Markup
         return Template::raw($html);
@@ -140,17 +166,6 @@ class DynamicMap extends Model
 
     private function _addMap($locations, $options)
     {
-        // Ensure options are a valid array
-        if (!$options || !is_array($options)) {
-            $options = [];
-        }
-
-        // If no ID, automatically generate a random one
-        if (!isset($options['id'])) {
-            $hash = StringHelper::randomString(6);
-            $options['id'] = "map-{$hash}";
-        }
-
         // Add map to DNA
         $this->_dna[] = [
             'type' => 'map',

@@ -83,10 +83,51 @@ function DynamicMap(locations, options) {
             }
 
         });
-
-        // // Keep the party going
-        // return this;
     };
+
+    // ========================================================================= //
+
+    // Generate a complete map element
+    this.tag = function(parentId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`Rendering map "${this.id}"`);
+        }
+
+        // If no valid parent container specified
+        if (!parentId || 'string' !== typeof parentId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
+            }
+
+            // Return the element as-is
+            return this.div;
+
+        }
+
+        // Get specified parent container
+        var parent = document.getElementById(parentId);
+
+        // If parent container exists, populate it
+        if (parent) {
+            parent.appendChild(this.div);
+        } else {
+            console.warn(`[GM] Unable to find target container #${parentId}`);
+        }
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
+        }
+
+        // Return map container
+        return this.div;
+    };
+
+    // ========================================================================= //
 
     // Add a set of markers to the map
     this.markers = function(locations, options) {
@@ -139,46 +180,6 @@ function DynamicMap(locations, options) {
 
         // Keep the party going
         return this;
-    };
-
-    // Generate a complete map element
-    this.tag = function(parentId) {
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`Rendering map "${this.id}"`);
-        }
-
-        // If no valid parent container specified
-        if (!parentId || 'string' !== typeof parentId) {
-
-            // Log status
-            if (googleMaps.log) {
-                console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
-            }
-
-            // Return the element as-is
-            return this.div;
-
-        }
-
-        // Get specified parent container
-        var parent = document.getElementById(parentId);
-
-        // If parent container exists, populate it
-        if (parent) {
-            parent.appendChild(this.div);
-        } else {
-            console.warn(`[GM] Unable to find target container #${parentId}`);
-        }
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
-        }
-
-        // Return map container
-        return this.div;
     };
 
     // ========================================================================= //
@@ -383,13 +384,8 @@ function DynamicMap(locations, options) {
     // Create a new marker object
     this._createMarker = function(coords, options) {
 
-        // If marker ID is hiding in coordinates, use it
-        if (coords.hasOwnProperty('id')) {
-            this.id = coords.id;
-        }
-
         // Get marker ID or generate a random one
-        var markerId = this.id || this._generateId('marker');
+        var markerId = coords.id || options.id || this._generateId('marker');
 
         // Log status
         if (googleMaps.log) {

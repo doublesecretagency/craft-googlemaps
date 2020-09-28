@@ -2,7 +2,7 @@
 window.googleMaps = window.googleMaps || {
 
     // Log progress to console (enabled in devMode)
-    log: true,
+    log: false,
 
     // Initialize collection of maps
     _maps: {},
@@ -149,16 +149,3 @@ window.googleMaps = window.googleMaps || {
     },
 
 };
-
-// ========================================================================= //
-// ========================================================================= //
-
-// On page load, initialize all maps on the page
-addEventListener('load', function () {
-
-    googleMaps.init();
-
-    // console.log('ready!');
-
-
-});
