@@ -149,12 +149,12 @@ function DynamicMap(locations, options) {
             console.log(`Rendering map "${this.id}"`);
         }
 
-        // If no valid parent container specified,
+        // If no valid parent container specified
         if (!parentId || 'string' !== typeof parentId) {
 
             // Log status
             if (googleMaps.log) {
-                console.log(`Finished initializing map "${this.id}".`);
+                console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
             }
 
             // Return the element as-is
@@ -174,7 +174,7 @@ function DynamicMap(locations, options) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`Finished initializing map "${this.id}" in container "${parentId}".`);
+            console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
         }
 
         // Return map container
