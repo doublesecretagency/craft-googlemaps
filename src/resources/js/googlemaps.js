@@ -70,7 +70,7 @@ window.googleMaps = window.googleMaps || {
             }
 
             // Render each map
-            this._unpackDna(dna);
+            this._unpack(dna);
 
             // Log status
             if (this.log) {
@@ -124,7 +124,7 @@ window.googleMaps = window.googleMaps || {
     },
 
     // Unpack and initialize map DNA
-    _unpackDna: function(dna) {
+    _unpack: function(dna) {
 
         // Unpack the DNA sequence
         var sequence = JSON.parse(dna);
@@ -135,17 +135,23 @@ window.googleMaps = window.googleMaps || {
             return;
         }
 
-        // Get map DNA
-        var map = sequence[0];
+        // Get map DNA block
+        var block = sequence[0];
 
         // If first block is not a map, error and bail
-        if ('map' !== map.type) {
+        if ('map' !== block.type) {
             console.warn('[GM] Map DNA is misconfigured.');
             return;
         }
 
-        // Render a map from DNA, store internally
-        return new DynamicMap(map.locations, map.options);
+        // Create a new map object
+        var map = new DynamicMap(block.locations, block.options);
+
+        // Store map object for future reference
+        this._maps[map.id] = map;
+
+        // Return the map object
+        return map;
     },
 
 };
