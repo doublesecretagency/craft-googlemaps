@@ -35,6 +35,7 @@ class JsApiAsset extends AssetBundle
 
         $this->js = [
             'js/googlemaps.js',
+            'js/dynamicmap.js',
         ];
     }
 
