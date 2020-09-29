@@ -312,9 +312,11 @@ function DynamicMap(locations, options) {
         // Pass object to callback function
         var mapObject = this;
 
-        // Wait for fitbounds to finish
+        // Set zoom level of current map
+        mapObject._map.setZoom(level);
+
+        // Repeat after fitbounds has finished (if it's running)
         google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
-            // Set zoom level of current map
             mapObject._map.setZoom(level);
         });
 
@@ -339,9 +341,11 @@ function DynamicMap(locations, options) {
         // Pass object to callback function
         var mapObject = this;
 
-        // Wait for fitbounds to finish
+        // Re-center current map
+        mapObject._map.setCenter(coords);
+
+        // Repeat after fitbounds has finished (if it's running)
         google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
-            // Re-center current map
             mapObject._map.setCenter(coords);
         });
 
