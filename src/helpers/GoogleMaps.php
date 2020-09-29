@@ -31,7 +31,6 @@ class GoogleMaps
      */
     public static function map($locations = [], $options = [])
     {
-//        return GoogleMapsPlugin::$plugin->mapsJavascript->getMap($locations, $options);
         return new DynamicMap($locations, $options);
     }
 

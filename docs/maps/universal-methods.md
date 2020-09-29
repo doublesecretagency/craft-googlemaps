@@ -31,8 +31,30 @@ The PHP version of the API flows through the [`GoogleMaps` Helper Class](/helper
 #### `options`
 
  - The `options` parameter is where you can configure the map.
+ 
+:::warning Available Options
+Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
+:::
+ 
 
-> Move map options table here? (Yeah, probably)
+| Option               | Available            | Description |
+|----------------------|:--------------------:|-------------|
+| `id`                 | JavaScript, Twig/PHP | Set the `id` attribute of the map container. |
+| `width`              | JavaScript, Twig/PHP | Set the width of the map (in px). |
+| `height`             | JavaScript, Twig/PHP | Set the height of the map (in px). |
+| `zoom`               | JavaScript, Twig/PHP | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
+| `center`             | JavaScript, Twig/PHP | Set the center position of the map. |
+| `styles`             | JavaScript, Twig/PHP | An array of [map styles](/guides/styling-a-map/). |
+| `mapOptions`         | JavaScript, Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
+| `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
+| `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
+| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/maps/info-windows/). |
+| `fields`             | Twig/PHP             | Which field(s) of the element(s) should be included on the map. (includes all Address fields by default) |
+| `js`                 | Twig/PHP             | Whether to preload the necessary external JavaScript. |
+
+:::tip Additional Options Details
+For more info, please consult either the [JavaScript model](/models/javascript/#map-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#construct-locations-options).
+:::
 
 #### Returns
 
@@ -68,7 +90,22 @@ This can be chained to an existing map object. It allows you to place _additiona
 
  - Configure the markers. These options will _only_ apply to the markers created by the corresponding `locations`.
 
-> Move marker options table here? (Yeah, probably)
+:::warning Available Options
+Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
+:::
+ 
+| Option               | Available            | Description |
+|----------------------|:--------------------:|-------------|
+| `id`                 | JavaScript, Twig/PHP | Reference point for each marker. |
+| `icon`               | JavaScript, Twig/PHP | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
+| `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
+| `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
+| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/maps/info-windows/). |
+| `fields`             | Twig/PHP             | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
+
+:::tip Additional Options Details
+For more info, please consult either the [JavaScript model](/models/javascript/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
+:::
 
 #### Returns
 
@@ -97,6 +134,10 @@ Applies a KML layer to the map.
 #### `options`
 
  - An object literal in the form of a [KmlLayerOptions](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) interface.
+
+| Option             | Available            | Description |
+|--------------------|:--------------------:|-------------|
+| `KmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
 
 #### Returns
 

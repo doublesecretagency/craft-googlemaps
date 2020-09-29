@@ -109,6 +109,23 @@ For more information, check out the documentation on [Geolocation](/geolocation/
 
 ---
 
+## Manually Load JS Files
+
+You can manually load the necessary JavaScript files, if they are not being loaded automatically...
+
+:::code
+```twig
+{# Manually load required JS files #}
+{% do googleMaps.loadAssets() %}
+```
+```php
+// Manually load required JS files
+GoogleMaps::loadAssets();
+```
+:::
+
+---
+
 ## Override Google API keys
 
 If you need to override the Google API keys via Twig, you can...
