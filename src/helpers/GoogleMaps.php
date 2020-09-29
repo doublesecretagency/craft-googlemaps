@@ -11,8 +11,10 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use Craft;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 
 /**
  * Class GoogleMaps
@@ -38,6 +40,17 @@ class GoogleMaps
     public static function img($locations = [], $options = [])
     {
         return true;
+    }
+
+    // ========================================================================= //
+
+    // Load necessary JS libraries
+
+    /**
+     */
+    public static function loadAssets()
+    {
+        Craft::$app->getView()->registerAssetBundle(JsApiAsset::class);
     }
 
     // ========================================================================= //

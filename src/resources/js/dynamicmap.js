@@ -45,6 +45,12 @@ function DynamicMap(locations, options) {
         this.div.classList.add('gm-map');
         this.div.style.display = 'block';
 
+        // Set defaults
+        this._default.zoom = options.zoom || this._default.zoom;
+        this._default.center = options.center || this._default.center;
+        this._default.markerOptions = options.markerOptions || this._default.markerOptions;
+        this._default.infoWindowOptions = options.infoWindowOptions || this._default.infoWindowOptions;
+
         // Optionally set container height
         if (options.height) {
             this.div.style.height = `${options.height}px`;
@@ -58,31 +64,33 @@ function DynamicMap(locations, options) {
         // Create a new Google Map object
         this._createMap(options);
 
+        // Optionally set styles of map
+        if (options.styles) {
+            this.styles(options.styles);
+        }
+
+        // Optionally apply MapOptions
+        if (options.mapOptions) {
+            this.styles(options.mapOptions);
+        }
+
         // If locations were specified, add markers
         if (locations) {
-            this.markers(locations);
+            this.markers(locations, this._default.markerOptions);
         }
 
         // Fit map to marker boundaries
         this.fit();
 
-        // Pass object to nested functions
-        var mapObject = this;
+        // Optionally zoom the map
+        if (options.zoom) {
+            this.zoom(options.zoom);
+        }
 
-        // Wait for fitbounds to finish
-        google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
-
-            // Optionally zoom the map
-            if (options.zoom) {
-                mapObject.zoom(options.zoom);
-            }
-
-            // Optionally center the map
-            if (options.center) {
-                mapObject.center(options.center);
-            }
-
-        });
+        // Optionally center the map
+        if (options.center) {
+            this.center(options.center);
+        }
     };
 
     // ========================================================================= //
@@ -133,7 +141,7 @@ function DynamicMap(locations, options) {
     this.markers = function(locations, options) {
 
         // Ensure options are valid
-        options = options || {};
+        options = options || this._default.markerOptions || {};
 
         // Set map
         options.map = this._map;
@@ -280,7 +288,7 @@ function DynamicMap(locations, options) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`Setting map "${this.id}" styles:`, stylesArray);
+            console.log(`Styling map "${this.id}"`);
         }
 
         // Apply collection of styles
@@ -298,11 +306,17 @@ function DynamicMap(locations, options) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`Setting map "${this.id}" zoom level:`, level);
+            console.log(`Zooming map "${this.id}" to level`, level);
         }
 
-        // Set zoom level of current map
-        this._map.setZoom(level);
+        // Pass object to callback function
+        var mapObject = this;
+
+        // Wait for fitbounds to finish
+        google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
+            // Set zoom level of current map
+            mapObject._map.setZoom(level);
+        });
 
         // Update default zoom level
         this._default.zoom = level;
@@ -319,11 +333,17 @@ function DynamicMap(locations, options) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`Setting map "${this.id}" center coordinates:`, coords);
+            console.log(`Centering map "${this.id}" on coordinates`, coords);
         }
 
-        // Re-center current map
-        this._map.setCenter(coords);
+        // Pass object to callback function
+        var mapObject = this;
+
+        // Wait for fitbounds to finish
+        google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
+            // Re-center current map
+            mapObject._map.setCenter(coords);
+        });
 
         // Update default center coordinates
         this._default.center = coords;

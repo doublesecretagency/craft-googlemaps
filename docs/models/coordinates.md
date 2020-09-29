@@ -19,12 +19,12 @@ A set of coordinates is handled in this common format. Any place you encounter a
 
 | Where               | Specifically |   |
 |:--------------------|:-------------|---|
-| Address Fields      | Available on the parent Location Model. | [Reference](/models/location-model/#coords) |
-| Visitor Geolocation | Available on the parent Location Model. | [Reference](/models/location-model/#coords) |
-| Geocoding (Lookup)  | In a set of geocoding results. | [Reference](/geocoding/methods/#coords) |
-| Proximity Search    | As the target of a proximity search. | [Reference](/proximity-search/options/#target) |
 | Maps                | As the center point of a map. | [Reference](/maps/dynamic/#options) |
 | Info Windows        | As a predefined value in an info window template. | [Reference](/maps/info-windows/#available-variables) |
+| Proximity Search    | As the target of a proximity search. | [Reference](/proximity-search/options/#target) |
+| Geocoding (Lookup)  | In a set of geocoding results. | [Reference](/geocoding/methods/#coords) |
+| Address Fields      | Available on the parent Location Model. | [Reference](/models/location-model/#coords) |
+| Visitor Geolocation | Available on the parent Location Model. | [Reference](/models/location-model/#coords) |
  
 ## Google Maps Coordinates
 
