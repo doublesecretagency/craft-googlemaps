@@ -40,13 +40,13 @@ window.googleMaps = window.googleMaps || {
     },
 
     // Initialize specified maps
-    init: function(selection) {
+    init: function(mapId) {
 
         // Initialize
         var map, dna;
 
         // Get selected map containers
-        var containers = this._whichMaps(selection);
+        var containers = this._whichMaps(mapId);
 
         // Loop through containers
         for (var i in containers) {

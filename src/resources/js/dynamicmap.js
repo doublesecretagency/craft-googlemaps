@@ -95,48 +95,6 @@ function DynamicMap(locations, options) {
 
     // ========================================================================= //
 
-    // Generate a complete map element
-    this.tag = function(parentId) {
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`Rendering map "${this.id}"`);
-        }
-
-        // If no valid parent container specified
-        if (!parentId || 'string' !== typeof parentId) {
-
-            // Log status
-            if (googleMaps.log) {
-                console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
-            }
-
-            // Return the element as-is
-            return this.div;
-
-        }
-
-        // Get specified parent container
-        var parent = document.getElementById(parentId);
-
-        // If parent container exists, populate it
-        if (parent) {
-            parent.appendChild(this.div);
-        } else {
-            console.warn(`[GM] Unable to find target container #${parentId}`);
-        }
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
-        }
-
-        // Return map container
-        return this.div;
-    };
-
-    // ========================================================================= //
-
     // Add a set of markers to the map
     this.markers = function(locations, options) {
 
@@ -185,94 +143,6 @@ function DynamicMap(locations, options) {
 
         // Create a new KML layer
         this._createKml(url, options);
-
-        // Keep the party going
-        return this;
-    };
-
-    // ========================================================================= //
-
-    // Get a specified marker object
-    this.getMarker = function(markerId) {
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
-        }
-
-        // Return marker
-        return this._markers[markerId];
-    };
-
-    // ========================================================================= //
-
-    // Hide a marker
-    this.hideMarker = function(markerId) {
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On map "${this.id}", hiding marker "${markerId}"`);
-        }
-
-        // Detach marker from map
-        marker.setMap(null);
-
-        // Keep the party going
-        return this;
-    };
-
-    // Show a marker
-    this.showMarker = function(markerId) {
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On map "${this.id}", showing marker "${markerId}"`);
-        }
-
-        // Attach marker to current map
-        marker.setMap(this._map);
-
-        // Keep the party going
-        return this;
-    };
-
-    // Set the icon of an existing marker
-    this.setMarkerIcon = function(markerId, icon) {
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
-        }
-
-        // Set marker icon
-        marker.setIcon(icon);
-
-        // Keep the party going
-        return this;
-    };
-
-    // Pan map to center on a specific marker
-    this.panToMarker = function(markerId) {
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On map "${this.id}", panning to marker "${markerId}"`);
-        }
-
-        // Pan map to marker position
-        this._map.panTo(marker.position);
 
         // Keep the party going
         return this;
@@ -384,6 +254,136 @@ function DynamicMap(locations, options) {
 
         // Keep the party going
         return this;
+    };
+
+    // ========================================================================= //
+
+    // Get a specified marker object
+    this.getMarker = function(markerId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
+        }
+
+        // Return marker
+        return this._markers[markerId];
+    };
+
+    // ========================================================================= //
+
+    // Pan map to center on a specific marker
+    this.panToMarker = function(markerId) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", panning to marker "${markerId}"`);
+        }
+
+        // Pan map to marker position
+        this._map.panTo(marker.position);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Set the icon of an existing marker
+    this.setMarkerIcon = function(markerId, icon) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
+        }
+
+        // Set marker icon
+        marker.setIcon(icon);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Hide a marker
+    this.hideMarker = function(markerId) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", hiding marker "${markerId}"`);
+        }
+
+        // Detach marker from map
+        marker.setMap(null);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Show a marker
+    this.showMarker = function(markerId) {
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", showing marker "${markerId}"`);
+        }
+
+        // Attach marker to current map
+        marker.setMap(this._map);
+
+        // Keep the party going
+        return this;
+    };
+
+    // ========================================================================= //
+
+    // Generate a complete map element
+    this.tag = function(parentId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`Rendering map "${this.id}"`);
+        }
+
+        // If no valid parent container specified
+        if (!parentId || 'string' !== typeof parentId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
+            }
+
+            // Return the element as-is
+            return this.div;
+
+        }
+
+        // Get specified parent container
+        var parent = document.getElementById(parentId);
+
+        // If parent container exists, populate it
+        if (parent) {
+            parent.appendChild(this.div);
+        } else {
+            console.warn(`[GM] Unable to find target container #${parentId}`);
+        }
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
+        }
+
+        // Return map container
+        return this.div;
     };
 
     // ========================================================================= //

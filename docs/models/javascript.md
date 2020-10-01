@@ -1,12 +1,13 @@
 # JavaScript
 
-There is a JavaScript file which gets automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. It will be dynamically loaded into the `cpresources` folder...
+There are two JavaScript files which get automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. They will be dynamically loaded into the `cpresources` folder.
 
 ```
-/cpresources/******/js/googlemaps.js"
+/cpresources/.../js/dynamicmap.js"
+/cpresources/.../js/googlemaps.js"
 ```
 
-This will load an object called `googleMaps`. It contains the following methods...
+This will load an object called `googleMaps`, which contains the following methods...
 
 ## Public Methods
 
