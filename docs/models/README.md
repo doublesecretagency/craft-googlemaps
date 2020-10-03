@@ -33,7 +33,3 @@ The Static Map Model is responsible for generating static maps. Initializing it 
 ### [Coordinates](/models/coordinates/)
 
 Not quite a Model, Coordinates define a standard format for `coords` values used within the plugin. It's also compatible with many facets of the Google Maps JavaScript API.
-
-### [JavaScript](/models/javascript/)
-
-There is a JavaScript model which largely parallels the Dynamic Map Model. It can be used to easily create maps using JS, with a syntax that is similar to how a map would be created in Twig or PHP.

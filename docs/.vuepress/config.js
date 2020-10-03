@@ -66,6 +66,7 @@ module.exports = {
                 items: [
                     {text: 'Settings', link: '/settings/'},
                     {text: 'Helper', link: '/helper/'},
+                    {text: 'JavaScript', link: '/javascript/'},
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
                     {text: 'Events', link: '/events/'},
@@ -127,6 +128,11 @@ module.exports = {
             '/helper/': [
                 '',
             ],
+            '/javascript/': [
+                '',
+                'googlemaps.js',
+                'dynamicmap.js',
+            ],
             '/models/': [
                 '',
                 'address-model',
@@ -139,7 +145,6 @@ module.exports = {
                 'dynamic-map-model',
                 'static-map-model',
                 'coordinates',
-                'javascript',
             ],
             '/services/': [
                 '',
