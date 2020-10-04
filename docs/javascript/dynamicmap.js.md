@@ -1,12 +1,20 @@
 # `dynamicmap.js`
 
-This file contains the `DynamicMap` model, which can be used to create chainable JS map objects.
+This file contains the `DynamicMap` model, which can be used to create chainable Google Maps map objects.
 
 :::warning Don't access directly
 It is extremely rare to need to access this model directly, you will almost always use the [`googleMaps` object](/javascript/googlemaps.js/) to create and retrieve map objects.
 :::
 
 For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
+
+### The `map` variable
+
+For each example on this page, a `map` variable will be an instance of a specific `DynamicMap` object. Each example assumes that the `map` object has already been initialized, as demonstrated on the [`googlemaps.js` page](/javascript/googlemaps.js/).
+
+:::tip Get a Map
+A `map` can be _created_ using `googleMaps.map`, or _retrieved_ using `googleMaps.getMap`.
+:::
 
 ## Public Methods
 
@@ -88,7 +96,6 @@ map.styles(stylesArray);
 ---
 ---
 
-
 ### `zoom(level)`
 
 ```js
@@ -162,6 +169,18 @@ var marker = map.getMarker(markerId);
 #### Returns
 
  - A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
+ 
+:::warning
+If the marker has been created from an Element, it will have a marker ID matching this formula:
+
+```
+[ELEMENT ID]-[FIELD HANDLE]
+```
+
+If the marker has been created manually via JavaScript, it will use the marker ID specified in the options.
+
+Otherwise, new markers will use a randomly generated marker ID.
+:::
 
 ---
 ---
@@ -169,7 +188,7 @@ var marker = map.getMarker(markerId);
 ### `panToMarker(markerId)`
 
 ```js
-map.panToMarker('33.address');
+map.panToMarker('33-address');
 ```
 
 Re-center map on the specified marker.
@@ -184,7 +203,7 @@ Re-center map on the specified marker.
 ### `setMarkerIcon(markerId, icon)`
 
 ```js
-map.setMarkerIcon('33.address', icon);
+map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
 ```
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
@@ -203,7 +222,7 @@ Set the icon of an existing marker. Internally uses [`setIcon`](https://develope
 ### `hideMarker(markerId)`
 
 ```js
-map.hideMarker('33.address');
+map.hideMarker('33-address');
 ```
 
 Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
@@ -218,7 +237,7 @@ Hide a marker. The marker will not be destroyed, it will simply be detached from
 ### `showMarker(markerId)`
 
 ```js
-map.showMarker('33.address');
+map.showMarker('33-address');
 ```
 
 Show a marker. The marker will be re-attached to the map.

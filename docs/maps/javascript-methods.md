@@ -9,7 +9,7 @@ In addition to all the [Universal Methods](/maps/universal-methods/) available i
 googleMaps.map(locations, {'id':'my-map'}).styles(stylesArray);
 
 // Get the existing map, pan to marker, then adjust zoom level
-googleMaps.getMap('my-map').panToMarker('33.address').zoom(10)
+googleMaps.getMap('my-map').panToMarker('33-address').zoom(10)
 ```
 
 ## `zoom(level)`
@@ -63,7 +63,7 @@ Refresh an existing map. You may need to do this after the page has been resized
 ## `panToMarker(markerId)`
 
 ```js
-map.panToMarker('33.address');
+map.panToMarker('33-address');
 ```
 
 Re-center map on the specified marker.
@@ -75,7 +75,7 @@ Re-center map on the specified marker.
 ## `setMarkerIcon(markerId, icon)`
 
 ```js
-map.setMarkerIcon('33.address', icon);
+map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
 ```
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
@@ -91,7 +91,7 @@ Set the icon of an existing marker. Internally uses [`setIcon`](https://develope
 ## `hideMarker(markerId)`
 
 ```js
-map.hideMarker('33.address');
+map.hideMarker('33-address');
 ```
 
 Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
@@ -103,7 +103,7 @@ Hide a marker. The marker will not be destroyed, it will simply be detached from
 ## `showMarker(markerId)`
 
 ```js
-map.showMarker('33.address');
+map.showMarker('33-address');
 ```
 
 Show a marker. The marker will be re-attached to the map.

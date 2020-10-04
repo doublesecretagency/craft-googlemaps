@@ -1,6 +1,6 @@
 # JavaScript
 
-There are two JavaScript files which get automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. They will be dynamically loaded into the `cpresources` folder.
+There are two JavaScript files which are automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. They will be copied and loaded from the public `cpresources` folder.
 
 ```
 /cpresources/{hash}/js/
@@ -8,7 +8,7 @@ There are two JavaScript files which get automatically loaded into the front-end
    - googlemaps.js
 ```
 
-The `googlemaps.js` file is the [main entry point](/javascript/googlemaps.js/). It allows you to create a new map, load an existing map, and initialize one or more maps. The globally-accessible `googleMaps` JavaScript object will be automatically preloaded by this file.
+The `googlemaps.js` file is the [main entry point](/javascript/googlemaps.js/). It allows you to create a new map, load an existing map, or initialize one or more map containers. The globally-accessible `googleMaps` JavaScript object will be automatically preloaded by this file.
 
 The `dynamicmap.js` file contains a [`DynamicMap` JavaScript model](/javascript/dynamicmap.js/), which is used to generate individual `DynamicMap` objects for each map. Each one is a chainable instance of a fully functional Google Map.
 

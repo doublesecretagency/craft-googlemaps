@@ -1,36 +1,53 @@
 # `googleMaps.js`
 
-This file will automatically load the `googleMaps` JavaScript object into the global scope.
+This file contains the `googleMaps` JavaScript object. Additionally, a `googleMaps` variable will be automatically set as a singleton in the global scope at runtime.
 
 **Use this object as a starting point for creating maps.**
 
+```js
+var map = googleMaps.map(locations);
+```
+
 :::warning How it works
-Internally, the `googleMaps` object will create instances of the [`DynamicMap` model](/javascript/dynamicmap.js/). Each new map will generate its own `DynamicMap` object, which can then be used to chain additional behaviors as desired.
+Internally, the `googleMaps` object can create multiple instances of the [`DynamicMap` model](/javascript/dynamicmap.js/). Each `DynamicMap` object will be directly tied to a Google Maps map on the page.
+
+The `googleMaps` object also keeps a reference to all maps which have already been created, so you can easily access them later.
 :::
 
 For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
 
 ## Public Methods
 
-### `map(locations = [], options = [])`
+### `map(locations = [], options = {})`
 
-Calling this method will create a new map object. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
+Calling this method will create a new [`DynamicMap` map object](/javascript/dynamicmap.js/).
 
 ```js
-var map = googleMaps.map(locations);
+// Marker locations
+var locations = [
+    {'lat': 40.730610, 'lng': -73.935242},  // New York
+    {'lat': 34.052235, 'lng': -118.243683}, // Los Angeles
+    {'lat': 41.881832, 'lng': -87.623177}   // Chicago
+];
+
+// Map options
+var options = {
+    'id': 'us-cities',
+    'height': 300,
+    'zoom': 5
+};
+
+// Create a new DynamicMap object
+var map = googleMaps.map(locations, options);
 ```
 
-:::warning The "map" variable
-For each of the remaining examples on this page, the `map` variable will be an instance of the `googleMaps` object. In each example, you will see how map methods can be chained at will.
+The map object is a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
 
-It will be assumed that the `map` object has already been initialized, as demonstrated above.
-:::
-
-Once you have the map object in hand, you can then chain other methods to further customize the map. There is no limit as to how many methods you can chain, nor what order they should be in.
+Once you have the map object in hand, you can then chain methods from within the `DynamicMap` object to further customize the map. There is no limit as to how many methods you can chain, nor what order they should appear in.
 
 #### Arguments
 
- - `locations` (_array_|_coords_) - See a description of acceptable [locations...](/maps/locations/)
+ - `locations` (_coords_|_array_) - A set of [coordinates](/models/coordinates/), or an array of coordinate sets.
  - `options` (_array_) - Optional parameters to configure the map. (see below)
 
 | Option               | Type                | Default            | Description |
@@ -48,10 +65,10 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Returns
 
-_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
+ - A chainable `DynamicMap` object.
 
 :::tip Locations are Skippable
-If you skip the `locations` parameter, a blank map will be created.
+If you omit the `locations` parameter, or pass in an empty array, a blank map will be created.
 :::
 
 ---
@@ -60,18 +77,18 @@ If you skip the `locations` parameter, a blank map will be created.
 ### `getMap(mapId)`
 
 ```js
-var map = googleMaps.getMap(mapId);
+var map = googleMaps.getMap('my-map');
 ```
 
 Retrieve an existing map object.
 
-#### `mapId`
+#### Arguments
 
- - The ID of the map that you want to access.
+ - `mapId` (_string_) - The ID of the map that you want to access.
 
 #### Returns
 
- - Map object (for chaining)
+ - A chainable `DynamicMap` object.
 
 ---
 ---
@@ -84,7 +101,9 @@ googleMaps.init();
 
 Initialize a map, or a group of maps. This will be automatically run (unless disabled) for each map on the page.
 
-#### `mapId`
+#### Arguments
+
+ - `mapId` (_string_|_array_|_null_) - The ID of the map that you want to access. Can also specify an array of map IDs. Can also pass nothing (or _null_) to initialize all maps on the page.
 
 Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
 
@@ -93,7 +112,7 @@ Depending on what is specified as the `mapId` value, the `init` method can initi
 googleMaps.init();
 
 // String - Initialize only the specified map
-googleMaps.init('my-custom-map');
+googleMaps.init('my-map');
 
 // Array - Initialize all specified maps
 googleMaps.init(['map-one', 'map-two', 'map-three']);
@@ -110,5 +129,8 @@ googleMaps.init(['map-one', 'map-two', 'map-three']);
 
  - _bool_ - Determines whether the JavaScript methods should log their progress to the console.
 
-Set to `false` by default. Will be set to `true` automatically when [`devMode`](https://craftcms.com/knowledge-base/what-dev-mode-does) is enabled. Can be enabled manually by simply setting it to `true` in JavaScript.
+Set to `false` by default. Can be enabled by setting to `true` before any methods have been run.
 
+:::tip devMode
+The `log` property will automatically be set to `true` when [`devMode`](https://craftcms.com/knowledge-base/what-dev-mode-does) is enabled.
+:::
