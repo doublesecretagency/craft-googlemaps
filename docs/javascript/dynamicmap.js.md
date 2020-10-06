@@ -201,116 +201,143 @@ map.refresh();
 ---
 
 ## Marker Methods
-
-### `getMarker(markerId)`
-
-```js
-var marker = map.getMarker('33-address');
-```
-
-#### `markerId`
-
- - The ID of the marker that you want to access.
-
-#### Returns
-
- - A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
  
-:::warning
+:::warning Automatically generated marker IDs
 If the marker has been created from an Element, it will have a marker ID matching this formula:
 
 ```
-[ELEMENT ID]-[FIELD HANDLE]
+    [ELEMENT ID]-[FIELD HANDLE]
 ```
 
-If the marker has been created manually via JavaScript, it will use the marker ID specified in the options.
+Let's say you have an Address field with the handle of `address` attached to your Entries. When you use those entries to create a map, the markers will generate IDs similar to this:
 
-Otherwise, new markers will use a randomly generated marker ID.
+```
+    21-address
+    33-address
+    42-address
+    etc...
+```
 :::
+
+Conversely, if the markers have been created manually via JavaScript, it will use the marker ID specified in the options, or even stowed alongside the coordinates.
+
+If no marker ID is specified, new markers will use a randomly generated ID.
 
 ---
 ---
 
 ### `panToMarker(markerId)`
 
+Re-center map on the specified marker.
+
 ```js
 map.panToMarker('33-address');
 ```
 
-Re-center map on the specified marker.
+#### Arguments
 
-#### `markerId`
+ - `markerId` (_string_) - The ID of the marker that you want to pan to.
 
- - The ID of the marker that you want to pan to.
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `setMarkerIcon(markerId, icon)`
 
+Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
+
 ```js
 map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
 ```
 
-Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
+#### Arguments
 
-#### `markerId`
+ - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
+ - `icon` (_string_|[Icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon)) - The icon to set on the specified marker.
 
- - The ID of the marker that you want to set the icon for.
+#### Returns
 
-#### `icon`
-
- - The icon to set on the specified marker. Can be either a _string_ or an [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `hideMarker(markerId)`
 
+Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+
 ```js
 map.hideMarker('33-address');
 ```
 
-Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+#### Arguments
 
-#### `markerId`
+ - `markerId` (_string_) - The ID of the marker that you want to hide.
 
- - The ID of the marker that you want to hide.
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `showMarker(markerId)`
 
+Show a marker. The marker will be re-attached to the map.
+
 ```js
 map.showMarker('33-address');
 ```
 
-Show a marker. The marker will be re-attached to the map.
+#### Arguments
 
-#### `markerId`
-
- - The ID of the marker that you want to show.
-
-
----
----
-
-### `tag()`
-
-Creates a new `<div>` element, waiting to be placed in the DOM.
+ - `markerId` (_string_) - The ID of the marker that you want to show.
 
 #### Returns
 
-_node_ - A DOM element.
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+:::warning Breaking the Chain
+The following two methods are the only ones which do not return a chainable map object.
+:::
+
+### `getMarker(markerId)`
+
+Get the [Google Maps Marker object](https://developers.google.com/maps/documentation/javascript/reference/marker) of a specified marker.
 
 ```js
-// Get your map container
-var container = document.getElementById('your-map-container');
-
-// A div element containing the fully-rendered map
-var mapDiv = map.tag();
-
-// Add the map to your container
-container.appendChild(mapDiv);
+var marker = map.getMarker('33-address');
 ```
+
+#### Arguments
+
+ - `markerId` (_string_) - The ID of the marker that you want to access.
+
+#### Returns
+
+ - A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
+
+---
+---
+
+### `tag(parentId = null)`
+
+Creates a new `<div>` element, waiting to be placed in the DOM. If a `parentId` is specified, the element will be automatically injected into the specified parent element.
+
+```js
+map.tag('target-parent-id');
+```
+
+#### Arguments
+
+ - `parentId` (_string_|_null_) - Optional. The ID of the target parent container for the newly created element.
+
+#### Returns
+
+ - A new DOM element. Will always return the newly created element, regardless of whether it was automatically injected into a parent container.

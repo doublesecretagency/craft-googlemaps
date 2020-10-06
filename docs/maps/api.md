@@ -60,9 +60,12 @@ $map = GoogleMaps::map($locations, $options);
 :::
 
 :::warning Two flavors of "map object"
-Internally, there are really two different things that are being referred to as the "map object". When working with Twig or PHP, it will be a [Dynamic Map Model](/models/dynamic-map-model/). But in JavaScript, the map object is actually a self-reference to the [`googleMaps` model](/models/javascript/).
+Internally, there are really two different things that are being referred to as the "map object".
 
- The structure of this object varies greatly between JS and PHP/Twig, but the API has been designed to make usage nearly identical regardless of language.
+ - In Twig/PHP, it's a [Dynamic Map Model](/models/dynamic-map-model/).
+ - In JavaScript, it's a [`DynamicMap` model](/javascript/dynamicmap.js/).
+
+ The internal structure of this object varies greatly between JS and PHP/Twig, but the API has been designed to make usage nearly identical regardless of language.
 :::
 
 ## Ending a Chain

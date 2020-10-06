@@ -258,20 +258,6 @@ function DynamicMap(locations, options) {
 
     // ========================================================================= //
 
-    // Get a specified marker object
-    this.getMarker = function(markerId) {
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
-        }
-
-        // Return marker
-        return this._markers[markerId];
-    };
-
-    // ========================================================================= //
-
     // Pan map to center on a specific marker
     this.panToMarker = function(markerId) {
 
@@ -342,6 +328,20 @@ function DynamicMap(locations, options) {
 
         // Keep the party going
         return this;
+    };
+
+    // ========================================================================= //
+
+    // Get a specific Google Maps marker object
+    this.getMarker = function(markerId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
+        }
+
+        // Return marker
+        return this._markers[markerId];
     };
 
     // ========================================================================= //
