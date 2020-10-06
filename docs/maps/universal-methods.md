@@ -143,21 +143,21 @@ Applies a KML layer to the map.
 
  - Map object (for chaining)
 
-## `styles(stylesArray)`
+## `styles(styleSet)`
 
 :::code
 ```js
-map.styles(stylesArray);
+map.styles(styleSet);
 ```
 ```twig
-{% do map.styles(stylesArray) %}
+{% do map.styles(styleSet) %}
 ```
 ```php
-$map->styles($stylesArray);
+$map->styles($styleSet);
 ```
 :::
 
-#### `stylesArray`
+#### `styleSet`
 
  - A collection of styles, most likely generated elsewhere. See the [Styling a Map](/guides/styling-a-map/) guide for more information.
 

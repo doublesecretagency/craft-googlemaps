@@ -16,7 +16,7 @@ var map = googleMaps.map(locations, options);
 // More complex
 var map = googleMaps.map()
     .markers(locations, options)
-    .styles(stylesArray)
+    .styles(styleSet)
     .kml(url);
 ```
 ```twig
@@ -26,7 +26,7 @@ var map = googleMaps.map()
 {# More complex #}
 {% set map = googleMaps.map()
     .markers(locations, options)
-    .styles(stylesArray)
+    .styles(styleSet)
     .kml(url) %}
 ```
 ```php
@@ -36,7 +36,7 @@ $map = GoogleMaps::map($locations, $options);
 // More complex
 $map = GoogleMaps::map()
     ->markers($locations, $options)
-    ->styles($stylesArray)
+    ->styles($styleSet)
     ->kml($url);
 ```
 :::

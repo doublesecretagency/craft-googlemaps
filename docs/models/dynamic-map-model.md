@@ -122,7 +122,7 @@ $map->kml($files);
 ---
 ---
 
-### `styles($stylesArray)`
+### `styles($styleSet)`
 
 Style a map based on a given array of styles.
 
@@ -135,7 +135,7 @@ There are many ways to generate an array of map styles. The most popular approac
 
 #### Arguments
 
- - `$stylesArray` (_array_) - A set of styles to be applied to the map.
+ - `$styleSet` (_array_) - A set of styles to be applied to the map.
 
 #### Returns
 
@@ -143,10 +143,10 @@ _self_ - This instance of the Dynamic Map Model. By returning a static self refe
 
 :::code
 ```twig
-{% do map.styles(stylesArray) %}
+{% do map.styles(styleSet) %}
 ```
 ```php
-$map->styles($stylesArray);
+$map->styles($styleSet);
 ```
 :::
 

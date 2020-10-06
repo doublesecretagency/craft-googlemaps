@@ -6,7 +6,7 @@ In addition to all the [Universal Methods](/maps/universal-methods/) available i
 
 ```js
 // Create a new map, then style the map
-googleMaps.map(locations, {'id':'my-map'}).styles(stylesArray);
+googleMaps.map(locations, {'id':'my-map'}).styles(styleSet);
 
 // Get the existing map, pan to marker, then adjust zoom level
 googleMaps.getMap('my-map').panToMarker('33-address').zoom(10)
