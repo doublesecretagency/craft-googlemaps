@@ -151,10 +151,10 @@ function DynamicMap(locations, options) {
     // ========================================================================= //
 
     // Apply a batch of styles to the map
-    this.styles = function(stylesArray) {
+    this.styles = function(styleSet) {
 
         // Ensure styles are valid
-        stylesArray = stylesArray || {};
+        styleSet = styleSet || {};
 
         // Log status
         if (googleMaps.log) {
@@ -162,7 +162,7 @@ function DynamicMap(locations, options) {
         }
 
         // Apply collection of styles
-        this._map.setOptions({styles: stylesArray});
+        this._map.setOptions({styles: styleSet});
 
         // Keep the party going
         return this;

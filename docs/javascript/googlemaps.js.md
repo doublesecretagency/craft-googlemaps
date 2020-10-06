@@ -16,7 +16,7 @@ The `googleMaps` object also keeps a reference to all maps which have already be
 
 For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
 
-## Public Methods
+## Map Management Methods
 
 ### `map(locations = [], options = {})`
 
@@ -92,6 +92,8 @@ Retrieve an existing map object.
 
 ---
 ---
+
+## Map Initialization Methods
 
 ### `init(mapId = null)`
 

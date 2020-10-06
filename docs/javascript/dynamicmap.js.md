@@ -1,9 +1,9 @@
 # `dynamicmap.js`
 
-This file contains the `DynamicMap` model, which can be used to create chainable Google Maps map objects.
+This file contains the `DynamicMap` model, which can be used to create dynamic, chainable map objects. Each instance of a `DynamicMap` object correlates with a different Google Map instance.
 
 :::warning Don't access directly
-It is extremely rare to need to access this model directly, you will almost always use the [`googleMaps` object](/javascript/googlemaps.js/) to create and retrieve map objects.
+It is extremely rare to need to access this model directly. You will almost always use the [`googleMaps` singleton object](/javascript/googlemaps.js/) to create and retrieve map objects.
 :::
 
 For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
@@ -16,15 +16,23 @@ For each example on this page, a `map` variable will be an instance of a specifi
 A `map` can be _created_ using `googleMaps.map`, or _retrieved_ using `googleMaps.getMap`.
 :::
 
-## Public Methods
+## Map Methods
 
 ### `markers(locations, options = [])`
 
-Append markers to an existing map object.
+Add markers to an existing map. Does not overwrite any existing markers.
+
+```js
+map.markers([
+    {'lat': 40.730610, 'lng': -73.935242},  // New York
+    {'lat': 34.052235, 'lng': -118.243683}, // Los Angeles
+    {'lat': 41.881832, 'lng': -87.623177}   // Chicago
+]);
+```
 
 #### Arguments
 
- - `locations` (_array_|_coords_) - See a description of acceptable [locations...](/maps/locations/)
+ - `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/maps/locations/)
  - `options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type                 | Default | Description |
@@ -37,129 +45,167 @@ Append markers to an existing map object.
 
 #### Returns
 
-_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
-
-```js
-map.markers(locations);
-```
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
-### `kml(files, options = [])`
+### `kml(url, options = [])`
 
-Append one or more KML layers to an existing map object.
+Append a KML layer to an existing map object.
 
 #### Arguments
 
- - `files` (_array_|_string_)
- - `options` (_array_) - Optional parameters to configure the KML layers. (see below)
+ - `url` (_string_) - Publicly accessible URL of the KML file.
+ - `options` (_array_) - Optional parameters to configure the KML layer. (see below)
  
 | Option             | Type     | Default | Description |
-|--------------------|:--------:|:-------:|-------------|
+|--------------------|:--------:|:-------:|-------------
+| `id`               | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
 | `KmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+
+```js
+map.kml('https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml');
+```
+
+:::tip Creating a KML file
+KML files can be created using [Google My Maps](https://www.google.com/maps/about/mymaps/) or a similar service.
+:::
+
+:::warning Must be publicly accessible
+In order for a KML file to work, it must exist at a publicly available URL.
+:::
 
 #### Returns
 
-_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
-
-```js
-map.kml(files);
-```
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
-### `styles(stylesArray)`
+### `styles(styleSet)`
 
-Style a map based on a given array of styles.
+Style a map based on a given collection of styles.
 
 :::tip Generating Styles
 There are many ways to generate an array of map styles. The most popular approach is to use a service like one of the following:
 
- - example 1
- - example 2
+ - [Google Styling Wizard](https://mapstyle.withgoogle.com)
+ - [Snazzy Maps](https://snazzymaps.com/)
 :::
 
 #### Arguments
 
- - `stylesArray` (_array_) - A set of styles to be applied to the map.
+ - `styleSet` (_array_) - A set of styles to be applied to the map.
+
+```js
+map.styles([
+    {
+        "featureType": "landscape",
+        "stylers": [
+            {"color": "#f9ddc5"},
+            {"lightness": -7}
+        ]
+    },
+    {
+        "featureType": "road",
+        "stylers": [
+            {"color": "#813033"},
+            {"lightness": 43}
+        ]
+    }
+]);
+```
 
 #### Returns
 
-_self_ - This instance of the `googleMaps` object. By returning a static self reference, chaining is possible.
-
-```js
-map.styles(stylesArray);
-```
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `zoom(level)`
 
+Change the map's zoom level.
+
+#### Arguments
+
+ - `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
+
 ```js
 map.zoom(10);
 ```
 
-Change the map's zoom level.
-
-#### `level`
-
- - The new zoom level. Must be an integer between `1` - `22`.
- 
 :::tip Zoom Level Reference
  - `1` is zoomed out, a view of the entire planet.
  - `22` is zoomed in, as close to the ground as possible.
 :::
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `center(coords)`
 
+Re-center the map.
+
+#### Arguments
+
+ - `coords` (_[coords](/models/coordinates/)_) A simple key-value set of coordinates.
+
 ```js
 map.center({
-   "lat": 32.3113966,
-   "lng": -64.7527469
+   'lat': 32.3113966,
+   'lng': -64.7527469
 });
 ```
 
-Re-center the map.
+#### Returns
 
-#### `coords`
-
- - A simple key-value set of [coordinates](/models/coordinates/).
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `fit()`
 
+Zoom and center map to fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+
 ```js
 map.fit();
 ```
 
-Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
 
 ### `refresh()`
 
+Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
+
 ```js
 map.refresh();
 ```
 
-Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
+
+## Marker Methods
 
 ### `getMarker(markerId)`
 
 ```js
-var marker = map.getMarker(markerId);
+var marker = map.getMarker('33-address');
 ```
 
 #### `markerId`

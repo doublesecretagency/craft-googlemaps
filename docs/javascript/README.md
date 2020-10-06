@@ -1,9 +1,9 @@
 # JavaScript
 
-There are two JavaScript files which are automatically loaded into the front-end (though this can be disabled) whenever you add a map to a page. They will be copied and loaded from the public `cpresources` folder.
+There are two JavaScript files which are automatically loaded into the front-end (although this can be disabled) whenever a map is included on the page. The files will be copied, and loaded from the public `cpresources` folder.
 
 ```
-/cpresources/{hash}/js/
+/web/cpresources/{hash}/js/
    - dynamicmap.js
    - googlemaps.js
 ```
