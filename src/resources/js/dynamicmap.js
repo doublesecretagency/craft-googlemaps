@@ -209,8 +209,8 @@ function DynamicMap(locations, options) {
         // Re-center current map
         mapObject._map.setCenter(coords);
 
-        // Repeat after fitbounds has finished (if it's running)
-        google.maps.event.addListenerOnce(this._map, 'bounds_changed', function() {
+        // Repeat after bounds have changed (if they are still changing)
+        google.maps.event.addListenerOnce(mapObject._map, 'bounds_changed', function() {
             mapObject._map.setCenter(coords);
         });
 
@@ -229,8 +229,16 @@ function DynamicMap(locations, options) {
             console.log(`Fitting map "${this.id}" to existing boundaries`);
         }
 
+        // Pass object to callback function
+        var mapObject = this;
+
         // Fit bounds of current map
-        this._map.fitBounds(this._bounds);
+        mapObject._map.fitBounds(mapObject._bounds);
+
+        // Repeat after bounds have changed (if they are still changing)
+        google.maps.event.addListenerOnce(mapObject._map, 'bounds_changed', function() {
+            mapObject._map.fitBounds(mapObject._bounds);
+        });
 
         // Keep the party going
         return this;

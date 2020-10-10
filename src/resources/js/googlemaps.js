@@ -147,11 +147,14 @@ window.googleMaps = window.googleMaps || {
             return;
         }
 
+        // Initialize
+        var map,block;
+
         // Loop through DNA sequence
         for (var i = 0; i < sequence.length; i++) {
 
             // Get map DNA block
-            var block = sequence[i];
+            block = sequence[i];
 
             // If first block is not a map, error and bail
             if (0 === i && 'map' !== block.type) {
@@ -162,9 +165,9 @@ window.googleMaps = window.googleMaps || {
             // Switch according to DNA block type
             switch (block.type) {
 
-                // Create a new map object
+                // Create a new map
                 case 'map':
-                    var map = new DynamicMap(block.locations, block.options);
+                    map = new DynamicMap(block.locations, block.options);
                     break;
 
                 // Add markers to the map
@@ -180,6 +183,26 @@ window.googleMaps = window.googleMaps || {
                 // Style the map
                 case 'styles':
                     map.styles(block.styleSet);
+                    break;
+
+                // Zoom the map
+                case 'zoom':
+                    map.zoom(block.level);
+                    break;
+
+                // Center the map
+                case 'center':
+                    map.center(block.coords);
+                    break;
+
+                // Fit the map bounds
+                case 'fit':
+                    map.fit();
+                    break;
+
+                // Refresh the map
+                case 'refresh':
+                    map.refresh();
                     break;
 
             }

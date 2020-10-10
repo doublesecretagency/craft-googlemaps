@@ -131,7 +131,7 @@ class DynamicMap extends Model
     }
 
     /**
-     * Add one or more markers to the map.
+     * Style the map.
      *
      * @param array $styleSet
      * @return $this
@@ -139,6 +139,53 @@ class DynamicMap extends Model
     public function styles(array $styleSet): DynamicMap
     {
         $this->_addStyles($styleSet);
+        return $this;
+    }
+
+    /**
+     * Change zoom level of the map.
+     *
+     * @param int $level
+     * @return $this
+     */
+    public function zoom(int $level): DynamicMap
+    {
+        $this->_addZoom($level);
+        return $this;
+    }
+
+    /**
+     * Re-center the map.
+     *
+     * @param array $coords
+     * @return $this
+     */
+    public function center(array $coords): DynamicMap
+    {
+        $this->_addCenter($coords);
+        return $this;
+    }
+
+    /**
+     * Fit map to existing marker bounds.
+     *
+     * @return $this
+     */
+    public function fit(): DynamicMap
+    {
+        $this->_addFit();
+        return $this;
+    }
+
+    /**
+     * Refresh the map.
+     * Generally useless, only exists for parity.
+     *
+     * @return $this
+     */
+    public function refresh(): DynamicMap
+    {
+        $this->_addRefresh();
         return $this;
     }
 
@@ -250,6 +297,45 @@ class DynamicMap extends Model
         $this->_dna[] = [
             'type' => 'styles',
             'styleSet' => $styleSet,
+        ];
+    }
+
+    private function _addZoom($level)
+    {
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'zoom',
+            'level' => $level,
+        ];
+    }
+
+    private function _addCenter($coords)
+    {
+        // If not a valid style set, bail
+        if (!$coords) {
+            return;
+        }
+
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'center',
+            'coords' => $coords,
+        ];
+    }
+
+    private function _addFit()
+    {
+        // Add fitBounds call to the DNA
+        $this->_dna[] = [
+            'type' => 'fit',
+        ];
+    }
+
+    private function _addRefresh()
+    {
+        // Add refresh call to the DNA
+        $this->_dna[] = [
+            'type' => 'refresh',
         ];
     }
 
