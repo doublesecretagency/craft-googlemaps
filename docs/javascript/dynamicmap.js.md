@@ -303,8 +303,10 @@ map.showMarker('33-address');
 ---
 ---
 
+## Non-Chainable Methods
+
 :::warning Breaking the Chain
-The following two methods are the only ones which do not return a chainable map object.
+The following methods are the only ones which do not return a chainable map object.
 :::
 
 ### `getMarker(markerId)`

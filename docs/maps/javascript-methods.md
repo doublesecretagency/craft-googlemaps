@@ -1,4 +1,4 @@
-# JavaScript Methods
+# Additional JavaScript Methods
 
 In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are several more methods that are available exclusively in JavaScript. These methods have no PHP or Twig equivalent, because they make no sense outside of the JavaScript context.
 

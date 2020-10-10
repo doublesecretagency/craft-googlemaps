@@ -109,10 +109,37 @@ class DynamicMap extends Model
      *
      * @param array|Element|Address $locations
      * @param array $options
+     * @return $this
      */
-    public function markers($locations, array $options = [])
+    public function markers($locations, array $options = []): DynamicMap
     {
         $this->_addMarkers($locations, $options);
+        return $this;
+    }
+
+    /**
+     * Add a KML layer to the map.
+     *
+     * @param string $url
+     * @param array $options
+     * @return $this
+     */
+    public function kml($url, array $options = []): DynamicMap
+    {
+        $this->_addKml($url, $options);
+        return $this;
+    }
+
+    /**
+     * Add one or more markers to the map.
+     *
+     * @param array $styleSet
+     * @return $this
+     */
+    public function styles(array $styleSet): DynamicMap
+    {
+        $this->_addStyles($styleSet);
+        return $this;
     }
 
     // ========================================================================= //
@@ -164,9 +191,17 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
+
+    /*
+     *
+     * COMPILE DNA!!
+     *
+     */
+
+
     private function _addMap($locations, $options)
     {
-        // Add map to DNA
+        // Add map to the DNA
         $this->_dna[] = [
             'type' => 'map',
             'locations' => $this->_convertToCoords($locations),
@@ -181,13 +216,46 @@ class DynamicMap extends Model
             return;
         }
 
-        // Add markers to DNA
+        // Add markers to the DNA
         $this->_dna[] = [
             'type' => 'markers',
             'locations' => $this->_convertToCoords($locations),
             'options' => $options,
         ];
     }
+
+    private function _addKml($url, $options)
+    {
+        // If no url was specified, bail
+        if (!$url) {
+            return;
+        }
+
+        // Add a KML layer to the DNA
+        $this->_dna[] = [
+            'type' => 'kml',
+            'url' => $url,
+            'options' => $options,
+        ];
+    }
+
+    private function _addStyles($styleSet)
+    {
+        // If not a valid style set, bail
+        if (!$styleSet || !is_array($styleSet)) {
+            return;
+        }
+
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'styles',
+            'styleSet' => $styleSet,
+        ];
+    }
+
+
+
+    // ========================================================================= //
 
 
     // Always return coordinates within a parent array,

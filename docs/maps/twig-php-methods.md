@@ -1,4 +1,4 @@
-# Twig & PHP Methods
+# Additional Twig & PHP Methods
 
 In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.
 

@@ -43,6 +43,17 @@ class GoogleMaps
 
     // ========================================================================= //
 
+    // Get an existing dynamic map
+
+    /**
+     */
+    public static function getMap($mapId)
+    {
+//        return new DynamicMap($locations, $options);
+    }
+
+    // ========================================================================= //
+
     // Load necessary JS libraries
 
     /**

@@ -7,6 +7,8 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of maps
     _maps: {},
 
+    // ========================================================================= //
+
     // Create a new map object
     map: function (locations, options) {
 
@@ -39,6 +41,8 @@ window.googleMaps = window.googleMaps || {
         return this._maps[mapId] || null;
     },
 
+    // ========================================================================= //
+
     // Initialize specified maps
     init: function(mapId) {
 
@@ -53,6 +57,12 @@ window.googleMaps = window.googleMaps || {
 
             // Get each map
             map = containers[i];
+
+            // If map doesn't exist, skip this container
+            if (!map) {
+                console.warn(`[GM] Cannot find specified map container #${mapId}`);
+                continue;
+            }
 
             // Log status
             if (this.log) {
@@ -80,6 +90,8 @@ window.googleMaps = window.googleMaps || {
         }
 
     },
+
+    // ========================================================================= //
 
     // Determine which maps to compile
     _whichMaps: function(selection) {
@@ -135,17 +147,44 @@ window.googleMaps = window.googleMaps || {
             return;
         }
 
-        // Get map DNA block
-        var block = sequence[0];
+        // Loop through DNA sequence
+        for (var i = 0; i < sequence.length; i++) {
 
-        // If first block is not a map, error and bail
-        if ('map' !== block.type) {
-            console.warn('[GM] Map DNA is misconfigured.');
-            return;
+            // Get map DNA block
+            var block = sequence[i];
+
+            // If first block is not a map, error and bail
+            if (0 === i && 'map' !== block.type) {
+                console.warn('[GM] Map DNA is misconfigured.');
+                return;
+            }
+
+            // Switch according to DNA block type
+            switch (block.type) {
+
+                // Create a new map object
+                case 'map':
+                    var map = new DynamicMap(block.locations, block.options);
+                    break;
+
+                // Add markers to the map
+                case 'markers':
+                    map.markers(block.locations, block.options);
+                    break;
+
+                // Add KML layer to the map
+                case 'kml':
+                    map.kml(block.url, block.options);
+                    break;
+
+                // Style the map
+                case 'styles':
+                    map.styles(block.styleSet);
+                    break;
+
+            }
+
         }
-
-        // Create a new map object
-        var map = new DynamicMap(block.locations, block.options);
 
         // Store map object for future reference
         this._maps[map.id] = map;
