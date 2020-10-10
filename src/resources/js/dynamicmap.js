@@ -272,8 +272,16 @@ function DynamicMap(locations, options) {
             console.log(`On map "${this.id}", panning to marker "${markerId}"`);
         }
 
+        // Pass object to callback function
+        var mapObject = this;
+
         // Pan map to marker position
-        this._map.panTo(marker.position);
+        mapObject._map.panTo(marker.position);
+
+        // Repeat after bounds have changed (if they are still changing)
+        google.maps.event.addListenerOnce(mapObject._map, 'bounds_changed', function() {
+            mapObject._map.panTo(marker.position);
+        });
 
         // Keep the party going
         return this;

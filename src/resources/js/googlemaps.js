@@ -205,6 +205,26 @@ window.googleMaps = window.googleMaps || {
                     map.refresh();
                     break;
 
+                // Pan to a specific marker
+                case 'panToMarker':
+                    map.panToMarker(block.markerId);
+                    break;
+
+                // Set icon of an existing marker
+                case 'setMarkerIcon':
+                    map.setMarkerIcon(block.markerId, block.icon);
+                    break;
+
+                // Hide a marker
+                case 'hideMarker':
+                    map.hideMarker(block.markerId);
+                    break;
+
+                // Show a marker
+                case 'showMarker':
+                    map.showMarker(block.markerId);
+                    break;
+
             }
 
         }

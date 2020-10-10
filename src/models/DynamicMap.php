@@ -122,13 +122,14 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add markers to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'markers',
             'locations' => $this->_convertToCoords($locations),
             'options' => $options,
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -146,13 +147,14 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add a KML layer to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'kml',
             'url' => $url,
             'options' => $options,
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -169,12 +171,13 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add map styles to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'styles',
             'styleSet' => $styleSet,
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -186,12 +189,13 @@ class DynamicMap extends Model
      */
     public function zoom(int $level): DynamicMap
     {
-        // Add map styles to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'zoom',
             'level' => $level,
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -208,12 +212,13 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add map styles to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'center',
             'coords' => $coords,
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -224,11 +229,12 @@ class DynamicMap extends Model
      */
     public function fit(): DynamicMap
     {
-        // Add fitBounds call to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'fit',
         ];
 
+        // Keep the party going
         return $this;
     }
 
@@ -240,11 +246,85 @@ class DynamicMap extends Model
      */
     public function refresh(): DynamicMap
     {
-        // Add refresh call to the DNA
+        // Add to map DNA
         $this->_dna[] = [
             'type' => 'refresh',
         ];
 
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Pan map to center on a specific marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function panToMarker($markerId): DynamicMap
+    {
+        // Add to map DNA
+        $this->_dna[] = [
+            'type' => 'panToMarker',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Set the icon of an existing marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function setMarkerIcon($markerId, $icon): DynamicMap
+    {
+        // Add to map DNA
+        $this->_dna[] = [
+            'type' => 'setMarkerIcon',
+            'markerId' => $markerId,
+            'icon' => $icon,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide a marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function hideMarker($markerId): DynamicMap
+    {
+        // Add call to hide marker
+        $this->_dna[] = [
+            'type' => 'hideMarker',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function showMarker($markerId): DynamicMap
+    {
+        // Add call to show marker
+        $this->_dna[] = [
+            'type' => 'showMarker',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
         return $this;
     }
 
