@@ -3,7 +3,7 @@
 This file contains the `DynamicMap` model, which can be used to create dynamic, chainable map objects. Each instance of a `DynamicMap` object correlates with a different Google Map instance.
 
 :::warning Don't access directly
-It is extremely rare to need to access this model directly. You will almost always use the [`googleMaps` singleton object](/javascript/googlemaps.js/) to create and retrieve map objects.
+It is extremely rare to need to create a `DynamicMap` model directly. You will almost always use the [`googleMaps` singleton object](/javascript/googlemaps.js/) to create and retrieve map objects.
 :::
 
 For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).

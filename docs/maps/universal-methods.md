@@ -165,6 +165,109 @@ $map->styles($styleSet);
 
  - Map object (for chaining)
 
+## `zoom(level)`
+
+```js
+map.zoom(10);
+```
+
+Change the map's zoom level.
+
+#### `level`
+
+ - The new zoom level. Must be an integer between `1` - `22`.
+ 
+:::tip Zoom Level Reference
+ - `1` is zoomed out, a view of the entire planet.
+ - `22` is zoomed in, as close to the ground as possible.
+:::
+
+## `center(coords)`
+
+```js
+map.center({
+   "lat": 32.3113966,
+   "lng": -64.7527469
+});
+```
+
+Re-center the map.
+
+#### `coords`
+
+ - A simple key-value set of [coordinates](/models/coordinates/).
+
+## `fit()`
+
+```js
+map.fit();
+```
+
+Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+
+## `refresh()`
+
+```js
+map.refresh();
+```
+
+Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
+
+## `panToMarker(markerId)`
+
+```js
+map.panToMarker('33-address');
+```
+
+Re-center map on the specified marker.
+
+#### `markerId`
+
+ - The ID of the marker that you want to pan to.
+
+## `setMarkerIcon(markerId, icon)`
+
+```js
+map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
+```
+
+Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
+
+#### `markerId`
+
+ - The ID of the marker that you want to set the icon for.
+
+#### `icon`
+
+ - The icon to set on the specified marker. Can be either a _string_ or an [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
+
+## `hideMarker(markerId)`
+
+```js
+map.hideMarker('33-address');
+```
+
+Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+
+#### `markerId`
+
+ - The ID of the marker that you want to hide.
+
+## `showMarker(markerId)`
+
+```js
+map.showMarker('33-address');
+```
+
+Show a marker. The marker will be re-attached to the map.
+
+#### `markerId`
+
+ - The ID of the marker that you want to show.
+
+---
+---
+
 ## `getMap(mapId)`
 
 :::code
@@ -188,29 +291,3 @@ Retrieve an existing map object.
 #### Returns
 
  - Map object (for chaining)
-
-## `getMarker(markerId)`
-
-:::code
-```js
-var map = googleMaps.getMap(mapId);
-var marker = map.getMarker(markerId);
-```
-```twig
-{% set map = googleMaps.getMap(mapId) %}
-{% set marker = map.getMarker(markerId) %}
-```
-```php
-$map = GoogleMaps::getMap($mapId);
-$marker = $map->getMarker($markerId);
-```
-:::
-
-#### `markerId`
-
- - The ID of the marker that you want to access.
-
-#### Returns
-
- - In JavaScript, returns a Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
- - In Twig/PHP, returns an array of marker data.

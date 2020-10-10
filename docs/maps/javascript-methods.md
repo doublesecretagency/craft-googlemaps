@@ -1,118 +1,10 @@
 # Additional JavaScript Methods
 
-In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are several more methods that are available exclusively in JavaScript. These methods have no PHP or Twig equivalent, because they make no sense outside of the JavaScript context.
-
-**Remember, almost all of these methods can be chained together!** That includes using the methods outlined on the [Universal Methods](/maps/universal-methods/) page.
-
-```js
-// Create a new map, then style the map
-googleMaps.map(locations, {'id':'my-map'}).styles(styleSet);
-
-// Get the existing map, pan to marker, then adjust zoom level
-googleMaps.getMap('my-map').panToMarker('33-address').zoom(10)
-```
-
-## `zoom(level)`
-
-```js
-map.zoom(10);
-```
-
-Change the map's zoom level.
-
-#### `level`
-
- - The new zoom level. Must be an integer between `1` - `22`.
- 
-:::tip Zoom Level Reference
- - `1` is zoomed out, a view of the entire planet.
- - `22` is zoomed in, as close to the ground as possible.
-:::
-
-## `center(coords)`
-
-```js
-map.center({
-   "lat": 32.3113966,
-   "lng": -64.7527469
-});
-```
-
-Re-center the map.
-
-#### `coords`
-
- - A simple key-value set of [coordinates](/models/coordinates/).
-
-## `fit()`
-
-```js
-map.fit();
-```
-
-Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
-
-## `refresh()`
-
-```js
-map.refresh();
-```
-
-Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
-
-## `panToMarker(markerId)`
-
-```js
-map.panToMarker('33-address');
-```
-
-Re-center map on the specified marker.
-
-#### `markerId`
-
- - The ID of the marker that you want to pan to.
-
-## `setMarkerIcon(markerId, icon)`
-
-```js
-map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
-```
-
-Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
-
-#### `markerId`
-
- - The ID of the marker that you want to set the icon for.
-
-#### `icon`
-
- - The icon to set on the specified marker. Can be either a _string_ or an [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
-
-## `hideMarker(markerId)`
-
-```js
-map.hideMarker('33-address');
-```
-
-Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
-
-#### `markerId`
-
- - The ID of the marker that you want to hide.
-
-## `showMarker(markerId)`
-
-```js
-map.showMarker('33-address');
-```
-
-Show a marker. The marker will be re-attached to the map.
-
-#### `markerId`
-
- - The ID of the marker that you want to show.
+In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are several more methods that are available exclusively in JavaScript.
 
 ## `tag(parentId = null)`
+
+**Ends the map chain.** Creates a new `<div>` element, to be placed in the DOM as you wish.
 
 ```js
 // Place the map element automatically
@@ -123,7 +15,9 @@ var mapDiv = map.tag();
 document.getElementById('my-target-div').appendChild(mapDiv);
 ```
 
-**Ends the map chain.** Creates a new `<div>` element, to be placed in the DOM as you wish.
+:::warning Same But Different
+The `tag` method also exists in [Twig & PHP](/maps/twig-php-methods/#tag-init-true), although the usage is very different.
+:::
 
 #### `parentId`
 
@@ -159,3 +53,17 @@ googleMaps.init('my-custom-map');
 // Array - Initialize all specified maps
 googleMaps.init(['map-one', 'map-two', 'map-three']);
 ```
+
+## `getMarker(markerId)`
+
+```js
+var marker = map.getMarker(markerId);
+```
+
+#### `markerId`
+
+ - The ID of the marker that you want to access.
+
+#### Returns
+
+ - A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
