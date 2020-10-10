@@ -95,8 +95,12 @@ class DynamicMap extends Model
             $view->registerJs('googleMaps.log = true;', $view::POS_END);
         }
 
-        // Initialize map
-        $this->_addMap($locations, $options);
+        // Initialize map DNA
+        $this->_dna[] = [
+            'type' => 'map',
+            'locations' => $this->_convertToCoords($locations),
+            'options' => $options,
+        ];
 
         // Call parent constructor
         parent::__construct($config);
@@ -113,7 +117,18 @@ class DynamicMap extends Model
      */
     public function markers($locations, array $options = []): DynamicMap
     {
-        $this->_addMarkers($locations, $options);
+        // If no locations were specified, bail
+        if (!$locations) {
+            return $this;
+        }
+
+        // Add markers to the DNA
+        $this->_dna[] = [
+            'type' => 'markers',
+            'locations' => $this->_convertToCoords($locations),
+            'options' => $options,
+        ];
+
         return $this;
     }
 
@@ -126,7 +141,18 @@ class DynamicMap extends Model
      */
     public function kml($url, array $options = []): DynamicMap
     {
-        $this->_addKml($url, $options);
+        // If no url was specified, bail
+        if (!$url) {
+            return $this;
+        }
+
+        // Add a KML layer to the DNA
+        $this->_dna[] = [
+            'type' => 'kml',
+            'url' => $url,
+            'options' => $options,
+        ];
+
         return $this;
     }
 
@@ -138,7 +164,17 @@ class DynamicMap extends Model
      */
     public function styles(array $styleSet): DynamicMap
     {
-        $this->_addStyles($styleSet);
+        // If not a valid style set, bail
+        if (!$styleSet || !is_array($styleSet)) {
+            return $this;
+        }
+
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'styles',
+            'styleSet' => $styleSet,
+        ];
+
         return $this;
     }
 
@@ -150,7 +186,12 @@ class DynamicMap extends Model
      */
     public function zoom(int $level): DynamicMap
     {
-        $this->_addZoom($level);
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'zoom',
+            'level' => $level,
+        ];
+
         return $this;
     }
 
@@ -162,7 +203,17 @@ class DynamicMap extends Model
      */
     public function center(array $coords): DynamicMap
     {
-        $this->_addCenter($coords);
+        // If not a valid style set, bail
+        if (!$coords) {
+            return $this;
+        }
+
+        // Add map styles to the DNA
+        $this->_dna[] = [
+            'type' => 'center',
+            'coords' => $coords,
+        ];
+
         return $this;
     }
 
@@ -173,7 +224,11 @@ class DynamicMap extends Model
      */
     public function fit(): DynamicMap
     {
-        $this->_addFit();
+        // Add fitBounds call to the DNA
+        $this->_dna[] = [
+            'type' => 'fit',
+        ];
+
         return $this;
     }
 
@@ -185,7 +240,11 @@ class DynamicMap extends Model
      */
     public function refresh(): DynamicMap
     {
-        $this->_addRefresh();
+        // Add refresh call to the DNA
+        $this->_dna[] = [
+            'type' => 'refresh',
+        ];
+
         return $this;
     }
 
@@ -235,111 +294,6 @@ class DynamicMap extends Model
     {
         return $this->_dna;
     }
-
-    // ========================================================================= //
-
-
-    /*
-     *
-     * COMPILE DNA!!
-     *
-     */
-
-
-    private function _addMap($locations, $options)
-    {
-        // Add map to the DNA
-        $this->_dna[] = [
-            'type' => 'map',
-            'locations' => $this->_convertToCoords($locations),
-            'options' => $options,
-        ];
-    }
-
-    private function _addMarkers($locations, $options)
-    {
-        // If no locations were specified, bail
-        if (!$locations) {
-            return;
-        }
-
-        // Add markers to the DNA
-        $this->_dna[] = [
-            'type' => 'markers',
-            'locations' => $this->_convertToCoords($locations),
-            'options' => $options,
-        ];
-    }
-
-    private function _addKml($url, $options)
-    {
-        // If no url was specified, bail
-        if (!$url) {
-            return;
-        }
-
-        // Add a KML layer to the DNA
-        $this->_dna[] = [
-            'type' => 'kml',
-            'url' => $url,
-            'options' => $options,
-        ];
-    }
-
-    private function _addStyles($styleSet)
-    {
-        // If not a valid style set, bail
-        if (!$styleSet || !is_array($styleSet)) {
-            return;
-        }
-
-        // Add map styles to the DNA
-        $this->_dna[] = [
-            'type' => 'styles',
-            'styleSet' => $styleSet,
-        ];
-    }
-
-    private function _addZoom($level)
-    {
-        // Add map styles to the DNA
-        $this->_dna[] = [
-            'type' => 'zoom',
-            'level' => $level,
-        ];
-    }
-
-    private function _addCenter($coords)
-    {
-        // If not a valid style set, bail
-        if (!$coords) {
-            return;
-        }
-
-        // Add map styles to the DNA
-        $this->_dna[] = [
-            'type' => 'center',
-            'coords' => $coords,
-        ];
-    }
-
-    private function _addFit()
-    {
-        // Add fitBounds call to the DNA
-        $this->_dna[] = [
-            'type' => 'fit',
-        ];
-    }
-
-    private function _addRefresh()
-    {
-        // Add refresh call to the DNA
-        $this->_dna[] = [
-            'type' => 'refresh',
-        ];
-    }
-
-
 
     // ========================================================================= //
 
