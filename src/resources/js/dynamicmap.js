@@ -62,16 +62,11 @@ function DynamicMap(locations, options) {
         }
 
         // Create a new Google Map object
-        this._createMap(options);
+        this._createMap(options.mapOptions || {});
 
         // Optionally set styles of map
         if (options.styles) {
             this.styles(options.styles);
-        }
-
-        // Optionally apply MapOptions
-        if (options.mapOptions) {
-            this.styles(options.mapOptions);
         }
 
         // If locations were specified, add markers
@@ -389,18 +384,15 @@ function DynamicMap(locations, options) {
     // ========================================================================= //
 
     // Create a new map object
-    this._createMap = function(options) {
+    this._createMap = function(mapOptions) {
 
         // Log status
         if (googleMaps.log) {
             console.log(`Generating map "${this.id}"`);
         }
 
-        // Ensure mapOptions are valid
-        options.mapOptions = options.mapOptions || {};
-
         // Initialize map data
-        this._map = new google.maps.Map(this.div, options.mapOptions);
+        this._map = new google.maps.Map(this.div, mapOptions);
         this._bounds = new google.maps.LatLngBounds();
 
     };
