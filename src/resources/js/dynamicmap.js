@@ -378,7 +378,7 @@ function DynamicMap(locations, options) {
         // Get existing marker
         var marker = this._markers[markerId];
 
-        // If marker does not exist
+        // If marker does not exist, emit warning
         if (!marker) {
             console.warn(`[GM] Unable to find marker "${markerId}"`);
         }

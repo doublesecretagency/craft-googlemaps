@@ -37,8 +37,16 @@ window.googleMaps = window.googleMaps || {
             console.log(`Getting existing map "${mapId}"`);
         }
 
-        // Return existing map object
-        return this._maps[mapId] || null;
+        // Get existing map
+        var map = this._maps[mapId];
+
+        // If map does not exist, emit warning
+        if (!map) {
+            console.warn(`[GM] Unable to find map "${mapId}"`);
+        }
+
+        // Return map
+        return map;
     },
 
     // ========================================================================= //
