@@ -43,6 +43,17 @@ GoogleMaps::img($locations)->tag();
 ```
 :::
 
+:::code
+```twig
+{# Retrieve an existing dynamic map #}
+{% set map = googleMaps.getMap(mapId) %}
+```
+```php
+// Retrieve an existing dynamic map
+$map = GoogleMaps::getMap($mapId);
+```
+:::
+
 For more information, check out the documentation on [Dynamic Maps](/maps/dynamic/), [Static Maps](/maps/static/), and the maps [API](/maps/api/).
 
 ---

@@ -15,6 +15,7 @@ use Craft;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
+use yii\base\Exception;
 
 /**
  * Class GoogleMaps
@@ -23,33 +24,53 @@ use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 class GoogleMaps
 {
 
+    // Initialize collection of maps
+    private static $_maps = [];
+
     // ========================================================================= //
 
-    // Generate Maps
+    // Dynamic Maps
 
     /**
      */
     public static function map($locations = [], $options = [])
     {
-        return new DynamicMap($locations, $options);
+        // Create a new map object
+        $map = new DynamicMap($locations, $options);
+
+        // Store map object for future reference
+        static::$_maps[$map->id] = $map;
+
+        // Return the map object
+        return $map;
     }
+
+    /**
+     * Get an existing dynamic map.
+     */
+    public static function getMap($mapId)
+    {
+        // Get existing map object
+        $map = (static::$_maps[$mapId] ?? false);
+
+        // If no map object exists, throw an error
+        if (!$map) {
+            throw new Exception("Encountered an error using the `getMap` method. The map \"{$mapId}\" does not exist.");
+        }
+
+        // Return the map object
+        return $map;
+    }
+
+    // ========================================================================= //
+
+    // Static Maps
 
     /**
      */
     public static function img($locations = [], $options = [])
     {
         return true;
-    }
-
-    // ========================================================================= //
-
-    // Get an existing dynamic map
-
-    /**
-     */
-    public static function getMap($mapId)
-    {
-//        return new DynamicMap($locations, $options);
     }
 
     // ========================================================================= //

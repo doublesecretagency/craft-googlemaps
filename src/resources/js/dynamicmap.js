@@ -264,12 +264,18 @@ function DynamicMap(locations, options) {
     // Pan map to center on a specific marker
     this.panToMarker = function(markerId) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", panning to marker "${markerId}"`);
+        }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to pan to marker "${markerId}"`);
+            return this;
         }
 
         // Pass object to callback function
@@ -290,12 +296,18 @@ function DynamicMap(locations, options) {
     // Set the icon of an existing marker
     this.setMarkerIcon = function(markerId, icon) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
+        }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to set icon of marker "${markerId}"`);
+            return this;
         }
 
         // Set marker icon
@@ -308,12 +320,18 @@ function DynamicMap(locations, options) {
     // Hide a marker
     this.hideMarker = function(markerId) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", hiding marker "${markerId}"`);
+        }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to hide marker "${markerId}"`);
+            return this;
         }
 
         // Detach marker from map
@@ -326,12 +344,18 @@ function DynamicMap(locations, options) {
     // Show a marker
     this.showMarker = function(markerId) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", showing marker "${markerId}"`);
+        }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to show marker "${markerId}"`);
+            return this;
         }
 
         // Attach marker to current map
@@ -351,8 +375,16 @@ function DynamicMap(locations, options) {
             console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
         }
 
+        // Get existing marker
+        var marker = this._markers[markerId];
+
+        // If marker does not exist
+        if (!marker) {
+            console.warn(`[GM] Unable to find marker "${markerId}"`);
+        }
+
         // Return marker
-        return this._markers[markerId];
+        return marker;
     };
 
     // ========================================================================= //
@@ -404,7 +436,7 @@ function DynamicMap(locations, options) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`Generating map "${this.id}"`);
+            console.log(`Creating map "${this.id}"`);
         }
 
         // Initialize map data
@@ -439,7 +471,7 @@ function DynamicMap(locations, options) {
     this._createKml = function(url, options) {
 
         // Get KML ID or generate a random one
-        var kmlId = this.id || this._generateId('kml');
+        var kmlId = options.id || this._generateId('kml');
 
         // Log status
         if (googleMaps.log) {

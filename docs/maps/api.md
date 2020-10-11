@@ -70,7 +70,7 @@ Internally, there are really two different things that are being referred to as 
 
 ## Ending a Chain
 
-Not all chains need to be concluded. You may sometimes find it helpful to keep a chain alive long enough to perform more operations on the map object. Eventually though, you'll probably want to end the chain.
+Not all chains need to be concluded right away... you may sometimes find it helpful to keep a chain alive long enough to perform more operations on the map object. Eventually though, you'll probably want to end the chain.
 
 To end the chain, apply the `tag` method to wrap it all up. Depending on which language you are working in, you'll notice properties unique to that language.
 
