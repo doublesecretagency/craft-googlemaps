@@ -6,7 +6,7 @@ The Dynamic Map Model is critical for generating a [Dynamic Map](/maps/dynamic/)
 
 ### `__construct($locations = [], $options = [])`
 
-This method will be called when you initialize a `new DynamicMap`. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
+This method will be called when a `new DynamicMap` is initialized. It creates a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
 
 :::code
 ```twig
@@ -49,7 +49,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::tip Locations are Skippable
 If you skip the `locations` parameter, a blank map will be created.
@@ -78,7 +78,7 @@ Append markers to an existing map object.
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -108,7 +108,7 @@ Append one or more KML layers to an existing map object.
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -126,11 +126,8 @@ $map->kml($files);
 
 Style a map based on a given array of styles.
 
-:::tip Generating Styles
-There are many ways to generate an array of map styles. The most popular approach is to use a service like one of the following:
-
- - example 1
- - example 2
+:::warning Generating Styles
+For more information on how to generate a set of styles, read [Styling a Map](/guides/styling-a-map/).
 :::
 
 #### Arguments
@@ -139,7 +136,7 @@ There are many ways to generate an array of map styles. The most popular approac
 
 #### Returns
 
-_self_ - This instance of the Dynamic Map Model. By returning a static self reference, chaining is possible.
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -147,6 +144,195 @@ _self_ - This instance of the Dynamic Map Model. By returning a static self refe
 ```
 ```php
 $map->styles($styleSet);
+```
+:::
+
+---
+---
+
+### `zoom($level)`
+
+Change the map's zoom level.
+
+#### Arguments
+
+ - `$level` (_string_) - The new zoom level. Must be an integer between `1` - `22`.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.zoom(level) %}
+```
+```php
+$map->zoom($level);
+```
+:::
+
+---
+---
+
+### `center($coords)`
+
+Re-center the map.
+
+#### Arguments
+
+ - `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of [coordinates](/models/coordinates/).
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.center(coords) %}
+```
+```php
+$map->center($coords);
+```
+:::
+
+---
+---
+
+### `fit()`
+
+Zoom map to automatically fit all markers within the viewing area.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.fit() %}
+```
+```php
+$map->fit();
+```
+:::
+
+---
+---
+
+### `refresh()`
+
+Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
+
+:::tip Generally Useless
+There probably aren't a lot of good reasons to use this method in Twig or PHP, because it would be fired immediately after the map finishes rendering. It exists mainly for parity between languages.
+:::
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.refresh() %}
+```
+```php
+$map->refresh();
+```
+:::
+
+---
+---
+
+### `panToMarker($markerId)`
+
+Re-center map on the specified marker.
+
+#### Arguments
+
+ - `$markerId` (_string_) - ID of the target marker.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.panToMarker(markerId) %}
+```
+```php
+$map->panToMarker($markerId);
+```
+:::
+
+---
+---
+
+### `setMarkerIcon($markerId, $icon)`
+
+Set the icon of an existing marker.
+
+#### Arguments
+
+ - `$markerId` (_string_) - ID of the target marker.
+ - `$icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - URL of marker icon image.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.setMarkerIcon(markerId, icon) %}
+```
+```php
+$map->setMarkerIcon($markerId, $icon);
+```
+:::
+
+---
+---
+
+### `hideMarker($markerId)`
+
+Hide a marker.
+
+#### Arguments
+
+ - `$markerId` (_string_) - ID of the target marker.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideMarker(markerId) %}
+```
+```php
+$map->hideMarker($markerId);
+```
+:::
+
+---
+---
+
+### `showMarker($markerId)`
+
+Show a marker.
+
+#### Arguments
+
+ - `$markerId` (_string_) - ID of the target marker.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showMarker(markerId) %}
+```
+```php
+$map->showMarker($markerId);
 ```
 :::
 
@@ -163,7 +349,7 @@ Render the necessary `<div>` container to hold the map.
 
 #### Returns
 
-_Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}`).
+ - _Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}`).
 
 :::code
 ```twig
@@ -171,5 +357,29 @@ _Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}
 ```
 ```php
 $twigMarkup = $map->tag();
+```
+:::
+
+---
+---
+
+### `getDna()`
+
+Get the complete map DNA, which is used to hydrate a map's container in the DOM.
+
+_Aliased as `dna` property via magic method._
+
+#### Returns
+
+ - _array_ - An array of data containing the complete map details.
+
+:::code
+```twig
+{% set dna = map.dna %}
+{% set dna = map.getDna() %}
+```
+```php
+$dna = $map->dna;
+$dna = $map->getDna();
 ```
 :::
