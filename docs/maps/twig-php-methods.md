@@ -17,13 +17,13 @@ $twigMarkup = $map->tag();
 ```
 :::
 
+:::warning Same But Different
+The `tag` method also exists in [JavaScript](/maps/javascript-methods/#tag-parentid-null), but beware that the usage is notably different.
+:::
+
 Regardless of whether you are using Twig or PHP, this will create a new `Twig\Markup` object.
 
 If you are working in Twig, you can use curly braces to output the map directly.
-
-:::warning Same But Different
-The `tag` method also exists in [JavaScript](/maps/javascript-methods/#tag-parentid-null), although the usage is very different.
-:::
 
 #### `init`
 

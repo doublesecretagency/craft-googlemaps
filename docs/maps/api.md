@@ -2,41 +2,53 @@
 
 ## Universal API
 
-In an effort to smooth the development process, you can effectively call the exact same methods across various languages. Whether you are working in JavaScript, Twig, or PHP, the commands to create a map are all nearly identical.
+In an effort to smooth the development process, you can effectively call the exact same methods across various programming languages. Whether you are working in JavaScript, Twig, or PHP, the commands to create a map are all nearly identical.
 
-## Basic Examples
+Take a look at the following examples to see how the same concepts translate across different languages.
+
+## Practical Examples
 
 Switch between languages to see the similarities...
 
+### Basic Map
+
 :::code
 ```js
-// Very basic
 var map = googleMaps.map(locations, options);
+```
+```twig
+{% set map = googleMaps.map(locations, options) %}
+```
+```php
+$map = GoogleMaps::map($locations, $options);
+```
+:::
 
-// More complex
+### Complex Map
+
+:::code
+```js
 var map = googleMaps.map()
     .markers(locations, options)
     .styles(styleSet)
+    .center(coords)
+    .zoom(level)
     .kml(url);
 ```
 ```twig
-{# Very basic #}
-{% set map = googleMaps.map(locations, options) %}
-
-{# More complex #}
 {% set map = googleMaps.map()
     .markers(locations, options)
     .styles(styleSet)
+    .center(coords)
+    .zoom(level)
     .kml(url) %}
 ```
 ```php
-// Very basic
-$map = GoogleMaps::map($locations, $options);
-
-// More complex
 $map = GoogleMaps::map()
     ->markers($locations, $options)
     ->styles($styleSet)
+    ->center($coords)
+    ->zoom($level)
     ->kml($url);
 ```
 :::
@@ -45,37 +57,19 @@ In the examples above, you can see that we are _chaining_ methods together in or
 
 For complete information, see the page regarding [Chaining...](/maps/chaining/)
 
+## Supported Languages
 
+:::warning JavaScript
+ - [Universal Methods](/maps/universal-methods/)
+ - [Additional JavaScript Methods](/maps/javascript-methods/)
+:::
 
+:::warning Twig
+ - [Universal Methods](/maps/universal-methods/)
+ - [Additional Twig & PHP Methods](/maps/twig-php-methods/)
+:::
 
-### Simple:
-
-```twig
-{# Get all locations #}
-{% set locations = craft.entries.section('locations').all() %}
-
-{# Display them on a map #}
-{{ googleMaps.map(locations).tag() }}
-```
-
-### Complex:
-
-```twig
-{# Build a map with two sets of locations and a KML file #}
-{% set map = googleMaps.map(locations, mapOptions)
-    .markers(moreLocations, markerOptions)
-    .kml(filename)
-%}
-
-{# Render map #}
-{{ map.tag() }}
-```
-
-
-
-
-## Languages
-
-If you are working in JavaScript, please refer to the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
-
-If you are working in Twig or PHP, please refer to the [Universal Methods](/maps/universal-methods/) and [Twig & PHP Methods](/maps/twig-php-methods/).
+:::warning PHP
+ - [Universal Methods](/maps/universal-methods/)
+ - [Additional Twig & PHP Methods](/maps/twig-php-methods/)
+:::

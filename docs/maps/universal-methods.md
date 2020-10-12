@@ -2,7 +2,7 @@
 
 The following methods apply equally, whether you are working in JavaScript, Twig or PHP. These methods have nearly identical parameters and behaviors across all three languages.
 
-However, there are also a few language-specific methods to be aware of. In addition to the Universal Methods below, check out the extended documentation on [JavaScript Methods](/maps/javascript-methods/) and [Twig & PHP Methods](/maps/twig-php-methods/).
+There are also a few language-specific methods to be aware of. In addition to the Universal Methods below, check out the extended documentation for [JavaScript Methods](/maps/javascript-methods/) and [Twig & PHP Methods](/maps/twig-php-methods/).
 
 ## `map(locations, options)`
 
@@ -20,8 +20,8 @@ $map = GoogleMaps::map($locations, $options);
 
 **Everything starts here.** Use the `map` method to create a new map object.
 
-:::tip PHP Helper
-The PHP version of the API flows through the [`GoogleMaps` Helper Class](/helper/).
+:::tip Get an Existing Map
+If you want to access a map object that has _already been created_, use the [`getMap` method](#getmap-mapid).
 :::
 
 #### `locations`

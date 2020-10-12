@@ -1,6 +1,6 @@
 # Locations
 
-There are several methods of the [Dynamic Map Model](/models/dynamic-map-model/) and [Static Map Model](/models/static-map-model/) which have a `locations` parameter. Additionally, the [JavaScript model](/models/javascript/) also contains several methods which call for `locations`.
+Whenever you [create a map](/maps/universal-methods/#map-locations-options) or [add markers](/maps/universal-methods/#markers-locations-options) to a map, you are able to specify the `locations` which will appear on the map.
 
 What are "locations"? Glad you asked.
 
