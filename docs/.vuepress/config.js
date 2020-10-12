@@ -92,12 +92,12 @@ module.exports = {
             '/maps/': [
                 '',
                 'api',
+                'chaining',
                 'universal-methods',
                 'javascript-methods',
                 'twig-php-methods',
-                'dynamic',
-                'static',
                 'locations',
+                'static',
             ],
             '/proximity-search/': [
                 '',

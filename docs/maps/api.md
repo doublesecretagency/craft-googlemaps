@@ -43,61 +43,36 @@ $map = GoogleMaps::map()
 
 In the examples above, you can see that we are _chaining_ methods together in order to build a map. There are several methods in the API, which can be chained in any order necessary.
 
-## Starting a Chain
- 
-A chain must always **begin** with the creation of a `map` object. No matter how you intend to decorate your dynamic map, it will always start the same way...
+For complete information, see the page regarding [Chaining...](/maps/chaining/)
 
-:::code
-```js
-var map = googleMaps.map(locations, options);
-```
+
+
+
+### Simple:
+
 ```twig
-{% set map = googleMaps.map(locations, options) %}
+{# Get all locations #}
+{% set locations = craft.entries.section('locations').all() %}
+
+{# Display them on a map #}
+{{ googleMaps.map(locations).tag() }}
 ```
-```php
-$map = GoogleMaps::map($locations, $options);
-```
-:::
 
-:::warning Two flavors of "map object"
-Internally, there are really two different things that are being referred to as the "map object".
+### Complex:
 
- - In Twig/PHP, it's a [Dynamic Map Model](/models/dynamic-map-model/).
- - In JavaScript, it's a [`DynamicMap` model](/javascript/dynamicmap.js/).
-
- The internal structure of this object varies greatly between JS and PHP/Twig, but the API has been designed to make usage nearly identical regardless of language.
-:::
-
-## Ending a Chain
-
-Not all chains need to be concluded right away... you may sometimes find it helpful to keep a chain alive long enough to perform more operations on the map object. Eventually though, you'll probably want to end the chain.
-
-To end the chain, apply the `tag` method to wrap it all up. Depending on which language you are working in, you'll notice properties unique to that language.
-
-:::code
-```js
-// Creates a new element to be placed in the DOM
-var mapDiv = map.tag();
-```
 ```twig
-{# Renders a map in the Twig template #}
+{# Build a map with two sets of locations and a KML file #}
+{% set map = googleMaps.map(locations, mapOptions)
+    .markers(moreLocations, markerOptions)
+    .kml(filename)
+%}
+
+{# Render map #}
 {{ map.tag() }}
 ```
-```php
-// Creates a new Twig\Markup object
-$twigMarkup = $map->tag();
-```
-:::
 
-The `tag` method will create a `<div>` tag containing the finished map. But please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
 
-:::warning What to Expect
-In [JavaScript](/maps/javascript-methods/#tag), `tag` creates a new element, to be placed in the DOM as you wish.
 
-In [Twig](/maps/twig-php-methods/#tag-autorender-true), `tag` renders a finished map.
-
-In [PHP](/maps/twig-php-methods/#tag-autorender-true), `tag` creates a new `Twig\Markup` object.
-:::
 
 ## Languages
 
