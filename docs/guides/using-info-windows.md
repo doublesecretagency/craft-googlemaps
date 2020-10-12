@@ -2,7 +2,7 @@
 
 ## Basic Usage
 
-It's fairly straightforward to add an [info window](https://developers.google.com/maps/documentation/javascript/infowindows) to your map. Simply specify a template path for your `infoWindowTemplate` in the [dynamic map options](/maps/dynamic/#options).
+It's fairly straightforward to add an [info window](https://developers.google.com/maps/documentation/javascript/infowindows) to your map. Simply specify a template path for your `infoWindowTemplate` in the [dynamic map options](/dynamic-maps/dynamic/#options).
 
 ```twig
 {% set options = {

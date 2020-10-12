@@ -28,7 +28,7 @@ map.markers(secondLocations, secondOptions);
 
 ## Set a default marker icon
 
-By default, you can set all markers to use the same icon when creating a map. Within the [dynamic map options](/maps/dynamic/#options), you can define the value of `markerOptions.icon`.
+By default, you can set all markers to use the same icon when creating a map. Within the [dynamic map options](/dynamic-maps/dynamic/#options), you can define the value of `markerOptions.icon`.
 
 **Simple Example:**
 

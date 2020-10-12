@@ -35,7 +35,8 @@ module.exports = {
                 text: 'Major Concepts',
                 items: [
                     {text: 'Address Field', link: '/address-field/'},
-                    {text: 'Maps', link: '/maps/'},
+                    {text: 'Dynamic Maps', link: '/dynamic-maps/'},
+                    {text: 'Static Maps', link: '/static-maps/'},
                     {text: 'Proximity Search', link: '/proximity-search/'},
                     {text: 'Geocoding (Address Lookups)', link: '/geocoding/'},
                     {text: 'Visitor Geolocation', link: '/geolocation/'},
@@ -89,7 +90,7 @@ module.exports = {
                 'frontend-form',
                 // 'vue', // TODO: Probably delete this page?
             ],
-            '/maps/': [
+            '/dynamic-maps/': [
                 '',
                 'api',
                 'chaining',
@@ -97,7 +98,9 @@ module.exports = {
                 'javascript-methods',
                 'twig-php-methods',
                 'locations',
-                'static',
+            ],
+            '/static-maps/': [
+                '',
             ],
             '/proximity-search/': [
                 '',

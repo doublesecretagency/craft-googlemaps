@@ -10,7 +10,7 @@ There are several methods on the Dynamic Map Model that can be chained together.
 :::warning The Magic of Chaining
 With only a couple of exceptions (`map` and `html`), virtually all methods listed below can be chained in any order you'd like. Chaining can be a powerful technique, allowing you to build complex maps with ease.
 
- To get a better understanding of how it works, read more on [Chaining Methods](/maps/chaining/).
+ To get a better understanding of how it works, read more on [Chaining Methods](/dynamic-maps/chaining/).
 :::
 
 
@@ -63,9 +63,9 @@ $twigMarkup = $map->tag();
 The `tag` method will create a `<div>` tag containing the finished map. But please note, **the output will be significantly different for each language.** Even though the `tag` method exists in each language, the purpose for using it varies greatly between languages.
 
 :::warning What to Expect
-In [JavaScript](/maps/javascript-methods/#tag), `tag` creates a new element, to be placed in the DOM as you wish.
+In [JavaScript](/dynamic-maps/javascript-methods/#tag), `tag` creates a new element, to be placed in the DOM as you wish.
 
-In [Twig](/maps/twig-php-methods/#tag-autorender-true), `tag` renders a finished map.
+In [Twig](/dynamic-maps/twig-php-methods/#tag-autorender-true), `tag` renders a finished map.
 
-In [PHP](/maps/twig-php-methods/#tag-autorender-true), `tag` creates a new `Twig\Markup` object.
+In [PHP](/dynamic-maps/twig-php-methods/#tag-autorender-true), `tag` creates a new `Twig\Markup` object.
 :::

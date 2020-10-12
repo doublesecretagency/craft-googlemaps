@@ -54,7 +54,7 @@ $map = GoogleMaps::getMap($mapId);
 ```
 :::
 
-For more information, check out the documentation on [Dynamic Maps](/maps/dynamic/), [Static Maps](/maps/static/), and the maps [API](/maps/api/).
+For more information, check out the documentation on [Dynamic Maps](/dynamic-maps/dynamic/), [Static Maps](/dynamic-maps/static/), and the maps [API](/dynamic-maps/api/).
 
 ---
 

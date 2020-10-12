@@ -6,7 +6,7 @@ This file contains the `DynamicMap` model, which can be used to create dynamic, 
 It is extremely rare to need to create a `DynamicMap` model directly. You will almost always use the [`googleMaps` singleton object](/javascript/googlemaps.js/) to create and retrieve map objects.
 :::
 
-For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
+For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/dynamic-maps/universal-methods/) and [JavaScript Methods](/dynamic-maps/javascript-methods/).
 
 ### The `map` variable
 
@@ -32,7 +32,7 @@ map.markers([
 
 #### Arguments
 
- - `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/maps/locations/)
+ - `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
  - `options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type                 | Default | Description |
@@ -41,7 +41,7 @@ map.markers([
 | `icon`               | _object_ or _string_ | _null_  | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `markerOptions`      | _object_             | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | _object_             | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | _string_             | _null_  | Template path to use for creating [info windows](/maps/info-windows/). |
+| `infoWindowTemplate` | _string_             | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 
 #### Returns
 

@@ -55,21 +55,21 @@ $map = GoogleMaps::map()
 
 In the examples above, you can see that we are _chaining_ methods together in order to build a map. There are several methods in the API, which can be chained in any order necessary.
 
-For complete information, see the page regarding [Chaining...](/maps/chaining/)
+For complete information, see the page regarding [Chaining...](/dynamic-maps/chaining/)
 
 ## Supported Languages
 
 :::warning JavaScript
- - [Universal Methods](/maps/universal-methods/)
- - [Additional JavaScript Methods](/maps/javascript-methods/)
+ - [Universal Methods](/dynamic-maps/universal-methods/)
+ - [Additional JavaScript Methods](/dynamic-maps/javascript-methods/)
 :::
 
 :::warning Twig
- - [Universal Methods](/maps/universal-methods/)
- - [Additional Twig & PHP Methods](/maps/twig-php-methods/)
+ - [Universal Methods](/dynamic-maps/universal-methods/)
+ - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)
 :::
 
 :::warning PHP
- - [Universal Methods](/maps/universal-methods/)
- - [Additional Twig & PHP Methods](/maps/twig-php-methods/)
+ - [Universal Methods](/dynamic-maps/universal-methods/)
+ - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)
 :::

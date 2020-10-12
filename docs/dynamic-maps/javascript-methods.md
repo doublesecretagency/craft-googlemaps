@@ -1,6 +1,6 @@
 # Additional JavaScript Methods
 
-In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in JavaScript.
+In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in JavaScript.
 
 ## `tag(parentId = null)`
 
@@ -14,7 +14,7 @@ map.tag('parent-id');
 :::
 
 :::warning Same But Different
-The `tag` method also exists in [Twig & PHP](/maps/twig-php-methods/#tag-init-true), but beware that the usage is notably different.
+The `tag` method also exists in [Twig & PHP](/dynamic-maps/twig-php-methods/#tag-init-true), but beware that the usage is notably different.
 :::
 
 #### `parentId`

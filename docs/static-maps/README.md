@@ -41,7 +41,7 @@ $src = GoogleMaps::img($locations)->src();
 
 #### `locations`
 
- - Location(s) to appear on the map. See the [Locations](/maps/locations/) page for detailed information.
+ - Location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
  
 If you skip the `locations` parameter by passing in _null_, the map will try its best to render without any markers.
  

@@ -1,6 +1,6 @@
 # Locations
 
-Whenever you [create a map](/maps/universal-methods/#map-locations-options) or [add markers](/maps/universal-methods/#markers-locations-options) to a map, you are able to specify the `locations` which will appear on the map.
+Whenever you [create a map](/dynamic-maps/universal-methods/#map-locations-options) or [add markers](/dynamic-maps/universal-methods/#markers-locations-options) to a map, you are able to specify the `locations` which will appear on the map.
 
 What are "locations"? Glad you asked.
 

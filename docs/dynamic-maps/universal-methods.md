@@ -2,7 +2,7 @@
 
 The following methods apply equally, whether you are working in JavaScript, Twig or PHP. These methods have nearly identical parameters and behaviors across all three languages.
 
-There are also a few language-specific methods to be aware of. In addition to the Universal Methods below, check out the extended documentation for [JavaScript Methods](/maps/javascript-methods/) and [Twig & PHP Methods](/maps/twig-php-methods/).
+There are also a few language-specific methods to be aware of. In addition to the Universal Methods below, check out the extended documentation for [JavaScript Methods](/dynamic-maps/javascript-methods/) and [Twig & PHP Methods](/dynamic-maps/twig-php-methods/).
 
 ## `map(locations, options)`
 
@@ -26,7 +26,7 @@ If you want to access a map object that has _already been created_, use the [`ge
 
 #### `locations`
 
- - Location(s) to appear on the map. See the [Locations](/maps/locations/) page for detailed information.
+ - Location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
 
 #### `options`
 
@@ -48,7 +48,7 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 | `mapOptions`         | JavaScript, Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
 | `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/maps/info-windows/). |
+| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 | `fields`             | Twig/PHP             | Which field(s) of the element(s) should be included on the map. (includes all Address fields by default) |
 | `js`                 | Twig/PHP             | Whether to preload the necessary external JavaScript. |
 
@@ -84,7 +84,7 @@ This can be chained to an existing map object. It allows you to place _additiona
 
 #### `locations`
 
- - Additional location(s) to appear on the map. See the [Locations](/maps/locations/) page for detailed information.
+ - Additional location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
 
 #### `options`
 
@@ -100,7 +100,7 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 | `icon`               | JavaScript, Twig/PHP | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/maps/info-windows/). |
+| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 | `fields`             | Twig/PHP             | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
 
 :::tip Additional Options Details

@@ -1,6 +1,6 @@
 # Additional Twig & PHP Methods
 
-In addition to all the [Universal Methods](/maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.
+In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.
 
 ## `tag(init = true)`
 
@@ -18,7 +18,7 @@ $twigMarkup = $map->tag();
 :::
 
 :::warning Same But Different
-The `tag` method also exists in [JavaScript](/maps/javascript-methods/#tag-parentid-null), but beware that the usage is notably different.
+The `tag` method also exists in [JavaScript](/dynamic-maps/javascript-methods/#tag-parentid-null), but beware that the usage is notably different.
 :::
 
 Regardless of whether you are using Twig or PHP, this will create a new `Twig\Markup` object.

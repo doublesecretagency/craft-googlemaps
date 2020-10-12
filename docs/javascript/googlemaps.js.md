@@ -14,7 +14,7 @@ Internally, the `googleMaps` object can create multiple instances of the [`Dynam
 The `googleMaps` object also keeps a reference to all maps which have already been created, so you can easily access them later.
 :::
 
-For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/maps/universal-methods/) and [JavaScript Methods](/maps/javascript-methods/).
+For a more comprehensive explanation of how to use the internal API, check out the docs regarding the [Universal Methods](/dynamic-maps/universal-methods/) and [JavaScript Methods](/dynamic-maps/javascript-methods/).
 
 ## Map Management Methods
 
@@ -61,7 +61,7 @@ Once you have the map object in hand, you can then chain methods from within the
 | `mapOptions`         | _object_            | _null_             | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
 | `markerOptions`      | _object_            | _null_             | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | _object_            | _null_             | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | _string_            | _null_             | Template path to use for creating [info windows](/maps/info-windows/). |
+| `infoWindowTemplate` | _string_            | _null_             | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 
 #### Returns
 
