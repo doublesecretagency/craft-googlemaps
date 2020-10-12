@@ -4,25 +4,21 @@
 
 In order to make the map-building process as easy as possible, this plugin provides a helpful API which stays relatively consistent between languages. Whether you are programming in JavaScript, Twig, or PHP, these methods will be equally accessible and provide nearly identical capabilities. [Read more](/dynamic-maps/api/)
 
+### Chaining
+
+### Map Management
+
 ### Universal Methods
 
 Most methods are available across JavaScript, Twig, and PHP. Each language handles things differently _internally_, but methods will exhibit nearly identical behaviors across languages. [Read more](/dynamic-maps/universal-methods/)
 
-### JavaScript Methods
+### Additional JavaScript Methods
 
 Certain methods are only available via JavaScript. [Read more](/dynamic-maps/javascript-methods/)
 
-### Twig & PHP Methods
+### Additional Twig & PHP Methods
 
 [Read more](/dynamic-maps/twig-php-methods/)
-
-### Dynamic Maps
-
-[Read more](/dynamic-maps/dynamic/)
-
-### Static Maps
-
-[Read more](/dynamic-maps/static/)
 
 ### Locations
 

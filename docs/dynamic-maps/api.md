@@ -53,9 +53,9 @@ $map = GoogleMaps::map()
 ```
 :::
 
-In the examples above, you can see that we are _chaining_ methods together in order to build a map. There are several methods in the API, which can be chained in any order necessary.
+You'll notice that we are _chaining_ methods together in order to build a map. There are several methods in the API, which can be chained in any order necessary.
 
-For complete information, see the page regarding [Chaining...](/dynamic-maps/chaining/)
+To get a better understanding of how it works, read more on [Chaining](/dynamic-maps/chaining/).
 
 ## Supported Languages
 

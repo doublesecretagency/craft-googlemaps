@@ -94,6 +94,7 @@ module.exports = {
                 '',
                 'api',
                 'chaining',
+                'map-management',
                 'universal-methods',
                 'javascript-methods',
                 'twig-php-methods',
