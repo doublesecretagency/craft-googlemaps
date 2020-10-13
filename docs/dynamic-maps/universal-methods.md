@@ -2,69 +2,11 @@
 
 The following methods apply equally, whether you are working in JavaScript, Twig or PHP. These methods have nearly identical parameters and behaviors across all three languages.
 
+:::warning The Magic of Chaining
+Each of these methods can be [chained together](/dynamic-maps/chaining/) in any order you'd like. Chaining can be a powerful technique, allowing you to build complex maps with ease.
+:::
+
 There are also a few language-specific methods to be aware of. In addition to the Universal Methods below, check out the extended documentation for [JavaScript Methods](/dynamic-maps/javascript-methods/) and [Twig & PHP Methods](/dynamic-maps/twig-php-methods/).
-
-## `map(locations, options)`
-
-:::code
-```js
-var map = googleMaps.map(locations, options);
-```
-```twig
-{% set map = googleMaps.map(locations, options) %}
-```
-```php
-$map = GoogleMaps::map($locations, $options);
-```
-:::
-
-**Everything starts here.** Use the `map` method to create a new map object.
-
-:::tip Get an Existing Map
-If you want to access a map object that has _already been created_, use the [`getMap` method](#getmap-mapid).
-:::
-
-#### `locations`
-
- - Location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
-
-#### `options`
-
- - The `options` parameter is where you can configure the map.
- 
-:::warning Available Options
-Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
-:::
- 
-
-| Option               | Available            | Description |
-|----------------------|:--------------------:|-------------|
-| `id`                 | JavaScript, Twig/PHP | Set the `id` attribute of the map container. |
-| `width`              | JavaScript, Twig/PHP | Set the width of the map (in px). |
-| `height`             | JavaScript, Twig/PHP | Set the height of the map (in px). |
-| `zoom`               | JavaScript, Twig/PHP | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
-| `center`             | JavaScript, Twig/PHP | Set the center position of the map. |
-| `styles`             | JavaScript, Twig/PHP | An array of [map styles](/guides/styling-a-map/). |
-| `mapOptions`         | JavaScript, Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
-| `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
-| `fields`             | Twig/PHP             | Which field(s) of the element(s) should be included on the map. (includes all Address fields by default) |
-| `js`                 | Twig/PHP             | Whether to preload the necessary external JavaScript. |
-
-:::tip Additional Options Details
-For more info, please consult either the [JavaScript model](/models/javascript/#map-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#construct-locations-options).
-:::
-
-#### Returns
-
- - Map object (for chaining)
-
-:::warning Chainable Map Object
-Unless noted otherwise, each of the following methods returns a chainable **map object**. This makes it possible to string together as many of the following methods as needed, in any order you prefer.
-
-Each language has a special command for rendering the map, and thus ending the chain. Make note of how to end the chain for whichever language you are working in.
-:::
 
 ## `markers(locations, options)`
 
@@ -80,15 +22,12 @@ $map->markers($locations, $options);
 ```
 :::
 
-This can be chained to an existing map object. It allows you to place _additional_ markers on the map.
+Places additional markers onto the map.
 
-#### `locations`
+#### Arguments
 
- - Additional location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
-
-#### `options`
-
- - Configure the markers. These options will _only_ apply to the markers created by the corresponding `locations`.
+ - `locations` (_[locations](/dynamic-maps/locations/)_) - Will be used to create additional markers for the map.
+ - `options` (_array_|_null_) - The `options` parameter allows you to configure the markers in greater detail. These options will _only_ apply to the markers created in this method call.
 
 :::warning Available Options
 Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
@@ -107,10 +46,6 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 For more info, please consult either the [JavaScript model](/models/javascript/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
 :::
 
-#### Returns
-
- - Map object (for chaining)
-
 ## `kml(url, options)`
 
 :::code
@@ -127,21 +62,15 @@ $map->kml($url, $options);
 
 Applies a KML layer to the map.
 
-#### `url`
+#### Arguments
 
- - The URL of a given KML layer. It **must** be hosted remotely. The KML file will not work if hosted locally.
- 
-#### `options`
-
- - An object literal in the form of a [KmlLayerOptions](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) interface.
+ - `url` (_string_) - The URL of a given KML layer. It **must** be hosted remotely. The KML file will not work if hosted locally.
+ - `options` (_array_|_null_) - The `options` parameter allows you to configure this KML layer in greater detail.
 
 | Option             | Available            | Description |
 |--------------------|:--------------------:|-------------|
+| `id`               | JavaScript, Twig/PHP | Reference point for each KML layer. |
 | `KmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
-
-#### Returns
-
- - Map object (for chaining)
 
 ## `styles(styleSet)`
 
@@ -157,13 +86,9 @@ $map->styles($styleSet);
 ```
 :::
 
-#### `styleSet`
+#### Arguments
 
- - A collection of styles, most likely generated elsewhere. See the [Styling a Map](/guides/styling-a-map/) guide for more information.
-
-#### Returns
-
- - Map object (for chaining)
+ - `styleSet` (_array_) - A collection of styles, most likely generated elsewhere. See the [Styling a Map](/guides/styling-a-map/) guide for more information.
 
 ## `zoom(level)`
 
@@ -173,9 +98,9 @@ map.zoom(10);
 
 Change the map's zoom level.
 
-#### `level`
+#### Arguments
 
- - The new zoom level. Must be an integer between `1` - `22`.
+ - `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
  
 :::tip Zoom Level Reference
  - `1` is zoomed out, a view of the entire planet.
@@ -193,9 +118,9 @@ map.center({
 
 Re-center the map.
 
-#### `coords`
+#### Arguments
 
- - A simple key-value set of [coordinates](/models/coordinates/).
+ - `coords` (_[coords](/models/coordinates/)_) - New center point of map.
 
 ## `fit()`
 
@@ -221,9 +146,9 @@ map.panToMarker('33-address');
 
 Re-center map on the specified marker.
 
-#### `markerId`
+#### Arguments
 
- - The ID of the marker that you want to pan to.
+ - `markerId` (_string_) - The ID of the marker that you want to pan to.
 
 ## `setMarkerIcon(markerId, icon)`
 
@@ -233,13 +158,10 @@ map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
 
-#### `markerId`
+#### Arguments
 
- - The ID of the marker that you want to set the icon for.
-
-#### `icon`
-
- - The icon to set on the specified marker. Can be either a _string_ or an [Icon Interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
+ - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
+ - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
 
 ## `hideMarker(markerId)`
 
@@ -249,9 +171,9 @@ map.hideMarker('33-address');
 
 Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
 
-#### `markerId`
+#### Arguments
 
- - The ID of the marker that you want to hide.
+ - `markerId` (_string_) - The ID of the marker that you want to hide.
 
 ## `showMarker(markerId)`
 
@@ -261,33 +183,6 @@ map.showMarker('33-address');
 
 Show a marker. The marker will be re-attached to the map.
 
-#### `markerId`
+#### Arguments
 
- - The ID of the marker that you want to show.
-
----
----
-
-## `getMap(mapId)`
-
-:::code
-```js
-var map = googleMaps.getMap(mapId);
-```
-```twig
-{% set map = googleMaps.getMap(mapId) %}
-```
-```php
-$map = GoogleMaps::getMap($mapId);
-```
-:::
-
-Retrieve an existing map object.
-
-#### `mapId`
-
- - The ID of the map that you want to access.
-
-#### Returns
-
- - Map object (for chaining)
+ - `markerId` (_string_) - The ID of the marker that you want to show.

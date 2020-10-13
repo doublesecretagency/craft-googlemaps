@@ -256,7 +256,7 @@ map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green
 #### Arguments
 
  - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
- - `icon` (_string_|[Icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon)) - The icon to set on the specified marker.
+ - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
 
 #### Returns
 

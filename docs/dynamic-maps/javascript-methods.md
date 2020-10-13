@@ -17,15 +17,9 @@ map.tag('parent-id');
 The `tag` method also exists in [Twig & PHP](/dynamic-maps/twig-php-methods/#tag-init-true), but beware that the usage is notably different.
 :::
 
-#### `parentId`
+#### Arguments
 
- - Optional. If provided, automatically injects the new HTML element into the DOM container with the specified `id` attribute.
- 
-:::tip Automatic vs Manual Placement
-If the `parentId` is specified, the new HTML element will be automatically appended to the specified parent container in the DOM.
-
-If the `parentId` is omitted, the new HTML element will need to be manually placed into the DOM at your discretion.
-:::
+ - `parentId` (_null_|_string_) - If provided, automatically injects the new HTML element into the DOM container with the specified `id` attribute.
 
 :::code
 ```js Automatic Placement
@@ -38,6 +32,12 @@ var mapDiv = map.tag();
 document.getElementById('parent-id').appendChild(mapDiv);
 ```
 :::
+ 
+:::tip Automatic vs Manual Placement
+If the `parentId` is specified, the new HTML element will be automatically appended to the specified parent container in the DOM.
+
+If the `parentId` is omitted, the new HTML element will need to be manually placed into the DOM at your discretion.
+:::
 
 #### Returns
 
@@ -47,13 +47,16 @@ document.getElementById('parent-id').appendChild(mapDiv);
 The new HTML element will always be returned by the `tag` method, _regardless_ of whether it was automatically injected into the DOM. 
 :::
 
+---
+---
+
 ## `init(mapId = null)`
 
 Initialize a map, or a group of maps. This will be automatically run (unless disabled) for each map on the page.
 
-#### `mapId`
+#### Arguments
 
- - Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
+ - `mapId` (_null_|_string_|_array_) - Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
 
 :::code
 ```js Null
@@ -75,15 +78,18 @@ googleMaps.init(['map-one', 'map-two', 'map-three']);
 
 ## `getMarker(markerId)`
 
+Get the Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object of the specified marker.
+
 :::code
 ```js
+// Get the specified Marker object
 var marker = map.getMarker(markerId);
 ```
 :::
 
-#### `markerId`
+#### Arguments
 
- - The ID of the marker that you want to access.
+ - `markerId` (_string_) - The ID of the marker that you want to access.
 
 #### Returns
 

@@ -59,6 +59,8 @@ To get a better understanding of how it works, read more on [Chaining](/dynamic-
 
 ## Supported Languages
 
+The following programming languages are currently supported:
+
 :::warning JavaScript
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional JavaScript Methods](/dynamic-maps/javascript-methods/)

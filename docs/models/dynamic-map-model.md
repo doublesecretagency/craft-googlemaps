@@ -10,11 +10,9 @@ This method will be called when a `new DynamicMap` is initialized. It creates a 
 
 :::code
 ```twig
-{# Using a helper method to wrap `new DynamicMap` #}
 {% set map = googleMaps.map(locations) %}
 ```
 ```php
-// Using a helper method to wrap `new DynamicMap`
 $map = GoogleMaps::map($locations);
 ```
 :::

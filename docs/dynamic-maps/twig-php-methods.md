@@ -25,15 +25,18 @@ Regardless of whether you are using Twig or PHP, this will create a new `Twig\Ma
 
 If you are working in Twig, you can use curly braces to output the map directly.
 
-#### `init`
+#### Arguments
 
-Set to `true` by default. Allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig.
-
-Setting this to `false` will prevent the JavaScript `init` method from automatically firing. You will be responsible for triggering a map render at some point in the future via the JavaScript `init` method.
+ - `init` (_bool_) - Allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig. Set to `true` by default.
+ 
+    Setting this to `false` will prevent the JavaScript `init` method from automatically firing. You will be responsible for [initializing](/dynamic-maps/javascript-methods/#init-mapid-null) the map at some point in the future.
 
 #### Returns
 
  - A new `Twig\Markup` object. This can be output directly using Twig's curly brace syntax (`{{ }}`).
+ 
+---
+---
 
 ## `getDna()`
 
