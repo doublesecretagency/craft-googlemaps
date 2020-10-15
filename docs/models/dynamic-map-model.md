@@ -347,7 +347,7 @@ Render the necessary `<div>` container to hold the map.
 
 #### Returns
 
- - _Markup_ - A Twig Markup instance, ready to be rendered via curly braces (`{{ }}`).
+ - _Markup_ - A Twig Markup instance, ready to be rendered via curly braces.
 
 :::code
 ```twig

@@ -14,6 +14,7 @@ namespace doublesecretagency\googlemaps\helpers;
 use Craft;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use yii\base\Exception;
 
@@ -70,7 +71,7 @@ class GoogleMaps
      */
     public static function img($locations = [], $options = [])
     {
-        return true;
+        return new StaticMap($locations, $options);
     }
 
     // ========================================================================= //

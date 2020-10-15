@@ -166,11 +166,6 @@ class DynamicMap extends Model
      */
     public function styles(array $styleSet): DynamicMap
     {
-        // If not a valid style set, bail
-        if (!$styleSet || !is_array($styleSet)) {
-            return $this;
-        }
-
         // Add to map DNA
         $this->_dna[] = [
             'type' => 'styles',
