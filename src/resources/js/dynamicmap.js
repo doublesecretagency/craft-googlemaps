@@ -485,7 +485,7 @@ function DynamicMap(locations, options) {
 
     // ========================================================================= //
 
-    // Generate a new random map ID
+    // Generate a random ID
     this._generateId = function(prefix) {
 
         // Initialize random ID

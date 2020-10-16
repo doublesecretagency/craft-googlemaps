@@ -17,10 +17,9 @@ use craft\base\Model;
 use craft\helpers\Html;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
-use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
+use doublesecretagency\googlemaps\helpers\MapHelper;
 use Twig\Markup;
-use yii\base\Exception;
 
 /**
  * Class StaticMap
@@ -38,9 +37,7 @@ class StaticMap extends Model
      * @var array Collection of internal data representing a map to be rendered.
      */
     private $_dna = [
-        ['size' => '640x640'],
-        ['maptype' => 'roadmap'],
-        ['scale' => '4'],
+        'markers' => [],
     ];
 
     // ========================================================================= //
@@ -71,27 +68,19 @@ class StaticMap extends Model
             $options = [];
         }
 
-        // If no ID, automatically generate a random one
-        if (!isset($options['id'])) {
-            $hash = StringHelper::randomString(6);
-            $options['id'] = "map-{$hash}";
-        }
-
         // Set internal map ID
-        $this->id = $options['id'];
+        $this->id = ($options['id'] ?? MapHelper::generateId('map'));
 
+        // Internalize options, fallback to defaults
+        $this->_dna['scale']   = ($options['scale']   ?? '4');
+        $this->_dna['size']    = ($options['size']    ?? '640x640');
+        $this->_dna['maptype'] = ($options['maptype'] ?? 'roadmap');
 
+        // Get marker options
+        $markerOptions = ($options['markerOptions'] ?? []);
 
-
-
-
-
-//        // Initialize map DNA
-//        $this->_dna[] = [
-//            'type' => 'map',
-//            'locations' => $this->_convertToCoords($locations),
-//            'options' => $options,
-//        ];
+        // Load first batch of markers
+        $this->markers($locations, $markerOptions);
 
         // Call parent constructor
         parent::__construct($config);
@@ -108,21 +97,54 @@ class StaticMap extends Model
      */
     public function markers($locations, array $options = []): StaticMap
     {
-//        // If no locations were specified, bail
-//        if (!$locations) {
-//            return $this;
-//        }
+        // If no locations were specified, bail
+        if (!$locations) {
+            return $this;
+        }
 
-        $this->_dna[] = ['markers' => 'color:blue%7Clabel:S%7C40.702147,-74.015794'];
-        $this->_dna[] = ['markers' => 'color:green%7Clabel:G%7C40.711614,-74.012318'];
-        $this->_dna[] = ['markers' => 'color:red%7Clabel:C%7C40.718217,-73.998284'];
+        // Get a collection of coordinate sets
+        $collection = MapHelper::extractCoords($locations);
 
-//        // Add to map DNA
-//        $this->_dna[] = [
-//            'type' => 'markers',
-//            'locations' => $this->_convertToCoords($locations),
-//            'options' => $options,
-//        ];
+        // Loop through all coordinates
+        foreach ($collection as $coords) {
+
+            // Determine the marker ID
+            $markerId = ($coords['id'] ?? MapHelper::generateId('marker'));
+
+
+            /*
+             * Get rid of the marker ID?
+             * Is it useless in a static map?
+             *
+             * Seems like it creates more
+             * problems than it solves.
+             *
+             * Could then merge marker commands.
+             */
+
+
+
+
+
+
+
+            // Initialize marker parts
+            $parts = [];
+
+            // Loop through marker options
+            foreach ($options as $k => $v) {
+                $parts[] = "{$k}:{$v}";
+            }
+
+            // Append marker coordinates
+            $parts[] = "{$coords['lat']},{$coords['lng']}";
+
+
+
+            // Add to map DNA
+            $this->_dna['markers'][$markerId] = implode('%7C', $parts);
+
+        }
 
         // Keep the party going
         return $this;
@@ -149,7 +171,7 @@ class StaticMap extends Model
     }
 
     /**
-     * Change zoom level of the map.
+     * Set zoom level of the map.
      *
      * @param int $level
      * @return $this
@@ -164,7 +186,7 @@ class StaticMap extends Model
     }
 
     /**
-     * Re-center the map.
+     * Center the map.
      *
      * @param array|string $coords
      * @return $this
@@ -178,25 +200,6 @@ class StaticMap extends Model
 
         // Add to map DNA
         $this->_dna[] = ['center' => $coords];
-
-        // Keep the party going
-        return $this;
-    }
-
-    /**
-     * Set the icon of an existing marker.
-     *
-     * @param string $markerId
-     * @return $this
-     */
-    public function setMarkerIcon($markerId, $icon): StaticMap
-    {
-        // Add to map DNA
-//        $this->_dna[] = [
-//            'type' => 'setMarkerIcon',
-//            'markerId' => $markerId,
-//            'icon' => $icon,
-//        ];
 
         // Keep the party going
         return $this;
@@ -231,11 +234,6 @@ class StaticMap extends Model
 
 
 
-        // If no DNA, throw an error
-        if (!$this->_dna) {
-            throw new Exception('Model misconfigured. The map DNA is empty.');
-        }
-
         // Get browser key
         $key = trim(GoogleMaps::getBrowserKey());
 
@@ -244,10 +242,22 @@ class StaticMap extends Model
         $url .= "?key={$key}";
 
         // Loop through DNA sequence
-        foreach ($this->_dna as $block) {
-            foreach ($block as $param => $value) {
+        foreach ($this->_dna as $param => $value) {
+
+            // If not the markers parameter
+            if ('markers' != $param) {
+                // Append parameter value
                 $url .= "&{$param}={$value}";
+                // Skip to next block
+                continue;
             }
+
+            // Loop through markers
+            foreach ($value as $marker) {
+                // Append each marker
+                $url .= "&markers={$marker}";
+            }
+
         }
 
         // Return compiled URL
@@ -265,171 +275,6 @@ class StaticMap extends Model
     public function getDna(): array
     {
         return $this->_dna;
-    }
-
-
-    /**
-     * Unpack and initialize map DNA.
-     *
-     * @return array
-     */
-    public function _unpack(): array
-    {
-//        // Loop through DNA sequence
-//        foreach ($this->_dna as $block) {
-//
-//            switch ($block->type) {
-//
-//                // Create a new map
-//                case 'map':
-////                    map = new StaticMap(block.locations, block.options);
-//                    break;
-//
-//                // Add markers to the map
-//                case 'markers':
-////                    map.markers(block.locations, block.options);
-//                    break;
-//
-////                // Add KML layer to the map
-////                case 'kml':
-//////                    map.kml(block.url, block.options);
-////                    break;
-//
-//                // Style the map
-//                case 'styles':
-////                    map.styles(block.styleSet);
-//                    break;
-//
-//                // Zoom the map
-//                case 'zoom':
-////                    map.zoom(block.level);
-//                    break;
-//
-//                // Center the map
-//                case 'center':
-////                    map.center(block.coords);
-//                    break;
-//
-////                // Fit the map bounds
-////                case 'fit':
-//////                    map.fit();
-////                    break;
-////
-////                // Refresh the map
-////                case 'refresh':
-//////                    map.refresh();
-////                    break;
-////
-////                // Pan to a specific marker
-////                case 'panToMarker':
-//////                    map.panToMarker(block.markerId);
-////                    break;
-//
-//                // Set icon of an existing marker
-//                case 'setMarkerIcon':
-////                    map.setMarkerIcon(block.markerId, block.icon);
-//                    break;
-//
-////                // Hide a marker
-////                case 'hideMarker':
-//////                    map.hideMarker(block.markerId);
-////                    break;
-////
-////                // Show a marker
-////                case 'showMarker':
-//////                    map.showMarker(block.markerId);
-////                    break;
-//
-//            }
-
-//        }
-
-
-//        // Switch according to DNA block type
-//        switch (block.type) {
-
-//        }
-//
-//    }
-//
-//        // Store map object for future reference
-//        this._maps[map.id] = map;
-//
-//        // Return the map object
-//        return map;
-    }
-
-    // ========================================================================= //
-
-
-    // Always return coordinates within a parent array,
-    // to compensate for Elements with multiple Addresses.
-    private function _convertToCoords($locations): array
-    {
-        // If it's a Location Model, return the coordinates
-        if (is_a($locations, Location::class)) {
-            return [$locations->getCoords()];
-        }
-
-        // If it's a natural set of coordinates, return as-is
-        if (is_array($locations) && isset($locations['lat']) && isset($locations['lng'])) {
-            return [$locations];
-        }
-
-        // Force array syntax
-        if (!is_array($locations)) {
-            $locations = [$locations];
-        }
-
-        // Initialize results array
-        $results = [];
-
-        // Loop through all locations
-        foreach ($locations as $location) {
-
-            // If it's a Location Model, add the coordinates to results
-            if (is_a($location, Location::class)) {
-                $results[] = $location->getCoords();
-            }
-
-            // If it's a natural set of coordinates, add them to results as-is
-            if (is_array($location) && isset($location['lat']) && isset($location['lng'])) {
-                $results[] = $location;
-            }
-
-            // If not an Element, skip it
-            if (!is_a($location, Element::class)) {
-                continue;
-            }
-
-            // Get all fields associated with Element
-            $fields = $location->getFieldLayout()->getFields();
-
-            // Loop through all relevant fields
-            foreach ($fields as $field) {
-                // If not an Address Field, skip it
-                if (!is_a($field, AddressField::class)) {
-                    continue;
-                }
-                // Get value of Address Field
-                $address = $location->{$field->handle};
-                // If no Address, skip
-                if (!$address) {
-                    continue;
-                }
-                // Add coordinates to results
-                if ($address->hasCoords()) {
-                    $results[] = array_merge(
-                        $address->getCoords(),
-                        ['id' => "{$location->id}-{$field->handle}"]
-                    );
-                }
-            }
-
-        }
-
-        // Return final results
-        return $results;
     }
 
 }

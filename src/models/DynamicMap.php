@@ -18,7 +18,7 @@ use craft\helpers\Html;
 use craft\helpers\Json;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
-use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Markup;
 use yii\base\Exception;
@@ -98,7 +98,7 @@ class DynamicMap extends Model
         // Initialize map DNA
         $this->_dna[] = [
             'type' => 'map',
-            'locations' => $this->_convertToCoords($locations),
+            'locations' => MapHelper::extractCoords($locations),
             'options' => $options,
         ];
 
@@ -125,7 +125,7 @@ class DynamicMap extends Model
         // Add to map DNA
         $this->_dna[] = [
             'type' => 'markers',
-            'locations' => $this->_convertToCoords($locations),
+            'locations' => MapHelper::extractCoords($locations),
             'options' => $options,
         ];
 
@@ -368,79 +368,6 @@ class DynamicMap extends Model
     public function getDna(): array
     {
         return $this->_dna;
-    }
-
-    // ========================================================================= //
-
-
-    // Always return coordinates within a parent array,
-    // to compensate for Elements with multiple Addresses.
-    private function _convertToCoords($locations): array
-    {
-        // If it's a Location Model, return the coordinates
-        if (is_a($locations, Location::class)) {
-            return [$locations->getCoords()];
-        }
-
-        // If it's a natural set of coordinates, return as-is
-        if (is_array($locations) && isset($locations['lat']) && isset($locations['lng'])) {
-            return [$locations];
-        }
-
-        // Force array syntax
-        if (!is_array($locations)) {
-            $locations = [$locations];
-        }
-
-        // Initialize results array
-        $results = [];
-
-        // Loop through all locations
-        foreach ($locations as $location) {
-
-            // If it's a Location Model, add the coordinates to results
-            if (is_a($location, Location::class)) {
-                $results[] = $location->getCoords();
-            }
-
-            // If it's a natural set of coordinates, add them to results as-is
-            if (is_array($location) && isset($location['lat']) && isset($location['lng'])) {
-                $results[] = $location;
-            }
-
-            // If not an Element, skip it
-            if (!is_a($location, Element::class)) {
-                continue;
-            }
-
-            // Get all fields associated with Element
-            $fields = $location->getFieldLayout()->getFields();
-
-            // Loop through all relevant fields
-            foreach ($fields as $field) {
-                // If not an Address Field, skip it
-                if (!is_a($field, AddressField::class)) {
-                    continue;
-                }
-                // Get value of Address Field
-                $address = $location->{$field->handle};
-                // If no Address, skip
-                if (!$address) {
-                    continue;
-                }
-                // Add coordinates to results
-                if ($address->hasCoords()) {
-                    $results[] = array_merge(
-                        $address->getCoords(),
-                        ['id' => "{$location->id}-{$field->handle}"]
-                    );
-                }
-            }
-
-        }
-
-        // Return final results
-        return $results;
     }
 
 }
