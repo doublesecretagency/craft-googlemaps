@@ -117,4 +117,23 @@ class MapHelper
         return $results;
     }
 
+    // ========================================================================= //
+
+    /**
+     * Convert a set of coordinates into a string.
+     *
+     * @param array $coords
+     * @return string
+     */
+    public static function stringCoords(array $coords): string
+    {
+        // If misconfigured coordinates, return empty string
+        if (!isset($coords['lat'],$coords['lng'])) {
+            return '';
+        }
+
+        // Return stringified coordinates
+        return "{$coords['lat']},{$coords['lng']}";
+    }
+
 }

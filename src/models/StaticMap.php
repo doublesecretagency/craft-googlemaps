@@ -72,7 +72,7 @@ class StaticMap extends Model
         $this->id = ($options['id'] ?? MapHelper::generateId('map'));
 
         // Internalize options, fallback to defaults
-        $this->_dna['scale']   = ($options['scale']   ?? '4');
+        $this->_dna['scale']   = ($options['scale']   ?? 4);
         $this->_dna['size']    = ($options['size']    ?? '640x640');
         $this->_dna['maptype'] = ($options['maptype'] ?? 'roadmap');
 
@@ -102,49 +102,24 @@ class StaticMap extends Model
             return $this;
         }
 
+        // Initialize marker parts
+        $parts = [];
+
+        // Loop through marker options
+        foreach ($options as $k => $v) {
+            $parts[] = "{$k}:{$v}";
+        }
+
         // Get a collection of coordinate sets
         $collection = MapHelper::extractCoords($locations);
 
-        // Loop through all coordinates
+        // Append each set of marker coordinates
         foreach ($collection as $coords) {
-
-            // Determine the marker ID
-            $markerId = ($coords['id'] ?? MapHelper::generateId('marker'));
-
-
-            /*
-             * Get rid of the marker ID?
-             * Is it useless in a static map?
-             *
-             * Seems like it creates more
-             * problems than it solves.
-             *
-             * Could then merge marker commands.
-             */
-
-
-
-
-
-
-
-            // Initialize marker parts
-            $parts = [];
-
-            // Loop through marker options
-            foreach ($options as $k => $v) {
-                $parts[] = "{$k}:{$v}";
-            }
-
-            // Append marker coordinates
-            $parts[] = "{$coords['lat']},{$coords['lng']}";
-
-
-
-            // Add to map DNA
-            $this->_dna['markers'][$markerId] = implode('%7C', $parts);
-
+            $parts[] = MapHelper::stringCoords($coords);
         }
+
+        // Add to map DNA
+        $this->_dna['markers'][] = implode('|', $parts);
 
         // Keep the party going
         return $this;
@@ -164,7 +139,7 @@ class StaticMap extends Model
         }
 
         // Add to map DNA
-        $this->_dna[] = ['styles' => $styleSet];
+        $this->_dna['styles'] = $styleSet;
 
         // Keep the party going
         return $this;
@@ -179,7 +154,7 @@ class StaticMap extends Model
     public function zoom(int $level): StaticMap
     {
         // Add to map DNA
-        $this->_dna[] = ['zoom' => $level];
+        $this->_dna['zoom'] = $level;
 
         // Keep the party going
         return $this;
@@ -193,13 +168,18 @@ class StaticMap extends Model
      */
     public function center($coords): StaticMap
     {
-        // If not a valid style set, bail
-        if (!$coords) {
+        // If not a valid set of coordinates, bail
+        $validFormat = (is_string($coords) || is_array($coords));
+        if (!$coords || !$validFormat) {
             return $this;
         }
 
         // Add to map DNA
-        $this->_dna[] = ['center' => $coords];
+        if (is_string($coords)) {
+            $this->_dna['center'] = $coords;
+        } else {
+            $this->_dna['center'] = MapHelper::stringCoords($coords);
+        }
 
         // Keep the party going
         return $this;
