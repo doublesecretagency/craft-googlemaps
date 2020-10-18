@@ -33,6 +33,15 @@ GoogleMaps::map(locations, options).markers(locations, options)
 
 ```
 
+| Option               | Type                 | Default | Description |
+|----------------------|:--------------------:|:-------:|-------------|
+| `size` | _string_ | _null_ | `tiny`, `mid`, or `small` |
+| `scale` | _int_ | 1 | Multiplied with size to determine output size. (`1`,`2`,`4`) |
+| `format` | _string_ | _null_ | blah |
+| `maptype` | _string_ | _null_ | blah |
+| `language` | _string_ | _null_ | blah |
+| `region` | _string_ | _null_ | blah |
+
 
 ---
 ---

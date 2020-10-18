@@ -126,6 +126,43 @@ class StaticMap extends Model
     }
 
     /**
+     * Add a defined path to the map.
+     *
+     * @param array|Element|Address $points
+     * @param array $options
+     * @return $this
+     */
+    public function path($points, array $options = []): StaticMap
+    {
+        // If no points were specified, bail
+        if (!$points) {
+            return $this;
+        }
+
+        // Initialize path parts
+        $parts = [];
+
+        // Loop through path options
+        foreach ($options as $k => $v) {
+            $parts[] = "{$k}:{$v}";
+        }
+
+        // Get a collection of coordinate sets
+        $collection = MapHelper::extractCoords($points);
+
+        // Append each set of coordinates to path
+        foreach ($collection as $coords) {
+            $parts[] = MapHelper::stringCoords($coords);
+        }
+
+        // Add to map DNA
+        $this->_dna['path'][] = implode('|', $parts);
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
      * Style the map.
      *
      * @param array $styleSet
@@ -224,18 +261,21 @@ class StaticMap extends Model
         // Loop through DNA sequence
         foreach ($this->_dna as $param => $value) {
 
-            // If not the markers parameter
-            if ('markers' != $param) {
+            // If value is an string
+            if (is_string($value)) {
                 // Append parameter value
                 $url .= "&{$param}={$value}";
                 // Skip to next block
                 continue;
             }
 
-            // Loop through markers
-            foreach ($value as $marker) {
-                // Append each marker
-                $url .= "&markers={$marker}";
+            // If value is an array
+            if (is_array($value)) {
+                // Loop through each value
+                foreach ($value as $v) {
+                    // Append each individually
+                    $url .= "&{$param}={$v}";
+                }
             }
 
         }
