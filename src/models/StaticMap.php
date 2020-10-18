@@ -11,11 +11,9 @@
 
 namespace doublesecretagency\googlemaps\models;
 
-use Craft;
 use craft\base\Element;
 use craft\base\Model;
 use craft\helpers\Html;
-use craft\helpers\StringHelper;
 use craft\helpers\Template;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
@@ -36,9 +34,7 @@ class StaticMap extends Model
     /**
      * @var array Collection of internal data representing a map to be rendered.
      */
-    private $_dna = [
-        'markers' => [],
-    ];
+    private $_dna = [];
 
     // ========================================================================= //
 
@@ -171,12 +167,20 @@ class StaticMap extends Model
     public function styles(array $styleSet): StaticMap
     {
         // If not a valid style set, bail
-        if (!$styleSet || !is_array($styleSet)) {
+        if (!$styleSet) {
             return $this;
         }
 
+        // Initialize path parts
+        $parts = [];
+
+        // Loop through style set
+        foreach ($styleSet as $k => $v) {
+            $parts[] = "{$k}:{$v}";
+        }
+
         // Add to map DNA
-        $this->_dna['styles'] = $styleSet;
+        $this->_dna['style'][] = implode('|', $parts);
 
         // Keep the party going
         return $this;
@@ -228,13 +232,17 @@ class StaticMap extends Model
     {
 
         /*
-         * $options should include `alt` and `title`
+         * $options should include:
+         * `alt`, `title`, and `classes`
          */
+
+        // Additional classes
+        $classes = '';
 
         // Compile map container
         $html = Html::modifyTagAttributes('<img>', [
             'id' => $this->id,
-            'class' => 'gm-img',
+            'class' => trim("gm-img {$classes}"),
             'alt' => 'this-map',
             'src' => $this->src(),
         ]);
@@ -245,12 +253,6 @@ class StaticMap extends Model
 
     public function src(): string
     {
-
-
-//        Craft::dd($this->_dna);
-
-
-
         // Get browser key
         $key = trim(GoogleMaps::getBrowserKey());
 
@@ -282,7 +284,6 @@ class StaticMap extends Model
 
         // Return compiled URL
         return $url;
-
     }
 
     // ========================================================================= //
