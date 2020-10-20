@@ -27,6 +27,10 @@ $map = GoogleMaps::map($locations)
 
 To ensure that our maps are as dynamic as possible, there are a [series of methods](/dynamic-maps/universal-methods/) which can be chained together, in any order you'd like.
 
+:::tip Static & Dynamic
+All the examples on this page demonstrate how [Dynamic Map methods](/models/dynamic-map-model/) can be chained, but it's worth noting that [Static Map methods](/models/static-map-model/) can also be chained together.
+:::
+
 ## Starting a Chain
 
 A chain must always **begin** with the creation of a map object. No matter how you intend to decorate your dynamic map, it will always start the same way...

@@ -1,6 +1,6 @@
 # Dynamic Map Model
 
-The Dynamic Map Model is critical for generating a [Dynamic Map](/dynamic-maps/dynamic/). Thanks to the magic of [chaining](/dynamic-maps/chaining/), it allows you to build maps that are as complex as they need to be.
+The Dynamic Map Model is critical for generating a [Dynamic Map](/dynamic-maps/). Thanks to the magic of [chaining](/dynamic-maps/chaining/), it allows you to build maps that are as complex as they need to be.
 
 ## Public Methods
 
@@ -339,7 +339,7 @@ $map->showMarker($markerId);
 
 ### `tag($init = true)`
 
-Render the necessary `<div>` container to hold the map.
+Renders the necessary `<div>` container to hold the map.
 
 #### Arguments
 
