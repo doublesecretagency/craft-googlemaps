@@ -171,16 +171,21 @@ class StaticMap extends Model
             return $this;
         }
 
-        // Initialize path parts
-        $parts = [];
-
         // Loop through style set
-        foreach ($styleSet as $k => $v) {
-            $parts[] = "{$k}:{$v}";
-        }
+        foreach ($styleSet as $subset) {
 
-        // Add to map DNA
-        $this->_dna['style'][] = implode('|', $parts);
+            // Initialize path parts
+            $parts = [];
+
+            // Compile each subset of styles
+            foreach ($subset as $k => $v) {
+                $parts[] = "{$k}:{$v}";
+            }
+
+            // Add to map DNA
+            $this->_dna['style'][] = implode('|', $parts);
+
+        }
 
         // Keep the party going
         return $this;
@@ -232,6 +237,7 @@ class StaticMap extends Model
     {
 
         /*
+         * TODO:
          * $options should include:
          * `alt`, `title`, and `classes`
          */
@@ -264,7 +270,7 @@ class StaticMap extends Model
         foreach ($this->_dna as $param => $value) {
 
             // If value is an string
-            if (is_string($value)) {
+            if (is_string($value) || is_numeric($value)) {
                 // Append parameter value
                 $url .= "&{$param}={$value}";
                 // Skip to next block
