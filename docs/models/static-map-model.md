@@ -1,6 +1,6 @@
 # Static Map Model
 
-The Static Map Model is used to generate [Static Maps](/static-maps/). You can chain together static map methods, very similar to how you can [chain dynamic map methods](/dynamic-maps/chaining/).
+The Static Map Model is used to generate [Static Maps](/static-maps/). Chaining together static map methods is very similar to [chaining dynamic map methods](/dynamic-maps/chaining/).
 
 
 ## Public Methods
@@ -154,7 +154,7 @@ Set the map's zoom level.
 
 #### Arguments
 
- - `$level` (_string_) - The new zoom level. Must be an integer between `1` - `22`.
+ - `$level` (_int_) - The zoom level. Must be an integer between `1` - `22`.
 
 #### Returns
 
@@ -178,7 +178,7 @@ Center the map.
 
 #### Arguments
 
- - `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of [coordinates](/models/coordinates/).
+ - `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of coordinates.
 
 #### Returns
 
@@ -198,7 +198,7 @@ $map->center($coords);
 
 ### `tag()`
 
-Renders a fully-compiled `<img>` tag using the final `src` (see `src` method below).
+Renders a fully-compiled `<img>` tag using the final `src` output. (see the [`src` method](#src) below)
 
 #### Returns
 
@@ -211,6 +211,10 @@ Renders a fully-compiled `<img>` tag using the final `src` (see `src` method bel
 ```php
 $twigMarkup = $map->tag();
 ```
+:::
+
+:::warning See also
+Internally, the `tag` method relies directly on the `src` method below.
 :::
 
 ---
