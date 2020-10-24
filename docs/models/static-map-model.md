@@ -38,7 +38,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `height`        | _int_    | `320`   | Height of the map, in pixels. (max `640`) |
 | `attr`          | _array_  | `[]`    | Additional attributes for the `<img>` tag. |
 | `zoom`          | _int_    | (automatic) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
-| `center`        | _[coords](/models/coordinates/)_ | (automatic) | Set the center position of the map. |
+| `center`        | _[coords](/models/coordinates/)_\|_string_ | (automatic) | Center the map. |
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
 | `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
 | `format`        | _string_ | _null_  | blah |
@@ -181,7 +181,7 @@ Center the map.
 
 #### Arguments
 
- - `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of coordinates.
+ - `$coords` (_[coords](/models/coordinates/)_|_string_) - A key-value set of coordinates, or a comma-separated string value.
 
 #### Returns
 
