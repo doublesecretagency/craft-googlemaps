@@ -36,7 +36,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `id`            | _string_ | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
 | `width`         | _int_    | `640`   | Width of the map, in pixels. (max `640`) |
 | `height`        | _int_    | `320`   | Height of the map, in pixels. (max `640`) |
-| `attr`          | _array_  | `[]`    | Additional attributes for the `<img>` tag. |
+| `attr`          | _array_  | _null_  | Additional attributes for the `<img>` tag. |
 | `zoom`          | _int_    | (automatic) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
 | `center`        | _[coords](/models/coordinates/)_\|_string_ | (automatic) | Center the map. |
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |

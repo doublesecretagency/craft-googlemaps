@@ -88,7 +88,7 @@ class StaticMap extends Model
         // Calculate the correct image dimensions
         $this->_setDimensions($options);
 
-        // If valid zoom, apply it
+        // If valid zoom specified, apply it
         if (isset($options['zoom']) && is_int($options['zoom'])) {
             $this->zoom($options['zoom']);
         }
@@ -96,6 +96,11 @@ class StaticMap extends Model
         // If center specified, apply it
         if (isset($options['center'])) {
             $this->center($options['center']);
+        }
+
+        // If valid map styles specified, apply them
+        if (isset($options['styles']) && is_array($options['styles'])) {
+            $this->styles($options['styles']);
         }
 
 
