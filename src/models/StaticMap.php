@@ -88,8 +88,8 @@ class StaticMap extends Model
         // Calculate the correct image dimensions
         $this->_setDimensions($options);
 
-        //
-        $this->_setOthers($options);
+        // Set any additional parameters
+        $this->_additionalParams($options);
 
         // If valid zoom specified, apply it
         if (isset($options['zoom']) && is_int($options['zoom'])) {
@@ -120,8 +120,12 @@ class StaticMap extends Model
 
     /**
      */
-    private function _setOthers($options)
+    private function _additionalParams($options)
     {
+        // If a image format was specified, apply it
+        if (isset($options['format']) && is_string($options['format'])) {
+            $this->_dna['format'] = trim($options['format']);
+        }
 
         // If a map type was specified, apply it
         if (isset($options['maptype']) && is_string($options['maptype'])) {
@@ -133,6 +137,10 @@ class StaticMap extends Model
             $this->_dna['language'] = trim($options['language']);
         }
 
+        // If a region was specified, apply it
+        if (isset($options['region']) && is_string($options['region'])) {
+            $this->_dna['region'] = trim($options['region']);
+        }
     }
 
     /**

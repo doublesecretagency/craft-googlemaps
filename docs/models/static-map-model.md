@@ -41,10 +41,10 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `center`        | _[coords](/models/coordinates/)_\|_string_ | (automatic) | Center the map. |
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
 | `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
-| `format`        | _string_ | _null_  | blah |
+| `format`        | _string_ | `png`  | Type of [image format](https://developers.google.com/maps/documentation/maps-static/start#ImageFormats). |
 | `maptype`       | _string_ | `roadmap` | Type of [map format](https://developers.google.com/maps/documentation/maps-static/start#MapTypes). |
 | `language`      | _string_ | (automatic) | Language for location labels. |
-| `region`        | _string_ | _null_  | blah |
+| `region`        | _string_ | _null_  | Adjusts map based on geo-political sensitivities. |
 | `visible`       | _string_ | _null_  | blah |
 | `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |
 
