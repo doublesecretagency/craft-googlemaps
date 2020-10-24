@@ -42,8 +42,8 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
 | `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
 | `format`        | _string_ | _null_  | blah |
-| `maptype`       | _string_ | _null_  | blah |
-| `language`      | _string_ | _null_  | blah |
+| `maptype`       | _string_ | `roadmap` | Type of [map format](https://developers.google.com/maps/documentation/maps-static/start#MapTypes). |
+| `language`      | _string_ | (automatic) | Language for location labels. |
 | `region`        | _string_ | _null_  | blah |
 | `visible`       | _string_ | _null_  | blah |
 | `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |

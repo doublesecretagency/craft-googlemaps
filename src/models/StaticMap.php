@@ -88,6 +88,9 @@ class StaticMap extends Model
         // Calculate the correct image dimensions
         $this->_setDimensions($options);
 
+        //
+        $this->_setOthers($options);
+
         // If valid zoom specified, apply it
         if (isset($options['zoom']) && is_int($options['zoom'])) {
             $this->zoom($options['zoom']);
@@ -105,13 +108,6 @@ class StaticMap extends Model
 
 
 
-
-
-        // Internalize options, fallback to defaults
-//        $this->_dna['maptype'] = ($options['maptype'] ?? 'roadmap');
-
-
-
         // Get marker options
         $markerOptions = ($options['markerOptions'] ?? []);
 
@@ -120,6 +116,23 @@ class StaticMap extends Model
 
         // Call parent constructor
         parent::__construct($config);
+    }
+
+    /**
+     */
+    private function _setOthers($options)
+    {
+
+        // If a map type was specified, apply it
+        if (isset($options['maptype']) && is_string($options['maptype'])) {
+            $this->_dna['maptype'] = trim($options['maptype']);
+        }
+
+        // If a language was specified, apply it
+        if (isset($options['language']) && is_string($options['language'])) {
+            $this->_dna['language'] = trim($options['language']);
+        }
+
     }
 
     /**
