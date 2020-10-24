@@ -36,6 +36,21 @@ class StaticMap extends Model
      */
     private $_dna = [];
 
+    /**
+     * @var array Internalized set of options.
+     */
+    private $_mapOptions;
+
+    /**
+     * @var int Official image width.
+     */
+    private $_w = 640;
+
+    /**
+     * @var int Official image height.
+     */
+    private $_h = 320;
+
     // ========================================================================= //
 
     /**
@@ -64,13 +79,22 @@ class StaticMap extends Model
             $options = [];
         }
 
+        // Internalize original map options
+        $this->_mapOptions = $options;
+
         // Set internal map ID
         $this->id = ($options['id'] ?? MapHelper::generateId('map'));
 
+        // Calculate the correct image dimensions
+        $this->_setDimensions($options);
+
+
+
+
         // Internalize options, fallback to defaults
-        $this->_dna['scale']   = ($options['scale']   ?? 4);
-        $this->_dna['size']    = ($options['size']    ?? '640x640');
-        $this->_dna['maptype'] = ($options['maptype'] ?? 'roadmap');
+//        $this->_dna['maptype'] = ($options['maptype'] ?? 'roadmap');
+
+
 
         // Get marker options
         $markerOptions = ($options['markerOptions'] ?? []);
@@ -80,6 +104,21 @@ class StaticMap extends Model
 
         // Call parent constructor
         parent::__construct($config);
+    }
+
+    /**
+     */
+    private function _setDimensions($options)
+    {
+        // Internalize official dimensions
+        $this->_w = ($options['width']  ?? $this->_w);
+        $this->_h = ($options['height'] ?? $this->_h);
+
+        // Compile size parameter
+        $this->_dna['size'] = ($options['size'] ?? "{$this->_w}x{$this->_h}");
+
+        // Compile scale parameter
+        $this->_dna['scale'] = ($options['scale'] ?? 2);
     }
 
     // ========================================================================= //
@@ -235,23 +274,24 @@ class StaticMap extends Model
 
     public function tag(): Markup
     {
+        // Get custom attributes
+        $attr = ($this->_mapOptions['attr'] ?? []);
 
-        /*
-         * TODO:
-         * $options should include:
-         * `alt`, `title`, and `classes`
-         */
+        // Use internalized ID as fallback
+        $attr['id'] = ($attr['id'] ?? $this->id);
 
-        // Additional classes
-        $classes = '';
+        // Get the final map source
+        $attr['src'] = $this->src();
+
+        // If no class is specified, fallback to the default
+        $attr['class'] = ($attr['class'] ?? 'gm-img');
+
+        // Set image dimensions
+        $attr['width']  = $this->_w;
+        $attr['height'] = $this->_h;
 
         // Compile map container
-        $html = Html::modifyTagAttributes('<img>', [
-            'id' => $this->id,
-            'class' => trim("gm-img {$classes}"),
-            'alt' => 'this-map',
-            'src' => $this->src(),
-        ]);
+        $html = Html::modifyTagAttributes('<img>', $attr);
 
         // Return Markup
         return Template::raw($html);

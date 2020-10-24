@@ -30,22 +30,26 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
  - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
  - `$options` (_array_) - Optional parameters to configure the map. (see below)
+ 
+| Option          | Type     | Default | Description |
+|-----------------|:--------:|:-------:|-------------|
+| `id`            | _string_ | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
+| `width`         | _int_    | `640`   | Width of the map, in pixels. (max `640`) |
+| `height`        | _int_    | `320`   | Height of the map, in pixels. (max `640`) |
+| `attr`          | _array_  | `[]`    | Additional attributes for the `<img>` tag. |
+| `zoom`          | _int_    | (automatic) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
+| `center`        | _[coords](/models/coordinates/)_ | (automatic) | Set the center position of the map. |
+| `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
+| `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
+| `format`        | _string_ | _null_  | blah |
+| `maptype`       | _string_ | _null_  | blah |
+| `language`      | _string_ | _null_  | blah |
+| `region`        | _string_ | _null_  | blah |
+| `visible`       | _string_ | _null_  | blah |
+| `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |
 
-| Option               | Type                | Default            | Description |
-|----------------------|:-------------------:|:------------------:|-------------|
-| `id`                 | _string_            | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
 
 
-[Map options. Where do these go?]
-
-| Option               | Type                 | Default | Description |
-|----------------------|:--------------------:|:-------:|-------------|
-| `size` | _string_ | _null_ | `tiny`, `mid`, or `small` |
-| `scale` | _int_ | 1 | Multiplied with size to determine output size. (`1`,`2`,`4`) |
-| `format` | _string_ | _null_ | blah |
-| `maptype` | _string_ | _null_ | blah |
-| `language` | _string_ | _null_ | blah |
-| `region` | _string_ | _null_ | blah |
 
 
 ---
@@ -69,7 +73,6 @@ Append markers to an existing map object.
 | `icon` | _string_ | _null_  | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `anchor` | `'bottom'` | _null_ | Set as `x,y` coordinates or a [predefined alignment](https://developers.google.com/maps/documentation/maps-static/start#CustomIcons). |
 | `visible` | _string_ | _null_ | blah |
-| `markerOptions` | _object_             | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `fields`        | _string_ or _array_  | _null_  | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
 
 #### Returns

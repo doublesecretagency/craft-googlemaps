@@ -26,35 +26,39 @@ However, if your use case is _not_ covered by this collection of helper methods,
 
 ## Generate Maps
 
+### Dynamic Maps
+
 :::code
 ```twig
 {# Generate a dynamic map #}
 {{ googleMaps.map(locations).tag() }}
 
-{# Generate a static map #}
-{{ googleMaps.img(locations).tag() }}
+{# Retrieve an existing dynamic map #}
+{% set map = googleMaps.getMap(mapId) %}
 ```
 ```php
 // Generate a dynamic map
 GoogleMaps::map($locations)->tag();
 
-// Generate a static map
-GoogleMaps::img($locations)->tag();
-```
-:::
-
-:::code
-```twig
-{# Retrieve an existing dynamic map #}
-{% set map = googleMaps.getMap(mapId) %}
-```
-```php
 // Retrieve an existing dynamic map
 $map = GoogleMaps::getMap($mapId);
 ```
 :::
 
-For more information, check out the documentation on [Dynamic Maps](/dynamic-maps/dynamic/), [Static Maps](/dynamic-maps/static/), and the maps [API](/dynamic-maps/api/).
+### Static Maps
+
+:::code
+```twig
+{# Generate a static map #}
+{{ googleMaps.img(locations).tag() }}
+```
+```php
+// Generate a static map
+GoogleMaps::img($locations)->tag();
+```
+:::
+
+For more information, check out the documentation on [Dynamic Maps](/dynamic-maps/), [Static Maps](/static-maps/), and the maps [API](/dynamic-maps/api/).
 
 ---
 
