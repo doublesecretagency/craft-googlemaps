@@ -41,11 +41,11 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `center`        | _[coords](/models/coordinates/)_\|_string_ | (automatic) | Center the map. |
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
 | `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
-| `format`        | _string_ | `png`  | Type of [image format](https://developers.google.com/maps/documentation/maps-static/start#ImageFormats). |
+| `format`        | _string_ | `png`   | Type of [image format](https://developers.google.com/maps/documentation/maps-static/start#ImageFormats). |
 | `maptype`       | _string_ | `roadmap` | Type of [map format](https://developers.google.com/maps/documentation/maps-static/start#MapTypes). |
 | `language`      | _string_ | (automatic) | Language for location labels. |
 | `region`        | _string_ | _null_  | Adjusts map based on geo-political sensitivities. |
-| `visible`       | _string_ | _null_  | blah |
+| `visible`       | _[coords](/models/coordinates/)_\|_string_\|_array_ | _null_  | blah |
 | `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |
 
 
@@ -181,7 +181,7 @@ Center the map.
 
 #### Arguments
 
- - `$coords` (_[coords](/models/coordinates/)_|_string_) - A key-value set of coordinates, or a comma-separated string value.
+ - `$coords` (_[coords](/models/coordinates/)_|_string_) - A key-value set of coordinates, or a comma-separated string value. You can also specify the name of a location to be geocoded (ie: `New York, NY`).
 
 #### Returns
 

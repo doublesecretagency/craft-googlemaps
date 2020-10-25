@@ -85,26 +85,19 @@ class StaticMap extends Model
         // Set internal map ID
         $this->id = ($options['id'] ?? MapHelper::generateId('map'));
 
+
+
         // Calculate the correct image dimensions
         $this->_setDimensions($options);
 
         // Set any additional parameters
-        $this->_additionalParams($options);
+        $this->_paramsViaDna($options);
 
-        // If valid zoom specified, apply it
-        if (isset($options['zoom']) && is_int($options['zoom'])) {
-            $this->zoom($options['zoom']);
-        }
+        // Added to DNA via methods
+        $this->_paramsViaMethods($options);
 
-        // If center specified, apply it
-        if (isset($options['center'])) {
-            $this->center($options['center']);
-        }
-
-        // If valid map styles specified, apply them
-        if (isset($options['styles']) && is_array($options['styles'])) {
-            $this->styles($options['styles']);
-        }
+        // Ensure certain points are visible
+        $this->_setVisible($options);
 
 
 
@@ -120,7 +113,45 @@ class StaticMap extends Model
 
     /**
      */
-    private function _additionalParams($options)
+    private function _setVisible($options)
+    {
+        // If no visibility point specified
+        if (!isset($options['visible'])) {
+            return;
+        }
+
+        // If string, set parameter value and bail
+        if (is_string($options['visible'])) {
+            $this->_dna['visible'] = trim($options['visible']);
+            return;
+        }
+
+        // If not an array, bail
+        if (!is_array($options['visible'])) {
+            return;
+        }
+
+
+    }
+
+    /**
+     */
+    private function _setDimensions($options)
+    {
+        // Internalize official dimensions
+        $this->_w = ($options['width']  ?? $this->_w);
+        $this->_h = ($options['height'] ?? $this->_h);
+
+        // Compile size parameter
+        $this->_dna['size'] = ($options['size'] ?? "{$this->_w}x{$this->_h}");
+
+        // Compile scale parameter
+        $this->_dna['scale'] = ($options['scale'] ?? 2);
+    }
+
+    /**
+     */
+    private function _paramsViaDna($options)
     {
         // If a image format was specified, apply it
         if (isset($options['format']) && is_string($options['format'])) {
@@ -145,17 +176,22 @@ class StaticMap extends Model
 
     /**
      */
-    private function _setDimensions($options)
+    private function _paramsViaMethods($options)
     {
-        // Internalize official dimensions
-        $this->_w = ($options['width']  ?? $this->_w);
-        $this->_h = ($options['height'] ?? $this->_h);
+        // If valid zoom specified, apply it
+        if (isset($options['zoom']) && is_int($options['zoom'])) {
+            $this->zoom($options['zoom']);
+        }
 
-        // Compile size parameter
-        $this->_dna['size'] = ($options['size'] ?? "{$this->_w}x{$this->_h}");
+        // If center specified, apply it
+        if (isset($options['center'])) {
+            $this->center($options['center']);
+        }
 
-        // Compile scale parameter
-        $this->_dna['scale'] = ($options['scale'] ?? 2);
+        // If valid map styles specified, apply them
+        if (isset($options['styles']) && is_array($options['styles'])) {
+            $this->styles($options['styles']);
+        }
     }
 
     // ========================================================================= //
