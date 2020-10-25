@@ -157,6 +157,11 @@ class StaticMap extends Model
         // Initialize path parts
         $parts = [];
 
+        // If provided but invalid, convert geodesic value to a string
+        if (isset($options['geodesic']) && !is_string($options['geodesic'])) {
+            $options['geodesic'] = ($options['geodesic'] ? 'true' : 'false');
+        }
+
         // Loop through path options
         foreach ($options as $k => $v) {
             $parts[] = "{$k}:{$v}";
