@@ -113,29 +113,6 @@ class StaticMap extends Model
 
     /**
      */
-    private function _setVisible($options)
-    {
-        // If no visibility point specified
-        if (!isset($options['visible'])) {
-            return;
-        }
-
-        // If string, set parameter value and bail
-        if (is_string($options['visible'])) {
-            $this->_dna['visible'] = trim($options['visible']);
-            return;
-        }
-
-        // If not an array, bail
-        if (!is_array($options['visible'])) {
-            return;
-        }
-
-
-    }
-
-    /**
-     */
     private function _setDimensions($options)
     {
         // Internalize official dimensions
@@ -192,6 +169,60 @@ class StaticMap extends Model
         if (isset($options['styles']) && is_array($options['styles'])) {
             $this->styles($options['styles']);
         }
+    }
+
+    /**
+     */
+    private function _setVisible($options)
+    {
+        // If no visibility point specified
+        if (!isset($options['visible'])) {
+            return;
+        }
+
+        // Get value of visible
+        $visible = $options['visible'];
+
+        // If string, set parameter value and bail
+        if (is_string($visible)) {
+            $this->_dna['visible'] = urlencode(trim($visible));
+            return;
+        }
+
+        // If not an array, bail
+        if (!is_array($visible)) {
+            return;
+        }
+
+        // If coordinates syntax, force nested array
+        if (isset($visible['lat'],$visible['lng'])) {
+            $visible = [$visible];
+        }
+
+        // Collection of all
+        $points = [];
+
+        // Loop through all visible points
+        foreach ($visible as $v) {
+
+            // If string, set parameter value and skip
+            if (is_string($v)) {
+                $points[] = trim($v);
+                continue;
+            }
+
+            // If not an array, skip
+            if (!is_array($visible)) {
+                continue;
+            }
+
+            // Add point from specified coordinates
+            $points[] = MapHelper::stringCoords($v);
+
+        }
+
+        // Set visible points
+        $this->_dna['visible'] = urlencode(implode('|', $points));
     }
 
     // ========================================================================= //

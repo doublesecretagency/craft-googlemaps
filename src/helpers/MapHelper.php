@@ -46,7 +46,7 @@ class MapHelper
      * Coordinates will always be returned inside of a parent array,
      * to compensate for Elements with multiple Address Fields.
      *
-     * @param $locations
+     * @param mixed $locations
      * @return array Collection of coordinate sets
      */
     public static function extractCoords($locations): array

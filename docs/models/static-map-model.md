@@ -45,7 +45,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `maptype`       | _string_ | `roadmap` | Type of [map format](https://developers.google.com/maps/documentation/maps-static/start#MapTypes). |
 | `language`      | _string_ | (automatic) | Language for location labels. |
 | `region`        | _string_ | _null_  | Adjusts map based on geo-political sensitivities. |
-| `visible`       | _[coords](/models/coordinates/)_\|_string_\|_array_ | _null_  | blah |
+| `visible`       | _[coords](/models/coordinates/)_\|_string_\|_array_ | _null_ | Ensures that the specified point(s) remain visible. |
 | `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |
 
 
