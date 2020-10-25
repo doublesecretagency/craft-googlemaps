@@ -40,13 +40,13 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `zoom`          | _int_    | (automatic) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
 | `center`        | _[coords](/models/coordinates/)_\|_string_ | (automatic) | Center the map. |
 | `styles`        | _array_  | _null_  | An array of [map styles](/guides/styling-a-map/). |
-| `scale`         | _int_    | `2`     | Pixel density (`1` = standard, `2` = retina). |
+| `scale`         | _int_    | `2`     | Pixel density of image. (standard = `1`, retina = `2`) |
 | `format`        | _string_ | `png`   | Type of [image format](https://developers.google.com/maps/documentation/maps-static/start#ImageFormats). |
 | `maptype`       | _string_ | `roadmap` | Type of [map format](https://developers.google.com/maps/documentation/maps-static/start#MapTypes). |
 | `language`      | _string_ | (automatic) | Language for location labels. |
 | `region`        | _string_ | _null_  | Adjusts map based on geo-political sensitivities. |
 | `visible`       | _[coords](/models/coordinates/)_\|_string_\|_array_ | _null_ | Ensures that the specified point(s) remain visible. |
-| `markerOptions` | _array_  | _null_  | Accepts any properties allowed by the `markers` method. |
+| `markerOptions` | _array_  | _null_  | Allows any properties accepted by the `markers` method. (see below) |
 
 
 
