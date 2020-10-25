@@ -85,144 +85,20 @@ class StaticMap extends Model
         // Set internal map ID
         $this->id = ($options['id'] ?? MapHelper::generateId('map'));
 
-
-
-        // Calculate the correct image dimensions
-        $this->_setDimensions($options);
-
-        // Set any additional parameters
-        $this->_paramsViaDna($options);
-
-        // Added to DNA via methods
-        $this->_paramsViaMethods($options);
-
-        // Ensure certain points are visible
-        $this->_setVisible($options);
-
-
-
         // Get marker options
         $markerOptions = ($options['markerOptions'] ?? []);
 
-        // Load first batch of markers
+        // Load initial markers
         $this->markers($locations, $markerOptions);
+
+        // Configure DNA based on specified options
+        $this->_setDimensions($options);
+        $this->_setFormatting($options);
+        $this->_setPositioning($options);
+        $this->_setVisibility($options);
 
         // Call parent constructor
         parent::__construct($config);
-    }
-
-    /**
-     */
-    private function _setDimensions($options)
-    {
-        // Internalize official dimensions
-        $this->_w = ($options['width']  ?? $this->_w);
-        $this->_h = ($options['height'] ?? $this->_h);
-
-        // Compile size parameter
-        $this->_dna['size'] = ($options['size'] ?? "{$this->_w}x{$this->_h}");
-
-        // Compile scale parameter
-        $this->_dna['scale'] = ($options['scale'] ?? 2);
-    }
-
-    /**
-     */
-    private function _paramsViaDna($options)
-    {
-        // If a image format was specified, apply it
-        if (isset($options['format']) && is_string($options['format'])) {
-            $this->_dna['format'] = trim($options['format']);
-        }
-
-        // If a map type was specified, apply it
-        if (isset($options['maptype']) && is_string($options['maptype'])) {
-            $this->_dna['maptype'] = trim($options['maptype']);
-        }
-
-        // If a language was specified, apply it
-        if (isset($options['language']) && is_string($options['language'])) {
-            $this->_dna['language'] = trim($options['language']);
-        }
-
-        // If a region was specified, apply it
-        if (isset($options['region']) && is_string($options['region'])) {
-            $this->_dna['region'] = trim($options['region']);
-        }
-    }
-
-    /**
-     */
-    private function _paramsViaMethods($options)
-    {
-        // If valid zoom specified, apply it
-        if (isset($options['zoom']) && is_int($options['zoom'])) {
-            $this->zoom($options['zoom']);
-        }
-
-        // If center specified, apply it
-        if (isset($options['center'])) {
-            $this->center($options['center']);
-        }
-
-        // If valid map styles specified, apply them
-        if (isset($options['styles']) && is_array($options['styles'])) {
-            $this->styles($options['styles']);
-        }
-    }
-
-    /**
-     */
-    private function _setVisible($options)
-    {
-        // If no visibility point specified
-        if (!isset($options['visible'])) {
-            return;
-        }
-
-        // Get value of visible
-        $visible = $options['visible'];
-
-        // If string, set parameter value and bail
-        if (is_string($visible)) {
-            $this->_dna['visible'] = urlencode(trim($visible));
-            return;
-        }
-
-        // If not an array, bail
-        if (!is_array($visible)) {
-            return;
-        }
-
-        // If coordinates syntax, force nested array
-        if (isset($visible['lat'],$visible['lng'])) {
-            $visible = [$visible];
-        }
-
-        // Collection of all
-        $points = [];
-
-        // Loop through all visible points
-        foreach ($visible as $v) {
-
-            // If string, set parameter value and skip
-            if (is_string($v)) {
-                $points[] = trim($v);
-                continue;
-            }
-
-            // If not an array, skip
-            if (!is_array($visible)) {
-                continue;
-            }
-
-            // Add point from specified coordinates
-            $points[] = MapHelper::stringCoords($v);
-
-        }
-
-        // Set visible points
-        $this->_dna['visible'] = urlencode(implode('|', $points));
     }
 
     // ========================================================================= //
@@ -446,6 +322,130 @@ class StaticMap extends Model
     public function getDna(): array
     {
         return $this->_dna;
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Configure map dimensions based on relevant options.
+     *
+     * @param array $options
+     */
+    private function _setDimensions(array $options)
+    {
+        // Internalize official dimensions
+        $this->_w = ($options['width']  ?? $this->_w);
+        $this->_h = ($options['height'] ?? $this->_h);
+
+        // Compile size parameter
+        $this->_dna['size'] = ($options['size'] ?? "{$this->_w}x{$this->_h}");
+
+        // Compile scale parameter
+        $this->_dna['scale'] = ($options['scale'] ?? 2);
+    }
+
+    /**
+     * Configure map formatting based on relevant options.
+     *
+     * @param array $options
+     */
+    private function _setFormatting($options)
+    {
+        // If a image format was specified, apply it
+        if (isset($options['format']) && is_string($options['format'])) {
+            $this->_dna['format'] = trim($options['format']);
+        }
+
+        // If a map type was specified, apply it
+        if (isset($options['maptype']) && is_string($options['maptype'])) {
+            $this->_dna['maptype'] = trim($options['maptype']);
+        }
+
+        // If a language was specified, apply it
+        if (isset($options['language']) && is_string($options['language'])) {
+            $this->_dna['language'] = trim($options['language']);
+        }
+
+        // If a region was specified, apply it
+        if (isset($options['region']) && is_string($options['region'])) {
+            $this->_dna['region'] = trim($options['region']);
+        }
+    }
+
+    /**
+     * Configure map positioning (and styles) based on relevant options.
+     *
+     * @param array $options
+     */
+    private function _setPositioning($options)
+    {
+        // If valid zoom specified, apply it
+        if (isset($options['zoom']) && is_int($options['zoom'])) {
+            $this->zoom($options['zoom']);
+        }
+
+        // If center specified, apply it
+        if (isset($options['center'])) {
+            $this->center($options['center']);
+        }
+
+        // If valid map styles specified, apply them
+        if (isset($options['styles']) && is_array($options['styles'])) {
+            $this->styles($options['styles']);
+        }
+    }
+
+    /**
+     * Configure map positioning based on `visible` points.
+     *
+     * @param array $options
+     */
+    private function _setVisibility($options)
+    {
+        // If no visibility point specified
+        if (!isset($options['visible'])) {
+            return;
+        }
+
+        // Get value of visible
+        $visible = $options['visible'];
+
+        // If string, set parameter value and bail
+        if (is_string($visible)) {
+            $this->_dna['visible'] = urlencode(trim($visible));
+            return;
+        }
+
+        // If not an array, bail
+        if (!is_array($visible)) {
+            return;
+        }
+
+        // If coordinates syntax, force nested array
+        if (isset($visible['lat'],$visible['lng'])) {
+            $visible = [$visible];
+        }
+
+        // Initialize collection of all points
+        $points = [];
+
+        // Loop through all visible points
+        foreach ($visible as $v) {
+            // If string, set parameter value and skip
+            if (is_string($v)) {
+                $points[] = trim($v);
+                continue;
+            }
+            // If not an array, skip
+            if (!is_array($visible)) {
+                continue;
+            }
+            // Add point from specified coordinates
+            $points[] = MapHelper::stringCoords($v);
+        }
+
+        // Set visible points
+        $this->_dna['visible'] = urlencode(implode('|', $points));
     }
 
 }
