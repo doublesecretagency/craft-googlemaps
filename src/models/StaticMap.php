@@ -252,6 +252,11 @@ class StaticMap extends Model
 
     // ========================================================================= //
 
+    /**
+     * Outputs a fully-rendered `<img>` tag for use in a Twig template.
+     *
+     * @return Markup
+     */
     public function tag(): Markup
     {
         // Get custom attributes
@@ -277,6 +282,11 @@ class StaticMap extends Model
         return Template::raw($html);
     }
 
+    /**
+     * Returns the fully-compiled `src` value of the static map.
+     *
+     * @return string
+     */
     public function src(): string
     {
         // Get browser key

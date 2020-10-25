@@ -325,6 +325,13 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
+    /**
+     * Outputs a dynamic map in a `<div>` tag for use in a Twig template.
+     *
+     * @param bool $init Whether to automatically initialize the map.
+     * @return Markup
+     * @throws Exception
+     */
     public function tag($init = true): Markup
     {
         // If no DNA, throw an error
