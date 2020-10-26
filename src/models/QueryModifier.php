@@ -105,7 +105,7 @@ class QueryModifier extends Model
 
         // Ensure units are valid
         $validUnits = ['mi', 'km', 'miles', 'kilometers'];
-        if (!in_array($units, $validUnits)) {
+        if (!in_array($units, $validUnits, true)) {
             $units = $default['units'];
         }
 
@@ -161,7 +161,7 @@ class QueryModifier extends Model
         foreach ($subfields as $subfield => $value) {
 
             // If not a valid subfield, skip
-            if (!in_array($subfield, $whitelist)) {
+            if (!in_array($subfield, $whitelist, true)) {
                 continue;
             }
 

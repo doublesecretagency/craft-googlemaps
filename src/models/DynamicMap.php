@@ -98,7 +98,7 @@ class DynamicMap extends Model
         // Initialize map DNA
         $this->_dna[] = [
             'type' => 'map',
-            'locations' => MapHelper::extractCoords($locations),
+            'locations' => MapHelper::extractCoords($locations, $options),
             'options' => $options,
         ];
 
@@ -125,7 +125,7 @@ class DynamicMap extends Model
         // Add to map DNA
         $this->_dna[] = [
             'type' => 'markers',
-            'locations' => MapHelper::extractCoords($locations),
+            'locations' => MapHelper::extractCoords($locations, $options),
             'options' => $options,
         ];
 

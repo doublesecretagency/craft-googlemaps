@@ -108,4 +108,4 @@ The `distance` property of each Address Model will contain the relative distance
 
 If your entries contain multiple Address fields, it doesn't matter which handle you use in order to trigger the proximity search. Each Address field is capable of triggering the exact same proximity search.
 
-By default, the proximity search will include _all_ Address fields. You can specify a proximity search against a _specific_ Address field by specifying the [`fields` option](/proximity-search/options/#fields).
+By default, the proximity search will include _all_ Address fields. You can specify a proximity search against a _specific_ Address field by specifying the [`field` option](/proximity-search/options/#fields).

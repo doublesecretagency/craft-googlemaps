@@ -47,7 +47,7 @@ Most (though not all) of these options are available across JavaScript, Twig, an
 | `markerOptions`      | JS/Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
 | `infoWindowTemplate` | JS/Twig/PHP | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
-| `fields`             | Twig/PHP    | Which field(s) of the element(s) should be included on the map. (includes all Address fields by default) |
+| `field`              | Twig/PHP    | Address field(s) to be included on the map. (includes all by default) |
 | `js`                 | Twig/PHP    | Whether to preload the necessary external JavaScript. |
 
 :::warning Additional Details

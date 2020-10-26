@@ -337,9 +337,9 @@ class Lookup extends Model
         $street1 = "{$streetName} {$streetNumber}";
 
         // If country uses a different street format, apply that format instead
-        if (in_array($country, $this->_countriesWithNumberFirst)) {
+        if (in_array($country, $this->_countriesWithNumberFirst, true)) {
             $street1 = "{$streetNumber} {$streetName}";
-        } else if (in_array($country, $this->_companiesWithCommaAfterStreet)) {
+        } else if (in_array($country, $this->_companiesWithCommaAfterStreet, true)) {
             $street1 = "{$streetName}, {$streetNumber}";
         }
 

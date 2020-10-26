@@ -120,13 +120,18 @@ class StaticMap extends Model
         // Initialize marker parts
         $parts = [];
 
-        // Loop through marker options
+        // Whitelist of valid options
+        $validOptions = ['color','label','icon','anchor','size','scale'];
+
+        // Apply whitelisted marker options
         foreach ($options as $k => $v) {
-            $parts[] = "{$k}:{$v}";
+            if (in_array($k, $validOptions, true)) {
+                $parts[] = "{$k}:{$v}";
+            }
         }
 
         // Get a collection of coordinate sets
-        $collection = MapHelper::extractCoords($locations);
+        $collection = MapHelper::extractCoords($locations, $options);
 
         // Append each set of marker coordinates
         foreach ($collection as $coords) {
@@ -162,13 +167,18 @@ class StaticMap extends Model
             $options['geodesic'] = ($options['geodesic'] ? 'true' : 'false');
         }
 
-        // Loop through path options
+        // Whitelist of valid options
+        $validOptions = ['weight','color','fillcolor','geodesic'];
+
+        // Apply whitelisted path options
         foreach ($options as $k => $v) {
-            $parts[] = "{$k}:{$v}";
+            if (in_array($k, $validOptions, true)) {
+                $parts[] = "{$k}:{$v}";
+            }
         }
 
         // Get a collection of coordinate sets
-        $collection = MapHelper::extractCoords($points);
+        $collection = MapHelper::extractCoords($points, $options);
 
         // Append each set of coordinates to path
         foreach ($collection as $coords) {

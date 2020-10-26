@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use craft\base\Element;
 use craft\helpers\StringHelper;
+use craft\models\FieldLayout;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Location;
 
@@ -47,9 +48,10 @@ class MapHelper
      * to compensate for Elements with multiple Address Fields.
      *
      * @param mixed $locations
+     * @param array $options
      * @return array Collection of coordinate sets
      */
-    public static function extractCoords($locations): array
+    public static function extractCoords($locations, array $options = []): array
     {
         // If it's a Location Model, return the coordinates
         if (is_a($locations, Location::class)) {
@@ -64,6 +66,15 @@ class MapHelper
         // Force array syntax
         if (!is_array($locations)) {
             $locations = [$locations];
+        }
+
+        // If field option was specified, set filter using array syntax
+        if (isset($options['field']) && is_array($options['field'])) {
+            $filter = $options['field'];
+        } else if (isset($options['field']) && is_string($options['field'])) {
+            $filter = [$options['field']];
+        } else {
+            $filter = false;
         }
 
         // Initialize results array
@@ -88,16 +99,22 @@ class MapHelper
             }
 
             // Get all fields associated with Element
-            $fields = $location->getFieldLayout()->getFields();
+            /** @var FieldLayout $layout */
+            $layout = $location->getFieldLayout();
+            $fields = $layout->getFields();
 
             // Loop through all relevant fields
-            foreach ($fields as $field) {
+            foreach ($fields as $f) {
+                // If filter field was specified but doesn't match, skip it
+                if ($filter && !in_array($f->handle, $filter, true)) {
+                    continue;
+                }
                 // If not an Address Field, skip it
-                if (!is_a($field, AddressField::class)) {
+                if (!is_a($f, AddressField::class)) {
                     continue;
                 }
                 // Get value of Address Field
-                $address = $location->{$field->handle};
+                $address = $location->{$f->handle};
                 // If no Address, skip
                 if (!$address) {
                     continue;
@@ -106,7 +123,7 @@ class MapHelper
                 if ($address->hasCoords()) {
                     $results[] = array_merge(
                         $address->getCoords(),
-                        ['id' => "{$location->id}-{$field->handle}"]
+                        ['id' => "{$location->id}-{$f->handle}"]
                     );
                 }
             }

@@ -48,10 +48,6 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `visible`       | _[coords](/models/coordinates/)_\|_string_\|_array_ | _null_ | Ensures that the specified point(s) remain visible. |
 | `markerOptions` | _array_  | _null_  | Allows any properties accepted by the `markers` method. (see below) |
 
-
-
-
-
 ---
 ---
 
@@ -64,15 +60,15 @@ Append markers to an existing map object.
  - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
  - `$options` (_array_) - Optional parameters to configure the markers. (see below)
  
-| Option    | Type     | Default    | Description |
-|-----------|:--------:|:----------:|-------------|
-| `color`   | _string_ | _null_     | A hex code or [predefined color](https://developers.google.com/maps/documentation/maps-static/start#MarkerStyles). |
-| `label`   | _string_ | _null_     | A single uppercase alphanumeric character from the set `{A-Z, 0-9}`. |
-| `icon`    | _string_ | _null_     | URL of the marker icon. |
-| `anchor`  | _string_ | `'bottom'` | Set as `x,y` coordinates or a [predefined alignment](https://developers.google.com/maps/documentation/maps-static/start#CustomIcons). |
-| `size`    | _string_ | (largest)  | Make generic marker icons smaller. (`mid`, `small`, `tiny`) |
-| `scale`   | _int_    | `1`        | Make custom marker icons smaller. (`1`,`2`,`4`) |
-| `fields`  | _string_\|_array_ | _null_ | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
+| Option   | Type     | Default    | Description |
+|----------|:--------:|:----------:|-------------|
+| `color`  | _string_ | _null_     | A hex code or [predefined color](https://developers.google.com/maps/documentation/maps-static/start#MarkerStyles). |
+| `label`  | _string_ | _null_     | A single uppercase alphanumeric character from the set `{A-Z, 0-9}`. |
+| `icon`   | _string_ | _null_     | URL of the marker icon. |
+| `anchor` | _string_ | `'bottom'` | Set as `x,y` coordinates or a [predefined alignment](https://developers.google.com/maps/documentation/maps-static/start#CustomIcons). |
+| `size`   | _string_ | (largest)  | Make generic marker icons smaller. (`mid`, `small`, `tiny`) |
+| `scale`  | _int_    | `1`        | Make custom marker icons smaller. (`1`,`2`,`4`) |
+| `field`  | _string_\|_array_ | _null_ | Address field(s) to be included on the map. (includes all by default) |
 
 #### Returns
 
@@ -105,7 +101,7 @@ Draw a path on an existing map object.
 | `color`     | _string_ | _null_  | The line [color](https://developers.google.com/maps/documentation/maps-static/start#PathStyles). |
 | `fillcolor` | _string_ | _null_  | The fill [color](https://developers.google.com/maps/documentation/maps-static/start#PathStyles). |
 | `geodesic`  | _bool_   | `false` | Whether the path should be interpreted as a geodesic line. |
-| `fields`    | _string_\|_array_  | _null_  | Which field(s) of the element(s) should be included on the map. (_null_ will include all Address fields) |
+| `field`     | _string_\|_array_  | _null_  | Address field(s) to be included on the map. (includes all by default) |
 
 #### Returns
 
