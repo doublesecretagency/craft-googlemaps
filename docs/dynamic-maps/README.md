@@ -4,13 +4,13 @@ We've designed this plugin to be a universally helpful tool, regardless of which
 
 ## Creating a Map in Twig
 
-Here's a straightforward example of how you might create a simple map in Twig...
+Here's a straightforward example of how you might create a simple dynamic map in Twig...
 
 ```twig
 {# Get all locations #}
 {% set locations = craft.entries.section('locations').all() %}
 
-{# Create a map with markers #}
+{# Create a dynamic map with markers #}
 {{ googleMaps.map(locations).tag() }}
 ```
 

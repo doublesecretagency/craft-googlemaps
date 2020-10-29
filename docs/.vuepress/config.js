@@ -102,6 +102,8 @@ module.exports = {
             ],
             '/static-maps/': [
                 '',
+                'api',
+                'chaining',
             ],
             '/proximity-search/': [
                 '',

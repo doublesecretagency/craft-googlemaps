@@ -1,69 +1,40 @@
 # Static Maps
 
-## Basic Examples
+Whether you are working in Twig or PHP, the syntax is nearly identical. Unlike the [Universal API](/dynamic-maps/api/) for dynamic maps, there is no JavaScript equivalent for static maps.
 
-Here's how to use a static map in its simplest form...
+## Creating a Map in Twig
+
+Here's a straightforward example of how you might create a simple static map in Twig...
 
 ```twig
+{# Get all locations #}
+{% set locations = craft.entries.section('locations').all() %}
+
+{# Create a static map with markers #}
 {{ googleMaps.img(locations).tag() }}
 ```
 
-The `img` method will generate a [Static Map Model](/models/static-map-model/). You can create a static map containing a set of markers, then render it as either the `src` attribute or the entire `<img>` tag.
+Of course, that is only the beginning. You can chain additional methods to produce far more complex maps. Take a look at the [`StaticMap` model](/models/static-map-model/) to see all the methods available for chaining.
 
-If you only want the `src` generated to fetch the static map, do it like this...
+## Configuring the Map
+
+By chaining methods together, you can build a map into whatever form necessary.
 
 ```twig
-{{ googleMaps.img(locations).src() }}
+{# Create a blank map
+ #   Add locations with green markers
+ #   Draw a line between the locations
+ #   Render the <img> tag
+ #}
+{{ googleMaps.img()
+    .markers(locations, {'color':'green'})
+    .path(locations)
+    .tag()
+}}
 ```
 
-These methods are equally available in both Twig and PHP.
+This gives you the maximum amount of control over how each map will be rendered.
 
-:::code
-```twig
-{# Get the entire <img> tag #}
-{% set tag = googleMaps.img(locations).tag() %}
+## Location Variations
 
-{# Get just the `src` attribute value #}
-{% set src = googleMaps.img(locations).src() %}
-```
-```php
-// Get the entire <img> tag
-$tag = GoogleMaps::img($locations)->tag();
-
-// Get just the `src` attribute value
-$src = GoogleMaps::img($locations)->src();
-```
-:::
-
-## Public Methods
-
-### `img(locations, options = {})`
-
-#### `locations`
-
- - Location(s) to appear on the map. See the [Locations](/dynamic-maps/locations/) page for detailed information.
- 
-If you skip the `locations` parameter by passing in _null_, the map will try its best to render without any markers.
- 
-#### `options`
-
-An object containing any of these optional configurations:
-
-| Option    | Type              | Default     | Description |
-|-----------|:-----------------:|:-----------:|-------------|
-| `width`   | _int_             | `480`       | Set the width of the map (in px). |
-| `height`  | _int_             | `320`       | Set the height of the map (in px). |
-| `zoom`    | _int_             | `11`        | Set the zoom level of the map. [(1 - 22)](https://stackoverflow.com/a/32407072/3467557) |
-| `center`  | [coords](/models/coordinates/) | automatic   | Set the center position of the map. |
-| `maptype` | _string_          | `"roadmap"` | Type of map ("roadmap", "satellite", "hybrid", "terrain"). |
-| `scale`   | _int_             | `2`         | 2 = Retina, 1 = Non-retina |
-| `imgSrc`  | _int_             | _false_     | If set to _true_, the method will return the map `src` URL directly (instead of the full `<img>` tag). |
-| `field`   | _string_\|_array_ | _null_      | Address field(s) to be included on the map. (includes all by default) |
-
-### `tag()`
-
-Returns the static map as a completely rendered `<img>` tag.
-
-### `src()`
-
-Returns the static map as only the `src` attribute. The remainder of the `<img>` tag must be compiled manually.
+When creating a new map, or appending markers to an existing map, you'll have an opportunity to provide a set of [locations](/dynamic-maps/locations/) for placement on the map.

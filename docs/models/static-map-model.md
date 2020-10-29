@@ -65,7 +65,7 @@ Append markers to an existing map object.
 | `color`  | _string_ | _null_     | A hex code or [predefined color](https://developers.google.com/maps/documentation/maps-static/start#MarkerStyles). |
 | `label`  | _string_ | _null_     | A single uppercase alphanumeric character from the set `{A-Z, 0-9}`. |
 | `icon`   | _string_ | _null_     | URL of the marker icon. |
-| `anchor` | _string_ | `'bottom'` | Set as `x,y` coordinates or a [predefined alignment](https://developers.google.com/maps/documentation/maps-static/start#CustomIcons). |
+| `anchor` | _string_ | `"bottom"` | Set as `x,y` coordinates or a [predefined alignment](https://developers.google.com/maps/documentation/maps-static/start#CustomIcons). |
 | `size`   | _string_ | (largest)  | Make generic marker icons smaller. (`mid`, `small`, `tiny`) |
 | `scale`  | _int_    | `1`        | Make custom marker icons smaller. (`1`,`2`,`4`) |
 | `field`  | _string_\|_array_ | _null_ | Address field(s) to be included on the map. (includes all by default) |
