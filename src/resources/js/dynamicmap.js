@@ -13,15 +13,11 @@ function DynamicMap(locations, options) {
 
     // Initialize collections
     this._markers = {};
+    this._infoWindows = {};
     this._kmls = {};
 
-    // Initialize empty defaults
-    this._default = {
-        zoom: 4,
-        center: null,
-        markerOptions: {},
-        infoWindowOptions: {},
-    };
+    // Initialize defaults
+    this._d = {};
 
     // ========================================================================= //
 
@@ -45,11 +41,14 @@ function DynamicMap(locations, options) {
         this.div.classList.add('gm-map');
         this.div.style.display = 'block';
 
-        // Set defaults
-        this._default.zoom = options.zoom || this._default.zoom;
-        this._default.center = options.center || this._default.center;
-        this._default.markerOptions = options.markerOptions || this._default.markerOptions;
-        this._default.infoWindowOptions = options.infoWindowOptions || this._default.infoWindowOptions;
+        // Set defaults (with fallbacks)
+        this._d.zoom              = options.zoom              || 4;
+        this._d.center            = options.center            || null;
+        this._d.markerOptions     = options.markerOptions     || {};
+        this._d.infoWindowOptions = options.infoWindowOptions || {};
+
+        // Apply default info window options
+        this._d.markerOptions.infoWindowOptions = this._d.infoWindowOptions;
 
         // Optionally set container height
         if (options.height) {
@@ -71,7 +70,7 @@ function DynamicMap(locations, options) {
 
         // If locations were specified, add markers
         if (locations) {
-            this.markers(locations, this._default.markerOptions);
+            this.markers(locations, this._d.markerOptions);
         }
 
         // Fit map to marker boundaries
@@ -94,10 +93,20 @@ function DynamicMap(locations, options) {
     this.markers = function(locations, options) {
 
         // Ensure options are valid
-        options = options || this._default.markerOptions || {};
+        var markerOptions = options.markerOptions
+            || this._d.markerOptions
+            || {};
 
         // Set map
-        options.map = this._map;
+        markerOptions.map = this._map;
+
+        // If no info window options, set them
+        if (!markerOptions.infoWindowOptions) {
+            markerOptions.infoWindowOptions = options.infoWindowOptions
+                || this._d.markerOptions.infoWindowOptions
+                || this._d.infoWindowOptions
+                || {};
+        }
 
         // Force locations to be an array structure
         if (!Array.isArray(locations)) {
@@ -115,8 +124,16 @@ function DynamicMap(locations, options) {
                 continue;
             }
 
+            // Get marker ID or generate a random one
+            coords.id = options.id || coords.id || this._generateId('marker');
+
             // Create a new marker
-            this._createMarker(coords, options);
+            this._createMarker(coords, markerOptions);
+
+            // Optionally create a new info window
+            if (markerOptions.infoWindowOptions.content) {
+                this._createInfoWindow(coords, markerOptions.infoWindowOptions);
+            }
 
         }
 
@@ -167,7 +184,7 @@ function DynamicMap(locations, options) {
     this.zoom = function(level) {
 
         // Ensure level is valid
-        level = level || this._default.zoom;
+        level = level || this._d.zoom;
 
         // Log status
         if (googleMaps.log) {
@@ -186,7 +203,7 @@ function DynamicMap(locations, options) {
         });
 
         // Update default zoom level
-        this._default.zoom = level;
+        this._d.zoom = level;
 
         // Keep the party going
         return this;
@@ -196,7 +213,7 @@ function DynamicMap(locations, options) {
     this.center = function(coords) {
 
         // Ensure coordinates are valid
-        coords = coords || this._default.center || this._bounds.getCenter();
+        coords = coords || this._d.center || this._bounds.getCenter();
 
         // Log status
         if (googleMaps.log) {
@@ -215,7 +232,7 @@ function DynamicMap(locations, options) {
         });
 
         // Update default center coordinates
-        this._default.center = coords;
+        this._d.center = coords;
 
         // Keep the party going
         return this;
@@ -446,24 +463,51 @@ function DynamicMap(locations, options) {
     };
 
     // Create a new marker object
-    this._createMarker = function(coords, options) {
-
-        // Get marker ID or generate a random one
-        var markerId = coords.id || options.id || this._generateId('marker');
+    this._createMarker = function(coords, markerOptions) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`On map "${this.id}", adding marker "${markerId}"`);
+            console.log(`On map "${this.id}", adding marker "${coords.id}"`);
         }
 
         // Set marker position based on coordinates
-        options.position = coords;
+        markerOptions.position = coords;
 
         // Extend map boundaries
         this._bounds.extend(coords);
 
         // Initialize marker object
-        this._markers[markerId] = new google.maps.Marker(options);
+        this._markers[coords.id] = new google.maps.Marker(markerOptions);
+
+    };
+
+    // Create a new info window object
+    this._createInfoWindow = function(coords, infoWindowOptions) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", adding info window "${coords.id}"`);
+        }
+
+        // Get map and marker
+        var marker = this._markers[coords.id];
+        var map = marker.getMap();
+
+        // Initialize info window object
+        this._infoWindows[coords.id] = new google.maps.InfoWindow(infoWindowOptions);
+
+        // Pass info windows to callback function
+        var infoWindows = this._infoWindows;
+
+        // Add click event to marker
+        google.maps.event.addListener(marker, 'click', function() {
+            // Close all other info windows
+            for (var key in infoWindows) {
+                infoWindows[key].close();
+            }
+            // Open info window for this marker
+            infoWindows[coords.id].open(map, marker);
+        });
 
     };
 
