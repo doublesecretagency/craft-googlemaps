@@ -39,7 +39,7 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 | `icon`               | JavaScript, Twig/PHP | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
 | `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | JavaScript, Twig/PHP | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
+| `infoWindowTemplate` | Twig/PHP             | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 | `field`              | Twig/PHP             | Address field(s) to be included on the map. (includes all by default) |
 
 :::tip Additional Options Details
