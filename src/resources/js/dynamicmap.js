@@ -24,6 +24,9 @@ function DynamicMap(locations, options) {
     // Create a new map object
     this.__construct = function(locations, options) {
 
+        // Ensure options are valid
+        options = options || {};
+
         // If no map ID was specified, generate one
         this.id = options.id || this._generateId('map');
 
@@ -47,9 +50,6 @@ function DynamicMap(locations, options) {
         this._d.markerOptions     = options.markerOptions     || {};
         this._d.infoWindowOptions = options.infoWindowOptions || {};
 
-        // Apply default info window options
-        this._d.markerOptions.infoWindowOptions = this._d.infoWindowOptions;
-
         // Optionally set container height
         if (options.height) {
             this.div.style.height = `${options.height}px`;
@@ -69,8 +69,9 @@ function DynamicMap(locations, options) {
         }
 
         // If locations were specified, add markers
+        // (using default markerOptions & infoWindowOptions)
         if (locations) {
-            this.markers(locations, this._d.markerOptions);
+            this.markers(locations);
         }
 
         // Fit map to marker boundaries
@@ -92,21 +93,26 @@ function DynamicMap(locations, options) {
     // Add a set of markers to the map
     this.markers = function(locations, options) {
 
+        // If no locations, bail
+        if (!locations) {
+            return;
+        }
+
         // Ensure options are valid
-        var markerOptions = options.markerOptions
+        options = options || {};
+
+        // Ensure marker options are valid
+        options.markerOptions = options.markerOptions
             || this._d.markerOptions
             || {};
 
-        // Set map
-        markerOptions.map = this._map;
+        // Ensure info window options are valid
+        options.infoWindowOptions = options.infoWindowOptions
+            || this._d.infoWindowOptions
+            || {};
 
-        // If no info window options, set them
-        if (!markerOptions.infoWindowOptions) {
-            markerOptions.infoWindowOptions = options.infoWindowOptions
-                || this._d.markerOptions.infoWindowOptions
-                || this._d.infoWindowOptions
-                || {};
-        }
+        // Set map
+        options.markerOptions.map = this._map;
 
         // Force locations to be an array structure
         if (!Array.isArray(locations)) {
@@ -128,11 +134,11 @@ function DynamicMap(locations, options) {
             coords.id = options.id || coords.id || this._generateId('marker');
 
             // Create a new marker
-            this._createMarker(coords, markerOptions);
+            this._createMarker(coords, options.markerOptions);
 
-            // Optionally create a new info window
-            if (markerOptions.infoWindowOptions.content) {
-                this._createInfoWindow(coords, markerOptions.infoWindowOptions);
+            // If content provided, create a new info window
+            if (options.infoWindowOptions.content) {
+                this._createInfoWindow(coords, options.infoWindowOptions);
             }
 
         }
@@ -489,8 +495,15 @@ function DynamicMap(locations, options) {
             console.log(`On map "${this.id}", adding info window "${coords.id}"`);
         }
 
-        // Get map and marker
+        // Get related marker
         var marker = this._markers[coords.id];
+
+        // If no related marker exists, bail
+        if (!marker) {
+            return;
+        }
+
+        // Get the map which contains the marker
         var map = marker.getMap();
 
         // Initialize info window object
@@ -501,7 +514,7 @@ function DynamicMap(locations, options) {
 
         // Add click event to marker
         google.maps.event.addListener(marker, 'click', function() {
-            // Close all other info windows
+            // Close all info windows
             for (var key in infoWindows) {
                 infoWindows[key].close();
             }
