@@ -109,67 +109,6 @@ class DynamicMap extends Model
     // ========================================================================= //
 
     /**
-     */
-    public function _loadInfoWindowMarkers($locations, $options, $infoWindowTemplate)
-    {
-        // Initialize infoWindowOptions
-        $options = $options ?? [];
-        $options['infoWindowOptions'] = $options['infoWindowOptions'] ?? [];
-
-        // Force locations to be in array syntax
-        if (!is_array($locations)) {
-            $locations = [$locations];
-        }
-
-        // Add each individual marker (and info window) to the DNA
-        foreach ($locations as $location) {
-
-            // If location is not an object, skip it
-            if (!is_object($location)) {
-                continue;
-            }
-
-
-            // Detect what kind of object $locations is
-            // Render each template according to an Address model
-
-
-            // Initialize array of Twig variables
-            $twigVars = [];
-
-            $twigVars['id'] = $location->id;
-
-//            $twigVars['address'] = $address;
-//            $twigVars['element'] = $marker['element'];
-//            $twigVars['marker'] = [
-//                'mapId'      => $marker['mapId'],
-//                'markerName' => $marker['mapId'].'.'.$marker['markerName'],
-//                'coords'     => [
-//                    'lat' => $marker['lat'],
-//                    'lng' => $marker['lng'],
-//                ],
-//            ];
-
-//            Craft::dd($twigVars);
-
-            // Render the info window
-            $infoWindow = Craft::$app->getView()->renderTemplate($infoWindowTemplate, $twigVars);
-            $options['infoWindowOptions']['content'] = $infoWindow;
-
-            // Add to DNA
-            $this->_dna[] = [
-                'type' => 'markers',
-                'locations' => MapHelper::extractCoords($location, $options),
-                'options' => $options,
-            ];
-
-        }
-
-    }
-
-    // ========================================================================= //
-
-    /**
      * Add one or more markers to the map.
      *
      * @param array|Element|Address $locations
@@ -184,12 +123,12 @@ class DynamicMap extends Model
         }
 
         // Get optional info window template
-        $infoWindowTemplate = $options['infoWindowTemplate'] ?? false;
+        $options['infoWindowTemplate'] = $options['infoWindowTemplate'] ?? false;
 
         // If no info window template
-        if (!$infoWindowTemplate) {
+        if (!$options['infoWindowTemplate']) {
 
-            // Add to DNA
+            // Add markers to DNA
             $this->_dna[] = [
                 'type' => 'markers',
                 'locations' => MapHelper::extractCoords($locations, $options),
@@ -200,8 +139,8 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Load markers with info windows
-        $this->_loadInfoWindowMarkers($locations, $options, $infoWindowTemplate);
+        // Create markers along with their corresponding info windows
+        $this->_createInfoWindows($locations, $options);
 
         // Keep the party going
         return $this;
@@ -221,7 +160,7 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add to DNA
+        // Add KML layer to DNA
         $this->_dna[] = [
             'type' => 'kml',
             'url' => $url,
@@ -240,7 +179,7 @@ class DynamicMap extends Model
      */
     public function styles(array $styleSet): DynamicMap
     {
-        // Add to DNA
+        // Add map styles to DNA
         $this->_dna[] = [
             'type' => 'styles',
             'styleSet' => $styleSet,
@@ -258,7 +197,7 @@ class DynamicMap extends Model
      */
     public function zoom(int $level): DynamicMap
     {
-        // Add to DNA
+        // Add zoom level to DNA
         $this->_dna[] = [
             'type' => 'zoom',
             'level' => $level,
@@ -281,7 +220,7 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Add to DNA
+        // Add map center to DNA
         $this->_dna[] = [
             'type' => 'center',
             'coords' => $coords,
@@ -298,7 +237,7 @@ class DynamicMap extends Model
      */
     public function fit(): DynamicMap
     {
-        // Add to DNA
+        // Add fitBounds to DNA
         $this->_dna[] = [
             'type' => 'fit',
         ];
@@ -315,7 +254,7 @@ class DynamicMap extends Model
      */
     public function refresh(): DynamicMap
     {
-        // Add to DNA
+        // Add map refresh to DNA
         $this->_dna[] = [
             'type' => 'refresh',
         ];
@@ -332,7 +271,7 @@ class DynamicMap extends Model
      */
     public function panToMarker($markerId): DynamicMap
     {
-        // Add to DNA
+        // Add marker center to DNA
         $this->_dna[] = [
             'type' => 'panToMarker',
             'markerId' => $markerId,
@@ -350,7 +289,7 @@ class DynamicMap extends Model
      */
     public function setMarkerIcon($markerId, $icon): DynamicMap
     {
-        // Add to DNA
+        // Add marker icon to DNA
         $this->_dna[] = [
             'type' => 'setMarkerIcon',
             'markerId' => $markerId,
@@ -449,6 +388,57 @@ class DynamicMap extends Model
     public function getDna(): array
     {
         return $this->_dna;
+    }
+
+    // ========================================================================= //
+
+    /**
+     */
+    private function _createInfoWindows($locations, $options)
+    {
+        // Initialize infoWindowOptions
+        $options = $options ?? [];
+        $options['infoWindowOptions'] = $options['infoWindowOptions'] ?? [];
+
+        // If no info window template specified, bail
+        if (!($options['infoWindowTemplate'] ?? false)) {
+            return;
+        }
+
+
+        // TODO: Problematic?
+        // Force locations to be in array syntax
+        if (!is_array($locations)) {
+            $locations = [$locations];
+        }
+
+
+        // Add each individual marker (and info window) to the DNA
+        foreach ($locations as $location) {
+
+            // Get individual marker data
+            $marker = MapHelper::dissectMarker($location, $options);
+
+            // If no valid marker data, skip
+            if (!$marker) {
+                continue;
+            }
+
+            // Render the info window
+            $infoWindow = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $marker);
+
+            // Apply rendered content to infoWindowOptions
+            $options['infoWindowOptions']['content'] = $infoWindow;
+
+            // Add marker and info window to DNA
+            $this->_dna[] = [
+                'type' => 'markers',
+                'locations' => MapHelper::extractCoords($location, $options),
+                'options' => $options,
+            ];
+
+        }
+
     }
 
 }
