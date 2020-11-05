@@ -97,12 +97,32 @@ class DynamicMap extends Model
             $view->registerJs('googleMaps.log = true;', $view::POS_END);
         }
 
-        // Initialize map DNA
-        $this->_dna[] = [
-            'type' => 'map',
-            'locations' => MapHelper::extractCoords($locations, $options),
-            'options' => $options,
-        ];
+        // If info window template was specified
+        if ($options['infoWindowTemplate'] ?? false) {
+
+            // Initialize map DNA without markers
+            $this->_dna[] = [
+                'type' => 'map',
+                'locations' => [],
+                'options' => $options,
+            ];
+
+            // Prevent conflict between map ID and marker IDs
+            unset($options['id'], $options['js']);
+
+            // Create markers along with their corresponding info windows
+            $this->_initInfoWindows($locations, $options);
+
+        } else {
+
+            // Initialize map DNA normally
+            $this->_dna[] = [
+                'type' => 'map',
+                'locations' => MapHelper::extractCoords($locations, $options),
+                'options' => $options,
+            ];
+
+        }
 
         // Call parent constructor
         parent::__construct($config);
@@ -124,25 +144,22 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // Get optional info window template
-        $options['infoWindowTemplate'] = $options['infoWindowTemplate'] ?? false;
+        // If info window template was specified
+        if ($options['infoWindowTemplate'] ?? false) {
 
-        // If no info window template
-        if (!$options['infoWindowTemplate']) {
+            // Create markers along with their corresponding info windows
+            $this->_initInfoWindows($locations, $options);
 
-            // Add markers to DNA
+        } else {
+
+            // Add markers to DNA normally
             $this->_dna[] = [
                 'type' => 'markers',
                 'locations' => MapHelper::extractCoords($locations, $options),
                 'options' => $options,
             ];
 
-            // Keep the party going
-            return $this;
         }
-
-        // Create markers along with their corresponding info windows
-        $this->_initInfoWindows($locations, $options);
 
         // Keep the party going
         return $this;
@@ -394,7 +411,12 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
+
     /**
+     * Initialize info windows for given locations.
+     *
+     * @param $locations
+     * @param $options
      */
     private function _initInfoWindows($locations, $options)
     {
@@ -517,6 +539,15 @@ class DynamicMap extends Model
     }
 
     /**
+     * Creates a single marker with a specific info window template.
+     *
+     * @param $location
+     * @param $options
+     * @param $infoWindow
+     * @throws Exception
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     private function _createInfoWindow($location, $options, $infoWindow)
     {
