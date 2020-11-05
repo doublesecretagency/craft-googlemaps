@@ -1,6 +1,7 @@
 # Info Windows
 
 
+[SCREENSHOT OF AN INFO WINDOW]
 
 
 ## Available Variables

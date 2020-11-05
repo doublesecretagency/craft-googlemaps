@@ -22,6 +22,9 @@ use craft\models\FieldLayout;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Markup;
 use yii\base\Exception;
 
@@ -411,12 +414,15 @@ class DynamicMap extends Model
 
     // ========================================================================= //
 
-
     /**
-     * Initialize info windows for given locations.
+     * Initialize info windows for all given locations.
      *
      * @param $locations
      * @param $options
+     * @throws Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function _initInfoWindows($locations, $options)
     {
@@ -539,20 +545,57 @@ class DynamicMap extends Model
     }
 
     /**
-     * Creates a single marker with a specific info window template.
+     * Creates a single marker with a corresponding info window.
      *
-     * @param $location
-     * @param $options
-     * @param $infoWindow
-     * @throws Exception
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @param mixed $location
+     * @param array $options
+     * @param array $infoWindow
      */
     private function _createInfoWindow($location, $options, $infoWindow)
     {
-        // Render the info window template
-        $template = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $infoWindow);
+        // Get view services
+        $view = Craft::$app->getView();
+
+        // Attempt to render the Twig template
+        try {
+
+            // Success, get rendered template
+            $template = $view->renderTemplate($options['infoWindowTemplate'], $infoWindow);
+
+        } catch (\Exception $e) {
+
+            // Error message CSS
+            $view->registerCss('
+.gm-infowindow-error {
+    font-size: 1.1em;
+}
+.gm-infowindow-error div:first-of-type {
+    font-weight: bold;
+    padding: 0.2em 0.2em;
+}
+.gm-infowindow-error pre {
+    color: #4a5568;
+    background-color: #edf2f7;
+    padding: 0.8em 1em;
+    margin-top: 0.4em;
+}
+.gm-infowindow-error div:last-of-type {
+    font-size: 1.2em;
+    margin-top: 0.1em;
+    padding: 1em 1em;
+    border: 1px solid #a0aec0;
+    background-color: #fefcbf;
+}
+');
+            // Error message HTML
+            $template = "
+<div class='gm-infowindow-error'>
+    <div><strong>Error in Twig template:</strong></div>
+    <pre>{$options['infoWindowTemplate']}</pre>
+    <div>{$e->getMessage()}</div>
+</div>";
+
+        }
 
         // Set rendered template as infoWindowOptions content
         $options['infoWindowOptions']['content'] = $template;
