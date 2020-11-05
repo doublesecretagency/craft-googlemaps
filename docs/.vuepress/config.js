@@ -98,6 +98,7 @@ module.exports = {
                 'universal-methods',
                 'javascript-methods',
                 'twig-php-methods',
+                'info-windows',
                 'locations',
             ],
             '/static-maps/': [

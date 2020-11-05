@@ -18,6 +18,8 @@ use craft\helpers\Html;
 use craft\helpers\Json;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
+use craft\models\FieldLayout;
+use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Markup;
@@ -140,7 +142,7 @@ class DynamicMap extends Model
         }
 
         // Create markers along with their corresponding info windows
-        $this->_createInfoWindows($locations, $options);
+        $this->_initInfoWindows($locations, $options);
 
         // Keep the party going
         return $this;
@@ -394,7 +396,7 @@ class DynamicMap extends Model
 
     /**
      */
-    private function _createInfoWindows($locations, $options)
+    private function _initInfoWindows($locations, $options)
     {
         // Initialize infoWindowOptions
         $options = $options ?? [];
@@ -405,121 +407,131 @@ class DynamicMap extends Model
             return;
         }
 
-        // If it's an array (but not a coordinates set)
-        if (is_array($locations) && !isset($locations['lat'], $locations['lng'])) {
+        // Whether value is a simple set of coordinates
+        $isCoords = (is_array($locations) && isset($locations['lat'], $locations['lng']));
+
+        // If it's an array, but not a coordinates set
+        if (is_array($locations) && !$isCoords) {
             // Loop through each location
             foreach ($locations as $l) {
                 // Call method recursively
-                $this->_createInfoWindows($l, $options);
+                $this->_initInfoWindows($l, $options);
             }
         }
 
-        // ENDGOOD
+        // Due to recursion, locations are now
+        // guaranteed to be a singular item
+        $location =& $locations;
 
-
-
-
-
-
-        // Get individual info window data
-        $infoWindow = $this->_dissectMarker($locations, $options);
-
-
-
-
-
-
-        // GOOD
-
-        // Render the info window
-        $template = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $infoWindow);
-
-        // Apply rendered content to infoWindowOptions
-        $options['infoWindowOptions']['content'] = $template;
-
-        // Add marker and info window to DNA
-        $this->_dna[] = [
-            'type' => 'markers',
-            'locations' => MapHelper::extractCoords($locations, $options),
-            'options' => $options,
-        ];
-
-
-    }
-
-    // ========================================================================= //
-
-    /**
-     */
-    private function _dissectMarker($location, $options): array
-    {
         // Initialize marker data
         $infoWindow = [
             'mapId' => $this->id,
-//            'markerId' => $options['id']
         ];
 
-
-        /* NEW VARIABLES:
-         *  - `mapId`
-         *  `markerId`
-         *  - `element`
-         *  - `entry` (or similar)
-         *  - `address`
-         *  - `coords`
-         */
-
-
         // If location is a set of coordinates
-        if (is_array($location) && isset($location['lat'], $location['lng'])) {
+        if ($isCoords) {
+
             // Set only the coordinates
             $infoWindow['coords'] = $location;
+
+            // Create info window
+            $this->_createInfoWindow($location, $options, $infoWindow);
+
+            // Our work here is done
+            return;
         }
 
         // If location is an Address
         if (is_a($location, Address::class)) {
+
             // Set address and coordinates
             $infoWindow['address'] = $location;
             $infoWindow['coords'] = $location->getCoords();
+
+            // Create info window
+            $this->_createInfoWindow($location, $options, $infoWindow);
+
+            // Our work here is done
+            return;
         }
 
         // If location is an Element
         if (is_a($location, Element::class)) {
 
             // Set both `element` and `entry` (or comparable)
-            $elementType = ($location->lowerDisplayName() ?? null);
+            $elementType = $location::lowerDisplayName();
             $infoWindow['element'] = $location;
             $infoWindow[$elementType] = $location;
 
             // Ensure field option exists
             $options['field'] = ($options['field'] ?? false);
 
-            // Get specified field handle
-            if (is_string($options['field'])) {
-                $field = $options['field'];
-            } else if (is_array($options['field'])) {
-                $field = $options['field'][0];
+            // Optionally filter by specified field(s)
+            if (is_array($options['field'])) {
+                $filter = $options['field'];
+            } else if (is_string($options['field'])) {
+                $filter = [$options['field']];
             } else {
-
-                // TODO: Should we also be checking for the first available Address field?
-
-                $field = false;
+                $filter = false;
             }
 
-            // If valid field, set the address
-            if ($field) {
-                $infoWindow['address'] = $location->{$field};
+            // Get all fields associated with Element
+            /** @var FieldLayout $layout */
+            $layout = $location->getFieldLayout();
+            $fields = $layout->getFields();
+
+            // Loop through all relevant fields
+            foreach ($fields as $f) {
+                // If filter field was specified but doesn't match, skip it
+                if ($filter && !in_array($f->handle, $filter, true)) {
+                    continue;
+                }
+                // If not an Address Field, skip it
+                if (!is_a($f, AddressField::class)) {
+                    continue;
+                }
+                // Get value of Address Field
+                $address = $location->{$f->handle};
+                // If no Address, skip
+                if (!$address) {
+                    continue;
+                }
+                // Add coordinates to results
+                if ($address->hasCoords()) {
+
+                    // Set address, coordinates, and marker ID
+                    $infoWindow['address'] = $address;
+                    $infoWindow['coords'] = $address->getCoords();
+                    $infoWindow['markerId'] = "{$location->id}-{$f->handle}";
+
+                    // Create info window
+                    $this->_createInfoWindow($location, $options, $infoWindow);
+
+                }
             }
 
-            // If valid address, set the coordinates
-            if ($infoWindow['address'] && is_a($infoWindow['address'], Address::class)) {
-                $infoWindow['coords'] = $infoWindow['address']->getCoords();
-            }
-
+            // Our work here is done
+            return;
         }
 
-        // Return marker data
-        return $infoWindow;
+    }
+
+    /**
+     */
+    private function _createInfoWindow($location, $options, $infoWindow)
+    {
+        // Render the info window template
+        $template = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $infoWindow);
+
+        // Set rendered template as infoWindowOptions content
+        $options['infoWindowOptions']['content'] = $template;
+
+        // Add marker and info window to DNA
+        $this->_dna[] = [
+            'type' => 'markers',
+            'locations' => MapHelper::extractCoords($location, $options),
+            'options' => $options,
+        ];
     }
 
 }
