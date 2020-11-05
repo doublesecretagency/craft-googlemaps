@@ -42,69 +42,6 @@ class MapHelper
     // ========================================================================= //
 
     /**
-     */
-    public static function dissectMarker($location, array $options = []): array
-    {
-
-        /* NEW VARIABLES:
-         *  - `element`
-         *  - `entry` (or similar)
-         */
-
-        /* POTENTIALLY ADD:
-         *  - `mapId`
-         *  - `markerId`
-         *
-         *  - `address`
-         *  - `coords`
-         */
-
-
-
-
-
-        // Detect what kind of object $locations is
-        // Render each template according to an Address model
-
-
-        // Initialize marker data
-        $marker = [];
-
-        // Set both `element` and `entry` (or comparable)
-        $elementType = ($location->lowerDisplayName() ?? null);
-        $marker['element'] = $location;
-        $marker[$elementType] = $location;
-
-
-
-//            \Craft::dd();
-
-
-
-        // Set element, if it exists
-
-        // Set address, if it exists
-
-//            $marker['address'] = $address;
-//            $marker['element'] = $marker['element'];
-//            $marker['marker'] = [
-//                'mapId'      => $marker['mapId'],
-//                'markerName' => $marker['mapId'].'.'.$marker['markerName'],
-//                'coords'     => [
-//                    'lat' => $marker['lat'],
-//                    'lng' => $marker['lng'],
-//                ],
-//            ];
-
-//            Craft::dd($marker);
-
-        // Return marker data
-        return $marker;
-    }
-
-    // ========================================================================= //
-
-    /**
      * Retrieve all coordinates from a specified set of locations.
      *
      * Coordinates will always be returned inside of a parent array,

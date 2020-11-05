@@ -405,40 +405,121 @@ class DynamicMap extends Model
             return;
         }
 
-
-        // TODO: Problematic?
-        // Force locations to be in array syntax
-        if (!is_array($locations)) {
-            $locations = [$locations];
+        // If it's an array (but not a coordinates set)
+        if (is_array($locations) && !isset($locations['lat'], $locations['lng'])) {
+            // Loop through each location
+            foreach ($locations as $l) {
+                // Call method recursively
+                $this->_createInfoWindows($l, $options);
+            }
         }
 
+        // ENDGOOD
 
-        // Add each individual marker (and info window) to the DNA
-        foreach ($locations as $location) {
 
-            // Get individual marker data
-            $marker = MapHelper::dissectMarker($location, $options);
 
-            // If no valid marker data, skip
-            if (!$marker) {
-                continue;
+
+
+
+        // Get individual info window data
+        $infoWindow = $this->_dissectMarker($locations, $options);
+
+
+
+
+
+
+        // GOOD
+
+        // Render the info window
+        $template = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $infoWindow);
+
+        // Apply rendered content to infoWindowOptions
+        $options['infoWindowOptions']['content'] = $template;
+
+        // Add marker and info window to DNA
+        $this->_dna[] = [
+            'type' => 'markers',
+            'locations' => MapHelper::extractCoords($locations, $options),
+            'options' => $options,
+        ];
+
+
+    }
+
+    // ========================================================================= //
+
+    /**
+     */
+    private function _dissectMarker($location, $options): array
+    {
+        // Initialize marker data
+        $infoWindow = [
+            'mapId' => $this->id,
+//            'markerId' => $options['id']
+        ];
+
+
+        /* NEW VARIABLES:
+         *  - `mapId`
+         *  `markerId`
+         *  - `element`
+         *  - `entry` (or similar)
+         *  - `address`
+         *  - `coords`
+         */
+
+
+        // If location is a set of coordinates
+        if (is_array($location) && isset($location['lat'], $location['lng'])) {
+            // Set only the coordinates
+            $infoWindow['coords'] = $location;
+        }
+
+        // If location is an Address
+        if (is_a($location, Address::class)) {
+            // Set address and coordinates
+            $infoWindow['address'] = $location;
+            $infoWindow['coords'] = $location->getCoords();
+        }
+
+        // If location is an Element
+        if (is_a($location, Element::class)) {
+
+            // Set both `element` and `entry` (or comparable)
+            $elementType = ($location->lowerDisplayName() ?? null);
+            $infoWindow['element'] = $location;
+            $infoWindow[$elementType] = $location;
+
+            // Ensure field option exists
+            $options['field'] = ($options['field'] ?? false);
+
+            // Get specified field handle
+            if (is_string($options['field'])) {
+                $field = $options['field'];
+            } else if (is_array($options['field'])) {
+                $field = $options['field'][0];
+            } else {
+
+                // TODO: Should we also be checking for the first available Address field?
+
+                $field = false;
             }
 
-            // Render the info window
-            $infoWindow = Craft::$app->getView()->renderTemplate($options['infoWindowTemplate'], $marker);
+            // If valid field, set the address
+            if ($field) {
+                $infoWindow['address'] = $location->{$field};
+            }
 
-            // Apply rendered content to infoWindowOptions
-            $options['infoWindowOptions']['content'] = $infoWindow;
-
-            // Add marker and info window to DNA
-            $this->_dna[] = [
-                'type' => 'markers',
-                'locations' => MapHelper::extractCoords($location, $options),
-                'options' => $options,
-            ];
+            // If valid address, set the coordinates
+            if ($infoWindow['address'] && is_a($infoWindow['address'], Address::class)) {
+                $infoWindow['coords'] = $infoWindow['address']->getCoords();
+            }
 
         }
 
+        // Return marker data
+        return $infoWindow;
     }
 
 }
