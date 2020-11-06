@@ -1,8 +1,6 @@
 # Info Windows
 
-
-[SCREENSHOT OF AN INFO WINDOW]
-
+<img class="dropshadow" :src="$withBase('/images/maps/info-window.png')" alt="Example of an Info Window">
 
 ## Available Variables
 
