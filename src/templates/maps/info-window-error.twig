@@ -1,0 +1,31 @@
+{% css %}
+.gm-infowindow-error {
+    font-size: 1.1em;
+    max-width: 560px;
+}
+.gm-infowindow-error div:first-of-type {
+    font-weight: bold;
+    padding: 0.2em 0.2em;
+}
+.gm-infowindow-error pre {
+    color: #4a5568;
+    background-color: #edf2f7;
+    padding: 0.8em 1em;
+    margin-top: 0.4em;
+}
+.gm-infowindow-error div:last-of-type {
+    font-size: 1.2em;
+    margin-top: 0.1em;
+    padding: 1em 1em;
+    border: 1px solid #a0aec0;
+    background-color: #fefcbf;
+}
+{% endcss %}
+
+<div class="gm-infowindow-error">
+    <div><strong>Twig template error:</strong></div>
+    {% if filename %}
+        <pre>{{ filename }}</pre>
+    {% endif %}
+    <div>{{ message }}</div>
+</div>

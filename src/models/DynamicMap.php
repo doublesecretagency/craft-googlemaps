@@ -19,6 +19,7 @@ use craft\helpers\Json;
 use craft\helpers\StringHelper;
 use craft\helpers\Template;
 use craft\models\FieldLayout;
+use craft\web\View;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
@@ -559,41 +560,21 @@ class DynamicMap extends Model
         // Attempt to render the Twig template
         try {
 
-            // Success, get rendered template
+            // Render specified info window template
             $template = $view->renderTemplate($options['infoWindowTemplate'], $infoWindow);
 
         } catch (\Exception $e) {
 
-            // Error message CSS
-            $view->registerCss('
-.gm-infowindow-error {
-    font-size: 1.1em;
-}
-.gm-infowindow-error div:first-of-type {
-    font-weight: bold;
-    padding: 0.2em 0.2em;
-}
-.gm-infowindow-error pre {
-    color: #4a5568;
-    background-color: #edf2f7;
-    padding: 0.8em 1em;
-    margin-top: 0.4em;
-}
-.gm-infowindow-error div:last-of-type {
-    font-size: 1.2em;
-    margin-top: 0.1em;
-    padding: 1em 1em;
-    border: 1px solid #a0aec0;
-    background-color: #fefcbf;
-}
-');
-            // Error message HTML
-            $template = "
-<div class='gm-infowindow-error'>
-    <div><strong>Error in Twig template:</strong></div>
-    <pre>{$options['infoWindowTemplate']}</pre>
-    <div>{$e->getMessage()}</div>
-</div>";
+            // Get the template root directory
+            $root = Craft::$app->getPath()->getSiteTemplatesPath();
+            $filepath = $view->resolveTemplate($options['infoWindowTemplate']);
+            $filename = str_replace($root, '', $filepath);
+
+            // Render error message template
+            $template = $view->renderTemplate('google-maps/maps/info-window-error', [
+                'filename' => $filename,
+                'message' => $e->getMessage(),
+            ], View::TEMPLATE_MODE_CP);
 
         }
 

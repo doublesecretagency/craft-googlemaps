@@ -1,6 +1,6 @@
 # Info Windows
 
-<img class="dropshadow" :src="$withBase('/images/maps/info-window.png')" alt="Example of an Info Window">
+<img class="dropshadow" :src="$withBase('/images/maps/info-window.png')" alt="Example of an info window">
 
 ## Available Variables
 
@@ -21,6 +21,8 @@ Assuming the marker was created using an Entry, an `entry` variable will be avai
 Similar logic applies with all other Element Types (`asset`, `user`, `category`, etc), including custom Element Types.
 :::
 
-:::tip Marker Info Template Errors
+## Info Window Template Errors
+
 In the event of Twig errors in your marker info template, the error will be rendered inside of the info window. This allows for you to more easily debug any problems that may be occurring.
-:::
+
+<img class="dropshadow" :src="$withBase('/images/maps/info-window-error.png')" alt="Example of an info window Twig template error">
