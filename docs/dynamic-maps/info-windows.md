@@ -29,17 +29,17 @@ The Twig template can live anywhere you want within your templates folder.
 
 Within the context of an info window Twig template, a few magic variables will already be set. Depending on what type of value you provided for the [locations](/dynamic-maps/locations/) parameter, some of these variables may or may not be available to you.
 
-|       | Element | Address | Coords |             |
-|-------|:-------:|:-------:|:------:|:------------|
-| `mapId`         | ✅ | ✅ | ✅ | ID of map |
-| `markerId`      | ✅ | ❌ | ❌ | ID of marker |
-| `element`       | ✅ | ❌ | ❌ | Element origin of the marker |
-| `entry` _(etc)_ | ✅ | ❌ | ❌ | Alias `element` (named per type) |
-| `address`       | ✅ | ✅ | ❌ | Address represented by the marker |
-| `coords`        | ✅ | ✅ | ✅ | Coordinates of the marker |
+|                 |                    | Element | Address | Coords |
+|-----------------|:-------------------|:-------:|:-------:|:------:|
+| `mapId`         | ID of map                         | ✅ | ✅ | ✅ |
+| `markerId`      | ID of marker                      | ✅ | ❌ | ❌ |
+| `element`       | Element origin of the marker      | ✅ | ❌ | ❌ |
+| `entry` _(etc)_ | Alias `element` (named per type)  | ✅ | ❌ | ❌ |
+| `address`       | Address represented by the marker | ✅ | ✅ | ❌ |
+| `coords`        | Coordinates of the marker         | ✅ | ✅ | ✅ |
 
 :::warning Element Type Variables
-The `entry` variable is synonymous with the `element` variable, assuming the marker was created using an Entry. Similar logic applies with any other element type (`asset`, `user`, `category`, etc), including custom element types.
+Assuming the marker was created using an Entry, the `entry` variable will exist as an alias of the `element` variable. Similar logic applies with other element types (`asset`, `user`, `category`, `matrixblock`, `globalset`, etc).
 :::
 
 This example (using Tailwind CSS) produces the screenshot seen at the top of the page...

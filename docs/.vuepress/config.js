@@ -45,7 +45,6 @@ module.exports = {
             {
                 text: '[WIP] Guides',
                 items: [
-                    {text: 'Using Info Windows', link: '/guides/using-info-windows/'},
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -172,7 +171,6 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
-                'using-info-windows',
                 'complex-js-in-twig',
                 'complex-geolocation',
                 'setting-marker-icons',

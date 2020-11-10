@@ -488,7 +488,7 @@ class DynamicMap extends Model
         if (is_a($location, Element::class)) {
 
             // Set both `element` and `entry` (or comparable)
-            $elementType = $location::lowerDisplayName();
+            $elementType = $location::refHandle();
             $infoWindow['element'] = $location;
             $infoWindow[$elementType] = $location;
 
