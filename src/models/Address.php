@@ -189,14 +189,14 @@ class Address extends Location
 
         // Manually format multi-line address
         $formatted  = '';
-        $formatted .= ($this->street1 ? $this->street1 : '');
+        $formatted .= ($this->street1 ?: '');
         $formatted .= ($this->street1 && $this->street2 ? $unitGlue : '');
-        $formatted .= ($this->street2 ? $this->street2 : '');
+        $formatted .= ($this->street2 ?: '');
         $formatted .= ($hasStreet && $hasCityState ? $cityGlue : '');
-        $formatted .= ($this->city ? $this->city : '');
+        $formatted .= ($this->city ?: '');
         $formatted .= (($this->city && $this->state) ? ', ' : '');
-        $formatted .= ($this->state ? $this->state : '').' ';
-        $formatted .= ($this->zip ? $this->zip : '');
+        $formatted .= ($this->state ?: '').' ';
+        $formatted .= ($this->zip ?: '');
 
         // Optionally append country
         if (4 <= $maxLines) {
@@ -212,6 +212,72 @@ class Address extends Location
 
         // Return a formatted multiline address
         return Template::raw(trim($formatted));
+    }
+
+    // ========================================================================= //
+
+    /**
+     * @inheritdoc
+     */
+    public function linkToSearch(array $parameters = []): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
+
+        // If query wasn't specified
+        if (!isset($parameters['query'])) {
+            // Get address as a string
+            $address = (string) $this;
+            // Set query to string address (or coordinates as fallback)
+            $parameters['query'] = ($address ?: "{$this->lat},{$this->lng}");
+        }
+
+        // If no query place ID was specified
+        if (!isset($parameters['query_place_id'])) {
+            // Extract the stored place ID (if it exists)
+            $placeId = ($this->raw['place_id'] ?? false);
+            // If place ID exists, set as the query place ID
+            if ($placeId) {
+                $parameters['query_place_id'] = $placeId;
+            }
+        }
+
+        // Return compiled endpoint URL
+        return parent::linkToSearch($parameters);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function linkToDirections(array $parameters = [], Location $origin = null): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
+
+        // If destination wasn't specified
+        if (!isset($parameters['destination'])) {
+            // Get destination address as a string
+            $address = (string) $this;
+            // Set destination to string address (or coordinates as fallback)
+            $parameters['destination'] = ($address ?: "{$this->lat},{$this->lng}");
+        }
+
+        // If no destination place ID was specified
+        if (!isset($parameters['destination_place_id'])) {
+            // Extract the stored place ID (if it exists)
+            $placeId = ($this->raw['place_id'] ?? false);
+            // If place ID exists, set as the destination place ID
+            if ($placeId) {
+                $parameters['destination_place_id'] = $placeId;
+            }
+        }
+
+        // Return compiled endpoint URL
+        return parent::linkToDirections($parameters, $origin);
     }
 
 }

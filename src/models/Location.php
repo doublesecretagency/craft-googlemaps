@@ -62,7 +62,7 @@ class Location extends Model
      *
      * @return array
      */
-    public function getCoords()
+    public function getCoords(): array
     {
         return [
             'lat' => $this->lat,
@@ -72,74 +72,145 @@ class Location extends Model
 
     // ========================================================================= //
 
-    public function linkToDirections($options = []): string
-    {
-
-        // @TODO: Reassess both of these functions
-
-        // THESE SHOULD REALLY JUST BE BOTH USING THE GOOGLE URL API
-
-        return 'https://www.google.com/maps/dir/14.9704507,102.1049483/@14.9702797,102.1036072,17z';
-
-
-// linkToDirections($destinationAddress, $destinationTitle = null, $originTitle = false, $originAddress = false)
-//
-//        // If no destination address, bail
-//        if (!$destinationAddress) {
-//            return '#missing-address-field';
-//        }
-//        // If destination address isn't an Address model, bail
-//        if (!is_a($destinationAddress, AddressModel::class)) {
-//            return '#invalid-address-field';
-//        }
-//        // If starting address isn't an Address model, set it to false
-//        if (!is_a($originAddress, AddressModel::class)) {
-//            $originAddress = false;
-//        }
-//        // Compile URL
-//        $url = 'https://www.google.com/maps/dir/?api=1&';
-//        if ($originAddress) {
-//            $url .= 'origin='.$this->_formatForDirections($originAddress, $originTitle).'&';
-//        }
-//        $url .= 'destination='.$this->_formatForDirections($destinationAddress, $destinationTitle);
-//        // Return link
-//        return $url;
-    }
-
-    public function linkToGoogleMap(): string
+    /**
+     * Puts a pin in the specified location and displays available place details.
+     * Use this method to show a marker on the map (instead of `linkToMap`).
+     *
+     * For more info regarding the available parameters...
+     * https://developers.google.com/maps/documentation/urls/get-started#search-action
+     *
+     * @param array $parameters
+     * @return string
+     */
+    public function linkToSearch(array $parameters = []): string
     {
         // If invalid coordinates, bail
         if (!$this->hasCoords()) {
-            return '#invalid-address-coordinates';
+            return '#invalid-coordinates';
         }
 
-        // Get coordinates
-        $coords = implode(',', $this->coords);
+        // Set query (if not already specified)
+        $parameters['query'] = ($parameters['query'] ?? "{$this->lat},{$this->lng}");
 
-        $zoom = 17;
+        // Return compiled endpoint URL
+        $url = 'https://www.google.com/maps/search/?api=1';
+        return $this->_compileUrl($url, $parameters);
+    }
 
-        $url = "https://www.google.com/maps/{$coords}/@{$coords},{$zoom}z";
+    /**
+     * Launches a map in directions mode.
+     * Pre-fills the origin and/or destination.
+     *
+     * For more info regarding the available parameters...
+     * https://developers.google.com/maps/documentation/urls/get-started#directions-action
+     *
+     * @param array $parameters
+     * @param Location|null $origin
+     * @return string
+     */
+    public function linkToDirections(array $parameters = [], Location $origin = null): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
 
+        // Set destination (if not already specified)
+        $parameters['destination'] = ($parameters['destination'] ?? "{$this->lat},{$this->lng}");
+
+        // If an origin is specified, apply it
+        if ($origin) {
+
+            // If origin wasn't specified
+            if (!isset($parameters['origin'])) {
+                // Get origin address as a string
+                $address = (is_a($origin, Address::class) ? (string) $origin : false);
+                // Set origin to string address (or coordinates as fallback)
+                $parameters['origin'] = ($address ?: "{$origin->lat},{$origin->lng}");
+            }
+
+            // If no origin place ID was specified
+            if (!isset($parameters['origin_place_id'])) {
+                // Extract the stored place ID (if it exists)
+                $placeId = ($origin->raw['place_id'] ?? false);
+                // If place ID exists, set as the origin place ID
+                if ($placeId) {
+                    $parameters['origin_place_id'] = $placeId;
+                }
+            }
+
+        }
+
+        // Return compiled endpoint URL
+        $url = 'https://www.google.com/maps/dir/?api=1';
+        return $this->_compileUrl($url, $parameters);
+    }
+
+    /**
+     * Link to a map with no markers or directions.
+     * If you want a marker, use `linkToSearch` instead.
+     *
+     * For more info regarding the available parameters...
+     * https://developers.google.com/maps/documentation/urls/get-started#map-action
+     *
+     * @param array $parameters
+     * @return string
+     */
+    public function linkToMap(array $parameters = []): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
+
+        // Set center (if not already specified)
+        $parameters['center'] = ($parameters['center'] ?? "{$this->lat},{$this->lng}");
+
+        // Return compiled endpoint URL
+        $url = 'https://www.google.com/maps/@?api=1&map_action=map';
+        return $this->_compileUrl($url, $parameters);
+    }
+
+    /**
+     * Launch a viewer to display Street View images as interactive panoramas.
+     *
+     * For more info regarding the available parameters...
+     * https://developers.google.com/maps/documentation/urls/get-started#street-view-action
+     *
+     * @param array $parameters
+     * @return string
+     */
+    public function linkToStreetView(array $parameters = []): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
+
+        // Set viewpoint (if not already specified)
+        $parameters['viewpoint'] = ($parameters['viewpoint'] ?? "{$this->lat},{$this->lng}");
+
+        // Return compiled endpoint URL
+        $url = 'https://www.google.com/maps/@?api=1&map_action=pano';
+        return $this->_compileUrl($url, $parameters);
+    }
+
+    /**
+     * Compile an API URL along with its parameters.
+     *
+     * @param string $url
+     * @param array $params
+     * @return string
+     */
+    private function _compileUrl(string $url, array $params): string
+    {
+        // Loop through parameters to compile URL
+        foreach ($params as $key => $val) {
+            $url .= "&{$key}={$val}";
+        }
+
+        // Return fully compiled URL
         return $url;
-
-//        // Get location name
-//        if ($title) {
-//            $place = urlencode((string) $title);
-//        } else if ($address->isEmpty()) {
-//            $place = $coords;
-//        } else {
-//            $place = urlencode((string) $address->format(true, true));
-//        }
-
-
-        $place = 'TEMPTITLE';
-
-        // Return link
-        return 'https://www.google.com/maps/place/'.$place.'/@'.$coords;
-        // http://maps.google.com/maps?z=12&t=m&q=loc:38.9419+-78.3020
-
-
-//        "https://www.google.com/maps/place/14°58'13.0"N+102°06'13.0"E/@14.9702849,102.1014185,17z"
     }
 
 }
