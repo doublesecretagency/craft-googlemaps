@@ -330,9 +330,6 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Set whether to show the map on initial load
         $settings['showMap'] = ('open' === $settings['mapOnStart']);
 
-        // Set whether we're using CP Field Inspect
-        $settings['usingCpFieldInspect'] = Craft::$app->getPlugins()->isPluginEnabled('cp-field-inspect');
-
         // Return settings
         return $settings;
     }

@@ -1,3 +1,21 @@
+{# Compensate for a visible map toggle #}
+{% switch (settings.visibilityToggle ?? false) %}
+    {% case 'both' %}
+        {% set marginRight = 92 %}
+    {% case 'text' %}
+        {% set marginRight = 82 %}
+    {% case 'icon' %}
+        {% set marginRight = 24 %}
+    {% default %}
+        {% set marginRight = false %}
+{% endswitch %}
+
+{# If necessary, scoot over field attribute box #}
+{% if marginRight %}
+    {% css "#fields-#{handle}-field-attribute {margin-right: #{marginRight}px}" %}
+{% endif %}
+
+{# Get relevant data from PHP #}
 {% set data = {
     'address': {
         'formatted' : (address.formatted ?? null),

@@ -5,7 +5,7 @@
         :style="{
             'float': 'right',
             'margin-top': marginTop,
-            'margin-right': marginRight,
+            'margin-right': '8px',
             'cursor': 'pointer',
         }"
     >
@@ -27,10 +27,8 @@
 <script>
     export default {
         data() {
-            let settings = this.$root.$data.settings;
             return {
                 toggleOffset: -25,
-                marginRight: (settings.usingCpFieldInspect ? '25px' : '8px')
             }
         },
         computed: {

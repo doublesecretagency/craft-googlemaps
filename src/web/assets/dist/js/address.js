@@ -2039,10 +2039,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var settings = this.$root.$data.settings;
     return {
-      toggleOffset: -25,
-      marginRight: settings.usingCpFieldInspect ? '25px' : '8px'
+      toggleOffset: -25
     };
   },
   computed: {
@@ -2593,7 +2591,7 @@ var render = function() {
           style: {
             float: "right",
             "margin-top": _vm.marginTop,
-            "margin-right": _vm.marginRight,
+            "margin-right": "8px",
             cursor: "pointer"
           },
           on: {
