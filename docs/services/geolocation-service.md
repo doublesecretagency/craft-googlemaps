@@ -27,7 +27,7 @@ Determine user's approximate location via a third-party geolocation service. By 
 | Option    | Type     | Default               | Description                       |
 |-----------|:--------:|:---------------------:|-----------------------------------|
 | `ip`      | _string_ | (autodetects)         | The visitor's IP address.         |
-| `service` | _string_ | (uses config setting) | Which geolocation service to use. |
+| `service` | _string_ | (uses [setting](/getting-started/settings/#geolocation-service-dropdown-options)) | Which geolocation service to use. |
  
 ::: tip SUPPORTED GEOLOCATION SERVICES
 At this time, the only accepted values are `"ipstack"`, `"maxmind"`, or _false_. Additional third-party geolocation services may be added in the future.
@@ -37,7 +37,7 @@ At this time, the only accepted values are `"ipstack"`, `"maxmind"`, or _false_.
 
 _Visitor_ - A [Visitor Model](/models/visitor-model/) representing the approximate location of a visitor.
 
-:::warning
+:::warning Low Precision Guaranteed
 Regardless of which third-party service you are using, **geolocation is an imprecise science**.
 
 A geolocation result will very often point to a user's _internet service provider_, or other internet routing equipment. While that location may be in the general region of the user, do not expect a geolocation result to point directly at a user's real location. 

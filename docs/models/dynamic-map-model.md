@@ -2,6 +2,12 @@
 
 The Dynamic Map Model is critical for generating a [Dynamic Map](/dynamic-maps/). Thanks to the magic of [chaining](/dynamic-maps/chaining/), it allows you to build maps that are as complex as they need to be.
 
+## Public Properties
+
+### `id`
+
+_string_ - The map's unique ID. Can be set manually or generated automatically.
+
 ## Public Methods
 
 ### `__construct($locations = [], $options = [])`

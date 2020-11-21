@@ -64,7 +64,6 @@ module.exports = {
             {
                 text: 'Architecture',
                 items: [
-                    {text: 'Settings', link: '/settings/'},
                     {text: 'Helper', link: '/helper/'},
                     {text: 'JavaScript', link: '/javascript/'},
                     {text: 'Models', link: '/models/'},
@@ -78,6 +77,8 @@ module.exports = {
             '/getting-started/': [
                 '',
                 'api-keys',
+                'settings',
+                'config',
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
 
@@ -127,10 +128,6 @@ module.exports = {
             ],
 
             // Architecture
-            '/settings/': [
-                '',
-                'config',
-            ],
             '/helper/': [
                 '',
             ],

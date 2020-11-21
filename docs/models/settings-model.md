@@ -1,11 +1,11 @@
 # Settings Model
 
-The Settings Model is a structural staple of most Craft plugins. It is not something you will generally need to interact with directly.
+The Settings Model is a structural staple of most Craft plugins. It is generally not something you need to interact with directly.
 
-You can control the plugin settings by going to **Settings > Google Maps** in the control panel. For more information, see the documentation regarding [the plugin settings page...](/settings/)
+If you want to manage the plugin's settings, go to **Settings > Google Maps** in the control panel. For more information, see the documentation regarding [the plugin settings page...](/getting-started/settings/)
 
 ::: warning FOR EDGE CASES ONLY
-You will rarely need to call the Settings Model directly. It exists almost exclusively for internal use.
+You will rarely need to call the Settings Model directly, it is for internal use only.
 
 If you need to dynamically update the Google API Keys, take a look at the methods provided by the [API Service...](/services/api-service/)
 :::
