@@ -8,11 +8,8 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->api->...
 ```
 
-::: warning CHILD CLASSES
-This service is extended by the following classes:
- - [Geocoding Service](/services/geocoding-service)
- - [Maps Javascript Service](/services/maps-javascript-service)
- - [Maps Static Service](/services/maps-static-service)
+::: warning CHILD CLASS
+This service is extended by the [Geocoding Service](/services/geocoding-service).
 :::
 
 ### `getServerKey()`

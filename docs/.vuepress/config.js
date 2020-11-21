@@ -154,13 +154,9 @@ module.exports = {
             ],
             '/services/': [
                 '',
-                'address-service',
                 'api-service',
                 'geocoding-service',
                 'geolocation-service',
-                'maps-javascript-service',
-                'maps-static-service',
-                'proximity-search-service',
             ],
             '/events/': [
                 '',
