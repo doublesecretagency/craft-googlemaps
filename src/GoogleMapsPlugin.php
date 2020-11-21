@@ -20,12 +20,9 @@ use craft\services\Fields;
 use craft\services\Plugins;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
-use doublesecretagency\googlemaps\services\Address;
 use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
-use doublesecretagency\googlemaps\services\MapsJavascript;
-use doublesecretagency\googlemaps\services\MapsStatic;
 use doublesecretagency\googlemaps\services\ProximitySearch;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
@@ -35,12 +32,9 @@ use yii\base\Event;
  * Class GoogleMapsPlugin
  * @since 4.0.0
  *
- * @property Address $address
  * @property Api $api
  * @property Geocoding $geocoding
  * @property Geolocation $geolocation
- * @property MapsJavascript $mapsJavascript
- * @property MapsStatic $mapsStatic
  * @property ProximitySearch $proximitySearch
  */
 class GoogleMapsPlugin extends Plugin
@@ -74,12 +68,9 @@ class GoogleMapsPlugin extends Plugin
 
         // Load plugin components
         $this->setComponents([
-            'address' => Address::class,
             'api' => Api::class,
             'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,
-            'mapsJavascript' => MapsJavascript::class,
-            'mapsStatic' => MapsStatic::class,
             'proximitySearch' => ProximitySearch::class,
         ]);
 

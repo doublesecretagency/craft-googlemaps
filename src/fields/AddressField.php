@@ -18,6 +18,7 @@ use craft\base\PreviewableFieldInterface;
 use craft\elements\db\ElementQueryInterface;
 use craft\elements\Entry;
 use craft\helpers\Json;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
 use doublesecretagency\googlemaps\models\QueryModifier;
@@ -344,8 +345,8 @@ class AddressField extends Field implements PreviewableFieldInterface
             return;
         }
 
-        // Modify the element query
-        new QueryModifier($query, $options, $this);
+        // Modify the element query to perform a proximity search
+        GoogleMapsPlugin::$plugin->proximitySearch->modifyElementsQuery($query, $options, $this);
     }
 
     // ========================================================================= //

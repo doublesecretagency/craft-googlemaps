@@ -9,18 +9,18 @@
  * @copyright Copyright (c) 2014, 2020 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\models;
+namespace doublesecretagency\googlemaps\services;
 
-use craft\base\Model;
+use craft\base\Component;
 use craft\elements\db\ElementQueryInterface;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**
- * Class QueryModifier
+ * Class ProximitySearch
  * @since 4.0.0
  */
-class QueryModifier extends Model
+class ProximitySearch extends Component
 {
 
     /**
@@ -34,14 +34,13 @@ class QueryModifier extends Model
     private $_field;
 
     /**
-     * Build a Query Modifier from scratch.
+     * Modify the existing elements query to perform a proximity search.
      *
      * @param $query
      * @param $options
      * @param $field
-     * @param array $config
      */
-    public function __construct($query, $options, $field, array $config = [])
+    public function modifyElementsQuery($query, $options, $field)
     {
         // Internalize objects
         $this->_query = $query;
@@ -68,9 +67,6 @@ class QueryModifier extends Model
         if (isset($options['requireCoords'])) {
             $this->_applyRequireCoords($options['requireCoords']);
         }
-
-        // Close the loop
-        parent::__construct($config);
     }
 
     // ========================================================================= //
