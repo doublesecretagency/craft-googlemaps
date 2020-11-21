@@ -101,9 +101,23 @@ The distance between this address, and your proximity search target. Will be ret
 This value will only be available if the address was returned as part of a [proximity search](/proximity-search/). Otherwise, the value for `distance` will be null.
 :::
 
-Behaves just as described in the [Location Model](/models/location-model/#getdistance-coords-units-mi), you can optionally pass in coordinates to measure the distance between two points. However, it is slightly more powerful in the context of an Address Model.
+Behaves just as described in the [Location Model](/models/location-model/#getdistance-coords-units-miles), you can optionally pass in coordinates to measure the distance between two points. However, it is slightly more powerful in the context of an Address Model.
 
 If the address has been returned as part of a proximity search, the method will use the coordinates of your search target by default.
+
+---
+---
+
+### `linkToSearch(parameters = {})`
+
+Identical to [parent method](/models/location-model/#linktosearch-parameters), except more data can be extracted from an Address Model.
+
+---
+---
+
+### `linkToDirections(parameters = {}, origin = null)`
+
+Identical to [parent method](/models/location-model/#linktodirections-parameters-origin-null), except more data can be extracted from an Address Model.
 
 ---
 ---

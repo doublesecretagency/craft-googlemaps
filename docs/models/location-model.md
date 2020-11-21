@@ -20,7 +20,7 @@ _object_ - Alias for `getCoords()`.
 
 ### `hasCoords()`
 
-_bool_ - Whether or not the location has functional coordinates.
+_bool_ - Whether the location has functional coordinates.
 
 ```twig
 {% if location.hasCoords() %}
@@ -44,52 +44,44 @@ In this example, the `home` and `office` variables are both Location Models. We 
 {% set distance = office.getDistance(homeCoords) %}
 ```
 
-### `linkToGoogleMap()`
+### `linkToSearch(parameters = {})`
 
 _string_ - Generate a link to see this location in Google Maps.
 
 ```twig
-{% set href = location.linkToGoogleMap() %}
-<a href="{{ href }}">Open in Google Maps</a>
+<a href="{{ location.linkToSearch() }}">See Location in Google Maps</a>
 ```
 
-### `linkToDirections(options = {})`
+:::tip Displaying a Marker
+Counterintuitively, this method is preferred over `linkToMap` if you want to display a relevant location marker. If it's confusing, it's because we modeled the method names after [Google](https://developers.google.com/maps/documentation/urls/get-started#forming-the-url).
+:::
 
-_string_ - Generate a link to get directions in Google Maps.
+### `linkToDirections(parameters = {}, origin = null)`
+
+_string_ - Generate a link to see this location in Google Maps.
 
 ```twig
-{% set href = location.linkToDirections() %}
-<a href="{{ href }}">Directions in Google Maps</a>
+<a href="{{ location.linkToDirections() }}">Get Directions</a>
 ```
 
-| Option             | Type     | Default  | Description |
-|--------------------|:--------:|:--------:|------------------------------------|
-| `destinationTitle` | _string_ | Title of Element (if possible)   | Title of the destination marker. |
-| `startingAddress`  | `"auto"`, [coords](/models/coordinates/), or _null_  | `"auto"` | Coordinates of a _separate_ location (see more below). |
-| `startingTitle`    | _string_ | _null_   | Title of the starting marker. |
+The `origin` must be another **Location Model**. Both [Address Models](/models/address-model/) and [Visitor Models](/models/visitor-model/) are extensions of the Location Model, and therefore considered a valid `origin`.
 
-::: warning linkToDirections('Destination Title')
-You can also pass a _string_ in as the sole parameter. If you pass only a string, it will be used for the `destinationTitle` value.
-:::
+### `linkToMap(parameters = {})`
 
-::: tip Titles may not always appear
-Depending on the browser and usage, the `destinationTitle` and `startingTitle` may or may not be utilized.
-:::
-
-### Starting Address
-
-A path will be calculated between the Starting Address and Destination Address.
-
-The starting address can be one of these things:
-
- - `"auto"` - (Default) Automatically use the visitor's current location as the starting address.
- - [coords](/models/coordinates/) - An object derived from another [location](/models/location-model/#getcoords) or compiled manually.
- - _null_ - If you want to disable auto-detection of the current address, set this to _null_.
-
-::: tip
-The `"auto"` autodetection simply uses "Current Location" as the `saddr` value.
+_string_ - Generate a link to see this location in Google Maps.
 
 ```twig
-...&saddr=Current+Location
+<a href="{{ location.linkToMap() }}">Open a Google Maps</a>
 ```
+
+:::warning Displaying a Marker
+The `linkToMap` method will show a map centered on the desired location, but _it will not display a marker_. If you would like a marker to appear, use the `linkToSearch` method instead.
 :::
+
+### `linkToStreetView(parameters = {})`
+
+_string_ - Generate a link to see this location in Google Maps.
+
+```twig
+<a href="{{ location.linkToStreetView() }}">Open in Google Street View</a>
+```

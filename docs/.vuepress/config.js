@@ -48,7 +48,7 @@ module.exports = {
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
                     {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
-                    {text: 'Getting Directions', link: '/guides/getting-directions/'},
+                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Styling a Map', link: '/guides/styling-a-map/'},
                     {text: 'KML Files', link: '/guides/kml-files/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
@@ -174,7 +174,7 @@ module.exports = {
                 'complex-js-in-twig',
                 'complex-geolocation',
                 'setting-marker-icons',
-                'getting-directions', // TODO: Reassess this functionality (Google Maps URL API?)
+                'linking-to-a-map',
                 'styling-a-map',
                 'kml-files',
                 'region-biasing',
