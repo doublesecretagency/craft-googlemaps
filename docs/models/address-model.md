@@ -149,7 +149,7 @@ if (!$address->isEmpty) {
 ---
 ---
 
-### `multiline(maxLines)`
+### `multiline(maxLines = 3)`
 
 - `maxLines` - Maximum number of lines (1-4) allocated to display the address.
 
