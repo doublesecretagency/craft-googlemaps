@@ -165,7 +165,6 @@ module.exports = {
             '/guides/': [
                 '',
                 'complex-js-in-twig',
-                'complex-geolocation',
                 'setting-marker-icons',
                 'linking-to-a-map',
                 'styling-a-map',

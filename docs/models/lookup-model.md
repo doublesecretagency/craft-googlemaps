@@ -5,7 +5,7 @@ When a Lookup Model is initialized, it should be passed a collection of paramete
 :::code
 ```twig
 {# Configure Lookup Model #}
-{% set lookup = GoogleMaps::lookup(parameters) %}
+{% set lookup = googleMaps.lookup(parameters) %}
 
 {# Perform the geocoding lookup #}
 {% set results = lookup.all() %}

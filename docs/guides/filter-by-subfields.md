@@ -21,13 +21,14 @@ $options = [
 ```
 :::
 
-The value of each filter should be either:
+The value of each filter could be either:
 
- - **string** - If there is only one acceptable value for the subfield.
- - **array** - If there are multiple acceptable values for the subfield.
+ - A **string**, if there is only one acceptable value for the subfield.
+ - An **array**, if there are multiple acceptable values for the subfield.
 
 :::code
 ```twig
+{# If the country is United Kingdom OR Germany OR France #}
 {% set options = {
     'subfields': {
         'country': ['United Kingdom', 'Germany', 'France']
@@ -35,6 +36,7 @@ The value of each filter should be either:
 } %}
 ```
 ```php
+// If the country is United Kingdom OR Germany OR France
 $options = [
     'subfields' => [
         'country' => ['United Kingdom', 'Germany', 'France']

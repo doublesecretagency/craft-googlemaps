@@ -15,7 +15,9 @@ $address = GoogleMaps::lookup('123 Main St')->one();
 
 There are three `lookup` methods that can be performed (`all`, `one`, `coords`). To see the complete details of each method, see the [Lookup Model](/models/lookup-model/) documentation for more information.
 
-Internally, this plugin uses the `lookup` methods quite frequently under the hood. The examples above use the [`GoogleMaps` Helper Class](/helper/), which is acting as a wrapper for the [Geocoding Service](/services/geocoding-service/). Here is a rough diagram of how a geocoding request flows through the plugin... 
+Internally, this plugin uses the `lookup` methods quite frequently under the hood. The examples above use the [`GoogleMaps` Helper Class](/helper/), which is acting as a wrapper for the [Geocoding Service](/services/geocoding-service/).
+
+Here is a rough diagram of how a geocoding request flows through the plugin... 
 
 <img class="dropshadow" :src="$withBase('/images/geocoding/perform-address-lookup-internal.png')" alt="How it works internally">
 

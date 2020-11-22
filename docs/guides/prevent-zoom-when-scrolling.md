@@ -34,4 +34,4 @@ $map = GoogleMaps::map($locations, $options);
 ```
 :::
 
-See the full details about `gestureHandling` in the [Google documentation...](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions.gestureHandling)
+Within the context of the `mapOptions` value, you can indirectly pass a multitude of settings to the Google API. Consult the [Google documentation](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions.gestureHandling) for complete details regarding `gestureHandling`.
