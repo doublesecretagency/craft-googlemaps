@@ -1,6 +1,6 @@
-# `GoogleMaps` Helper Class
+# `googleMaps` in Twig & PHP
 
-Whether you are working in Twig or PHP, the `GoogleMaps` helper class exists to make your life a little easier. It includes wrapper methods for some of the most common use-cases you will encounter.
+Whether you are working in Twig or PHP, the **`GoogleMaps` helper class** exists to make your life a little easier. It includes wrapper methods for some of the most common use-cases you will encounter.
 
 ### When using it in Twig
 
@@ -16,10 +16,10 @@ use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 Throughout these docs, you will see references to `GoogleMaps` in PHP. Although it's rarely stated, in each instance you _must_ make sure to `use` the Helper class.
 
-:::warning When should I use the helper methods?
+:::warning When should I rely on the helper methods?
 **As much as possible.** If there is a helper method which directly addresses the problem that you are trying to solve, it is preferable to use the helper method rather than the underlying service method (or whatever the helper method may be wrapping). The goal of this is to provide consistency and uniformity across and within projects.
 
-However, if your use case is _not_ covered by this collection of helper methods, then feel free to rely directly on the underlying service methods. It's unrealistic to expect the helper methods to cover 100% of use-cases, so do what you must to get the job done.
+However, if your use case is _not_ covered by this collection of helper methods, then feel free to rely directly on the underlying service methods. It's unrealistic to expect the helper methods to cover 100% of use-cases, so do what you must in order to get the job done.
 :::
 
 ---
@@ -110,7 +110,7 @@ Optionally, you can override the `service` and/or `ip` when performing a visitor
 ```
 ```php
 // Get visitor geolocation information
-$visitor = GoogleMaps::visitor;
+$visitor = GoogleMaps::getVisitor();
 
 // The exact same method, with optional overrides
 $visitor = GoogleMaps::getVisitor([

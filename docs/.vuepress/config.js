@@ -43,10 +43,19 @@ module.exports = {
                 ]
             },
             {
-                text: '[WIP] Guides',
+                text: 'Architecture',
+                items: [
+                    {text: 'Twig/PHP', link: '/helper/'},
+                    {text: 'JavaScript', link: '/javascript/'},
+                    {text: 'Models', link: '/models/'},
+                    {text: 'Services', link: '/services/'},
+                    {text: 'Events', link: '/events/'},
+                ]
+            },
+            {
+                text: 'Guides',
                 items: [
                     {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
-                    {text: 'Complex Geolocation', link: '/guides/complex-geolocation/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
                     {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Styling a Map', link: '/guides/styling-a-map/'},
@@ -59,16 +68,6 @@ module.exports = {
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
                     // {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
-                ]
-            },
-            {
-                text: 'Architecture',
-                items: [
-                    {text: 'Helper', link: '/helper/'},
-                    {text: 'JavaScript', link: '/javascript/'},
-                    {text: 'Models', link: '/models/'},
-                    {text: 'Services', link: '/services/'},
-                    {text: 'Events', link: '/events/'},
                 ]
             },
         ],
@@ -115,6 +114,7 @@ module.exports = {
             ],
             '/geolocation/': [
                 '',
+                'advanced',
                 'service-providers',
                 // 'html5', // TODO: Add HTML5 geolocation (?)
                 // 'cookie', // TODO: Refine cookie & cache implementation

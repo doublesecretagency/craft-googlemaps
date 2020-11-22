@@ -30,7 +30,7 @@ Determine user's approximate location via a third-party geolocation service. By 
 | `service` | _string_ | (uses [setting](/getting-started/settings/#geolocation-service-dropdown-options)) | Which geolocation service to use. |
  
 ::: tip SUPPORTED GEOLOCATION SERVICES
-At this time, the only accepted values are `"ipstack"`, `"maxmind"`, or _false_. Additional third-party geolocation services may be added in the future.
+At this time, the only accepted values are `ipstack`, `maxmind`, or _false_. Additional third-party geolocation services may be added in the future.
 :::
 
 #### Returns
