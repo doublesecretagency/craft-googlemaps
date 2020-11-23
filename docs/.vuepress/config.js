@@ -55,10 +55,9 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
-                    {text: 'Complex JS in Twig', link: '/guides/complex-js-in-twig/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
-                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Styling a Map', link: '/guides/styling-a-map/'},
+                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'KML Files', link: '/guides/kml-files/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
@@ -164,10 +163,9 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
-                'complex-js-in-twig',
                 'setting-marker-icons',
-                'linking-to-a-map',
                 'styling-a-map',
+                'linking-to-a-map',
                 'kml-files',
                 'region-biasing',
                 'filter-by-subfields',
