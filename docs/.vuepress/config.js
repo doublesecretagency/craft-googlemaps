@@ -61,9 +61,9 @@ module.exports = {
                     {text: 'KML Layers', link: '/guides/kml-layers/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
+                    // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Make live before launch
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
-                    {text: 'Internationalization Support', link: '/guides/internationalization-support/'},
+                    // {text: 'Internationalization Support', link: '/guides/internationalization-support/'}, // TODO: Make live before launch
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
                     // {text: 'Importing Addresses', link: '/guides/importing-addresses/'}, // TODO: Integrate with Feed Me
@@ -169,9 +169,9 @@ module.exports = {
                 'kml-layers',
                 'region-biasing',
                 'filter-by-subfields',
-                'address-in-a-matrix-field',
+                // 'address-in-a-matrix-field', // TODO: Make live before launch
                 'prevent-zoom-when-scrolling',
-                'internationalization-support',
+                // 'internationalization-support', // TODO: Make live before launch
                 'bermuda-triangle',
                 'updating-from-smart-map',
                 // 'importing-addresses',
