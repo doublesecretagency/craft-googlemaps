@@ -61,7 +61,7 @@ Append a KML layer to an existing map object.
 | Option             | Type     | Default | Description |
 |--------------------|:--------:|:-------:|-------------
 | `id`               | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
-| `KmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+| `kmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
 
 ```js
 map.kml('https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml');

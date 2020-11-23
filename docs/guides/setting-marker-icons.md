@@ -1,130 +1,104 @@
 # Setting Marker Icons
 
-## NEWER
+## Set icons for a batch of markers
 
+If you've got multiple groups of markers, you can specify a different icon for each batch of markers.
 
-If you have multiple groups of markers, you can format an entire batch by specifying new marker options each time.
-
-::: code
+:::code
 ```js
-// Create a new map
+// Get all bars & restaurants
+var bars        = {'lat': 37.2430548, 'lng': -115.7930198}; // Coords only in JS
+var restaurants = {'lat': 57.3009274, 'lng':   -4.4496567}; // Coords only in JS
+
+// Create a dynamic map (with no markers)
 var map = googleMaps.map();
 
-// Add first group of markers, with custom marker options
-map.markers(firstLocations, firstOptions);
+// Add all bar markers
+map.markers(bars, {
+    'icon': '/images/bar-icon.png'
+});
 
-// Add second group of markers, with custom marker options
-map.markers(secondLocations, secondOptions);
+// Add all restaurant markers
+map.markers(restaurants, {
+    'icon': '/images/restaurant-icon.png'
+});
+
+// Display map
+map.tag('parent-id');
+```
+```twig
+{# Get all bars & restaurants #}
+{% set bars        = craft.entries.section('locations').type('bars').all() %}
+{% set restaurants = craft.entries.section('locations').type('restaurants').all() %}
+
+{# Create a dynamic map (with no markers) #}
+{% set map = googleMaps.map() %}
+
+{# Add all bar markers #}
+{% do map.markers(bars, {
+    'icon': '/images/bar-icon.png'
+}) %}
+
+{# Add all restaurant markers #}
+{% do map.markers(restaurants, {
+    'icon': '/images/restaurant-icon.png'
+}) %}
+
+{# Display map #}
+{{ map.tag() }}
+```
+```php
+// Get all bars & restaurants
+$bars        = Entry::find()->section('locations')->type('bars')->all();
+$restaurants = Entry::find()->section('locations')->type('restaurants')->all();
+
+// Create a dynamic map (with no markers)
+$map = GoogleMaps::map();
+
+// Add all bar markers
+$map->markers($bars, [
+    'icon' => '/images/bar-icon.png'
+]);
+
+// Add all restaurant markers
+$map->markers($restaurants, [
+    'icon' => '/images/restaurant-icon.png'
+]);
+
+// Display map
+$twigMarkup = $map->tag();
 ```
 :::
-
-
-
-
-
-
-## OLDER
-
-
-## Set a default marker icon
-
-By default, you can set all markers to use the same icon when creating a map. Within the [dynamic map options](/dynamic-maps/dynamic/#options), you can define the value of `markerOptions.icon`.
-
-**Simple Example:**
-
-```twig
-{{ googleMaps.dynamic(locations, {
-    markerOptions: {
-        icon: 'path/to/icon.png'
-    }
-}) }}
-```
 
 The value of `icon` can be anything allowed as the `icon` property of the Google Maps API [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon) interface.
 
 <img :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon">
 
-**Complex Example:**
-
-```twig
-{{ googleMaps.dynamic(locations, {
-    markerOptions: {
-        icon: {
-            url: 'path/to/icon.png',
-            scaledSize: 'new google.maps.Size(32,32)'
-        }
-    }
-}) }}
-```
-
-::: warning COMPLEX JS OBJECTS
-Any string containing `google.maps` is considered a complex JavaScript object.
-
-Learn more about [Complex JS in Twig...](/guides/complex-js-in-twig/)
+:::tip
+If you specify a `markerOptions` value on the initial `map` declaration, it will be treated as the default for all future markers.
 :::
 
-## Change a marker icon
+## Set icon for an existing marker
 
-For various reasons, you may need to adjust the icon of an existing marker. It's possible to do this in either Twig or JavaScript. The function is effectively the same for both.
+It's also possible to change the icon of an existing marker:
 
-**Example in Twig:**
-
-```twig
-{% do googleMaps.setMarkerIcon(mapId, markerId, icon) %}
-```
-
-**Example in JavaScript:**
-
+:::code
 ```js
-googleMapsPlugin.setMarkerIcon(mapId, markerId, icon);
+map.setMarkerIcon(markerId, icon);
 ```
-
-### .setMarkerIcon(mapId, markerId, icon)
-
- - `mapId` as specified by [MAP-ID](/javascript-object/google-maps-objects/#map-objects)
- - `markerId` as specified by [MARKER-ID](/javascript-object/google-maps-objects/#marker-objects)
- - `icon` value is an **icon** as specified in the Google Maps API [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon) interface.
-
-::: warning ENSURE MAP HAS LOADED
-If you are doing this via JavaScript, make sure the map has had a chance to finish loading.
+```twig
+{% do map.setMarkerIcon(markerId, icon) %}
+```
+```php
+$map->setMarkerIcon($markerId, $icon);
+```
 :::
 
-## A Common Example
+:::warning Get the Marker IDs
+To see the existing marker IDs (if you didn't manually specify them), do the following:
 
-Let's say, hypothetically, you need to have different markers represented by different icons on the map. Using the tools outlined above, it's fairly straightforward to apply different icons to different markers, based on your custom criteria.
+1. Put the site into [devMode](https://craftcms.com/docs/3.x/config/config-settings.html#devmode).
+2. View the JS console while the map is being rendered.
 
-**Set marker icons based on their entry type:**
-
-```twig
-{# Set map ID #}
-{% set mapId = 'gm-map-1' %}
-
-{# Get all bars, restaurants, and coffee shops #}
-{% set entries = craft.entries.section(['bars','restaurants','coffeeShops']).all() %}
-
-{# Loop through all locations #}
-{% for entry in entries %}
-
-    {# Set marker ID #}
-    {% set markerId = "#{entry.id}.myAddressField" %}
-    
-    {# Set icon based on the entry type #}
-    {% switch entry.type.handle %}
-        {% case 'bars' %}
-            {% set icon = 'path/to/bar-icon.png' %}
-        {% case 'restaurants' %}
-            {% set icon = 'path/to/restaurant-icon.png' %}
-        {% case 'coffeeShops' %}
-            {% set icon = 'path/to/coffee-shop-icon.png' %}
-    {% endswitch %}
-
-    {# Assign the icon to the marker #}
-    {% do googleMaps.setMarkerIcon(mapId, markerId, icon) %}
-
-{% endfor %}
-
-{# Generate the map #}
-{{ googleMaps.dynamic(entries) }}
-```
-
-Likewise, you could work out a similar solution using the [JavaScript version](/javascript-object/#setmarkericon-mapid-markerid-icon) of `.setMarkerIcon()`. If you approach this using JavaScript, remember to run the `.setMarkerIcon()` method _after_ the map has been fully loaded.
+In the JavaScript console, you should see a complete play-by-play of every map component being created. Simply copy & paste the marker ID's you need from there, or take note of the pattern for your own needs.
+:::

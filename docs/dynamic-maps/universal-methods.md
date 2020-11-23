@@ -10,7 +10,7 @@ There are also a few language-specific methods to be aware of. In addition to th
 
 ## `markers(locations, options)`
 
-::: code
+:::code
 ```js
 map.markers(locations, options);
 ```
@@ -70,7 +70,7 @@ Applies a KML layer to the map.
 | Option             | Available            | Description |
 |--------------------|:--------------------:|-------------|
 | `id`               | JavaScript, Twig/PHP | Reference point for each KML layer. |
-| `KmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+| `kmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
 
 ## `styles(styleSet)`
 

@@ -114,6 +114,11 @@ function DynamicMap(locations, options) {
         // Set map
         options.markerOptions.map = this._map;
 
+        // If icon specified, copy into markerOptions
+        if (options.icon) {
+            options.markerOptions.icon = options.icon;
+        }
+
         // Force locations to be an array structure
         if (!Array.isArray(locations)) {
             locations = [locations];
