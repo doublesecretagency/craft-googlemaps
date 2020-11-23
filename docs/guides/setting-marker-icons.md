@@ -70,13 +70,18 @@ $twigMarkup = $map->tag();
 ```
 :::
 
-The value of `icon` can be anything allowed as the `icon` property of the Google Maps API [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon) interface.
+The `icon` value will be passed as a parameter of the `markerOptions` value.
 
-<img :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon">
+From the Google Maps API documentation regarding [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)...
 
-:::tip
-If you specify a `markerOptions` value on the initial `map` declaration, it will be treated as the default for all future markers.
+<img class="dropshadow" :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon">
+
+:::warning markerOptions.icon
+If you specify a `markerOptions` value during the initial `map` declaration, it will be treated as the default `markerOptions` value for all future markers. Since this can contain an `icon` value, it effectively allows you to define a specific fallback icon.
 :::
+
+---
+---
 
 ## Set icon for an existing marker
 
@@ -94,7 +99,7 @@ $map->setMarkerIcon($markerId, $icon);
 ```
 :::
 
-:::warning Get the Marker IDs
+:::tip Get the Marker IDs
 To see the existing marker IDs (if you didn't manually specify them), do the following:
 
 1. Put the site into [devMode](https://craftcms.com/docs/3.x/config/config-settings.html#devmode).
