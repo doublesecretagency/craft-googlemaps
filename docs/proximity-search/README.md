@@ -94,7 +94,7 @@ As you've already noticed, there are two special query parameters which are resp
 
  - You will almost certainly want to sort your query by **closest matches**. Adding this parameter will ensure that the results are sorted from nearest to farthest.
 
-::: warning Sorting by Distance
+:::warning Sorting by Distance
 The `distance` "column" is not a real column in the database. It is dynamically generated on-the-fly, and the values are then accessible via the resulting [Address Models](/models/address-model).
 :::
 

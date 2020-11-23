@@ -55,10 +55,10 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
                     {text: 'Styling a Map', link: '/guides/styling-a-map/'},
-                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
-                    {text: 'KML Files', link: '/guides/kml-files/'},
+                    {text: 'KML Layers', link: '/guides/kml-layers/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
                     {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
@@ -66,7 +66,7 @@ module.exports = {
                     {text: 'Internationalization Support', link: '/guides/internationalization-support/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
-                    // {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
+                    // {text: 'Importing Addresses', link: '/guides/importing-addresses/'}, // TODO: Integrate with Feed Me
                 ]
             },
         ],
@@ -163,10 +163,10 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
+                'linking-to-a-map',
                 'setting-marker-icons',
                 'styling-a-map',
-                'linking-to-a-map',
-                'kml-files',
+                'kml-layers',
                 'region-biasing',
                 'filter-by-subfields',
                 'address-in-a-matrix-field',

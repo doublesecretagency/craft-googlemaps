@@ -8,7 +8,7 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->geocoding->...
 ```
 
-::: warning PARENT CLASS
+:::warning PARENT CLASS
 This service extends the [API Service](/services/api-service).
 :::
 
@@ -22,6 +22,6 @@ Generates a [Lookup Model](/models/lookup-model/) based on a given set of parame
  
 The parameters are based on the [Google Geocoding parameters](https://developers.google.com/maps/documentation/geocoding/overview#geocoding-lookup). You can pass through any optional parameters you see there.
 
-::: warning HOW IT WORKS
+:::warning HOW IT WORKS
 Take a peek under the hood, read about [how the `lookup` method works...](/geocoding/)
 :::

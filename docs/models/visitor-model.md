@@ -15,7 +15,7 @@ $visitor = GoogleMaps::getVisitor();
 
 In all cases, `visitor` will be a Visitor Model.
 
-::: warning Additional Properties and Methods
+:::warning Additional Properties and Methods
 The Visitor Model is an extension of the [Location Model](/models/location-model/). It contains all properties and methods of the Location Model, plus the properties and methods shown below.
 
 You can access `lat` and `lng` just as easily as `service` or `ip`.

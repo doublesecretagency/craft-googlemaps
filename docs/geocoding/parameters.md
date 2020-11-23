@@ -25,7 +25,7 @@ The example above will compile and ping the following Google API URL:
 https://maps.googleapis.com/maps/api/geocode/json?address=123+Main+St&key=[KEY]
 ```
 
-::: warning [KEY] will be appended automatically
+:::warning [KEY] will be appended automatically
 The `key` value will be automatically appended, you do not need to specify it here.
 :::
 
@@ -64,7 +64,7 @@ https://maps.googleapis.com/maps/api/geocode/json
     &key=[KEY]
 ```
 
-::: warning Do not specify the API key here
+:::warning Do not specify the API key here
 When adding requirements, you do not need to manually specify the `key` value. The plugin stores it internally, and it will be appended to the API endpoint URL automatically.
 :::
 

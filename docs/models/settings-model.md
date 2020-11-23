@@ -4,7 +4,7 @@ The Settings Model is a structural staple of most Craft plugins. It is generally
 
 If you want to manage the plugin's settings, go to **Settings > Google Maps** in the control panel. For more information, see the documentation regarding [the plugin settings page...](/getting-started/settings/)
 
-::: warning FOR EDGE CASES ONLY
+:::warning FOR EDGE CASES ONLY
 You will rarely need to call the Settings Model directly, it is for internal use only.
 
 If you need to dynamically update the Google API Keys, take a look at the methods provided by the [API Service...](/services/api-service/)
@@ -20,7 +20,7 @@ _string_ - (Required) Google API Server Key.
 
 _string_ - (Required) Google API Browser Key.
 
-::: warning REQUIRED API KEYS
+:::warning REQUIRED API KEYS
 The Google API Server Key and Google API Browser Key are both **required**. Please make sure your setup includes valid API keys to access the Google services.
 :::
 

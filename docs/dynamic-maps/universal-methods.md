@@ -72,6 +72,8 @@ Applies a KML layer to the map.
 | `id`               | JavaScript, Twig/PHP | Reference point for each KML layer. |
 | `kmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
 
+For more information, see the [KML Layers](/guides/kml-layers/) guide.
+
 ## `styles(styleSet)`
 
 :::code
@@ -88,7 +90,9 @@ $map->styles($styleSet);
 
 #### Arguments
 
- - `styleSet` (_array_) - A collection of styles, most likely generated elsewhere. See the [Styling a Map](/guides/styling-a-map/) guide for more information.
+ - `styleSet` (_array_) - A collection of styles, most likely generated elsewhere.
+ 
+For more information, see the [Styling a Map](/guides/styling-a-map/) guide.
 
 ## `zoom(level)`
 

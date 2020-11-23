@@ -8,7 +8,7 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->api->...
 ```
 
-::: warning CHILD CLASS
+:::warning CHILD CLASS
 This service is extended by the [Geocoding Service](/services/geocoding-service).
 :::
 
