@@ -1,6 +1,6 @@
 # PHP Config File
 
-All of the config settings available on the plugin's [Settings page](/settings/) can also be managed via PHP in a config file. By setting these values in `config/google-maps.php`, they take precedence over whatever may be set in the control panel.
+All of the config settings available on the plugin's [Settings page](/getting-started/settings/) can also be managed via PHP in a config file. By setting these values in `config/google-maps.php`, they take precedence over whatever may be set in the control panel.
 
 ```shell
 # Copy this file...

@@ -1,14 +1,12 @@
 # Service Providers
 
-
-
-It's possible to use **IP address detection and geolocation** in an attempt to pinpoint the location of your users. The plugin will determine each user's IP address, then use a 3rd-party geolocation service (of your choosing) to perform the geolocation lookup.
+It's possible to use **IP address detection and geolocation** in an attempt to pinpoint the location of your users. The system will determine the IP address of each user, and run it through a 3rd-party geolocation service to perform the geolocation lookup.
 
 :::warning Precision Not Guaranteed
-Keep in mind, the accuracy of IP-based geolocation is highly variable... it's very normal for a user's IP geolocation to report the location of their local _internet service provider_, instead of the user's exact location. Do not be suprised if a user's reported location is several miles/kilometers from their actual location.
+Keep in mind, the accuracy of IP-based geolocation is highly variable... it's very normal for a user's IP geolocation to report the location of their local _internet service provider_, instead of the user's exact location. Don't be suprised if a user's reported location is several miles/kilometers from their actual location.
 :::
 
-There are several companies which provide geolocation services. You can set which service your website is using by visiting [Settings > Google Maps](/settings/#visitor-geolocation) in your control panel.
+There are multiple companies which can provide geolocation services. You can set which service your website is using by visiting [Settings > Google Maps](/getting-started/settings/#visitor-geolocation) in your control panel.
 
 <img class="dropshadow" :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
 
@@ -26,6 +24,8 @@ Another option is to use the [MaxMind](https://www.maxmind.com/) geolocation ser
 
 <hr>
 
-:::tip
+:::tip Equal Quality Data
 If you choose to enable visitor geolocation, both **ipstack** and **MaxMind** are equally solid options. Both services return reliable, high-quality data.
+
+Our preference for ipstack is only because it is free and has a simpler user interface.
 :::

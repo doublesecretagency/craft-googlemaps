@@ -32,7 +32,7 @@ module.exports = {
         nav: [
             {text: 'Getting Started️', link: '/getting-started/'},
             {
-                text: 'Major Concepts',
+                text: 'Features',
                 items: [
                     {text: 'Address Field', link: '/address-field/'},
                     {text: 'Dynamic Maps', link: '/dynamic-maps/'},
@@ -80,7 +80,7 @@ module.exports = {
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
 
-            // Major Concepts
+            // Features
             '/address-field/': [
                 '',
                 'settings',

@@ -1,6 +1,6 @@
 # Advanced Geolocation
 
-Virtually 100% of the time, you'll want to use the simplest approach for getting visitor geolocation data. However, there may be some extremely rare edge cases where you need to override the `service` and/or `ip` values at runtime.
+Nearly 100% of the time, you'll want to use the simplest approach for getting visitor geolocation data. However, there may be some extremely rare edge cases where you need to override the `service` and/or `ip` values at runtime.
 
 ## Simple
 
@@ -20,7 +20,7 @@ By default, the `getVisitor` method will:
  - Automatically use the lookup service specified by the [plugin settings](/getting-started/settings/).
 
 :::warning Perfect Example
-99% of the time the above example is all you need. Assuming you don't need anything more complex from your visitor geolocation call, just stick with the example above.
+The vast majority of the time, the above example is all you will need. Assuming you don't need anything more complex from your visitor geolocation call, just stick with the example above.
 :::
 
 ## Advanced

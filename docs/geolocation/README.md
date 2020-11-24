@@ -1,33 +1,27 @@
 # Visitor Geolocation
 
-## Overview
-
-If you want to know where your visitors are coming from, you can perform a geolocation lookup based on their IP address...
+If you want to know where your visitors are coming from, you can perform a geolocation lookup based on each user's IP address...
 
 :::code
 ```twig
-{# Autodetect IP address #}
-{% set visitor = googleMaps.visitor %}
-
-{# Specify override info #}
-{% set visitor = googleMaps.getVisitor({
-    'ip': '1.2.3.4'
-}) %}
+{% set visitor = googleMaps.getVisitor() %}
 ```
 ```php
-// Autodetect IP address
 $visitor = GoogleMaps::getVisitor();
-
-// Specify override info
-$visitor = GoogleMaps::getVisitor([
-    'ip' => '1.2.3.4'
-]);
 ```
 :::
 
-For the full details regarding the `getVisitor` method, see the [Geolocation Service](/services/geolocation-service/#getvisitor) documentation.
+It will return the geolocation results as a [Visitor Model](/models/visitor-model/). For the full details regarding the `getVisitor` method, see the [Geolocation Service](/services/geolocation-service/#getvisitor) documentation.
 
-It will return the geolocation results as a [Visitor Model](/models/visitor-model/).
+:::warning Magic Property
+In Twig, it's also possible to use the magic property alias...
+
+```twig
+    {% set visitor = googleMaps.visitor %}
+```
+
+This prevents you from passing any options, obviously.
+:::
 
 ## Accuracy
 
