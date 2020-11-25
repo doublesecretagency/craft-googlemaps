@@ -98,14 +98,8 @@ As you've already noticed, there are two special query parameters which are resp
 The `distance` "column" is not a real column in the database. It is dynamically generated on-the-fly, and the values are then accessible via the resulting [Address Models](/models/address-model).
 :::
 
-## The `distance` Property
+## The `distance` property
 
-When conducting a proximity search, you will end up with a normal array of elements. And as usual, the value of each Address field will be available as an **Address Model**. However, in the case of a proximity search, each Address Model will also contain a special extra property... [distance](/models/address-model/#distance).
+When conducting a proximity search, you will end up with a normal array of elements. Per usual, each Address field will be accessible as an **Address Model**. However, when conducting a proximity search, each Address Model will also contain an additional property... [distance](/models/address-model/#distance).
 
 The `distance` property of each Address Model will contain the relative distance to the specified search target. It is automatically populated if the element was retrieved as part of a proximity search. If the element was _not_ retrieved as part of a proximity search, then `distance` will return a _null_ value instead.
-
-## Multiple Address fields
-
-If your entries contain multiple Address fields, it doesn't matter which handle you use in order to trigger the proximity search. Each Address field is capable of triggering the exact same proximity search.
-
-By default, the proximity search will include _all_ Address fields. You can specify a proximity search against a _specific_ Address field by specifying the [`field` option](/proximity-search/options/#fields).

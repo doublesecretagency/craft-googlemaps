@@ -44,6 +44,8 @@ So if your Address field handle is `businessAddress`, your query might look like
 
 ## `myAddressField(options = [])`
 
+**Instead of `myAddressField`, use the actual Address field handle!**
+
 This parameter is responsible for executing the proximity search. The `options` that you specify will further influence how the proximity search is conducted.
 
 See the [Options](/proximity-search/options/) page for a complete list of available options.

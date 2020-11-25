@@ -10,13 +10,14 @@
 
 ## `target`
 
-### Default: `null`
+If the target is **null**...
+ - No target-based proximity search will be conducted. The `range` and `units` options will be rendered moot. You may still use the `subfields` and `requireCoords` options to narrow the query results, even without a specified target.
 
-If the `target` is **null**, a target-based proximity search will not be conducted. You will still be able to use the `subfields` and `requireCoords` options effectively. However, the `range` and `units` options will be rendered irrelevant and ineffective.
+If the target is a **set of [coordinates](/models/coordinates/)**...
+ - Those coordinates will be directly used as the center point for the proximity search. No API calls will be necessary, since the entire proximity search can be handled internally.
 
-If the `target` is a **set of [coordinates](/models/coordinates/)**, those coordinates will be directly used as the center point for the proximity search. No API calls will be necessary, the entire proximity search can be handled internally.
-
-If the `target` is a **string** or a **set of parameters**, the plugin will perform an address lookup to determine the center point for the proximity search. Please see the [Geocoding Parameters](/geocoding/parameters/) for more information on what is allowed.
+If the target is a **string** or a **set of parameters**...
+ - An internal [address lookup](/geocoding/) will be performed to determine the center point of the proximity search. Please see the [Geocoding Parameters](/geocoding/parameters/) for more information on what is allowed.
 
 :::tip Region Biasing
 Worried about the proximity search starting from the right place? Check out [Region Biasing...](/guides/region-biasing/)
@@ -24,13 +25,9 @@ Worried about the proximity search starting from the right place? Check out [Reg
 
 ## `range`
 
-### Default: `500`
-
 How wide of an area to conduct a proximity search within. The value represents the search radius, reaching outward from the `target` value. The units of measurement will be defined by `units`.
 
 ## `units`
-
-### Default: `'mi'`
 
 The unit of measurement by which to measure distances. Accepts the following values:
 
@@ -38,8 +35,6 @@ The unit of measurement by which to measure distances. Accepts the following val
  - `'km'` or `'kilometers'`
 
 ## `subfields`
-
-### Default: `null`
 
 The `subfields` option allows you to filter the proximity search results based on specific subfield values of the Address field. It ensures that the query returns only the results which **exactly match** the specified subfield values.
 
@@ -79,8 +74,6 @@ Read more about [filtering by subfields...](/guides/filter-by-subfields/)
 
 ## `requireCoords`
 
-### Default: `false`
-
-Determines whether a valid set of coordinates is required. If set to `true`, the results will only include Addresses that have valid coordinates.
+Determines whether a valid set of coordinates is required. If set to `true`, the results will only include Addresses which have valid coordinates.
 
 A set of coordinates is considered valid only if both the `latitude` and `longitude` values are populated.
