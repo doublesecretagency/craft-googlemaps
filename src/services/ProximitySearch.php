@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\services;
 
+use Craft;
 use craft\base\Component;
 use craft\elements\db\ElementQueryInterface;
 use doublesecretagency\googlemaps\fields\AddressField;
@@ -124,10 +125,6 @@ class ProximitySearch extends Component
                 '[[addresses.fieldId]] = :fieldId',
                 [':fieldId' => $this->_field->id]
             )
-            ->having(
-                '[[distance]] <= :range',
-                [':range' => $range]
-            )
         ;
 
         // Briefly store the distance under the field handle
@@ -136,6 +133,25 @@ class ProximitySearch extends Component
                 "[[subquery.distance]] AS [[{$this->_field->handle}]]"
             )
         ;
+
+        // Handle distance based on database type
+        if (Craft::$app->getDb()->getIsMysql()) {
+            // Configure for MySQL
+            $this->_query->subQuery
+                ->having(
+                    '[[distance]] <= :range',
+                    [':range' => $range]
+                )
+            ;
+        } else {
+            // Configure for Postgres
+            $this->_query->query
+                ->andWhere(
+                    '[[distance]] <= :range',
+                    [':range' => $range]
+                )
+            ;
+        }
     }
 
     /**
