@@ -1,5 +1,16 @@
 # Getting Started
 
+
+
+:::warning BETA Installation Instructions
+For users of the beta plugin, please do this instead:
+
+1. Lorem ipsum
+2. Dolor sit amet
+:::
+
+
+
 ## Installation
 
 To install the Google Maps plugin, follow these steps:
