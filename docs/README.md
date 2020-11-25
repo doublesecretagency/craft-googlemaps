@@ -1,21 +1,21 @@
 ---
 home: true
-heroImage: /images/dsa-circle.png
+heroImage: /images/icon.png
 heroText: Google Maps plugin for Craft CMS
 tagline: Maps in minutes. Powered by Google Maps.
 actionText: Get Started →
 actionLink: /getting-started/
 features:
-- title: Powered by Google Maps
-  details: All of the power of Google Maps straight out of the box. Twig code makes it easy to drop fully-rendered maps directly onto the page.
-- title: Easy to use Proximity Search
-  details: Finding the nearest location can be a breeze! Give customers an easy way to track down a store near them.
-- title: Compatible with everything!
-  details: Import, export, GraphQL, Elements API.
-- title: Amazing Address field
-  details: Talk about the awesome address field.
+- title: Address Field
+  details: Provides a powerful and customizable Address field to store location data.
+- title: Dynamic Maps
+  details: Get all the richness of the Google Maps API using simple, chainable methods.
+- title: Static Maps
+  details: Easily plot one or more markers onto a static map image.
+- title: Proximity Search
+  details: A "store locator" tool which makes it easy to find the closest locations.
+- title: Geocoding Lookups
+  details: Use a simple text string to perform a geocoding address lookup.
+- title: Visitor Geolocation
+  details: Find out where your visitors are coming from based on their IP address.
 ---
-
-# More information about the plugin...
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra diam lorem, a ullamcorper lacus commodo a. Suspendisse vitae eleifend odio. Integer at scelerisque quam. Nam in ultricies nunc. Aliquam dignissim molestie lectus, sed hendrerit nisi. Aliquam in libero maximus, commodo velit sit amet, pellentesque diam. Fusce maximus risus eget lectus finibus luctus. Suspendisse gravida dignissim semper.

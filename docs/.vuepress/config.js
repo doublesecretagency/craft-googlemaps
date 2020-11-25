@@ -27,7 +27,7 @@ module.exports = {
             twig: "Twig",
             js: "JavaScript",
         },
-        logo: '/images/dsa-circle.png',
+        logo: '/images/icon.png',
         searchMaxSuggestions: 10,
         nav: [
             {text: 'Getting Started️', link: '/getting-started/'},
