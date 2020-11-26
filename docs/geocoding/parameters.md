@@ -1,12 +1,12 @@
 # Geocoding Parameters
 
-When generating a [Lookup Model](/models/lookup-model/), you only need to pass in a single parameter. However, that parameter can either be _string_ or an _array_, depending on whether or not you need granular control over the API call. 
+When creating a [Lookup Model](/models/lookup-model/), you only need to pass in a single parameter. You may specify either a _string_ or an _array_, depending on whether or not you need granular control over the API call.
 
 ## Using a simple string
 
-This is the simplest, and most straightforward approach. The specified string will be sent to the Google API as the `address` parameter, with no other requirements.
+This is the simplest and most straightforward approach. The specified string will be passed directly to the Google API as the `address` parameter with no other parameters specified.
 
-For the vast majority of cases, you won't need to pass in anything more complex than a simple target string.
+For the vast majority of cases, a simple target string is all you need...
 
 :::code
 ```twig
@@ -25,15 +25,25 @@ The example above will compile and ping the following Google API URL:
 https://maps.googleapis.com/maps/api/geocode/json?address=123+Main+St&key=[KEY]
 ```
 
-:::warning [KEY] will be appended automatically
-The `key` value will be automatically appended, you do not need to specify it here.
+:::tip [KEY] added automatically
+You do not need to specify the `key` value, it will be automatically appended here.
 :::
 
 ## Using an array of parameters
 
-The most common reason that you would want to use an array of parameters is for the purpose of [Region Biasing](/guides/region-biasing/#formatting-options). This can make a big difference if you feel like the proximity search isn't focusing on the right part of the world.
+You generally will not need to specify anything more complicated than a basic string. However, there are a few good reasons why you may want to specify an array of parameters instead...
 
-By specifying an array of parameters, you are able to _directly control_ which URL parameters will be sent to the Google API during the geocoding lookup call. There are many reasons you may want to do that, including controlling the language of the results.
+### Region Biasing
+
+The most common reason why you might want to use an array of parameters would be for the purpose of [region biasing](/guides/region-biasing/). This can make a big difference if you feel like the proximity search isn't focusing on the right part of the world.
+
+:::warning Proximity Search
+Internally, the [proximity search](/proximity-search/) mechanism relies heavily on the geocoding mechanism.
+:::
+
+### Language Control
+
+When you specify an array of parameters, you are directly controlling which URL parameters get sent to the Google API. This allows you to control the language of the results.
 
 :::code
 ```twig

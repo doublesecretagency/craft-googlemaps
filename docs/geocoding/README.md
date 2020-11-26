@@ -1,6 +1,8 @@
 # Geocoding (Address Lookups)
 
-The concept of **geocoding** is fairly straightforward... For example, say you want to take a partial address ("123 Main St") and determine the precise details of that geographic location. This is commonly referred to as an "address lookup".
+The concept of geocoding is fairly straightforward... it simply means that we use a text string to lookup the exact coordinates of a location. The text string can be as simple or complex as necessary, and Google will do its best to interpret that location as a set of coordinates.
+
+For example, say you want to take a partial address ("123 Main St") and determine the precise details of that geographic location. This is commonly referred to as an "address lookup".
 
 You can perform a geocoding lookup to get a complete address (including latitude & longitude) based on a partial address or postal code. The basic geocoding process can be extremely simple:
 
@@ -14,6 +16,8 @@ $address = GoogleMaps::lookup('123 Main St')->one();
 :::
 
 There are three `lookup` methods that can be performed (`all`, `one`, `coords`). To see the complete details of each method, see the [Lookup Model](/models/lookup-model/) documentation for more information.
+
+## How it works
 
 Internally, this plugin uses the `lookup` methods quite frequently under the hood. The examples above use the [`GoogleMaps` Helper Class](/helper/), which is acting as a wrapper for the [Geocoding Service](/services/geocoding-service/).
 
@@ -56,7 +60,7 @@ While those are both valid approaches (and will return the exact same result), i
 
 Both of these `lookup` approaches will return the same thing: a [Lookup Model](/models/lookup-model/). There isn't much you can do with a Lookup Model directly, until you append `.all()` (or `.one()`, or `.coords()`) onto the end of it.
 
-## How the `lookup` method works
+## API endpoint
 
 This service method prepares a lookup API call based on the specified `parameters`. It creates a [Lookup Model](/models/lookup-model/) to compile all of the parameters specified into a Google Geocoding API endpoint URL. A fully compiled URL will look something like this...
 
