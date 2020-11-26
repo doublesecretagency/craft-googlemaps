@@ -67,4 +67,4 @@ When viewing the map, you can drag & drop the pin to alter the geographic coordi
 
 ## Setting a Default Map Starting Position
 
-When a brand new Address is being added to the system, it's possible for the map to have a default location.
+When a brand new Address is being added to the system, it's possible for the map to have a default location. This means that you can set the _default center position_ of the map, along with the _default zoom level_ of the map.

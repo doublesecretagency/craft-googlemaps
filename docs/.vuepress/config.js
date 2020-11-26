@@ -83,10 +83,10 @@ module.exports = {
             // Features
             '/address-field/': [
                 '',
+                'how-it-works',
                 'settings',
-                'using-an-address-in-twig',
-                'frontend-form',
-                // 'vue', // TODO: Probably delete this page?
+                'in-twig',
+                'front-end-form',
             ],
             '/dynamic-maps/': [
                 '',
