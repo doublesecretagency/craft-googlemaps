@@ -263,11 +263,6 @@ function DynamicMap(locations, options) {
         // Fit bounds of current map
         mapObject._map.fitBounds(mapObject._bounds);
 
-        // Repeat after bounds have changed (if they are still changing)
-        google.maps.event.addListenerOnce(mapObject._map, 'bounds_changed', function() {
-            mapObject._map.fitBounds(mapObject._bounds);
-        });
-
         // Keep the party going
         return this;
     };
