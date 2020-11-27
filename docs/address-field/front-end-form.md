@@ -1,38 +1,74 @@
 # Front-End Form
 
-## Adding an Address field
+If your users can edit content via a [front-end form](https://craftcms.com/knowledge-base/entry-form), it's easy to add a simplified Address field.
 
-If you'd like to use an Address field in a standard [front-end form](https://docs.craftcms.com/v3/dev/examples/entry-form.html), it's relatively straightforward...
-
-```html
+```twig
 <label>Street Address</label>
-<input type="text" name="fields[myAddressField][street1]">
+{{ input('text',
+    'fields[myAddressField][street1]',
+    entry.myAddressField.street1 ?? null
+) }}
+
 <label>Apartment or Suite</label>
-<input type="text" name="fields[myAddressField][street2]">
+{{ input('text',
+    'fields[myAddressField][street2]',
+    entry.myAddressField.street2 ?? null
+) }}
+
 <label>City</label>
-<input type="text" name="fields[myAddressField][city]">
+{{ input('text',
+    'fields[myAddressField][city]',
+    entry.myAddressField.city ?? null
+) }}
+
 <label>State</label>
-<input type="text" name="fields[myAddressField][state]">
+{{ input('text',
+    'fields[myAddressField][state]',
+    entry.myAddressField.state ?? null
+) }}
+
 <label>Zip Code</label>
-<input type="text" name="fields[myAddressField][zip]">
+{{ input('text',
+    'fields[myAddressField][zip]',
+    entry.myAddressField.zip ?? null
+) }}
+
 <label>Country</label>
-<input type="text" name="fields[myAddressField][country]">
+{{ input('text',
+    'fields[myAddressField][country]',
+    entry.myAddressField.country ?? null
+) }}
+
 <label>Latitude</label>
-<input type="text" name="fields[myAddressField][lat]">
+{{ input('text',
+    'fields[myAddressField][lat]',
+    entry.myAddressField.lat ?? null
+) }}
+
 <label>Longitude</label>
-<input type="text" name="fields[myAddressField][lng]">
+{{ input('text',
+    'fields[myAddressField][lng]',
+    entry.myAddressField.lng ?? null
+) }}
 ```
 
-You can of course substitute other HTML field types to hold the subfield values. For instance, you could turn `[lat]` & `[lng]` into hidden fields, or use a select dropdown to chose a  `[state]` value.
+:::warning myAddressField
+Remember, `myAddressField` is just a placeholder for your actual Address field handle!
+:::
 
-## Prepopulating values in Twig
+Of course, it's possible to swap out these HTML form field types. They do not all need to be regular `text` inputs. Some common examples might be...
 
-If you want to pre-populate an existing address in Twig, it would probably look something like this...
+ - Using a **dropdown menu** for the `state` and/or `country` fields.
+ - Using **hidden fields** to hold the `lat` and `lng` values.
 
-```html
-<label>City</label>
-<input type="text" name="fields[myAddressField][city]" value="{{ entry.myAddressField.city }}">
-```
+Assuming you want to be able to show this location on a map, or would like it to appear in a proximity search, then it is _critical_ to include `lat` and `lng` fields. If want to prevent the coordinates from being editable, you can use `hidden` inputs instead.
+
+:::tip DIY geocoding
+It will be up to you to populate the `lat` and `lng` fields. We have plans to add an AJAX endpoint for this, but there is no ETA at this moment.
+:::
+
+
+<!-- TODO: Add controller endpoint to lookup coordinates -->
 
 <!-- TODO: Support AJAX endpoints
 ## Dynamically updating via JavaScript
