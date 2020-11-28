@@ -565,7 +565,7 @@ function DynamicMap(locations, options) {
         }
 
         // Zero pixels tall, emit warning
-        var url = 'https://plugins.doublesecretagency.com/google-maps/guides/set-map-height/';
+        var url = 'https://plugins.doublesecretagency.com/google-maps/guides/setting-map-height/';
         console.warn(`[GM] The map is not visible because its parent container is zero pixels tall. More info: ${url}`);
 
     };
