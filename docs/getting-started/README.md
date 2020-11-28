@@ -58,13 +58,13 @@ cd /path/to/project
 2. Then tell Composer to load the plugin:
 
 ```sh
-composer require doublesecretagency/craft-googlemaps
+composer require doublesecretagency/craft-googlemaps @dev
 ```
 
 3. Then tell Craft to install the plugin:
 
 ```sh
-./craft install/plugin google-maps
+./craft plugin/install google-maps
 ```
 
 :::warning Finish installing via Console or Settings page
@@ -72,3 +72,11 @@ Alternatively, you can visit the **Settings > Plugins** page to complete the ins
 
 If installed via the control panel, you'll be automatically redirected to configure the plugin.
 :::
+
+## Troubleshooting
+
+While constructing your maps, we highly recommend enabling the [`devMode` config setting](https://craftcms.com/docs/3.x/config/config-settings.html#devmode).
+
+With `devMode` enabled, you will see a much more detailed output in the JavaScript console each time a map is rendered...
+
+<img class="dropshadow" :src="$withBase('/images/getting-started/console.png')" alt="Example of console output when a map is rendered" style="max-width:772px">
