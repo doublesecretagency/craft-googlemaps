@@ -90,11 +90,6 @@ window.googleMaps = window.googleMaps || {
             // Render each map
             this._unpack(dna);
 
-            // Log status
-            if (this.log) {
-                console.log(`Finished initializing map "${map.id}" 👍`);
-            }
-
         }
 
     },
@@ -236,6 +231,14 @@ window.googleMaps = window.googleMaps || {
             }
 
         }
+
+        // Log status
+        if (this.log) {
+            console.log(`Finished initializing map "${map.id}" 👍`);
+        }
+
+        // Check whether the resulting div is actually hidden
+        map._checkHeight();
 
         // Store map object for future reference
         this._maps[map.id] = map;

@@ -428,6 +428,9 @@ function DynamicMap(locations, options) {
                 console.log(`Finished initializing map "${this.id}" as a detached element 👍`);
             }
 
+            // Check the container height
+            this._checkHeight();
+
             // Return the element as-is
             return this.div;
 
@@ -447,6 +450,9 @@ function DynamicMap(locations, options) {
         if (googleMaps.log) {
             console.log(`Finished initializing map "${this.id}" in container "${parentId}" 👍`);
         }
+
+        // Check the container height
+        this._checkHeight();
 
         // Return map container
         return this.div;
@@ -537,6 +543,30 @@ function DynamicMap(locations, options) {
 
         // Initialize KML object
         this._kmls[kmlId] = new google.maps.KmlLayer(options);
+
+    };
+
+    // ========================================================================= //
+
+    // Check the container height, emit warning if necessary
+    this._checkHeight = function() {
+
+        // If not logging, skip check
+        if (!googleMaps.log) {
+            return;
+        }
+
+        // Get current height of container div
+        var height = this.div.scrollHeight;
+
+        // If height is a positive number, check is successful
+        if (0 < height) {
+            return;
+        }
+
+        // Zero pixels tall, emit warning
+        var url = 'https://plugins.doublesecretagency.com/google-maps/guides/set-map-height/';
+        console.warn(`[GM] The map is not visible because its parent container is zero pixels tall. More info: ${url}`);
 
     };
 
