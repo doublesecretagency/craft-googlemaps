@@ -1,22 +1,28 @@
-# Google Maps API keys
+# Google Maps API Keys
 
 To use Google Maps, you'll need to generate two API keys. One key will serve calls from the server (ie: address lookups), and the other will serve calls from the browser (ie: rendering a map).
 
 Here's how you'll go about creating both keys, and entering them into the plugin...
 
+[COMING SOON]
+
+1. Follow [these instructions](https://developers.google.com/maps/gmp-get-started) to create keys...
+
+<!-- TODO: Simple instructions and basic screenshots (just a few) 
 ## Generating your API keys
 
 (INSTRUCTIONS)
 
 (SCREENSHOTS OF THE GOOGLE INTERFACE)
+-->
 
 ## Selecting which services to authorize
 
 You'll need to enable the following services within the Google interface...
 
-- Maps JavaScript API
-- Maps Static API
-- Geocoding API
+- [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview)
+- [Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)
+- [Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview)
 
 ## Adding your API keys into Craft
 

@@ -305,7 +305,7 @@ class StaticMap extends Model
     public function src(): string
     {
         // Get browser key
-        $key = trim(GoogleMaps::getBrowserKey());
+        $key = GoogleMaps::getBrowserKey();
 
         // Set base URL of Google Maps API
         $url = 'https://maps.googleapis.com/maps/api/staticmap';

@@ -3,6 +3,7 @@ namespace doublesecretagency\googlemaps\tests;
 
 use Codeception\Test\Unit;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use UnitTester;
 
 class GeolocationServiceTest extends Unit
@@ -23,7 +24,7 @@ class GeolocationServiceTest extends Unit
 //    {
 ////        $testKey = time(); // Random test key
 ////        GoogleMapsPlugin::$plugin->api->setServerKey($testKey);
-////        $key = GoogleMapsPlugin::$plugin->api->getServerKey();
+////        $key = GoogleMaps::getServerKey();
 //
 //        $this->assertSame($key, $testKey);
 //    }

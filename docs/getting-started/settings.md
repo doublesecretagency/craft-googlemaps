@@ -1,6 +1,6 @@
 # Plugin Settings
 
-In order to access the settings, log in to the control panel and visit **Settings > Google Maps**. This is where you will be able to manage all API connection information regarding the Google API, as well as any credentials for whichever geolocation service you may be using. 
+In order to access the settings, log in to your control panel and visit **Settings > Google Maps**. This is where you will be able to manage all API connection information regarding the Google API, as well as any credentials for whichever geolocation service you may be using. 
 
 ## Google API Keys
 
@@ -40,12 +40,13 @@ If visitor geolocation is enabled, it will be necessary to enter the API credent
 
 <img class="dropshadow" :src="$withBase('/images/settings/maxmind-api-configuration-settings.png')" alt="Screenshot of Google API keys settings">
 
-:::warning MORE INFORMATION
+:::warning List of Service Providers
 For more information about the various services, take a look at the complete list of [Geolocation Service Providers](/geolocation/service-providers/).
 :::
 
 ---
+---
 
-:::tip FOR INTERNAL USE ONLY
-Internally, the plugin's settings are managed by the [Settings Model](/models/settings-model/). However, you will never need to interact with the Settings Model directly. Your settings should be handled exclusively via the control panel page, and/or a PHP config file.
+:::tip Internal Use Only
+While you will never need to interact with it directly, the [Settings Model](/models/settings-model/) is the standard Craft model which manages the plugin settings internally.
 :::

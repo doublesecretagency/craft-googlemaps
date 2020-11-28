@@ -3,6 +3,7 @@ namespace doublesecretagency\googlemaps\tests;
 
 use Codeception\Test\Unit;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use UnitTester;
 
 class ApiServiceTest extends Unit
@@ -16,7 +17,7 @@ class ApiServiceTest extends Unit
     {
         $testKey = time(); // Random test key
         GoogleMapsPlugin::$plugin->api->setServerKey($testKey);
-        $key = GoogleMapsPlugin::$plugin->api->getServerKey();
+        $key = GoogleMaps::getServerKey();
 
         $this->assertSame($key, $testKey);
     }
@@ -24,8 +25,8 @@ class ApiServiceTest extends Unit
     public function testSetAndGetTheBrowserKey()
     {
         $testKey = time(); // Random test key
-        GoogleMapsPlugin::$plugin->api->setBrowserKey($testKey);
-        $key = GoogleMapsPlugin::$plugin->api->getBrowserKey();
+        GoogleMaps::setBrowserKey($testKey);
+        $key = GoogleMaps::getBrowserKey();
 
         $this->assertSame($key, $testKey);
     }

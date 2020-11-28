@@ -32,7 +32,7 @@ class Api extends Component
             $this->_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
         }
         // Return key
-        return $this->_serverKey;
+        return trim($this->_serverKey);
     }
 
     public function getBrowserKey()
@@ -42,7 +42,7 @@ class Api extends Component
             $this->_browserKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->browserKey);
         }
         // Return key
-        return $this->_browserKey;
+        return trim($this->_browserKey);
     }
 
     public function setServerKey($key)
@@ -66,7 +66,7 @@ class Api extends Component
     public function getApiUrl(array $params = []): string
     {
         // Get browser key
-        $key = trim($this->getBrowserKey());
+        $key = $this->getBrowserKey();
 
         // Set base URL of Google Maps API
         $googleMapsApi = 'https://maps.googleapis.com/maps/api/js';
