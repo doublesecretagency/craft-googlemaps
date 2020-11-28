@@ -2,16 +2,16 @@
     "name": "doublesecretagency/craft-googlemaps",
     "description": "Maps in minutes. Powered by Google Maps.",
     "type": "craft-plugin",
-    "version": "4.0.0-alpha.6",
+    "version": "4.0.0-beta.1",
     "keywords": [
         "craft",
         "cms",
         "craftcms",
         "craft-plugin",
+        "google-maps",
         "smartmap",
         "smart-map",
         "map",
-        "google-maps",
         "proximity-search",
         "geolocation",
         "address",
@@ -29,11 +29,11 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.4.0"
+        "craftcms/cms": "^3.5.0"
     },
     "autoload": {
         "psr-4": {
-          "doublesecretagency\\googlemaps\\": "src/"
+            "doublesecretagency\\googlemaps\\": "src/"
         }
     },
     "extra": {
