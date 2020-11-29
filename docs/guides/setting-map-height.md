@@ -12,7 +12,7 @@ Using CSS to manage the map height is arguably the easiest approach.
 
 ```css
 .gm-map {
-    height: 300px;
+    height: 320px;
 }
 ```
 
@@ -20,7 +20,7 @@ As you can see, there is a universal `gm-map` class which exists on all map cont
 
 ```css
 #my-map-id {
-    height: 300px;
+    height: 320px;
 }
 ```
 
@@ -31,17 +31,17 @@ The other recommended way to control the map height is to set it when the map is
 :::code
 ```js
 var map = googleMaps.map(locations, {
-    'height': 360
+    'height': 320
 });
 ```
 ```twig
 {% set map = googleMaps.map(locations, {
-    'height': 360
+    'height': 320
 }) %}
 ```
 ```php
 $map = GoogleMaps::map($locations, [
-    'height' => 360
+    'height' => 320
 ]);
 ```
 :::
