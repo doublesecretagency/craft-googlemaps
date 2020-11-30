@@ -24,14 +24,20 @@ use GuzzleHttp\Exception\RequestException;
 class Ipstack extends Model
 {
 
-    private static $_service = 'ipstack';
-
-    private static $_error;
+    /**
+     * @const Geocoding service definition.
+     */
+    const SERVICE = 'ipstack';
 
     /**
      * @var string ipstack API endpoint.
      */
     private static $_endpoint = 'http://api.ipstack.com/';
+
+    /**
+     * @var string Internal error message.
+     */
+    private static $_error;
 
     /**
      * Get a Visitor Model containing the visitor's location.
@@ -43,13 +49,12 @@ class Ipstack extends Model
 
         // Set unique cache key
         $cacheKey = array_merge($parameters, [
-            'service' => static::$_service,
+            'service' => static::SERVICE,
             'ip' => $ip,
         ]);
 
         // Set cache duration
-        $cacheDuration = 4; // 4 seconds (TEMP) // TODO: Switch to correct cache duration
-//        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
 
         // Cache results
         $results = $cache->getOrSet(
@@ -69,7 +74,7 @@ class Ipstack extends Model
             $cache->delete($cacheKey);
             // Create basic Visitor Model
             $results = new Visitor([
-                'service' => static::$_service,
+                'service' => static::SERVICE,
                 'ip' => $ip,
             ]);
         }
@@ -137,7 +142,7 @@ class Ipstack extends Model
 
         // Return results as a Visitor Model
         return new Visitor([
-            'service' => static::$_service,
+            'service' => static::SERVICE,
             'ip'      => ($response['ip'] ?? null),
             'city'    => ($response['city'] ?? null),
             'state'   => ($response['region_name'] ?? null),

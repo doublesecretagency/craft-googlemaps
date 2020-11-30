@@ -11,13 +11,14 @@
 
 namespace doublesecretagency\googlemaps\services;
 
+use craft\base\Component;
 use doublesecretagency\googlemaps\models\Lookup;
 
 /**
  * Class Geocoding
  * @since 4.0.0
  */
-class Geocoding extends Api
+class Geocoding extends Component
 {
 
     /**

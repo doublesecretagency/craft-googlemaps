@@ -24,7 +24,14 @@ use GuzzleHttp\Exception\RequestException;
 class Lookup extends Model
 {
 
+    /**
+     * @var string Internal parameters.
+     */
     private $_parameters;
+
+    /**
+     * @var string Internal error message.
+     */
     private $_error;
 
     /**
@@ -60,16 +67,24 @@ class Lookup extends Model
         'Italy',
     ];
 
+    // ========================================================================= //
+
+    /**
+     * Construct the Lookup object.
+     *
+     * @param array $parameters
+     * @param array $config
+     */
     public function __construct($parameters = [], array $config = [])
     {
         // Set parameters internally
         $this->_parameters = $parameters;
 
+        // Pass config to parent
         parent::__construct($config);
     }
 
-    // Public Methods
-    // =========================================================================
+    // ========================================================================= //
 
     /**
      * Returns all results from geocoding lookup.
@@ -125,8 +140,7 @@ class Lookup extends Model
         return $address->getCoords();
     }
 
-    // Private Methods
-    // =========================================================================
+    // ========================================================================= //
 
     /**
      * Perform lookup.
@@ -139,8 +153,7 @@ class Lookup extends Model
         $cache = Craft::$app->getCache();
 
         // Set cache duration
-        $cacheDuration = 4; // 4 seconds (TEMP) // TODO: Switch to correct cache duration
-//        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
 
         // Cache results
         $results = $cache->getOrSet(

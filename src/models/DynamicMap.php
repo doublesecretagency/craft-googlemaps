@@ -271,7 +271,9 @@ class DynamicMap extends Model
 
     /**
      * Refresh the map.
-     * Generally useless, only exists for parity.
+     *
+     * Generally useless in Twig/PHP,
+     * only exists for parity with JS.
      *
      * @return $this
      */

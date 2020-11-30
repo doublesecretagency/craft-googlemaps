@@ -34,7 +34,6 @@ class GoogleMapsAsset extends AssetBundle
         ];
 
         $this->jsOptions = [
-//            'async' => true, // Possibly causing a race condition
             'defer' => true,
         ];
     }

@@ -22,10 +22,24 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 class Api extends Component
 {
 
+    /**
+     * @var string|null Google API server key.
+     */
     private $_serverKey;
+
+    /**
+     * @var string|null Google API browser key.
+     */
     private $_browserKey;
 
-    public function getServerKey()
+    // ========================================================================= //
+
+    /**
+     * Get the Google API server key.
+     *
+     * @return string Google API server key.
+     */
+    public function getServerKey(): string
     {
         // Only load once
         if (null === $this->_serverKey) {
@@ -35,7 +49,12 @@ class Api extends Component
         return trim($this->_serverKey);
     }
 
-    public function getBrowserKey()
+    /**
+     * Get the Google API browser key.
+     *
+     * @return string Google API browser key.
+     */
+    public function getBrowserKey(): string
     {
         // Only load once
         if (null === $this->_browserKey) {
@@ -45,14 +64,26 @@ class Api extends Component
         return trim($this->_browserKey);
     }
 
-    public function setServerKey($key)
+    /**
+     * Set the Google API server key.
+     *
+     * @param string $key
+     * @return string Google API server key.
+     */
+    public function setServerKey(string $key): string
     {
-        $this->_serverKey = $key;
+        return $this->_serverKey = $key;
     }
 
-    public function setBrowserKey($key)
+    /**
+     * Set the Google API browser key.
+     *
+     * @param string $key
+     * @return string Google API browser key.
+     */
+    public function setBrowserKey(string $key): string
     {
-        $this->_browserKey = $key;
+        return $this->_browserKey = $key;
     }
 
     // ========================================================================= //

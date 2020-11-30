@@ -24,14 +24,20 @@ use GuzzleHttp\Exception\RequestException;
 class Maxmind extends Model
 {
 
-    private static $_service = 'maxmind';
-
-    private static $_error;
+    /**
+     * @const Geocoding service definition.
+     */
+    const SERVICE = 'maxmind';
 
     /**
      * @var string MaxMind API endpoint.
      */
     private static $_endpoint = 'https://geoip.maxmind.com/geoip/v2.0/';
+
+    /**
+     * @var string Internal error message.
+     */
+    private static $_error;
 
     /**
      * Get a Visitor Model containing the visitor's location.
@@ -43,13 +49,12 @@ class Maxmind extends Model
 
         // Set unique cache key
         $cacheKey = array_merge($parameters, [
-            'service' => static::$_service,
+            'service' => static::SERVICE,
             'ip' => $ip,
         ]);
 
         // Set cache duration
-        $cacheDuration = 4; // 4 seconds (TEMP) // TODO: Switch to correct cache duration
-//        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
 
         // Cache results
         $results = $cache->getOrSet(
@@ -69,7 +74,7 @@ class Maxmind extends Model
             $cache->delete($cacheKey);
             // Create basic Visitor Model
             $results = new Visitor([
-                'service' => static::$_service,
+                'service' => static::SERVICE,
                 'ip' => $ip,
             ]);
         }
@@ -151,7 +156,7 @@ class Maxmind extends Model
 
         // Return results as a Visitor Model
         return new Visitor([
-            'service' => static::$_service,
+            'service' => static::SERVICE,
             'ip'      => ($response['traits']['ip_address'] ?? null),
             'city'    => ($response['city']['names']['en'] ?? null),
             'state'   => ($response['subdivisions'][0]['names']['en'] ?? null),

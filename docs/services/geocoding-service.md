@@ -8,10 +8,6 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->geocoding->...
 ```
 
-:::warning PARENT CLASS
-This service extends the [API Service](/services/api-service).
-:::
-
 ### `lookup()`
 
 Generates a [Lookup Model](/models/lookup-model/) based on a given set of parameters.

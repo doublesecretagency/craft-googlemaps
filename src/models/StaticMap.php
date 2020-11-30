@@ -42,12 +42,12 @@ class StaticMap extends Model
     private $_mapOptions;
 
     /**
-     * @var int Official image width.
+     * @var int Map image width.
      */
     private $_w = 640;
 
     /**
-     * @var int Official image height.
+     * @var int Map image height.
      */
     private $_h = 320;
 

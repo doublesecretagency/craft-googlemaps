@@ -16,6 +16,7 @@ use craft\base\Component;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Ipstack;
 use doublesecretagency\googlemaps\models\Maxmind;
+use doublesecretagency\googlemaps\models\Visitor;
 
 /**
  * Class Geolocation
@@ -38,6 +39,12 @@ class Geolocation extends Component
         $this->ip = Craft::$app->getRequest()->getUserIP();
     }
 
+    /**
+     * Conduct a geolocation lookup to determine the user's approximate location.
+     *
+     * @param array $config
+     * @return Visitor|false
+     */
     public function getVisitor($config = [])
     {
         // Set geolocation service
@@ -59,6 +66,12 @@ class Geolocation extends Component
         return $model::geolocate($ip);
     }
 
+    /**
+     * Load the selected API model.
+     *
+     * @param $selected
+     * @return string|null
+     */
     private function _getApiModel($selected)
     {
         // Supported geolocation services

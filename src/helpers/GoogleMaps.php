@@ -14,7 +14,9 @@ namespace doublesecretagency\googlemaps\helpers;
 use Craft;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
+use doublesecretagency\googlemaps\models\Visitor;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use yii\base\Exception;
 
@@ -25,16 +27,34 @@ use yii\base\Exception;
 class GoogleMaps
 {
 
-    // Initialize collection of maps
+    /**
+     * @var array An internally managed collection of Dynamic Maps.
+     */
     private static $_maps = [];
 
     // ========================================================================= //
-
     // Dynamic Maps
+    // https://plugins.doublesecretagency.com/google-maps/dynamic-maps/
+    // ========================================================================= //
 
     /**
+     * Load the JavaScript assets which power Dynamic Maps.
      */
-    public static function map($locations = [], $options = [])
+    public static function loadAssets()
+    {
+        Craft::$app->getView()->registerAssetBundle(JsApiAsset::class);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Create a new Dynamic Map object.
+     *
+     * @param mixed $locations
+     * @param array $options
+     * @return DynamicMap
+     */
+    public static function map($locations = [], array $options = []): DynamicMap
     {
         // Create a new map object
         $map = new DynamicMap($locations, $options);
@@ -47,9 +67,13 @@ class GoogleMaps
     }
 
     /**
-     * Get an existing dynamic map.
+     * Get an existing Dynamic Map object.
+     *
+     * @param string $mapId
+     * @return DynamicMap|null
+     * @throws Exception
      */
-    public static function getMap($mapId)
+    public static function getMap(string $mapId)
     {
         // Get existing map object
         $map = (static::$_maps[$mapId] ?? false);
@@ -64,43 +88,32 @@ class GoogleMaps
     }
 
     // ========================================================================= //
-
     // Static Maps
+    // https://plugins.doublesecretagency.com/google-maps/static-maps/
+    // ========================================================================= //
 
     /**
+     * Create a new Static Map object.
+     *
+     * @param mixed $locations
+     * @param array $options
+     * @return StaticMap
      */
-    public static function img($locations = [], $options = [])
+    public static function img($locations = [], array $options = []): StaticMap
     {
         return new StaticMap($locations, $options);
     }
 
     // ========================================================================= //
-
-    // Load necessary JS libraries
-
-    /**
-     */
-    public static function loadAssets()
-    {
-        Craft::$app->getView()->registerAssetBundle(JsApiAsset::class);
-    }
-
-    // ========================================================================= //
-
-    // Perform Visitor Geolocation
-
-    /**
-     */
-    public static function getVisitor($config = [])
-    {
-        return GoogleMapsPlugin::$plugin->geolocation->getVisitor($config);
-    }
-
-    // ========================================================================= //
-
     // Geocoding (Address Lookups)
+    // https://plugins.doublesecretagency.com/google-maps/geocoding/
+    // ========================================================================= //
 
     /**
+     * Perform a geocoding lookup.
+     *
+     * @param array|string $parameters
+     * @return Lookup|false
      */
     public static function lookup($target = null)
     {
@@ -108,42 +121,31 @@ class GoogleMaps
     }
 
     // ========================================================================= //
-
-    // Override Google API keys
-
-    /**
-     */
-    public static function getServerKey()
-    {
-        return GoogleMapsPlugin::$plugin->api->getServerKey();
-    }
+    // Visitor Geolocation
+    // https://plugins.doublesecretagency.com/google-maps/geolocation/
+    // ========================================================================= //
 
     /**
+     * Perform a visitor geolocation.
+     *
+     * @param array $config
+     * @return Visitor|false
      */
-    public static function getBrowserKey()
+    public static function getVisitor(array $config = [])
     {
-        return GoogleMapsPlugin::$plugin->api->getBrowserKey();
-    }
-
-    /**
-     */
-    public static function setServerKey($key)
-    {
-        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
-    }
-
-    /**
-     */
-    public static function setBrowserKey($key)
-    {
-        return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
+        return GoogleMapsPlugin::$plugin->geolocation->getVisitor($config);
     }
 
     // ========================================================================= //
-
-    // Get Google API URL
+    // API Service
+    // https://plugins.doublesecretagency.com/google-maps/services/api-service/
+    // ========================================================================= //
 
     /**
+     * Get the Google API URL.
+     *
+     * @param array $params
+     * @return string
      */
     public static function getApiUrl(array $params = []): string
     {
@@ -151,5 +153,47 @@ class GoogleMaps
     }
 
     // ========================================================================= //
+
+    /**
+     * Get the Google API server key.
+     *
+     * @return string
+     */
+    public static function getServerKey(): string
+    {
+        return GoogleMapsPlugin::$plugin->api->getServerKey();
+    }
+
+    /**
+     * Get the Google API browser key.
+     *
+     * @return string
+     */
+    public static function getBrowserKey(): string
+    {
+        return GoogleMapsPlugin::$plugin->api->getBrowserKey();
+    }
+
+    /**
+     * Set the Google API server key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function setServerKey(string $key): string
+    {
+        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
+    }
+
+    /**
+     * Set the Google API browser key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function setBrowserKey(string $key): string
+    {
+        return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
+    }
 
 }

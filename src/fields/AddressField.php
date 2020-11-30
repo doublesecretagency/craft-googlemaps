@@ -90,14 +90,19 @@ class AddressField extends Field implements PreviewableFieldInterface
     ];
 
     /**
+     * Whether or not to show the map.
+     *
+     * @var bool
+     */
+    public $showMap = false;
+
+    /**
      * What should the map be
      * when the field is initially loaded?
      *
      * @var string "open" or "close"
      */
     public $mapOnStart = 'close';
-
-    public $showMap;
 
     /**
      * What should the map be
@@ -349,6 +354,8 @@ class AddressField extends Field implements PreviewableFieldInterface
     }
 
     // ========================================================================= //
+
+    // TODO: Add field validation
 
 //    /**
 //     * @inheritdoc

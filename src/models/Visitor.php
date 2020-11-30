@@ -18,21 +18,6 @@ namespace doublesecretagency\googlemaps\models;
 class Visitor extends Location
 {
 
-    public function __toString(): string
-    {
-        // Get location components
-        $location = [];
-        if ($this->city)    {$location[] = $this->city;}
-        if ($this->state)   {$location[] = $this->state;}
-        if ($this->country) {$location[] = $this->country;}
-
-        // Compile a pseudo-address string
-        $pseudoAddress = implode(', ', $location);
-
-        // Return string
-        return "[{$this->service}] {$this->ip} - {$pseudoAddress}";
-    }
-
     /**
      * @var string|null The name of the service used to perform the geolocation.
      */
@@ -62,5 +47,27 @@ class Visitor extends Location
      * @var array|null Raw JSON response data from original call to the geolocation service.
      */
     public $raw;
+
+    // ========================================================================= //
+
+    /**
+     * Automatically show a summary of the geolocation lookup.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        // Get location components
+        $location = [];
+        if ($this->city)    {$location[] = $this->city;}
+        if ($this->state)   {$location[] = $this->state;}
+        if ($this->country) {$location[] = $this->country;}
+
+        // Compile a pseudo-address string
+        $pseudoAddress = implode(', ', $location);
+
+        // Return string
+        return "[{$this->service}] {$this->ip} - {$pseudoAddress}";
+    }
 
 }

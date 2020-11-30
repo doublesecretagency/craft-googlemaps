@@ -8,10 +8,6 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->api->...
 ```
 
-:::warning CHILD CLASS
-This service is extended by the [Geocoding Service](/services/geocoding-service).
-:::
-
 ### `getServerKey()`
 
 Get the server key stored for the Google Maps API.
