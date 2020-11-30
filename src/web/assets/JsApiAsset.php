@@ -12,7 +12,6 @@
 namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**
  * Class JsApiAsset

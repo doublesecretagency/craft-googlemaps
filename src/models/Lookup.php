@@ -14,7 +14,6 @@ namespace doublesecretagency\googlemaps\models;
 use Craft;
 use craft\base\Model;
 use craft\helpers\Json;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use GuzzleHttp\Exception\RequestException;
 

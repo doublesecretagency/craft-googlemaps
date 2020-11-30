@@ -14,12 +14,6 @@ namespace doublesecretagency\googlemaps\models;
 use craft\base\Model;
 
 /**
- * WARNING:
- *
- * ALL SETTINGS GET LOCKED DOWN WHEN PROJECT CONFIG IS DISABLED.
- */
-
-/**
  * Class Settings
  * @since 4.0.0
  */

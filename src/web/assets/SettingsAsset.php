@@ -13,7 +13,6 @@ namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
-use craft\web\assets\vue\VueAsset;
 
 /**
  * Class SettingsAsset

@@ -21,7 +21,6 @@ use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
-use doublesecretagency\googlemaps\models\QueryModifier;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
