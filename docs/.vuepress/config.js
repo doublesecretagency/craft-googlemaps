@@ -130,6 +130,11 @@ module.exports = {
             // Architecture
             '/helper/': [
                 '',
+                'dynamic-maps',
+                'static-maps',
+                'geocoding',
+                'geolocation',
+                'api-service',
             ],
             '/javascript/': [
                 '',
