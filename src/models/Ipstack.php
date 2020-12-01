@@ -124,9 +124,9 @@ class Ipstack extends Model
     private static function _parseResponse($response)
     {
         // Determine whether API call was successful
-        if (array_key_exists('ip', $response) && array_key_exists('type', $response)) {
+        if (isset($response['ip']) && isset($response['type'])) {
             $success = true;
-        } else if (array_key_exists('success', $response) && array_key_exists('error', $response)) {
+        } else if (isset($response['success']) && isset($response['error'])) {
             $success = false;
         } else {
             static::$_error = Craft::t('google-maps', 'Unable to parse ipstack API response.');

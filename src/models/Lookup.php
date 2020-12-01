@@ -310,7 +310,7 @@ class Lookup extends Model
         // Loop through address components
         foreach ($unformatted['address_components'] as $component) {
             // If types aren't specified, skip
-            if (!array_key_exists('types', $component) || !$component['types']) {
+            if (!isset($component['types']) || !$component['types']) {
                 continue;
             }
             // Generate formatted array of address data

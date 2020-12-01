@@ -40,7 +40,7 @@ class Geocoding extends Component
         }
 
         // If no target specified, bail
-        if (!array_key_exists('address', $parameters) || !$parameters['address']) {
+        if (!isset($parameters['address']) || !$parameters['address']) {
             return false;
         }
 

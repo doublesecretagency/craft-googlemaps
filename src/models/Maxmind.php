@@ -138,9 +138,9 @@ class Maxmind extends Model
     private static function _parseResponse($response)
     {
         // Determine whether API call was successful
-        if (array_key_exists('location', $response) && array_key_exists('maxmind', $response)) {
+        if (isset($response['location']) && isset($response['maxmind'])) {
             $success = true;
-        } else if (array_key_exists('code', $response) && array_key_exists('error', $response)) {
+        } else if (isset($response['code']) && isset($response['error'])) {
             $success = false;
         } else {
             static::$_error = Craft::t('google-maps', 'Unable to parse MaxMind API response.');
