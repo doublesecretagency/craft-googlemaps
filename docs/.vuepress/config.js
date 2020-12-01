@@ -117,7 +117,6 @@ module.exports = {
                 'advanced',
                 'service-providers',
                 // 'html5', // TODO: Add HTML5 geolocation (?)
-                // 'cookie', // TODO: Refine cookie & cache implementation
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
             '/geocoding/': [
