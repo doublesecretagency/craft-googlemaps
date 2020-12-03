@@ -8,7 +8,7 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->geocoding->...
 ```
 
-### `lookup()`
+### `lookup($parameters)`
 
 Generates a [Lookup Model](/models/lookup-model/) based on a given set of parameters.
 

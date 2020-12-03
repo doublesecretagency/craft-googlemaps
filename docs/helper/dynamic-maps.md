@@ -6,12 +6,12 @@
 
 :::code
 ```twig
-{# Generate a dynamic map #}
-{{ googleMaps.map(locations).tag() }}
+{# Generate a new dynamic map #}
+{% set map = googleMaps.map(locations) %}
 ```
 ```php
-// Generate a dynamic map
-GoogleMaps::map($locations)->tag();
+// Generate a new dynamic map
+$map = GoogleMaps::map($locations);
 ```
 :::
 

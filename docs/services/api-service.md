@@ -24,7 +24,7 @@ Get the browser key stored for the Google Maps API.
 
 _string_ - The Google Maps API browser key.
 
-### `setServerKey()`
+### `setServerKey($key)`
 
 Change the server key stored for the Google Maps API.
 
@@ -32,10 +32,22 @@ Change the server key stored for the Google Maps API.
 
  - `$key` (_string_) - The new Google Maps API server key.
 
-### `setBrowserKey()`
+### `setBrowserKey($key)`
 
 Change the browser key stored for the Google Maps API.
 
 #### Arguments
 
  - `$key` (_string_) - The new Google Maps API browser key.
+ 
+### `getApiUrl($params = [])`
+
+Get the URL used internally for pinging the Google Maps API.
+
+#### Arguments
+
+ - `$params` (_array_) - A set of optional parameters to append to the URL.
+ 
+#### Returns
+
+_string_ - The Google Maps JavaScript API URL.
