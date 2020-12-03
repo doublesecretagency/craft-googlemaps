@@ -55,6 +55,7 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    {text: 'Loading JavaScript', link: '/guides/loading-javascript/'},
                     {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
                     {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -168,6 +169,7 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
+                'loading-javascript',
                 'setting-map-height',
                 'linking-to-a-map',
                 'setting-marker-icons',

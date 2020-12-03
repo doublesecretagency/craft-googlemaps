@@ -1,24 +1,13 @@
 # Visitor Geolocation
 
-getVisitor(array $config = [])
+## getVisitor(config = [])
 
-
----
----
-
-
-
-
-## Perform Visitor Geolocation
-
-The `visitor` attribute relies on the magic getter of `getVisitor`. They are functionally identical.
-
-Optionally, you can override the `service` and/or `ip` when performing a visitor geolocation.
+Perform geolocation of each site visitor. Automatically detects each user's IP address (unless manually specified).
 
 :::code
 ```twig
 {# Get visitor geolocation information #}
-{% set visitor = googleMaps.visitor %}
+{% set visitor = googleMaps.getVisitor() %}
 
 {# The exact same method, with optional overrides #}
 {% set visitor = googleMaps.getVisitor({
@@ -38,4 +27,19 @@ $visitor = GoogleMaps::getVisitor([
 ```
 :::
 
+You can also access this value as a magic property in Twig:
+
+:::code
+```twig
+{% set visitor = googleMaps.visitor %}
+```
+:::
+
+This is functionally identical to calling `getVisitor()` with no parameters.
+
+---
+---
+
+:::warning More Info
 For more information, check out the documentation on [Geolocation](/geolocation/).
+:::

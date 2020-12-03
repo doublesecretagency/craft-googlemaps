@@ -1,6 +1,6 @@
 # `googleMaps` in JavaScript
 
-There are two JavaScript files which are automatically loaded into the front-end (although this can be disabled) whenever a map is included on the page. The files will be copied, and loaded from the public `cpresources` folder.
+When working with [dynamic maps](/dynamic-maps/), there are two JavaScript files which are automatically loaded into the front-end (although this can be [disabled](/guides/loading-javascript/)) whenever a map is included on the page. The files will be copied, and loaded from the public `cpresources` folder.
 
 ```
 /web/cpresources/{hash}/js/

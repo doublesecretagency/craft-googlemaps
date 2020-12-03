@@ -1,82 +1,84 @@
 # API Service
 
-getApiUrl(array $params = []): string
-getServerKey(): string
-getBrowserKey(): string
-setServerKey(string $key): string
-setBrowserKey(string $key): string
-
-
----
----
-
-
-
-## Manually Load JS Files
-
-You can manually load the necessary JavaScript files, if they are not being loaded automatically...
-
-:::code
-```twig
-{# Manually load required JS files #}
-{% do googleMaps.loadAssets() %}
-```
-```php
-// Manually load required JS files
-GoogleMaps::loadAssets();
-```
-:::
-
-
-## Override Google API keys
-
-If you need to override the Google API keys via Twig, you can...
-
-:::code
-```twig
-{# Override server key #}
-{% do googleMaps.setServerKey('lorem') %}
-
-{# Override browser key #}
-{% do googleMaps.setBrowserKey('ipsum') %}
-```
-```php
-// Override server key
-GoogleMaps::setServerKey('lorem');
-
-// Override browser key
-GoogleMaps::setBrowserKey('ipsum');
-```
-:::
-
-There are parallel methods for retrieving the API keys...
+## getServerKey()
 
 :::code
 ```twig
 {# Get server key #}
 {% set serverKey = googleMaps.getServerKey() %}
-
-{# Get browser key #}
-{% set browserKey = googleMaps.getBrowserKey() %}
 ```
 ```php
 // Get server key
 $serverKey = GoogleMaps::getServerKey();
+```
+:::
 
+## getBrowserKey()
+
+:::code
+```twig
+{# Get browser key #}
+{% set browserKey = googleMaps.getBrowserKey() %}
+```
+```php
 // Get browser key
 $browserKey = GoogleMaps::getBrowserKey();
 ```
 :::
 
-And since Twig is very forgiving about using magic methods, you can abbreviate those even further...
+## setServerKey(key)
 
 :::code
 ```twig
-{{ googleMaps.serverKey }}
-{{ googleMaps.browserKey }}
+{# Override server key #}
+{% do googleMaps.setServerKey('lorem') %}
 ```
 ```php
-GoogleMaps::serverKey;
-GoogleMaps::browserKey;
+// Override server key
+GoogleMaps::setServerKey('lorem');
+```
+:::
+
+## setBrowserKey(key)
+
+:::code
+```twig
+{# Override browser key #}
+{% do googleMaps.setBrowserKey('ipsum') %}
+```
+```php
+// Override browser key
+GoogleMaps::setBrowserKey('ipsum');
+```
+:::
+
+## getApiUrl(params = [])
+
+Get the URL used internally for pinging the Google Maps API.
+
+:::code
+```twig
+{# Get the Google Maps JavaScript API URL #}
+{% set apiUrl = googleMaps.getApiUrl() %}
+```
+```php
+// Get the Google Maps JavaScript API URL
+$apiUrl = GoogleMaps::getApiUrl();
+```
+:::
+
+---
+---
+
+:::warning Magic Properties
+Three of these methods can be used as magic properties in Twig...
+
+```twig
+    {# Get API keys #}
+    {{ googleMaps.serverKey }}
+    {{ googleMaps.browserKey }}
+
+    {# Get API URL #}
+    {{ googleMaps.apiUrl }}
 ```
 :::

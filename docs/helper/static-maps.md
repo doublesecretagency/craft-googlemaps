@@ -1,13 +1,8 @@
 # Static Maps
 
-img($locations = [], array $options = []): StaticMap
+## img(locations = [], options = [])
 
-
----
----
-
-
-
+**Central to the creation of all static maps.** Use this method to create a new map, before further manipulating the map object. See the [complete method details...](/models/static-map-model/#construct-locations-options)
 
 :::code
 ```twig
@@ -20,4 +15,9 @@ GoogleMaps::img($locations)->tag();
 ```
 :::
 
-For more information, check out the documentation on [Dynamic Maps](/dynamic-maps/), [Static Maps](/static-maps/), and the maps [API](/dynamic-maps/api/).
+---
+---
+
+:::warning More Info
+For more information, check out the documentation on [Static Maps](/static-maps/).
+:::

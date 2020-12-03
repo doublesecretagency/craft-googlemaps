@@ -2,7 +2,10 @@
 
 Whether you are working with [dynamic maps](/models/dynamic-map-model/) or [static maps](/models/static-map-model/), you'll need to specify the `locations` that you want to appear on the map. You'll most often encounter this parameter when you [create a map](/dynamic-maps/map-management/#map-locations-options) or [add markers](/dynamic-maps/universal-methods/#markers-locations-options) to a map. 
 
-What are "locations"? Glad you asked.
+What are "locations"? They can be any of the following...
+ - [Coordinates](#coordinates) (simple JSON)
+ - [Addresses](#address-models) (from an Address field)
+ - [Elements](#elements) (like Entries, Users, etc)
 
 ## Coordinates
 

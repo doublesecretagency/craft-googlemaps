@@ -16,10 +16,10 @@ Switch between languages to see the similarities...
 
 :::code
 ```twig
-{% set map = googleMaps.map(locations, options) %}
+{% set map = googleMaps.img(locations, options) %}
 ```
 ```php
-$map = GoogleMaps::map($locations, $options);
+$map = GoogleMaps::img($locations, $options);
 ```
 :::
 
@@ -27,7 +27,7 @@ $map = GoogleMaps::map($locations, $options);
 
 :::code
 ```twig
-{% set map = googleMaps.map()
+{% set map = googleMaps.img()
     .markers(locations, options)
     .path(locations)
     .styles(styleSet)
@@ -35,7 +35,7 @@ $map = GoogleMaps::map($locations, $options);
     .zoom(level) %}
 ```
 ```php
-$map = GoogleMaps::map()
+$map = GoogleMaps::img()
     ->markers($locations, $options)
     ->path($locations)
     ->styles($styleSet)

@@ -1,14 +1,10 @@
 # Geocoding (Address Lookups)
 
-lookup($target = null)
+## lookup(target = null)
 
+In order to perform a lookup, pass in a string or [collection of parameters](/geocoding/parameters/) as the `target`.
 
----
----
-
-
-
-## Geocoding (Address Lookups)
+You can then determine how to retrieve the results of that lookup (`all`, `one`, or `coords`).
 
 :::code
 ```twig
@@ -33,4 +29,9 @@ $coords = GoogleMaps::lookup($target).coords();
 ```
 :::
 
+---
+---
+
+:::warning More Info
 For more information, check out the documentation on [Geocoding](/geocoding/).
+:::

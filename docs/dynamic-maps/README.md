@@ -54,3 +54,15 @@ When creating a new map, or appending markers to an existing map, you'll have an
 | [Coordinates](/models/coordinates/)                     | ✅ | ✅ | ✅ |
 | [Elements](https://craftcms.com/docs/3.x/elements.html) | ❌ | ✅ | ✅ |
 | [Address Models](/models/address-model/)                | ❌ | ✅ | ✅ |
+
+## Managing JavaScript Assets
+
+When using dynamic maps, a trio of JavaScript assets will be automatically loaded:
+
+ - Google Maps JavaScript API
+ - A local JS file to manage dynamic maps
+ - A local JS file representing a dynamic map object
+ 
+These files are all loaded automatically by default, but that is easy to override. You do ultimately have full control over how and when these files will be loaded.
+
+For more information, see the guide on [Loading JavaScript...](/guides/loading-javascript/)
