@@ -73,7 +73,9 @@ GoogleMaps::loadAssets([
 ```
 :::
 
-If you really don't want Twig/PHP to load the assets on your behalf, and you are determined to take matters into your own hands, there is one other tool available to you. The `getAssets` method will retrieve the list of required JS assets as an _array of required URLs_. Once you have those URLs, you are free to load them into the page as you see fit.
+If you really don't want Twig/PHP to load the assets on your behalf, and you are determined to take matters into your own hands, there is one other tool available to you.
+
+The `getAssets` method will retrieve the list of required JS assets as an _array of required URLs_. Once you have those URLs, you are free to load them into the page as you see fit.
 
 :::code
 ```twig

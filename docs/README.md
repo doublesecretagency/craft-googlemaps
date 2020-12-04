@@ -19,3 +19,8 @@ features:
 - title: Visitor Geolocation
   details: Find out where your visitors are coming from based on their IP address.
 ---
+
+---
+---
+
+> This plugin is not maintained nor created by Google (Alphabet). It is strictly a wrapper for various Google Maps APIs, and has no direct affiliation with Google. The **Google Maps plugin for Craft CMS** is a product of [Double Secret Agency](https://www.doublesecretagency.com), a web development agency with no affiliation to Google.
