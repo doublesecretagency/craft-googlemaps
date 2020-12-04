@@ -14,9 +14,9 @@ Combined, they produce an HTML snippet similar to this...
 <script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js"></script>
 ```
 
-For various reasons, however, you may not want these files to be loaded automatically. It's possible to suppress the automatic loading of these assets, and then manually load them later.
+For various reasons, you may not want these files to be loaded automatically. It's possible to suppress the initial automatic loading of these assets, then manually load them later.
 
-## Automatically
+## Loaded Automatically
 
 In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically.
  
@@ -37,7 +37,7 @@ $map = GoogleMaps::map($locations, [
 
 For more info, see the complete [list of options...](/dynamic-maps/map-management/#map-locations-options)
 
-## Manually
+## Loaded Manually
 
 Once you have disabled the automatic loading of these files, you will then be responsible for loading them manually. There are several ways to approach this, how you choose to go about it is up to you.
 
