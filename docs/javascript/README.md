@@ -1,6 +1,6 @@
 # `googleMaps` in JavaScript
 
-When working with [dynamic maps](/dynamic-maps/), there are two JavaScript files which are automatically loaded into the front-end (although this can be [disabled](/guides/loading-javascript/)) whenever a map is included on the page. The files will be copied, and loaded from the public `cpresources` folder.
+When working with [dynamic maps](/dynamic-maps/), there are two JavaScript files which are automatically loaded into the front-end (although this can be [disabled](/guides/required-js-assets/)) whenever a map is included on the page. The files will be copied, and loaded from the public `cpresources` folder.
 
 ```
 /web/cpresources/{hash}/js/
@@ -12,6 +12,6 @@ The `googlemaps.js` file is the [main entry point](/javascript/googlemaps.js/). 
 
 The `dynamicmap.js` file contains a [`DynamicMap` JavaScript model](/javascript/dynamicmap.js/), which is used to generate individual `DynamicMap` objects for each map. Each one is a chainable instance of a fully functional Google Map.
 
-:::warning Defer to googleMaps.js
+:::warning Defer to googlemaps.js
 You will virtually never need to interact with the `DynamicMap` model directly. Use the `googleMaps` object to create (or access) a `DynamicMap` model, then simply chain methods from within the `DynamicMap` model.
 :::

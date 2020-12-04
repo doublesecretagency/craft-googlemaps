@@ -1,4 +1,4 @@
-# `googleMaps.js`
+# `googlemaps.js`
 
 This file contains the `googleMaps` JavaScript object. Additionally, a `googleMaps` variable will be automatically set as a singleton in the global scope at runtime.
 

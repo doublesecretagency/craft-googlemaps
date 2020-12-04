@@ -30,18 +30,48 @@ $map = GoogleMaps::getMap($mapId);
 ```
 :::
 
-## loadAssets()
+---
+---
 
-Only necessary if you've prevented the assets from being loaded automatically. If you haven't explicitly suppressed those files, you will not need to manually load them. See more about [loading assets...](/guides/loading-javascript/)
+:::warning Manually Loading Assets
+The methods below (`getAssets` and `loadAssets`) are only relevant if you are preventing the required JS files from being loaded automatically. See more about [loading assets...](/guides/required-js-assets/)
+:::
+
+## getAssets(params = {})
+
+Get a list of required JavaScript assets necessary to render dynamic maps.
+
+Optionally add [parameters](https://developers.google.com/maps/documentation/javascript/url-params) to the Google Maps API URL.
+
+:::code
+```twig
+{# Get an array of required JavaScript files #}
+{% set assets = googleMaps.getAssets() %}
+```
+```php
+// Get an array of required JavaScript files
+$assets = GoogleMaps::getAssets();
+```
+:::
+
+## loadAssets(params = {})
+
+Load all required JavaScript assets necessary to render dynamic maps.
+
+Optionally add [parameters](https://developers.google.com/maps/documentation/javascript/url-params) to the Google Maps API URL. 
 
 :::code
 ```twig
 {# Load the required JavaScript files #}
-{% do googleMaps.loadAssets() %}
+{% do googleMaps.loadAssets({
+    'map_ids': '1234'
+}) %}
 ```
 ```php
 // Load the required JavaScript files
-GoogleMaps::loadAssets();
+GoogleMaps::loadAssets([
+    'map_ids' => '1234'
+]);
 ```
 :::
 

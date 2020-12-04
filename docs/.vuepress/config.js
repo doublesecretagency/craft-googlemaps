@@ -55,7 +55,6 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
-                    {text: 'Loading JavaScript', link: '/guides/loading-javascript/'},
                     {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
                     {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -65,6 +64,7 @@ module.exports = {
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
                     // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Make live before launch
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
+                    {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
                     // {text: 'Internationalization Support', link: '/guides/internationalization-support/'}, // TODO: Make live before launch
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
@@ -169,7 +169,6 @@ module.exports = {
             // Guides
             '/guides/': [
                 '',
-                'loading-javascript',
                 'setting-map-height',
                 'linking-to-a-map',
                 'setting-marker-icons',
@@ -179,6 +178,7 @@ module.exports = {
                 'filter-by-subfields',
                 // 'address-in-a-matrix-field', // TODO: Make live before launch
                 'prevent-zoom-when-scrolling',
+                'required-js-assets',
                 // 'internationalization-support', // TODO: Make live before launch
                 'bermuda-triangle',
                 'updating-from-smart-map',

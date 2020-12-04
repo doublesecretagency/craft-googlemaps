@@ -19,6 +19,7 @@ use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\models\Visitor;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use yii\base\Exception;
+use yii\base\InvalidConfigException;
 
 /**
  * Class GoogleMaps
@@ -38,11 +39,46 @@ class GoogleMaps
     // ========================================================================= //
 
     /**
-     * Load the JavaScript assets which power Dynamic Maps.
+     * Get a list of the JavaScript assets necessary for displaying Dynamic Maps.
+     *
+     * @param array $params Optional parameters for the Google Maps API.
+     * @return string[] Collection of JS files required to display maps.
      */
-    public static function loadAssets()
+    public static function getAssets(array $params = [])
     {
-        Craft::$app->getView()->registerAssetBundle(JsApiAsset::class);
+        // Get asset manager
+        $manager = Craft::$app->getAssetManager();
+        $assets = '@doublesecretagency/googlemaps/resources';
+
+        // Link to Google Maps JavaScript API URL
+        $files = [GoogleMaps::getApiUrl($params)];
+
+        // Append both JS files required by plugin
+        $files[] = $manager->getPublishedUrl($assets, true, 'js/googlemaps.js');
+        $files[] = $manager->getPublishedUrl($assets, true, 'js/dynamicmap.js');
+
+        // Return list of files
+        return $files;
+    }
+
+    /**
+     * Load the JavaScript assets necessary for displaying Dynamic Maps.
+     *
+     * @param array $params Optional parameters for the Google Maps API.
+     * @throws InvalidConfigException
+     */
+    public static function loadAssets(array $params = [])
+    {
+        // Get view service
+        $view = Craft::$app->getView();
+
+        // Get all required assets
+        $assets = static::getAssets($params);
+
+        // Load each JS file
+        foreach ($assets as $file) {
+            $view->registerJsFile($file);
+        }
     }
 
     // ========================================================================= //

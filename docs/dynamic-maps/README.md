@@ -65,4 +65,4 @@ When using dynamic maps, a trio of JavaScript assets will be automatically loade
  
 These files are all loaded automatically by default, but that is easy to override. You do ultimately have full control over how and when these files will be loaded.
 
-For more information, see the guide on [Loading JavaScript...](/guides/loading-javascript/)
+For more information, see the guide on [Loading JavaScript...](/guides/required-js-assets/)
