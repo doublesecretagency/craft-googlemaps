@@ -191,16 +191,6 @@ class GoogleMaps
     // ========================================================================= //
 
     /**
-     * Get the Google API server key.
-     *
-     * @return string
-     */
-    public static function getServerKey(): string
-    {
-        return GoogleMapsPlugin::$plugin->api->getServerKey();
-    }
-
-    /**
      * Get the Google API browser key.
      *
      * @return string
@@ -211,14 +201,13 @@ class GoogleMaps
     }
 
     /**
-     * Set the Google API server key.
+     * Get the Google API server key.
      *
-     * @param string $key
      * @return string
      */
-    public static function setServerKey(string $key): string
+    public static function getServerKey(): string
     {
-        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
+        return GoogleMapsPlugin::$plugin->api->getServerKey();
     }
 
     /**
@@ -230,6 +219,17 @@ class GoogleMaps
     public static function setBrowserKey(string $key): string
     {
         return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
+    }
+
+    /**
+     * Set the Google API server key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function setServerKey(string $key): string
+    {
+        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
     }
 
 }

@@ -30,20 +30,19 @@
 {% endif %}
 
 <h2>Google API Keys</h2>
-<p>In order to use the Google API, you will need to create two separate API keys. The <strong>server key</strong> handles API calls made from the back-end, whereas the <strong>browser key</strong> handles API calls made from the front-end. For full details, please consult the documentation regarding <a href="{{ docs }}/getting-started/api-keys/" target="_blank">Google Maps API keys</a>.</p>
+<p>In order to use the Google API services, two separate API keys are needed. Both a <strong>browser key</strong> and <strong>server key</strong> are required.</p>
+<p>For full details, please consult the documentation regarding <a href="{{ docs }}/getting-started/api-keys/" target="_blank">Google Maps API keys</a>.</p>
 {% include autosuggest with {
     config: {
-        label: "Google API Server Key"|t('google-maps'),
-        instructions: "Required for performing address lookups."|t('google-maps'),
-        name: 'serverKey',
+        label: "Google API Browser Key"|t('google-maps'),
+        name: 'browserKey',
         required: true
     }
 } %}
 {% include autosuggest with {
     config: {
-        label: "Google API Browser Key"|t('google-maps'),
-        instructions: "Required for rendering static & dynamic maps."|t('google-maps'),
-        name: 'browserKey',
+        label: "Google API Server Key"|t('google-maps'),
+        name: 'serverKey',
         required: true
     }
 } %}
@@ -51,7 +50,8 @@
 <hr>
 
 <h2>Visitor Geolocation</h2>
-<p>You can use a third-party service to provide geolocation for your visitors, based on their detected IP address. IP-based geolocation is generally accurate to within a few miles/kilometers, which will be sufficient for the majority of purposes. For more information, please check out the complete documentation on <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</p>
+<p>You can use a third-party service to provide geolocation for your visitors, based on their detected IP address. IP-based geolocation is generally accurate to within a few miles/kilometers, which will be sufficient for the majority of purposes.</p>
+<p>For more information, please check out the complete documentation on <a href="{{ docs }}/geolocation/" target="_blank">Visitor Geolocation</a>.</p>
 {% include dropdown with {
     attr: [
         'onchange="updateGeolocationService()"'

@@ -52,8 +52,8 @@ class m150329_000000_smartMap_splitGoogleApiKeys extends Migration
         $existingKey = $settings['googleApiKey'];
 
         // Modify settings
-        $settings['googleServerKey']  = $existingKey;
         $settings['googleBrowserKey'] = $existingKey;
+        $settings['googleServerKey']  = $existingKey;
         unset($settings['googleApiKey']);
 
         // Save settings

@@ -21,14 +21,14 @@ class Settings extends Model
 {
 
     /**
-     * @var string|null Google API Server Key.
-     */
-    public $serverKey;
-
-    /**
      * @var string|null Google API Browser Key.
      */
     public $browserKey;
+
+    /**
+     * @var string|null Google API Server Key.
+     */
+    public $serverKey;
 
     /**
      * @var string|null Optional geolocation service. Can be 'ipstack', 'maxmind', or null.

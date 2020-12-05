@@ -8,14 +8,6 @@ use doublesecretagency\googlemaps\GoogleMapsPlugin;
 GoogleMapsPlugin::$plugin->api->...
 ```
 
-### `getServerKey()`
-
-Get the server key stored for the Google Maps API.
- 
-#### Returns
-
-_string_ - The Google Maps API server key.
-
 ### `getBrowserKey()`
 
 Get the browser key stored for the Google Maps API.
@@ -24,13 +16,13 @@ Get the browser key stored for the Google Maps API.
 
 _string_ - The Google Maps API browser key.
 
-### `setServerKey($key)`
+### `getServerKey()`
 
-Change the server key stored for the Google Maps API.
+Get the server key stored for the Google Maps API.
+ 
+#### Returns
 
-#### Arguments
-
- - `$key` (_string_) - The new Google Maps API server key.
+_string_ - The Google Maps API server key.
 
 ### `setBrowserKey($key)`
 
@@ -40,6 +32,14 @@ Change the browser key stored for the Google Maps API.
 
  - `$key` (_string_) - The new Google Maps API browser key.
  
+### `setServerKey($key)`
+
+Change the server key stored for the Google Maps API.
+
+#### Arguments
+
+ - `$key` (_string_) - The new Google Maps API server key.
+
 ### `getApiUrl($params = [])`
 
 Get the URL used internally for pinging the Google Maps API.

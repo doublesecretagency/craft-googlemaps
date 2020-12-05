@@ -4,9 +4,9 @@ In order to access the settings, log in to your control panel and visit **Settin
 
 ## Google API Keys
 
-In order to use the Google API, access keys **are required**. You will need to ensure that the credentials are configured correctly, and have access to the correct Google APIs.
+In order to use the Google API, access keys **are required**. You will need to ensure that the credentials are configured correctly, and have access to the correct Google API services.
 
-For more information about configuring the Google API keys, please [read more here...](/getting-started/api-keys/)
+Read more about [configuring the Google API keys...](/getting-started/api-keys/)
 
 <img class="dropshadow" :src="$withBase('/images/settings/google-api-keys.png')" alt="Screenshot of Google API keys settings">
 
@@ -18,7 +18,7 @@ For more information, see the [Visitor Geolocation docs...](/geolocation/)
 
 <img class="dropshadow" :src="$withBase('/images/settings/visitor-geolocation.png')" alt="Screenshot of geolocation service provider options">
 
-## "Geolocation Service" dropdown options
+## "Geolocation Service" options
 
 If visitor geolocation is enabled, it will be necessary to enter the API credentials for the geolocation service of your choosing.
 

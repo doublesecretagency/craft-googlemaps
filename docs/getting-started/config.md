@@ -20,8 +20,8 @@ If you are using a third-party visitor geolocation service, then you may want to
 return [
 
     // Required Google API keys
-    'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
     'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY'),
+    'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
 
     // Optionally specify a geolocation service
     // Can be 'ipstack', 'maxmind', or null

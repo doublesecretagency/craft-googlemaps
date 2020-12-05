@@ -1,18 +1,5 @@
 # API Service
 
-## getServerKey()
-
-:::code
-```twig
-{# Get server key #}
-{% set serverKey = googleMaps.getServerKey() %}
-```
-```php
-// Get server key
-$serverKey = GoogleMaps::getServerKey();
-```
-:::
-
 ## getBrowserKey()
 
 :::code
@@ -26,16 +13,16 @@ $browserKey = GoogleMaps::getBrowserKey();
 ```
 :::
 
-## setServerKey(key)
+## getServerKey()
 
 :::code
 ```twig
-{# Override server key #}
-{% do googleMaps.setServerKey('lorem') %}
+{# Get server key #}
+{% set serverKey = googleMaps.getServerKey() %}
 ```
 ```php
-// Override server key
-GoogleMaps::setServerKey('lorem');
+// Get server key
+$serverKey = GoogleMaps::getServerKey();
 ```
 :::
 
@@ -44,11 +31,24 @@ GoogleMaps::setServerKey('lorem');
 :::code
 ```twig
 {# Override browser key #}
-{% do googleMaps.setBrowserKey('ipsum') %}
+{% do googleMaps.setBrowserKey('lorem') %}
 ```
 ```php
 // Override browser key
-GoogleMaps::setBrowserKey('ipsum');
+GoogleMaps::setBrowserKey('lorem');
+```
+:::
+
+## setServerKey(key)
+
+:::code
+```twig
+{# Override server key #}
+{% do googleMaps.setServerKey('ipsum') %}
+```
+```php
+// Override server key
+GoogleMaps::setServerKey('ipsum');
 ```
 :::
 
@@ -75,8 +75,8 @@ Three of these methods can be used as magic properties in Twig...
 
 ```twig
     {# Get API keys #}
-    {{ googleMaps.serverKey }}
     {{ googleMaps.browserKey }}
+    {{ googleMaps.serverKey }}
 
     {# Get API URL #}
     {{ googleMaps.apiUrl }}

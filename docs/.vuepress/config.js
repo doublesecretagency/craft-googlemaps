@@ -32,7 +32,7 @@ module.exports = {
         nav: [
             {text: 'Getting Started️', link: '/getting-started/'},
             {
-                text: 'Features',
+                text: 'How It Works',
                 items: [
                     {text: 'Address Field', link: '/address-field/'},
                     {text: 'Dynamic Maps', link: '/dynamic-maps/'},

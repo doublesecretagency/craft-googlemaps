@@ -23,31 +23,16 @@ class Api extends Component
 {
 
     /**
-     * @var string|null Google API server key.
-     */
-    private $_serverKey;
-
-    /**
      * @var string|null Google API browser key.
      */
     private $_browserKey;
 
-    // ========================================================================= //
-
     /**
-     * Get the Google API server key.
-     *
-     * @return string Google API server key.
+     * @var string|null Google API server key.
      */
-    public function getServerKey(): string
-    {
-        // Only load once
-        if (null === $this->_serverKey) {
-            $this->_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
-        }
-        // Return key
-        return trim($this->_serverKey);
-    }
+    private $_serverKey;
+
+    // ========================================================================= //
 
     /**
      * Get the Google API browser key.
@@ -65,14 +50,18 @@ class Api extends Component
     }
 
     /**
-     * Set the Google API server key.
+     * Get the Google API server key.
      *
-     * @param string $key
      * @return string Google API server key.
      */
-    public function setServerKey(string $key): string
+    public function getServerKey(): string
     {
-        return $this->_serverKey = $key;
+        // Only load once
+        if (null === $this->_serverKey) {
+            $this->_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
+        }
+        // Return key
+        return trim($this->_serverKey);
     }
 
     /**
@@ -84,6 +73,17 @@ class Api extends Component
     public function setBrowserKey(string $key): string
     {
         return $this->_browserKey = $key;
+    }
+
+    /**
+     * Set the Google API server key.
+     *
+     * @param string $key
+     * @return string Google API server key.
+     */
+    public function setServerKey(string $key): string
+    {
+        return $this->_serverKey = $key;
     }
 
     // ========================================================================= //
