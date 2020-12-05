@@ -92,7 +92,7 @@ module.exports = {
             ],
             '/dynamic-maps/': [
                 '',
-                'api',
+                'universal-api',
                 'chaining',
                 'map-management',
                 'universal-methods',

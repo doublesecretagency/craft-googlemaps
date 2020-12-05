@@ -1,6 +1,4 @@
-# API
-
-## Universal API
+# Universal API
 
 In an effort to smooth the development process, you can effectively call the exact same methods across various programming languages. Whether you are working in JavaScript, Twig, or PHP, the commands to create a map are all nearly identical.
 
@@ -59,19 +57,22 @@ To get a better understanding of how it works, read more on [Chaining](/dynamic-
 
 ## Supported Languages
 
-The following programming languages are currently supported:
+The following programming languages are currently supported. To see how to use these methods across each language, click on any of the links below...
 
-:::warning JavaScript
+### JavaScript
+
+ - [Map Management](/dynamic-maps/map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional JavaScript Methods](/dynamic-maps/javascript-methods/)
-:::
 
-:::warning Twig
+### Twig
+
+ - [Map Management](/dynamic-maps/map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)
-:::
 
-:::warning PHP
+### PHP
+
+ - [Map Management](/dynamic-maps/map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)
-:::

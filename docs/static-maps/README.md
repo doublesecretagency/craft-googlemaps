@@ -1,6 +1,6 @@
 # Static Maps
 
-Whether you are working in Twig or PHP, the syntax is nearly identical. Unlike the [Universal API](/dynamic-maps/api/) for dynamic maps, there is no JavaScript equivalent for static maps.
+Whether you are working in Twig or PHP, the syntax is nearly identical. Unlike the [Universal API](/dynamic-maps/universal-api/) for dynamic maps, there is no JavaScript equivalent for static maps.
 
 ## Creating a Map in Twig
 

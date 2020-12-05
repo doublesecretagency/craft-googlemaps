@@ -1,6 +1,9 @@
 # Dynamic Maps
 
-We've designed this plugin to be a universally helpful tool, regardless of which programming language you are working with. The [API](/dynamic-maps/api/) provides a harmonious way to manipulate your maps across languages.
+We've designed this plugin to be a universally helpful tool, regardless of which programming language you are working with.
+
+ - The [Universal API](/dynamic-maps/universal-api/) provides a harmonious way to manipulate your maps across languages.
+ - [Chaining](/dynamic-maps/chaining/) allows you to quickly customize maps in the most flexible possible way. 
 
 ## Creating a Map in Twig
 
