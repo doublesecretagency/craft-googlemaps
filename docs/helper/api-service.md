@@ -6,6 +6,7 @@
 ```twig
 {# Get browser key #}
 {% set browserKey = googleMaps.getBrowserKey() %}
+{% set browserKey = googleMaps.browserKey %} {# Shorter syntax #}
 ```
 ```php
 // Get browser key
@@ -19,6 +20,7 @@ $browserKey = GoogleMaps::getBrowserKey();
 ```twig
 {# Get server key #}
 {% set serverKey = googleMaps.getServerKey() %}
+{% set serverKey = googleMaps.serverKey %} {# Shorter syntax #}
 ```
 ```php
 // Get server key
@@ -60,25 +62,10 @@ Get the URL used internally for pinging the Google Maps API.
 ```twig
 {# Get the Google Maps JavaScript API URL #}
 {% set apiUrl = googleMaps.getApiUrl() %}
+{% set apiUrl = googleMaps.apiUrl %} {# Shorter syntax #}
 ```
 ```php
 // Get the Google Maps JavaScript API URL
 $apiUrl = GoogleMaps::getApiUrl();
-```
-:::
-
----
----
-
-:::warning Magic Properties
-Three of these methods can be used as magic properties in Twig...
-
-```twig
-    {# Get API keys #}
-    {{ googleMaps.browserKey }}
-    {{ googleMaps.serverKey }}
-
-    {# Get API URL #}
-    {{ googleMaps.apiUrl }}
 ```
 :::

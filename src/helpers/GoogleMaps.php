@@ -174,7 +174,7 @@ class GoogleMaps
 
     // ========================================================================= //
     // API Service
-    // https://plugins.doublesecretagency.com/google-maps/services/api-service/
+    // https://plugins.doublesecretagency.com/google-maps/helper/api-service/
     // ========================================================================= //
 
     /**
@@ -185,7 +185,7 @@ class GoogleMaps
      */
     public static function getApiUrl(array $params = []): string
     {
-        return GoogleMapsPlugin::$plugin->api->getApiUrl($params);
+        return ApiHelper::getApiUrl($params);
     }
 
     // ========================================================================= //
@@ -197,7 +197,7 @@ class GoogleMaps
      */
     public static function getBrowserKey(): string
     {
-        return GoogleMapsPlugin::$plugin->api->getBrowserKey();
+        return ApiHelper::getBrowserKey();
     }
 
     /**
@@ -207,7 +207,7 @@ class GoogleMaps
      */
     public static function getServerKey(): string
     {
-        return GoogleMapsPlugin::$plugin->api->getServerKey();
+        return ApiHelper::getServerKey();
     }
 
     /**
@@ -218,7 +218,7 @@ class GoogleMaps
      */
     public static function setBrowserKey(string $key): string
     {
-        return GoogleMapsPlugin::$plugin->api->setBrowserKey($key);
+        return ApiHelper::setBrowserKey($key);
     }
 
     /**
@@ -229,7 +229,7 @@ class GoogleMaps
      */
     public static function setServerKey(string $key): string
     {
-        return GoogleMapsPlugin::$plugin->api->setServerKey($key);
+        return ApiHelper::setServerKey($key);
     }
 
 }

@@ -9,28 +9,27 @@
  * @copyright Copyright (c) 2014, 2021 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\services;
+namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
-use craft\base\Component;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
- * Class Api
+ * Class ApiHelper
  * @since 4.0.0
  */
-class Api extends Component
+class ApiHelper
 {
 
     /**
      * @var string|null Google API browser key.
      */
-    private $_browserKey;
+    private static $_browserKey;
 
     /**
      * @var string|null Google API server key.
      */
-    private $_serverKey;
+    private static $_serverKey;
 
     // ========================================================================= //
 
@@ -39,14 +38,14 @@ class Api extends Component
      *
      * @return string Google API browser key.
      */
-    public function getBrowserKey(): string
+    public static function getBrowserKey(): string
     {
         // Only load once
-        if (null === $this->_browserKey) {
-            $this->_browserKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->browserKey);
+        if (null === static::$_browserKey) {
+            static::$_browserKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->browserKey);
         }
         // Return key
-        return trim($this->_browserKey);
+        return trim(static::$_browserKey);
     }
 
     /**
@@ -54,14 +53,14 @@ class Api extends Component
      *
      * @return string Google API server key.
      */
-    public function getServerKey(): string
+    public static function getServerKey(): string
     {
         // Only load once
-        if (null === $this->_serverKey) {
-            $this->_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
+        if (null === static::$_serverKey) {
+            static::$_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
         }
         // Return key
-        return trim($this->_serverKey);
+        return trim(static::$_serverKey);
     }
 
     /**
@@ -70,9 +69,9 @@ class Api extends Component
      * @param string $key
      * @return string Google API browser key.
      */
-    public function setBrowserKey(string $key): string
+    public static function setBrowserKey(string $key): string
     {
-        return $this->_browserKey = $key;
+        return static::$_browserKey = $key;
     }
 
     /**
@@ -81,9 +80,9 @@ class Api extends Component
      * @param string $key
      * @return string Google API server key.
      */
-    public function setServerKey(string $key): string
+    public static function setServerKey(string $key): string
     {
-        return $this->_serverKey = $key;
+        return static::$_serverKey = $key;
     }
 
     // ========================================================================= //
@@ -94,10 +93,10 @@ class Api extends Component
      * @param array $params
      * @return string The fully compiled URL.
      */
-    public function getApiUrl(array $params = []): string
+    public static function getApiUrl(array $params = []): string
     {
         // Get browser key
-        $key = $this->getBrowserKey();
+        $key = static::getBrowserKey();
 
         // Set base URL of Google Maps API
         $googleMapsApi = 'https://maps.googleapis.com/maps/api/js';

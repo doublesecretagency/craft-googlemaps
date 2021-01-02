@@ -45,8 +45,8 @@ module.exports = {
             {
                 text: 'Architecture',
                 items: [
-                    {text: 'Twig/PHP', link: '/helper/'},
                     {text: 'JavaScript', link: '/javascript/'},
+                    {text: 'Twig/PHP', link: '/helper/'},
                     {text: 'Models', link: '/models/'},
                     {text: 'Services', link: '/services/'},
                     {text: 'Events', link: '/events/'},
@@ -156,7 +156,6 @@ module.exports = {
             ],
             '/services/': [
                 '',
-                'api-service',
                 'geocoding-service',
                 'geolocation-service',
             ],

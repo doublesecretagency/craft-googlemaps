@@ -20,7 +20,6 @@ use craft\services\Fields;
 use craft\services\Plugins;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
-use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
@@ -31,7 +30,6 @@ use yii\base\Event;
  * Class GoogleMapsPlugin
  * @since 4.0.0
  *
- * @property Api $api
  * @property Geocoding $geocoding
  * @property Geolocation $geolocation
  */
@@ -66,7 +64,6 @@ class GoogleMapsPlugin extends Plugin
 
         // Load plugin components
         $this->setComponents([
-            'api' => Api::class,
             'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,
         ]);
