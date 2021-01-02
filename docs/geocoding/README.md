@@ -47,11 +47,6 @@ use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 $lookupModel = GoogleMaps::lookup('123 Main St');
 ```
-```php via Service
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
-
-$lookupModel = GoogleMapsPlugin::$plugin->geocoding->lookup('123 Main St');
-```
 :::
 
 :::warning Use the Helper Class (if possible)

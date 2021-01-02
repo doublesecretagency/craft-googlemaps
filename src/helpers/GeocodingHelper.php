@@ -9,16 +9,15 @@
  * @copyright Copyright (c) 2014, 2021 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\services;
+namespace doublesecretagency\googlemaps\helpers;
 
-use craft\base\Component;
 use doublesecretagency\googlemaps\models\Lookup;
 
 /**
- * Class Geocoding
+ * Class GeocodingHelper
  * @since 4.0.0
  */
-class Geocoding extends Component
+class GeocodingHelper
 {
 
     /**
@@ -27,7 +26,7 @@ class Geocoding extends Component
      * @param array|string $parameters
      * @return Lookup|false
      */
-    public function lookup($parameters = [])
+    public static function lookup($parameters = [])
     {
         // If a string target was specified, convert to array
         if (is_string($parameters)) {

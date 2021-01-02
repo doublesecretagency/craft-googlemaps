@@ -17,7 +17,6 @@ use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\models\Visitor;
-use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
@@ -153,7 +152,7 @@ class GoogleMaps
      */
     public static function lookup($target = null)
     {
-        return GoogleMapsPlugin::$plugin->geocoding->lookup($target);
+        return GeocodingHelper::lookup($target);
     }
 
     // ========================================================================= //
