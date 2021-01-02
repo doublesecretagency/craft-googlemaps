@@ -9,34 +9,33 @@
  * @copyright Copyright (c) 2014, 2021 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\services;
+namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
-use craft\base\Component;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Ipstack;
 use doublesecretagency\googlemaps\models\Maxmind;
 use doublesecretagency\googlemaps\models\Visitor;
 
 /**
- * Class Geolocation
+ * Class GeolocationHelper
  * @since 4.0.0
  */
-class Geolocation extends Component
+class GeolocationHelper
 {
 
     /**
      * @var string|null IP address of current user.
      */
-    public $ip;
+    public static $ip;
 
     /**
-     * @inheritdoc
+     * Set the IP address internally.
      */
     public function init()
     {
         // Get user's IP address
-        $this->ip = Craft::$app->getRequest()->getUserIP();
+        static::$ip = Craft::$app->getRequest()->getUserIP();
     }
 
     /**
@@ -45,14 +44,14 @@ class Geolocation extends Component
      * @param array $config
      * @return Visitor|false
      */
-    public function getVisitor($config = [])
+    public static function getVisitor($config = [])
     {
         // Set geolocation service
         $selected = GoogleMapsPlugin::$plugin->getSettings()->geolocationService;
         $service = ($config['service'] ?? $selected);
 
         // Get API model of the specified geolocation service
-        $model = $this->_getApiModel($service);
+        $model = static::_getApiModel($service);
 
         // If a valid service model is not available, bail
         if (!$model) {
@@ -60,7 +59,7 @@ class Geolocation extends Component
         }
 
         // Set IP address
-        $ip = ($config['ip'] ?? $this->ip);
+        $ip = ($config['ip'] ?? static::$ip);
 
         // Return the geolocation results
         return $model::geolocate($ip);
@@ -72,7 +71,7 @@ class Geolocation extends Component
      * @param $selected
      * @return string|null
      */
-    private function _getApiModel($selected)
+    private static function _getApiModel($selected)
     {
         // Supported geolocation services
         $supported = [

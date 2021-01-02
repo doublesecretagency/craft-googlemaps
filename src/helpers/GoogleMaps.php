@@ -12,7 +12,6 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
@@ -168,7 +167,7 @@ class GoogleMaps
      */
     public static function getVisitor(array $config = [])
     {
-        return GoogleMapsPlugin::$plugin->geolocation->getVisitor($config);
+        return GeolocationHelper::getVisitor($config);
     }
 
     // ========================================================================= //
