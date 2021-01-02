@@ -23,7 +23,6 @@ use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\services\Api;
 use doublesecretagency\googlemaps\services\Geocoding;
 use doublesecretagency\googlemaps\services\Geolocation;
-use doublesecretagency\googlemaps\services\ProximitySearch;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
 use yii\base\Event;
@@ -35,7 +34,6 @@ use yii\base\Event;
  * @property Api $api
  * @property Geocoding $geocoding
  * @property Geolocation $geolocation
- * @property ProximitySearch $proximitySearch
  */
 class GoogleMapsPlugin extends Plugin
 {
@@ -71,7 +69,6 @@ class GoogleMapsPlugin extends Plugin
             'api' => Api::class,
             'geocoding' => Geocoding::class,
             'geolocation' => Geolocation::class,
-            'proximitySearch' => ProximitySearch::class,
         ]);
 
         // Register field type

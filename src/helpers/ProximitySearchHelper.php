@@ -9,30 +9,28 @@
  * @copyright Copyright (c) 2014, 2021 Double Secret Agency
  */
 
-namespace doublesecretagency\googlemaps\services;
+namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
-use craft\base\Component;
 use craft\elements\db\ElementQueryInterface;
 use doublesecretagency\googlemaps\fields\AddressField;
-use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**
- * Class ProximitySearch
+ * Class ProximitySearchHelper
  * @since 4.0.0
  */
-class ProximitySearch extends Component
+class ProximitySearchHelper
 {
 
     /**
      * @var ElementQueryInterface The actual element query (passed by reference) which is being called.
      */
-    private $_query;
+    private static $_query;
 
     /**
      * @var AddressField The field used to generate a proximity search. (aka "myAddressField")
      */
-    private $_field;
+    private static $_field;
 
     /**
      * Modify the existing elements query to perform a proximity search.
@@ -41,14 +39,14 @@ class ProximitySearch extends Component
      * @param $options
      * @param $field
      */
-    public function modifyElementsQuery($query, $options, $field)
+    public static function modifyElementsQuery($query, $options, $field)
     {
         // Internalize objects
-        $this->_query = $query;
-        $this->_field = $field;
+        static::$_query = $query;
+        static::$_field = $field;
 
         // Join with plugin table
-        $this->_query->subQuery->leftJoin(
+        static::$_query->subQuery->leftJoin(
             '{{%googlemaps_addresses}} addresses',
             '[[addresses.elementId]] = [[elements.id]] AND [[addresses.fieldId]] = :fieldId',
             [':fieldId' => $field->id]
@@ -56,17 +54,17 @@ class ProximitySearch extends Component
 
         // Apply all proximity search options
         if (isset($options['target'])) {
-            $this->_applyProximitySearch($options);
+            static::_applyProximitySearch($options);
         }
 
         // Apply 'subfields' option
         if (isset($options['subfields'])) {
-            $this->_applySubfields($options['subfields']);
+            static::_applySubfields($options['subfields']);
         }
 
         // Apply 'requireCoords' option
         if (isset($options['requireCoords'])) {
-            $this->_applyRequireCoords($options['requireCoords']);
+            static::_applyRequireCoords($options['requireCoords']);
         }
     }
 
@@ -77,7 +75,7 @@ class ProximitySearch extends Component
      *
      * @param array $options
      */
-    private function _applyProximitySearch($options)
+    private static function _applyProximitySearch(array $options)
     {
         // Set defaults
         $default = [
@@ -107,37 +105,38 @@ class ProximitySearch extends Component
         }
 
         // Retrieve the starting coordinates from the specified target
-        $coords = $this->_getTargetCoords($target);
+        $coords = static::_getTargetCoords($target);
 
         // Implement haversine formula via SQL
-        $haversine = $this->_haversineSql(
+        $haversine = static::_haversineSql(
             $coords['lat'],
             $coords['lng'],
             $units
         );
 
         // Modify subquery
-        $this->_query->subQuery
+        static::$_query->subQuery
             ->addSelect(
                 "{$haversine} AS [[distance]]"
             )
             ->andWhere(
                 '[[addresses.fieldId]] = :fieldId',
-                [':fieldId' => $this->_field->id]
+                [':fieldId' => static::$_field->id]
             )
         ;
 
         // Briefly store the distance under the field handle
-        $this->_query->query
+        $fieldHandle = static::$_field->handle;
+        static::$_query->query
             ->addSelect(
-                "[[subquery.distance]] AS [[{$this->_field->handle}]]"
+                "[[subquery.distance]] AS [[{$fieldHandle}]]"
             )
         ;
 
         // Handle distance based on database type
         if (Craft::$app->getDb()->getIsMysql()) {
             // Configure for MySQL
-            $this->_query->subQuery
+            static::$_query->subQuery
                 ->having(
                     '[[distance]] <= :range',
                     [':range' => $range]
@@ -145,7 +144,7 @@ class ProximitySearch extends Component
             ;
         } else {
             // Configure for Postgres
-            $this->_query->query
+            static::$_query->query
                 ->andWhere(
                     '[[distance]] <= :range',
                     [':range' => $range]
@@ -159,7 +158,7 @@ class ProximitySearch extends Component
      *
      * @param array|null $subfields
      */
-    private function _applySubfields($subfields)
+    private static function _applySubfields($subfields)
     {
         // If not an array, bail
         if (!is_array($subfields)) {
@@ -203,7 +202,7 @@ class ProximitySearch extends Component
             }
 
             // Append WHERE clause to subquery
-            $this->_query->subQuery->andWhere($where);
+            static::$_query->subQuery->andWhere($where);
         }
     }
 
@@ -212,7 +211,7 @@ class ProximitySearch extends Component
      *
      * @param bool $requireCoords
      */
-    private function _applyRequireCoords(bool $requireCoords)
+    private static function _applyRequireCoords(bool $requireCoords)
     {
         // If coordinates are not required, bail
         if (!$requireCoords) {
@@ -220,7 +219,7 @@ class ProximitySearch extends Component
         }
 
         // Omit Addresses with missing or incomplete coordinates
-        $this->_query->subQuery->andWhere(['not', [
+        static::$_query->subQuery->andWhere(['not', [
             'or',
             ['lat' => null],
             ['lng' => null]
@@ -235,7 +234,7 @@ class ProximitySearch extends Component
      * @param mixed $target
      * @return array Set of coordinates to use as center of proximity search.
      */
-    private function _getTargetCoords($target)
+    private static function _getTargetCoords($target)
     {
         // Get coordinates based on type of target specified
         switch (gettype($target)) {
@@ -270,7 +269,7 @@ class ProximitySearch extends Component
      * @param string $units
      * @return string The haversine formula portion of an SQL query.
      */
-    private function _haversineSql(float $lat, float $lng, string $units = 'mi'): string
+    private static function _haversineSql(float $lat, float $lng, string $units = 'mi'): string
     {
         // Determine unit of measurement
         switch ($units) {

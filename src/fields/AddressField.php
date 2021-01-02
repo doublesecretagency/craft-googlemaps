@@ -18,8 +18,8 @@ use craft\base\PreviewableFieldInterface;
 use craft\elements\db\ElementQueryInterface;
 use craft\elements\Entry;
 use craft\helpers\Json;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
+use doublesecretagency\googlemaps\helpers\ProximitySearchHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
@@ -350,7 +350,7 @@ class AddressField extends Field implements PreviewableFieldInterface
         }
 
         // Modify the element query to perform a proximity search
-        GoogleMapsPlugin::$plugin->proximitySearch->modifyElementsQuery($query, $options, $this);
+        ProximitySearchHelper::modifyElementsQuery($query, $options, $this);
     }
 
     // ========================================================================= //
@@ -377,7 +377,7 @@ class AddressField extends Field implements PreviewableFieldInterface
 //        $validLng = ($hasLng ? is_numeric($address->lng) : true);
 //
 //        if (!($validLat && $validLng)) {
-//            $element->addError($this->handle, Craft::t('smart-map', 'If coordinates are specified, they must be numbers.'));
+//            $element->addError($this->handle, Craft::t('google-maps', 'If coordinates are specified, they must be numbers.'));
 //        }
 //    }
 
