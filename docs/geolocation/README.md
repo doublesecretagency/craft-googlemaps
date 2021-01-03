@@ -1,5 +1,7 @@
 # Visitor Geolocation
 
+## Basic Usage
+
 If you want to know where your visitors are coming from, you can perform a geolocation lookup based on each user's IP address...
 
 :::code
@@ -11,21 +13,11 @@ $visitor = GoogleMaps::getVisitor();
 ```
 :::
 
-It will return the geolocation results as a [Visitor Model](/models/visitor-model/). For the full details regarding the `getVisitor` method, see the [Geolocation Service](/services/geolocation-service/#getvisitor) documentation.
+It will return the geolocation results as a [Visitor Model](/models/visitor-model/). For the full details regarding the `getVisitor` method, see the [advanced geolocation](/geolocation/how-to-use/#advanced) documentation.
 
-:::warning Magic Property
-In Twig, it's also possible to use the magic property alias...
-
-```twig
-    {% set visitor = googleMaps.visitor %}
-```
-
-This prevents you from passing any options, obviously.
-:::
-
-## Accuracy
-
+:::warning Accuracy
 This method relies on deducing the location based on a user's **IP address**. Please be aware, this will rarely be 100% accurate. Generally speaking, you will end up with results that are within a few miles of a visitor's actual location.
+:::
 
 <!--
 A more precise method of visitor geolocation can be done using the HTML 5 geolocation feature. However, this will prompt the user to give your site permission to know their location, and it's possible (and common) for them to decline.

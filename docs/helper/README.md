@@ -30,4 +30,4 @@ The helper class makes things easier across several major features...
 | [Static Maps](/helper/static-maps/)         | Create static maps. 
 | [Geocoding](/helper/geocoding/)             | Perform a geocoding address lookup. 
 | [Visitor Geolocation](/helper/geolocation/) | Determine a visitor's location via geolocation. 
-| [API Service](/helper/api-service/)         | Manually manage the Google API keys.
+| [API Service](/helper/api/)                 | Manually manage the Google API keys.

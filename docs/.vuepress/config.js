@@ -48,8 +48,7 @@ module.exports = {
                     {text: 'JavaScript', link: '/javascript/'},
                     {text: 'Twig/PHP', link: '/helper/'},
                     {text: 'Models', link: '/models/'},
-                    {text: 'Services', link: '/services/'},
-                    {text: 'Events', link: '/events/'},
+                    // {text: 'Events', link: '/events/'},
                 ]
             },
             {
@@ -115,7 +114,7 @@ module.exports = {
             ],
             '/geolocation/': [
                 '',
-                'advanced',
+                'how-to-use',
                 'service-providers',
                 // 'html5', // TODO: Add HTML5 geolocation (?)
                 // 'diagnostics', // TODO: Add diagnostics tools
@@ -134,7 +133,7 @@ module.exports = {
                 'static-maps',
                 'geocoding',
                 'geolocation',
-                'api-service',
+                'api',
             ],
             '/javascript/': [
                 '',
@@ -153,11 +152,6 @@ module.exports = {
                 'dynamic-map-model',
                 'static-map-model',
                 'coordinates',
-            ],
-            '/services/': [
-                '',
-                'geocoding-service',
-                'geolocation-service',
             ],
             '/events/': [
                 '',

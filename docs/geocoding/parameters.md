@@ -1,10 +1,16 @@
 # Geocoding Parameters
 
-When creating a [Lookup Model](/models/lookup-model/), you only need to pass in a single parameter. You may specify either a _string_ or an _array_, depending on whether or not you need granular control over the API call.
+When creating a [Lookup Model](/models/lookup-model/), you only need to pass a single **string** or **array** value...
+
+### `lookup(parameters)`
+
+#### Arguments
+
+- `parameters` (_string_ or _array_) - Either a [simple string](#using-a-simple-string) or an [array of parameters](#using-an-array-of-parameters).
 
 ## Using a simple string
 
-This is the simplest and most straightforward approach. The specified string will be passed directly to the Google API as the `address` parameter with no other parameters specified.
+This is the simplest, and most straightforward approach. The specified string will be passed directly to the Google API as the `address` parameter with no other parameters specified.
 
 For the vast majority of cases, a simple target string is all you need...
 

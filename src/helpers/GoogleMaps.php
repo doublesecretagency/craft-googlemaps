@@ -172,7 +172,7 @@ class GoogleMaps
 
     // ========================================================================= //
     // API Service
-    // https://plugins.doublesecretagency.com/google-maps/helper/api-service/
+    // https://plugins.doublesecretagency.com/google-maps/helper/api/
     // ========================================================================= //
 
     /**
