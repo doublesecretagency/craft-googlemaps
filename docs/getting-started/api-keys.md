@@ -1,21 +1,24 @@
 # Google Maps API Keys
 
-In order to use the Google Maps API, you will need to generate two distinct API keys. Follow the official instructions provided by Google in order to set up a **browser key** and **server key**.
+In order to use the Google Maps API, you will need to generate two distinct API keys. Follow the official instructions provided by Google in order to set up both a **browser key** and **server key**.
 
-:::warning Full Walkthrough
-[https://developers.google.com/maps/gmp-get-started](https://developers.google.com/maps/gmp-get-started)
+:::warning Official Google Links
+In addition to the plugin documentation, you may also find it helpful to consult the official Google guides for getting set up...
+
+ - [Get an API Key](https://developers.google.com/maps/documentation/geocoding/get-api-key)
+ - [Getting started with Google Maps Platform](https://developers.google.com/maps/gmp-get-started)
 :::
 
 ## Authorize required services
 
-All of the following API services must be enabled for this plugin to function properly...
+Each of the following API services must be enabled for this plugin to function properly...
 
 | API Service         | ⬇️     |      |
 |:--------------------|:-------|------|
 | Maps JavaScript API | [Enable Service](https://console.cloud.google.com/apis/library/maps-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/javascript/overview)
-| Maps Static API     | [Enable Service](https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/maps-static/overview)
-| Geocoding API       | [Enable Service](https://console.cloud.google.com/apis/library/geocoding-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/geocoding/overview)
-| Places API          | [Enable Service](https://console.cloud.google.com/apis/library/places-backend.googleapis.com) | [More Info](https://developers.google.com/places/web-service/overview)
+| Maps Static API | [Enable Service](https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/maps-static/overview)
+| Geocoding API | [Enable Service](https://console.cloud.google.com/apis/library/geocoding-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/geocoding/overview)
+| Places API | [Enable Service](https://console.cloud.google.com/apis/library/places-backend.googleapis.com) | [More Info](https://developers.google.com/places/web-service/overview)
 
 Please enable each of these APIs before moving on to create API keys.
 
@@ -37,13 +40,15 @@ The information provided below is supplemental to Google's primary documentation
 
 ## Two API keys
  
-You will need to set up **two independent keys**. After you have created the first key, repeat the process to create a second key. Each key is responsible for separate features of the plugin...
+You will need to set up two independent keys. After you have created the first key, **repeat the process** to create a second key. Each key is responsible for separate features of the plugin.
 
-| Browser Key                      | Server Key
-|:---------------------------------|:-----------
+| Browser Key needed for...        | Server Key needed for...
+|:---------------------------------|:-------------------------
 | [Address Field](/address-field/) | [Proximity Search](/proximity-search/)
 | [Dynamic Maps](/dynamic-maps/)   | [Geocoding (Address Lookups)](/geocoding/)
 | [Static Maps](/static-maps/)     |
+
+Both keys are required, regardless of which plugin features you are currently taking advantage of.
 
 ### The difference?
 

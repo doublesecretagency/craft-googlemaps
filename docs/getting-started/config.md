@@ -21,7 +21,7 @@ return [
 
     // Required Google API keys
     'browserKey' => getenv('GOOGLEMAPS_BROWSERKEY'),
-    'serverKey' => getenv('GOOGLEMAPS_SERVERKEY'),
+    'serverKey'  => getenv('GOOGLEMAPS_SERVERKEY'),
 
     // Optionally specify a geolocation service
     // Can be 'ipstack', 'maxmind', or null
@@ -31,9 +31,9 @@ return [
     'ipstackApiAccessKey' => getenv('IPSTACK_APIACCESSKEY'),
 
     // If using MaxMind
-    'maxmindUserId' => getenv('MAXMIND_USERID'),
+    'maxmindUserId'     => getenv('MAXMIND_USERID'),
     'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
-    'maxmindService' => getenv('MAXMIND_SERVICE'),
+    'maxmindService'    => getenv('MAXMIND_SERVICE'),
 
 ];
 ```

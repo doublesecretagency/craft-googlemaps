@@ -35,7 +35,7 @@ _object_ - Get the location coordinates as a [coords](/models/coordinates/) JSON
 
 ### `getDistance(location, units = 'miles')`
 
-_float_|_null_ - Pass a separate Location Model (including an [Address](/models/address-model/) or [Visitor](/models/visitor-model/) model), or [set of coordinates](/models/coordinates/) to measure the distance between the two points.
+_float_|_null_ - Pass a [set of coordinates](/models/coordinates/) or a separate Location Model (can be an [Address](/models/address-model/) or [Visitor](/models/visitor-model/) model) to measure the distance between the two points.
 
 ```twig
 {% set distance = entry.homeAddress.getDistance(entry.businessAddress) %}

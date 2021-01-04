@@ -14,6 +14,8 @@ namespace doublesecretagency\googlemaps\models;
 use Craft;
 use craft\base\Model;
 use craft\helpers\Json;
+use doublesecretagency\googlemaps\events\GeocodingEvent;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use GuzzleHttp\Exception\RequestException;
 
@@ -175,6 +177,15 @@ class Lookup extends Model
             $this->_error = $results;
             $results = false;
         }
+
+        // Trigger geocoding event
+        GoogleMapsPlugin::$plugin->trigger(
+            GoogleMapsPlugin::EVENT_AFTER_GEOCODING,
+            new GeocodingEvent([
+                'parameters' => $this->_parameters,
+                'results' => $results,
+            ])
+        );
 
         // Return lookup results
         return $results;

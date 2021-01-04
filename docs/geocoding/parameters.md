@@ -31,7 +31,7 @@ The example above will compile and ping the following Google API URL:
 https://maps.googleapis.com/maps/api/geocode/json?address=123+Main+St&key=[KEY]
 ```
 
-:::tip [KEY] added automatically
+:::warning [KEY] added automatically
 You do not need to specify the `key` value, it will be automatically appended here.
 :::
 
@@ -43,7 +43,7 @@ You generally will not need to specify anything more complicated than a basic st
 
 The most common reason why you might want to use an array of parameters would be for the purpose of [region biasing](/guides/region-biasing/). This can make a big difference if you feel like the proximity search isn't focusing on the right part of the world.
 
-:::warning Proximity Search
+:::tip Proximity Search
 Internally, the [proximity search](/proximity-search/) mechanism relies heavily on the geocoding mechanism.
 :::
 

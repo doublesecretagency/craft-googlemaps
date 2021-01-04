@@ -20,7 +20,6 @@ use craft\services\Fields;
 use craft\services\Plugins;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
-use doublesecretagency\googlemaps\services\Geolocation;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
 use yii\base\Event;
@@ -28,11 +27,19 @@ use yii\base\Event;
 /**
  * Class GoogleMapsPlugin
  * @since 4.0.0
- *
- * @property Geolocation $geolocation
  */
 class GoogleMapsPlugin extends Plugin
 {
+
+    /**
+     * @event GeocodingEvent The event that is triggered after a geocoding address lookup has been performed.
+     */
+    const EVENT_AFTER_GEOCODING = 'afterGeocoding';
+
+    /**
+     * @event GeolocationEvent The event that is triggered after a visitor geolocation has been performed.
+     */
+    const EVENT_AFTER_GEOLOCATION = 'afterGeolocation';
 
     /**
      * @var bool The plugin has a settings page.
@@ -59,11 +66,6 @@ class GoogleMapsPlugin extends Plugin
 
         // Load Twig extension
         Craft::$app->getView()->registerTwigExtension(new Extension());
-
-        // Load plugin components
-        $this->setComponents([
-            'geolocation' => Geolocation::class,
-        ]);
 
         // Register field type
         Event::on(

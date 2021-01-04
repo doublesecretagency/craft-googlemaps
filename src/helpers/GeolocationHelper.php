@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
+use doublesecretagency\googlemaps\events\GeolocationEvent;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Ipstack;
 use doublesecretagency\googlemaps\models\Maxmind;
@@ -61,8 +62,21 @@ class GeolocationHelper
         // Set IP address
         $ip = ($config['ip'] ?? static::$ip);
 
-        // Return the geolocation results
-        return $model::geolocate($ip);
+        // Perform the geolocation
+        $visitor = $model::geolocate($ip);
+
+        // Trigger geolocation event
+        GoogleMapsPlugin::$plugin->trigger(
+            GoogleMapsPlugin::EVENT_AFTER_GEOLOCATION,
+            new GeolocationEvent([
+                'service' => $service,
+                'ip' => $ip,
+                'visitor' => $visitor,
+            ])
+        );
+
+        // Return a Visitor Model
+        return $visitor;
     }
 
     /**
