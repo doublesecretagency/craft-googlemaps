@@ -271,35 +271,38 @@ class ProximitySearchHelper
      */
     private static function _haversineSql(float $lat, float $lng, string $units = 'mi'): string
     {
-        // Determine unit of measurement
-        switch ($units) {
-            case 'km':
-            case 'kilometers':
-                $unitVal = 6371;
-                break;
-            case 'mi':
-            case 'miles':
-            default:
-                $unitVal = 3959;
-                break;
-        }
+        // Determine radius
+        $radius = static::haversineRadius($units);
 
         // Calculate haversine formula
         return "(
-            {$unitVal} * acos(
-                cos(
-                    radians({$lat})
-                ) * cos(
-                    radians([[addresses.lat]])
-                ) * cos(
-                    radians([[addresses.lng]]) - radians({$lng})
-                ) + sin(
-                    radians({$lat})
-                ) * sin(
-                    radians([[addresses.lat]])
-                )
+            {$radius} * acos(
+                cos(radians({$lat})) *
+                cos(radians([[addresses.lat]])) *
+                cos(radians([[addresses.lng]]) - radians({$lng})) +
+                sin(radians({$lat})) *
+                sin(radians([[addresses.lat]]))
             )
         )";
+    }
+
+    /**
+     * Get the radius of Earth as measured in the specified units.
+     *
+     * @param string $units
+     * @return int
+     */
+    public static function haversineRadius(string $units): int
+    {
+        switch ($units) {
+            case 'km':
+            case 'kilometers':
+                return 6371;
+            case 'mi':
+            case 'miles':
+            default:
+                return 3959;
+        }
     }
 
 }

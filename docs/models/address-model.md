@@ -93,17 +93,17 @@ Get the corresponding **field** which contains this Address. It's possible that 
 ---
 ---
 
-### `getDistance(coords = false, units = 'miles')`
+### `getDistance(location = null, units = 'miles')`
 
-The distance between this address, and your proximity search target. Will be returned in whatever unit of measurement (miles or kilometers) was specified in the proximity search parameters.
+Calculate the distance between this Address, and a second location. Behaves just as described in the [Location Model](/models/location-model/#getdistance-location-units-miles), pass in a separate location to measure the distance between them.
 
-:::warning Proximity Search Only
-This value will only be available if the address was returned as part of a [proximity search](/proximity-search/). Otherwise, the value for `distance` will be null.
+If the Address was retrieved as part of a [proximity search](/proximity-search/), you can optionally omit all parameters. Skipping both parameters will make the `getDistance()` method behave as an alias for the dynamically-calculated `distance` property.
+
+When conducting a proximity search, the `distance` property is the distance between this Address, and your proximity search target. It will be returned in whatever unit of measurement (miles or kilometers) was specified in the [proximity search options](/proximity-search/options/).
+
+:::tip One Way or the Other
+If the Address was **not** returned in a set of proximity search results, you must functionally declare a second `location`. Otherwise, there will be no distance for the method to measure.
 :::
-
-Behaves just as described in the [Location Model](/models/location-model/#getdistance-coords-units-miles), you can optionally pass in coordinates to measure the distance between two points. However, it is slightly more powerful in the context of an Address Model.
-
-If the address has been returned as part of a proximity search, the method will use the coordinates of your search target by default.
 
 ---
 ---

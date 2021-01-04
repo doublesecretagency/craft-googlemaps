@@ -33,15 +33,12 @@ _bool_ - Whether the location has functional coordinates.
 
 _object_ - Get the location coordinates as a [coords](/models/coordinates/) JSON object.
 
-### `getDistance(coords, units = 'miles')`
+### `getDistance(location, units = 'miles')`
 
-Pass in coordinates to measure the distance between points. Accepts coordinates in a JSON format.
-
-In this example, the `home` and `office` variables are both Location Models. We are measuring the distance between the two locations.
+_float_|_null_ - Pass a separate Location Model (including an [Address](/models/address-model/) or [Visitor](/models/visitor-model/) model), or [set of coordinates](/models/coordinates/) to measure the distance between the two points.
 
 ```twig
-{% set homeCoords = home.getCoords() %}
-{% set distance = office.getDistance(homeCoords) %}
+{% set distance = entry.homeAddress.getDistance(entry.businessAddress) %}
 ```
 
 ### `linkToSearch(parameters = {})`

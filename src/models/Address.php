@@ -219,6 +219,22 @@ class Address extends Location
     /**
      * @inheritdoc
      */
+    public function getDistance($location = null, $units = 'miles')
+    {
+        // If no location specified and distance is already known, return it
+        if (!$location && $this->distance) {
+            return (float) $this->distance;
+        }
+
+        // Default to approach of parent method
+        return parent::getDistance($location, $units);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * @inheritdoc
+     */
     public function linkToSearch(array $parameters = []): string
     {
         // If invalid coordinates, bail
