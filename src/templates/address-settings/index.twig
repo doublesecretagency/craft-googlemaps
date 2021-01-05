@@ -23,12 +23,39 @@
 
 </script>
 
-<div id="address-settings" style="display: flex; flex-direction: row;">
-    <div style="flex-direction: column; flex: 4; margin-right: 30px;">
+<div id="address-settings" class="address-settings">
+    <div class="address-settings-fields">
         {% include 'google-maps/address-settings/subfield-manager' %}
         {% include 'google-maps/address-settings/dropdown-fields' %}
     </div>
-    <div style="flex-direction: column; flex: 5;">
+    <div class="address-settings-preview">
         {% include 'google-maps/address-settings/live-preview' %}
     </div>
 </div>
+
+{% css %}
+.address-settings {
+    display: flex;
+    flex-direction: row;
+}
+.address-settings-fields {
+    flex-direction: column;
+    flex: 4;
+    margin-right: 30px;
+}
+.address-settings-preview {
+    flex-direction: column;
+    flex: 5;
+}
+
+.mc-fieldtype-settings .address-settings {
+    display: block;
+}
+.mc-fieldtype-settings .address-settings-fields {
+    margin-right: auto;
+    margin-bottom: 24px;
+}
+.mc-fieldtype-settings .address-settings-preview {
+
+}
+{% endcss %}
