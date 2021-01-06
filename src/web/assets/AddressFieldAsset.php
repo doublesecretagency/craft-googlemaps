@@ -36,6 +36,10 @@ class AddressFieldAsset extends AssetBundle
             VueAsset::class,
         ];
 
+        $this->css = [
+            'css/address.css',
+        ];
+
         $this->js = [
             'js/address.js',
             GoogleMaps::getApiUrl([

@@ -231,24 +231,3 @@
         }
     };
 </script>
-
-<style lang="scss" scoped>
-.gm-map {
-    height: 240px;
-    width: 99%;
-    margin-right: 1%;
-    margin-top: 2px;
-    text-align: center;
-    background-color: #f3f7fc;
-    border: 1px solid #d7dfe7;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-    div {
-        color: #606d7b;
-        font-weight: bold;
-        font-style: italic;
-        margin: 110px auto 0;
-
-    }
-}
-</style>

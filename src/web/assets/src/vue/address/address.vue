@@ -10,11 +10,11 @@
 </template>
 
 <script>
-    import AddressToggle from './address-toggle';
-    import AddressSubfields from './address-subfields';
-    import AddressCoords from './address-coords';
-    import AddressMeta from './address-meta';
-    import AddressMap from './address-map';
+    import AddressToggle from './address-toggle.vue';
+    import AddressSubfields from './address-subfields.vue';
+    import AddressCoords from './address-coords.vue';
+    import AddressMeta from './address-meta.vue';
+    import AddressMap from './address-map.vue';
 
     export default {
         name: 'AddressField',
@@ -83,13 +83,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    .address-field {
-        width: 101%;
-        input {
-            margin-right: 1%;
-            margin-bottom: 2px;
-        }
-    }
-</style>

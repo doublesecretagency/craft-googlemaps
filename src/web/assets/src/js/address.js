@@ -1,4 +1,4 @@
-import AddressField from './../vue/address/address';
+import AddressField from './../vue/address/address.vue';
 
 // Disable silly message
 Vue.config.productionTip = false;

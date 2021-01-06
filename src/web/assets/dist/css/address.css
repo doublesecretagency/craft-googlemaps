@@ -1,0 +1,27 @@
+.address-field {
+  width: 101%;
+}
+
+.address-field input {
+  margin-right: 1%;
+  margin-bottom: 2px;
+}
+
+.gm-map {
+  height: 240px;
+  width: 99%;
+  margin-right: 1%;
+  margin-top: 2px;
+  text-align: center;
+  background-color: #f3f7fc;
+  border: 1px solid #d7dfe7;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.gm-map > div {
+  color: #606d7b;
+  font-weight: bold;
+  font-style: italic;
+}
+

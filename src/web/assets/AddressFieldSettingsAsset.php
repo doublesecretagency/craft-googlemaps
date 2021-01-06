@@ -36,6 +36,10 @@ class AddressFieldSettingsAsset extends AssetBundle
             VueAsset::class,
         ];
 
+        $this->css = [
+            'css/address.css',
+        ];
+
         $this->js = [
             'js/Sortable.min.js',
             'js/address-settings.js',
