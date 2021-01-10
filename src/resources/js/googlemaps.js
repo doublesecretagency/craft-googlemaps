@@ -52,7 +52,7 @@ window.googleMaps = window.googleMaps || {
     // ========================================================================= //
 
     // Initialize specified maps
-    init: function(mapId) {
+    init: function(mapId, callback) {
 
         // Initialize
         var map, dna;
@@ -90,6 +90,16 @@ window.googleMaps = window.googleMaps || {
             // Render each map
             this._unpack(dna);
 
+        }
+
+        // If callback was specified and is a function
+        if (callback && 'function' === typeof callback) {
+            // Log status
+            if (this.log) {
+                console.log(`Executing callback function`);
+            }
+            // Execute callback
+            callback();
         }
 
     },
