@@ -394,8 +394,13 @@ class DynamicMap extends Model
 
         // Initialize map (unless suppressed)
         if ($init) {
+            // Get optional callback
+            $callback = ($map['options']['callback'] ?? 'null');
+            // Initialize Google Maps after page has loaded
+            $googleMapsInit = "googleMaps.init('{$this->id}', {$callback})";
+            $js = "addEventListener('load', function () {{$googleMapsInit}});";
+            // Register JS at the end of the page
             $view = Craft::$app->getView();
-            $js = "addEventListener('load', function(){googleMaps.init('{$this->id}')});";
             $view->registerJs($js, $view::POS_END);
         }
 
