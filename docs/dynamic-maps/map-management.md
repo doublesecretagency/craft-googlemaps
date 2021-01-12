@@ -35,20 +35,21 @@ $map = GoogleMaps::map($locations, $options);
 Most (though not all) of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
 :::
  
-| Option               | Available   | Description |
-|----------------------|:-----------:|-------------|
-| `id`                 | JS/Twig/PHP | Set the `id` attribute of the map container. |
-| `width`              | JS/Twig/PHP | Set the width of the map (in px). |
-| `height`             | JS/Twig/PHP | Set the height of the map (in px). |
-| `zoom`               | JS/Twig/PHP | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
-| `center`             | JS/Twig/PHP | Set the center position of the map. |
-| `styles`             | JS/Twig/PHP | An array of [map styles](/guides/styling-a-map/). |
-| `mapOptions`         | JS/Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
-| `markerOptions`      | JS/Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
+| Option               | Available   | Description
+|----------------------|:-----------:|-------------
+| `id`                 | JS/Twig/PHP | Set the `id` attribute of the map container.
+| `width`              | JS/Twig/PHP | Set the width of the map (in px).
+| `height`             | JS/Twig/PHP | Set the height of the map (in px).
+| `zoom`               | JS/Twig/PHP | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span>
+| `center`             | JS/Twig/PHP | Set the center position of the map.
+| `styles`             | JS/Twig/PHP | An array of [map styles](/guides/styling-a-map/).
+| `mapOptions`         | JS/Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties.
+| `markerOptions`      | JS/Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
+| `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | Twig/PHP    | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
-| `field`              | Twig/PHP    | Address field(s) to be included on the map. (includes all by default) |
-| `js`                 | Twig/PHP    | Whether to preload the necessary external JavaScript. |
+| `field`              | Twig/PHP    | Address field(s) to be included on the map. (includes all by default)
+| `js`                 | Twig/PHP    | Whether to preload the necessary external JavaScript.
+| `callback`           | Twig/PHP    | JavaScript function to run after the map has loaded.
 
 :::warning Additional Details
 For more info, please consult either the [JavaScript method](/javascript/googlemaps.js/#map-locations-options) or the [Twig/PHP constructor](/models/dynamic-map-model/#construct-locations-options).

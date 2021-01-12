@@ -36,20 +36,21 @@ Once you have the map object in hand, you can then chain other methods to furthe
  - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
  - `$options` (_array_) - Optional parameters to configure the map. (see below)
 
-| Option               | Type              | Default | Description |
-|----------------------|:-----------------:|:-------:|-------------|
-| `id`                 | _string_          | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
-| `width`              | _int_             | _null_  | Set the width of the map (in px). |
-| `height`             | _int_             | _null_  | Set the height of the map (in px). |
-| `zoom`               | _int_             | <span style="white-space:nowrap">via `fitBounds`</span> | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
-| `center`             | [coords](/models/coordinates/) | <span style="white-space:nowrap">via `fitBounds`</span> | Set the center position of the map. |
-| `styles`             | _array_           | _null_  | An array of [map styles](/guides/styling-a-map/). |
-| `mapOptions`         | _object_          | _null_  | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
-| `markerOptions`      | _object_          | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | _object_          | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | _string_          | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
-| `field`              | _string_\|_array_ | _null_  | Address field(s) to be included on the map. (includes all by default) |
-| `js`                 | _bool_            | _true_  | Whether to preload the necessary external JavaScript. |
+| Option               | Type              | Default | Description
+|----------------------|:-----------------:|:-------:|-------------
+| `id`                 | _string_          | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container.
+| `width`              | _int_             | _null_  | Set the width of the map (in px).
+| `height`             | _int_             | _null_  | Set the height of the map (in px).
+| `zoom`               | _int_             | <span style="white-space:nowrap">via `fitBounds`</span> | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span>
+| `center`             | [coords](/models/coordinates/) | <span style="white-space:nowrap">via `fitBounds`</span> | Set the center position of the map.
+| `styles`             | _array_           | _null_  | An array of [map styles](/guides/styling-a-map/).
+| `mapOptions`         | _object_          | _null_  | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties.
+| `markerOptions`      | _object_          | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
+| `infoWindowOptions`  | _object_          | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
+| `infoWindowTemplate` | _string_          | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
+| `field`              | _string_\|_array_ | _null_  | Address field(s) to be included on the map. (includes all by default)
+| `js`                 | _bool_            | _true_  | Whether to preload the necessary external JavaScript.
+| `callback`           | _string_          | _null_  | JavaScript function to run after the map has finished loading.
 
 #### Returns
 

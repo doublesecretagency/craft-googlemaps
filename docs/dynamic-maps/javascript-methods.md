@@ -50,13 +50,14 @@ The new HTML element will always be returned by the `tag` method, _regardless_ o
 ---
 ---
 
-## `init(mapId = null)`
+## `init(mapId = null, callback = null)`
 
 Initialize a map, or a group of maps. This will be automatically run (unless disabled) for each map on the page.
 
 #### Arguments
 
  - `mapId` (_null_|_string_|_array_) - Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
+ - `callback` (_function_) - The `callback` function will be triggered immediately after the map has finished loading.
 
 :::code
 ```js Null
@@ -70,6 +71,19 @@ googleMaps.init('my-custom-map');
 ```js Array
 // Initialize all specified maps
 googleMaps.init(['map-one', 'map-two', 'map-three']);
+```
+:::
+
+:::code
+```js Callback by Reference
+// Pass the callback function by reference
+googleMaps.init('my-custom-map', myCallbackFunction);
+```
+```js Callback as Anonymous Function
+// Pass an anonymous callback function
+googleMaps.init('my-custom-map', function () {
+    console.log("The map has finished loading!");
+});
 ```
 :::
 

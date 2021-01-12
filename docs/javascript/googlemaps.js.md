@@ -95,7 +95,7 @@ Retrieve an existing map object.
 
 ## Map Initialization Methods
 
-### `init(mapId = null)`
+### `init(mapId = null, callback = null)`
 
 ```js
 googleMaps.init();
@@ -105,7 +105,8 @@ Initialize a map, or a group of maps. This will be automatically run (unless dis
 
 #### Arguments
 
- - `mapId` (_string_|_array_|_null_) - The ID of the map that you want to access. Can also specify an array of map IDs. Can also pass nothing (or _null_) to initialize all maps on the page.
+ - `mapId` (_string_|_array_|_null_) - The ID of the map that you want to access. You can also specify an array of map IDs. You can also pass _null_ (or omit both parameters) to initialize all maps on the page.
+ - `callback` (_function_) - An optional callback function, to be executed after the map has finished loading.
 
 Depending on what is specified as the `mapId` value, the `init` method can initialize one or many maps simultaneously.
 
@@ -118,6 +119,18 @@ googleMaps.init('my-map');
 
 // Array - Initialize all specified maps
 googleMaps.init(['map-one', 'map-two', 'map-three']);
+```
+
+You can specify a `callback` function to be run after the map has loaded.
+
+```js
+// Pass callback function by reference
+googleMaps.init('my-map', myCallbackFunction);
+
+// Pass anonymous callback function
+googleMaps.init('my-map', function () {
+    console.log("The map has finished loading!");
+});
 ```
 
 ---
