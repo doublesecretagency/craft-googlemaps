@@ -49,6 +49,6 @@ Before any further explanation, here is the general snippet from which you can c
 
 2. You then need to **create the JS callback function**. If desired, this function could be stored in a separate `.js` file. Be sure it gets loaded _after_ the plugin loads [the `googlemaps.js` file](/javascript/googlemaps.js/).
 
-3. **Specify the `callback` function in the map's `options`**. If you are referencing a named function, simply pass the name of the function. It's also possible to pass an anonymous function (as a string).
+3. **Specify the `callback` function in the map's [options](/models/dynamic-map-model/#construct-locations-options)**. If you are referencing a named function, simply pass the name of the function. It's also possible to pass an anonymous function (as a string).
 
-4. Lastly, you'll want to **get the locations** and **display the map**. It's very likely that you already had this part worked out before reading this guide on marker clustering.
+4. Lastly, you'll want to **get the locations** and **display the map**. It's very likely that you already have this part worked out. If not, check out the documentation for [creating a dynamic map...](/dynamic-maps/)
