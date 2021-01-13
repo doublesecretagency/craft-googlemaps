@@ -64,10 +64,9 @@ module.exports = {
                     // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Make live before launch
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
-                    // {text: 'Internationalization Support', link: '/guides/internationalization-support/'}, // TODO: Make live before launch
+                    {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
                     {text: 'Updating from Smart Map', link: '/guides/updating-from-smart-map/'},
-                    // {text: 'Importing Addresses', link: '/guides/importing-addresses/'}, // TODO: Integrate with Feed Me
                 ]
             },
         ],
@@ -170,18 +169,11 @@ module.exports = {
                 // 'address-in-a-matrix-field', // TODO: Make live before launch
                 'prevent-zoom-when-scrolling',
                 'required-js-assets',
-                // 'internationalization-support', // TODO: Make live before launch
+                'importing-addresses',
                 'bermuda-triangle',
                 'updating-from-smart-map',
-                // 'importing-addresses',
             ],
 
-            // // fallback
-            // '/': [
-            //     '',        /* / */
-            //     'contact', /* /contact.html */
-            //     'about',   /* /about.html */
-            // ]
         }
     }
 };
