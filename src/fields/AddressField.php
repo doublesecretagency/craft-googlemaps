@@ -228,8 +228,8 @@ class AddressField extends Field implements PreviewableFieldInterface
             return new AddressModel([
                 'elementId' => (int) ($element->id ?? null),
                 'fieldId'   => (int) ($this->id ?? null),
-                'formatted' => ($value['formatted'] ?: null),
-                'raw'       => ($value['raw'] ?: null),
+                'formatted' => (($value['formatted'] ?? null) ?: null),
+                'raw'       => (($value['raw'] ?? null) ?: null),
                 'street1'   => ($value['street1'] ?? null),
                 'street2'   => ($value['street2'] ?? null),
                 'city'      => ($value['city'] ?? null),
