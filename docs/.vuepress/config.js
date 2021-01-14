@@ -61,7 +61,7 @@ module.exports = {
                     {text: 'KML Layers', link: '/guides/kml-layers/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Make live before launch
+                    // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Improve Matrix compatibility
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
                     {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
@@ -166,7 +166,7 @@ module.exports = {
                 'kml-layers',
                 'region-biasing',
                 'filter-by-subfields',
-                // 'address-in-a-matrix-field', // TODO: Make live before launch
+                // 'address-in-a-matrix-field', // TODO: Improve Matrix compatibility
                 'prevent-zoom-when-scrolling',
                 'required-js-assets',
                 'importing-addresses',

@@ -870,24 +870,27 @@ __webpack_require__.r(__webpack_exports__);
 
  // Disable silly message
 
-Vue.config.productionTip = false; // Create Vue instance
-
-window.addressFieldSettings = new Vue({
-  components: {
-    'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default,
-    'subfield-manager': _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    'default-coords': _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__.default
-  },
-  data: {
-    settings: settings,
-    data: data,
-    icons: icons
-  }
-}); // THIS IS THE PART WE WANT TO BE WORKING ON!!
-// Initialize Vue instance
+Vue.config.productionTip = false; // Initialize Vue instance
 
 window.initAddressFieldSettings = function () {
-  window.addressFieldSettings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
+  // Get all matching DOM elements
+  var elements = document.querySelectorAll('.address-settings'); // Initialize Vue for each element
+
+  elements.forEach(function (el) {
+    new Vue({
+      el: el,
+      components: {
+        'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+        'subfield-manager': _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+        'default-coords': _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__.default
+      },
+      data: {
+        settings: settings,
+        data: data,
+        icons: icons
+      }
+    });
+  });
 };
 
 /***/ }),

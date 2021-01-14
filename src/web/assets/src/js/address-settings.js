@@ -5,21 +5,27 @@ import DefaultCoords from './../vue/address-settings/default-coords.vue';
 // Disable silly message
 Vue.config.productionTip = false;
 
-// Create Vue instance
-window.addressFieldSettings = new Vue({
-    components: {
-        'address-field': AddressField,
-        'subfield-manager': SubfieldManager,
-        'default-coords': DefaultCoords
-    },
-    data: {
-        settings: settings,
-        data: data,
-        icons: icons
-    }
-});
-
 // Initialize Vue instance
 window.initAddressFieldSettings = () => {
-    window.addressFieldSettings.$mount('#types-doublesecretagency-googlemaps-fields-AddressField-address-settings');
+
+    // Get all matching DOM elements
+    var elements = document.querySelectorAll('.address-settings');
+
+    // Initialize Vue for each element
+    elements.forEach(el => {
+        new Vue({
+            el: el,
+            components: {
+                'address-field': AddressField,
+                'subfield-manager': SubfieldManager,
+                'default-coords': DefaultCoords
+            },
+            data: {
+                settings: settings,
+                data: data,
+                icons: icons
+            }
+        });
+    })
+
 }
