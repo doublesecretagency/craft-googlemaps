@@ -27,6 +27,21 @@ Worried about the proximity search starting from the right place? Check out [Reg
 
 How wide of an area to conduct a proximity search within. The value represents the search radius, reaching outward from the `target` value. The units of measurement will be defined by `units`.
 
+:::code
+```twig
+{% set options = {
+    'range': 50,
+    'units': 'kilometers',
+} %}
+```
+```php
+$options = [
+    'range' => 50,
+    'units' => 'kilometers',
+];
+```
+:::
+
 ## `units`
 
 The unit of measurement by which to measure distances. Accepts the following values:
@@ -42,16 +57,20 @@ You can specify these filters as a collection of `subfield: value` pairs:
 
 :::code
 ```twig
-'subfields': {
-    'city': 'Los Angeles',
-    'state': 'CA'
-}
+{% set options = {
+    'subfields': {
+        'city': 'Los Angeles',
+        'state': 'CA'
+    }
+} %}
 ```
 ```php
-'subfields' => [
-    'city' => 'Los Angeles',
-    'state' => 'CA'
-]
+$options = [
+    'subfields' => [
+        'city' => 'Los Angeles',
+        'state' => 'CA'
+    ]
+];
 ```
 :::
 
@@ -59,14 +78,18 @@ Each subfield can also be specified as an array, which allows multiple valid mat
 
 :::code
 ```twig
-'subfields': {
-    'state': ['CA', 'OR', 'WA']
-}
+{% set options = {
+    'subfields': {
+        'state': ['CA', 'OR', 'WA']
+    }
+} %}
 ```
 ```php
-'subfields' => [
-    'state' => ['CA', 'OR', 'WA']
-]
+$options = [
+    'subfields' => [
+        'state' => ['CA', 'OR', 'WA']
+    ]
+];
 ```
 :::
 
