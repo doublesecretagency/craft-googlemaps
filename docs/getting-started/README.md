@@ -19,7 +19,7 @@ Your directory structure should now look like this:
     "repositories": [
         {
             "type": "path",
-            "url": "~/path/to/yourproject/beta/*",
+            "url": "beta/*",
             "options": {
                 "symlink": true
             }
@@ -27,9 +27,7 @@ Your directory structure should now look like this:
     ],
 ```
 
-Adjust the `url` value to properly reflect your local path.
-
-4. To complete the setup, follow the [Installation via Console Commands...](#installation-via-console-commands)
+4. Follow the [Installation via Console Commands...](#installation-via-console-commands)
 :::
 
 
