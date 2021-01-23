@@ -6,16 +6,14 @@
 
 1. Create a folder in your project root called `beta`.
 2. Unzip `googlemaps-beta.*.zip` into the new `beta` folder.
-
-Your directory structure should now look like this:
-
-```
-    yourproject/beta/craft-googlemaps
-``` 
-
-3. Add this to your `composer.json` file:
+3. Add these items to your `composer.json` file:
 
 ```js
+    "require": {
+        ...
+        "doublesecretagency/craft-googlemaps": "@dev",
+        ...
+    },
     "repositories": [
         {
             "type": "path",
@@ -27,8 +25,16 @@ Your directory structure should now look like this:
     ],
 ```
 
-4. Follow the [Installation via Console Commands...](#installation-via-console-commands)
+4. Via command line, update composer and install the plugin:
+
+```shell
+    composer update
+    ./craft plugin/install google-maps
+```
+
+That's it! Ping Lindsey if you hit any snags. 👍
 :::
+
 
 
 ## Installation via Plugin Store
@@ -56,7 +62,7 @@ cd /path/to/project
 2. Then tell Composer to load the plugin:
 
 ```sh
-composer require doublesecretagency/craft-googlemaps @dev
+composer require doublesecretagency/craft-googlemaps
 ```
 
 3. Then tell Craft to install the plugin:

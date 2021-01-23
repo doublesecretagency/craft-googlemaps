@@ -77,6 +77,7 @@ module.exports = {
                 'api-keys',
                 'settings',
                 'config',
+                'updating-from-smart-map',
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
 

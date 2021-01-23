@@ -2,6 +2,16 @@
 
 <update-message/>
 
+## Updating the plugin
+
+From a software perspective, switching plugins is easy! Simply install the new Google Maps plugin, and it will automatically migrate everything it needs out of Smart Map.
+
+:::tip Updating the Software
+See this quick guide for [replacing Smart Map with Google Maps...](/getting-started/updating-from-smart-map/)
+:::
+
+## Updating your Twig templates
+
 Each subject below mirrors a page from the original Smart Map documentation.
 
  - [🔧 Using an Address field](/updating-from-smart-map/using-an-address-field/)
