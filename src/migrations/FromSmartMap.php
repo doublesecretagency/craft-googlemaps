@@ -12,13 +12,12 @@
 namespace doublesecretagency\googlemaps\migrations;
 
 use Craft;
-use craft\db\Migration;
+use craft\db\Query;
 use craft\fields\MissingField;
 use craft\helpers\Json;
+use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
-use doublesecretagency\smartmap\SmartMap;
-use Throwable;
-use yii\base\NotSupportedException;
+use doublesecretagency\googlemaps\records\Address;
 
 /**
  * FromSmartMap Migration
@@ -28,289 +27,33 @@ class FromSmartMap
 {
 
     /**
-     * Class name constants for both Address fields
-     */
-    const SMARTMAP_ADDRESS   = 'doublesecretagency\\smartmap\\fields\\Address';
-    const GOOGLEMAPS_ADDRESS = 'doublesecretagency\\googlemaps\\fields\\AddressField';
-
-    /**
-     * @var Migration Internalized migration object.
-     */
-    private static $_migration;
-
-    /**
-     * @var array Default Address field layout.
-     */
-    private static $_defaultLayout = [
-        'street1' => ['enable' => 1, 'width' => 100, 'position' => 1],
-        'street2' => ['enable' => 1, 'width' => 100, 'position' => 2],
-        'city'    => ['enable' => 1, 'width' =>  50, 'position' => 3],
-        'state'   => ['enable' => 1, 'width' =>  15, 'position' => 4],
-        'zip'     => ['enable' => 1, 'width' =>  35, 'position' => 5],
-        'country' => ['enable' => 1, 'width' => 100, 'position' => 6],
-        'lat'     => ['enable' => 1, 'width' =>  50, 'position' => 7],
-        'lng'     => ['enable' => 1, 'width' =>  50, 'position' => 8],
-    ];
-
-    // ========================================================================= //
-
-    /**
      * Install and configure tables from scratch.
-     *
-     * @param $migration
      */
-    public static function update($migration)
+    public static function update()
     {
-        // Share migration locally
-        static::$_migration = $migration;
-
-        // Ensure Smart Map data is properly configured
-        static::_smartMap_replaceFreegeoipWithIpstack();
-        static::_smartMap_addPositionToFieldLayouts();
-
-        // Convert to Google Maps data and make adjustments
-        static::_googleMaps_renameAddressTable();
-        static::_googleMaps_addNewColumns();
-        static::_googleMaps_migrateAddressFields();
-        static::_googleMaps_migratePluginSettings();
+        // Migrate Smart Map data to Google Maps
+        static::_migratePluginSettings();
+        static::_migrateAddressFieldSettings();
+        static::_migrateAddressFieldData();
 
         // Uninstall Smart Map
-        Craft::$app->plugins->uninstallPlugin('smart-map');
+        Craft::$app->getPlugins()->uninstallPlugin('smart-map');
     }
 
     // ========================================================================= //
 
     /**
-     * Smart Map
-     * Replace FreeGeoIp.net with ipstack.
-     */
-    private static function _smartMap_replaceFreegeoipWithIpstack()
-    {
-        // Get settings
-        $settings = SmartMap::$plugin->getSettings();
-
-        // If no settings exist, bail
-        if (!$settings) {
-            return;
-        }
-
-        // Convert model into array
-        $settings = $settings->getAttributes();
-
-        // If setting doesn't exist, bail
-        if (!isset($settings['geolocation'])) {
-            return;
-        }
-
-        // If not set to "freegeoip", bail
-        if ('freegeoip' != $settings['geolocation']) {
-            return;
-        }
-
-        // Modify settings
-        $settings['geolocation'] = 'ipstack';
-
-        // Save settings
-        Craft::$app->getPlugins()->savePluginSettings(SmartMap::$plugin, $settings);
-    }
-
-    /**
-     * Smart Map
-     * Add a `position` value to Address layout subfields.
-     *
-     * @throws Throwable
-     */
-    private static function _smartMap_addPositionToFieldLayouts()
-    {
-        // If admin changes are not allowed, bail
-        if (!Craft::$app->getConfig()->getGeneral()->allowAdminChanges) {
-            return;
-        }
-
-        // Get fields service
-        $fieldsService = Craft::$app->getFields();
-
-        // Get all fields
-        $allFields = $fieldsService->getAllFields(false);
-
-        // Loop through all fields
-        foreach ($allFields as $field) {
-
-            // If not an Address field, skip
-            if (static::SMARTMAP_ADDRESS !== get_class($field)) {
-                continue;
-            }
-
-            // Get field settings
-            $settings = $field->getSettings();
-
-            // If no layout
-            if (!isset($settings['layout'])) {
-
-                // Use the default layout
-                $field->layout = static::$_defaultLayout;
-                $fieldsService->saveField($field, false);
-
-                // Skip to next field
-                continue;
-            }
-
-            // Get existing field layout
-            $layout = $settings['layout'];
-
-            // Get first subfield value
-            $subfield = reset($layout);
-
-            // If subfield is misconfigured
-            if (!isset($subfield['width']) || !isset($subfield['enable'])) {
-
-                // Use the default layout
-                $field->layout = static::$_defaultLayout;
-                $fieldsService->saveField($field, false);
-
-                // Skip to next field
-                continue;
-            }
-
-            // If positions are already set, skip to next field
-            if (isset($subfield['position'])) {
-                continue;
-            }
-
-            // Add position to each subfield
-            $i = 1;
-            foreach($layout as $handle => $settings){
-                $layout[$handle]['position'] = $i++;
-            }
-
-            // Save updated layout
-            $field->layout = $layout;
-            $fieldsService->saveField($field, false);
-
-        }
-    }
-
-    /**
-     * Google Maps
-     * Rename table containing Address data.
-     */
-    private static function _googleMaps_renameAddressTable()
-    {
-        // If the table exists doesn't exist, bail
-        if (!static::$_migration->db->tableExists('{{%smartmap_addresses}}')) {
-            echo "Can't rename `smartmap_addresses` table because it does not exist.\n";
-            return;
-        }
-
-        // Rename the table
-        static::$_migration->renameTable('{{%smartmap_addresses}}', '{{%googlemaps_addresses}}');
-    }
-
-    /**
-     * Google Maps
-     * Add new columns for storing additional address data.
-     *
-     * @throws NotSupportedException
-     */
-    private static function _googleMaps_addNewColumns()
-    {
-        // If table doesn't exist, bail
-        if (!static::$_migration->db->tableExists('{{%googlemaps_addresses}}')) {
-            echo "Can't add new columns, the `googlemaps_addresses` table does not yet exist.\n";
-            return;
-        }
-
-        // Add `formatted` column
-        if (!static::$_migration->db->columnExists('{{%googlemaps_addresses}}', 'formatted')) {
-            static::$_migration->addColumn(
-                '{{%googlemaps_addresses}}',
-                'formatted',
-                static::$_migration->string()->after('fieldId')
-            );
-        }
-
-        // Add `raw` column
-        if (!static::$_migration->db->columnExists('{{%googlemaps_addresses}}', 'raw')) {
-            static::$_migration->addColumn(
-                '{{%googlemaps_addresses}}',
-                'raw',
-                static::$_migration->text()->after('formatted')
-            );
-        }
-
-        // Add `zoom` column
-        if (!static::$_migration->db->columnExists('{{%googlemaps_addresses}}', 'zoom')) {
-            static::$_migration->addColumn(
-                '{{%googlemaps_addresses}}',
-                'zoom',
-                static::$_migration->tinyInteger(2)->after('lng')
-            );
-        }
-
-        // Set zoom for existing addresses with valid coordinates
-        static::$_migration->update('{{%googlemaps_addresses}}', [
-            'zoom' => 11
-        ], ['and',
-            ['zoom' => null],
-            ['not', ['lat' => null]],
-            ['not', ['lng' => null]],
-        ], [], false);
-    }
-
-    /**
-     * Google Maps
-     * Update the settings of existing Address fields.
-     */
-    private static function _googleMaps_migrateAddressFields()
-    {
-        // If admin changes are not allowed, bail
-        if (!Craft::$app->getConfig()->getGeneral()->allowAdminChanges) {
-            return;
-        }
-
-        // Get fields service
-        $fieldsService = Craft::$app->getFields();
-
-        // Get all fields
-        $allFields = $fieldsService->getAllFields(false);
-
-        // Loop through all fields
-        foreach ($allFields as $field) {
-
-            // Get field class
-            $fieldClass = get_class($field);
-
-            // Compare field classes
-            $activeAddress   = ($fieldClass === static::SMARTMAP_ADDRESS);
-            $inactiveAddress = ($fieldClass === MissingField::class) && ($field->expectedType === static::SMARTMAP_ADDRESS);
-
-            // If field is an Address, update it
-            if ($activeAddress || $inactiveAddress) {
-
-                // Get Address field settings
-                $oldSettings = $field->getSettings();
-
-                // If Missing field, go one level deeper
-                if ($inactiveAddress) {
-                    $oldSettings = Json::decode($oldSettings['settings']);
-                }
-
-                // Update field type and settings
-                static::_updateFieldConfig($field->id, $oldSettings);
-
-            }
-
-        }
-    }
-
-    /**
-     * Google Maps
      * Migrate all plugin settings from Smart Map.
      */
-    private static function _googleMaps_migratePluginSettings()
+    private static function _migratePluginSettings()
     {
+        // If Smart Map is not installed, bail
+        if (!Craft::$app->getPlugins()->isPluginEnabled('smart-map')) {
+            return;
+        }
+
         // Get settings for both plugins
-        $smartMap = (SmartMap::$plugin->getSettings()->getAttributes() ?? false);
+        $smartMap = (\doublesecretagency\smartmap\SmartMap::$plugin->getSettings()->getAttributes() ?? false);
         $googleMaps = (GoogleMapsPlugin::$plugin->getSettings()->getAttributes() ?? []);
 
         // If no Smart Map settings exist, bail
@@ -318,10 +61,14 @@ class FromSmartMap
             return;
         }
 
+        // Replace `freegeoip` with `ipstack` (if necessary)
+        $geolocationService = ($smartMap['geolocation'] ?? $googleMaps['geolocationService']);
+        $geolocationService = str_replace('freegeoip', 'ipstack', $geolocationService);
+
         // Migrate settings
         $googleMaps['browserKey']          = ($smartMap['googleBrowserKey']  ?? $googleMaps['browserKey']);
         $googleMaps['serverKey']           = ($smartMap['googleServerKey']   ?? $googleMaps['serverKey']);
-        $googleMaps['geolocationService']  = ($smartMap['geolocation']       ?? $googleMaps['geolocationService']);
+        $googleMaps['geolocationService']  = $geolocationService;
         $googleMaps['ipstackApiAccessKey'] = ($smartMap['ipstackAccessKey']  ?? $googleMaps['ipstackApiAccessKey']);
         $googleMaps['maxmindLicenseKey']   = ($smartMap['maxmindLicenseKey'] ?? $googleMaps['maxmindLicenseKey']);
         $googleMaps['maxmindService']      = ($smartMap['maxmindService']    ?? $googleMaps['maxmindService']);
@@ -334,15 +81,139 @@ class FromSmartMap
         Craft::$app->getPlugins()->enablePlugin('google-maps');
     }
 
+    /**
+     * Migrate the settings of existing Address fields.
+     */
+    private static function _migrateAddressFieldSettings()
+    {
+        // If admin changes are not allowed, bail
+        if (!Craft::$app->getConfig()->getGeneral()->allowAdminChanges) {
+            return;
+        }
+
+        // Class name of Smart Map Address field type
+        $smAddress = 'doublesecretagency\\smartmap\\fields\\Address';
+
+        // Get fields service
+        $fieldsService = Craft::$app->getFields();
+
+        // Get all fields
+        $allFields = $fieldsService->getAllFields(false);
+
+        // Loop through all fields
+        foreach ($allFields as $smField) {
+
+            // Get field class
+            $fieldClass = get_class($smField);
+
+            // Compare field classes
+            $activeAddress   = ($fieldClass === $smAddress);
+            $inactiveAddress = ($fieldClass === MissingField::class) && ($smField->expectedType === $smAddress);
+
+            // If field is an Address, update it
+            if ($activeAddress || $inactiveAddress) {
+
+                // Get Address field settings
+                $oldSettings = $smField->getSettings();
+
+                // If Missing field, go one level deeper
+                if ($inactiveAddress) {
+                    $oldSettings = Json::decode($oldSettings['settings']);
+                }
+
+                // Reconfigure field settings
+                $newSettings = static::_updateFieldConfig($oldSettings);
+
+                // Create a fresh Google Maps Address Field
+                $gmField = new AddressField();
+
+                // Migrate field configuration
+                $gmField->id           = $smField->id;
+                $gmField->uid          = $smField->uid;
+                $gmField->groupId      = $smField->groupId;
+                $gmField->name         = $smField->name;
+                $gmField->handle       = $smField->handle;
+                $gmField->instructions = $smField->instructions;
+                $gmField->searchable   = $smField->searchable;
+
+                // Migrate field settings
+                $gmField->showMap            = $newSettings['showMap'];
+                $gmField->mapOnStart         = $newSettings['mapOnStart'];
+                $gmField->mapOnSearch        = $newSettings['mapOnSearch'];
+                $gmField->visibilityToggle   = $newSettings['visibilityToggle'];
+                $gmField->coordinatesMode    = $newSettings['coordinatesMode'];
+                $gmField->coordinatesDefault = $newSettings['coordinatesDefault'];
+                $gmField->subfieldConfig     = $newSettings['subfieldConfig'];
+
+                // Save reconfigured field
+                $fieldsService->saveField($gmField, false);
+            }
+
+        }
+    }
+
+    /**
+     * Migrate the data of existing Address fields.
+     */
+    private static function _migrateAddressFieldData()
+    {
+        // Get all existing Smart Map data
+        $rows = (new Query())
+            ->select('*')
+            ->from('{{%smartmap_addresses}}')
+            ->orderBy('[[id]]')
+            ->all();
+
+        // Loop through existing Address records
+        foreach ($rows as $data) {
+
+            // Attempt to load an existing record
+            $record = Address::findOne([
+                'elementId' => $data['elementId'],
+                'fieldId'   => $data['fieldId'],
+            ]);
+
+            // If record already exists, skip it
+            if ($record) {
+                continue;
+            }
+
+            // Create a new Address for Google Maps
+            $record = new Address([
+                'id'          => ($data['id'] ?: null),
+                'elementId'   => ($data['elementId'] ?: null),
+                'fieldId'     => ($data['fieldId'] ?: null),
+                'formatted'   => null,
+                'raw'         => null,
+                'street1'     => ($data['street1'] ?: null),
+                'street2'     => ($data['street2'] ?: null),
+                'city'        => ($data['city'] ?: null),
+                'state'       => ($data['state'] ?: null),
+                'zip'         => ($data['zip'] ?: null),
+                'country'     => ($data['country'] ?: null),
+                'lat'         => ($data['lat'] ?: null),
+                'lng'         => ($data['lng'] ?: null),
+                'zoom'        => 11,
+                'dateCreated' => ($data['dateCreated'] ?: null),
+                'dateUpdated' => ($data['dateUpdated'] ?: null),
+                'uid'         => ($data['uid'] ?: null),
+            ]);
+
+            // Save record
+            $record->save();
+
+        }
+    }
+
     // ========================================================================= //
 
     /**
      * Update existing field configurations.
      *
-     * @param int $id ID of field
      * @param array $old Original field settings
+     * @return array Reconfigured field settings
      */
-    private static function _updateFieldConfig(int $id, array $old)
+    private static function _updateFieldConfig(array $old): array
     {
         // Whether the old settings contain valid coordinates
         $validCoords = (
@@ -367,8 +238,8 @@ class FromSmartMap
             ];
         }
 
-        // Update field settings
-        $newSettings = [
+        // Return updated field settings
+        return [
             'showMap' => null,
             'mapOnStart' => 'close',
             'mapOnSearch' => 'open',
@@ -414,14 +285,6 @@ class FromSmartMap
                 ]
             ]
         ];
-
-        // Update field configuration
-        static::$_migration->update('{{%fields}}', [
-            'type' => static::GOOGLEMAPS_ADDRESS,
-            'settings' => Json::encode($newSettings)
-        ], [
-            'id' => $id
-        ], [], false);
     }
 
 }

@@ -11,7 +11,6 @@
 
 namespace doublesecretagency\googlemaps\migrations;
 
-use Craft;
 use craft\db\Migration;
 
 /**
@@ -26,22 +25,14 @@ class Install extends Migration
      */
     public function safeUp()
     {
-        // Check whether the Smart Map plugin is installed and enabled
-        $pluginInstalled = Craft::$app->plugins->isPluginEnabled('smart-map');
+        // Configure the plugin from scratch
+        FromScratch::update($this);
 
-        // Check whether the `smartmap_addresses` table exists
-        $tableExists = $this->db->tableExists('{{%smartmap_addresses}}');
-
-        // If the plugin is installed and the table exists
-        if ($pluginInstalled && $tableExists) {
+        // If the `smartmap_addresses` table exists
+        if ($this->db->tableExists('{{%smartmap_addresses}}')) {
 
             // Migrate everything from Smart Map
-            FromSmartMap::update($this);
-
-        } else {
-
-            // Configure the plugin from scratch
-            FromScratch::update($this);
+            FromSmartMap::update();
 
         }
     }
