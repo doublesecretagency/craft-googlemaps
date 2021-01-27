@@ -2,7 +2,7 @@
     "name": "doublesecretagency/craft-googlemaps",
     "description": "Maps in minutes. Powered by Google Maps.",
     "type": "craft-plugin",
-    "version": "4.0.0-beta.6",
+    "version": "4.0.0-beta.7",
     "keywords": [
         "craft",
         "cms",
