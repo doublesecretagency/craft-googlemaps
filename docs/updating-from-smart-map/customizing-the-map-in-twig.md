@@ -16,18 +16,18 @@ With that in mind, it's worth noting that the list of available `options` has ch
 
 Please take a closer look to see which items will need to be updated, added, or removed.
 
-#### List of all changes to available `options`
+#### List of all changes to available `options`:
 
 | Option               |    | What Changed
-|:---------------------|----|:----------
-| `markerInfo`         | ➡️ | Renamed to `infoWindowTemplate`
-| `js`                 | ⭐ | **ADDED!** (new in the Google Maps plugin)
-| `styles`             | ⭐ | **ADDED!** (new in the Google Maps plugin)
-| `callback`           | ⭐ | **ADDED!** (new in the Google Maps plugin)
+|:---------------------|----|:-------------
 | `mapOptions`         | ⭐ | **ADDED!** (new in the Google Maps plugin)
-| `scrollwheel`        | ❌ | REMOVED (configure via `mapOptions` instead)
+| `styles`             | ⭐ | **ADDED!** (new in the Google Maps plugin)
+| `js`                 | ⭐ | **ADDED!** (new in the Google Maps plugin)
+| `callback`           | ⭐ | **ADDED!** (new in the Google Maps plugin)
 | `maptype`            | ❌ | REMOVED (configure via `mapOptions` instead)
 | `scale`              | ❌ | REMOVED (configure via `mapOptions` instead)
+| `scrollwheel`        | ❌ | REMOVED (configure via `mapOptions` instead)
+| `markerInfo`         | ➡️ | Renamed to `infoWindowTemplate`
 | `id`                 | ✅ | No change
 | `width`              | ✅ | No change
 | `height`             | ✅ | No change

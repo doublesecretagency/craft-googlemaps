@@ -28,13 +28,13 @@ class Install extends Migration
         // Configure the plugin from scratch
         FromScratch::update($this);
 
-        // If the `smartmap_addresses` table exists
-        if ($this->db->tableExists('{{%smartmap_addresses}}')) {
-
-            // Migrate everything from Smart Map
-            FromSmartMap::update();
-
+        // If the `smartmap_addresses` table does not exist, bail
+        if (!$this->db->tableExists('{{%smartmap_addresses}}')) {
+            return;
         }
+
+        // Migrate everything from Smart Map
+        FromSmartMap::update();
     }
 
     /**
