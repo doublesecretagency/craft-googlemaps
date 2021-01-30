@@ -235,7 +235,7 @@ class Address extends Location
     /**
      * @inheritdoc
      */
-    public function linkToSearch(array $parameters = []): string
+    public function linkToMap(array $parameters = []): string
     {
         // If invalid coordinates, bail
         if (!$this->hasCoords()) {
@@ -261,7 +261,7 @@ class Address extends Location
         }
 
         // Return compiled endpoint URL
-        return parent::linkToSearch($parameters);
+        return parent::linkToMap($parameters);
     }
 
     /**

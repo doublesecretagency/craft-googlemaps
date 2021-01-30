@@ -159,7 +159,6 @@ class Location extends Model
 
     /**
      * Puts a pin in the specified location and displays available place details.
-     * Use this method to show a marker on the map (instead of `linkToMap`).
      *
      * For more info regarding the available parameters...
      * https://developers.google.com/maps/documentation/urls/get-started#search-action
@@ -167,7 +166,7 @@ class Location extends Model
      * @param array $parameters
      * @return string
      */
-    public function linkToSearch(array $parameters = []): string
+    public function linkToMap(array $parameters = []): string
     {
         // If invalid coordinates, bail
         if (!$this->hasCoords()) {
@@ -232,31 +231,6 @@ class Location extends Model
     }
 
     /**
-     * Link to a map with no markers or directions.
-     * If you want a marker, use `linkToSearch` instead.
-     *
-     * For more info regarding the available parameters...
-     * https://developers.google.com/maps/documentation/urls/get-started#map-action
-     *
-     * @param array $parameters
-     * @return string
-     */
-    public function linkToMap(array $parameters = []): string
-    {
-        // If invalid coordinates, bail
-        if (!$this->hasCoords()) {
-            return '#invalid-coordinates';
-        }
-
-        // Set center (if not already specified)
-        $parameters['center'] = ($parameters['center'] ?? "{$this->lat},{$this->lng}");
-
-        // Return compiled endpoint URL
-        $url = 'https://www.google.com/maps/@?api=1&map_action=map';
-        return $this->_compileUrl($url, $parameters);
-    }
-
-    /**
      * Launch a viewer to display Street View images as interactive panoramas.
      *
      * For more info regarding the available parameters...
@@ -277,6 +251,30 @@ class Location extends Model
 
         // Return compiled endpoint URL
         $url = 'https://www.google.com/maps/@?api=1&map_action=pano';
+        return $this->_compileUrl($url, $parameters);
+    }
+
+    /**
+     * Link to a map of a general area with no markers or directions.
+     *
+     * For more info regarding the available parameters...
+     * https://developers.google.com/maps/documentation/urls/get-started#map-action
+     *
+     * @param array $parameters
+     * @return string
+     */
+    public function linkToArea(array $parameters = []): string
+    {
+        // If invalid coordinates, bail
+        if (!$this->hasCoords()) {
+            return '#invalid-coordinates';
+        }
+
+        // Set center (if not already specified)
+        $parameters['center'] = ($parameters['center'] ?? "{$this->lat},{$this->lng}");
+
+        // Return compiled endpoint URL
+        $url = 'https://www.google.com/maps/@?api=1&map_action=map';
         return $this->_compileUrl($url, $parameters);
     }
 
