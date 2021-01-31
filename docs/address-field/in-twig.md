@@ -20,7 +20,7 @@ Here is the Twig code which generated that screenshot...
 
 {# Show links to the full map and directions #}
 <div class="links-to-google">
-    <a href="{{ address.linkToSearch() }}" target="_blank">Map</a> &bull;
+    <a href="{{ address.linkToMap() }}" target="_blank">Map</a> &bull;
     <a href="{{ address.linkToDirections() }}" target="_blank">Directions</a>
 </div>
 
@@ -33,7 +33,7 @@ Here is the Twig code which generated that screenshot...
 Every Address field returns an **Address Model**. The example above is relying on several distinct features of the Address Model...
 
  - We used `multiline` to display a complete address, formatted across multiple lines.
- - We used `linkToSearch` and `linkToDirections` to display direct links to Google Maps.
+ - We used `linkToMap` and `linkToDirections` to display direct links to Google Maps.
  - We used `googleMaps.map` to show the location as a marker on a map.
  
 To get a better understanding of the various methods available, take a look at the [Address Model](/models/address-model/) documentation.

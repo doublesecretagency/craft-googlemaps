@@ -74,7 +74,7 @@ The `icon` value will be passed as a parameter of the `markerOptions` value.
 
 From the Google Maps API documentation regarding [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)...
 
-<img class="dropshadow" :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon">
+<img class="dropshadow" :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon" style="max-width:580px">
 
 :::warning markerOptions.icon
 If you specify a `markerOptions` value during the initial `map` declaration, it will be treated as the default `markerOptions` value for all future markers. Since this can contain an `icon` value, it effectively allows you to define a specific fallback icon.

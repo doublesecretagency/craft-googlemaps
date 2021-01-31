@@ -2,15 +2,11 @@
 
 <update-message/>
 
-```twig
-{# OLD #}
+The process for applying different icons to different markers has been completely, 100% changed.
 
-
-{# NEW #}
-
-```
+Fortunately, it can now be handled easily in **JavaScript, Twig, or PHP!**
 
 :::tip New Documentation
-See the complete new [EXAMPLE](/test/) documentation.
+See the complete new [Setting Marker Icons](/guides/setting-marker-icons/) documentation.
 :::
 

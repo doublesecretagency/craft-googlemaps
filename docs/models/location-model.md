@@ -20,7 +20,7 @@ _object_ - Alias for `getCoords()`.
 
 ### `hasCoords()`
 
-_bool_ - Whether the location has functional coordinates.
+Determine whether the location has valid coordinates.
 
 ```twig
 {% if location.hasCoords() %}
@@ -29,56 +29,100 @@ _bool_ - Whether the location has functional coordinates.
 {% endif %}
 ```
 
+**Returns**
+
+- _bool_ - Whether the location has functional coordinates.
+
 ### `getCoords()`
 
-_object_ - Get the location coordinates as a [coords](/models/coordinates/) JSON object.
+Get the coordinates of a location.
+
+**Returns**
+
+- _object_ - Get the location coordinates as a [coords](/models/coordinates/) JSON object.
 
 ### `getDistance(location, units = 'miles')`
 
-_float_|_null_ - Pass a [set of coordinates](/models/coordinates/) or a separate Location Model (can be an [Address](/models/address-model/) or [Visitor](/models/visitor-model/) model) to measure the distance between the two points.
+Get the distance between two points.
 
 ```twig
 {% set distance = entry.homeAddress.getDistance(entry.businessAddress) %}
 ```
 
-### `linkToSearch(parameters = {})`
+**Arguments**
 
-_string_ - Generate a link to see this location in Google Maps.
+- `$location` (_mixed_) - A [set of coordinates](/models/coordinates/), or a separate Location Model (can be an [Address](/models/address-model/) or [Visitor](/models/visitor-model/) model).
+- `$units` (_string_) - Unit of measurement (`mi`,`km`,`miles`,`kilometers`).
+
+**Returns**
+
+- _float_|_null_ - Calculates the distance between the two points.
+
+### `linkToMap(parameters = {})`
+
+Generate a link to a Google Map, displaying a single marker of this location.
 
 ```twig
-<a href="{{ location.linkToSearch() }}">See Location in Google Maps</a>
+<a href="{{ location.linkToMap() }}">See Location in Google Maps</a>
 ```
 
-:::tip Displaying a Marker
-Counterintuitively, this method is preferred over `linkToMap` if you want to display a relevant location marker. If it's confusing, it's because we modeled the method names after [Google](https://developers.google.com/maps/documentation/urls/get-started#forming-the-url).
-:::
+**Arguments**
+
+- `$parameters` (_array_) - Appended to the generated Google URL. [See full parameter details.](https://developers.google.com/maps/documentation/urls/get-started#parameters)
+
+**Returns**
+
+- _string_ - Generate a link to see this location in Google Maps.
 
 ### `linkToDirections(parameters = {}, origin = null)`
 
-_string_ - Generate a link to see this location in Google Maps.
+Generate a link to a Google Map, displaying directions to this location.
 
 ```twig
 <a href="{{ location.linkToDirections() }}">Get Directions</a>
 ```
 
-The `origin` must be another **Location Model**. Both [Address Models](/models/address-model/) and [Visitor Models](/models/visitor-model/) are extensions of the Location Model, and therefore considered a valid `origin`.
+**Arguments**
 
-### `linkToMap(parameters = {})`
+- `$parameters` (_array_) - Appended to the generated Google URL. [See full parameter details.](https://developers.google.com/maps/documentation/urls/get-started#directions-action)
+- `$origin` (_mixed_) - Must be another **Location Model**. Both [Address Models](/models/address-model/) and [Visitor Models](/models/visitor-model/) are extensions of the Location Model, and therefore considered a valid `origin`.
 
-_string_ - Generate a link to see this location in Google Maps.
+**Returns**
 
-```twig
-<a href="{{ location.linkToMap() }}">Open a Google Maps</a>
-```
-
-:::warning Displaying a Marker
-The `linkToMap` method will show a map centered on the desired location, but _it will not display a marker_. If you would like a marker to appear, use the `linkToSearch` method instead.
-:::
+- _string_ - Generate a link to get directions to this location in Google Maps.
 
 ### `linkToStreetView(parameters = {})`
 
-_string_ - Generate a link to see this location in Google Maps.
+Generate a link to a Google Map, displaying this location as a street view panorama.
 
 ```twig
 <a href="{{ location.linkToStreetView() }}">Open in Google Street View</a>
 ```
+
+**Arguments**
+
+- `$parameters` (_array_) - Appended to the generated Google URL. [See full parameter details.](https://developers.google.com/maps/documentation/urls/get-started#street-view-action)
+
+**Returns**
+
+- _string_ - Generate a link to see a street view panorama of this location in Google Maps.
+
+### `linkToArea(parameters = {})`
+
+Generate a link to a Google Map, displaying the broader area surrounding this location.
+
+```twig
+<a href="{{ location.linkToArea() }}">See area in Google Maps</a>
+```
+
+**Arguments**
+
+- `$parameters` (_array_) - Appended to the generated Google URL. [See full parameter details.](https://developers.google.com/maps/documentation/urls/get-started#map-action)
+
+**Returns**
+
+- _string_ - Generate a link to see this general area in Google Maps.
+
+:::warning Displaying a Marker
+The `linkToArea` method will show a map centered on the desired location, but _it will not display a marker_. If you would like a marker to appear, use the `linkToMap` method instead.
+:::

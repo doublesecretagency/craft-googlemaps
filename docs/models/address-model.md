@@ -108,9 +108,9 @@ If the Address was **not** returned in a set of proximity search results, you mu
 ---
 ---
 
-### `linkToSearch(parameters = {})`
+### `linkToMap(parameters = {})`
 
-Identical to [parent method](/models/location-model/#linktosearch-parameters), except more data can be extracted from an Address Model.
+Identical to [parent method](/models/location-model/#linktomap-parameters), except more data can be extracted from an Address Model.
 
 ---
 ---
