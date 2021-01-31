@@ -2,15 +2,10 @@
 
 <update-message/>
 
-```twig
-{# OLD #}
+This feature has not yet been added, sorry! We'll be circling back on it as soon as possible.
 
-
-{# NEW #}
-
-```
-
+<!--
 :::tip New Documentation
 See the complete new [EXAMPLE](/test/) documentation.
 :::
-
+-->

@@ -4,11 +4,9 @@ The properties and methods of the Visitor Model are identical whether you are ac
 
 :::code
 ```twig
-{# Using a helper method to access `getVisitor()` #}
-{% set visitor = googleMaps.visitor %}
+{% set visitor = googleMaps.getVisitor() %}
 ```
 ```php
-// Using a helper method to access `getVisitor()`
 $visitor = GoogleMaps::getVisitor();
 ```
 :::
