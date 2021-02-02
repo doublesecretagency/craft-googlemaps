@@ -106,8 +106,8 @@ class Address extends Location
             return $googleFormatted;
         }
 
-        // Get multiline-formatted address
-        $multilineFormatted = (string) $this->multiline();
+        // Get multiline-formatted address (as a single line)
+        $multilineFormatted = (string) $this->multiline(1);
 
         // If able to format via `multiline` method, return it
         if ($multilineFormatted) {
