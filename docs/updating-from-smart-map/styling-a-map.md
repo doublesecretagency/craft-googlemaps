@@ -55,4 +55,3 @@ $map->styles($styleSet);
 :::tip New Documentation
 See the complete new [Styling a Map](/guides/styling-a-map/) documentation.
 :::
-

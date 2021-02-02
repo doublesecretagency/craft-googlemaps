@@ -31,4 +31,3 @@ We also have two new methods for your convenience...
 :::tip New Documentation
 See the complete new [Linking to a Map](/guides/linking-to-a-map/) documentation.
 :::
-

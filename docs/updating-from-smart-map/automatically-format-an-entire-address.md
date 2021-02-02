@@ -59,4 +59,3 @@ New in the Google Maps plugin, we are now keeping track of the [fully formatted 
 :::tip New Documentation
 See the complete new [Multiline vs. Formatted](/models/address-model/#multiline-vs-formatted) documentation.
 :::
-

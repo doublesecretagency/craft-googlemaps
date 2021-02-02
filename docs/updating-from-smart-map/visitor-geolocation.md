@@ -26,4 +26,3 @@ Additionally, the method will now return a complex model (instead of a simple ar
 :::tip New Documentation
 See the complete new [Visitor Geolocation](/geolocation/) documentation.
 :::
-
