@@ -2,7 +2,7 @@
 
 <update-message/>
 
-Technically, the syntax did not change at all. But since Craft itself has evolved, it's now possible to do something more like this...
+Technically, the syntax did not change at all. But since _Craft itself_ has evolved, it's now possible to do something more like this...
 
 ```twig
 <label>Street Address</label>

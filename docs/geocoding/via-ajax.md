@@ -2,22 +2,41 @@
 
 If your users need to perform an address lookup without loading a new page, you would of course use AJAX to handle that. The Google Maps plugin is not opinionated, how you perform the AJAX call is entirely up to you.
 
-**Here is an example using jQuery:**
+**Here is a basic example using jQuery:**
 
 ```js
+// Specify which endpoint to ping
+var endpoint = '/actions/google-maps/lookup/all';
+
 // Set data for the AJAX call
-var data = {parameters: 90210};
+var data = {
+    'target': 'Los Angeles'
+};
 
 // Get CSRF token information from Craft
-var csrfTokenName = "{{ craft.app.config.general.csrfTokenName }}";
-var csrfTokenValue = "{{ craft.app.request.csrfToken }}";
+var csrfTokenName = '{{ craft.app.config.general.csrfTokenName }}';
+var csrfTokenValue = '{{ craft.app.request.csrfToken }}';
 
 // Append CSRF Token to outgoing data
 data[csrfTokenName] = csrfTokenValue;
 
 // AJAX call using jQuery
-$.post('/actions/google-maps/lookup/all', data, function(response) {
-    console.log(response);
+$.post(endpoint, data, function(response) {
+
+    // If call was successful
+    if (response.success) {
+        
+        /**
+         * The format of `response.results` is determined by each endpoint:
+         *  /all - Returns an array of Address Models
+         *  /one - Returns a single Address Model
+         *  /coords - Returns a set of coordinates
+         */
+        
+        console.log(response.results);
+
+    }
+    
 });
 
 ```
@@ -33,6 +52,8 @@ The `response` of the AJAX call will come in the following format:
 ```
 
 The format of the `results` will depend on which endpoint you are using. If no results are found, the value will be `null`.
+
+<div style="margin-bottom:30px"></div>
 
 ## `/all`
 

@@ -124,7 +124,7 @@ module.exports = {
                 '',
                 'parameters',
                 'methods',
-                // 'via-ajax', // TODO: Support AJAX endpoints
+                'via-ajax',
                 'event',
             ],
 

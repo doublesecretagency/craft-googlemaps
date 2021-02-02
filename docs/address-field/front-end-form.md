@@ -1,6 +1,12 @@
 # Front-End Form
 
-If your users can edit content via a [front-end form](https://craftcms.com/knowledge-base/entry-form), it's easy to add a simplified Address field.
+## Input fields
+
+If your website features a [front-end form](https://craftcms.com/knowledge-base/entry-form) for users to manage content, it's easy to include a simplified version of an Address field in that form.
+
+Functionally, each of the Address subfields can be handled using a standard `text` input. Or alternatively, you could use something like a dropdown field (for State or Country) or hidden fields (for Latitude & Longitude).
+
+Craft includes an [`input` Twig function](https://craftcms.com/docs/3.x/dev/functions.html#input) which renders a normal `<input>` HTML tag.
 
 ```twig
 <label>Street Address</label>
@@ -63,23 +69,16 @@ Of course, it's possible to swap out these HTML form field types. They do not al
 
 Assuming you want to be able to show this location on a map, or would like it to appear in a proximity search, then it is _critical_ to include `lat` and `lng` fields. If want to prevent the coordinates from being editable, you can use `hidden` inputs instead.
 
-:::tip DIY geocoding
-It will be up to you to populate the `lat` and `lng` fields. We have plans to add an AJAX endpoint for this, but there is no ETA at this moment.
+## Geocoding via AJAX
+
+:::warning AJAX agnostic
+The Google Maps plugin is unopinionated about which JavaScript framework or approach you use. How you choose to return the data from your AJAX call into the form is entirely up to you.
 :::
-
-
-<!-- TODO: Add controller endpoint to lookup coordinates -->
-
-<!-- TODO: Support AJAX endpoints
-## Dynamically updating via JavaScript
 
 You may want to populate the front-end Address fields dynamically using something a bit more complex. Perhaps you are doing an [address lookup](/geocoding/) on the front-end, and want to automatically fill in your form fields. Fortunately, the data returned from your lookup will fit nicely into the form fields shown above.
 
-[See more info about Geocoding via AJAX...](/geocoding/via-ajax/)
+Depending on your usage, you will most likely want to ping either the `/coords` endpoint (for just coordinates) or the `/one` endpoint (for a single complete Address). Under rare circumstances, you may want to ping `/all` for a _collection_ of Addresses, then most likely let the user decide which Address is correct.
 
-Most likely, you will want to call the `/one` endpoint via AJAX. This will give you exactly one Address with which to update the form. You could potentially ping `/all`, and then somehow prompt the user to select which Address they want to use. Or if the only thing you want to update dynamically is the coordinates, just use the `/coords` endpoint.
-
-::: tip 
-The Google Maps plugin is unopinionated about which JavaScript framework or approach you use. How you choose to return the data from your AJAX call into the form is entirely up to you.
+:::tip Further Reading
+For more information, see the docs regarding [Geocoding via AJAX...](/geocoding/via-ajax/)
 :::
--->
