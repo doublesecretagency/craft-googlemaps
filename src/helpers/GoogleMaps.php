@@ -146,7 +146,7 @@ class GoogleMaps
     /**
      * Perform a geocoding lookup.
      *
-     * @param array|string $parameters
+     * @param array|string $target
      * @return Lookup|false
      */
     public static function lookup($target = null)

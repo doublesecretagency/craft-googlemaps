@@ -8,10 +8,10 @@ Returns an array of [Address Models](/models/address-model/) sorted by best matc
 
 :::code
 ```twig
-{% set results = googleMaps.lookup(parameters).all() %}
+{% set results = googleMaps.lookup(target).all() %}
 ```
 ```php
-$results = GoogleMaps::lookup($parameters)->all();
+$results = GoogleMaps::lookup($target)->all();
 ```
 :::
 
@@ -21,10 +21,10 @@ Returns a single [Address Model](/models/address-model/), or `null` if nothing i
 
 :::code
 ```twig
-{% set address = googleMaps.lookup(parameters).one() %}
+{% set address = googleMaps.lookup(target).one() %}
 ```
 ```php
-$address = GoogleMaps::lookup($parameters)->one();
+$address = GoogleMaps::lookup($target)->one();
 ````
 :::
 
@@ -34,9 +34,9 @@ Returns a single set of [coordinates](/models/coordinates/), or `null` if nothin
 
 :::code
 ```twig
-{% set coords = googleMaps.lookup(parameters).coords() %}
+{% set coords = googleMaps.lookup(target).coords() %}
 ```
 ```php
-$coords = GoogleMaps::lookup($parameters)->coords();
+$coords = GoogleMaps::lookup($target)->coords();
 ````
 :::

@@ -3,7 +3,7 @@
 Sometimes your [proximity search](/proximity-search/) lookups don't match the expected target. Instead, the lookup may be matching a different, but similarly named, geographic location. This is often because the specified target shares a similar name as a more well-known area.
 
 :::tip Use an array of parameters
-When using Region Biasing, you must specify the [target](/proximity-search/options/#target) option as a **set of parameters** which will be passed into an [address lookup](/geocoding/parameters/#using-an-array-of-parameters) internally.
+When using Region Biasing, you must specify the [target](/proximity-search/options/#target) option as a **set of parameters** which will be passed into an [address lookup](/geocoding/target/#using-an-array-of-parameters) internally.
 :::
 
 ## A real-world example
@@ -120,7 +120,7 @@ $options = [
 ```
 :::
 
-It makes no difference whether the `components` are specified as a **string** or an **array**. Both formats will accomplish the same thing. If specified as a string, it will be passed directly into the Google Maps Geocoding API. See the [Geocoding Parameters](/geocoding/parameters/) page for more information on the formatting options.
+It makes no difference whether the `components` are specified as a **string** or an **array**. Both formats will accomplish the same thing. If specified as a string, it will be passed directly into the Google Maps Geocoding API. See the [Geocoding Target](/geocoding/target/) page for more information on the formatting options.
 
 :::tip For strings, use the Google-specified format
 When specifying `components` as a string, be sure to follow the pattern described in the Google API docs...

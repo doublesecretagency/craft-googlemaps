@@ -1,12 +1,12 @@
-# Geocoding Parameters
+# Geocoding Target
 
 When creating a [Lookup Model](/models/lookup-model/), you only need to pass a single **string** or **array** value...
 
-### `lookup(parameters)`
+### `lookup(target)`
 
 #### Arguments
 
-- `parameters` (_string_ or _array_) - Either a [simple string](#using-a-simple-string) or an [array of parameters](#using-an-array-of-parameters).
+- `target` (_string_ or _array_) - Either a [simple string](#using-a-simple-string) or an [array of parameters](#using-an-array-of-parameters).
 
 ## Using a simple string
 

@@ -23,28 +23,28 @@ class GeocodingHelper
     /**
      * Initialize a geocoding lookup by configuring a Lookup Model.
      *
-     * @param array|string $parameters
+     * @param array|string $target
      * @return Lookup|false
      */
-    public static function lookup($parameters = [])
+    public static function lookup($target = [])
     {
         // If a string target was specified, convert to array
-        if (is_string($parameters)) {
-            $parameters = ['address' => $parameters];
+        if (is_string($target)) {
+            $target = ['address' => $target];
         }
 
-        // If parameters are not an array, bail
-        if (!is_array($parameters)) {
+        // If target is not an array, bail
+        if (!is_array($target)) {
             return false;
         }
 
         // If no target specified, bail
-        if (!isset($parameters['address']) || !$parameters['address']) {
+        if (!isset($target['address']) || !$target['address']) {
             return false;
         }
 
         // Create a fresh lookup
-        return new Lookup($parameters);
+        return new Lookup($target);
     }
 
 }

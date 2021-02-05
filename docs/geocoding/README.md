@@ -25,7 +25,7 @@ Here is a rough diagram of how a geocoding request flows through the plugin...
 
 ### 1. Prepare Lookup
 
-The `GoogleMaps::lookup` method creates a [Lookup Model](/models/lookup-model/), which contains everything the request will need to call the API. There isn't much you can do with a Lookup Model directly, until you append `all()`/`one()`/`coords()` onto the end of it. See the [geocoding parameters](/geocoding/parameters/) for more information.
+The `GoogleMaps::lookup` method creates a [Lookup Model](/models/lookup-model/), which contains everything the request will need to call the API. There isn't much you can do with a Lookup Model directly, until you append `all()`/`one()`/`coords()` onto the end of it. See the [geocoding target](/geocoding/target/) for more information.
 
 ### 2. Specify Results Type
 

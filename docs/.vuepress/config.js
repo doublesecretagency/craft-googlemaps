@@ -124,7 +124,7 @@ module.exports = {
             ],
             '/geocoding/': [
                 '',
-                'parameters',
+                'target',
                 'methods',
                 'via-ajax',
                 'event',

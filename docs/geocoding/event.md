@@ -4,10 +4,10 @@ This event is triggered when a [geocoding address lookup](/geocoding/) is perfor
 
 ## Properties
 
-| Property     | Type    | Description
-|:-------------|:-------:|:------------
-| `parameters` | _array_ | The original parameters used to perform the lookup.
-| `results`    | _array_ | The complete results returned by the lookup.
+| Property  | Type    | Description
+|:----------|:-------:|:------------
+| `target`  | _array_ | The original target used to perform the lookup.
+| `results` | _array_ | The complete results returned by the lookup.
 
 ## Example
 
@@ -21,8 +21,8 @@ Event::on(
     GoogleMapsPlugin::EVENT_AFTER_GEOCODING,
     function (GeocodingEvent $event) {
     
-        // Parameters used to generate geocoding query
-        $event->parameters;
+        // Target used to generate geocoding query
+        $event->target;
     
         // Results of geocoding address lookup
         $event->results;

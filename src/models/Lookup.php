@@ -32,9 +32,9 @@ class Lookup extends Model
     public $error;
 
     /**
-     * @var string Internal parameters.
+     * @var array Internal target, converted to array prior to Lookup.
      */
-    private $_parameters;
+    private $_target;
 
     /**
      * @var string Google Geocoding API endpoint.
@@ -74,13 +74,13 @@ class Lookup extends Model
     /**
      * Construct the Lookup object.
      *
-     * @param array $parameters
+     * @param array $target
      * @param array $config
      */
-    public function __construct($parameters = [], array $config = [])
+    public function __construct(array $target = [], array $config = [])
     {
-        // Set parameters internally
-        $this->_parameters = $parameters;
+        // Set target internally
+        $this->_target = $target;
 
         // Pass config to parent
         parent::__construct($config);
@@ -159,10 +159,10 @@ class Lookup extends Model
 
         // Cache results
         $results = $cache->getOrSet(
-            $this->_parameters,
+            $this->_target,
             function() {
                 // Get geocoding response
-                $response = $this->_pingEndpoint($this->_parameters);
+                $response = $this->_pingEndpoint($this->_target);
                 // Convert API response into address data
                 return $this->_parseResponse($response);
             },
@@ -172,7 +172,7 @@ class Lookup extends Model
         // If error message was returned
         if (is_string($results)) {
             // Bust cache
-            $cache->delete($this->_parameters);
+            $cache->delete($this->_target);
             // Get error message from results
             $this->error = $results;
             $results = false;
@@ -182,7 +182,7 @@ class Lookup extends Model
         GoogleMapsPlugin::$plugin->trigger(
             GoogleMapsPlugin::EVENT_AFTER_GEOCODING,
             new GeocodingEvent([
-                'parameters' => $this->_parameters,
+                'target' => $this->_target,
                 'results' => $results,
             ])
         );
@@ -194,21 +194,21 @@ class Lookup extends Model
     /**
      * Ping the Google Geocoding API endpoint.
      *
-     * @param $parameters
+     * @param $target
      * @return mixed
      */
-    private function _pingEndpoint($parameters)
+    private function _pingEndpoint($target)
     {
         // Append server key
-        $parameters['key'] = GoogleMaps::getServerKey();
+        $target['key'] = GoogleMaps::getServerKey();
 
         // Ensure components are properly formatted
-        if (isset($parameters['components'])) {
-            $parameters['components'] = $this->_formatComponents($parameters['components']);
+        if (isset($target['components'])) {
+            $target['components'] = $this->_formatComponents($target['components']);
         }
 
         // Compile endpoint URL
-        $queryString = http_build_query($parameters);
+        $queryString = http_build_query($target);
         $url = "{$this->_endpoint}?{$queryString}";
 
         // Attempt to ping URL

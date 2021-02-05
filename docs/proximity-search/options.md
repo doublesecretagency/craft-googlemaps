@@ -17,7 +17,7 @@ If the target is a **set of [coordinates](/models/coordinates/)**...
  - Those coordinates will be directly used as the starting point for the proximity search. No API calls will be necessary, since the entire proximity search can be handled internally.
 
 If the target is a **string** or a **set of parameters**...
- - An internal [address lookup](/geocoding/) will be performed to determine the center point of the proximity search. Please see the [Geocoding Parameters](/geocoding/parameters/) for more information on what is allowed.
+ - An internal [address lookup](/geocoding/) will be performed to determine the center point of the proximity search. Please see the [Geocoding Target](/geocoding/target/) for more information on what is allowed.
 
 :::tip Region Biasing
 Worried about the proximity search starting from the right place? Check out [Region Biasing...](/guides/region-biasing/)

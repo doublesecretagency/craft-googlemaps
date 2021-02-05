@@ -2,7 +2,7 @@
 
 ## lookup(target = null)
 
-In order to perform a lookup, pass in a string or [collection of parameters](/geocoding/parameters/) as the `target`.
+In order to perform a lookup, pass in a string or [array of parameters](/geocoding/target/) as the `target`.
 
 You can then determine how to retrieve the results of that lookup (`all`, `one`, or `coords`).
 
