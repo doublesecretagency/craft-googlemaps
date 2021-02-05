@@ -37,7 +37,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
  - `$options` (_array_) - Optional parameters to configure the map. (see below)
 
 | Option               | Type              | Default | Description
-|----------------------|:-----------------:|:-------:|-------------
+|:---------------------|:-----------------:|:-------:|:------------
 | `id`                 | _string_          | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container.
 | `width`              | _int_             | _null_  | Set the width of the map (in px).
 | `height`             | _int_             | _null_  | Set the height of the map (in px).
@@ -73,7 +73,7 @@ Append markers to an existing map object.
  - `$options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type               | Default | Description |
-|----------------------|:------------------:|:-------:|-------------|
+|:---------------------|:------------------:|:-------:|:------------|
 | `id`                 | _string_           | <span style="white-space:nowrap">`"marker-{random}"`</span> | Reference point for each marker. |
 | `icon`               | _object_\|_string_ | _null_  | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
 | `markerOptions`      | _object_           | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
@@ -107,7 +107,7 @@ Append one or more KML layers to an existing map object.
  - `$options` (_array_) - Optional parameters to configure the KML layers. (see below)
  
 | Option             | Type     | Default | Description |
-|--------------------|:--------:|:-------:|-------------|
+|:-------------------|:--------:|:-------:|:------------|
 | `id`               | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer. |
 | `kmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
 
@@ -344,17 +344,23 @@ $map->showMarker($markerId);
 ---
 ---
 
-### `tag($init = true)`
+### `tag($options = [])`
 
-Renders the necessary `<div>` container to hold the map.
+Renders the necessary `<div>` container to hold the map. The final `<div>` will contain specific attributes and data, which are then used to generate the map. Each container must be **initialized** in order for its dynamic map to be created.
 
 #### Arguments
 
- - `$init` (_bool_) - Whether to automatically initialize the map DNA via JavaScript. If this is set to `false`, the map DNA will need to be manually initialized at some point in the future.
+ - `$options` (_array_) - Configuration options for the rendered `<div>`.
+
+| Option | Type   | Default | Description
+|:-------|:------:|:-------:|-------------
+| `init` | _bool_ | `true`  | Whether to automatically initialize the map via JavaScript.
+
+By setting the `init` option to `false`, the map will not be automatically initialized in JavaScript. It must therefore be [manually initialized in JavaScript](/dynamic-maps/javascript-methods/#init-mapid-null-callback-null) when the page has completely rendered.
 
 #### Returns
 
- - _Markup_ - A Twig Markup instance, ready to be rendered via curly braces.
+ - _Markup_ - A Twig Markup instance, ready to be rendered in Twig with curly braces.
 
 :::code
 ```twig
@@ -362,6 +368,17 @@ Renders the necessary `<div>` container to hold the map.
 ```
 ```php
 $twigMarkup = $map->tag();
+```
+:::
+
+If you need to disable the automatic map initialization:
+
+:::code
+```twig
+{{ map.tag({'init': false}) }}
+```
+```php
+$twigMarkup = $map->tag(['init' => false]);
 ```
 :::
 

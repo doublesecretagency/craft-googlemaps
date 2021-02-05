@@ -366,11 +366,11 @@ class DynamicMap extends Model
     /**
      * Outputs a dynamic map in a `<div>` tag for use in a Twig template.
      *
-     * @param bool $init Whether to automatically initialize the map.
+     * @param array $options Set of options to configure the rendered tag.
      * @return Markup
      * @throws Exception
      */
-    public function tag($init = true): Markup
+    public function tag(array $options = []): Markup
     {
         // If no DNA, throw an error
         if (!$this->_dna) {
@@ -392,8 +392,8 @@ class DynamicMap extends Model
             'data-dna' => Json::encode($this->_dna),
         ]);
 
-        // Initialize map (unless suppressed)
-        if ($init) {
+        // Initialize the map (unless intentionally suppressed)
+        if ($options['init'] ?? true) {
             // Get optional callback
             $callback = ($map['options']['callback'] ?? 'null');
             // Initialize Google Maps after page has loaded

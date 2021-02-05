@@ -2,14 +2,14 @@
 
 In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in JavaScript.
 
-## `tag(parentId = null)`
+## `tag(options = {})`
 
 **Ends the map chain.** Creates a new `<div>` element, to be placed in the DOM as you wish.
 
 :::code
 ```js
 // Inject a map into the DOM
-map.tag('parent-id');
+map.tag({'parentId': 'target-parent-id'});
 ```
 :::
 
@@ -19,24 +19,30 @@ The `tag` method also exists in [Twig & PHP](/dynamic-maps/twig-php-methods/#tag
 
 #### Arguments
 
- - `parentId` (_null_|_string_) - If provided, automatically injects the new HTML element into the DOM container with the specified `id` attribute.
+ - `options` (_array_) - Configuration options for the rendered dynamic map.
+
+| Option     | Type     | Default | Description
+|:-----------|:--------:|:-------:|-------------
+| `parentId` | _string_ | `null`  | The ID of the target parent container for the newly created element.
+
+If the `parentId` is provided, the new HTML element will be automatically injected into the DOM container with the specified `id` attribute.
 
 :::code
 ```js Automatic Placement
 // Place the HTML element automatically
-map.tag('parent-id');
+map.tag({'parentId': 'target-parent-id'});
 ````
 ```js Manual Placement
 // Place the HTML element manually
 var mapDiv = map.tag();
-document.getElementById('parent-id').appendChild(mapDiv);
+document.getElementById('target-parent-id').appendChild(mapDiv);
 ```
 :::
  
 :::tip Automatic vs Manual Placement
 If the `parentId` is specified, the new HTML element will be automatically appended to the specified parent container in the DOM.
 
-If the `parentId` is omitted, the new HTML element will need to be manually placed into the DOM at your discretion.
+If the `parentId` is omitted, the new HTML element must be manually placed into the DOM at your discretion.
 :::
 
 #### Returns

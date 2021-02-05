@@ -83,7 +83,7 @@ In JavaScript, the `tag` method [creates a new HTML element](/dynamic-maps/javas
 :::code
 ```js
 // Automatically injects map into the DOM
-map.tag('parent-id');
+map.tag({'parentId': 'my-map-container'});
 
 // Creates a new HTML element, detached from the DOM
 var mapDiv = map.tag();

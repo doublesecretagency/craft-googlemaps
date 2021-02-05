@@ -413,12 +413,15 @@ function DynamicMap(locations, options) {
     // ========================================================================= //
 
     // Generate a complete map element
-    this.tag = function(parentId) {
+    this.tag = function(options) {
 
         // Log status
         if (googleMaps.log) {
             console.log(`Rendering map "${this.id}"`);
         }
+
+        // Get the ID of the parent container
+        var parentId = (options.parentId || null);
 
         // If no valid parent container specified
         if (!parentId || 'string' !== typeof parentId) {

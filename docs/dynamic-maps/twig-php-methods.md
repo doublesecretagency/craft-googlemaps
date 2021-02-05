@@ -2,7 +2,7 @@
 
 In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.
 
-## `tag(init = true)`
+## `tag(options = {})`
 
 **Ends the map chain.** Outputs a `Twig\Markup` object for use in a template.
 
@@ -27,9 +27,26 @@ If you are working in Twig, you can use curly braces to output the map directly.
 
 #### Arguments
 
- - `init` (_bool_) - Allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig. Set to `true` by default.
- 
-    Setting this to `false` will prevent the JavaScript `init` method from automatically firing. You will be responsible for [initializing](/dynamic-maps/javascript-methods/#init-mapid-null) the map at some point in the future.
+ - `options` (_array_) - Configuration options for the rendered `<div>`.
+
+| Option | Type   | Default | Description
+|:-------|:------:|:-------:|-------------
+| `init` | _bool_ | `true`  | Whether to automatically initialize the map via JavaScript.
+
+The `init` option allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig.
+
+:::code
+```twig
+{# Suppress automatic initialization of the map #}
+{{ map.tag({'init': false}) }}
+```
+```php
+// Suppress automatic initialization of the map
+$twigMarkup = $map->tag(['init' => false]);
+```
+:::
+
+Setting `init` to `false` will prevent the JavaScript `init` method from firing automatically. It will then be up to you to [manually initialize the map in JavaScript](/dynamic-maps/javascript-methods/#init-mapid-null-callback-null).
 
 #### Returns
 

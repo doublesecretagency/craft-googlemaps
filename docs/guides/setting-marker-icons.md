@@ -23,8 +23,8 @@ map.markers(restaurants, {
     'icon': '/images/restaurant-icon.png'
 });
 
-// Display map
-map.tag('parent-id');
+// Display map (inject into `#my-map-container`)
+map.tag({'parentId': 'my-map-container'});
 ```
 ```twig
 {# Get all bars & restaurants #}

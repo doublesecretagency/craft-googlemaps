@@ -327,17 +327,21 @@ var marker = map.getMarker('33-address');
 ---
 ---
 
-### `tag(parentId = null)`
+### `tag(options = {})`
 
-Creates a new `<div>` element, waiting to be placed in the DOM. If a `parentId` is specified, the element will be automatically injected into the specified parent element.
+Creates a new `<div>` element, detached from the DOM. If a `parentId` is specified, the element will automatically be injected into the specified parent container.
 
 ```js
-map.tag('target-parent-id');
+map.tag({'parentId': 'target-parent-id'});
 ```
 
 #### Arguments
 
- - `parentId` (_string_|_null_) - Optional. The ID of the target parent container for the newly created element.
+ - `options` (_array_) - Configuration options for the rendered dynamic map.
+
+| Option     | Type     | Default | Description
+|:-----------|:--------:|:-------:|-------------
+| `parentId` | _string_ | `null`  | The ID of the target parent container for the newly created element.
 
 #### Returns
 
