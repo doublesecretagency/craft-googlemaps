@@ -2,7 +2,7 @@
 
 <update-message/>
 
-Under the hood, the entire concept of [geocoding](/geocoding/) has evolved significantly. From a templating perspective, fortunately, the required changes are minimal.
+Under the hood, the entire concept of [geocoding](/geocoding/) has evolved significantly. Fortunately, the required templating changes are minimal.
 
 ```twig
 {# OLD METHODS #}
@@ -16,22 +16,11 @@ Under the hood, the entire concept of [geocoding](/geocoding/) has evolved signi
 {% set coords  = googleMaps.lookup(target).coords() %}
 ```
 
-You'll notice that the general syntax has changed slightly. The `lookup` method now creates a [Lookup Model](/models/lookup-model/), which isn't triggered until you apply 
-
-
-
-Pay attention to the `.all()` parameter at the end. You could alternatively use `.one()` or `.coords()` to fetch the results in a different format.
-
-Same as above, except we're using the `.coords()` parameter to fetch only the [coordinates](/models/coordinates/) of the **most likely matching Address**.
+The general syntax has changed slightly. The `lookup` method now creates a [Lookup Model](/models/lookup-model/), which doesn't actually ping the API until you apply a subsequent method (`all`, `one`, or `coords`).
 
 :::tip New Documentation
 See the complete new [Geocoding Methods](/geocoding/methods/) documentation.
 :::
-
-
-
-
-
 
 ## Lookup via AJAX
 
