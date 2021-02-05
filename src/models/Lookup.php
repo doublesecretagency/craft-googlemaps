@@ -27,14 +27,14 @@ class Lookup extends Model
 {
 
     /**
+     * @var string Error message (when thrown).
+     */
+    public $error;
+
+    /**
      * @var string Internal parameters.
      */
     private $_parameters;
-
-    /**
-     * @var string Internal error message.
-     */
-    private $_error;
 
     /**
      * @var string Google Geocoding API endpoint.
@@ -174,7 +174,7 @@ class Lookup extends Model
             // Bust cache
             $cache->delete($this->_parameters);
             // Get error message from results
-            $this->_error = $results;
+            $this->error = $results;
             $results = false;
         }
 

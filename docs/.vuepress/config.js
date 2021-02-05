@@ -25,6 +25,7 @@ module.exports = {
         codeLanguages: {
             php: "PHP",
             twig: "Twig",
+            html: "HTML",
             js: "JavaScript",
         },
         logo: '/images/icon.svg',
@@ -61,6 +62,7 @@ module.exports = {
                     {text: 'KML Layers', link: '/guides/kml-layers/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
+                    {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
                     // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Improve Matrix compatibility
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
@@ -158,7 +160,6 @@ module.exports = {
 
             // Guides
             '/guides/': [
-                '',
                 'setting-map-height',
                 'linking-to-a-map',
                 'setting-marker-icons',
@@ -167,6 +168,7 @@ module.exports = {
                 'kml-layers',
                 'region-biasing',
                 'filter-by-subfields',
+                'ajax-geocoding-example',
                 // 'address-in-a-matrix-field', // TODO: Improve Matrix compatibility
                 'prevent-zoom-when-scrolling',
                 'required-js-assets',

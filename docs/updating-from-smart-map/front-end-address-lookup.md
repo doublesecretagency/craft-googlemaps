@@ -4,55 +4,48 @@
 
 Under the hood, the entire concept of [geocoding](/geocoding/) has evolved significantly. From a templating perspective, fortunately, the required changes are minimal.
 
-## Lookup via Twig
-
-The general syntax is relatively unchanged:
-
 ```twig
-{# OLD #}
-{% set results = craft.smartMap.lookup(target) %}
-
-{# NEW #}
-{% set results = googleMaps.lookup(target).all() %}
+{# OLD METHODS #}
+{% set results = craft.smartMap.lookup(target) %} {# became "all" #}
+{% set coords  = craft.smartMap.lookupCoords(target) %}
 ```
+```twig
+{# NEW METHODS #}
+{% set results = googleMaps.lookup(target).all() %}
+{% set address = googleMaps.lookup(target).one() %}
+{% set coords  = googleMaps.lookup(target).coords() %}
+```
+
+You'll notice that the general syntax has changed slightly. The `lookup` method now creates a [Lookup Model](/models/lookup-model/), which isn't triggered until you apply 
+
+
 
 Pay attention to the `.all()` parameter at the end. You could alternatively use `.one()` or `.coords()` to fetch the results in a different format.
 
-## Lookup Coordinates
-
 Same as above, except we're using the `.coords()` parameter to fetch only the [coordinates](/models/coordinates/) of the **most likely matching Address**.
-
-```twig
-{# OLD #}
-{% set coords = craft.smartMap.lookupCoords(target) %}
-
-{# NEW #}
-{% set results = googleMaps.lookup(target).coords() %}
-```
 
 :::tip New Documentation
 See the complete new [Geocoding Methods](/geocoding/methods/) documentation.
 :::
 
+
+
+
+
+
 ## Lookup via AJAX
 
-The premise is effectively the same, but the endpoint has changed:
+The premise is effectively the same, but the POST endpoints have changed:
 
 ```js
-// OLD
-var endpoint = '/actions/smart-map/lookup';
-
-// NEW
-var endpoint = '/actions/google-maps/lookup/all';
-```
-
-Retrieve coordinates only:
-
-```js
-// OLD
+// OLD ENDPOINTS
+var endpoint = '/actions/smart-map/lookup'; // became "all"
 var endpoint = '/actions/smart-map/lookup/coords';
-
-// NEW
+```
+```js
+// NEW ENDPOINTS
+var endpoint = '/actions/google-maps/lookup/all';
+var endpoint = '/actions/google-maps/lookup/one';
 var endpoint = '/actions/google-maps/lookup/coords';
 ```
 
