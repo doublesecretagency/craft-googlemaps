@@ -1,12 +1,14 @@
 # Getting Started
 
+## BETA Installation Instructions
 
-:::warning BETA Installation Instructions
 **For users of the beta plugin,** please follow these instructions:
 
-1. Create a folder in your project root called `beta`.
-2. Unzip `googlemaps-beta.*.zip` into the new `beta` folder.
-3. Add these items to your `composer.json` file:
+:::warning How to Install
+1. Unzip `googlemaps-beta.*.zip`.
+2. Create a folder in your project root called `beta`.
+3. Move `craft-googlemaps` into the new `beta` folder.
+4. Add these items to your `composer.json` file:
 
 ```js
     "require": {
@@ -25,14 +27,14 @@
     ],
 ```
 
-4. Via command line, update composer and install the plugin:
+5. Via command line, update composer and install the plugin:
 
 ```shell
     composer update
     ./craft plugin/install google-maps
 ```
 
-That's it! Ping Lindsey if you hit any snags. 👍
+**That's it!** Ping Lindsey if you hit any snags. 👍
 :::
 
 
