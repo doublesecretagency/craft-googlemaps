@@ -54,6 +54,7 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    {text: 'General Troubleshooting', link: '/guides/general-troubleshooting/'},
                     {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
                     {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                     {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -160,6 +161,7 @@ module.exports = {
 
             // Guides
             '/guides/': [
+                'general-troubleshooting',
                 'setting-map-height',
                 'linking-to-a-map',
                 'setting-marker-icons',

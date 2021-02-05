@@ -19,8 +19,10 @@ For various reasons, you may not want these files to be loaded automatically. It
 ## Loaded Automatically
 
 In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically.
- 
-To prevent them from being automatically loaded, simply set the `js` option to `false` when creating a map.
+
+## Disable Automatic Loading
+
+To prevent the required assets from being automatically loaded, simply set the `js` option to `false` when creating a map.
 
 :::code
 ```twig

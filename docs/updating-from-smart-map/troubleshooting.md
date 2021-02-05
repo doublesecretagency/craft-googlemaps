@@ -2,14 +2,8 @@
 
 <update-message/>
 
-```twig
-{# OLD #}
-
-
-{# NEW #}
-
-```
+We've rewritten the entire troubleshooting guide to account for all the new changes.
 
 :::tip New Documentation
-See the complete new [EXAMPLE](/test/) documentation.
+See the complete new [General Troubleshooting](/guides/general-troubleshooting/) documentation.
 :::
