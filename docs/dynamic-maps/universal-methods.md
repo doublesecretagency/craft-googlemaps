@@ -43,7 +43,7 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 | `field`              | Twig/PHP             | Address field(s) to be included on the map. (includes all by default) |
 
 :::tip Additional Options Details
-For more info, please consult either the [JavaScript model](/models/javascript/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
+For more info, please consult either the [JavaScript object](/javascript/dynamicmap.js/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
 :::
 
 ## `kml(url, options)`

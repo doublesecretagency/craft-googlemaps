@@ -7,7 +7,7 @@ If you want to manage the plugin's settings, go to **Settings > Google Maps** in
 :::warning FOR EDGE CASES ONLY
 You will rarely need to call the Settings Model directly, it is for internal use only.
 
-If you need to dynamically update the Google API Keys, take a look at the methods provided by the [API Service...](/services/api-service/)
+Read how to properly manage [Google API keys...](/helper/api/)
 :::
 
 ## Public Properties

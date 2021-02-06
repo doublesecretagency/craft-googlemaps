@@ -10,7 +10,7 @@ All of the config settings available on the plugin's [Settings page](/getting-st
 /config/google-maps.php
 ```
 
-Much like the `db.php` and `general.php` files, `google-maps.php` is [environmentally aware](https://docs.craftcms.com/v3/config/environments.html#config-files). You can also pass in environment values using the `getenv` PHP method.
+Much like the `db.php` and `general.php` files, `google-maps.php` is [environmentally aware](https://craftcms.com/docs/3.x/config/#multi-environment-configs). You can also pass in environment values using the `getenv` PHP method.
 
 :::warning Optional Geolocation Services
 If you are using a third-party visitor geolocation service, then you may want to specify those credentials as well. The credentials you include depend entirely on which geolocation service you are using.
