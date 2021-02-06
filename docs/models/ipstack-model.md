@@ -5,7 +5,7 @@ The Ipstack Model interacts with the [ipstack geolocation service](https://ipsta
 :::warning FOR EDGE CASES ONLY
 You will rarely need to call this model directly. If you have ipstack configured as your default geolocation service, then the preferred method is to perform geolocation normally.
 
-For more info, check out the guide on [Complex Geolocation...](/guides/complex-geolocation/)
+Read how to properly manage [Visitor Geolocation...](/geolocation/)
 :::
 
 ## Public Methods

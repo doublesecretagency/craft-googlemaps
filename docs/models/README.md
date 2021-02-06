@@ -1,35 +1,68 @@
 # Models
 
-### [Address Model](/models/address-model/)
+## Geocoding & Proximity Searching
 
-The Address Model extends the Location Model, and adds data specific to a street address and/or the results of a Google Maps API lookup.
+| Model                                 | Overview
+|:--------------------------------------|:---------
+| [Lookup Model](/models/lookup-model/) | Core of a geocoding address lookup.
 
-### [Visitor Model](/models/visitor-model/)
+To perform [geocoding](/geocoding/), a **Lookup Model** must be created. This often occurs internally when triggering a [proximity search](/proximity-search/). The model is responsible for pinging the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) based on the specified `target` value.
 
-The Visitor Model extends the Location Model, and adds data specific to a geolocation lookup. The geolocation service used will be determined in the control panel.
 
-### [Location Model](/models/location-model/)
+## Addresses & Visitor Geolocation
 
-The Location Model underpins both the Address Model and Visitor Model. This gives the system a stability and universal compatibility for most situations.
+| Model                                     | Overview
+|:------------------------------------------|:---------
+| [Address Model](/models/address-model/)   | Used in many places, including [Address fields](/address-field/).
+| [Location Model](/models/location-model/) | Parent model of the **Address Model** and **Visitor Model**.
+| [Visitor Model](/models/visitor-model/)   | Returned as results of a [visitor geolocation](/geolocation/) lookup.
 
-### [Lookup Model](/models/lookup-model/)
+You will frequently encounter an **Address Model**, which is an extension of the **Location Model**. When working with an Address, it's possible to use the properties and methods of both models.
 
-The Lookup Model is a conduit for the [Geocoding Service](/services/geocoding-service/) to talk to the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start).
+Similarly, the **Visitor Model** is also an extension of the **Location Model**. You can access the properties and methods of both when fetching geolocation results.
 
-### [Settings Model](/models/settings-model/)
+## Maps
 
-The Settings Model is primarily for internal use. You can generally ignore this model.
+| Model                                           | Overview
+|:------------------------------------------------|:---------
+| [Dynamic Map Model](/models/dynamic-map-model/) | Handles creation of [dynamic maps](/dynamic-maps/).
+| [Static Map Model](/models/static-map-model/)   | Handles creation of [static maps](/static-maps/).
 
-### [Dynamic Map Model](/models/dynamic-map-model/)
+Both the **Dynamic Map Model** and **Static Map Model** are powerful [chainable objects](/dynamic-maps/chaining/) which can be configured to display each map as desired.
 
-The Dynamic Map Model is responsible for generating dynamic maps. Initializing it creates a chainable object.
+## Geolocation
 
-### [Static Map Model](/models/static-map-model/)
+<div class="custom-block warning">
+    <p>⚠️&nbsp; You will almost never need to call these models directly.</p>
+</div>
 
-The Static Map Model is responsible for generating static maps. Initializing it creates a chainable object.
+| Model                                   | Overview
+|:----------------------------------------|:---------
+| [Ipstack Model](/models/ipstack-model/) | Connects to the [ipstack](/geolocation/service-providers/#ipstack) geolocation service.
+| [Maxmind Model](/models/maxmind-model/) | Connects to the [MaxMind](/geolocation/service-providers/#maxmind) geolocation service.
+
+ The **Ipstack Model** and **Maxmind Model** are responsible for handling [visitor geolocation](/geolocation/). Only one of these models will be used, depending on which [geolocation service](/geolocation/service-providers/) you have selected.
+
+## Plugin Settings
+
+<div class="custom-block warning">
+    <p>⚠️&nbsp; You will almost never need to call this model directly.</p>
+</div>
+
+| Model                                     | Overview
+|:------------------------------------------|:---------
+| [Settings Model](/models/settings-model/) | Handles internal plugin settings.
+
+The **Settings Model** handles the internal settings for the entire Google Maps plugin. It is a standard component of many Craft plugins.
+
+---
+---
+---
 
 # Pseudo-Models
 
-### [Coordinates](/models/coordinates/)
+Not quite a Model, **Coordinates** defines a standard format for `coords` values used in various places around the plugin. It's also directly compatible with many facets of the Google Maps JavaScript API.
 
-Not quite a Model, Coordinates define a standard format for `coords` values used within the plugin. It's also compatible with many facets of the Google Maps JavaScript API.
+| Pseudo-Model                        | Overview
+|:------------------------------------|:---------
+| [Coordinates](/models/coordinates/) | Common configuration of latitude & longitude.
