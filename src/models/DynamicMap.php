@@ -477,11 +477,38 @@ class DynamicMap extends Model
             return;
         }
 
-        // If location is an Address
+        // If location is an Address Model
         if (is_a($location, Address::class)) {
 
             // Set address and coordinates
             $infoWindow['address'] = $location;
+            $infoWindow['coords'] = $location->getCoords();
+
+            // Create info window
+            $this->_createInfoWindow($location, $options, $infoWindow);
+
+            // Our work here is done
+            return;
+        }
+
+        // If location is a Visitor Model
+        if (is_a($location, Visitor::class)) {
+
+            // Set address and coordinates
+            $infoWindow['visitor'] = $location;
+            $infoWindow['coords'] = $location->getCoords();
+
+            // Create info window
+            $this->_createInfoWindow($location, $options, $infoWindow);
+
+            // Our work here is done
+            return;
+        }
+
+        // If location is a Location Model
+        if (is_a($location, Location::class)) {
+
+            // Set address and coordinates
             $infoWindow['coords'] = $location->getCoords();
 
             // Create info window
