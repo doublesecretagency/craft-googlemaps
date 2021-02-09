@@ -25,28 +25,12 @@ $map = GoogleMaps::map($locations, $options);
 
 The Twig template can live anywhere you want within your templates folder.
 
-## Info Window Twig Template
+## Twig Template Example
 
-Within the context of an info window Twig template, a few magic variables will already be set. Depending on which type of value you provided for the [locations](/dynamic-maps/locations/) parameter, some of these variables may or may not be available to you.
+The following snippet produced the screenshot shown above (using Tailwind CSS):
 
-For example, if you specify `locations` as a simple set of **coordinates**, you will only have access to those coordinates and the map ID. But if you specify a full **element**, you will have access to every available variable within an info window.
-
-| Coords | Address | Element |   |                                      |
-|:------:|:-------:|:-------:|---|:-------------------------------------|
-| ✅ | ✅ | ✅ | `mapId`          | ID of map                            |
-| ❌ | ❌ | ✅ | `markerId`       | ID of marker                         |
-| ❌ | ❌ | ✅ | `element`        | Element origin of the marker         |
-| ❌ | ❌ | ✅ | `entry` _(etc)_  | Alias of `element` (named per type)  |
-| ❌ | ✅ | ✅ | `address`        | Address represented by the marker    |
-| ✅ | ✅ | ✅ | `coords`         | Coordinates of the marker            |
-
-:::warning Element Type Variables
-Assuming the marker was created using an Entry, the `entry` variable will exist as an alias of the `element` variable. Similar logic applies with all other element types (`asset`, `user`, `category`, `matrixblock`, `globalset`, etc). This also applies to custom element types.
-:::
-
-This example (using Tailwind CSS) produces the screenshot seen at the top of the page...
-
-```twig
+:::code
+```twig example/my-info-window.twig
 {# Get the entry's thumbnail image #}
 {% set image = entry.thumbnail.one() %}
 
@@ -78,6 +62,63 @@ This example (using Tailwind CSS) produces the screenshot seen at the top of the
 
 </div>
 ```
+:::
+
+Within the context of an info window Twig template, a few magic variables will already be set. Depending on which type of value you provided for the [locations](/dynamic-maps/locations/) parameter, some of these variables may or may not be available to you.
+
+For example, if you specify `locations` as a simple set of **coordinates**, you will only have access to those coordinates and the map ID. But if you specify a full **element**, you will have access to every available variable within an info window.
+
+## Available Variables
+
+Depending on the context of the marker, certain variables will (or won't) be automatically available in your info window template. It depends entirely on **what type of entity created the marker**. The marker could have been created by any of the following types of entities:
+
+ - A normal Entry (or any other Element Type)
+ - An [Address Model](/models/address-model/)
+ - A [Visitor Model](/models/visitor-model/)
+ - A simple set of [coordinates](/models/coordinates/)
+
+Keep reading to see which variable are available in which contexts.
+
+### Variables for All Info Windows
+
+The following variables will be automatically available to all info windows...
+
+| Variable | Description
+|:---------|:------------
+| `mapId`  | ID of the map which contains this marker.
+| `coords` | [Coordinates](/models/coordinates/) of this particular marker.
+
+### Variables for Element-based Info Windows
+
+If the map markers were generated from complete elements, the following variables will also be available...
+
+| Variable   | Description
+|:-----------|:------------
+| `markerId` | ID of the marker being placed onto the map.
+| `element`  | The full element responsible for creating the marker.
+| `address`  | An [Address Model](/models/address-model/) derived from the element's [Address Field](/address-field/).
+
+:::warning Additional Element Type Variables
+For each element type, the `element` variable will automatically be aliased for that particular element type.
+
+```twig
+    element === entry  {# If marker is an Entry #}
+    element === asset  {# If marker is an Asset #}
+    element === user   {# If marker is a User #}
+    
+    ... and so on
+```
+
+This applies to _all_ element types, including 3rd-party element types.
+:::
+
+### Variables for Visitor-based Info Windows
+
+If the marker was based on a [geolocated visitor](/geolocation/), there will be one final variable...
+
+| Variable   | Description
+|:-----------|:------------
+| `visitor`  | A [Visitor Model](/models/visitor-model/) derived from a [Visitor Geolocation](/geolocation/) process.
 
 ## Info Window Template Errors
 
