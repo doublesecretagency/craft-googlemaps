@@ -1,6 +1,6 @@
 {
     "name": "doublesecretagency/craft-googlemaps",
-    "description": "Maps in minutes. Powered by Google Maps.",
+    "description": "Maps in minutes. Powered by the Google Maps API.",
     "type": "craft-plugin",
     "version": "4.0.0-rc.1",
     "keywords": [

@@ -2,7 +2,7 @@
 home: true
 heroImage: /images/icon.svg
 heroText: Google Maps plugin for Craft CMS
-tagline: Maps in minutes. Powered by Google Maps.
+tagline: Maps in minutes. Powered by the Google Maps API.
 actionText: Get Started →
 actionLink: /getting-started/
 features:

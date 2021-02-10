@@ -78,7 +78,7 @@ To install the Google Maps plugin via the plugin store, follow these steps:
     </div>
     <div>
         <strong style="font-size:17px">Google Maps</strong>
-        <div style="font-size:15px; margin-top:9px;">Maps in minutes. Powered by Google Maps.</div>
+        <div style="font-size:15px; margin-top:9px;">Maps in minutes. Powered by the Google Maps API.</div>
         <p style="color:#8f98a3 !important; font-weight:normal;">$99</p>
     </div>
 </div>

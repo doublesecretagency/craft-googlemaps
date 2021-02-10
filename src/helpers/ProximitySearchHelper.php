@@ -2,7 +2,7 @@
 /**
  * Google Maps plugin for Craft CMS
  *
- * Maps in minutes. Powered by Google Maps.
+ * Maps in minutes. Powered by the Google Maps API.
  *
  * @author    Double Secret Agency
  * @link      https://plugins.doublesecretagency.com/
