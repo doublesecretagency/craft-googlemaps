@@ -21,7 +21,7 @@ You will frequently encounter an **Address Model**, which is an extension of the
 
 Similarly, the **Visitor Model** is also an extension of the **Location Model**. You can access the properties and methods of both when fetching geolocation results.
 
-## Maps
+## Dynamic & Static Maps
 
 | Model                                           | Overview
 |:------------------------------------------------|:---------
@@ -30,7 +30,7 @@ Similarly, the **Visitor Model** is also an extension of the **Location Model**.
 
 Both the **Dynamic Map Model** and **Static Map Model** are powerful [chainable objects](/dynamic-maps/chaining/) which can be configured to display each map as desired.
 
-## Geolocation
+## Geolocation Services
 
 <div class="custom-block warning">
     <p>⚠️&nbsp; You will almost never need to call these models directly.</p>
