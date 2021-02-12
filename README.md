@@ -7,53 +7,53 @@
 ---
 
 <div align="center">
-  <a href="#easy-to-use-address-fields">Address Fields</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-  <a href="#flexible-dynamic--static-maps">Dynamic & Static Maps</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-  <a href="#find-the-nearest-location">Proximity Searching</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-  <a href="#simple-visitor-geolocation">IP-based Geolocation</a>
+  <a href="#includes-easy-to-use-address-fields">Address Fields</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="#create-flexible-dynamic--static-maps">Dynamic & Static Maps</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="#search-for-the-nearest-locations">Proximity Searching</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="#simple-ip-based-visitor-geolocation">IP-based Geolocation</a>
 </div>
 
 ---
 
-### Easy-to-use Address Fields
+### Includes easy-to-use Address Fields
 
 When managing your Craft data, each location can be set with a convenient Address field...
 
 <p align="center">
-    <img width="603" src="http://beta.doublesecretagency.com/images/address-field.gif" alt="Animated GIF of an Address field">
+    <img width="603" src="http://beta.doublesecretagency.com/images/address-field.gif?v=1" alt="Animated GIF of an Address field">
 </p>
 
-### Flexible Dynamic & Static Maps
+### Create flexible Dynamic & Static Maps
 
-Use your location data to create complex static or dynamic maps. You can add markers, add info windows, style maps, apply KML layers, change marker icons, and so much more...
+Add markers, use info windows, style maps, change marker icons, apply KML layers, and much, much more...
 
 <p align="center">
-    <img width="660" src="http://beta.doublesecretagency.com/images/dynamic-map.png" alt="Screenshot of a dynamic map">
+    <img src="http://beta.doublesecretagency.com/images/dynamic-map.png?v=1" alt="Screenshot of a dynamic map">
 </p>
 
 >**Universal API**
 >
 >The plugin features a powerful [universal API](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-api/) which works nearly identically across **JavaScript, Twig, and PHP!**
 
-### Find the Nearest Location
+### Search for the Nearest Locations
 
-Search for nearby locations, sorted from closest to furthest...
+Find the closest locations, and sort the results from nearest to furthest...
 
 <p align="center">
-    <img width="660" src="http://beta.doublesecretagency.com/images/proximity-search.png" alt="Screenshot of a set of proximity search results">
+    <img src="http://beta.doublesecretagency.com/images/proximity-search.png?v=1" alt="Screenshot of a set of proximity search results">
 </p>
 
-### Simple Visitor Geolocation
+### Simple IP-based Visitor Geolocation
 
 Locate your visitors based on their device's IP address...
 
 <p align="center">
-    <img width="660" src="http://beta.doublesecretagency.com/images/geolocation.png" alt="Screenshot of visitor geolocation results">
+    <img src="http://beta.doublesecretagency.com/images/geolocation.png?v=1" alt="Screenshot of visitor geolocation results">
 </p>
 
 ---
 
-## How to Install
+## How to Install the Plugin
 
 ### Installation via Plugin Store
 
