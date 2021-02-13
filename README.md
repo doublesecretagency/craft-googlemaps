@@ -173,3 +173,7 @@ And if you have any remaining questions, feel free to [reach out to us](https://
 <p align="center">
     <img width="130" src="https://www.doublesecretagency.com/resources/images/dsa-transparent.png" alt="Logo for Double Secret Agency">
 </p>
+
+---
+
+⭐&nbsp; Like what you see? **Star this repo on Github!**
