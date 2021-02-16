@@ -1,6 +1,6 @@
 # Updating from Smart Map
 
-## Replacing the plugin
+## Install the Google Maps plugin
 
 To replace Smart Map, simply [install the Google Maps plugin](/getting-started/).
 
@@ -20,10 +20,6 @@ Once all environments are safely running the new Google Maps plugin, _then_ it w
 :::
 -->
 
-## Updating your Twig code
+## Update your Twig code
 
-Some of your Twig code may need to be updated as well. While there are many similarities to the original Smart Map examples, several components will require adjustments.
-
-:::tip Examples for Updating Twig
-For complete instructions, read the [guide to updating from Smart Map to Google Maps](/updating-from-smart-map/).
-:::
+Read the [complete instructions](/updating-from-smart-map/) for updating your corresponding Twig code.

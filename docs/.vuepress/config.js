@@ -54,6 +54,7 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    {text: 'Updating from Smart Map 🔧', link: '/updating-from-smart-map/'},
                     {text: 'General Troubleshooting', link: '/guides/general-troubleshooting/'},
                     {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
                     {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
@@ -63,13 +64,12 @@ module.exports = {
                     {text: 'KML Layers', link: '/guides/kml-layers/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
                     // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Improve Matrix compatibility
+                    {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
                     {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
                     {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
-                    {text: 'Updating from Smart Map', link: '/updating-from-smart-map/'},
                 ]
             },
         ],
@@ -77,10 +77,10 @@ module.exports = {
             // Getting Started
             '/getting-started/': [
                 '',
+                'updating-from-smart-map',
                 'api-keys',
                 'settings',
                 'config',
-                'updating-from-smart-map',
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
 

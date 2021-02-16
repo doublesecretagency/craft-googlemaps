@@ -110,11 +110,3 @@ Alternatively, you can visit the **Settings > Plugins** page to complete the ins
 
 If installed via the control panel, you'll be automatically redirected to configure the plugin.
 :::
-
-## Troubleshooting
-
-While constructing your maps, we highly recommend enabling the [`devMode` config setting](https://craftcms.com/docs/3.x/config/config-settings.html#devmode).
-
-With `devMode` enabled, you will see a much more detailed output in the JavaScript console each time a map is rendered...
-
-<img class="dropshadow" :src="$withBase('/images/getting-started/console.png')" alt="Example of console output when a map is rendered" style="max-width:772px">

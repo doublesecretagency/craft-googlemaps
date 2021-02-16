@@ -2,16 +2,10 @@
 
 <update-message/>
 
-## Updating the plugin software
+### ⬅️&nbsp; Select a topic from the left navigation
 
-From a software perspective, switching plugins is easy! **Simply install the new Google Maps plugin,** and it will automatically migrate everything it needs out of Smart Map.
+Each subject mirrors a page from the original Smart Map documentation. If you are trying to determine how to update a specific feature, look for the corresponding transition page here.
 
 :::tip Software Update
-See this quick guide for [replacing Smart Map with Google Maps...](/getting-started/updating-from-smart-map/)
+If you haven't already, follow these instructions to [replace the plugin software...](/getting-started/updating-from-smart-map/)
 :::
-
-## Updating your Twig templates
-
-⬅️ **Select a topic from the left navigation.**
-
-Each subject mirrors a page from the original Smart Map documentation.
