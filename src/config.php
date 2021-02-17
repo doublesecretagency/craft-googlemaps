@@ -31,4 +31,7 @@ return [
     //'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
     //'maxmindService' => getenv('MAXMIND_SERVICE'),
 
+    // Whether to log JS progress to the console (when a map is rendered)
+    //'enableJsLogging' => true,
+
 ];

@@ -35,5 +35,12 @@ return [
     'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
     'maxmindService'    => getenv('MAXMIND_SERVICE'),
 
+    // Allow JS logging in the console when a dynamic map is rendered
+    'enableJsLogging' => true,
+
 ];
 ```
+
+:::tip Config File Only
+The `enableJsLogging` value is only available via the PHP config file. It cannot be managed via the Settings page in the control panel.
+:::

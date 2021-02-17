@@ -1,4 +1,4 @@
-# Plugin Settings
+# Settings Page
 
 In order to access the settings, log in to your control panel and visit **Settings > Google Maps**. This is where you will be able to manage all API connection information regarding the Google API, as well as any credentials for whichever geolocation service you may be using. 
 

@@ -47,3 +47,7 @@ _string_ - MaxMind License Key. Only relevant if `geolocationService` is set to 
 ### `maxmindService`
 
 _string_ - MaxMind Service. Only relevant if `geolocationService` is set to **maxmind**.
+
+### `enableJsLogging`
+
+_bool_ - Whether to allow logging to the JavaScript console. Only relevant when displaying a dynamic map. Defaults to `true`.

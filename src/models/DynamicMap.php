@@ -21,6 +21,7 @@ use craft\helpers\Template;
 use craft\models\FieldLayout;
 use craft\web\View;
 use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Error\LoaderError;
@@ -96,8 +97,14 @@ class DynamicMap extends Model
             $view->registerAssetBundle(JsApiAsset::class);
         }
 
-        // If in devMode, enable JS logging
-        if (Craft::$app->getConfig()->general->devMode) {
+        // Whether devMode is enabled
+        $inDevMode = Craft::$app->getConfig()->general->devMode;
+
+        // Whether JavaScript logging is enabled
+        $loggingEnabled = (GoogleMapsPlugin::$plugin->getSettings()->enableJsLogging ?? true);
+
+        // If permitted, enable logging via JavaScript
+        if ($inDevMode && $loggingEnabled) {
             $view->registerJs('googleMaps.log = true;', $view::POS_END);
         }
 

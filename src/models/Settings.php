@@ -55,4 +55,9 @@ class Settings extends Model
      */
     public $maxmindService;
 
+    /**
+     * @var bool Whether to log JS progress to console. Only relevant when rendering a dynamic map.
+     */
+    public $enableJsLogging = true;
+
 }
