@@ -9,6 +9,7 @@ We've designed this plugin to be a universally helpful tool, regardless of which
 
 Here's a straightforward example of how you might create a simple dynamic map in Twig...
 
+:::code
 ```twig
 {# Get all locations #}
 {% set locations = craft.entries.section('locations').all() %}
@@ -16,13 +17,15 @@ Here's a straightforward example of how you might create a simple dynamic map in
 {# Create a dynamic map with markers #}
 {{ googleMaps.map(locations).tag() }}
 ```
+:::
 
-Of course, that is only the beginning. It's possible to do much more complicated things with your map by tapping into the [Universal Methods](/dynamic-maps/universal-methods/), which are equally available across JavaScript, Twig, and PHP.
+Of course, that's only the beginning. It's possible to do much more complicated things with your map by tapping into the [Universal Methods](/dynamic-maps/universal-methods/), which are equally available across JavaScript, Twig, and PHP.
 
 ## Manipulating a Map in JavaScript
 
 By [chaining](/dynamic-maps/chaining/) these methods together, you can endlessly adjust the map as needed. You can even call up an existing map, and continue to manipulate it further.
 
+:::code
 ```js
 // Get an existing map
 //   Change a marker icon
@@ -33,6 +36,7 @@ googleMaps.getMap('my-map')
     .panToMarker('my-marker')
     .zoom(11);
 ```
+:::
 
 This gives you the maximum amount of control over how each map will be rendered.
 

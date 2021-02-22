@@ -6,6 +6,7 @@ Whether you are working in Twig or PHP, the syntax is nearly identical. Unlike t
 
 Here's a straightforward example of how you might create a simple static map in Twig...
 
+:::code
 ```twig
 {# Get all locations #}
 {% set locations = craft.entries.section('locations').all() %}
@@ -13,13 +14,15 @@ Here's a straightforward example of how you might create a simple static map in 
 {# Create a static map with markers #}
 {{ googleMaps.img(locations).tag() }}
 ```
+:::
 
-Of course, that is only the beginning. You can chain additional methods to produce far more complex maps. Take a look at the [`StaticMap` model](/models/static-map-model/) to see all the methods available for chaining.
+Of course, that's only the beginning. You can chain additional methods to produce far more complex maps. Take a look at the [`StaticMap` model](/models/static-map-model/) to see all the methods available for chaining.
 
 ## Configuring the Map
 
 By chaining methods together, you can build a map into whatever form necessary.
 
+:::code
 ```twig
 {# Create a blank map
  #   Add locations with green markers
@@ -32,6 +35,7 @@ By chaining methods together, you can build a map into whatever form necessary.
     .tag()
 }}
 ```
+:::
 
 This gives you the maximum amount of control over how each map will be rendered.
 
