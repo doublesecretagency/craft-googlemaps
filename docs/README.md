@@ -1,5 +1,27 @@
 ---
 home: true
+description: Maps in minutes. Powered by the Google Maps API.
+meta:
+- property: og:type
+  content: website
+- property: og:url
+  content: https://plugins.doublesecretagency.com/google-maps/
+- property: og:title
+  content: Google Maps plugin for Craft CMS
+- property: og:description
+  content: Maps in minutes. Powered by the Google Maps API.
+- property: og:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/meta/google-maps.png
+- property: twitter:card
+  content: summary_large_image
+- property: twitter:url
+  content: https://plugins.doublesecretagency.com/google-maps/
+- property: twitter:title
+  content: Google Maps plugin for Craft CMS
+- property: twitter:description
+  content: Maps in minutes. Powered by the Google Maps API.
+- property: twitter:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/meta/google-maps.png
 heroImage: /images/icon.svg
 heroText: Google Maps plugin for Craft CMS
 tagline: Maps in minutes. Powered by the Google Maps API.
