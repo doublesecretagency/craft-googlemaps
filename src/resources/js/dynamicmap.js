@@ -410,6 +410,26 @@ function DynamicMap(locations, options) {
         return marker;
     };
 
+    // Get a specific Google Maps info window object
+    this.getInfoWindow = function(infoWindowId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`From map "${this.id}", getting existing info window "${infoWindowId}"`);
+        }
+
+        // Get existing info window
+        var infoWindow = this._infoWindows[infoWindowId];
+
+        // If info window does not exist, emit warning
+        if (!infoWindow) {
+            console.warn(`[GM] Unable to find info window "${infoWindowId}"`);
+        }
+
+        // Return info window
+        return infoWindow;
+    };
+
     // ========================================================================= //
 
     // Generate a complete map element

@@ -327,6 +327,25 @@ var marker = map.getMarker('33-address');
 ---
 ---
 
+### `getInfoWindow(infoWindowId)`
+
+Get the [Google Maps Info Window object](https://developers.google.com/maps/documentation/javascript/infowindows) of a specified info window.
+
+```js
+var infoWindow = map.getInfoWindow('33-address');
+```
+
+#### Arguments
+
+ - `infoWindowId` (_string_) - The ID of the info window that you want to access.
+
+#### Returns
+
+ - A Google Maps [Info Window](https://developers.google.com/maps/documentation/javascript/infowindows) object.
+
+---
+---
+
 ### `tag(options = {})`
 
 Creates a new `<div>` element, detached from the DOM. If a `parentId` is specified, the element will automatically be injected into the specified parent container.

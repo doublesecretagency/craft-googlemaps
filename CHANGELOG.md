@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.1 - UNRELEASED
+
+### Added
+- Added `getInfoWindow` JavaScript method.
+
 ## 4.0.0 - 2021-02-22
 
 ### Added

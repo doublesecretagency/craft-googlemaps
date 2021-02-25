@@ -58,7 +58,7 @@ $map->markers($locations, $options);
 ```
 :::
 
-It's also possible to access a raw Google Marker object (this will rarely be necessary).
+In JavaScript, you can also access the raw [Google Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object:
 
 ```js
 var marker = map.getMarker(markerId);
@@ -66,9 +66,19 @@ var marker = map.getMarker(markerId);
 
 ## Info Windows
 
-[Info windows](/dynamic-maps/info-windows/) must now be managed exclusively via Twig.
+You can easily create info windows using [Twig or PHP](/dynamic-maps/info-windows/).
 
-There is currently no mechanism for accessing existing info windows via JavaScript.
+In JavaScript, you can also access the raw [Google Info Window](https://developers.google.com/maps/documentation/javascript/reference/info-window) object:
+
+```js
+var marker = map.getInfoWindow(infoWindowId);
+```
+
+:::warning Identical IDs
+A marker's `infoWindowId` is identical to its `markerId`.
+:::
+
+For more information, see the guide on [Opening Info Windows...](/guides/opening-info-windows/)
 
 ## Additional Functions
 

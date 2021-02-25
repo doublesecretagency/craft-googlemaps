@@ -62,6 +62,7 @@ module.exports = {
                     {text: 'Clustering Markers', link: '/guides/clustering-markers/'},
                     {text: 'Styling a Map', link: '/guides/styling-a-map/'},
                     {text: 'KML Layers', link: '/guides/kml-layers/'},
+                    {text: 'Opening Info Windows', link: '/guides/opening-info-windows/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
                     // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Improve Matrix compatibility
@@ -168,6 +169,7 @@ module.exports = {
                 'clustering-markers',
                 'styling-a-map',
                 'kml-layers',
+                'opening-info-windows',
                 'region-biasing',
                 'filter-by-subfields',
                 'ajax-geocoding-example',
