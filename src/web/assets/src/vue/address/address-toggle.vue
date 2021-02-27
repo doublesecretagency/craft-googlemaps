@@ -55,20 +55,26 @@
         methods: {
             adjustTogglePosition() {
 
-                // Find the field instructions div
+                // Look at parent element to get nearby items
                 let $container = this.$el.closest('.field');
+                let copyTextBtn = $container.getElementsByClassName('copytextbtn');
                 let instructions = $container.getElementsByClassName('instructions');
 
-                // If no field instructions, bail
-                if (!instructions.length) {
-                    return;
+                // If "copy" div is visible
+                if (copyTextBtn.length) {
+                    // Compile new class
+                    const toggleClass = `gm-toggle-${this.toggleMode}`;
+                    // Add new class to "copy" div
+                    copyTextBtn[0].classList.add(toggleClass);
                 }
 
-                // Get height of instructions div
-                let height = instructions[0].clientHeight;
-
-                // Recalculate toggle offset
-                this.toggleOffset -= height;
+                // If field has instructions
+                if (instructions.length) {
+                    // Measure height of instructions div
+                    let height = instructions[0].clientHeight;
+                    // Adjust toggle offset accordingly
+                    this.toggleOffset -= height;
+                }
 
             },
             toggle() {

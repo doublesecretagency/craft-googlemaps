@@ -3,7 +3,10 @@
 ## 4.0.1 - UNRELEASED
 
 ### Added
-- Added `getInfoWindow` JavaScript method.
+- Added [`getInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getinfowindow-infowindowid) JavaScript method.
+
+### Fixed
+- Fixed overlap between the field handle div and the map's toggle text/icon. ([#7](https://github.com/doublesecretagency/craft-googlemaps/issues/7))
 
 ## 4.0.0 - 2021-02-22
 

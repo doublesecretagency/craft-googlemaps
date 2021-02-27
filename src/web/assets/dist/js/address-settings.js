@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //
 //
@@ -81,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _utils_subfield_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils/subfield-config */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-config.js");
 //
@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //
 //
@@ -267,7 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //
 //
@@ -495,7 +495,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //
 //
@@ -542,7 +542,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _utils_address_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils/address-components */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js");
 /* harmony import */ var _utils_subfield_display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/subfield-display */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/subfield-display.js");
@@ -660,7 +660,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 //
 //
@@ -725,18 +725,25 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     adjustTogglePosition() {
-      // Find the field instructions div
+      // Look at parent element to get nearby items
       let $container = this.$el.closest('.field');
-      let instructions = $container.getElementsByClassName('instructions'); // If no field instructions, bail
+      let copyTextBtn = $container.getElementsByClassName('copytextbtn');
+      let instructions = $container.getElementsByClassName('instructions'); // If "copy" div is visible
 
-      if (!instructions.length) {
-        return;
-      } // Get height of instructions div
+      if (copyTextBtn.length) {
+        // Compile new class
+        const toggleClass = `gm-toggle-${this.toggleMode}`; // Add new class to "copy" div
+
+        copyTextBtn[0].classList.add(toggleClass);
+      } // If field has instructions
 
 
-      let height = instructions[0].clientHeight; // Recalculate toggle offset
+      if (instructions.length) {
+        // Measure height of instructions div
+        let height = instructions[0].clientHeight; // Adjust toggle offset accordingly
 
-      this.toggleOffset -= height;
+        this.toggleOffset -= height;
+      }
     },
 
     toggle() {
@@ -759,7 +766,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _address_toggle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-toggle.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-toggle.vue");
 /* harmony import */ var _address_subfields_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-subfields.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-subfields.vue");
@@ -855,46 +862,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../../plugins/craft-googlemaps/src/web/assets/src/js/address-settings.js":
-/*!********************************************************************************!*\
-  !*** ../../plugins/craft-googlemaps/src/web/assets/src/js/address-settings.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../vue/address/address.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address.vue");
-/* harmony import */ var _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../vue/address-settings/subfield-manager.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/subfield-manager.vue");
-/* harmony import */ var _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../vue/address-settings/default-coords.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/default-coords.vue");
-
-
- // Disable silly message
-
-Vue.config.productionTip = false; // Initialize Vue instance
-
-window.initAddressFieldSettings = function () {
-  // Get all matching DOM elements
-  var elements = document.querySelectorAll('.address-settings'); // Initialize Vue for each element
-
-  elements.forEach(function (el) {
-    new Vue({
-      el: el,
-      components: {
-        'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default,
-        'subfield-manager': _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-        'default-coords': _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__.default
-      },
-      data: {
-        settings: settings,
-        data: data,
-        icons: icons
-      }
-    });
-  });
-};
-
-/***/ }),
-
 /***/ "../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js":
 /*!*****************************************************************************************!*\
   !*** ../../plugins/craft-googlemaps/src/web/assets/src/vue/utils/address-components.js ***!
@@ -904,7 +871,7 @@ window.initAddressFieldSettings = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ addressComponents
+/* harmony export */   "default": () => (/* binding */ addressComponents)
 /* harmony export */ });
 // Countries where the street number precedes the street name
 var numberFirst = ['Australia', 'Canada', 'France', 'Hong Kong', 'India', 'Ireland', 'Malaysia', 'New Zealand', 'Pakistan', 'Singapore', 'Sri Lanka', 'Taiwan', 'Thailand', 'United Kingdom', 'United States']; // Countries with a comma after the street name
@@ -976,7 +943,7 @@ function addressComponents(components, data) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ subfieldConfig
+/* harmony export */   "default": () => (/* binding */ subfieldConfig)
 /* harmony export */ });
 /**
  * DEFAULT
@@ -1028,7 +995,7 @@ function rearrange(oldOrder) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ subfieldDisplay
+/* harmony export */   "default": () => (/* binding */ subfieldDisplay)
 /* harmony export */ });
 /**
  * DEFAULT
@@ -1128,7 +1095,7 @@ function displayConfig(arrangement) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _sandbox_googlemaps_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../../../../sandbox/googlemaps/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _sandbox_googlemaps_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sandbox_googlemaps_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -1170,15 +1137,15 @@ module.exports = function (cssWithMappingToString) {
       }
 
       return content;
-    }).join('');
+    }).join("");
   }; // import a list of modules into the list
   // eslint-disable-next-line func-names
 
 
   list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === 'string') {
+    if (typeof modules === "string") {
       // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, '']];
+      modules = [[null, modules, ""]];
     }
 
     var alreadyImportedModules = {};
@@ -1228,7 +1195,7 @@ module.exports = function (cssWithMappingToString) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_default_coords_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./default-coords.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/default-coords.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_2c95f270_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_default_coords_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-2c95f270","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./default-coords.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2c95f270\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/default-coords.vue");
@@ -1276,7 +1243,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./subfield-manager.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/subfield-manager.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_ca512890_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-ca512890","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./subfield-manager.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-ca512890\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/subfield-manager.vue");
@@ -1324,7 +1291,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_coords_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address-coords.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-coords.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_36f8c252_hasScoped_true_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_coords_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-36f8c252","hasScoped":true,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address-coords.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-36f8c252\",\"hasScoped\":true,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-coords.vue");
@@ -1376,7 +1343,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_map_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address-map.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-map.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_7159031a_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_map_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-7159031a","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address-map.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7159031a\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-map.vue");
@@ -1424,7 +1391,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_meta_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address-meta.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-meta.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_0036997e_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_meta_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-0036997e","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address-meta.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0036997e\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-meta.vue");
@@ -1472,7 +1439,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_subfields_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address-subfields.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-subfields.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_6bfab450_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_subfields_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-6bfab450","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address-subfields.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6bfab450\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-subfields.vue");
@@ -1520,7 +1487,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_toggle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address-toggle.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-toggle.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_b550a9e6_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-b550a9e6","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address-toggle.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-b550a9e6\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address-toggle.vue");
@@ -1568,7 +1535,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_loader_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_script_index_0_address_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!babel-loader!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=script&index=0!./address.vue */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address.vue");
 /* harmony import */ var _sandbox_googlemaps_node_modules_vue_loader_lib_template_compiler_index_id_data_v_c9c8ec38_hasScoped_false_optionsId_0_buble_transforms_sandbox_googlemaps_node_modules_vue_loader_lib_selector_type_template_index_0_address_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-c9c8ec38","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!../../../../../../../../sandbox/googlemaps/node_modules/vue-loader/lib/selector?type=template&index=0!./address.vue */ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c9c8ec38\",\"hasScoped\":false,\"optionsId\":\"0\",\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address.vue");
@@ -1616,7 +1583,7 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ normalizeComponent
+/* harmony export */   "default": () => (/* binding */ normalizeComponent)
 /* harmony export */ });
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -1732,8 +1699,8 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -1803,8 +1770,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -1891,8 +1858,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -1957,8 +1924,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -2019,8 +1986,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -2058,8 +2025,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -2120,8 +2087,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -2162,8 +2129,8 @@ if (false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render,
-/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function() {
   var _vm = this
@@ -2497,7 +2464,7 @@ if(false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ addStylesClient
+/* harmony export */   "default": () => (/* binding */ addStylesClient)
 /* harmony export */ });
 /* harmony import */ var _listToStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listToStyles */ "./node_modules/vue-style-loader/lib/listToStyles.js");
 /*
@@ -2735,7 +2702,7 @@ function applyToTag (styleElement, obj) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ listToStyles
+/* harmony export */   "default": () => (/* binding */ listToStyles)
 /* harmony export */ });
 /**
  * Translates the list format produced by css-loader into something
@@ -2799,8 +2766,8 @@ function listToStyles (parentId, list) {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => module['default'] :
-/******/ 				() => module;
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
@@ -2820,7 +2787,7 @@ function listToStyles (parentId, list) {
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -2835,9 +2802,44 @@ function listToStyles (parentId, list) {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	// startup
-/******/ 	// Load entry module
-/******/ 	__webpack_require__("../../plugins/craft-googlemaps/src/web/assets/src/js/address-settings.js");
-/******/ 	// This entry module used 'exports' so it can't be inlined
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!********************************************************************************!*\
+  !*** ../../plugins/craft-googlemaps/src/web/assets/src/js/address-settings.js ***!
+  \********************************************************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../vue/address/address.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address/address.vue");
+/* harmony import */ var _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../vue/address-settings/subfield-manager.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/subfield-manager.vue");
+/* harmony import */ var _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../vue/address-settings/default-coords.vue */ "../../plugins/craft-googlemaps/src/web/assets/src/vue/address-settings/default-coords.vue");
+
+
+ // Disable silly message
+
+Vue.config.productionTip = false; // Initialize Vue instance
+
+window.initAddressFieldSettings = function () {
+  // Get all matching DOM elements
+  var elements = document.querySelectorAll('.address-settings'); // Initialize Vue for each element
+
+  elements.forEach(function (el) {
+    new Vue({
+      el: el,
+      components: {
+        'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+        'subfield-manager': _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+        'default-coords': _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__.default
+      },
+      data: {
+        settings: settings,
+        data: data,
+        icons: icons
+      }
+    });
+  });
+};
+})();
+
 /******/ })()
 ;
