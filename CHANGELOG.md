@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.1 - UNRELEASED
+## 4.0.1 - 2021-02-26
 
 ### Added
 - Added [`getInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getinfowindow-infowindowid) JavaScript method.
