@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.2 - UNRELEASED
+## 4.0.2 - 2021-02-28
 
 ### Added
 - Added [`api`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/twig-php-methods/#tag-options) option to Twig/PHP `tag` method.
