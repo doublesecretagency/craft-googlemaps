@@ -176,4 +176,4 @@ And if you have any remaining questions, feel free to [reach out to us](https://
 
 ---
 
-⭐&nbsp; Like what you see? **Star this repo on Github!**
+⭐&nbsp; Like what you see? **Star this repo on [Github](https://github.com/doublesecretagency/craft-googlemaps)!**
