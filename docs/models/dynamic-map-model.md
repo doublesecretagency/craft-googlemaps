@@ -49,8 +49,6 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `infoWindowOptions`  | _object_          | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | _string_          | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
 | `field`              | _string_\|_array_ | _null_  | Address field(s) to be included on the map. (includes all by default)
-| `js`                 | _bool_            | _true_  | Whether to preload the necessary external JavaScript.
-| `callback`           | _string_          | _null_  | JavaScript function to run after the map has finished loading.
 
 #### Returns
 
@@ -352,9 +350,12 @@ Renders the necessary `<div>` container to hold the map. The final `<div>` will 
 
  - `$options` (_array_) - Configuration options for the rendered `<div>`.
 
-| Option | Type   | Default | Description
-|:-------|:------:|:-------:|-------------
-| `init` | _bool_ | `true`  | Whether to automatically initialize the map via JavaScript.
+| Option     | Type     | Default | Description
+|:-----------|:--------:|:-------:|:------------
+| `api`      | _object_ | `{}`    | Optional parameters for the Google Maps API.
+| `assets`   | _bool_   | `true`  | Whether to preload the necessary JavaScript assets.
+| `init`     | _bool_   | `true`  | Whether to automatically initialize the map via JavaScript.
+| `callback` | _string_ | `null`  | JavaScript function to run after the map has loaded.
 
 By setting the `init` option to `false`, the map will not be automatically initialized in JavaScript. It must therefore be [manually initialized in JavaScript](/dynamic-maps/javascript-methods/#init-mapid-null-callback-null) when the page has completely rendered.
 

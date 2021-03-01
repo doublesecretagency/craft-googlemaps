@@ -48,8 +48,6 @@ Most (though not all) of these options are available across JavaScript, Twig, an
 | `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | Twig/PHP    | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
 | `field`              | Twig/PHP    | Address field(s) to be included on the map. (includes all by default)
-| `js`                 | Twig/PHP    | Whether to preload the necessary external JavaScript.
-| `callback`           | Twig/PHP    | JavaScript function to run after the map has loaded.
 
 :::warning Additional Details
 For more info, please consult either the [JavaScript method](/javascript/googlemaps.js/#map-locations-options) or the [Twig/PHP constructor](/models/dynamic-map-model/#construct-locations-options).

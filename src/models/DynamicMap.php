@@ -22,6 +22,7 @@ use craft\models\FieldLayout;
 use craft\web\View;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Error\LoaderError;
@@ -84,18 +85,8 @@ class DynamicMap extends Model
         // Set internal map ID
         $this->id = $options['id'];
 
-        // Unless otherwise specified, preload the necessary JavaScript
-        if (!isset($options['js']) || !is_bool($options['js'])) {
-            $options['js'] = true;
-        }
-
         // Get view service
         $view = Craft::$app->getView();
-
-        // Load assets
-        if ($options['js']) {
-            $view->registerAssetBundle(JsApiAsset::class);
-        }
 
         // Whether devMode is enabled
         $inDevMode = Craft::$app->getConfig()->general->devMode;
@@ -119,7 +110,7 @@ class DynamicMap extends Model
             ];
 
             // Prevent conflict between map ID and marker IDs
-            unset($options['id'], $options['js']);
+            unset($options['id']);
 
             // Create markers along with their corresponding info windows
             $this->_initInfoWindows($locations, $options);
@@ -384,12 +375,39 @@ class DynamicMap extends Model
             throw new Exception('Model misconfigured. The map DNA is empty.');
         }
 
-        // Alias map from DNA
-        $map =& $this->_dna[0];
-
-        // If the first item is not a map, throw an error
-        if ('map' != $map['type']) {
+        // If the first DNA item is not a map, throw an error
+        if ('map' != ($this->_dna[0]['type'] ?? false)) {
             throw new Exception('Map model misconfigured. The chain must begin with a `map()` segment.');
+        }
+
+        // Get view service
+        $view = Craft::$app->getView();
+
+        // Unless otherwise specified, preload the necessary JavaScript assets
+        if (!isset($options['assets']) || !is_bool($options['assets'])) {
+            $options['assets'] = true;
+        }
+
+        // If no additional API parameters were specified, default to empty array
+        if (!isset($options['api']) || !is_array($options['api'])) {
+            $options['api'] = [];
+        }
+
+        // If we're permitted to load JS assets
+        if ($options['assets']) {
+            // Load assets with optional API parameters
+            GoogleMaps::loadAssets($options['api']);
+        }
+
+        // Initialize the map (unless intentionally suppressed)
+        if ($options['init'] ?? true) {
+            // Get optional callback
+            $callback = ($options['callback'] ?? 'null');
+            // Initialize Google Maps after page has loaded
+            $googleMapsInit = "googleMaps.init('{$this->id}', {$callback})";
+            $js = "addEventListener('load', function () {{$googleMapsInit}});";
+            // Register JS at the end of the page
+            $view->registerJs($js, $view::POS_END);
         }
 
         // Compile map container
@@ -398,18 +416,6 @@ class DynamicMap extends Model
             'class' => 'gm-map',
             'data-dna' => Json::encode($this->_dna),
         ]);
-
-        // Initialize the map (unless intentionally suppressed)
-        if ($options['init'] ?? true) {
-            // Get optional callback
-            $callback = ($map['options']['callback'] ?? 'null');
-            // Initialize Google Maps after page has loaded
-            $googleMapsInit = "googleMaps.init('{$this->id}', {$callback})";
-            $js = "addEventListener('load', function () {{$googleMapsInit}});";
-            // Register JS at the end of the page
-            $view = Craft::$app->getView();
-            $view->registerJs($js, $view::POS_END);
-        }
 
         // Return Markup
         return Template::raw($html);

@@ -22,22 +22,13 @@ In addition to the Google Maps API reference, there are two [JavaScript files](/
 
 ## Disable Automatic Loading
 
-To prevent the required assets from being automatically loaded, simply set the `js` option to `false` when creating a map.
+If necessary, you can prevent the required assets from being loaded automatically.  When the `tag` method is appended, simply set the `assets` value to `false`.
 
-:::code
 ```twig
-{% set map = googleMaps.map(locations, {
-    'js': false
-}) %}
+{{ googleMaps.map(locations).tag({'assets': false}) }}
 ```
-```php
-$map = GoogleMaps::map($locations, [
-    'js' => false
-]);
-```
-:::
 
-For more info, see the complete [list of options...](/dynamic-maps/map-management/#map-locations-options)
+For more info, see the complete [list of options...](/dynamic-maps/twig-php-methods/#tag-options)
 
 ## Loaded Manually
 

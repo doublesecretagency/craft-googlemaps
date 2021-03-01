@@ -23,15 +23,18 @@ The `tag` method also exists in [JavaScript](/dynamic-maps/javascript-methods/#t
 
 Regardless of whether you are using Twig or PHP, this will create a new `Twig\Markup` object.
 
-If you are working in Twig, you can use curly braces to output the map directly.
+If you are working in Twig, you can use curly braces to output the map directly. This produces a `<div>` element with a carefully constructed `data-dna` property.
 
 #### Arguments
 
- - `options` (_array_) - Configuration options for the rendered `<div>`.
+ - `options` (_array_) - Configuration options for the map container and its related JavaScript.
 
-| Option | Type   | Default | Description
-|:-------|:------:|:-------:|-------------
-| `init` | _bool_ | `true`  | Whether to automatically initialize the map via JavaScript.
+| Option     | Type     | Default | Description
+|:-----------|:--------:|:-------:|:------------
+| `api`      | _object_ | `{}`    | Optional parameters for the Google Maps API.
+| `assets`   | _bool_   | `true`  | Whether to preload the necessary JavaScript assets.
+| `init`     | _bool_   | `true`  | Whether to automatically initialize the map via JavaScript.
+| `callback` | _string_ | `null`  | JavaScript function to run after the map has loaded.
 
 The `init` option allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig.
 

@@ -20,10 +20,8 @@ Please take a closer look to see which items will need to be updated, added, or 
 
 | Option               |    | What Changed
 |:---------------------|----|:-------------
-| `mapOptions`         | ⭐ | **ADDED!** (new in the Google Maps plugin)
 | `styles`             | ⭐ | **ADDED!** (new in the Google Maps plugin)
-| `js`                 | ⭐ | **ADDED!** (new in the Google Maps plugin)
-| `callback`           | ⭐ | **ADDED!** (new in the Google Maps plugin)
+| `mapOptions`         | ⭐ | **ADDED!** (new in the Google Maps plugin)
 | `maptype`            | ❌ | REMOVED (configure via `mapOptions` instead)
 | `scale`              | ❌ | REMOVED (configure via `mapOptions` instead)
 | `scrollwheel`        | ❌ | REMOVED (configure via `mapOptions` instead)
