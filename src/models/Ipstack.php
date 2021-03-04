@@ -91,9 +91,17 @@ class Ipstack extends Model
         // Get ipstack access credentials
         $parameters['access_key'] = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey);
 
-        // If the IP is missing or invalid, use "check" to autodetect
+        // If the IP is missing or invalid
         if (!$ip || !filter_var($ip, FILTER_VALIDATE_IP)) {
-            $ip = 'check';
+
+            // Autodetect IP address with Craft
+            $ip = Craft::$app->getRequest()->getUserIP();
+
+            // If IP is missing or local, use ipstack autodetect
+            if (!$ip || ('127.0.0.1' === $ip)) {
+                $ip = 'check';
+            }
+
         }
 
         // Compile endpoint URL

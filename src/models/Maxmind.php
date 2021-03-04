@@ -102,9 +102,17 @@ class Maxmind extends Model
             return false;
         }
 
-        // If the IP is missing or invalid, use "me" to autodetect
+        // If the IP is missing or invalid
         if (!$ip || !filter_var($ip, FILTER_VALIDATE_IP)) {
-            $ip = 'me';
+
+            // Autodetect IP address with Craft
+            $ip = Craft::$app->getRequest()->getUserIP();
+
+            // If IP is missing or local, use MaxMind autodetect
+            if (!$ip || ('127.0.0.1' === $ip)) {
+                $ip = 'me';
+            }
+
         }
 
         // Compile endpoint URL
