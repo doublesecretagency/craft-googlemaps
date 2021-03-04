@@ -53,33 +53,41 @@ class Ipstack extends Model
             'ip' => $ip,
         ]);
 
-        // Set cache duration
-        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+        // Get existing lookup results from cache
+        $results = $cache->get($cacheKey);
 
-        // Cache results
-        $results = $cache->getOrSet(
-            $cacheKey,
-            static function() use ($ip, $parameters) {
-                // Get geolocation response
-                $response = static::_pingEndpoint($ip, $parameters);
-                // Convert API response into geolocation data
-                return static::_parseResponse($response);
-            },
-            $cacheDuration
-        );
+        // If cached results exist, return them
+        if ($results !== false) {
+            return $results;
+        }
 
-        // If an error message has been set
+        // Get geolocation response
+        $response = static::_pingEndpoint($ip, $parameters);
+
+        // Convert API response into geolocation data
+        $results = static::_parseResponse($response);
+
+        // If an error occurred
         if (static::$_error) {
-            // Bust cache
-            $cache->delete($cacheKey);
-            // Create basic Visitor Model
-            $results = new Visitor([
+            // Return a basic Visitor Model
+            return new Visitor([
                 'service' => static::SERVICE,
                 'ip' => $ip,
             ]);
         }
 
-        // Return lookup results
+        // If no IP was specified, return without caching
+        if (!$ip) {
+            return $results;
+        }
+
+        // Set cache duration
+        $cacheDuration = (30 * 24 * 60 * 60); // 30 days
+
+        // Cache results
+        $cache->set($cacheKey, $results, $cacheDuration);
+
+        // Return visitor geolocation results
         return $results;
     }
 
@@ -91,18 +99,8 @@ class Ipstack extends Model
         // Get ipstack access credentials
         $parameters['access_key'] = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey);
 
-        // If the IP is missing or invalid
-        if (!$ip || !filter_var($ip, FILTER_VALIDATE_IP)) {
-
-            // Autodetect IP address with Craft
-            $ip = Craft::$app->getRequest()->getUserIP();
-
-            // If IP is missing or local, use ipstack autodetect
-            if (!$ip || ('127.0.0.1' === $ip)) {
-                $ip = 'check';
-            }
-
-        }
+        // If no IP, let ipstack autodetect
+        $ip = ($ip ?? 'check');
 
         // Compile endpoint URL
         $endpoint = static::$_endpoint;

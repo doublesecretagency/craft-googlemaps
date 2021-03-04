@@ -26,20 +26,6 @@ class GeolocationHelper
 {
 
     /**
-     * @var string|null IP address of current user.
-     */
-    public static $ip;
-
-    /**
-     * Set the IP address internally.
-     */
-    public function init()
-    {
-        // Get user's IP address
-        static::$ip = Craft::$app->getRequest()->getUserIP();
-    }
-
-    /**
      * Conduct a geolocation lookup to determine the user's approximate location.
      *
      * @param array $config
@@ -59,8 +45,18 @@ class GeolocationHelper
             return false;
         }
 
-        // Set IP address
-        $ip = ($config['ip'] ?? static::$ip);
+        // Get IP address from config, or let Craft autodetect
+        $ip = ($config['ip'] ?? Craft::$app->getRequest()->getUserIP());
+
+        // If...
+        if (
+            !$ip ||                              // No IP, or
+            ('127.0.0.1' === $ip) ||             // Local IP, or
+            !filter_var($ip, FILTER_VALIDATE_IP) // Invalid IP
+        ) {
+            // Explicitly set to null
+            $ip = null;
+        }
 
         // Perform the geolocation
         $visitor = $model::geolocate($ip);
