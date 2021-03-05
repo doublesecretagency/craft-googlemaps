@@ -273,6 +273,10 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Convert raw data to an array
         $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
 
+        if ($value instanceof AddressModel) {
+            $value = $value->distance;
+        }
+
         // If part of a proximity search, get the distance
         if ($value || is_numeric($value)) {
             $attr['distance'] = (float) $value;
