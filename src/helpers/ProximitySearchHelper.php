@@ -107,6 +107,11 @@ class ProximitySearchHelper
         // Retrieve the starting coordinates from the specified target
         $coords = static::_getTargetCoords($target);
 
+        // If no coordinates, use default
+        if (!$coords) {
+            $coords = AddressField::DEFAULT_COORDINATES;
+        }
+
         // Implement haversine formula via SQL
         $haversine = static::_haversineSql(
             $coords['lat'],
@@ -232,7 +237,7 @@ class ProximitySearchHelper
      * Based on the target provided, determine a center point for the proximity search.
      *
      * @param mixed $target
-     * @return array Set of coordinates to use as center of proximity search.
+     * @return array|false Set of coordinates to use as center of proximity search.
      */
     private static function _getTargetCoords($target)
     {

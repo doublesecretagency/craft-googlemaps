@@ -5,6 +5,9 @@
 ### Changed
 - Improved IP autodetection for visitor geolocation.
 
+### Fixed
+- Be more defensive against unavailable coordinates.
+
 ## 4.0.2 - 2021-02-28
 
 ### Added
