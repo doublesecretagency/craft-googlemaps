@@ -54,7 +54,7 @@ class MapHelper
     public static function extractCoords($locations, array $options = []): array
     {
         // If it's a Location Model, return the coordinates
-        if (is_a($locations, Location::class)) {
+        if ($locations instanceof Location) {
             return [$locations->getCoords()];
         }
 
@@ -84,7 +84,7 @@ class MapHelper
         foreach ($locations as $location) {
 
             // If it's a Location Model, add the coordinates to results
-            if (is_a($location, Location::class)) {
+            if ($location instanceof Location) {
                 $results[] = $location->getCoords();
             }
 
@@ -94,7 +94,7 @@ class MapHelper
             }
 
             // If not an Element, skip it
-            if (!is_a($location, Element::class)) {
+            if (!($location instanceof Element)) {
                 continue;
             }
 
@@ -110,7 +110,7 @@ class MapHelper
                     continue;
                 }
                 // If not an Address Field, skip it
-                if (!is_a($f, AddressField::class)) {
+                if (!($f instanceof AddressField)) {
                     continue;
                 }
                 // Get value of Address Field

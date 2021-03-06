@@ -116,7 +116,7 @@ class Location extends Model
         }
 
         // If ending point is not a Location Model, return false
-        if (!is_a($location, Location::class)) {
+        if (!($location instanceof Location)) {
             return false;
         }
 
@@ -208,7 +208,7 @@ class Location extends Model
             // If origin wasn't specified
             if (!isset($parameters['origin'])) {
                 // Get origin address as a string
-                $address = (is_a($origin, Address::class) ? (string) $origin : false);
+                $address = ($origin instanceof Address ? (string) $origin : false);
                 // Set origin to string address (or coordinates as fallback)
                 $parameters['origin'] = ($address ?: "{$origin->lat},{$origin->lng}");
             }

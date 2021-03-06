@@ -6,6 +6,7 @@
 - Improved IP autodetection for visitor geolocation.
 
 ### Fixed
+- Fixed normalization bug when handling an Address Model.
 - Be more defensive against unavailable coordinates.
 
 ## 4.0.2 - 2021-02-28

@@ -223,6 +223,11 @@ class AddressField extends Field implements PreviewableFieldInterface
     {
         /** @var Entry $element */
 
+        // If the value is already an Address model, return it immediately
+        if ($value instanceof AddressModel) {
+            return $value;
+        }
+
         // If value is an array, load it directly into an Address model
         if (is_array($value)) {
             return new AddressModel([
@@ -274,7 +279,7 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
 
         // If part of a proximity search, get the distance
-        if ($value || is_numeric($value)) {
+        if ($value && is_numeric($value)) {
             $attr['distance'] = (float) $value;
         }
 

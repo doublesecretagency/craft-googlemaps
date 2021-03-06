@@ -491,7 +491,7 @@ class DynamicMap extends Model
         }
 
         // If location is an Address Model
-        if (is_a($location, Address::class)) {
+        if ($location instanceof Address) {
 
             // Set address and coordinates
             $infoWindow['address'] = $location;
@@ -505,7 +505,7 @@ class DynamicMap extends Model
         }
 
         // If location is a Visitor Model
-        if (is_a($location, Visitor::class)) {
+        if ($location instanceof Visitor) {
 
             // Set address and coordinates
             $infoWindow['visitor'] = $location;
@@ -519,7 +519,7 @@ class DynamicMap extends Model
         }
 
         // If location is a Location Model
-        if (is_a($location, Location::class)) {
+        if ($location instanceof Location) {
 
             // Set address and coordinates
             $infoWindow['coords'] = $location->getCoords();
@@ -532,7 +532,7 @@ class DynamicMap extends Model
         }
 
         // If location is an Element
-        if (is_a($location, Element::class)) {
+        if ($location instanceof Element) {
 
             // Set both `element` and `entry` (or comparable)
             $elementType = $location::refHandle();
@@ -563,7 +563,7 @@ class DynamicMap extends Model
                     continue;
                 }
                 // If not an Address Field, skip it
-                if (!is_a($f, AddressField::class)) {
+                if (!($f instanceof AddressField)) {
                     continue;
                 }
                 // Get value of Address Field
