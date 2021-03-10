@@ -114,8 +114,8 @@ class ProximitySearchHelper
 
         // Implement haversine formula via SQL
         $haversine = static::_haversineSql(
-            $coords['lat'],
-            $coords['lng'],
+            $coords['lat'] ?? 0,
+            $coords['lng'] ?? 0,
             $units
         );
 
