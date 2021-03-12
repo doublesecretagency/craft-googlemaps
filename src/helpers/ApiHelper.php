@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
+use craft\helpers\UrlHelper;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
@@ -95,22 +96,22 @@ class ApiHelper
      */
     public static function getApiUrl(array $params = []): string
     {
+        $baseParams = [];
+
         // Get browser key
-        $key = static::getBrowserKey();
+        $baseParams['key'] = static::getBrowserKey();
 
-        // Set base URL of Google Maps API
-        $googleMapsApi = 'https://maps.googleapis.com/maps/api/js';
-        $googleMapsApi .= "?key={$key}";
-
-        // Optionally append additional parameters
-        if ($params) {
-            foreach ($params as $param => $value) {
-                $googleMapsApi .= "&{$param}={$value}";
-            }
+        // Optionally append language parameters
+        $language = GoogleMapsPlugin::$plugin->getSettings()->language;
+        if ($language) {
+            $baseParams['language'] = $language;
         }
 
+        // Optionally append additional parameters
+        $params = array_merge($baseParams, $params);
+
         // Return complete API URL
-        return $googleMapsApi;
+        return UrlHelper::urlWithParams('https://maps.googleapis.com/maps/api/js', $params);
     }
 
 }
