@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.3 - Unreleased
+## 4.0.3 - 2021-03-14
 
 ### Changed
 - Improved IP autodetection for visitor geolocation.
