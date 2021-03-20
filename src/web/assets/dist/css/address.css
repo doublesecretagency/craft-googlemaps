@@ -1,7 +1,16 @@
+.field .copytextbtn.gm-toggle-both {
+  margin-right: 94px;
+}
+.field .copytextbtn.gm-toggle-text {
+  margin-right: 79px;
+}
+.field .copytextbtn.gm-toggle-icon {
+  margin-right: 21px;
+}
+
 .address-field {
   width: 101%;
 }
-
 .address-field input {
   margin-right: 1%;
   margin-bottom: 2px;
@@ -18,10 +27,8 @@
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
-
 .gm-map > div {
   color: #606d7b;
   font-weight: bold;
   font-style: italic;
 }
-

@@ -1,5 +1,5 @@
 // To accommodate the map toggle, adjust margin of "copy" div
-div[data-type="doublesecretagency\\googlemaps\\fields\\AddressField"] {
+.field {
   .copytextbtn {
     &.gm-toggle-both {margin-right: 94px;}
     &.gm-toggle-text {margin-right: 79px;}

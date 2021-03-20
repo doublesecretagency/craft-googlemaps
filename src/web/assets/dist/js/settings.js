@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!************************************************************************!*\
-  !*** ../../plugins/craft-googlemaps/src/web/assets/src/js/settings.js ***!
-  \************************************************************************/
+/*!***************************************!*\
+  !*** ./web/assets/src/js/settings.js ***!
+  \***************************************/
 // List of all valid geolocation services
 var validServices = ['', 'ipstack', 'maxmind']; // Dropdown menu of geolocation services
 
