@@ -33,3 +33,16 @@
     font-style: italic;
   }
 }
+
+// ========================================================================= //
+
+// When nested within a Super Table field, adjust top & bottom margins
+.superTableContainer {
+  &.columnLayout,
+  &.rowLayout {
+    .address-field {
+      margin-top: 27px;
+      margin-bottom: 3px;
+    }
+  }
+}

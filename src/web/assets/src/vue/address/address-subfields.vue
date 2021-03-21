@@ -7,7 +7,7 @@
             v-model="$root.$data.data.address[subfield.key]"
             :class="inputClasses"
             autocomplete="chrome-off"
-            :name="`fields[${handle}][${subfield.key}]`"
+            :name="`${namespacedName}[${subfield.key}]`"
             :style="subfield.styles"
         />
     </div>
@@ -21,6 +21,7 @@
         data() {
             return {
                 handle: this.$root.$data.handle,
+                namespacedName: this.$root.$data.namespacedName,
                 autocomplete: false,
                 inputClasses: [
                     'text',
@@ -40,6 +41,12 @@
                         'place_id'
                     ]
                 };
+
+                // If google object doesn't exist yet, log message and bail
+                if (!google) {
+                    console.error('The `google` object has not yet been loaded.');
+                    return;
+                }
 
                 // If no subfields exist, bail
                 if (!this.$refs.autocomplete) {

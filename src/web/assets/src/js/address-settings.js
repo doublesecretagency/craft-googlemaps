@@ -9,10 +9,20 @@ Vue.config.productionTip = false;
 window.initAddressFieldSettings = () => {
 
     // Get all matching DOM elements
-    var elements = document.querySelectorAll('.address-settings');
+    const elements = document.querySelectorAll('.address-settings');
+
+    // Set class which marks element as loaded
+    const alreadyLoaded = 'vue-mounted';
 
     // Initialize Vue for each element
     elements.forEach(el => {
+
+        // If already mounted, skip this one
+        if (el.classList.contains(alreadyLoaded)) {
+            return;
+        }
+
+        // Initialize new Vue instance
         new Vue({
             el: el,
             components: {
@@ -20,12 +30,18 @@ window.initAddressFieldSettings = () => {
                 'subfield-manager': SubfieldManager,
                 'default-coords': DefaultCoords
             },
+            mounted() {
+                // Mark element as mounted
+                const element = document.getElementById(el.id);
+                element.classList.add(alreadyLoaded);
+            },
             data: {
                 settings: settings,
                 data: data,
                 icons: icons
             }
         });
+
     })
 
 }

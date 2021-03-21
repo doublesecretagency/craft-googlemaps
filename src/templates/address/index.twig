@@ -44,6 +44,8 @@
     // Transfer PHP data to JavaScript via Twig
     addressFieldConfigs.push({
         'handle': '{{ handle }}',
+        'namespacedId': '{{ "#{handle}-field"|namespaceInputId }}',
+        'namespacedName': '{{ handle|namespaceInputName }}',
         'settings': {{ settings|json_encode|raw }},
         'data': {{ data|json_encode|raw }},
         'icons': {{ icons|json_encode|raw }},
@@ -54,8 +56,12 @@
 <div id="address-{{ handle }}">
     <address-field
         :handle="handle"
+        :namespacedName="namespacedName"
         :settings="settings"
         :data="data"
         :icons="icons"
     ></address-field>
 </div>
+
+{# If the library is loaded, initialize all Address fields #}
+{% js 'if (window.google) {initAddressField();}' %}

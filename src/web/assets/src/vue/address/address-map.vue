@@ -184,6 +184,12 @@
                 try {
                     const google = window.google;
 
+                    // If google object doesn't exist yet, log message and bail
+                    if (!google) {
+                        console.error('The `google` object has not yet been loaded.');
+                        return;
+                    }
+
                     // Determine map center
                     let mapCenter = {
                         lat: parseFloat(startingPosition.lat),

@@ -21,6 +21,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['namespacedName'],
+
   data() {
     return {};
   },
@@ -56,8 +58,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fieldName(subfield) {
-      const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
-      return `types[${fieldtype}][coordinatesDefault][${subfield}]`;
+      // Set the namespaced field name
+      return `${this.namespacedName}[${subfield}]`;
     },
 
     updateCoords: function (coords) {
@@ -124,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['settings', 'data'],
+  props: ['settings', 'namespacedName'],
 
   data() {
     return {
@@ -148,8 +150,8 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     fieldName(subfield, setting) {
-      const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
-      return `types[${fieldtype}][subfieldConfig][${subfield}][${setting}]`;
+      // Set the namespaced field name
+      return `${this.namespacedName}[${subfield}][${setting}]`;
     },
 
     updatePositions() {
@@ -201,7 +203,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data() {
     return {
-      handle: this.$root.$data.handle
+      handle: this.$root.$data.handle,
+      namespacedName: this.$root.$data.namespacedName
     };
   },
 
@@ -442,7 +445,13 @@ __webpack_require__.r(__webpack_exports__);
     // Initialize map
     initMap(startingPosition) {
       try {
-        const google = window.google; // Determine map center
+        const google = window.google; // If google object doesn't exist yet, log message and bail
+
+        if (!google) {
+          console.error('The `google` object has not yet been loaded.');
+          return;
+        } // Determine map center
+
 
         let mapCenter = {
           lat: parseFloat(startingPosition.lat),
@@ -567,6 +576,7 @@ __webpack_require__.r(__webpack_exports__);
   data() {
     return {
       handle: this.$root.$data.handle,
+      namespacedName: this.$root.$data.namespacedName,
       autocomplete: false,
       inputClasses: ['text', 'fullwidth']
     };
@@ -578,7 +588,13 @@ __webpack_require__.r(__webpack_exports__);
       const options = {
         types: ['geocode'],
         fields: ['formatted_address', 'address_components', 'geometry.location', 'place_id']
-      }; // If no subfields exist, bail
+      }; // If google object doesn't exist yet, log message and bail
+
+      if (!google) {
+        console.error('The `google` object has not yet been loaded.');
+        return;
+      } // If no subfields exist, bail
+
 
       if (!this.$refs.autocomplete) {
         return;
@@ -1901,7 +1917,7 @@ var render = function() {
           type: _vm.getType,
           readonly: _vm.getReadOnly,
           autocomplete: "chrome-off",
-          name: "fields[" + _vm.handle + "][" + coord.key + "]"
+          name: _vm.namespacedName + "[" + coord.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.coords[coord.key] },
         on: {
@@ -2320,7 +2336,7 @@ var render = function() {
         attrs: {
           placeholder: subfield.label,
           autocomplete: "chrome-off",
-          name: "fields[" + _vm.handle + "][" + subfield.key + "]"
+          name: _vm.namespacedName + "[" + subfield.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.address[subfield.key] },
         on: {
@@ -2363,7 +2379,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "default-coords" }, [
     _c("input", {
       directives: [
         {
@@ -2819,20 +2835,32 @@ __webpack_require__.r(__webpack_exports__);
 
  // Disable silly message
 
-Vue.config.productionTip = false; // THIS IS THE PART WE WANT TO BE WORKING ON!!
-// Initialize Vue instance
+Vue.config.productionTip = false; // Initialize Vue instance
 
 window.initAddressFieldSettings = function () {
   // Get all matching DOM elements
-  var elements = document.querySelectorAll('.address-settings'); // Initialize Vue for each element
+  var elements = document.querySelectorAll('.address-settings'); // Set class which marks element as loaded
+
+  var alreadyLoaded = 'vue-mounted'; // Initialize Vue for each element
 
   elements.forEach(function (el) {
+    // If already mounted, skip this one
+    if (el.classList.contains(alreadyLoaded)) {
+      return;
+    } // Initialize new Vue instance
+
+
     new Vue({
       el: el,
       components: {
         'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default,
         'subfield-manager': _vue_address_settings_subfield_manager_vue__WEBPACK_IMPORTED_MODULE_1__.default,
         'default-coords': _vue_address_settings_default_coords_vue__WEBPACK_IMPORTED_MODULE_2__.default
+      },
+      mounted: function mounted() {
+        // Mark element as mounted
+        var element = document.getElementById(el.id);
+        element.classList.add(alreadyLoaded);
       },
       data: {
         settings: settings,

@@ -31,7 +31,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data() {
     return {
-      handle: this.$root.$data.handle
+      handle: this.$root.$data.handle,
+      namespacedName: this.$root.$data.namespacedName
     };
   },
 
@@ -272,7 +273,13 @@ __webpack_require__.r(__webpack_exports__);
     // Initialize map
     initMap(startingPosition) {
       try {
-        const google = window.google; // Determine map center
+        const google = window.google; // If google object doesn't exist yet, log message and bail
+
+        if (!google) {
+          console.error('The `google` object has not yet been loaded.');
+          return;
+        } // Determine map center
+
 
         let mapCenter = {
           lat: parseFloat(startingPosition.lat),
@@ -397,6 +404,7 @@ __webpack_require__.r(__webpack_exports__);
   data() {
     return {
       handle: this.$root.$data.handle,
+      namespacedName: this.$root.$data.namespacedName,
       autocomplete: false,
       inputClasses: ['text', 'fullwidth']
     };
@@ -408,7 +416,13 @@ __webpack_require__.r(__webpack_exports__);
       const options = {
         types: ['geocode'],
         fields: ['formatted_address', 'address_components', 'geometry.location', 'place_id']
-      }; // If no subfields exist, bail
+      }; // If google object doesn't exist yet, log message and bail
+
+      if (!google) {
+        console.error('The `google` object has not yet been loaded.');
+        return;
+      } // If no subfields exist, bail
+
 
       if (!this.$refs.autocomplete) {
         return;
@@ -706,23 +720,55 @@ __webpack_require__.r(__webpack_exports__);
 Vue.config.productionTip = false; // Initialize Vue instances
 
 window.initAddressField = function () {
-  // Loop through all Address field configurations
-  for (var i in addressFieldConfigs) {
+  // If configs aren't loaded yet, bail
+  if ('undefined' === typeof addressFieldConfigs) {
+    return;
+  } // Set class which marks element as loaded
+
+
+  var alreadyLoaded = 'vue-mounted'; // Loop through all Address field configurations
+
+  var _loop = function _loop(i) {
     // Get configuration of a single Address field
-    var config = addressFieldConfigs[i]; // Initialize Vue instance for a single Address field
+    var config = addressFieldConfigs[i]; // Get DOM element
+
+    var element = document.getElementById(config.namespacedId); // If element does not exist, skip this one
+
+    if (!element) {
+      console.warn("[GM] The following Address field cannot be found: ".concat(config.namespacedId));
+      return "continue";
+    } // If already mounted, skip this one
+
+
+    if (element.classList.contains(alreadyLoaded)) {
+      return "continue";
+    } // Initialize Vue instance for a single Address field
+
 
     new Vue({
-      el: "#fields-address-".concat(config.handle),
+      el: "#".concat(config.namespacedId),
       components: {
         'address-field': _vue_address_address_vue__WEBPACK_IMPORTED_MODULE_0__.default
       },
+      mounted: function mounted() {
+        // Mark element as mounted
+        var element = document.getElementById(config.namespacedId);
+        element.classList.add(alreadyLoaded);
+      },
       data: {
         handle: config.handle,
+        namespacedName: config.namespacedName,
         settings: config.settings,
         data: config.data,
         icons: config.icons
       }
     });
+  };
+
+  for (var i in addressFieldConfigs) {
+    var _ret = _loop(i);
+
+    if (_ret === "continue") continue;
   }
 };
 
@@ -1632,7 +1678,7 @@ var render = function() {
           type: _vm.getType,
           readonly: _vm.getReadOnly,
           autocomplete: "chrome-off",
-          name: "fields[" + _vm.handle + "][" + coord.key + "]"
+          name: _vm.namespacedName + "[" + coord.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.coords[coord.key] },
         on: {
@@ -1736,7 +1782,7 @@ var render = function() {
         attrs: {
           placeholder: subfield.label,
           autocomplete: "chrome-off",
-          name: "fields[" + _vm.handle + "][" + subfield.key + "]"
+          name: _vm.namespacedName + "[" + subfield.key + "]"
         },
         domProps: { value: _vm.$root.$data.data.address[subfield.key] },
         on: {

@@ -8,7 +8,7 @@ These fields only apply to the **content author**, or whomever is viewing the fi
 
 -----
 
-## Address Field Live Preview
+## Preview
 
 Pay close attention to this section, you will see all of your selections reflected here in real-time. When you change any of the related settings, those changes will appear here immediately.
 

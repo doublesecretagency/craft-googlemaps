@@ -32,3 +32,8 @@
   font-weight: bold;
   font-style: italic;
 }
+
+.superTableContainer.columnLayout .address-field, .superTableContainer.rowLayout .address-field {
+  margin-top: 27px;
+  margin-bottom: 3px;
+}

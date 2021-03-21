@@ -40,7 +40,7 @@
     import subfieldConfig from './../utils/subfield-config';
 
     export default {
-        props: ['settings', 'data'],
+        props: ['settings', 'namespacedName'],
         data() {
             return {
                 subfieldConfig: []
@@ -65,8 +65,8 @@
         },
         methods: {
             fieldName(subfield, setting) {
-                const fieldtype = 'doublesecretagency\\googlemaps\\fields\\AddressField';
-                return `types[${fieldtype}][subfieldConfig][${subfield}][${setting}]`;
+                // Set the namespaced field name
+                return `${this.namespacedName}[${subfield}][${setting}]`;
             },
             updatePositions() {
 

@@ -1,8 +1,8 @@
 <div class="field">
     <div class="heading">
-        <label>Address Field Live Preview</label>
+        <label>Preview</label>
         <div class="instructions">
-            <p>This is how the field will look when the content editor uses it...</p>
+            <p>This is how the field will look...</p>
         </div>
     </div>
     <div>
@@ -11,7 +11,9 @@
             :data="data"
             :icons="icons"
         ></address-field>
-        <default-coords></default-coords>
+        <default-coords
+            namespaced-name="{{ 'coordinatesDefault'|namespaceInputName }}"
+        ></default-coords>
     </div>
 </div>
 
@@ -19,7 +21,7 @@
     <div class="heading">
 
         <div class="instructions">
-            <p style="color:#000"><strong>&#8593;&nbsp;</strong> You can <strong style="text-decoration:underline">use this preview field</strong> to set the default map starting position! <strong>&#8593;</strong></p>
+            <p style="color:#000"><strong>&#8593;&nbsp;</strong> Use this preview field to <strong>set the default map starting position</strong>. <strong>&#8593;</strong></p>
             <ul>
                 <li><strong>Search</strong> for a central starting location.</li>
                 <li><strong>Drag &amp; drop</strong> the pin to set a more precise location.</li>

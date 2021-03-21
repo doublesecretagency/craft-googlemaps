@@ -33,6 +33,9 @@
     </div>
 </div>
 
+{# If the library is loaded, initialize all Address field settings #}
+{% js 'if (window.google) {initAddressFieldSettings();}' %}
+
 {% css %}
 .address-settings {
     display: flex;

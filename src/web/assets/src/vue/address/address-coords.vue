@@ -8,7 +8,7 @@
             :class="getInputClasses"
             v-model.number="$root.$data.data.coords[coord.key]"
             autocomplete="chrome-off"
-            :name="`fields[${handle}][${coord.key}]`"
+            :name="`${namespacedName}[${coord.key}]`"
             :style="coord.styles"
         />
     </div>
@@ -18,7 +18,8 @@
     export default {
         data() {
             return {
-                handle: this.$root.$data.handle
+                handle: this.$root.$data.handle,
+                namespacedName: this.$root.$data.namespacedName
             }
         },
         computed: {
