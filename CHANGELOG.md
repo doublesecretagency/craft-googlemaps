@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.4 - 2021-03-24
+
+### Added
+- Added full support for Matrix, Neo, and Super Table fields.
+
 ## 4.0.3 - 2021-03-14
 
 ### Changed
