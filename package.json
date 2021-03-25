@@ -1,0 +1,16 @@
+{
+  "main": "index.js",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Double Secret Agency",
+  "license": "Craft License",
+  "devDependencies": {
+    "@vuepress/core": "^1.8.2",
+    "vuepress-theme-craftdocs": "^2.0.2"
+  }
+}
