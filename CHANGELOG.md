@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.5 - Unreleased
+
+### Added
+- Added [`fieldParams`](#) setting to adjust the API URL for Address fields.
+
 ## 4.0.4 - 2021-03-24
 
 ### Added

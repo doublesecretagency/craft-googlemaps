@@ -61,8 +61,8 @@ class Settings extends Model
     public $enableJsLogging = true;
 
     /**
-     * @var string|null Google API Language.
-     * @see https://developers.google.com/maps/documentation/javascript/localization
+     * @var array Additional optional parameters for configuring Address fields.
      */
-    public $language;
+    public $fieldParams = [];
+
 }

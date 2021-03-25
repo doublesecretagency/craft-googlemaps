@@ -34,4 +34,7 @@ return [
     // Whether to log JS progress to the console (when a map is rendered)
     //'enableJsLogging' => true,
 
+    // Additional optional parameters for configuring Address fields
+    //'fieldParams' => []
+
 ];

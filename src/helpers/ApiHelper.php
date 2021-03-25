@@ -96,22 +96,14 @@ class ApiHelper
      */
     public static function getApiUrl(array $params = []): string
     {
-        $baseParams = [];
+        // Set the base API URL
+        $apiUrl = 'https://maps.googleapis.com/maps/api/js';
 
-        // Get browser key
-        $baseParams['key'] = static::getBrowserKey();
+        // Add the browser key
+        $params['key'] = static::getBrowserKey();
 
-        // Optionally append language parameters
-        $language = GoogleMapsPlugin::$plugin->getSettings()->language;
-        if ($language) {
-            $baseParams['language'] = $language;
-        }
-
-        // Optionally append additional parameters
-        $params = array_merge($baseParams, $params);
-
-        // Return complete API URL
-        return UrlHelper::urlWithParams('https://maps.googleapis.com/maps/api/js', $params);
+        // Return the fully compiled URL
+        return UrlHelper::urlWithParams($apiUrl, $params);
     }
 
 }
