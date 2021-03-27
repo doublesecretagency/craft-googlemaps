@@ -104,6 +104,7 @@ module.exports = {
                 'twig-php-methods',
                 'info-windows',
                 'locations',
+                'troubleshooting',
             ],
             '/static-maps/': [
                 '',
