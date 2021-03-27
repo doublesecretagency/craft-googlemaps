@@ -34,6 +34,9 @@ return [
     // Whether to log JS progress to the console (when a map is rendered)
     //'enableJsLogging' => true,
 
+    // Control the size of map UI elements in Address fields
+    //'fieldControlSize' => 27,
+
     // Additional optional parameters for configuring Address fields
     //'fieldParams' => []
 

@@ -61,6 +61,11 @@ class Settings extends Model
     public $enableJsLogging = true;
 
     /**
+     * @var int Control the size of map UI elements in Address fields.
+     */
+    public $fieldControlSize = 27;
+
+    /**
      * @var array Additional optional parameters for configuring Address fields.
      */
     public $fieldParams = [];

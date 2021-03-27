@@ -3,7 +3,8 @@
 ## 4.0.5 - Unreleased
 
 ### Added
-- Added [`fieldParams`](#) setting to adjust the API URL for Address fields.
+- Added [`fieldControlSize`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldcontrolsize) setting to control the UI size for Address fields.
+- Added [`fieldParams`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldparams) setting to adjust the API URL for Address fields.
 
 ## 4.0.4 - 2021-03-24
 

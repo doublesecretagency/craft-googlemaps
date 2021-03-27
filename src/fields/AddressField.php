@@ -18,6 +18,7 @@ use craft\base\PreviewableFieldInterface;
 use craft\elements\db\ElementQueryInterface;
 use craft\elements\Entry;
 use craft\helpers\Json;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\helpers\ProximitySearchHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
@@ -337,6 +338,9 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Set whether to show the map on initial load
         $settings['showMap'] = ('open' === $settings['mapOnStart']);
+
+        // Set the control size of map UI elements
+        $settings['controlSize'] = GoogleMapsPlugin::$plugin->getSettings()->fieldControlSize;
 
         // Return settings
         return $settings;

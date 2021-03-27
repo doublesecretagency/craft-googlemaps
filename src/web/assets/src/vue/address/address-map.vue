@@ -201,7 +201,8 @@
                         streetViewControl: false,
                         fullscreenControl: false,
                         center: mapCenter,
-                        zoom: parseInt(startingPosition.zoom)
+                        zoom: parseInt(startingPosition.zoom),
+                        controlSize: this.settings.controlSize
                     });
 
                     // Create a draggable marker

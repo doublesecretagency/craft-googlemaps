@@ -462,7 +462,8 @@ __webpack_require__.r(__webpack_exports__);
           streetViewControl: false,
           fullscreenControl: false,
           center: mapCenter,
-          zoom: parseInt(startingPosition.zoom)
+          zoom: parseInt(startingPosition.zoom),
+          controlSize: this.settings.controlSize
         }); // Create a draggable marker
 
         this.marker = new google.maps.Marker({
