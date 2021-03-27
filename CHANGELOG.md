@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.5 - Unreleased
+## 4.0.5 - 2021-03-27
 
 ### Added
 - Added [`fieldControlSize`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldcontrolsize) setting to control the UI size for Address fields.
