@@ -27,7 +27,7 @@ Sounds like something went wrong with the JavaScript. Open up your browser's con
 - Was the `maps.googleapis.com/maps/api/js` file referenced properly?
 - Were the `googlemaps.js` and `dynamicmap.js` files loaded properly?
 
-If the assets aren't being loaded properly, see the next answer.
+If the assets aren't being loaded properly, _see the next answer._
 
 ## Assets aren't being loaded properly
 

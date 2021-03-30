@@ -23,3 +23,16 @@ Once all environments are safely running the new Google Maps plugin, _then_ it w
 ## Update your Twig code
 
 Read the [complete instructions](/updating-from-smart-map/) for updating your corresponding Twig code.
+
+## Transferring the license
+
+There is no need to re-purchase a license if you are migrating from Smart Map. Simply track down your old Smart Map license, and paste it into the license key box for Google Maps.
+
+### Where to find your old Smart Map key?
+
+With any luck, it will still be available in the Craft control panel for you to copy & paste. If you can't immediately find your old Smart Map license, you may need to dig a little deeper.
+
+Other places where you might find the old license:
+
+1. The **old project config YAML files** which referenced Smart Map. Assuming you're using a git repo, you may need to go back a little to find it.
+2. Any **old emails** from Pixel & Tonic or Double Secret Agency regarding your license. You would have received it from Pixel & Tonic if the license was purchased new on Craft 3, or from Double Secret Agency if the license was transferred from Craft 2.
