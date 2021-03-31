@@ -2,20 +2,20 @@
 
 <update-message/>
 
-### Coming Soon
+Matrix field usage is nearly identical to how it was handled in Smart Map, with only one exception:
 
-At the time of launch, Matrix support is still limited. Completing support for Matrix fields is our top post-launch priority. Sorry for the inconvenience.
+ - You can no longer use a _query object_ to plot markers on a map. The query must now be explicitly converted into an **array of elements**, or any other [valid set of locations](/dynamic-maps/locations/).
 
-<!--
 ```twig
 {# OLD #}
-
+{% set locations = entry.myMatrixField %}
+{{ craft.smartMap.map(locations) }}
 
 {# NEW #}
-
+{% set locations = entry.myMatrixField.all() %}
+{{ googleMaps.map(locations).tag() }}
 ```
 
 :::tip New Documentation
-See the complete new [EXAMPLE](/test/) documentation.
+See the complete new [Address in a Matrix Field](/guides/address-in-a-matrix-field/) documentation.
 :::
--->

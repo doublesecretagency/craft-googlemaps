@@ -66,7 +66,7 @@ module.exports = {
                     {text: 'Opening Info Windows', link: '/guides/opening-info-windows/'},
                     {text: 'Region Biasing', link: '/guides/region-biasing/'},
                     {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    // {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'}, // TODO: Improve Matrix compatibility
+                    {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
                     {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
                     {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
                     {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
@@ -176,7 +176,7 @@ module.exports = {
                 'region-biasing',
                 'filter-by-subfields',
                 'ajax-geocoding-example',
-                // 'address-in-a-matrix-field', // TODO: Improve Matrix compatibility
+                'address-in-a-matrix-field',
                 'prevent-zoom-when-scrolling',
                 'required-js-assets',
                 'importing-addresses',

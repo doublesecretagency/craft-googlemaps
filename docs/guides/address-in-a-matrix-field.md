@@ -1,37 +1,33 @@
 # Address in a Matrix Field
 
-## Basic Usage
+## Access Address within Matrix
 
-Generally speaking, using an Address field contained within a Matrix field is fairly straightforward.
-
-**Getting a normal address value:**
+Generally speaking, accessing an Address field within a Matrix field is fairly straightforward...
 
 ```twig
-{% set address = entry.myAddressField %}
-```
-
-**Getting an address from a matrix block:**
-
-```twig
+{# Loop through Matrix blocks #}
 {% for block in entry.myMatrixField.all() %}
+
+    {# Access each block's Address field #}
     {% set matrixAddress = block.myMatrixAddressField %}
+    
+    {# Then do whatever you want with each Address #}
+    
 {% endfor %}
 ```
 
 ## Output a Map of Matrix Blocks
 
-Since a Matrix Block is a normal Element Type, it works quite similarly to Entries. You can easily show a map of all blocks in your matrix, or just a single block. 
-
-**Show all blocks:**
+Matrix Blocks are standard [Elements](https://craftcms.com/docs/3.x/elements.html), so everything works quite similarly to Entries...
 
 ```twig
+{# Get all Matrix blocks #}
 {% set blocks = entry.myMatrixField.all() %}
-{{ googleMaps.dynamic(blocks) }}
+
+{# Show a map with locations from all blocks #}
+{{ googleMaps.map(blocks).tag() }}
 ```
 
-**Show a single block:**
-
-```twig
-{% set block = entry.myMatrixField.one() %}
-{{ googleMaps.dynamic(block) }}
-```
+:::warning Valid Locations
+For more information, take a look at what are considered [valid locations...](/dynamic-maps/locations/)
+:::
