@@ -20,7 +20,7 @@
 When managing your Craft data, each location can be set with a convenient Address field...
 
 <p align="center">
-    <img width="603" src="http://beta.doublesecretagency.com/images/address-field.gif?v=1" alt="Animated GIF of an Address field">
+    <img width="603" src="https://github.com/doublesecretagency/craft-googlemaps/blob/d217c983cc9037bd795f13d6da1dd29211810307/README-images/address-field.gif?raw=true" alt="Animated GIF of an Address field">
 </p>
 
 ### Create flexible Dynamic & Static Maps
@@ -28,7 +28,7 @@ When managing your Craft data, each location can be set with a convenient Addres
 Add markers, use info windows, style maps, change marker icons, apply KML layers, and much, much more...
 
 <p align="center">
-    <img src="http://beta.doublesecretagency.com/images/dynamic-map.png?v=1" alt="Screenshot of a dynamic map">
+    <img src="https://github.com/doublesecretagency/craft-googlemaps/blob/d217c983cc9037bd795f13d6da1dd29211810307/README-images/dynamic-map.png?raw=true" alt="Screenshot of a dynamic map">
 </p>
 
 >**Universal API**
@@ -40,7 +40,7 @@ Add markers, use info windows, style maps, change marker icons, apply KML layers
 Find the closest locations, and sort the results from nearest to furthest...
 
 <p align="center">
-    <img src="http://beta.doublesecretagency.com/images/proximity-search.png?v=1" alt="Screenshot of a set of proximity search results">
+    <img src="https://github.com/doublesecretagency/craft-googlemaps/blob/d217c983cc9037bd795f13d6da1dd29211810307/README-images/proximity-search.png?raw=true" alt="Screenshot of a set of proximity search results">
 </p>
 
 ### Simple IP-based Visitor Geolocation
@@ -48,7 +48,7 @@ Find the closest locations, and sort the results from nearest to furthest...
 Locate your visitors based on their device's IP address...
 
 <p align="center">
-    <img src="http://beta.doublesecretagency.com/images/geolocation.png?v=1" alt="Screenshot of visitor geolocation results">
+    <img src="https://github.com/doublesecretagency/craft-googlemaps/blob/d217c983cc9037bd795f13d6da1dd29211810307/README-images/geolocation.png?raw=true" alt="Screenshot of visitor geolocation results">
 </p>
 
 ---
