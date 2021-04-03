@@ -6,10 +6,15 @@ const dist = 'web/assets/dist';
 
 // Run Mix
 mix
+
+    // Use Vue 2
+    .vue({version: 2})
+
+    // Webpack config
     .webpackConfig({
         module: {
             rules: [
-                { test: /\.vue$/, use: 'vue-loader' }
+                {test: /\\.vue$/, loader: 'vue-loader'}
             ]
         }
     })
@@ -25,9 +30,6 @@ mix
     // Copy Sortable JS into plugin's assets folder
     .copy('node_modules/sortablejs/Sortable.min.js', `${dist}/js`)
 
-    .disableNotifications();
-
-// // If running in production, append version
-// if (mix.config.production) {
-//     mix.version();
-// }
+    // Disable build notifications
+    .disableNotifications()
+;
