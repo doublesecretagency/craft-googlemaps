@@ -1,6 +1,6 @@
 {
-  "main": "index.js",
   "private": true,
+  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
@@ -11,6 +11,6 @@
   "license": "Craft License",
   "devDependencies": {
     "@vuepress/core": "^1.8.2",
-    "vuepress-theme-craftdocs": "^2.0.2"
+    "vuepress-theme-craftdocs": "^2.0.7"
   }
 }
