@@ -18,7 +18,11 @@ In the case of **dynamic maps**, you are now creating a [Dynamic Map Model](/mod
 {{ googleMaps.map(locations, options).tag() }}
 ```
 
-Several of the `options` have changed. Take a look at the new available [dynamic map options](/dynamic-maps/map-management/#map-locations-options).
+:::warning Please re-evaluate your options! 
+Several of the individual `options` have changed. You are highly encouraged to re-assess each of your existing options, to determine whether each option is still necessary, and/or whether it should now be nested within the `mapOptions` option.
+
+See the complete list of [dynamic map options...](/dynamic-maps/map-management/#dynamic-map-options)
+:::
 
 :::tip New Documentation
 See the complete new [Dynamic Maps](/dynamic-maps/) documentation.
@@ -51,7 +55,11 @@ In the case of **static maps**, you are now creating a [Static Map Model](/model
 {{ googleMaps.img(locations, options).src() }}
 ```
 
-Several of the options have changed. Take a look at the new available [static map options](/models/static-map-model/#construct-locations-options).
+:::warning Please re-evaluate your options!
+Several of the individual `options` have changed. You are highly encouraged to re-assess each of your existing options, to determine whether each option is still necessary.
+
+See the complete list of [static map options...](/models/static-map-model/#static-map-options)
+:::
 
 :::tip New Documentation
 See the complete new [Static Maps](/static-maps/) documentation.

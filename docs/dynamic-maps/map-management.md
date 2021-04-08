@@ -34,6 +34,8 @@ $map = GoogleMaps::map($locations, $options);
 :::tip Available Options
 Most (though not all) of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
 :::
+
+### Dynamic Map Options
  
 | Option               | Available   | Description
 |----------------------|:-----------:|-------------

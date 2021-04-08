@@ -35,6 +35,8 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
  - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
  - `$options` (_array_) - Optional parameters to configure the map. (see below)
+
+### Static Map Options
  
 | Option          | Type     | Default | Description |
 |-----------------|:--------:|:-------:|-------------|

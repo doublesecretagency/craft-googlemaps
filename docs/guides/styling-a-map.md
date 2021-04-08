@@ -15,16 +15,28 @@ You can specify the `styles` option when you create the initial map...
 
 :::code
 ```js
+// Set of map styles, formatted as a JSON object
+var styleSet = {...};
+
+// Apply styles to the map
 var map = googleMaps.map(locations, {
     'styles': styleSet
 });
 ```
 ```twig
+{# Set of map styles, formatted as a JSON object #}
+{% set styleSet = {...} %}
+
+{# Apply styles to the map #}
 {% set map = googleMaps.map(locations, {
     'styles': styleSet
 }) %}
 ```
 ```php
+// Set of map styles, formatted as a JSON array
+$styleSet = [...];
+
+// Apply styles to the map
 $map = GoogleMaps::map($locations, [
     'styles' => $styleSet
 ]);
