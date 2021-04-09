@@ -3,13 +3,13 @@
 ## 4.0.5 - 2021-03-27
 
 ### Added
-- Added [`fieldControlSize`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldcontrolsize) setting to control the UI size for Address fields.
-- Added [`fieldParams`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldparams) setting to adjust the API URL for Address fields.
+- Added [`fieldControlSize`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldcontrolsize) setting to control the UI size for Address fields. ([#19](https://github.com/doublesecretagency/craft-googlemaps/issues/19))
+- Added [`fieldParams`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#fieldparams) setting to adjust the API URL for Address fields. ([#18](https://github.com/doublesecretagency/craft-googlemaps/pull/18))
 
 ## 4.0.4 - 2021-03-24
 
 ### Added
-- Added full support for Matrix, Neo, and Super Table fields.
+- Added full support for Matrix, Neo, and Super Table fields. ([#1](https://github.com/doublesecretagency/craft-googlemaps/issues/1))
 
 ## 4.0.3 - 2021-03-14
 
@@ -17,7 +17,7 @@
 - Improved IP autodetection for visitor geolocation.
 
 ### Fixed
-- Fixed normalization bug when handling an Address Model.
+- Fixed normalization bug when handling an Address Model. ([#6](https://github.com/doublesecretagency/craft-googlemaps/issues/6))
 - Be more defensive against unavailable coordinates.
 
 ## 4.0.2 - 2021-02-28
