@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.6 - Unreleased
+
+### Changed
+- Improved error messaging for when a map ID conflicts with the ID of another DOM element. ([#23](https://github.com/doublesecretagency/craft-googlemaps/issues/23#issuecomment-816841754))
+
 ## 4.0.5 - 2021-03-27
 
 ### Added

@@ -55,7 +55,7 @@ window.googleMaps = window.googleMaps || {
     init: function(mapId, callback) {
 
         // Initialize
-        var map, dna;
+        var map, dna, matchingContainers;
 
         // Get selected map containers
         var containers = this._whichMaps(mapId);
@@ -66,9 +66,24 @@ window.googleMaps = window.googleMaps || {
             // Get each map
             map = containers[i];
 
-            // If map doesn't exist, skip this container
+            // If map doesn't exist, skip it
             if (!map) {
                 console.warn(`[GM] Cannot find specified map container #${mapId}`);
+                continue;
+            }
+
+            // Count the number of matching containers (should ideally be 1)
+            matchingContainers = document.querySelectorAll(`#${map.id}`).length;
+
+            // If no matching containers exist, skip it
+            if (!matchingContainers) {
+                console.warn(`[GM] No DOM element exists using the identifier #${map.id}`);
+                continue;
+            }
+
+            // If multiple matching containers exist, skip it
+            if (1 < matchingContainers) {
+                console.warn(`[GM] Multiple DOM elements are using the identifier #${map.id}`);
                 continue;
             }
 
@@ -81,7 +96,7 @@ window.googleMaps = window.googleMaps || {
             // Get DNA of each map
             dna = map.dataset.dna;
 
-            // If no DNA exists, skip this container
+            // If no DNA exists, skip it
             if (!dna) {
                 console.warn(`[GM] Map container #${map.id} is missing DNA`);
                 continue;
