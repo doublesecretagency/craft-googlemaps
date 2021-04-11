@@ -5,7 +5,7 @@
 | [`target`](#target)               | _mixed_  | `null`  | Center point for the proximity search.           |
 | [`range`](#range)                 | _int_    | `500`   | The search radius, measured in `units`.          |
 | [`units`](#units)                 | _string_ | `'mi'`  | Unit of measurement, either miles or kilometers. |
-| [`subfields`](#subfields)         | _array_  | `null`  | Filter by contents of specific subfields.        |
+| [`subfields`](#subfields)         | _mixed_  | `null`  | Filter by contents of specific subfields.        |
 | [`requireCoords`](#requirecoords) | _bool_   | `false` | Whether results should only include Addresses with valid coordinates. |
 
 ## `target`
@@ -53,47 +53,11 @@ The unit of measurement by which to measure distances. Accepts the following val
 
 The `subfields` option allows you to filter the proximity search results based on specific subfield values of the Address field. It ensures that the query returns only the results which **exactly match** the specified subfield values.
 
-You can specify these filters as a collection of `subfield: value` pairs:
+The value can be specified as an array of key-value pairs, or as the specific string **"fallback"**. For more information, see the docs regarding [filtering by subfields](/guides/filter-by-subfields/).
 
-:::code
-```twig
-{% set options = {
-    'subfields': {
-        'city': 'Los Angeles',
-        'state': 'CA'
-    }
-} %}
-```
-```php
-$options = [
-    'subfields' => [
-        'city' => 'Los Angeles',
-        'state' => 'CA'
-    ]
-];
-```
+:::warning Subfield Filter Fallback
+When conducting proximity searches across a broad area, you may find it helpful to enable the [subfield filter fallback](/guides/filter-by-subfields/#subfield-filter-fallback) mechanism.
 :::
-
-Each subfield can also be specified as an array, which allows multiple valid matches:
-
-:::code
-```twig
-{% set options = {
-    'subfields': {
-        'state': ['CA', 'OR', 'WA']
-    }
-} %}
-```
-```php
-$options = [
-    'subfields' => [
-        'state' => ['CA', 'OR', 'WA']
-    ]
-];
-```
-:::
-
-Read more about [filtering by subfields...](/guides/filter-by-subfields/)
 
 ## `requireCoords`
 

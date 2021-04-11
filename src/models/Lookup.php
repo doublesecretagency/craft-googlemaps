@@ -16,6 +16,7 @@ use craft\base\Model;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\events\GeocodingEvent;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\helpers\GeocodingHelper;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use GuzzleHttp\Exception\RequestException;
 
@@ -40,34 +41,6 @@ class Lookup extends Model
      * @var string Google Geocoding API endpoint.
      */
     private $_endpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
-
-    /**
-     * @var array Countries whose street number precedes the street name.
-     */
-    private $_countriesWithNumberFirst = [
-        'Australia',
-        'Canada',
-        'France',
-        'Hong Kong',
-        'India',
-        'Ireland',
-        'Malaysia',
-        'New Zealand',
-        'Pakistan',
-        'Singapore',
-        'Sri Lanka',
-        'Taiwan',
-        'Thailand',
-        'United Kingdom',
-        'United States',
-    ];
-
-    /**
-     * @var array Countries with a comma after the street name.
-     */
-    private $_companiesWithCommaAfterStreet = [
-        'Italy',
-    ];
 
     // ========================================================================= //
 
@@ -285,7 +258,7 @@ class Lookup extends Model
                 }
                 break;
             default:
-                if ('OK' != ($response['status'] ?? false)) {
+                if ('OK' !== ($response['status'] ?? false)) {
                     $error = 'An unknown API error occurred.';
                 }
                 break;
@@ -299,89 +272,12 @@ class Lookup extends Model
         // Initialize results
         $addressResults = [];
         foreach ($response['results'] as $point) {
-            $addressData = $this->_formatAddressData($point);
+            $addressData = GeocodingHelper::restructureComponents($point);
             $addressResults[] = new Address($addressData);
         }
 
         // Return API results as Address Models
         return $addressResults;
-    }
-
-    /**
-     * Clean and format raw address data.
-     *
-     * @param $unformatted
-     * @return array
-     */
-    private function _formatAddressData($unformatted)
-    {
-        // Initialize formatted address data
-        $formatted = [];
-
-        // Loop through address components
-        foreach ($unformatted['address_components'] as $component) {
-            // If types aren't specified, skip
-            if (!isset($component['types']) || !$component['types']) {
-                continue;
-            }
-            // Generate formatted array of address data
-            $c = $component['types'][0];
-            switch ($c) {
-                case 'locality':
-                case 'country':
-                    $formatted[$c] = $component['long_name'];
-                    break;
-                default:
-                    $formatted[$c] = $component['short_name'];
-                    break;
-            }
-        }
-
-        // Get components
-        $streetNumber = ($formatted['street_number'] ?? null);
-        $streetName   = ($formatted['route'] ?? null);
-        $city         = ($formatted['locality'] ?? null);
-        $state        = ($formatted['administrative_area_level_1'] ?? null);
-        $zip          = ($formatted['postal_code'] ?? null);
-        $country      = ($formatted['country'] ?? null);
-
-        // Country-specific adjustments
-        switch ($country) {
-            case 'United Kingdom':
-                $city  = ($formatted['postal_town'] ?? null);
-                $state = ($formatted['administrative_area_level_2'] ?? null);
-                break;
-        }
-
-        // Get coordinates
-        $lat = ($unformatted['geometry']['location']['lat'] ?? null);
-        $lng = ($unformatted['geometry']['location']['lng'] ?? null);
-
-        // Default street format
-        $street1 = "{$streetName} {$streetNumber}";
-
-        // If country uses a different street format, apply that format instead
-        if (in_array($country, $this->_countriesWithNumberFirst, true)) {
-            $street1 = "{$streetNumber} {$streetName}";
-        } else if (in_array($country, $this->_companiesWithCommaAfterStreet, true)) {
-            $street1 = "{$streetName}, {$streetNumber}";
-        }
-
-        // Trim whitespace from street
-        $street1 = (trim($street1) ? trim($street1) : null);
-
-        // Return formatted address data
-        return [
-            'street1' => $street1,
-            'street2' => null,
-            'city'    => $city,
-            'state'   => $state,
-            'zip'     => $zip,
-            'country' => $country,
-            'lat'     => $lat,
-            'lng'     => $lng,
-            'raw'     => $unformatted,
-        ];
     }
 
 }
