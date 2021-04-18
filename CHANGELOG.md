@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.6 - Unreleased
+## 4.0.6 - 2021-04-18
 
 ### Added
 - Added the [subfield filter fallback](https://plugins.doublesecretagency.com/google-maps/guides/filter-by-subfields/#subfield-filter-fallback) mechanism for proximity searches. ([#5](https://github.com/doublesecretagency/craft-googlemaps/issues/5))
