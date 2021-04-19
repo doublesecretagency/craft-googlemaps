@@ -2,24 +2,24 @@
 
 <update-message/>
 
-### Coming Soon
+In the new Google Maps plugin, this [option](/proximity-search/options/#subfields) has been renamed from `filter` to `subfields`.
 
-This feature has not yet been added, sorry! We'll be circling back on it as soon as possible.
+Other than being renamed, there is no functional difference in behavior.
 
 ```twig
 {# OLD #}
 {% set options = {
-    'target': '90210',
-    'range': 50,
+    'target': 'California',
     'filter': 'fallback'
 } %}
 
 {# NEW #}
-{# Coming soon! #}
+{% set options = {
+    'target': 'California',
+    'subfields': 'fallback'
+} %}
 ```
 
-<!--
 :::tip New Documentation
-See the complete new [EXAMPLE](/test/) documentation.
+See the complete new [Subfield Filter Fallback](/guides/filter-by-subfields/#subfield-filter-fallback) documentation.
 :::
--->
