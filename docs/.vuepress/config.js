@@ -93,6 +93,7 @@ module.exports = {
                 'settings',
                 'in-twig',
                 'front-end-form',
+                'export',
             ],
             '/dynamic-maps/': [
                 '',

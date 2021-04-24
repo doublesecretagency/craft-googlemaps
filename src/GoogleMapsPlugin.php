@@ -12,12 +12,17 @@
 namespace doublesecretagency\googlemaps;
 
 use Craft;
+use craft\base\Element;
 use craft\base\Plugin;
+use craft\elements\Entry;
 use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
+use craft\events\RegisterElementExportersEvent;
 use craft\helpers\UrlHelper;
 use craft\services\Fields;
 use craft\services\Plugins;
+use doublesecretagency\googlemaps\exporters\AddressesCondensedExporter;
+use doublesecretagency\googlemaps\exporters\AddressesExpandedExporter;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
@@ -76,6 +81,16 @@ class GoogleMapsPlugin extends Plugin
             }
         );
 
+        // Register exporters
+        Event::on(
+            Entry::class,
+            Element::EVENT_REGISTER_EXPORTERS,
+            function(RegisterElementExportersEvent $event) {
+                $event->exporters[] = AddressesCondensedExporter::class;
+                $event->exporters[] = AddressesExpandedExporter::class;
+            }
+        );
+
         // Redirect after install
         Event::on(
             Plugins::class,
@@ -88,7 +103,7 @@ class GoogleMapsPlugin extends Plugin
                 }
 
                 // If not Google Maps, bail
-                if ('google-maps' != $event->plugin->handle) {
+                if ('google-maps' !== $event->plugin->handle) {
                     return;
                 }
 
