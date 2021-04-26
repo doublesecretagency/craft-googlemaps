@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.7 - Unreleased
+## 4.0.7 - 2021-04-26
 
 ### Added
 - Added [exporters](https://plugins.doublesecretagency.com/google-maps/address-field/export/) to handle Address data. ([#4](https://github.com/doublesecretagency/craft-googlemaps/issues/4))
