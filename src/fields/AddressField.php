@@ -101,9 +101,9 @@ class AddressField extends Field implements PreviewableFieldInterface
      * What should the map be
      * when the field is initially loaded?
      *
-     * @var string "open" or "close"
+     * @var string "default", "open" or "close"
      */
-    public $mapOnStart = 'close';
+    public $mapOnStart = 'default';
 
     /**
      * What should the map be
@@ -315,12 +315,24 @@ class AddressField extends Field implements PreviewableFieldInterface
         $view = Craft::$app->getView();
         $view->registerAssetBundle(AddressFieldAsset::class);
 
+        // Get extended settings
+        $settings = $this->_getExtraSettings();
+
+        // Whether the field has existing coordinates
+        $coordsExist = ($value instanceof AddressModel && $value->hasCoords());
+
+        // By default, show map if coordinates exist
+        if ('default' === $settings['mapOnStart']) {
+            $settings['showMap'] = $coordsExist;
+            $settings['mapOnStart'] = ($coordsExist ? 'open' : 'close');
+        }
+
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
             'address' => $value,
             'handle' => $this->handle,
             'icons' => AddressHelper::visibilityIcons(),
-            'settings' => $this->_getExtraSettings(),
+            'settings' => $settings,
         ]);
     }
 

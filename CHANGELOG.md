@@ -5,6 +5,9 @@
 ### Added
 - Added [exporters](https://plugins.doublesecretagency.com/google-maps/address-field/export/) to handle Address data. ([#4](https://github.com/doublesecretagency/craft-googlemaps/issues/4))
 
+### Changed
+- Allow Address field map to stay open if the field already contains coordinates.
+
 ## 4.0.6 - 2021-04-18
 
 ### Added

@@ -9,11 +9,12 @@
         label: "Show map on initial load?"|t('google-maps'),
         id: 'map-on-start',
         name: 'mapOnStart',
-        instructions: "When the field is initially loaded, the map should be..."|t('google-maps'),
+        instructions: "When the field is initially loaded, the map should..."|t('google-maps'),
         value: settings.mapOnStart ?? 'close',
         options: [
-            { value: 'open',  label: "Open"|t('google-maps') },
-            { value: 'close', label: "Closed"|t('google-maps') },
+            { value: 'default', label: "Open if the field has coordinates"|t('google-maps') },
+            { value: 'open',    label: "Always start open"|t('google-maps') },
+            { value: 'close',   label: "Always start closed"|t('google-maps') },
         ],
     }
 } %}
