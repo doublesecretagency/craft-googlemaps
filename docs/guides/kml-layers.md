@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # KML Layers
 
 When the general tools of Google Maps are not enough, you can always turn to [KML layers](https://developers.google.com/maps/documentation/javascript/examples/layer-kml) in order to "kick it up a notch". Within the context of a KML layer, the options to decorate a map are practically boundless.

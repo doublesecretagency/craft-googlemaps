@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Ipstack Model
 
 The Ipstack Model interacts with the [ipstack geolocation service](https://ipstack.com/). You can subscribe to ipstack and use their services to perform geolocation lookups on your visitors.

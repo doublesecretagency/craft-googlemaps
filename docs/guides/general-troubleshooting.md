@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # General Troubleshooting
 
 ## The map isn't visible

@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Using a filter fallback in proximity searches
 
 <update-message/>

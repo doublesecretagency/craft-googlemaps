@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Render a map in Twig
 
 <update-message/>
@@ -21,7 +25,7 @@ In the case of **dynamic maps**, you are now creating a [Dynamic Map Model](/mod
 :::warning Please re-evaluate your options! 
 Several of the individual `options` have changed. You are highly encouraged to re-assess each of your existing options, to determine whether each option is still necessary, and/or whether it should now be nested within the `mapOptions` option.
 
-See the complete list of [dynamic map options...](/dynamic-maps/map-management/#dynamic-map-options)
+See the complete list of [dynamic map options...](/dynamic-maps/basic-map-management/#dynamic-map-options)
 :::
 
 :::tip New Documentation

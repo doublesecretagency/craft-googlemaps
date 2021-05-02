@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 KML files
 
 <update-message/>
@@ -31,7 +35,7 @@ At a glance, the code hasn't changed much. But internally, the KML functionality
 
 **Major functional changes:**
 
-- You are now creating a [map object](/dynamic-maps/map-management/#map-locations-options) first, before applying the [KML layer](/dynamic-maps/universal-methods/#kml-url-options) as a separate step.
+- You are now creating a [map object](/dynamic-maps/basic-map-management/#map-locations-options) first, before applying the [KML layer](/dynamic-maps/universal-methods/#kml-url-options) as a separate step.
 - This demonstrates the concept of [chaining](/dynamic-maps/chaining/).
 - Instead of using a complete Asset, you must only pass a **valid URL** into the `kml` method.
 

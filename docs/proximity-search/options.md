@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Options
 
 | Option                            | Type     | Default | Description                                      |

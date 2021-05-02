@@ -1,6 +1,10 @@
+---
+description: You'll often need to specify "locations" when creating maps. But what does that mean? Check out this complete breakdown of accepted types of locations.
+---
+
 # Locations
 
-Whether you are working with [dynamic maps](/models/dynamic-map-model/) or [static maps](/models/static-map-model/), you'll need to specify the `locations` that you want to appear on the map. You'll most often encounter this parameter when you [create a map](/dynamic-maps/map-management/#map-locations-options) or [add markers](/dynamic-maps/universal-methods/#markers-locations-options) to a map. 
+Whether you are working with [dynamic maps](/models/dynamic-map-model/) or [static maps](/models/static-map-model/), you'll need to specify the `locations` that you want to appear on the map. You'll most often encounter this parameter when you [create a map](/dynamic-maps/basic-map-management/#map-locations-options) or [add markers](/dynamic-maps/universal-methods/#markers-locations-options) to a map. 
 
 What are "locations"? They can be any of the following...
  - [Coordinates](#coordinates) (simple JSON)

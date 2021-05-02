@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # `googleMaps` in Twig & PHP
 
 Whether you are working in Twig or PHP, the **`GoogleMaps` helper class** exists to make your life a little easier. It includes wrapper methods for some of the most common use-cases you will encounter.

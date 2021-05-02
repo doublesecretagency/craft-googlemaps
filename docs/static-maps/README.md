@@ -1,3 +1,7 @@
+---
+description: Static maps are great for showing maps that don't require user interaction. Using Twig or PHP, the static map API lets you chain commands together easily.
+---
+
 # Static Maps
 
 Whether you are working in Twig or PHP, the syntax is nearly identical. Unlike the [Universal API](/dynamic-maps/universal-api/) for dynamic maps, there is no JavaScript equivalent for static maps.

@@ -1,3 +1,7 @@
+---
+description: Add layers of complexity by chaining commands together. The same set of chainable commands are nearly identical across JavaScript, Twig, and PHP.
+---
+
 # Chaining
 
 ## What & Why

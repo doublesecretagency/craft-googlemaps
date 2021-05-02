@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Region Biasing
 
 Sometimes your [proximity search](/proximity-search/) lookups don't match the expected target. Instead, the lookup may be matching a different, but similarly named, geographic location. This is often because the specified target shares a similar name as a more well-known area.

@@ -1,3 +1,7 @@
+---
+description: Learn how to create Google API keys and add them to your Craft CMS website. This detailed guide shows how it all ties together.
+---
+
 # Google Maps API Keys
 
 In order to use the Google Maps API, you will need to generate two distinct API keys. Follow the official instructions provided by Google in order to set up both a **browser key** and **server key**.

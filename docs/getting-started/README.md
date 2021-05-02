@@ -1,3 +1,7 @@
+---
+description: Follow these instructions to set up the Google Maps plugin for Craft CMS. This simple step-by-step guide shows how to get started.
+---
+
 # Getting Started
 
 ## Installation via Plugin Store

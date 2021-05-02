@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Settings Model
 
 The Settings Model is a structural staple of most Craft plugins. It is generally not something you need to interact with directly.

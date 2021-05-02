@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Styling a Map
 
 It's very common for people to want their maps to look a specific way. In fact, there are services which allow you to customize a map however you see fit. These services will generate a JSON snippet containing all of your styles.

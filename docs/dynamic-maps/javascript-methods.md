@@ -1,3 +1,7 @@
+---
+description: A few additional methods are only available in JavaScript. Explore what else is possible when working with dynamic maps in JavaScript.
+---
+
 # Additional JavaScript Methods
 
 In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in JavaScript.

@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Proximity Search
 
 There are many scenarios where you may want to conduct a proximity search...

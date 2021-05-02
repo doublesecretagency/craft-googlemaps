@@ -1,3 +1,7 @@
+---
+description: Craft provides an easy way to "Export" your section data. We've added two more data views (condensed and expanded) containing all Address data.
+---
+
 # Exporting Address Data
 
 You can download existing Address data in **two different formats** using Craft's "Export" feature.

@@ -1,3 +1,7 @@
+---
+description: With few exceptions, all chainable methods are identical across JavaScript, Twig, and PHP. Easily switch between languages using the universal API.
+---
+
 # Universal API
 
 In an effort to smooth the development process, you can effectively call the exact same methods across various programming languages. Whether you are working in JavaScript, Twig, or PHP, the commands to create a map are all nearly identical.
@@ -61,18 +65,18 @@ The following programming languages are currently supported. To see how to use t
 
 ### JavaScript
 
- - [Map Management](/dynamic-maps/map-management/)
+ - [Map Management](/dynamic-maps/basic-map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional JavaScript Methods](/dynamic-maps/javascript-methods/)
 
 ### Twig
 
- - [Map Management](/dynamic-maps/map-management/)
+ - [Map Management](/dynamic-maps/basic-map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)
 
 ### PHP
 
- - [Map Management](/dynamic-maps/map-management/)
+ - [Map Management](/dynamic-maps/basic-map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional Twig & PHP Methods](/dynamic-maps/twig-php-methods/)

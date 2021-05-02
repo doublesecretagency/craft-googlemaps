@@ -1,8 +1,12 @@
+---
+description:
+---
+
 # Dynamic Maps
 
 ## map(locations = [], options = [])
 
-**Central to the creation of all dynamic maps.** Use this method to create a new map, before further manipulating the map object. See the [complete method details...](/dynamic-maps/map-management/#map-locations-options)
+**Central to the creation of all dynamic maps.** Use this method to create a new map, before further manipulating the map object. See the [complete method details...](/dynamic-maps/basic-map-management/#map-locations-options)
 
 :::code
 ```twig
@@ -17,7 +21,7 @@ $map = GoogleMaps::map($locations);
 
 ## getMap(mapId)
 
-Call up an existing map using this method. Once you've retrieved the map object, you are free to manipulate it normally. See the [complete method details...](/dynamic-maps/map-management/#getmap-mapid)
+Call up an existing map using this method. Once you've retrieved the map object, you are free to manipulate it normally. See the [complete method details...](/dynamic-maps/basic-map-management/#getmap-mapid)
 
 :::code
 ```twig

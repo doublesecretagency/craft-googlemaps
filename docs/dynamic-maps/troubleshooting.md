@@ -1,3 +1,7 @@
+---
+description: To make troubleshooting a bit easier, enable devMode. Then watch your browser console for the full play-by-play log, each time a dynamic map is created.
+---
+
 # Troubleshooting
 
 ## Logging to the browser console

@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Setting the Map Height
 
 One of the most common mistakes when rendering a map is when you accidentally create a map that is **zero pixels tall**. This will, of course, hide the map entirely. To see the map as intended, make sure to specify a height for the map container.
@@ -46,4 +50,4 @@ $map = GoogleMaps::map($locations, [
 ```
 :::
 
-Take a look at the [available options](/dynamic-maps/map-management/#map-locations-options) for creating a dynamic map.
+Take a look at the [available options](/dynamic-maps/basic-map-management/#map-locations-options) for creating a dynamic map.

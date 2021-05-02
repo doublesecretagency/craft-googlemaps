@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Customizing the map in Twig
 
 <update-message/>
@@ -37,7 +41,7 @@ Please take a closer look to see which items will need to be updated, added, or 
 
 Note that `mapOptions` has been extracted into its own subset of values. Any Google-related map options must be specified here, they can no longer be specified in the "root" of `options`.
 
-We recommend consulting the [full list of available options](/dynamic-maps/map-management/#map-locations-options) to determine what needs to be updated within your code.
+We recommend consulting the [full list of available options](/dynamic-maps/basic-map-management/#map-locations-options) to determine what needs to be updated within your code.
 
 :::tip New Documentation
 See the complete new [Dynamic Map Options](/models/dynamic-map-model/#construct-locations-options) documentation.

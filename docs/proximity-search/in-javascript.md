@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Proximity Search in JavaScript
 
 ## `.myAddressField(params = [])`

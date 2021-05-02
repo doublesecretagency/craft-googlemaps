@@ -1,3 +1,7 @@
+---
+description: Learn how to create complex static maps using the chainable API methods. The API is consistent in both Twig and PHP, using the same methods for both. 
+---
+
 # API
 
 ## Static API

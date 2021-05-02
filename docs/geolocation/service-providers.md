@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Service Providers
 
 It's possible to use **IP address detection and geolocation** in an attempt to pinpoint the location of your users. The system will determine the IP address of each user, and run it through a 3rd-party geolocation service to perform the geolocation lookup.

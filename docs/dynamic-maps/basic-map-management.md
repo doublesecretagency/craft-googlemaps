@@ -1,4 +1,8 @@
-# Map Management
+---
+description: The basic tools for dynamic map management can be used equally across JavaScript, Twig, and PHP. From here, chain other commands for a more complex map.
+---
+
+# Basic Map Management
 
 **Everything starts here.** In order to apply a [chain](/dynamic-maps/chaining/) of customizations, you must first create a map object using the `map` method, or retrieve an existing map object using the `getMap` method.
 

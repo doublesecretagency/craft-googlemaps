@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Linking to a Map
 
 There are four different ways to link externally to a Google Map...

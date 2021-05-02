@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # `dynamicmap.js`
 
 This file contains the `DynamicMap` model, which can be used to create dynamic, chainable map objects. Each instance of a `DynamicMap` object correlates with a different Google Map instance.

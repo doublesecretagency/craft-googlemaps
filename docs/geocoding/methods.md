@@ -1,3 +1,7 @@
+---
+description: Select which format you would like to receive the geocoding results in. Get `all` matches, or just `one` match, or just the first set of `coords`. 
+---
+
 # Geocoding Methods
 
 At the heart of each geocoding lookup is the [Lookup Model](/models/lookup-model/). It contains the following methods...

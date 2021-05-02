@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # AJAX Geocoding Example
 
 When working with address data on the front-end, you may find yourself needing to perform a geocoding lookup [via AJAX](/geocoding/via-ajax/). Here is a relatively straightforward example of how it works...
