@@ -37,7 +37,9 @@ You do not need to specify the `key` value, it will be automatically appended he
 
 ## Using an array of parameters
 
-You generally will not need to specify anything more complicated than a basic string. However, there are a few good reasons why you may want to specify an array of parameters instead...
+You generally will not need to specify anything more complicated than a basic string. However, if your lookup needs are more complex, you can pass in an array of values [allowed by the Google API](https://developers.google.com/maps/documentation/geocoding/overview#geocoding-lookup).
+
+Here are a few reasons why you may want to specify an array of Google-friendly values...
 
 ### Region Biasing
 
@@ -83,5 +85,3 @@ https://maps.googleapis.com/maps/api/geocode/json
 :::warning Do not specify the API key here
 When adding requirements, you do not need to manually specify the `key` value. The plugin stores it internally, and it will be appended to the API endpoint URL automatically.
 :::
-
-If your lookup needs are more complex, you can pass in any values [allowed by the Google API](https://developers.google.com/maps/documentation/geocoding/overview#geocoding-lookup).

@@ -5,6 +5,9 @@
 ### Changed
 - Improved error handling on the Visitor Model.
 
+### Fixed
+- Fixed a bug occurring with a null `target` value.
+
 ## 4.0.7 - 2021-04-26
 
 ### Added

@@ -28,12 +28,12 @@ class Lookup extends Model
 {
 
     /**
-     * @var string Error message (when thrown).
+     * @var string|null Error message, set when an error occurs.
      */
     public $error;
 
     /**
-     * @var array Internal target, converted to array prior to Lookup.
+     * @var mixed Internal target, converted to array prior to Lookup.
      */
     private $_target;
 

@@ -59,10 +59,14 @@ class ProximitySearchHelper
             [':fieldId' => $field->id]
         );
 
+        // Filter by field ID
+        static::$_query->subQuery->andWhere(
+            '[[addresses.fieldId]] = :fieldId',
+            [':fieldId' => $field->id]
+        );
+
         // Apply all proximity search options
-        if (isset($options['target'])) {
-            static::_applyProximitySearch($options);
-        }
+        static::_applyProximitySearch($options);
 
         // Apply 'subfields' option
         if (static::$_subfieldFilter) {
@@ -84,31 +88,23 @@ class ProximitySearchHelper
      */
     private static function _applyProximitySearch(array $options)
     {
-        // Set defaults
+        // Set proximity search defaults
         $default = [
             'range'  => 500,
             'units'  => 'mi',
         ];
 
-        // Get specified values
+        // Get specified target
         $target = ($options['target'] ?? null);
-        $range  = ($options['range']  ?? $default['range']);
-        $units  = ($options['units']  ?? $default['units']);
 
-        // If no target exists, bail
+        // If no target is specified
         if (!$target) {
+            // Modify subquery, append empty distance column
+            static::$_query->subQuery->addSelect(
+                "NULL AS [[distance]]"
+            );
+            // Bail
             return;
-        }
-
-        // Ensure range is valid
-        if (!is_numeric($range) || $range < 1) {
-            $range = $default['range'];
-        }
-
-        // Ensure units are valid
-        $validUnits = ['mi', 'km', 'miles', 'kilometers'];
-        if (!in_array($units, $validUnits, true)) {
-            $units = $default['units'];
         }
 
         // Retrieve the starting coordinates from the specified target
@@ -119,6 +115,15 @@ class ProximitySearchHelper
             $coords = AddressField::DEFAULT_COORDINATES;
         }
 
+        // Get specified units
+        $units = ($options['units'] ?? $default['units']);
+
+        // Ensure units are valid
+        $validUnits = ['mi', 'km', 'miles', 'kilometers'];
+        if (!in_array($units, $validUnits, true)) {
+            $units = $default['units'];
+        }
+
         // Implement haversine formula via SQL
         $haversine = static::_haversineSql(
             $coords['lat'],
@@ -126,42 +131,38 @@ class ProximitySearchHelper
             $units
         );
 
-        // Modify subquery
-        static::$_query->subQuery
-            ->addSelect(
-                "{$haversine} AS [[distance]]"
-            )
-            ->andWhere(
-                '[[addresses.fieldId]] = :fieldId',
-                [':fieldId' => static::$_field->id]
-            )
-        ;
+        // Get specified range
+        $range = ($options['range'] ?? $default['range']);
+
+        // Ensure range is valid
+        if (!is_numeric($range) || $range < 1) {
+            $range = $default['range'];
+        }
+
+        // Modify subquery, sort by nearest
+        static::$_query->subQuery->addSelect(
+            "{$haversine} AS [[distance]]"
+        );
 
         // Briefly store the distance under the field handle
         $fieldHandle = static::$_field->handle;
-        static::$_query->query
-            ->addSelect(
-                "[[subquery.distance]] AS [[{$fieldHandle}]]"
-            )
-        ;
+        static::$_query->query->addSelect(
+            "[[subquery.distance]] AS [[{$fieldHandle}]]"
+        );
 
         // Handle distance based on database type
         if (Craft::$app->getDb()->getIsMysql()) {
             // Configure for MySQL
-            static::$_query->subQuery
-                ->having(
-                    '[[distance]] <= :range',
-                    [':range' => $range]
-                )
-            ;
+            static::$_query->subQuery->having(
+                '[[distance]] <= :range',
+                [':range' => $range]
+            );
         } else {
             // Configure for Postgres
-            static::$_query->query
-                ->andWhere(
-                    '[[distance]] <= :range',
-                    [':range' => $range]
-                )
-            ;
+            static::$_query->query->andWhere(
+                '[[distance]] <= :range',
+                [':range' => $range]
+            );
         }
     }
 

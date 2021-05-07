@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use Craft;
 use doublesecretagency\googlemaps\models\Lookup;
 
 /**
@@ -133,23 +134,27 @@ class GeocodingHelper
      * Initialize a geocoding lookup by configuring a Lookup Model.
      *
      * @param array|string $target
-     * @return Lookup|false
+     * @return Lookup
      */
-    public static function lookup($target = [])
+    public static function lookup($target = []): Lookup
     {
         // If a string target was specified, convert to array
-        if (is_string($target)) {
-            $target = ['address' => $target];
+        if (is_string($target) || is_numeric($target)) {
+            $target = ['address' => (string) $target];
         }
 
-        // If target is not an array, bail
+        // If target is not an array, bail with error message
         if (!is_array($target)) {
-            return false;
+            $lookup = new Lookup();
+            $lookup->error = Craft::t('google-maps', 'Invalid format for lookup target. Please use a string or array of parameters.');
+            return $lookup;
         }
 
-        // If no target specified, bail
+        // If no target specified, bail with error message
         if (!isset($target['address']) || !$target['address']) {
-            return false;
+            $lookup = new Lookup();
+            $lookup->error = Craft::t('google-maps', 'No lookup target was provided.');
+            return $lookup;
         }
 
         // Create a fresh lookup
