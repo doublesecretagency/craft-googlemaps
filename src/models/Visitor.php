@@ -48,6 +48,11 @@ class Visitor extends Location
      */
     public $raw;
 
+    /**
+     * @var string|null Error message, set when an error occurs.
+     */
+    public $error;
+
     // ========================================================================= //
 
     /**

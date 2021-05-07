@@ -44,3 +44,7 @@ _string_ - The country determined by the geolocation lookup.
 ### `raw`
 
 _array_ - The original data used to create this Visitor Model. Contains the full response from the original geolocation service.
+
+### `error`
+
+_string_ - If an error occurred during the geolocation process, it will be set here.

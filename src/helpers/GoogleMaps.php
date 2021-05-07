@@ -163,9 +163,9 @@ class GoogleMaps
      * Perform a visitor geolocation.
      *
      * @param array $config
-     * @return Visitor|false
+     * @return Visitor
      */
-    public static function getVisitor(array $config = [])
+    public static function getVisitor(array $config = []): Visitor
     {
         return GeolocationHelper::getVisitor($config);
     }

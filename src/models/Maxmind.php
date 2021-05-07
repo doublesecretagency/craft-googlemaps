@@ -73,6 +73,7 @@ class Maxmind extends Model
             return new Visitor([
                 'service' => static::SERVICE,
                 'ip' => $ip,
+                'error' => static::$_error,
             ]);
         }
 
@@ -143,10 +144,16 @@ class Maxmind extends Model
      */
     private static function _parseResponse($response)
     {
+        // If no response was provided
+        if (!$response) {
+            static::$_error = Craft::t('google-maps', 'Cannot connect to MaxMind. Your API credentials may be invalid.');
+            return false;
+        }
+
         // Determine whether API call was successful
-        if (isset($response['location']) && isset($response['maxmind'])) {
+        if (array_key_exists('location', $response) && array_key_exists('maxmind', $response)) {
             $success = true;
-        } else if (isset($response['code']) && isset($response['error'])) {
+        } else if (array_key_exists('code', $response) && array_key_exists('error', $response)) {
             $success = false;
         } else {
             static::$_error = Craft::t('google-maps', 'Unable to parse MaxMind API response.');

@@ -29,9 +29,9 @@ class GeolocationHelper
      * Conduct a geolocation lookup to determine the user's approximate location.
      *
      * @param array $config
-     * @return Visitor|false
+     * @return Visitor
      */
-    public static function getVisitor($config = [])
+    public static function getVisitor($config = []): Visitor
     {
         // Set geolocation service
         $selected = GoogleMapsPlugin::$plugin->getSettings()->geolocationService;
@@ -42,7 +42,13 @@ class GeolocationHelper
 
         // If a valid service model is not available, bail
         if (!$model) {
-            return false;
+            // Set error message
+            $error = Craft::t('google-maps', 'No geolocation service enabled.');
+            // Return a basic Visitor Model
+            return new Visitor([
+                'service' => $service,
+                'error' => $error,
+            ]);
         }
 
         // Get IP address from config, or let Craft autodetect
