@@ -4,6 +4,7 @@
 
 ### Changed
 - Improved error handling on the Visitor Model.
+- Added an alias for the legacy fieldtype.
 
 ### Fixed
 - Fixed a bug occurring with a null `target` value.

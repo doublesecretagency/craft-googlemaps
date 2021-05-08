@@ -86,11 +86,6 @@ class FromSmartMap
      */
     private static function _migrateAddressFieldSettings()
     {
-        // If admin changes are not allowed, bail
-        if (!Craft::$app->getConfig()->getGeneral()->allowAdminChanges) {
-            return;
-        }
-
         // Class name of Smart Map Address field type
         $smAddress = 'doublesecretagency\\smartmap\\fields\\Address';
 
