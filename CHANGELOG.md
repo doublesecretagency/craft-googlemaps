@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.8 - Unreleased
+## 4.0.8 - 2021-05-08
 
 ### Changed
 - Improved error handling on the Visitor Model.
