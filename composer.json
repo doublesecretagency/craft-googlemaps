@@ -2,7 +2,7 @@
     "name": "doublesecretagency/craft-googlemaps",
     "description": "Maps in minutes. Powered by the Google Maps API.",
     "type": "craft-plugin",
-    "version": "4.0.8",
+    "version": "4.0.8.1",
     "keywords": [
         "craft",
         "cms",
@@ -35,8 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "doublesecretagency\\googlemaps\\": "src/",
-            "doublesecretagency\\smartmap\\": "legacy/"
+            "doublesecretagency\\googlemaps\\": "src/"
         }
     },
     "extra": {

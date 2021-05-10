@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.8.1 - 2021-05-10
+
+### Fixed
+- Reverted field alias, to be reinstated with upcoming Craft release.
+
 ## 4.0.8 - 2021-05-08
 
 ### Changed
