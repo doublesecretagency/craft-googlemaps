@@ -35,6 +35,9 @@ class Install extends Migration
 
         // Migrate everything from Smart Map
         FromSmartMap::update();
+
+        // Drop the old table if Smart Map couldn't do it
+        $this->dropTableIfExists('{{%smartmap_addresses}}');
     }
 
     /**

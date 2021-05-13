@@ -37,7 +37,7 @@ class FromSmartMap
         static::_migrateAddressFieldData();
 
         // Uninstall Smart Map
-        Craft::$app->getPlugins()->uninstallPlugin('smart-map');
+        Craft::$app->getPlugins()->uninstallPlugin('smart-map', true);
     }
 
     // ========================================================================= //
