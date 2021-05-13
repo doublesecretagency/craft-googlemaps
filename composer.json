@@ -35,7 +35,8 @@
     },
     "autoload": {
         "psr-4": {
-            "doublesecretagency\\googlemaps\\": "src/"
+            "doublesecretagency\\googlemaps\\": "src/",
+            "doublesecretagency\\smartmap\\": "legacy/"
         }
     },
     "extra": {
