@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.9 - Unreleased
+
+### Changed
+- Requires a minimum of Craft 3.6.14.
+
+### Fixed
+- Reinstated alias for the legacy fieldtype.
+- Improved stability of migration from Smart Map.
+
 ## 4.0.8.1 - 2021-05-10
 
 ### Fixed

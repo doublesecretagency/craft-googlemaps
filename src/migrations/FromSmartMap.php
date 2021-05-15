@@ -74,11 +74,8 @@ class FromSmartMap
         $googleMaps['maxmindService']      = ($smartMap['maxmindService']    ?? $googleMaps['maxmindService']);
         $googleMaps['maxmindUserId']       = ($smartMap['maxmindUserId']     ?? $googleMaps['maxmindUserId']);
 
-        // Save settings
-        Craft::$app->getPlugins()->savePluginSettings(GoogleMapsPlugin::$plugin, $googleMaps);
-
-        // Ensure plugin is enabled
-        Craft::$app->getPlugins()->enablePlugin('google-maps');
+        // Hang on to imported settings
+        GoogleMapsPlugin::$migrateSettings = $googleMaps;
     }
 
     /**

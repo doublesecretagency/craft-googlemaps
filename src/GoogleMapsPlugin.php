@@ -62,6 +62,11 @@ class GoogleMapsPlugin extends Plugin
     public static $plugin;
 
     /**
+     * @var array $migrateSettings Collection of settings to be migrated.
+     */
+    public static $migrateSettings = [];
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -91,11 +96,19 @@ class GoogleMapsPlugin extends Plugin
             }
         );
 
-        // Redirect after install
+        // After the plugin has been installed
         Event::on(
             Plugins::class,
             Plugins::EVENT_AFTER_INSTALL_PLUGIN,
             static function (PluginEvent $event) {
+
+                // If settings are being migrated, save them
+                if (GoogleMapsPlugin::$migrateSettings) {
+                    Craft::$app->getPlugins()->savePluginSettings(
+                        GoogleMapsPlugin::$plugin,
+                        GoogleMapsPlugin::$migrateSettings
+                    );
+                }
 
                 // If console request, bail
                 if (Craft::$app->getRequest()->getIsConsoleRequest()) {
