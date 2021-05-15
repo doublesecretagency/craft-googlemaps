@@ -35,6 +35,12 @@ class FromScratch
         // Share migration locally
         static::$_migration = $migration;
 
+        // If the table already exists, move on
+        // (gracefully recover from a previous failed migration attempt)
+        if (static::$_migration->db->tableExists('{{%googlemaps_addresses}}')) {
+            return;
+        }
+
         // Install everything from scratch
         static::_createTables();
         static::_createIndexes();

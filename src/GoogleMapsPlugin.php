@@ -57,14 +57,19 @@ class GoogleMapsPlugin extends Plugin
     public $schemaVersion = '4.0.0';
 
     /**
-     * @var Plugin $plugin Self-referential plugin property.
+     * @var Plugin Self-referential plugin property.
      */
     public static $plugin;
 
     /**
-     * @var array $migrateSettings Collection of settings to be migrated.
+     * @var array Collection of settings to be migrated.
      */
     public static $migrateSettings = [];
+
+    /**
+     * @var string|null Existing license key to be migrated.
+     */
+    public static $migrateLicenseKey;
 
     /**
      * @inheritdoc
@@ -102,21 +107,32 @@ class GoogleMapsPlugin extends Plugin
             Plugins::EVENT_AFTER_INSTALL_PLUGIN,
             static function (PluginEvent $event) {
 
-                // If settings are being migrated, save them
-                if (GoogleMapsPlugin::$migrateSettings) {
-                    Craft::$app->getPlugins()->savePluginSettings(
-                        GoogleMapsPlugin::$plugin,
-                        GoogleMapsPlugin::$migrateSettings
-                    );
-                }
-
-                // If console request, bail
-                if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+                // If installed plugin isn't Google Maps, bail
+                if ('google-maps' !== $event->plugin->handle) {
                     return;
                 }
 
-                // If not Google Maps, bail
-                if ('google-maps' !== $event->plugin->handle) {
+                // Get plugins service
+                $plugins = Craft::$app->getPlugins();
+
+                // If settings are being migrated, save them
+                if (static::$migrateSettings) {
+                    $plugins->savePluginSettings(
+                        static::$plugin,
+                        static::$migrateSettings
+                    );
+                }
+
+                // If plugin license key is being migrated, save it
+                if (static::$migrateLicenseKey) {
+                    $plugins->setPluginLicenseKey(
+                        'google-maps',
+                        static::$migrateLicenseKey
+                    );
+                }
+
+                // If installed via console, no need for a redirect
+                if (Craft::$app->getRequest()->getIsConsoleRequest()) {
                     return;
                 }
 

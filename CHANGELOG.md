@@ -2,6 +2,9 @@
 
 ## 4.0.9 - Unreleased
 
+### Added
+- On installation, migrates existing Smart Map license key (if available).
+
 ### Changed
 - Requires a minimum of Craft 3.6.14.
 

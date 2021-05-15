@@ -47,10 +47,21 @@ class FromSmartMap
      */
     private static function _migratePluginSettings()
     {
-        // If Smart Map is not installed, bail
-        if (!Craft::$app->getPlugins()->isPluginEnabled('smart-map')) {
+        // If Smart Map class does not exist, bail
+        if (!class_exists(\doublesecretagency\smartmap\SmartMap::class)) {
             return;
         }
+
+        // Get plugins service
+        $plugins = Craft::$app->getPlugins();
+
+        // If Smart Map is not installed, bail
+        if (!$plugins->isPluginEnabled('smart-map')) {
+            return;
+        }
+
+        // Get existing license key, if available
+        GoogleMapsPlugin::$migrateLicenseKey = $plugins->getPluginLicenseKey('smart-map');
 
         // Get settings for both plugins
         $smartMap = (\doublesecretagency\smartmap\SmartMap::$plugin->getSettings()->getAttributes() ?? false);
@@ -74,7 +85,7 @@ class FromSmartMap
         $googleMaps['maxmindService']      = ($smartMap['maxmindService']    ?? $googleMaps['maxmindService']);
         $googleMaps['maxmindUserId']       = ($smartMap['maxmindUserId']     ?? $googleMaps['maxmindUserId']);
 
-        // Hang on to imported settings
+        // Store collection of settings to be imported
         GoogleMapsPlugin::$migrateSettings = $googleMaps;
     }
 
