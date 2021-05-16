@@ -4,6 +4,7 @@
 
 ### Added
 - On installation, migrates existing Smart Map license key (if available).
+- Log migration warning messages for recoverable issues.
 
 ### Changed
 - Requires a minimum of Craft 3.6.14.

@@ -49,6 +49,8 @@ class FromSmartMap
     {
         // If Smart Map class does not exist, bail
         if (!class_exists(\doublesecretagency\smartmap\SmartMap::class)) {
+            $message = "Can't migrate Smart Map plugin settings, composer package has been removed.";
+            Craft::warning($message, __METHOD__);
             return;
         }
 
@@ -57,6 +59,8 @@ class FromSmartMap
 
         // If Smart Map is not installed, bail
         if (!$plugins->isPluginEnabled('smart-map')) {
+            $message = "Can't migrate Smart Map plugin settings, Smart Map plugin is not installed.";
+            Craft::warning($message, __METHOD__);
             return;
         }
 
@@ -69,6 +73,8 @@ class FromSmartMap
 
         // If no Smart Map settings exist, bail
         if (!$smartMap) {
+            $message = "Can't migrate Smart Map plugin settings, no settings data was found.";
+            Craft::warning($message, __METHOD__);
             return;
         }
 

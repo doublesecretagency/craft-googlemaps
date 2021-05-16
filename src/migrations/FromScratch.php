@@ -11,6 +11,7 @@
 
 namespace doublesecretagency\googlemaps\migrations;
 
+use Craft;
 use craft\db\Migration;
 
 /**
@@ -38,6 +39,8 @@ class FromScratch
         // If the table already exists, move on
         // (gracefully recover from a previous failed migration attempt)
         if (static::$_migration->db->tableExists('{{%googlemaps_addresses}}')) {
+            $message = "The `googlemaps_addresses` table already exists. We may be recovering from a previously failed migration, migrated data will be appended to any existing data.";
+            Craft::warning($message, __METHOD__);
             return;
         }
 
