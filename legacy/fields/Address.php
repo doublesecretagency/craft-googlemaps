@@ -1,4 +1,14 @@
 <?php
+/**
+ * Google Maps plugin for Craft CMS
+ *
+ * Maps in minutes. Powered by the Google Maps API.
+ *
+ * @author    Double Secret Agency
+ * @link      https://plugins.doublesecretagency.com/
+ * @copyright Copyright (c) 2014, 2021 Double Secret Agency
+ */
+
 namespace doublesecretagency\smartmap\fields;
 
 // Wrapped in false to prevent real execution

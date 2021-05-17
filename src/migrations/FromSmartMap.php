@@ -47,52 +47,34 @@ class FromSmartMap
      */
     private static function _migratePluginSettings()
     {
-        // If Smart Map class does not exist, bail
-        if (!class_exists(\doublesecretagency\smartmap\SmartMap::class)) {
-            $message = "Can't migrate Smart Map plugin settings, composer package has been removed.";
-            Craft::warning($message, __METHOD__);
-            return;
-        }
-
-        // Get plugins service
-        $plugins = Craft::$app->getPlugins();
-
-        // If Smart Map is not installed, bail
-        if (!$plugins->isPluginEnabled('smart-map')) {
-            $message = "Can't migrate Smart Map plugin settings, Smart Map plugin is not installed.";
-            Craft::warning($message, __METHOD__);
-            return;
-        }
-
-        // Get existing license key, if available
-        GoogleMapsPlugin::$migrateLicenseKey = $plugins->getPluginLicenseKey('smart-map');
-
         // Get settings for both plugins
-        $smartMap = (\doublesecretagency\smartmap\SmartMap::$plugin->getSettings()->getAttributes() ?? false);
+        $smartMap = Craft::$app->getProjectConfig()->get('plugins.smart-map');
         $googleMaps = (GoogleMapsPlugin::$plugin->getSettings()->getAttributes() ?? []);
 
-        // If no Smart Map settings exist, bail
+        // If no Smart Map settings exist, log warning and bail
         if (!$smartMap) {
             $message = "Can't migrate Smart Map plugin settings, no settings data was found.";
             Craft::warning($message, __METHOD__);
             return;
         }
 
-        // Replace `freegeoip` with `ipstack` (if necessary)
-        $geolocationService = ($smartMap['geolocation'] ?? $googleMaps['geolocationService']);
-        $geolocationService = str_replace('freegeoip', 'ipstack', $geolocationService);
-
         // Migrate settings
-        $googleMaps['browserKey']          = ($smartMap['googleBrowserKey']  ?? $googleMaps['browserKey']);
-        $googleMaps['serverKey']           = ($smartMap['googleServerKey']   ?? $googleMaps['serverKey']);
-        $googleMaps['geolocationService']  = $geolocationService;
-        $googleMaps['ipstackApiAccessKey'] = ($smartMap['ipstackAccessKey']  ?? $googleMaps['ipstackApiAccessKey']);
-        $googleMaps['maxmindLicenseKey']   = ($smartMap['maxmindLicenseKey'] ?? $googleMaps['maxmindLicenseKey']);
-        $googleMaps['maxmindService']      = ($smartMap['maxmindService']    ?? $googleMaps['maxmindService']);
-        $googleMaps['maxmindUserId']       = ($smartMap['maxmindUserId']     ?? $googleMaps['maxmindUserId']);
+        $googleMaps['browserKey']          = ($smartMap['settings']['googleBrowserKey']  ?? $googleMaps['browserKey']);
+        $googleMaps['serverKey']           = ($smartMap['settings']['googleServerKey']   ?? $googleMaps['serverKey']);
+        $googleMaps['geolocationService']  = ($smartMap['settings']['geolocation']       ?? $googleMaps['geolocationService']);
+        $googleMaps['ipstackApiAccessKey'] = ($smartMap['settings']['ipstackAccessKey']  ?? $googleMaps['ipstackApiAccessKey']);
+        $googleMaps['maxmindLicenseKey']   = ($smartMap['settings']['maxmindLicenseKey'] ?? $googleMaps['maxmindLicenseKey']);
+        $googleMaps['maxmindService']      = ($smartMap['settings']['maxmindService']    ?? $googleMaps['maxmindService']);
+        $googleMaps['maxmindUserId']       = ($smartMap['settings']['maxmindUserId']     ?? $googleMaps['maxmindUserId']);
+
+        // Replace `freegeoip` with `ipstack` (if necessary)
+        $googleMaps['geolocationService'] = str_replace('freegeoip', 'ipstack', $googleMaps['geolocationService']);
 
         // Store collection of settings to be imported
         GoogleMapsPlugin::$migrateSettings = $googleMaps;
+
+        // Store existing license key, if available
+        GoogleMapsPlugin::$migrateLicenseKey = ($smartMap['licenseKey'] ?? null);
     }
 
     /**
