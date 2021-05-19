@@ -148,26 +148,6 @@ class AddressField extends Field implements PreviewableFieldInterface
     // ========================================================================= //
 
     /**
-     * LEGACY: Properties required for Smart Map migration
-     */
-    public $dragPinDefault;
-    public $dragPinLatitude;
-    public $dragPinLongitude;
-    public $dragPinZoom;
-    public $layout = [
-        'street1' => ['enable' => 1, 'width' => 100, 'position' => 1],
-        'street2' => ['enable' => 1, 'width' => 100, 'position' => 2],
-        'city'    => ['enable' => 1, 'width' =>  50, 'position' => 3],
-        'state'   => ['enable' => 1, 'width' =>  15, 'position' => 4],
-        'zip'     => ['enable' => 1, 'width' =>  35, 'position' => 5],
-        'country' => ['enable' => 1, 'width' => 100, 'position' => 6],
-        'lat'     => ['enable' => 1, 'width' =>  50, 'position' => 7],
-        'lng'     => ['enable' => 1, 'width' =>  50, 'position' => 8],
-    ];
-
-    // ========================================================================= //
-
-    /**
      * @inheritdoc
      */
     public static function displayName(): string

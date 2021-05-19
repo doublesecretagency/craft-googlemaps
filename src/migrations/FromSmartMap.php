@@ -124,8 +124,11 @@ class FromSmartMap
                 $gmField->groupId      = $smField->groupId;
                 $gmField->name         = $smField->name;
                 $gmField->handle       = $smField->handle;
+                $gmField->context      = $smField->context;
                 $gmField->instructions = $smField->instructions;
                 $gmField->searchable   = $smField->searchable;
+                $gmField->translationMethod    = $smField->translationMethod;
+                $gmField->translationKeyFormat = $smField->translationKeyFormat;
 
                 // Migrate field settings
                 $gmField->showMap            = $newSettings['showMap'];
@@ -232,7 +235,7 @@ class FromSmartMap
         // Return updated field settings
         return [
             'showMap' => null,
-            'mapOnStart' => 'close',
+            'mapOnStart' => 'default',
             'mapOnSearch' => 'open',
             'visibilityToggle' => 'both',
             'coordinatesMode' => 'readOnly',
