@@ -1,17 +1,17 @@
 # Changelog
 
-## 4.0.9 - Unreleased
+## 4.0.9 - 2021-05-22
 
 ### Added
 - On installation, migrates existing Smart Map license key (if available).
-- Log migration warning messages for recoverable issues.
+- Logs migration warning messages for recoverable issues.
 
 ### Changed
 - Requires a minimum of Craft 3.6.14.
 
 ### Fixed
+- Significantly improved stability of migration from Smart Map.
 - Reinstated alias for the legacy fieldtype.
-- Improved stability of migration from Smart Map.
 
 ## 4.0.8.1 - 2021-05-10
 
