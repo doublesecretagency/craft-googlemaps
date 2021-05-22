@@ -148,6 +148,17 @@ class AddressField extends Field implements PreviewableFieldInterface
     // ========================================================================= //
 
     /**
+     * LEGACY: Properties required for Smart Map migration
+     */
+    public $dragPinDefault;
+    public $dragPinLatitude;
+    public $dragPinLongitude;
+    public $dragPinZoom;
+    public $layout;
+
+    // ========================================================================= //
+
+    /**
      * @inheritdoc
      */
     public static function displayName(): string

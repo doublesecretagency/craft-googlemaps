@@ -27,13 +27,21 @@ class FromSmartMap
 {
 
     /**
-     * Install and configure tables from scratch.
+     * Migrate existing data from Smart Map.
      */
     public static function update()
     {
-        // Migrate Smart Map data to Google Maps
-        static::_migratePluginSettings();
-        static::_migrateAddressFieldSettings();
+        // Don’t make the same project config changes twice
+        $existingSchema = Craft::$app->getProjectConfig()->get('plugins.google-maps.schemaVersion', true);
+
+        // If project config has not yet been written
+        if (!$existingSchema) {
+            // Migrate plugin and field settings
+            static::_migratePluginSettings();
+            static::_migrateAddressFieldSettings();
+        }
+
+        // Migrate all of the existing Address data
         static::_migrateAddressFieldData();
 
         // Uninstall Smart Map
