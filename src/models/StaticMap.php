@@ -14,9 +14,11 @@ namespace doublesecretagency\googlemaps\models;
 use craft\base\Element;
 use craft\base\Model;
 use craft\helpers\Html;
+use craft\helpers\Json;
 use craft\helpers\Template;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
+use Exception;
 use Twig\Markup;
 
 /**
@@ -125,9 +127,25 @@ class StaticMap extends Model
 
         // Apply whitelisted marker options
         foreach ($options as $k => $v) {
-            if (in_array($k, $validOptions, true)) {
-                $parts[] = "{$k}:{$v}";
+            // If option isn't valid, skip
+            if (!in_array($k, $validOptions, true)) {
+                continue;
             }
+            // If value is an array, throw an error
+            if (is_array($v)) {
+                if ('icon' === $k) {
+                    $error = "Set `{$k}` to the associated image URL.";
+                } else {
+                    $error = "Set `{$k}` to a string instead of an array.";
+                }
+                throw new Exception("Each static map marker property must be a string. {$error}");
+            }
+            // If value is not a string, skip
+            if (!is_string($v)) {
+                continue;
+            }
+            // Append URL parts to generate static map
+            $parts[] = "{$k}:{$v}";
         }
 
         // Get a collection of coordinate sets

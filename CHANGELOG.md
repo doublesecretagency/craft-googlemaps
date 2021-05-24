@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.10 - Unreleased
+
+### Changed
+- Ensure static map marker options are set as strings. ([#29](https://github.com/doublesecretagency/craft-googlemaps/issues/29))
+
 ## 4.0.9 - 2021-05-22
 
 ### Added

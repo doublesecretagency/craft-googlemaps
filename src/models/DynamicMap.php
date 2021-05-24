@@ -376,7 +376,7 @@ class DynamicMap extends Model
         }
 
         // If the first DNA item is not a map, throw an error
-        if ('map' != ($this->_dna[0]['type'] ?? false)) {
+        if ('map' !== ($this->_dna[0]['type'] ?? false)) {
             throw new Exception('Map model misconfigured. The chain must begin with a `map()` segment.');
         }
 

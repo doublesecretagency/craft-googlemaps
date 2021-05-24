@@ -68,13 +68,17 @@ class MapHelper
             $locations = [$locations];
         }
 
-        // If field option was specified, set filter using array syntax
-        if (isset($options['field']) && is_array($options['field'])) {
-            $filter = $options['field'];
-        } else if (isset($options['field']) && is_string($options['field'])) {
-            $filter = [$options['field']];
-        } else {
-            $filter = false;
+        // No filter by default
+        $filter = false;
+
+        // If field value was specified
+        if (isset($options['field'])) {
+            // Set filter according to type specified
+            if (is_array($options['field'])) {
+                $filter = $options['field'];
+            } else if (is_string($options['field'])) {
+                $filter = [$options['field']];
+            }
         }
 
         // Initialize results array
