@@ -1,6 +1,10 @@
+---
+description: Control your maps equally with JavaScript, Twig, or PHP. Available in multiple languages, these universal methods can be chained to create complex maps.
+---
+
 # Universal Methods
 
-The following methods apply equally, whether you are working in JavaScript, Twig or PHP. These methods have nearly identical parameters and behaviors across all three languages.
+The following methods apply equally, whether you are working in JavaScript, Twig, or PHP. These methods have nearly identical parameters and behaviors across all three languages.
 
 :::warning The Magic of Chaining
 Each of these methods can be [chained together](/dynamic-maps/chaining/) in any order you'd like. Chaining can be a powerful technique, allowing you to build complex maps with ease.
@@ -96,9 +100,17 @@ For more information, see the [Styling a Map](/guides/styling-a-map/) guide.
 
 ## `zoom(level)`
 
+:::code
 ```js
-map.zoom(10);
+map.zoom(level);
 ```
+```twig
+{% do map.zoom(level) %}
+```
+```php
+$map->zoom($level);
+```
+:::
 
 Change the map's zoom level.
 
@@ -107,18 +119,23 @@ Change the map's zoom level.
  - `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
  
 :::tip Zoom Level Reference
- - `1` is zoomed out, a view of the entire planet.
- - `22` is zoomed in, as close to the ground as possible.
+ - `1` is extremely zoomed out, a view of the entire planet.
+ - `22` is extremely zoomed in, as close to the ground as possible.
 :::
 
 ## `center(coords)`
 
+:::code
 ```js
-map.center({
-   "lat": 32.3113966,
-   "lng": -64.7527469
-});
+map.center(coords);
 ```
+```twig
+{% do map.center(coords) %}
+```
+```php
+$map->center($coords);
+```
+:::
 
 Re-center the map.
 
@@ -128,25 +145,104 @@ Re-center the map.
 
 ## `fit()`
 
+:::code
 ```js
 map.fit();
 ```
+```twig
+{% do map.fit() %}
+```
+```php
+$map->fit();
+```
+:::
 
 Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
 
 ## `refresh()`
 
+:::code
 ```js
 map.refresh();
 ```
+```twig
+{% do map.refresh() %}
+```
+```php
+$map->refresh();
+```
+:::
 
 Refresh an existing map. You may need to do this after the page has been resized, or if something has been moved or changed.
 
-## `panToMarker(markerId)`
+---
+---
+
+### Marker ID formula
+
+The remaining methods all refer to a `markerId` value.
+
+:::warning Formula 
+The default formula for a `markerId` is as follows:
 
 ```js
-map.panToMarker('33-address');
+    '[ELEMENT ID]-[FIELD HANDLE]' // eg: '101-myAddressField'
 ```
+:::
+
+## `hideMarker(markerId)`
+
+:::code
+```js
+map.hideMarker(markerId);
+```
+```twig
+{% do map.hideMarker(markerId) %}
+```
+```php
+$map->hideMarker($markerId);
+```
+:::
+
+Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker that you want to hide.
+
+## `showMarker(markerId)`
+
+:::code
+```js
+map.showMarker(markerId);
+```
+```twig
+{% do map.showMarker(markerId) %}
+```
+```php
+$map->showMarker($markerId);
+```
+:::
+
+Show a marker. The marker will be re-attached to the map.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker that you want to show.
+
+## `panToMarker(markerId)`
+
+:::code
+```js
+map.panToMarker(markerId);
+```
+```twig
+{% do map.panToMarker(markerId) %}
+```
+```php
+$map->panToMarker($markerId);
+```
+:::
 
 Re-center map on the specified marker.
 
@@ -156,9 +252,17 @@ Re-center map on the specified marker.
 
 ## `setMarkerIcon(markerId, icon)`
 
+:::code
 ```js
-map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green.png');
+map.setMarkerIcon(markerId, icon);
 ```
+```twig
+{% do map.setMarkerIcon(markerId, icon) %}
+```
+```php
+$map->setMarkerIcon($markerId, $icon);
+```
+:::
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
 
@@ -166,27 +270,3 @@ Set the icon of an existing marker. Internally uses [`setIcon`](https://develope
 
  - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
  - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
-
-## `hideMarker(markerId)`
-
-```js
-map.hideMarker('33-address');
-```
-
-Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
-
-#### Arguments
-
- - `markerId` (_string_) - The ID of the marker that you want to hide.
-
-## `showMarker(markerId)`
-
-```js
-map.showMarker('33-address');
-```
-
-Show a marker. The marker will be re-attached to the map.
-
-#### Arguments
-
- - `markerId` (_string_) - The ID of the marker that you want to show.

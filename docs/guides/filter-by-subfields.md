@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Filter by Subfields
 
 When conducting a proximity search, you can use the [`subfields` option](/proximity-search/options/#subfields) to exclude results which don't **exactly match** the specified subfields. It allows you to filter the proximity search results based on existing subfield values of the Address field.

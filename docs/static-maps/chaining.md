@@ -1,3 +1,7 @@
+---
+description: Just like dynamic maps, complex static maps can be created by chaining methods together. Learn how to customize a static map in both Twig and PHP.
+---
+
 # Chaining
 
 ## What & Why

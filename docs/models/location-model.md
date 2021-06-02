@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Location Model
 
 Both the [Address Model](/models/address-model/) and [Visitor Model](/models/visitor-model/) are extensions of the Location Model.

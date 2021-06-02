@@ -1,3 +1,7 @@
+---
+description: Clicking on a marker can trigger an info window based on your own custom Twig template. Find out how to add info windows to a dynamic map.
+---
+
 # Info Windows
 
 An [info window](https://developers.google.com/maps/documentation/javascript/infowindows) is the formal name for the bubble that pops up when you click on a marker...

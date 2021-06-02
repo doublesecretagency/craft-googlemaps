@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Setting Marker Icons
 
 ## Set icons for a batch of markers
@@ -98,6 +102,19 @@ map.setMarkerIcon(markerId, icon);
 $map->setMarkerIcon($markerId, $icon);
 ```
 :::
+
+:::warning Marker ID formula
+The default formula for a `markerId` is as follows:
+
+```js
+    '[ELEMENT ID]-[FIELD HANDLE]' // eg: '101-myAddressField'
+```
+:::
+
+Read more about the [`setMarkerIcon` method](/dynamic-maps/universal-methods/#setmarkericon-markerid-icon).
+
+---
+---
 
 :::tip Get the Marker IDs
 To see the existing marker IDs (if you didn't manually specify them), do the following:

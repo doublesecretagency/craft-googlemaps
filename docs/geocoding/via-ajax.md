@@ -1,3 +1,7 @@
+---
+description: Like the Twig methods, it's also possible to perform an address lookup via an AJAX request. These endpoints mirror the three standard geocoding methods.
+---
+
 # Geocoding via AJAX
 
 If your users need to perform an address lookup without loading a new page, you would of course use AJAX to handle that. The format of the results depends on which endpoint you are using.

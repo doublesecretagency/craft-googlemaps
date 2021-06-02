@@ -1,3 +1,7 @@
+---
+description: To perform an action after each address lookup, tap into the `EVENT_AFTER_GEOCODING`. Add this snippet to your module or plugin, and customize as needed.
+---
+
 # Geocoding Event
 
 This event is triggered when a [geocoding address lookup](/geocoding/) is performed.

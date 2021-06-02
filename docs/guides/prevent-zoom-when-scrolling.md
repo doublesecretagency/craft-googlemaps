@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Prevent Zoom When Scrolling
 
 It is a common frustration that a map will zoom in or out as you scroll past it. This is a native behavior of Google Maps, but it can be managed via the `gestureHandling` parameter of the `mapOptions` value.

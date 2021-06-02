@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Opening Info Windows
 
 If your map includes [info windows](/dynamic-maps/info-windows/), you typically open them by simply clicking on each corresponding marker. Sometimes, however, you'll need something _outside of_ the map to open an info window.

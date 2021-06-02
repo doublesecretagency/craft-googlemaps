@@ -1,3 +1,7 @@
+---
+description: A few additional methods are only available in Twig and PHP. Explore what else is possible when working with dynamic maps in Twig and PHP.
+---
+
 # Additional Twig & PHP Methods
 
 In addition to all the [Universal Methods](/dynamic-maps/universal-methods/) available in the API, there are a few more methods that are available exclusively in Twig and PHP.

@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Different icons for different marker types
 
 <update-message/>

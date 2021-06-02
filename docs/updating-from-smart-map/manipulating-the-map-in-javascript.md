@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Manipulating the map in JavaScript
 
 <update-message/>
@@ -44,7 +48,7 @@ Overall, the new `map` object is _much_ more powerful and flexible. Once you hav
 
 ## Markers
 
-You can add location markers when initially [creating the map](/dynamic-maps/map-management/#map-locations-options), or later using the [`markers` method](/dynamic-maps/universal-methods/#markers-locations-options).
+You can add location markers when initially [creating the map](/dynamic-maps/basic-map-management/#map-locations-options), or later using the [`markers` method](/dynamic-maps/universal-methods/#markers-locations-options).
 
 :::code
 ```js
@@ -84,7 +88,7 @@ For more information, see the guide on [Opening Info Windows...](/guides/opening
 
 For a complete list of what is now possible in JavaScript, read up on the following concepts:
 
- - [Map Management](/dynamic-maps/map-management/)
+ - [Map Management](/dynamic-maps/basic-map-management/)
  - [Universal Methods](/dynamic-maps/universal-methods/)
  - [Additional JavaScript Methods](/dynamic-maps/javascript-methods/)
 

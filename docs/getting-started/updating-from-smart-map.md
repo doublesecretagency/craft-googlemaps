@@ -1,3 +1,7 @@
+---
+description: Updating from Smart Map can be a fairly straightforward process. Learn how to easily switch plugins and adjust your Twig templates accordingly.
+---
+
 # Updating from Smart Map
 
 ## Install the Google Maps plugin

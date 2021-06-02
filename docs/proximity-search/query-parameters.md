@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Query Parameters
 
 Performing a proximity search is extremely easy, it is simply an extension of a normal Element Query. You can use these query parameters on any element type, wherever you may have assigned your Address field.

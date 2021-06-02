@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Updating from Smart Map
 
 <update-message/>

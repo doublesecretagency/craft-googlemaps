@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Static Maps
 
 ## img(locations = [], options = [])

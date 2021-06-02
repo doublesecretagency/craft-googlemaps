@@ -1,3 +1,7 @@
+---
+description: Conveniently store your location data in an Address field. Your geocoding searches are seamlessly handled by the Google API to provide instant results.
+---
+
 # Address Field
 
 Address fields are easy to use and extremely flexible. They can be attached to any element type (Entries, Users, Assets, etc), including custom element types.

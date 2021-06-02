@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Lookup Model
 
 When a Lookup Model is initialized, it should be passed a collection of parameters which specify the lookup details. These parameters will be stored internally once the object is created.
@@ -22,6 +26,12 @@ $results = $lookup->all();
 Once you apply the `all` (or `one`, or `coords`) method, those parameters will be used to ping the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview). The results of each lookup will be cached for 30 days, in order to ease the load on the API.
 
 For more information, see the [Geocoding Methods](/geocoding/methods/) page.
+
+## Public Properties
+
+### `error`
+
+_string_ - If an error occurred during the lookup process, it will be set here.
 
 ## Public Methods
 

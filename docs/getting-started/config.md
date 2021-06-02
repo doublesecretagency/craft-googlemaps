@@ -1,6 +1,10 @@
+---
+description: Using a PHP config file, you can override several of the plugin's settings. Find out how to configure the plugin, even across different environments!
+---
+
 # PHP Config File
 
-All of the config settings available on the plugin's [Settings page](/getting-started/settings/) can also be managed via PHP in a config file. By setting these values in `config/google-maps.php`, they take precedence over whatever may be set in the control panel.
+All config settings available on the plugin's [Settings page](/getting-started/settings/) can also be managed via PHP in a config file. By setting these values in `config/google-maps.php`, they take precedence over whatever may be set in the control panel.
 
 ```shell
 # Copy this file...

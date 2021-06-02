@@ -1,3 +1,7 @@
+---
+description: Here's a basic example of how you might use an Address field in a Twig template. There's a lot more that's possible, we're just scratching the surface!
+---
+
 # Using an Address in Twig
 
 <img class="dropshadow" :src="$withBase('/images/address-field/basic-example.png')" alt="Example using the address of the Empire State Building">

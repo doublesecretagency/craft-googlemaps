@@ -1,3 +1,7 @@
+---
+description: Perform a geocoding request (aka address lookup) to get the specific coordinates of a location, based on a search string provided by the user.
+---
+
 # Geocoding (Address Lookups)
 
 The concept of **geocoding** is fairly straightforward... it simply means we are using a text string to lookup the exact coordinates of a location. The text string can be as simple or complex as necessary, and Google will do its best to interpret that location as a set of real-world coordinates.

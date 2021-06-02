@@ -1,3 +1,7 @@
+---
+description: The geocoding target can be a string or an array, depending on the needs of your search. Configure the lookup with an array for more complex searches.
+---
+
 # Geocoding Target
 
 When creating a [Lookup Model](/models/lookup-model/), you only need to pass a single **string** or **array** value...

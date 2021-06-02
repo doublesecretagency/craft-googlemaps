@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Visitor Model
 
 The properties and methods of the Visitor Model are identical whether you are accessing them via Twig or PHP.

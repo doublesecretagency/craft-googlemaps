@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Coordinates
 
 A `coords` value is a basic set of coordinates (latitude & longitude) in a simple JSON format:

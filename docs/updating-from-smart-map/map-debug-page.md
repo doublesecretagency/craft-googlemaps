@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 Map Debug Page
 
 <update-message/>

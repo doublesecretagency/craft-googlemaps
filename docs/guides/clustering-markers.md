@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Clustering Markers
 
 To implement [marker clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering), an additional JavaScript library is required.
@@ -51,7 +55,7 @@ Before any further explanation, here is the general snippet from which you can c
 
 3. **Get the locations**, just as you normally would.  It's very likely that you already have this part worked out. If not, check out the documentation for [creating a dynamic map...](/dynamic-maps/)
 
-4. **Specify the map's `id`** in the [`map` options](/dynamic-maps/map-management/#map-locations-options). This makes it easy to reference the map in JavaScript.
+4. **Specify the map's `id`** in the [`map` options](/dynamic-maps/basic-map-management/#map-locations-options). This makes it easy to reference the map in JavaScript.
 
 5. **Specify the `callback` function** in the [`tag` options](/dynamic-maps/twig-php-methods/#tag-options). If you are referencing a named function, specify the name of the function. Or you can pass an anonymous function (as a _string_ in Twig/PHP).
 

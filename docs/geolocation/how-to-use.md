@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # How to Use
 
 You'll want to use the simplest approach for getting visitor geolocation data nearly 100% of the time. However, there may be some extremely rare edge cases where you need to override the `service` and/or `ip` values at runtime.

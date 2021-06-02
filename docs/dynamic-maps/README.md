@@ -1,3 +1,7 @@
+---
+description: Create a dynamic map quickly, then chain additional commands to further customize it. The same chainable commands are available in JS, Twig, and PHP.
+---
+
 # Dynamic Maps
 
 We've designed this plugin to be a universally helpful tool, regardless of which programming language you are working with.
@@ -41,7 +45,7 @@ googleMaps.getMap('my-map')
 This gives you the maximum amount of control over how each map will be rendered.
 
 :::warning Creating or Retrieving Map Objects
-Map objects will be stored internally for later use. See the [Map Management](/dynamic-maps/map-management/) methods for details on how to create and/or retrieve maps.
+Map objects will be stored internally for later use. See the [Map Management](/dynamic-maps/basic-map-management/) methods for details on how to create and/or retrieve maps.
 :::
 
 ## Language-Specific Methods

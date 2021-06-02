@@ -1,3 +1,7 @@
+---
+description: Let's break down what makes the Address field so cool. We've got several moving parts tied together, to bring you the most intuitive user experience.
+---
+
 # How It Works
 
 If you saw the [animated GIF](/address-field/), then you've already had a glimpse of how dynamic the Address field is.

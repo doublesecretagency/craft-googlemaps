@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Geolocation Event
 
 This event is triggered when a [visitor geolocation](/geolocation/) is performed.

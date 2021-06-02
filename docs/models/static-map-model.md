@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Static Map Model
 
 The Static Map Model is used to generate [Static Maps](/static-maps/). Chaining together static map methods is very similar to [chaining dynamic map methods](/dynamic-maps/chaining/).

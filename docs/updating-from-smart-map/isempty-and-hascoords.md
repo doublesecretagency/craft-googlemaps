@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # 🔧 `isEmpty` and `hasCoords`
 
 <update-message/>

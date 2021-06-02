@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Dynamic Map Model
 
 The Dynamic Map Model is critical for generating a [Dynamic Map](/dynamic-maps/). Thanks to the magic of [chaining](/dynamic-maps/chaining/), it allows you to build maps that are as complex as they need to be.

@@ -1,3 +1,7 @@
+---
+description:
+---
+
 # Maxmind Model
 
 The Maxmind Model interacts with the [MaxMind geolocation service](https://www.maxmind.com/). You can subscribe to MaxMind and use their services to perform geolocation lookups on your visitors.
