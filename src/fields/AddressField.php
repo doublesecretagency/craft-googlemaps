@@ -304,7 +304,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml(): string
+    public function getSettingsHtml()
     {
         // Reference assets
         $view = Craft::$app->getView();
