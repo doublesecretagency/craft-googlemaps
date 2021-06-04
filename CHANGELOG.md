@@ -2,6 +2,9 @@
 
 ## 4.0.10 - Unreleased
 
+### Added
+- Added [`getKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getkml-kmlid) JavaScript method. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24))
+
 ### Changed
 - Ensure static map marker options are set as strings. ([#29](https://github.com/doublesecretagency/craft-googlemaps/issues/29))
 

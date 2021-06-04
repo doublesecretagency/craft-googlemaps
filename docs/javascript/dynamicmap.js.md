@@ -350,6 +350,25 @@ var infoWindow = map.getInfoWindow('33-address');
 ---
 ---
 
+### `getKml(kmlId)`
+
+Get the [Google Maps KML Layer object](https://developers.google.com/maps/documentation/javascript/kml) of a specified KML layer.
+
+```js
+var kml = map.getKml('my-kml');
+```
+
+#### Arguments
+
+ - `kmlId` (_string_) - The ID of the KML layer that you want to access.
+
+#### Returns
+
+ - A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
+
+---
+---
+
 ### `tag(options = {})`
 
 Creates a new `<div>` element, detached from the DOM. If a `parentId` is specified, the element will automatically be injected into the specified parent container.

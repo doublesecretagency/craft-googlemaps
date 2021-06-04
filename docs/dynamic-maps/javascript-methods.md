@@ -140,3 +140,25 @@ var infoWindow = map.getInfoWindow(infoWindowId);
 #### Returns
 
  - A Google Maps [Info Window](https://developers.google.com/maps/documentation/javascript/infowindows) object.
+
+---
+---
+
+## `getKml(kmlId)`
+
+Get the Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object of the specified KML layer.
+
+:::code
+```js
+// Get the specified KML layer object
+var kml = map.getKml(kmlId);
+```
+:::
+
+#### Arguments
+
+- `kmlId` (_string_) - The ID of the KML layer that you want to access.
+
+#### Returns
+
+- A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.

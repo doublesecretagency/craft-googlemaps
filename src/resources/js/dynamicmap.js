@@ -430,6 +430,26 @@ function DynamicMap(locations, options) {
         return infoWindow;
     };
 
+    // Get a specific Google Maps KML layer object
+    this.getKml = function(kmlId) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`From map "${this.id}", getting existing KML layer "${kmlId}"`);
+        }
+
+        // Get existing KML layer
+        var kml = this._kmls[kmlId];
+
+        // If KML layer does not exist, emit warning
+        if (!kml) {
+            console.warn(`[GM] Unable to find KML layer "${kmlId}"`);
+        }
+
+        // Return KML layer
+        return kml;
+    };
+
     // ========================================================================= //
 
     // Generate a complete map element
