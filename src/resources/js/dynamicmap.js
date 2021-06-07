@@ -287,13 +287,13 @@ function DynamicMap(locations, options) {
     // Pan map to center on a specific marker
     this.panToMarker = function(markerId) {
 
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", panning to marker "${markerId}"`);
         }
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -319,13 +319,13 @@ function DynamicMap(locations, options) {
     // Set the icon of an existing marker
     this.setMarkerIcon = function(markerId, icon) {
 
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
         }
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -343,13 +343,13 @@ function DynamicMap(locations, options) {
     // Hide a marker
     this.hideMarker = function(markerId) {
 
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", hiding marker "${markerId}"`);
         }
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -367,13 +367,13 @@ function DynamicMap(locations, options) {
     // Show a marker
     this.showMarker = function(markerId) {
 
+        // Get specified marker
+        var marker = this.getMarker(markerId);
+
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", showing marker "${markerId}"`);
         }
-
-        // Get specified marker
-        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -383,6 +383,56 @@ function DynamicMap(locations, options) {
 
         // Attach marker to current map
         marker.setMap(this._map);
+
+        // Keep the party going
+        return this;
+    };
+
+    // ========================================================================= //
+
+    // Hide a KML layer
+    this.hideKml = function(kmlId) {
+
+        // Get specified KML layer
+        var kml = this.getKml(kmlId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", hiding KML layer "${kmlId}"`);
+        }
+
+        // If invalid KML layer, bail
+        if (!kml) {
+            console.warn(`[GM] Unable to hide KML layer "${kmlId}"`);
+            return this;
+        }
+
+        // Detach KML layer from map
+        kml.setMap(null);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Show a KML layer
+    this.showKml = function(kmlId) {
+
+        // Get specified KML layer
+        var kml = this.getKml(kmlId);
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", showing KML layer "${kmlId}"`);
+        }
+
+        // If invalid KML layer, bail
+        if (!kml) {
+            console.warn(`[GM] Unable to show KML layer "${kmlId}"`);
+            return this;
+        }
+
+        // Attach KML layer to current map
+        kml.setMap(this._map);
 
         // Keep the party going
         return this;

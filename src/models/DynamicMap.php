@@ -362,6 +362,44 @@ class DynamicMap extends Model
     // ========================================================================= //
 
     /**
+     * Hide a KML layer.
+     *
+     * @param string $kmlId
+     * @return $this
+     */
+    public function hideKml($kmlId): DynamicMap
+    {
+        // Add call to hide KML layer
+        $this->_dna[] = [
+            'type' => 'hideKml',
+            'kmlId' => $kmlId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a KML layer.
+     *
+     * @param string $kmlId
+     * @return $this
+     */
+    public function showKml($kmlId): DynamicMap
+    {
+        // Add call to show KML layer
+        $this->_dna[] = [
+            'type' => 'showKml',
+            'kmlId' => $kmlId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    // ========================================================================= //
+
+    /**
      * Outputs a dynamic map in a `<div>` tag for use in a Twig template.
      *
      * @param array $options Set of options to configure the rendered tag.

@@ -111,7 +111,7 @@ window.googleMaps = window.googleMaps || {
         if (callback && 'function' === typeof callback) {
             // Log status
             if (this.log) {
-                console.log(`Executing callback function`);
+                console.log(`Running callback function:\n`,callback);
             }
             // Execute callback
             callback();
@@ -251,6 +251,16 @@ window.googleMaps = window.googleMaps || {
                 // Show a marker
                 case 'showMarker':
                     map.showMarker(block.markerId);
+                    break;
+
+                // Hide a KML layer
+                case 'hideKml':
+                    map.hideKml(block.kmlId);
+                    break;
+
+                // Show a KML layer
+                case 'showKml':
+                    map.showKml(block.kmlId);
                     break;
 
             }

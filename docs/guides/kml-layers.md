@@ -49,7 +49,7 @@ $map->kml($url);
 ```
 :::
 
-For more information, take a look at the details of the [`kml` method](/dynamic-maps/universal-methods/#kml-url-options).
+For more information, take a look at the details of the [`kml` method](/dynamic-maps/universal-methods/#kml-url-options). If you intend to further manipulate the KML layers, it will be necessary to provide an `id` value.
 
 ## The `url` parameter
 
@@ -66,26 +66,76 @@ If you are testing this feature locally, the KML file may [refuse to load](https
 
 ## The `options` parameter
 
-All options are optional. You can specify any attributes of an [`KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) interface.
+All [options](/dynamic-maps/universal-methods/#kml-url-options) are optional.
+
+Within the context of `kmlLayerOptions`, you can specify any attributes of a [`KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) interface. There's no need to specify `map` or `url` values, as they will be set automatically.
 
 :::code
 ```js
 map.kml(url, {
-    'preserveViewport': true
+    'id': 'my-kml',
+    'kmlLayerOptions': {
+        'preserveViewport': true
+    }
 });
 ```
 ```twig
 {% do map.kml(url, {
-    'preserveViewport': true
+    'id': 'my-kml',
+    'kmlLayerOptions': {
+        'preserveViewport': true
+    }
 }) %}
 ```
 ```php
 $map->kml($url, [
-    'preserveViewport' => true
+    'id' => 'my-kml',
+    'kmlLayerOptions' => [
+        'preserveViewport' => true
+    ]
 ]);
 ```
 :::
 
-:::tip Map & URL automatically determined
-Within the context of the KML layer options, both the `map` and `url` values will be set automatically.
+:::warning Further KML Adjustments
+To manipulate a KML layer, you will need to refer to it by its assigned ID. If you plan to manipulate the KML layers, be sure to set the `id` option of each KML layer when initially adding it to the map.
 :::
+
+## Further manipulating KML layers
+
+If you only need to hide or show each KML layer, there are two convenient [universal methods](/dynamic-maps/universal-methods/#hidekml-kmlid)...
+
+:::code
+```js
+// Hide the KML layer
+map.hideKml('my-kml');
+
+// Show the KML layer
+map.showKml('my-kml');
+```
+```twig
+// Hide the KML layer
+{% do map.hideKml('my-kml') %}
+
+// Show the KML layer
+{% do map.showKml('my-kml') %}
+```
+```php
+// Hide the KML layer
+$map->hideKml('my-kml');
+
+// Show the KML layer
+$map->showKml('my-kml');
+```
+:::
+
+### Beyond hiding and showing
+
+When you need to do more than hide or show a layer, you can get the raw [Google KML layer object](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayer), and manipulate it further using Google's own API.
+
+This method is only available [in JavaScript](/dynamic-maps/javascript-methods/#getkml-kmlid).
+
+```js
+// Get the raw Google KML layer object
+var kml = map.getKml('my-kml');
+```

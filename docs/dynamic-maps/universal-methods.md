@@ -68,13 +68,17 @@ Applies a KML layer to the map.
 
 #### Arguments
 
- - `url` (_string_) - The URL of a given KML layer. It **must** be hosted remotely. The KML file will not work if hosted locally.
+ - `url` (_string_) - The URL of a given KML layer. It **must** be publicly hosted on the internet. Google needs to parse the KML file, so it will not work if hosted locally or behind a private URL.
  - `options` (_array_|_null_) - The `options` parameter allows you to configure this KML layer in greater detail.
 
 | Option             | Available            | Description |
 |--------------------|:--------------------:|-------------|
 | `id`               | JavaScript, Twig/PHP | Reference point for each KML layer. |
 | `kmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+
+:::warning ID required to dynamically adjust KML layers
+In order to [further manipulate](/guides/kml-layers/#further-manipulating-kml-layers) a KML layer, you must provide an `id` option value.
+:::
 
 For more information, see the [KML Layers](/guides/kml-layers/) guide.
 
@@ -190,46 +194,6 @@ The default formula for a `markerId` is as follows:
 ```
 :::
 
-## `hideMarker(markerId)`
-
-:::code
-```js
-map.hideMarker(markerId);
-```
-```twig
-{% do map.hideMarker(markerId) %}
-```
-```php
-$map->hideMarker($markerId);
-```
-:::
-
-Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
-
-#### Arguments
-
-- `markerId` (_string_) - The ID of the marker that you want to hide.
-
-## `showMarker(markerId)`
-
-:::code
-```js
-map.showMarker(markerId);
-```
-```twig
-{% do map.showMarker(markerId) %}
-```
-```php
-$map->showMarker($markerId);
-```
-:::
-
-Show a marker. The marker will be re-attached to the map.
-
-#### Arguments
-
-- `markerId` (_string_) - The ID of the marker that you want to show.
-
 ## `panToMarker(markerId)`
 
 :::code
@@ -270,3 +234,83 @@ Set the icon of an existing marker. Internally uses [`setIcon`](https://develope
 
  - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
  - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
+
+## `hideMarker(markerId)`
+
+:::code
+```js
+map.hideMarker(markerId);
+```
+```twig
+{% do map.hideMarker(markerId) %}
+```
+```php
+$map->hideMarker($markerId);
+```
+:::
+
+Hide a marker. The marker will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker that you want to hide.
+
+## `showMarker(markerId)`
+
+:::code
+```js
+map.showMarker(markerId);
+```
+```twig
+{% do map.showMarker(markerId) %}
+```
+```php
+$map->showMarker($markerId);
+```
+:::
+
+Show a marker. The marker will be re-attached to the map.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker that you want to show.
+
+## `hideKml(kmlId)`
+
+:::code
+```js
+map.hideKml(kmlId);
+```
+```twig
+{% do map.hideKml(kmlId) %}
+```
+```php
+$map->hideKml($kmlId);
+```
+:::
+
+Hide a KML layer. The KML layer will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+ - `kmlId` (_string_) - The ID of the KML layer that you want to hide.
+
+## `showKml(kmlId)`
+
+:::code
+```js
+map.showKml(kmlId);
+```
+```twig
+{% do map.showKml(kmlId) %}
+```
+```php
+$map->showKml($kmlId);
+```
+:::
+
+Show a KML layer. The KML layer will be re-attached to the map.
+
+#### Arguments
+
+- `kmlId` (_string_) - The ID of the KML layer that you want to show.

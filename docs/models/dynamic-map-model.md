@@ -348,6 +348,54 @@ $map->showMarker($markerId);
 ---
 ---
 
+### `hideKml($kmlId)`
+
+Hide a KML layer.
+
+#### Arguments
+
+ - `$kmlId` (_string_) - ID of the target KML layer.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideKml(kmlId) %}
+```
+```php
+$map->hideKml($kmlId);
+```
+:::
+
+---
+---
+
+### `showKml($kmlId)`
+
+Show a KML layer.
+
+#### Arguments
+
+ - `$kmlId` (_string_) - ID of the target KML layer.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showKml(kmlId) %}
+```
+```php
+$map->showKml($kmlId);
+```
+:::
+
+---
+---
+
 ### `tag($options = [])`
 
 Renders the necessary `<div>` container to hold the map. The final `<div>` will contain specific attributes and data, which are then used to generate the map. Each container must be **initialized** in order for its dynamic map to be created.

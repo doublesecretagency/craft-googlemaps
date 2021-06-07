@@ -306,6 +306,44 @@ map.showMarker('33-address');
 ---
 ---
 
+### `hideKml(kmlId)`
+
+Hide a KML layer. The KML layer will not be destroyed, it will simply be detached from the map.
+
+```js
+map.hideKml('my-kml');
+```
+
+#### Arguments
+
+ - `kmlId` (_string_) - The ID of the KML layer that you want to hide.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showKml(kmlId)`
+
+Show a KML layer. The KML layer will be re-attached to the map.
+
+```js
+map.showKml('my-kml');
+```
+
+#### Arguments
+
+ - `kmlId` (_string_) - The ID of the KML layer that you want to show.
+
+#### Returns
+
+ - _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ## Non-Chainable Methods
 
 :::warning Breaking the Chain
