@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.10 - Unreleased
+## 4.0.10 - 2021-06-08
 
 ### Added
 - Added [`getKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getkml-kmlid) JavaScript method. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24))
