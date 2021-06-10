@@ -275,6 +275,30 @@ $map->panToMarker($markerId);
 ---
 ---
 
+### `openInfoWindow($markerId)`
+
+Open the info window of a specific marker.
+
+#### Arguments
+
+- `$markerId` (_string_) - ID of the marker with the target info window.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.openInfoWindow(markerId) %}
+```
+```php
+$map->openInfoWindow($markerId);
+```
+:::
+
+---
+---
+
 ### `setMarkerIcon($markerId, $icon)`
 
 Set the icon of an existing marker.

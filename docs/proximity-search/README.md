@@ -94,6 +94,10 @@ As you've already noticed, there are two special query parameters which are resp
 
  - In order to conduct a proximity search, specify your Address **field handle** with whatever `options` are appropriate. Check out the full [list of options...](/proximity-search/options/)
 
+:::warning Use your real Address Field Handle
+Use your **real** Address field handle instead of "myAddressField".
+:::
+
 ### orderBy('distance')
 
  - You will almost certainly want to sort your query by **closest matches**. Adding this parameter will ensure that the results are sorted from nearest to farthest.

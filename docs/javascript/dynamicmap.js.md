@@ -248,6 +248,25 @@ map.panToMarker('33-address');
 ---
 ---
 
+### `openInfoWindow(markerId)`
+
+Open the info window of a specific marker.
+
+```js
+map.openInfoWindow('33-address');
+```
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to open.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ### `setMarkerIcon(markerId, icon)`
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
@@ -369,7 +388,7 @@ var marker = map.getMarker('33-address');
 ---
 ---
 
-### `getInfoWindow(infoWindowId)`
+### `getInfoWindow(markerId)`
 
 Get the [Google Maps Info Window object](https://developers.google.com/maps/documentation/javascript/infowindows) of a specified info window.
 
@@ -379,7 +398,7 @@ var infoWindow = map.getInfoWindow('33-address');
 
 #### Arguments
 
- - `infoWindowId` (_string_) - The ID of the info window that you want to access.
+ - `markerId` (_string_) - The ID of the marker with the info window that you want to access.
 
 #### Returns
 

@@ -294,9 +294,27 @@ class DynamicMap extends Model
      */
     public function panToMarker($markerId): DynamicMap
     {
-        // Add marker center to DNA
+        // Add pan to marker to DNA
         $this->_dna[] = [
             'type' => 'panToMarker',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Open the info window of a specific marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function openInfoWindow($markerId): DynamicMap
+    {
+        // Add open info window to DNA
+        $this->_dna[] = [
+            'type' => 'openInfoWindow',
             'markerId' => $markerId,
         ];
 

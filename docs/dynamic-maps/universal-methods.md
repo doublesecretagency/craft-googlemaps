@@ -214,6 +214,26 @@ Re-center map on the specified marker.
 
  - `markerId` (_string_) - The ID of the marker that you want to pan to.
 
+## `openInfoWindow(markerId)`
+
+:::code
+```js
+map.openInfoWindow(markerId);
+```
+```twig
+{% do map.openInfoWindow(markerId) %}
+```
+```php
+$map->openInfoWindow($markerId);
+```
+:::
+
+Open the info window of a specific marker.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to open.
+
 ## `setMarkerIcon(markerId, icon)`
 
 :::code

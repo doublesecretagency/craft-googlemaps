@@ -75,12 +75,8 @@ You can easily create info windows using [Twig or PHP](/dynamic-maps/info-window
 In JavaScript, you can also access the raw [Google Info Window](https://developers.google.com/maps/documentation/javascript/reference/info-window) object:
 
 ```js
-var marker = map.getInfoWindow(infoWindowId);
+var infoWindow = map.getInfoWindow(markerId);
 ```
-
-:::warning Identical IDs
-A marker's `infoWindowId` is identical to its `markerId`.
-:::
 
 For more information, see the guide on [Opening Info Windows...](/guides/opening-info-windows/)
 

@@ -1,10 +1,16 @@
 # Changelog
 
+## 4.0.11 - Unreleased
+
+### Added
+- Added [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) universal method. ([#10](https://github.com/doublesecretagency/craft-googlemaps/issues/10))
+
 ## 4.0.10 - 2021-06-08
 
 ### Added
+- Added [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) universal method. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24)) 
+- Added [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) universal method. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24))
 - Added [`getKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getkml-kmlid) JavaScript method. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24))
-- Added [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) and [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) methods. ([#24](https://github.com/doublesecretagency/craft-googlemaps/issues/24))
 
 ### Changed
 - Ensure static map marker options are set as strings. ([#29](https://github.com/doublesecretagency/craft-googlemaps/issues/29))
@@ -82,7 +88,7 @@
 ## 4.0.1 - 2021-02-26
 
 ### Added
-- Added [`getInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getinfowindow-infowindowid) JavaScript method.
+- Added [`getInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getinfowindow-markerid) JavaScript method.
 
 ### Fixed
 - Fixed overlap between the field handle div and the map's toggle text/icon. ([#7](https://github.com/doublesecretagency/craft-googlemaps/issues/7))

@@ -122,20 +122,20 @@ var marker = map.getMarker(markerId);
 ---
 ---
 
-## `getInfoWindow(infoWindowId)`
+## `getInfoWindow(markerId)`
 
 Get the Google Maps [Info Window](https://developers.google.com/maps/documentation/javascript/infowindows) object of the specified info window.
 
 :::code
 ```js
 // Get the specified Info Window object
-var infoWindow = map.getInfoWindow(infoWindowId);
+var infoWindow = map.getInfoWindow(markerId);
 ```
 :::
 
 #### Arguments
 
- - `infoWindowId` (_string_) - The ID of the info window that you want to access.
+ - `markerId` (_string_) - The ID of the marker with the info window that you want to access.
 
 #### Returns
 
