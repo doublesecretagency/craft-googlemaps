@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
@@ -51,6 +52,9 @@ class GoogleMaps
         // Link to Google Maps JavaScript API URL
         $files = [GoogleMaps::getApiUrl($params)];
 
+        // CDN for MarkerClustererPlus library
+        $files[] = 'https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js';
+
         // Append both JS files required by plugin
         $files[] = $manager->getPublishedUrl($assets, true, 'js/googlemaps.js');
         $files[] = $manager->getPublishedUrl($assets, true, 'js/dynamicmap.js');
@@ -77,6 +81,30 @@ class GoogleMaps
         foreach ($assets as $file) {
             $view->registerJsFile($file);
         }
+
+        // Whether devMode is enabled
+        $inDevMode = Craft::$app->getConfig()->general->devMode;
+
+        // Whether JavaScript logging is enabled
+        $loggingEnabled = (GoogleMapsPlugin::$plugin->getSettings()->enableJsLogging ?? true);
+
+        // If permitted, enable logging via JavaScript
+        if ($inDevMode && $loggingEnabled) {
+            $view->registerJs('googleMaps.log = true;', $view::POS_END);
+        }
+
+        // Set known path info
+        $sourcePath = '@doublesecretagency/googlemaps/resources';
+        $filePath   = 'images/clustering/m1.png';
+
+        // Determine default path for marker clustering icons
+        $clusterPath = Craft::$app->getAssetManager()->getPublishedUrl($sourcePath, true, $filePath);
+
+        // Strip partial filename from the path
+        $clusterPath = preg_replace('/1\.png.*$/', '', $clusterPath);
+
+        // Pass the default path into JavaScript
+        $view->registerJs("googleMaps._defaultClusterPath = '$clusterPath';", $view::POS_END);
     }
 
     // ========================================================================= //

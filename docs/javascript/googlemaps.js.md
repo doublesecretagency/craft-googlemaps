@@ -54,18 +54,21 @@ Once you have the map object in hand, you can then chain methods from within the
  - `locations` (_[coords](/models/coordinates/)_|_array_) - A single set of coordinates, or an array of coordinate sets.
  - `options` (_array_) - Optional parameters to configure the map. (see below)
 
-| Option               | Type                | Default            | Description |
-|----------------------|:-------------------:|:------------------:|-------------|
-| `id`                 | _string_            | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container. |
-| `width`              | _int_               | _null_             | Set the width of the map (in px). |
-| `height`             | _int_               | _null_             | Set the height of the map (in px). |
-| `zoom`               | _int_               | (uses `fitBounds`) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span> |
-| `center`             | _[coords](/models/coordinates/)_ | (uses `fitBounds`) | Set the center position of the map. |
-| `styles`             | _array_             | _null_             | An array of [map styles](/guides/styling-a-map/). |
-| `mapOptions`         | _object_            | _null_             | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties. |
-| `markerOptions`      | _object_            | _null_             | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | _object_            | _null_             | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | _string_            | _null_             | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
+### Dynamic Map Options
+
+| Option               | Type                | Default            | Description
+|----------------------|:-------------------:|:------------------:|-------------
+| `id`                 | _string_            | <span style="white-space:nowrap">`"map-{random}"`</span> | Set the `id` attribute of the map container.
+| `width`              | _int_               | _null_             | Set the width of the map (in px).
+| `height`             | _int_               | _null_             | Set the height of the map (in px).
+| `zoom`               | _int_               | (uses `fitBounds`) | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span>
+| `center`             | _[coords](/models/coordinates/)_ | (uses `fitBounds`) | Set the center position of the map.
+| `styles`             | _array_             | _null_             | An array of [map styles](/guides/styling-a-map/).
+| `cluster`            | _bool_\|_array_     | _false_            | Enable [marker clustering](/guides/clustering-markers/).
+| `mapOptions`         | _object_            | _null_             | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties.
+| `markerOptions`      | _object_            | _null_             | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
+| `infoWindowOptions`  | _object_            | _null_             | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
+| `infoWindowTemplate` | _string_            | _null_             | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
 
 #### Returns
 

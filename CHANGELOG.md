@@ -3,6 +3,8 @@
 ## 4.0.11 - Unreleased
 
 ### Added
+- Added [`cluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/basic-map-management/#dynamic-map-options) option to easily cluster map markers. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
+- Added [`getMarkerCluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getmarkercluster) JavaScript method. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
 - Added [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) universal method. ([#10](https://github.com/doublesecretagency/craft-googlemaps/issues/10))
 
 ## 4.0.10 - 2021-06-08

@@ -4,59 +4,173 @@ description:
 
 # Clustering Markers
 
-To implement [marker clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering), an additional JavaScript library is required.
+<img class="dropshadow" :src="$withBase('/images/guides/clustering-markers.png')" alt="Example of clustered markers on a dynamic map">
 
-## Example
+Marker clustering is a great way to place a lot of markers onto a single map without overcrowding the map viewing area. It's easy to add [marker clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering) to your maps. When creating a map, simply set the [`cluster` option](/dynamic-maps/basic-map-management/#dynamic-map-options) to one of the following values:
 
-Before any further explanation, here is the general snippet from which you can copy & paste to add marker clustering to your [dynamic map](/dynamic-maps/). It will likely require some minor adjustments for your site.
+- `true` - Enables the default marker clustering behavior.
+- An **array** of [MarkerClustererOptions](https://googlemaps.github.io/js-markerclustererplus/interfaces/markerclustereroptions.html) - Enables a custom marker clustering behavior.
 
+:::warning Disabled by default
+By default, marker clustering is set to `false` (disabled).
+:::
+
+## Basic Clustering
+
+To enable the default clustering behavior, simply set `cluster` to `true` when creating a map.
+
+:::code
+```js
+// Enable basic marker clustering
+var options = {
+    'cluster': true
+};
+
+// Create a map with marker clusters
+var map = googleMaps.map(locations, options);
+```
 ```twig
-{# 1. Load the marker clustering library #}
-{% js 'https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js' %}
+{# Enable basic marker clustering #}
+{% set options = {
+    'cluster': true
+} %}
 
-{# 2. Create the JS callback function #}
-{% js %}
-    // Add marker clustering
-    function addClustering() {
-        // Get the map object
-        var myMap = googleMaps.getMap('my-map');
-        // Get map & markers
-        var map = myMap._map;
-        var markers = Object.values(myMap._markers);
-        // Cluster markers
-        new MarkerClusterer(map, markers, {
-            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-        });
+{# Create a map with marker clusters #}
+{% set map = googleMaps.map(locations, options) %}
+```
+```php
+// Enable basic marker clustering
+$options = [
+    'cluster' => true
+];
+
+// Create a map with marker clusters
+$map = GoogleMaps::map($locations, $options);
+```
+:::
+
+## Advanced Clustering
+
+If you need further customization over the marker clustering, you can use an array instead. The array would be a set of [Marker Clusterer Options](https://googlemaps.github.io/js-markerclustererplus/interfaces/markerclustereroptions.html) which allow you to further customize the marker clustering behavior.
+
+:::code
+```js
+// Enable advanced marker clustering
+var options = {
+    'cluster': {
+        'imagePath': 'https://example.com/path/to/cluster-icons'
     }
-{% endjs %}
+};
 
-{# 3. Get all locations to appear on the map #}
-{% set locations = craft.entries.section('locations').all() %}
-
-{# 4. Specify the map ID #}
-{% set mapOptions = {
-    'id': 'my-map'
+// Create a map with marker clusters
+var map = googleMaps.map(locations, options);
+```
+```twig
+{# Enable advanced marker clustering #}
+{% set options = {
+    'cluster': {
+        'imagePath': 'https://example.com/path/to/cluster-icons'
+    }
 } %}
 
-{# 5. Specify the JS callback function #}
-{% set tagOptions = {
-    'callback': 'addClustering'
-} %}
+{# Create a map with marker clusters #}
+{% set map = googleMaps.map(locations, options) %}
+```
+```php
+// Enable advanced marker clustering
+$options = [
+    'cluster' => [
+        'imagePath' => 'https://example.com/path/to/cluster-icons'
+    ]
+];
 
-{# 6. Display the map #}
-{{ googleMaps.map(locations, mapOptions).tag(tagOptions) }}
+// Create a map with marker clusters
+$map = GoogleMaps::map($locations, $options);
+```
+:::
+
+The example above shows how to set your own custom clustering icons.
+
+## Custom Clustering Icons
+
+To use your own collection of clustering icons, set the [`imagePath` marker clusterer option](https://googlemaps.github.io/js-markerclustererplus/interfaces/markerclustereroptions.html#imagepath).
+
+:::code
+```js
+'cluster': {
+    'imagePath': 'https://example.com/path/to/cluster-icons'
+}
+```
+```twig
+'cluster': {
+    'imagePath': 'https://example.com/path/to/cluster-icons'
+}
+```
+```php
+'cluster' => [
+    'imagePath' => 'https://example.com/path/to/cluster-icons'
+]
+```
+:::
+
+It should be a **path to the group of image files** to use for cluster icons. For example, let's say you store five clustering marker icons (`m1.png` - `m5.png`) in the following public directory:
+
+```
+https://example.com/resources/images/clustering
 ```
 
-## Instructions
+In that case, you would set the `imagePath` value to this:
 
-1. First, you must **load the marker clustering library**. The example above points to a CDN, but you could alternatively store a local copy of the library.
+```
+https://example.com/resources/images/clustering/m
+```
 
-2. You then need to **create the JS callback function**. If desired, this function could be stored in a separate `.js` file. Be sure it gets loaded _after_ the plugin loads the [`googlemaps.js` file](/javascript/googlemaps.js/).
+The icons path can be absolute or relative, even in a local development environment.
 
-3. **Get the locations**, just as you normally would.  It's very likely that you already have this part worked out. If not, check out the documentation for [creating a dynamic map...](/dynamic-maps/)
+```
+/resources/images/clustering/m
+```
 
-4. **Specify the map's `id`** in the [`map` options](/dynamic-maps/basic-map-management/#map-locations-options). This makes it easy to reference the map in JavaScript.
+:::tip More Info
+For more information, see the official Google docs for [adding a marker clusterer](https://developers.google.com/maps/documentation/javascript/marker-clustering#adding-a-marker-clusterer).
+:::
 
-5. **Specify the `callback` function** in the [`tag` options](/dynamic-maps/twig-php-methods/#tag-options). If you are referencing a named function, specify the name of the function. Or you can pass an anonymous function (as a _string_ in Twig/PHP).
+## Get the Marker Clustering Object
 
-6. Lastly, **display the map** by providing the `locations`, `mapOptions`, and `tagOptions`.
+In JavaScript, you can get the marker clustering object of an existing map:
+
+```js
+// Get the marker clustering object
+var markerCluster = map.getMarkerCluster();
+```
+
+This provides you with a [MarkerClusterer object](https://googlemaps.github.io/js-markerclustererplus/classes/default.html). What you choose to do with it is entirely up to you.
+
+```js
+// When the user moves the cursor over a cluster
+google.maps.event.addListener(markerCluster, 'mouseover', function (c) {
+    console.log('Cluster mouseover: ');
+    console.log('- Markers in cluster: ' + c.getSize());
+    console.log('- Center: ' + c.getCenter());
+});
+
+// When the user moves the cursor away from a cluster
+google.maps.event.addListener(markerCluster, 'mouseout', function (c) {
+    console.log('Cluster mouseout: ');
+    console.log('- Markers in cluster: ' + c.getSize());
+    console.log('- Center: ' + c.getCenter());
+});
+
+// When the user clicks on a cluster
+google.maps.event.addListener(markerCluster, 'click', function (c) {
+    console.log('Cluster click: ');
+    console.log('- Markers in cluster: ' + c.getSize());
+    console.log('- Center: ' + c.getCenter());
+    var m = c.getMarkers();
+    var p = [];
+    for (var i = 0; i < m.length; i++) {
+        p.push(m[i].getPosition());
+    }
+    console.log('- Marker locations: ' + p.join(', '));
+});
+```

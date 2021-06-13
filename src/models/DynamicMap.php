@@ -21,10 +21,8 @@ use craft\helpers\Template;
 use craft\models\FieldLayout;
 use craft\web\View;
 use doublesecretagency\googlemaps\fields\AddressField;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
-use doublesecretagency\googlemaps\web\assets\JsApiAsset;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -84,20 +82,6 @@ class DynamicMap extends Model
 
         // Set internal map ID
         $this->id = $options['id'];
-
-        // Get view service
-        $view = Craft::$app->getView();
-
-        // Whether devMode is enabled
-        $inDevMode = Craft::$app->getConfig()->general->devMode;
-
-        // Whether JavaScript logging is enabled
-        $loggingEnabled = (GoogleMapsPlugin::$plugin->getSettings()->enableJsLogging ?? true);
-
-        // If permitted, enable logging via JavaScript
-        if ($inDevMode && $loggingEnabled) {
-            $view->registerJs('googleMaps.log = true;', $view::POS_END);
-        }
 
         // If info window template was specified
         if ($options['infoWindowTemplate'] ?? false) {

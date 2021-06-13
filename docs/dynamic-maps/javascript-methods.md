@@ -162,3 +162,21 @@ var kml = map.getKml(kmlId);
 #### Returns
 
 - A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
+
+---
+---
+
+## `getMarkerCluster()`
+
+If clustering is [enabled](/guides/clustering-markers/), get the map's [marker clustering](https://googlemaps.github.io/js-markerclustererplus/classes/default.html) object. 
+
+:::code
+```js
+// Get the map's marker cluster object
+var markerCluster = map.getMarkerCluster();
+```
+:::
+
+#### Returns
+
+- A [marker clustering](https://googlemaps.github.io/js-markerclustererplus/classes/default.html) object. Will return `false` if clustering is not enabled.

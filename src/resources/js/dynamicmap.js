@@ -16,6 +16,9 @@ function DynamicMap(locations, options) {
     this._infoWindows = {};
     this._kmls = {};
 
+    // Initialize marker cluster
+    this._cluster = false;
+
     // Initialize defaults
     this._d = {};
 
@@ -49,6 +52,9 @@ function DynamicMap(locations, options) {
         this._d.center            = options.center            || null;
         this._d.markerOptions     = options.markerOptions     || {};
         this._d.infoWindowOptions = options.infoWindowOptions || {};
+
+        // Internalize clustering preference
+        this._cluster = options.cluster || false;
 
         // Optionally set container height
         if (options.height) {
@@ -524,6 +530,18 @@ function DynamicMap(locations, options) {
         return kml;
     };
 
+    // Get the internal marker clustering object
+    this.getMarkerCluster = function() {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`From map "${this.id}", getting the marker clustering object`);
+        }
+
+        // Return the MarkerClusterer object
+        return this._cluster;
+    };
+
     // ========================================================================= //
 
     // Generate a complete map element
@@ -589,6 +607,8 @@ function DynamicMap(locations, options) {
         this._map = new google.maps.Map(this.div, mapOptions);
         this._bounds = new google.maps.LatLngBounds();
 
+        // Optionally cluster markers
+        this._clusterMarkers();
     };
 
     // Create a new marker object
@@ -607,6 +627,11 @@ function DynamicMap(locations, options) {
 
         // Initialize marker object
         this._markers[coords.id] = new google.maps.Marker(markerOptions);
+
+        // If clustering markers, add new marker to group
+        if (this._cluster) {
+            this._cluster.addMarker(this._markers[coords.id]);
+        }
 
     };
 
@@ -661,6 +686,34 @@ function DynamicMap(locations, options) {
         // Initialize KML object
         this._kmls[kmlId] = new google.maps.KmlLayer(options);
 
+    };
+
+    // ========================================================================= //
+
+    // Optionally apply marker clustering
+    this._clusterMarkers = function() {
+
+        // Whether to use default or custom options
+        const clusterDefault = (true === this._cluster);
+        const clusterCustom  = ('object' === typeof this._cluster);
+
+        // If not clustering (neither default nor custom), bail
+        if (!clusterDefault && !clusterCustom) {
+            return;
+        }
+
+        // Default clustering options
+        const defaultOptions = {
+            averageCenter: true,
+            imagePath: googleMaps._defaultClusterPath
+        };
+
+        // If using custom clustering options, apply them,
+        // otherwise apply the default clustering options
+        const options = (clusterCustom ? this._cluster : defaultOptions);
+
+        // Create the marker clustering object
+        this._cluster = new MarkerClusterer(this._map, [], options);
     };
 
     // ========================================================================= //
