@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.11 - Unreleased
+## 4.0.11 - 2021-06-18
 
 ### Added
 - Added [`cluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/basic-map-management/#dynamic-map-options) option to easily cluster map markers. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
