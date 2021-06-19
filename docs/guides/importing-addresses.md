@@ -20,7 +20,9 @@ At the moment, this plugin does not support automatic [geocoding](/geocoding/) d
 Before running the import, make sure you already have the latitude & longitude in your CSV. Otherwise, it will likely be a minor pain to generate each set of Address coordinates later.
 :::
 
-Assuming you are conducting the import via a CSV file, we recommend running the data through an external bulk lookup service. Here are a few examples...
+## Geocoding from a CSV file
+
+If conducting the import via a CSV file, we recommend running the data through an external bulk lookup service. Here are a few examples...
 
 | Service | Analysis
 |:--------|:---------
@@ -28,4 +30,123 @@ Assuming you are conducting the import via a CSV file, we recommend running the 
 | [GPS Visualizer](https://www.gpsvisualizer.com/geocoder/) | Not as nice, but it’s free.
 | [Geocodio](https://www.geocod.io) | Nice and cheap.
 
-Once you've generated coordinates for each address in the CSV file, you can then import the complete set of data into Craft.
+Once you've generated coordinates for each address in the CSV file, you can then import the complete set of data into Craft using Feed Me.
+
+## Geocoding from a Google Sheet
+
+If you're running the import from Google Sheets, it's possible to do a bulk geocoding of that data before running the import.
+
+### Before Geocoding
+
+<img class="dropshadow" :src="$withBase('/images/guides/import-sheets-1.png')" alt="" style="margin-top:12px">
+
+### After Geocoding
+
+<img class="dropshadow" :src="$withBase('/images/guides/import-sheets-2.png')" alt="" style="margin-top:12px; margin-bottom:22px;">
+
+---
+---
+
+### Instructions
+
+1. Open your Google Sheet, and click the **"Tools"** menu option.
+
+2. Select **"Script editor"** from the dropdown menu to open the editor in a separate tab.
+
+<img class="dropshadow" :src="$withBase('/images/guides/import-sheets-3.png')" alt="" style="margin-bottom:8px">
+
+3. Copy the sample code provided (see below), and paste it into the script editor. **Read through the code snippet, and make any necessary changes to align with your unique spreadsheet.**
+
+<img class="dropshadow" :src="$withBase('/images/guides/import-sheets-4.png')" alt="" style="margin-top:8px">
+
+4. Click the **"Save"** button.
+
+5. Click the **"Run"** button.
+
+6. Watch the results of your script in the **"Execution Log"**.
+
+### Sample Code
+
+Copy & paste this code into your script editor. **Make all necessary changes for full compatibility.**
+
+```js
+function geocode() {
+    
+  // Get the current Google Sheet
+  var sheet = SpreadsheetApp.getActiveSheet();
+   
+  // Get the range and cell values
+  var range = sheet.getDataRange();
+  var cells = range.getValues();
+
+  // Initialize columns (starting with labels)
+  var latitudes  = [['Latitude']];
+  var longitudes = [['Longitude']];
+  var formatted  = [['Formatted']];
+  var raw        = [['Raw']];
+  
+  // Loop over each row
+  for (var i = 1; i < cells.length; i++) {
+
+    // Blank coords by default
+    var lat = lng = f = r = '';
+    
+    /**
+     * You may need to adjust the column numbers below.
+     * Here's how they line up in this example...
+     * - 1 = Street Name
+     * - 3 = City
+     * - 5 = Zip Code
+     */
+
+    // If a street address exists
+    if (cells[i][1]) {
+      
+      // Compile address string
+      var address = `${cells[i][1]}, ${cells[i][3]}, ${cells[i][5]}`;
+
+      // Log the target address
+      console.log(address);
+
+      // Perform geocode lookup
+      var geocoder = Maps.newGeocoder().geocode(address);
+      var res = geocoder.results[0];
+  
+      // If results were found, get coords
+      if (res) {
+        lat = res.geometry.location.lat;
+        lng = res.geometry.location.lng;
+        f   = res.formatted_address;
+        r   = JSON.stringify(res);
+      }
+
+      // Slow it down so Google doesn't get mad
+      if (5 == i) {
+        Utilities.sleep(500);
+      }
+
+    }
+   
+    // Append to columns data
+    latitudes.push([lat]);
+    longitudes.push([lng]);
+    formatted.push([f]);
+    raw.push([r]);
+  }
+
+  /**
+   * You may need to adjust the column letters below.
+   * Be sure to assign empty columns for the results,
+   * so that no existing data will be overwritten.
+   */
+   
+  // Write data to each column
+  sheet.getRange('H1').offset(0, 0, latitudes.length).setValues(latitudes);
+  sheet.getRange('I1').offset(0, 0, longitudes.length).setValues(longitudes);
+  sheet.getRange('J1').offset(0, 0, formatted.length).setValues(formatted);
+  sheet.getRange('K1').offset(0, 0, raw.length).setValues(raw);
+  
+}
+```
+
+Once you've generated coordinates for each address in the Google Sheet, you can then import the complete set of data into Craft using Feed Me.
