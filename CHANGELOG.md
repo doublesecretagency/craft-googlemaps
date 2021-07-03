@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Improved autocompletion of Address fields by returning a broader set of results.
+
 ## 4.0.11 - 2021-06-18
 
 ### Added

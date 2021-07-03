@@ -33,12 +33,12 @@
             try {
                 const google = window.google;
                 const options = {
-                    types: ['geocode'],
                     fields: [
                         'formatted_address',
                         'address_components',
                         'geometry.location',
-                        'place_id'
+                        'place_id',
+                        'name'
                     ]
                 };
 
