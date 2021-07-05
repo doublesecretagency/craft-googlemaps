@@ -201,7 +201,9 @@ function DynamicMap(locations, options) {
     this.zoom = function(level) {
 
         // Ensure level is valid
-        level = level || this._d.zoom;
+        level = level
+            || this._d.zoom
+            || 4;
 
         // Log status
         if (googleMaps.log) {
@@ -230,7 +232,10 @@ function DynamicMap(locations, options) {
     this.center = function(coords) {
 
         // Ensure coordinates are valid
-        coords = coords || this._d.center || this._bounds.getCenter();
+        coords = coords
+            || this._d.center
+            || this._bounds.getCenter()
+            || null;
 
         // Log status
         if (googleMaps.log) {
