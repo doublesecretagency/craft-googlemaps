@@ -19,8 +19,8 @@ You can specify the `styles` option when you create the initial map...
 
 :::code
 ```js
-// Set of map styles, formatted as a JSON object
-var styleSet = {...};
+// Set of map styles, formatted as a JSON array
+var styleSet = [...];
 
 // Apply styles to the map
 var map = googleMaps.map(locations, {
@@ -28,8 +28,8 @@ var map = googleMaps.map(locations, {
 });
 ```
 ```twig
-{# Set of map styles, formatted as a JSON object #}
-{% set styleSet = {...} %}
+{# Set of map styles, formatted as a JSON array #}
+{% set styleSet = [...] %}
 
 {# Apply styles to the map #}
 {% set map = googleMaps.map(locations, {

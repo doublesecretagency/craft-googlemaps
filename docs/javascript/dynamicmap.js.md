@@ -91,10 +91,7 @@ In order for a KML file to work, it must exist at a publicly available URL.
 Style a map based on a given collection of styles.
 
 :::tip Generating Styles
-There are many ways to generate an array of map styles. The most popular approach is to use a service like one of the following:
-
- - [Google Styling Wizard](https://mapstyle.withgoogle.com)
- - [Snazzy Maps](https://snazzymaps.com/)
+For more information on how to generate a set of styles, read [Styling a Map](/guides/styling-a-map/).
 :::
 
 #### Arguments
