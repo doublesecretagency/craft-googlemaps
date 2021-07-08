@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+- Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
+
 ### Changed
 - Improved autocompletion of Address fields by returning a broader set of results.
 

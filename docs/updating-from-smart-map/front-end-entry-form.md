@@ -6,57 +6,36 @@ description:
 
 <update-message/>
 
-Technically, the syntax did not change at all. But since _Craft itself_ has evolved, it's now possible to do something more like this...
+Technically, the syntax did not change at all. But since _Craft itself_ has evolved, it's now possible to use an `input` function for each subfield.
+
+For example, here's a single subfield using the `input` Twig function...
 
 ```twig
-<label>Street Address</label>
+{# Visible subfield input (eg: "street1") #}
 {{ input('text',
     'fields[myAddressField][street1]',
-    entry.myAddressField.street1 ?? null
-) }}
-
-<label>Apartment or Suite</label>
-{{ input('text',
-    'fields[myAddressField][street2]',
-    entry.myAddressField.street2 ?? null
-) }}
-
-<label>City</label>
-{{ input('text',
-    'fields[myAddressField][city]',
-    entry.myAddressField.city ?? null
-) }}
-
-<label>State</label>
-{{ input('text',
-    'fields[myAddressField][state]',
-    entry.myAddressField.state ?? null
-) }}
-
-<label>Zip Code</label>
-{{ input('text',
-    'fields[myAddressField][zip]',
-    entry.myAddressField.zip ?? null
-) }}
-
-<label>Country</label>
-{{ input('text',
-    'fields[myAddressField][country]',
-    entry.myAddressField.country ?? null
-) }}
-
-<label>Latitude</label>
-{{ input('text',
-    'fields[myAddressField][lat]',
-    entry.myAddressField.lat ?? null
-) }}
-
-<label>Longitude</label>
-{{ input('text',
-    'fields[myAddressField][lng]',
-    entry.myAddressField.lng ?? null
+    entry.myAddressField.street1 ?? null,
+    {
+        placeholder: 'Street Address',
+        id: 'address-street1'
+    }
 ) }}
 ```
+
+You can also set an `input` to be `hidden`. Certain subfields (ie: `formatted` and `raw`) can be hidden from view, as long as their values are still being submitted with the form.
+
+```twig
+{# Hidden subfield input (eg: "raw") #}
+{{ input('hidden',
+    'fields[myAddressField][raw]',
+    entry.myAddressField.raw ?? null,
+    {
+        id: 'address-raw'
+    }
+) }}
+```
+
+Make sure that each individual Address subfield is accounted for.
 
 :::tip New Documentation
 See the complete new [Front-End Form](/address-field/front-end-form/) documentation.
