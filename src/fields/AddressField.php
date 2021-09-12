@@ -46,52 +46,73 @@ class AddressField extends Field implements PreviewableFieldInterface
      * Default subfield configuration.
      */
     const DEFAULT_SUBFIELD_CONFIG = [
-        'street1'=> [
-            'label'    => 'Street Address',
+        'name' => [
+            'label'    => 'Name',
             'width'    => 100,
             'position' => 1,
-            'enabled'  => 1,
+            'enabled'  => 0,
             'required' => false
         ],
-        'street2'=> [
-            'label'    => 'Apartment or Suite',
+        'street1' => [
+            'label'    => 'Street Address',
             'width'    => 100,
             'position' => 2,
             'enabled'  => 1,
             'required' => false
         ],
-        'city'=> [
-            'label'    => 'City',
-            'width'    => 50,
+        'street2' => [
+            'label'    => 'Apartment or Suite',
+            'width'    => 100,
             'position' => 3,
             'enabled'  => 1,
             'required' => false
         ],
-        'state'=> [
-            'label'    => 'State',
-            'width'    => 15,
+        'city' => [
+            'label'    => 'City',
+            'width'    => 50,
             'position' => 4,
             'enabled'  => 1,
             'required' => false
         ],
-        'zip'=> [
-            'label'    => 'Zip Code',
-            'width'    => 35,
+        'state' => [
+            'label'    => 'State',
+            'width'    => 15,
             'position' => 5,
             'enabled'  => 1,
             'required' => false
         ],
-        'country'=> [
-            'label'    => 'Country',
-            'width'    => 100,
+        'zip' => [
+            'label'    => 'Zip Code',
+            'width'    => 35,
             'position' => 6,
             'enabled'  => 1,
             'required' => false
-        ]
+        ],
+        'county' => [
+            'label'    => 'County or District',
+            'width'    => 100,
+            'position' => 7,
+            'enabled'  => 0,
+            'required' => false
+        ],
+        'country' => [
+            'label'    => 'Country',
+            'width'    => 100,
+            'position' => 8,
+            'enabled'  => 1,
+            'required' => false
+        ],
+        'placeId' => [
+            'label'    => 'Place ID',
+            'width'    => 100,
+            'position' => 9,
+            'enabled'  => 0,
+            'required' => false
+        ],
     ];
 
     /**
-     * Whether or not to show the map.
+     * Whether to show the map.
      *
      * @var bool
      */
@@ -211,12 +232,15 @@ class AddressField extends Field implements PreviewableFieldInterface
         $record->setAttributes([
             'formatted' => ($data['formatted'] ?: null),
             'raw'       => ($data['raw'] ?: null),
+            'name'      => ($data['name'] ?: null),
             'street1'   => ($data['street1'] ?: null),
             'street2'   => ($data['street2'] ?: null),
             'city'      => ($data['city'] ?: null),
             'state'     => ($data['state'] ?: null),
             'zip'       => ($data['zip'] ?: null),
+            'county'    => ($data['county'] ?: null),
             'country'   => ($data['country'] ?: null),
+            'placeId'   => ($data['placeId'] ?: null),
             'lat'       => ($data['lat'] ?: null),
             'lng'       => ($data['lng'] ?: null),
             'zoom'      => ($data['zoom'] ?: null),
@@ -247,12 +271,15 @@ class AddressField extends Field implements PreviewableFieldInterface
                 'fieldId'   => (int) ($this->id ?? null),
                 'formatted' => (($value['formatted'] ?? null) ?: null),
                 'raw'       => (($value['raw'] ?? null) ?: null),
+                'name'      => ($value['name'] ?? null),
                 'street1'   => ($value['street1'] ?? null),
                 'street2'   => ($value['street2'] ?? null),
                 'city'      => ($value['city'] ?? null),
                 'state'     => ($value['state'] ?? null),
                 'zip'       => ($value['zip'] ?? null),
+                'county'    => ($value['county'] ?? null),
                 'country'   => ($value['country'] ?? null),
+                'placeId'   => ($value['placeId'] ?? null),
                 'lat'       => (float) ($value['lat'] ?? null),
                 'lng'       => (float) ($value['lng'] ?? null),
                 'zoom'      => (int) ($value['zoom'] ?? null),
@@ -364,6 +391,37 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Set the control size of map UI elements
         $settings['controlSize'] = GoogleMapsPlugin::$plugin->getSettings()->fieldControlSize;
+
+        // Get existing subfield config
+        $subfieldConfig = $settings['subfieldConfig'] ?? [];
+
+        // Start boosted `position` counter
+        $boostedPosition = 101;
+
+        // Loop through default subfields
+        foreach (self::DEFAULT_SUBFIELD_CONFIG as $handle => $subfield) {
+
+            // If subfield already exists, skip it
+            if (array_key_exists($handle, $subfieldConfig)) {
+                continue;
+            }
+
+            // Ensure subfield appears at the end
+            $subfield['position'] = $boostedPosition++;
+
+            // Disable subfield by default
+            $subfield['enabled'] = 0;
+
+            // Not using `required` (yet)
+            unset($subfield['required']);
+
+            // Append unused subfield to existing config
+            $subfieldConfig[$handle] = $subfield;
+
+        }
+
+        // Update subfield config
+        $settings['subfieldConfig'] = $subfieldConfig;
 
         // Return settings
         return $settings;

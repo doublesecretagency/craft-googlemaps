@@ -50,6 +50,11 @@ class Address extends Location
     public $raw;
 
     /**
+     * @var string|null Name of place or business.
+     */
+    public $name;
+
+    /**
      * @var string|null Street name and number.
      */
     public $street1;
@@ -75,9 +80,19 @@ class Address extends Location
     public $zip;
 
     /**
+     * @var string|null County or district (political or administrative).
+     */
+    public $county;
+
+    /**
      * @var string|null Country.
      */
     public $country;
+
+    /**
+     * @var string|null Place ID as assigned by the Google API.
+     */
+    public $placeId;
 
     /**
      * @var float|null Distance from another specified point.

@@ -22,12 +22,15 @@ use craft\db\ActiveRecord;
  * @property int $fieldId ID of field containing address.
  * @property string $formatted Properly formatted address according to the Google API.
  * @property string $raw Complete raw JSON address info from Google API.
+ * @property string $name Name of place or business.
  * @property string $street1 Street name and number.
  * @property string $street2 Apartment or suite number.
  * @property string $city City.
  * @property string $state State (or province, territory, etc).
  * @property string $zip Zip code (or postal code, etc).
+ * @property string $county County or district (political or administrative).
  * @property string $country Country.
+ * @property string $placeId Place ID as assigned by the Google API.
  * @property float $distance Distance from another specified point.
  * @property float $lat Latitude of location.
  * @property float $lng Longitude of location.

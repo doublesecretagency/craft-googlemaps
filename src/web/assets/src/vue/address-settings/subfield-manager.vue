@@ -1,5 +1,5 @@
 <template>
-    <table id="fields-myTable" class="editable fullwidth">
+    <table class="editable fullwidth">
         <thead>
             <tr>
                 <th scope="col" class="singleline-cell textual">Label</th>

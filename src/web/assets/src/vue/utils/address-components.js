@@ -75,6 +75,7 @@ export default function addressComponents(components, data) {
     data.city    = formatted['locality'];
     data.state   = formatted['administrative_area_level_1'];
     data.zip     = formatted['postal_code'];
+    data.county  = formatted['administrative_area_level_2'];
     data.country = formatted['country'];
 
     // Country-specific adjustments

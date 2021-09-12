@@ -109,19 +109,23 @@
                 // Set all subfield data
                 addressComponents(components, data.address);
 
-
-
-                /**
-                 * If/when the coordinates are incomplete, erase the "formatted" and "raw" values.
-                 */
-
                 // Append address meta data
+                data.address['name']      = place.name;
+                data.address['placeId']   = place.place_id;
                 data.address['formatted'] = place.formatted_address;
-                data.address['raw'] = JSON.stringify(place);
+                data.address['raw']       = JSON.stringify(place);
 
                 // Set coordinates
                 data.coords.lat = parseFloat(coords.lat().toFixed(7));
                 data.coords.lng = parseFloat(coords.lng().toFixed(7));
+
+                // If coords are invalid, clear meta subfields
+                if (!data.coords.lat || !data.coords.lng) {
+                    data.address['placeId']   = null;
+                    data.address['formatted'] = null;
+                    data.address['raw']       = null;
+                }
+
             },
 
             // Get the display array
