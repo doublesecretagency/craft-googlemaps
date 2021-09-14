@@ -318,6 +318,7 @@ class ProximitySearchHelper
             'city'    => $address['city'],
             'state'   => $address['state'],
             'zip'     => $address['zip'],
+            'county'  => $address['county'],
             'country' => $address['country'],
         ];
 

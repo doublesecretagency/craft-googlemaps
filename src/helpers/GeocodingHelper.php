@@ -87,6 +87,7 @@ class GeocodingHelper
         $city         = ($formatted['locality'] ?? null);
         $state        = ($formatted['administrative_area_level_1'] ?? null);
         $zip          = ($formatted['postal_code'] ?? null);
+        $county       = ($formatted['administrative_area_level_2'] ?? null);
         $country      = ($formatted['country'] ?? null);
 
         // Country-specific adjustments
@@ -116,12 +117,15 @@ class GeocodingHelper
 
         // Return formatted address data
         return [
+            'name'    => ($unformatted['name'] ?? null),
             'street1' => $street1,
             'street2' => null,
             'city'    => $city,
             'state'   => $state,
             'zip'     => $zip,
+            'county'  => $county,
             'country' => $country,
+            'placeId' => ($unformatted['place_id'] ?? null),
             'lat'     => $lat,
             'lng'     => $lng,
             'raw'     => $unformatted,

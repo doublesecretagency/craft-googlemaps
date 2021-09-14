@@ -187,12 +187,15 @@ class FromSmartMap
                 'fieldId'     => ($data['fieldId'] ?: null),
                 'formatted'   => null,
                 'raw'         => null,
+                'name'        => null,
                 'street1'     => ($data['street1'] ?: null),
                 'street2'     => ($data['street2'] ?: null),
                 'city'        => ($data['city'] ?: null),
                 'state'       => ($data['state'] ?: null),
                 'zip'         => ($data['zip'] ?: null),
+                'county'      => null,
                 'country'     => ($data['country'] ?: null),
+                'placeId'     => null,
                 'lat'         => ($data['lat'] ?: null),
                 'lng'         => ($data['lng'] ?: null),
                 'zoom'        => 11,
@@ -284,6 +287,24 @@ class FromSmartMap
                     'width' => (int) ($old['layout']['country']['width'] ?? 100),
                     'enabled' => (int) ($old['layout']['country']['enable'] ?? 1),
                     'position' => (int) ($old['layout']['country']['position'] ?? 6),
+                ],
+                'name' => [
+                    'label' => 'Name',
+                    'width' => 100,
+                    'enabled' => 0,
+                    'position' => 101,
+                ],
+                'county' => [
+                    'label' => 'County or District',
+                    'width' => 100,
+                    'enabled' => 0,
+                    'position' => 102,
+                ],
+                'placeId' => [
+                    'label' => 'Place ID',
+                    'width' => 100,
+                    'enabled' => 0,
+                    'position' => 103,
                 ]
             ]
         ];
