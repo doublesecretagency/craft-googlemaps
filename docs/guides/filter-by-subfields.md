@@ -66,12 +66,15 @@ $entries = Entry::find()
 
 You can filter by any of the following [Address Model](/models/address-model/) subfield values:
 
+- `name`
 - `street1`
 - `street2`
 - `city`
 - `state`
 - `zip`
+- `county`
 - `country`
+- `placeId`
 - `lat`
 - `lng`
 

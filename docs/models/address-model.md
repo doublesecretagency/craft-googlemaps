@@ -46,6 +46,10 @@ _string_ - A nicely-formatted single-line interpretation of the address, provide
 
 _array_ - The original data used to create this Address Model. Contains the full response from the original Google API call.
 
+### `name`
+
+_string_ - The location's official name. Commonly used for landmarks and business names.
+
 ### `street1`
 
 _string_ - The first line of the street address. Usually contains the street name & number of the location.
@@ -56,19 +60,31 @@ _string_ - The second line of the street address. Usually contains the apartment
 
 ### `city`
 
-_string_ - The city of the location.
+_string_ - The city. (aka: town)
 
 ### `state`
 
-_string_ - The state or province of the location.
+_string_ - The state. (aka: province)
 
 ### `zip`
 
-_string_ - The zip or postal code of the location.
+_string_ - The zip code. (aka: postal code)
+
+### `county`
+
+_string_ - The local county. (aka: district)
 
 ### `country`
 
-_string_ - The country of the location.
+_string_ - The country. (aka: nation)
+
+:::warning Similar sounding, but different
+We recognize that `county` and `country` are extremely similar words, and apologize on behalf of the English language.
+:::
+
+### `placeId`
+
+_string_ - The official `place_id` as specified by the [Google API](https://developers.google.com/maps/documentation/places/web-service/place-id).
 
 ### `distance`
 
