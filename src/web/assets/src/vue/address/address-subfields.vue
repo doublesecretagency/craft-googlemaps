@@ -34,8 +34,8 @@
                 const google = window.google;
                 const options = {
                     fields: [
-                        'formatted_address',
                         'address_components',
+                        'formatted_address',
                         'geometry.location',
                         'name',
                         'place_id'

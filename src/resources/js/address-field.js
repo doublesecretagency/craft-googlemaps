@@ -58,8 +58,8 @@ window.addressField = window.addressField || {
         const autocomplete = new google.maps.places.Autocomplete(subfield, {
             types: ['geocode'],
             fields: [
-                'formatted_address',
                 'address_components',
+                'formatted_address',
                 'geometry.location',
                 'name',
                 'place_id'
@@ -80,12 +80,15 @@ window.addressField = window.addressField || {
             let address = this._addressComponents(components);
 
             // Set all input values
+            document.getElementById('address-name').value      = place.name      || null;
             document.getElementById('address-street1').value   = address.street1 || null;
             document.getElementById('address-street2').value   = address.street2 || null;
             document.getElementById('address-city').value      = address.city    || null;
             document.getElementById('address-state').value     = address.state   || null;
             document.getElementById('address-zip').value       = address.zip     || null;
+            document.getElementById('address-county').value    = address.county  || null;
             document.getElementById('address-country').value   = address.country || null;
+            document.getElementById('address-placeId').value   = place.placeId   || null;
             document.getElementById('address-lat').value       = parseFloat(coords.lat().toFixed(7)) || null;
             document.getElementById('address-lng').value       = parseFloat(coords.lng().toFixed(7)) || null;
             document.getElementById('address-formatted').value = place.formatted_address || null;
@@ -159,6 +162,7 @@ window.addressField = window.addressField || {
         data.city    = formatted['locality'];
         data.state   = formatted['administrative_area_level_1'];
         data.zip     = formatted['postal_code'];
+        data.county  = formatted['county'];
         data.country = formatted['country'];
 
         // Country-specific adjustments
