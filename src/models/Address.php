@@ -265,14 +265,10 @@ class Address extends Location
             $parameters['query'] = ($address ?: "{$this->lat},{$this->lng}");
         }
 
-        // If no query place ID was specified
-        if (!isset($parameters['query_place_id'])) {
-            // Extract the stored place ID (if it exists)
-            $placeId = ($this->raw['place_id'] ?? false);
-            // If place ID exists, set as the query place ID
-            if ($placeId) {
-                $parameters['query_place_id'] = $placeId;
-            }
+        // If place ID exists and no query place ID was specified
+        if ($this->placeId && !isset($parameters['query_place_id'])) {
+            // Set as the query place ID
+            $parameters['query_place_id'] = $this->placeId;
         }
 
         // Return compiled endpoint URL
@@ -297,14 +293,10 @@ class Address extends Location
             $parameters['destination'] = ($address ?: "{$this->lat},{$this->lng}");
         }
 
-        // If no destination place ID was specified
-        if (!isset($parameters['destination_place_id'])) {
-            // Extract the stored place ID (if it exists)
-            $placeId = ($this->raw['place_id'] ?? false);
-            // If place ID exists, set as the destination place ID
-            if ($placeId) {
-                $parameters['destination_place_id'] = $placeId;
-            }
+        // If place ID exists and no destination place ID was specified
+        if ($this->placeId && !isset($parameters['destination_place_id'])) {
+            // Set as the destination place ID
+            $parameters['destination_place_id'] = $this->placeId;
         }
 
         // Return compiled endpoint URL

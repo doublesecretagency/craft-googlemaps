@@ -213,14 +213,10 @@ class Location extends Model
                 $parameters['origin'] = ($address ?: "{$origin->lat},{$origin->lng}");
             }
 
-            // If no origin place ID was specified
-            if (!isset($parameters['origin_place_id'])) {
-                // Extract the stored place ID (if it exists)
-                $placeId = ($origin->raw['place_id'] ?? false);
-                // If place ID exists, set as the origin place ID
-                if ($placeId) {
-                    $parameters['origin_place_id'] = $placeId;
-                }
+            // If place ID exists and no origin place ID was specified
+            if ($origin->placeId && !isset($parameters['origin_place_id'])) {
+                // Set as the origin place ID
+                $parameters['origin_place_id'] = $origin->placeId;
             }
 
         }
