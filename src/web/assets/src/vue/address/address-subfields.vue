@@ -37,8 +37,8 @@
                         'formatted_address',
                         'address_components',
                         'geometry.location',
-                        'place_id',
-                        'name'
+                        'name',
+                        'place_id'
                     ]
                 };
 

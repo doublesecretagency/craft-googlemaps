@@ -61,6 +61,7 @@ window.addressField = window.addressField || {
                 'formatted_address',
                 'address_components',
                 'geometry.location',
+                'name',
                 'place_id'
             ]
         });
