@@ -3,6 +3,9 @@
 ## Unreleased
 
 ### Added
+- Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield.
+- Addresses now include an optional [`county`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#county) subfield.
+- Addresses now include an optional [`placeId`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#placeid) subfield.
 - Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
 
 ### Changed
