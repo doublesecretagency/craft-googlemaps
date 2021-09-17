@@ -178,8 +178,11 @@ class ProximitySearchHelper
             return;
         }
 
+        // Get handles of all subfields
+        $valid = array_keys(AddressField::DEFAULT_SUBFIELD_CONFIG);
+
         // Complete list of valid subfields
-        $whitelist = ['street1','street2','city','state','zip','country','lat','lng'];
+        $whitelist = array_merge($valid, ['lat','lng']);
 
         // Loop through specified subfields
         foreach ($subfields as $subfield => $value) {

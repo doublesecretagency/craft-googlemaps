@@ -78,7 +78,7 @@ _string_ - The local county. (aka: district)
 
 _string_ - The country. (aka: nation)
 
-:::warning Similar sounding, but different
+:::warning Similar sounding, but very different
 We recognize that `county` and `country` are extremely similar words, and apologize on behalf of the English language.
 :::
 
