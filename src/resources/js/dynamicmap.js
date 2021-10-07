@@ -52,6 +52,8 @@ function DynamicMap(locations, options) {
         this._d.center            = options.center            || null;
         this._d.markerOptions     = options.markerOptions     || {};
         this._d.infoWindowOptions = options.infoWindowOptions || {};
+        this._d.markerLink        = options.markerLink        || null;
+        this._d.markerClick       = options.markerClick       || null;
 
         // Internalize clustering preference
         this._cluster = options.cluster || false;
@@ -117,6 +119,16 @@ function DynamicMap(locations, options) {
             || this._d.infoWindowOptions
             || {};
 
+        // Ensure marker link is valid
+        options.markerLink = options.markerLink
+            || this._d.markerLink
+            || null;
+
+        // Ensure marker click event is valid
+        options.markerClick = options.markerClick
+            || this._d.markerClick
+            || null;
+
         // Set map
         options.markerOptions.map = this._map;
 
@@ -142,14 +154,40 @@ function DynamicMap(locations, options) {
             }
 
             // Get marker ID or generate a random one
-            coords.id = options.id || coords.id || this._generateId('marker');
+            var markerId = options.id || coords.id || this._generateId('marker');
+
+            // Set marker ID back to coordinates object
+            coords.id = markerId;
 
             // Create a new marker
             this._createMarker(coords, options.markerOptions);
 
             // If content provided, create a new info window
             if (options.infoWindowOptions.content) {
-                this._createInfoWindow(coords, options.infoWindowOptions);
+                this._createInfoWindow(markerId, options.infoWindowOptions);
+            }
+
+            // If callback is a boolean true
+            if (true === options.markerClick) {
+                // Suppress click and link
+                options.markerClick = false;
+                options.markerLink = false;
+            }
+
+            // If click event specified
+            if (options.markerClick) {
+
+                // Attach listener for specified function
+                this._markerClick(markerId, options.markerClick);
+
+            // Else if marker link specified and valid
+            } else if (options.markerLink && 'string' === typeof options.markerLink) {
+
+                // Attach listener which directs to specified link
+                this._markerClick(markerId, function () {
+                    window.location.href = options.markerLink;
+                });
+
             }
 
         }
@@ -640,16 +678,50 @@ function DynamicMap(locations, options) {
 
     };
 
-    // Create a new info window object
-    this._createInfoWindow = function(coords, infoWindowOptions) {
+    // ========================================================================= //
+
+    // Set click event for each marker
+    this._markerClick = function(markerId, callback) {
 
         // Log status
         if (googleMaps.log) {
-            console.log(`On map "${this.id}", adding info window "${coords.id}"`);
+            console.log(`On marker "${markerId}", adding click event callback:`, callback);
         }
 
         // Get related marker
-        var marker = this._markers[coords.id];
+        var marker = this._markers[markerId];
+
+        // If no related marker exists, bail
+        if (!marker) {
+            return;
+        }
+
+        // If callback is a boolean true, bail
+        if (true === callback) {
+            return;
+        }
+
+        // If callback is not a function, warn and bail
+        if ('function' !== typeof callback) {
+            console.warn('[GM] Invalid callback function:', callback);
+            return;
+        }
+
+        // When marker is clicked, trigger the callback
+        google.maps.event.addListener(marker, 'click', callback);
+
+    };
+
+    // Create a new info window object
+    this._createInfoWindow = function(markerId, infoWindowOptions) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On map "${this.id}", adding info window "${markerId}"`);
+        }
+
+        // Get related marker
+        var marker = this._markers[markerId];
 
         // If no related marker exists, bail
         if (!marker) {
@@ -660,7 +732,7 @@ function DynamicMap(locations, options) {
         var map = marker.getMap();
 
         // Initialize info window object
-        this._infoWindows[coords.id] = new google.maps.InfoWindow(infoWindowOptions);
+        this._infoWindows[markerId] = new google.maps.InfoWindow(infoWindowOptions);
 
         // Pass info windows to callback function
         var infoWindows = this._infoWindows;
@@ -672,7 +744,7 @@ function DynamicMap(locations, options) {
                 infoWindows[key].close();
             }
             // Open info window for this marker
-            infoWindows[coords.id].open(map, marker);
+            infoWindows[markerId].open(map, marker);
         });
 
     };

@@ -68,6 +68,8 @@ Once you have the map object in hand, you can then chain methods from within the
 | `mapOptions`         | _object_        | _null_  | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties.
 | `markerOptions`      | _object_        | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
 | `infoWindowOptions`  | _object_        | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
+| `markerLink`         | _string_        | _null_  | URL to go to when each marker is clicked.
+| `markerClick`        | _function_      | _null_  | JS callback function triggered when each marker is clicked.
 
 #### Returns
 

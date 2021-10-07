@@ -23,6 +23,7 @@ use craft\web\View;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
+use Throwable;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -46,6 +47,11 @@ class DynamicMap extends Model
      */
     private $_dna = [];
 
+    /**
+     * @var array Collection of JS callback functions tied to markers.
+     */
+    private $_markerCallbacks = [];
+
     // ========================================================================= //
 
     /**
@@ -66,9 +72,16 @@ class DynamicMap extends Model
      * @param array|Element|Address $locations
      * @param array $options
      * @param array $config
+     * @throws Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function __construct($locations = [], array $options = [], array $config = [])
     {
+        // Call parent constructor
+        parent::__construct($config);
+
         // Ensure options are a valid array
         if (!$options || !is_array($options)) {
             $options = [];
@@ -83,35 +96,18 @@ class DynamicMap extends Model
         // Set internal map ID
         $this->id = $options['id'];
 
-        // If info window template was specified
-        if ($options['infoWindowTemplate'] ?? false) {
+        // Initialize map DNA without markers
+        $this->_dna[] = [
+            'type' => 'map',
+            'locations' => [],
+            'options' => $options,
+        ];
 
-            // Initialize map DNA without markers
-            $this->_dna[] = [
-                'type' => 'map',
-                'locations' => [],
-                'options' => $options,
-            ];
+        // Prevent conflict between map ID and marker IDs
+        unset($options['id']);
 
-            // Prevent conflict between map ID and marker IDs
-            unset($options['id']);
-
-            // Create markers along with their corresponding info windows
-            $this->_initInfoWindows($locations, $options);
-
-        } else {
-
-            // Initialize map DNA normally
-            $this->_dna[] = [
-                'type' => 'map',
-                'locations' => MapHelper::extractCoords($locations, $options),
-                'options' => $options,
-            ];
-
-        }
-
-        // Call parent constructor
-        parent::__construct($config);
+        // Load all map markers
+        $this->markers($locations, $options);
     }
 
     // ========================================================================= //
@@ -122,6 +118,10 @@ class DynamicMap extends Model
      * @param array|Element|Address $locations
      * @param array $options
      * @return $this
+     * @throws Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function markers($locations, array $options = []): DynamicMap
     {
@@ -130,21 +130,24 @@ class DynamicMap extends Model
             return $this;
         }
 
-        // If info window template was specified
-        if ($options['infoWindowTemplate'] ?? false) {
+        // Whether markers should be placed individually
+        $uniqueMarkers = (
+            ($options['infoWindowTemplate'] ?? false) ||
+            ($options['markerLink'] ?? false) ||
+            ($options['markerClick'] ?? false)
+        );
 
-            // Create markers along with their corresponding info windows
-            $this->_initInfoWindows($locations, $options);
-
+        // If adding markers individually
+        if ($uniqueMarkers) {
+            // Create individual markers one at a time
+            $this->_individualMarkers($locations, $options);
         } else {
-
-            // Add markers to DNA normally
+            // Add markers to DNA as a group
             $this->_dna[] = [
                 'type' => 'markers',
                 'locations' => MapHelper::extractCoords($locations, $options),
                 'options' => $options,
             ];
-
         }
 
         // Keep the party going
@@ -420,6 +423,14 @@ class DynamicMap extends Model
             throw new Exception('Map model misconfigured. The chain must begin with a `map()` segment.');
         }
 
+        // Prevent `markerClick` callback string from being exported to JS
+        array_walk($this->_dna, function (&$item) {
+            // If `markerClick` was specified, convert to boolean `true`
+            if ($item['options']['markerClick'] ?? false) {
+                $item['options']['markerClick'] = true;
+            }
+        });
+
         // Get view service
         $view = Craft::$app->getView();
 
@@ -437,6 +448,21 @@ class DynamicMap extends Model
         if ($options['assets']) {
             // Load assets with optional API parameters
             GoogleMaps::loadAssets($options['api']);
+        }
+
+        // If marker callbacks were specified
+        if ($this->_markerCallbacks) {
+            // Initialize list of callbacks
+            $jsCallbacks = '';
+            // Loop through callbacks
+            foreach ($this->_markerCallbacks as $markerId => $callback) {
+                // Append each callback to list
+                $jsCallbacks .= "    '{$markerId}': {$callback},\n";
+            }
+            // Associate callbacks with this map
+            $cb = "googleMaps._markerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
+            // Register callbacks at the end of the page
+            $view->registerJs($cb, $view::POS_END);
         }
 
         // Initialize the map (unless intentionally suppressed)
@@ -476,7 +502,7 @@ class DynamicMap extends Model
     // ========================================================================= //
 
     /**
-     * Initialize info windows for all given locations.
+     * Create individual markers one at a time.
      *
      * @param $locations
      * @param $options
@@ -485,16 +511,11 @@ class DynamicMap extends Model
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    private function _initInfoWindows($locations, $options)
+    private function _individualMarkers($locations, $options)
     {
         // Initialize infoWindowOptions
         $options = $options ?? [];
         $options['infoWindowOptions'] = $options['infoWindowOptions'] ?? [];
-
-        // If no info window template specified, bail
-        if (!($options['infoWindowTemplate'] ?? false)) {
-            return;
-        }
 
         // Whether value is a simple set of coordinates
         $isCoords = (is_array($locations) && isset($locations['lat'], $locations['lng']));
@@ -504,14 +525,109 @@ class DynamicMap extends Model
             // Loop through each location
             foreach ($locations as $l) {
                 // Call method recursively
-                $this->_initInfoWindows($l, $options);
+                $this->_individualMarkers($l, $options);
             }
+            // Our work here is done
+            return;
         }
 
-        // Due to recursion, locations are now
-        // guaranteed to be a singular item
+        /**
+         * Due to recursion, locations are now
+         * guaranteed to be a singular item
+         */
         $location =& $locations;
 
+        // Extract location coordinates
+        $coords = MapHelper::extractCoords($location, $options);
+
+        // If info window template specified
+        if ($options['infoWindowTemplate'] ?? false) {
+            // Add an info window for the marker
+            $this->_markerInfoWindow($location, $options, $isCoords);
+        }
+
+        // If marker click callback specified and is a string
+        if (($options['markerClick'] ?? false) && is_string($options['markerClick'])) {
+            // Parse marker click callback
+            $this->_parseLocationString($location, $options['markerClick']);
+            // Get the marker ID
+            $markerId = ($coords[0]['id'] ?? 'err');
+            // Create marker click listener in JavaScript
+            $this->_markerClick($markerId, $options);
+        }
+
+        // If marker link specified and is a string
+        if (($options['markerLink'] ?? false) && is_string($options['markerLink'])) {
+            // Parse marker link
+            $this->_parseLocationString($location, $options['markerLink']);
+        }
+
+        // Add individual marker to DNA
+        $this->_dna[] = [
+            'type' => 'markers',
+            'locations' => $coords,
+            'options' => $options,
+        ];
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Create marker click listener in JavaScript.
+     */
+    private function _markerClick($markerId, $options)
+    {
+        // Get optional callback
+        $callback = ($options['markerClick'] ?? false);
+
+        // If no callback was specified, bail
+        if (!$callback) {
+            return;
+        }
+
+        // Add marker callback to collection
+        $this->_markerCallbacks[$markerId] = $callback;
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Parse a dynamic marker string.
+     *
+     * @param $location
+     * @param $string
+     * @throws Exception
+     * @throws LoaderError
+     * @throws SyntaxError
+     * @throws Throwable
+     */
+    private function _parseLocationString($location, &$string)
+    {
+        // Get view services
+        $view = Craft::$app->getView();
+
+        // If location is an object, parse string with object data
+        if (is_object($location)) {
+            $string = $view->renderObjectTemplate($string, $location);
+        }
+
+        // If location is an array, parse string with array data
+        if (is_array($location)) {
+            $string = $view->renderString($string, $location);
+        }
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Creates a single marker with a corresponding info window.
+     *
+     * @param $location
+     * @param $options
+     * @param $isCoords
+     */
+    private function _markerInfoWindow($location, &$options, $isCoords)
+    {
         // Initialize marker data
         $infoWindow = [
             'mapId' => $this->id,
@@ -524,7 +640,7 @@ class DynamicMap extends Model
             $infoWindow['coords'] = $location;
 
             // Create info window
-            $this->_createInfoWindow($location, $options, $infoWindow);
+            $this->_createInfoWindow($options, $infoWindow);
 
             // Our work here is done
             return;
@@ -538,7 +654,7 @@ class DynamicMap extends Model
             $infoWindow['coords'] = $location->getCoords();
 
             // Create info window
-            $this->_createInfoWindow($location, $options, $infoWindow);
+            $this->_createInfoWindow($options, $infoWindow);
 
             // Our work here is done
             return;
@@ -552,7 +668,7 @@ class DynamicMap extends Model
             $infoWindow['coords'] = $location->getCoords();
 
             // Create info window
-            $this->_createInfoWindow($location, $options, $infoWindow);
+            $this->_createInfoWindow($options, $infoWindow);
 
             // Our work here is done
             return;
@@ -565,7 +681,7 @@ class DynamicMap extends Model
             $infoWindow['coords'] = $location->getCoords();
 
             // Create info window
-            $this->_createInfoWindow($location, $options, $infoWindow);
+            $this->_createInfoWindow($options, $infoWindow);
 
             // Our work here is done
             return;
@@ -612,34 +728,35 @@ class DynamicMap extends Model
                 if (!$address) {
                     continue;
                 }
-                // Add coordinates to results
-                if ($address->hasCoords()) {
 
-                    // Set address, coordinates, and marker ID
-                    $infoWindow['address'] = $address;
-                    $infoWindow['coords'] = $address->getCoords();
-                    $infoWindow['markerId'] = "{$location->id}-{$f->handle}";
-
-                    // Create info window
-                    $this->_createInfoWindow($location, $options, $infoWindow);
-
+                // If address doesn't have valid coordinates, skip
+                if (!$address->hasCoords()) {
+                    continue;
                 }
+
+                // Set address, coordinates, and marker ID
+                $infoWindow['address'] = $address;
+                $infoWindow['coords'] = $address->getCoords();
+                $infoWindow['markerId'] = "{$location->id}-{$f->handle}";
+
+                // Create info window
+                $this->_createInfoWindow($options, $infoWindow);
+
             }
 
             // Our work here is done
             return;
         }
-
     }
 
     /**
-     * Creates a single marker with a corresponding info window.
+     * Creates the info window of a single marker.
      *
      * @param mixed $location
      * @param array $options
      * @param array $infoWindow
      */
-    private function _createInfoWindow($location, $options, $infoWindow)
+    private function _createInfoWindow(&$options, $infoWindow)
     {
         // Get view services
         $view = Craft::$app->getView();
@@ -668,12 +785,6 @@ class DynamicMap extends Model
         // Set rendered template as infoWindowOptions content
         $options['infoWindowOptions']['content'] = $template;
 
-        // Add marker and info window to DNA
-        $this->_dna[] = [
-            'type' => 'markers',
-            'locations' => MapHelper::extractCoords($location, $options),
-            'options' => $options,
-        ];
     }
 
 }

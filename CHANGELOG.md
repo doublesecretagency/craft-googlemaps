@@ -3,9 +3,11 @@
 ## Unreleased
 
 ### Added
-- Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield.
+- Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield. ([#26](https://github.com/doublesecretagency/craft-googlemaps/issues/26))
 - Addresses now include an optional [`county`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#county) subfield.
-- Addresses now include an optional [`placeId`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#placeid) subfield.
+- Addresses now include an optional [`placeId`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#placeid) subfield. ([#25](https://github.com/doublesecretagency/craft-googlemaps/issues/25))
+- Added [`markerLink` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#navigate-to-a-url) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
+- Added [`markerClick` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#trigger-a-js-callback-function) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
 - Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
 
 ### Changed

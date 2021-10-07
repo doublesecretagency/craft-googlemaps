@@ -44,7 +44,7 @@ class MapHelper
     /**
      * Retrieve all coordinates from a specified set of locations.
      *
-     * Coordinates will always be returned inside of a parent array,
+     * Coordinates will always be returned inside a parent array,
      * to compensate for Elements with multiple Address Fields.
      *
      * @param mixed $locations

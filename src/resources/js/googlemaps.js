@@ -7,6 +7,9 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of maps
     _maps: {},
 
+    // Initialize collection of marker callbacks
+    _markerCallbacks: {},
+
     // ========================================================================= //
 
     // Create a new map object
@@ -107,14 +110,40 @@ window.googleMaps = window.googleMaps || {
 
         }
 
-        // If callback was specified and is a function
-        if (callback && 'function' === typeof callback) {
+        // If any marker callbacks were specified
+        if (Object.keys(this._markerCallbacks).length) {
+
             // Log status
             if (this.log) {
-                console.log(`Running callback function:\n`,callback);
+                console.log(`Activating marker callbacks:\n`,this._markerCallbacks);
             }
-            // Execute callback
+
+            // Loop through marker callbacks of each map
+            for (var mId in this._markerCallbacks) {
+                // Get current map
+                var m = this.getMap(mId);
+                // Loop through marker callbacks of current map
+                for (var markerId in this._markerCallbacks[mId]) {
+                    // Get marker callback
+                    var cb = this._markerCallbacks[mId][markerId];
+                    // Activate marker callback function
+                    m._markerClick(markerId, cb);
+                }
+            }
+
+        }
+
+        // If map callback was specified and is a function
+        if (callback && 'function' === typeof callback) {
+
+            // Log status
+            if (this.log) {
+                console.log(`Running map callback function:\n`,callback);
+            }
+
+            // Execute map callback
             callback();
+
         }
 
     },
