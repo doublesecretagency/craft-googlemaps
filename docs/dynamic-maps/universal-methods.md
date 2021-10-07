@@ -37,14 +37,14 @@ Places additional markers onto the map.
 Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
 :::
  
-| Option               | Available            | Description |
-|----------------------|:--------------------:|-------------|
-| `id`                 | JavaScript, Twig/PHP | Reference point for each marker. |
-| `icon`               | JavaScript, Twig/PHP | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon). |
-| `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties. |
-| `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties. |
-| `infoWindowTemplate` | Twig/PHP             | Template path to use for creating [info windows](/dynamic-maps/info-windows/). |
-| `field`              | Twig/PHP             | Address field(s) to be included on the map. (includes all by default) |
+| Option               | Available            | Description
+|----------------------|:--------------------:|-------------
+| `id`                 | JavaScript, Twig/PHP | Reference point for each marker.
+| `icon`               | JavaScript, Twig/PHP | An `icon` as defined by [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon).
+| `markerOptions`      | JavaScript, Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
+| `infoWindowOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
+| `infoWindowTemplate` | Twig/PHP             | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
+| `field`              | Twig/PHP             | Address field(s) to be included on the map. (includes all by default)
 
 :::tip Additional Options Details
 For more info, please consult either the [JavaScript object](/javascript/dynamicmap.js/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
