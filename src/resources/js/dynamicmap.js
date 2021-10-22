@@ -782,7 +782,7 @@ function DynamicMap(locations, options) {
         // Default clustering options
         const defaultOptions = {
             averageCenter: true,
-            imagePath: googleMaps._defaultClusterPath
+            imagePath: googleMaps._clusterPath
         };
 
         // If using custom clustering options, apply them,

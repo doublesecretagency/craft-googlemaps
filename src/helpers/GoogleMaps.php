@@ -104,7 +104,7 @@ class GoogleMaps
         $clusterPath = preg_replace('/1\.png.*$/', '', $clusterPath);
 
         // Pass the default path into JavaScript
-        $view->registerJs("googleMaps._defaultClusterPath = '$clusterPath';", $view::POS_END);
+        $view->registerJs("googleMaps._clusterPath = '$clusterPath';", $view::POS_END);
     }
 
     // ========================================================================= //

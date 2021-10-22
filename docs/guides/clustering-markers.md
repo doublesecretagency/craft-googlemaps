@@ -11,7 +11,7 @@ Marker clustering is a great way to place a lot of markers onto a single map wit
 - `true` - Enables the default marker clustering behavior.
 - An **array** of [MarkerClustererOptions](https://googlemaps.github.io/js-markerclustererplus/interfaces/markerclustereroptions.html) - Enables a custom marker clustering behavior.
 
-:::warning Disabled by default
+:::tip Disabled by default
 By default, marker clustering is set to `false` (disabled).
 :::
 
@@ -47,6 +47,11 @@ $options = [
 // Create a map with marker clusters
 $map = GoogleMaps::map($locations, $options);
 ```
+:::
+
+
+:::warning Required JS Assets
+If your map is exclusively using JavaScript, the marker clustering icon path will not be loaded automatically. Please ensure the [required JS assets](/guides/required-js-assets/) are being properly loaded.
 :::
 
 ## Advanced Clustering

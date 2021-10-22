@@ -22,7 +22,11 @@ For various reasons, you may not want these files to be loaded automatically. It
 
 ## Loaded Automatically
 
-In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically.
+In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically when rendering a map in Twig or PHP.
+
+:::warning No Autoloading for JS-only Maps
+If your map is being rendered exclusively in JavaScript, the required assets will _not_ be loaded automatically. For purely JS maps, ensure that you load the required assets [manually](#loaded-manually).
+:::
 
 ## Disable Automatic Loading
 
@@ -36,7 +40,7 @@ For more info, see the complete [list of options...](/dynamic-maps/twig-php-meth
 
 ## Loaded Manually
 
-Once you have disabled the automatic loading of these files, you will then be responsible for loading them manually. There are several ways to approach this, how you choose to go about it is up to you.
+If you are not automatically loading the required assets, you will instead be responsible for loading them manually. There are several ways to approach this, how you choose to go about it is up to you.
 
 The simplest approach is to use to the `loadAssets` method.
 
