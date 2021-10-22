@@ -275,7 +275,7 @@ Hide a marker. The marker will not be destroyed, it will simply be detached from
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker that you want to hide.
+- `markerId` (_string_) - The ID of the marker that you want to hide. Use `*` to hide all markers.
 
 ## `showMarker(markerId)`
 
@@ -295,7 +295,7 @@ Show a marker. The marker will be re-attached to the map.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker that you want to show.
+- `markerId` (_string_) - The ID of the marker that you want to show. Use `*` to show all markers.
 
 ## `hideKml(kmlId)`
 
@@ -315,7 +315,7 @@ Hide a KML layer. The KML layer will not be destroyed, it will simply be detache
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to hide.
+ - `kmlId` (_string_) - The ID of the KML layer that you want to hide. Use `*` to hide all KML layers.
 
 ## `showKml(kmlId)`
 
@@ -335,4 +335,4 @@ Show a KML layer. The KML layer will be re-attached to the map.
 
 #### Arguments
 
-- `kmlId` (_string_) - The ID of the KML layer that you want to show.
+- `kmlId` (_string_) - The ID of the KML layer that you want to show. Use `*` to show all KML layers.

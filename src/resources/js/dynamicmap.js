@@ -416,13 +416,30 @@ function DynamicMap(locations, options) {
     // Hide a marker
     this.hideMarker = function(markerId) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
+        // If hiding all markers
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", hiding all markers`);
+            }
+
+            // Detach each marker from this map
+            for (var key in this._markers) {
+                this._markers[key].setMap(null);
+            }
+
+            // Our work here is done
+            return;
+        }
 
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", hiding marker "${markerId}"`);
         }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -440,13 +457,30 @@ function DynamicMap(locations, options) {
     // Show a marker
     this.showMarker = function(markerId) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
+        // If showing all markers
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", showing all markers`);
+            }
+
+            // Attach each marker to this map
+            for (var key in this._markers) {
+                this._markers[key].setMap(this._map);
+            }
+
+            // Our work here is done
+            return;
+        }
 
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", showing marker "${markerId}"`);
         }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -466,13 +500,30 @@ function DynamicMap(locations, options) {
     // Hide a KML layer
     this.hideKml = function(kmlId) {
 
-        // Get specified KML layer
-        var kml = this.getKml(kmlId);
+        // If hiding all KML layers
+        if ('*' === kmlId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", hiding all KML layers`);
+            }
+
+            // Detach each KML layer from this map
+            for (var key in this._kmls) {
+                this._kmls[key].setMap(null);
+            }
+
+            // Our work here is done
+            return;
+        }
 
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", hiding KML layer "${kmlId}"`);
         }
+
+        // Get specified KML layer
+        var kml = this.getKml(kmlId);
 
         // If invalid KML layer, bail
         if (!kml) {
@@ -490,13 +541,30 @@ function DynamicMap(locations, options) {
     // Show a KML layer
     this.showKml = function(kmlId) {
 
-        // Get specified KML layer
-        var kml = this.getKml(kmlId);
+        // If showing all KML layers
+        if ('*' === kmlId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", showing all KML layers`);
+            }
+
+            // Attach each KML layer to this map
+            for (var key in this._kmls) {
+                this._kmls[key].setMap(this._map);
+            }
+
+            // Our work here is done
+            return;
+        }
 
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", showing KML layer "${kmlId}"`);
         }
+
+        // Get specified KML layer
+        var kml = this.getKml(kmlId);
 
         // If invalid KML layer, bail
         if (!kml) {
