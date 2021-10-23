@@ -16,6 +16,7 @@
 
 ### Changed
 - Improved autocompletion of Address fields by returning a broader set of results.
+- Improved [`fit`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#fit) method to more accurately reflect visible markers.
 
 ## 4.0.11 - 2021-06-18
 

@@ -9,7 +9,6 @@ function DynamicMap(locations, options) {
     this.id = null;
     this.div = null;
     this._map = null;
-    this._bounds = null;
 
     // Initialize collections
     this._markers = {};
@@ -271,8 +270,8 @@ function DynamicMap(locations, options) {
 
         // Ensure coordinates are valid
         coords = coords
+            || this._getBounds().getCenter()
             || this._d.center
-            || this._bounds.getCenter()
             || null;
 
         // Log status
@@ -306,11 +305,8 @@ function DynamicMap(locations, options) {
             console.log(`Fitting map "${this.id}" to existing boundaries`);
         }
 
-        // Pass object to callback function
-        var mapObject = this;
-
         // Fit bounds of current map
-        mapObject._map.fitBounds(mapObject._bounds);
+        this._map.fitBounds(this._getBounds());
 
         // Keep the party going
         return this;
@@ -716,7 +712,6 @@ function DynamicMap(locations, options) {
 
         // Initialize map data
         this._map = new google.maps.Map(this.div, mapOptions);
-        this._bounds = new google.maps.LatLngBounds();
 
         // Optionally cluster markers
         this._clusterMarkers();
@@ -732,9 +727,6 @@ function DynamicMap(locations, options) {
 
         // Set marker position based on coordinates
         markerOptions.position = coords;
-
-        // Extend map boundaries
-        this._bounds.extend(coords);
 
         // Initialize marker object
         this._markers[coords.id] = new google.maps.Marker(markerOptions);
@@ -831,6 +823,36 @@ function DynamicMap(locations, options) {
         // Initialize KML object
         this._kmls[kmlId] = new google.maps.KmlLayer(options);
 
+    };
+
+    // ========================================================================= //
+
+    // Get the functional boundaries of the current map
+    this._getBounds = function() {
+
+        // Create a set of map bounds
+        var bounds = new google.maps.LatLngBounds();
+
+        // Initialize loop variable
+        var marker;
+
+        // Loop through all map markers
+        for (var key in this._markers) {
+
+            // Get each marker
+            marker = this._markers[key];
+
+            // If marker is not tied to a map, skip it
+            if (null === marker.map) {
+                continue;
+            }
+
+            // Extend map boundaries
+            bounds.extend(marker.getPosition());
+        }
+
+        // Return a set of map bounds
+        return bounds;
     };
 
     // ========================================================================= //
