@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+> {warning} If you are using [marker clustering](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/clustering-markers/), please be aware that the internal library has changed and your code may require minor adjustments as a result.
+
 ### Added
 - Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield. ([#26](https://github.com/doublesecretagency/craft-googlemaps/issues/26))
 - Addresses now include an optional [`county`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#county) subfield.
@@ -17,6 +19,7 @@
 ### Changed
 - Improved autocompletion of Address fields by returning a broader set of results.
 - Improved [`fit`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#fit) method to more accurately reflect visible markers.
+- Replaced deprecated [MarkerClustererPlus](https://www.npmjs.com/package/@googlemaps/markerclustererplus) library with newly recommended [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/) library.
 
 ## 4.0.11 - 2021-06-18
 

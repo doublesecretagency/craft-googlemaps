@@ -888,18 +888,30 @@ function DynamicMap(locations, options) {
             return;
         }
 
-        // Default clustering options
-        const defaultOptions = {
-            averageCenter: true,
-            imagePath: googleMaps._clusterPath
+        // Set clustering options
+        const options = {
+            'map': this._map,
+            'markers':  [],
         };
 
-        // If using custom clustering options, apply them,
-        // otherwise apply the default clustering options
-        const options = (clusterCustom ? this._cluster : defaultOptions);
+        // If customized clustering
+        if (clusterCustom) {
+            // If renderer specified, add to options
+            if (this._cluster.renderer ?? null) {
+                options.renderer = this._cluster.renderer;
+            }
+            // If algorithm specified, add to options
+            if (this._cluster.algorithm ?? null) {
+                options.algorithm = this._cluster.algorithm;
+            }
+            // If onClusterClick specified, add to options
+            if (this._cluster.onClusterClick ?? null) {
+                options.onClusterClick = this._cluster.onClusterClick;
+            }
+        }
 
         // Create the marker clustering object
-        this._cluster = new MarkerClusterer(this._map, [], options);
+        this._cluster = new markerClusterer.MarkerClusterer(options);
     };
 
     // ========================================================================= //
