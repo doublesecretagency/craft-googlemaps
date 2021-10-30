@@ -54,24 +54,33 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
-                    {text: 'Updating from Smart Map 🔧', link: '/updating-from-smart-map/'},
-                    {text: 'General Troubleshooting', link: '/guides/general-troubleshooting/'},
-                    {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
-                    {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
-                    {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
-                    {text: 'Clustering Markers', link: '/guides/clustering-markers/'},
-                    {text: 'Changing the Map Language', link: '/guides/changing-map-language/'},
-                    {text: 'Styling a Map', link: '/guides/styling-a-map/'},
-                    {text: 'KML Layers', link: '/guides/kml-layers/'},
-                    {text: 'Opening Info Windows', link: '/guides/opening-info-windows/'},
-                    {text: 'Region Biasing', link: '/guides/region-biasing/'},
-                    {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
-                    {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
-                    {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
-                    {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
-                    {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
-                    {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
-                    {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
+                    { text: 'Address Field', items: [
+                        {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
+                        {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
+                        {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
+                    ] },
+                    { text: 'Dynamic Maps', items: [
+                        {text: 'Troubleshoot Dynamic Maps', link: '/guides/troubleshoot-dynamic-maps/'},
+                        {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
+                        {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
+                        {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
+                        {text: 'Setting Clustering Icons', link: '/guides/setting-clustering-icons/'},
+                        {text: 'Styling a Map', link: '/guides/styling-a-map/'},
+                        {text: 'KML Layers', link: '/guides/kml-layers/'},
+                        {text: 'Opening Info Windows', link: '/guides/opening-info-windows/'},
+                        {text: 'Changing the Map Language', link: '/guides/changing-map-language/'},
+                        {text: 'Prevent Zoom When Scrolling', link: '/guides/prevent-zoom-when-scrolling/'},
+                        {text: 'Bermuda Triangle', link: '/guides/bermuda-triangle/'},
+                    ] },
+                    { text: 'Proximity Search & Geocoding', items: [
+                        {text: 'Troubleshoot Geocoding', link: '/guides/troubleshoot-geocoding/'},
+                        {text: 'Region Biasing', link: '/guides/region-biasing/'},
+                        {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
+                        {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
+                    ] },
+                    { text: 'Updating', items: [
+                        {text: 'Updating from Smart Map 🔧', link: '/updating-from-smart-map/'},
+                    ] },
                 ]
             },
         ],
@@ -96,17 +105,36 @@ module.exports = {
                 'export',
             ],
             '/dynamic-maps/': [
-                '',
-                'universal-api',
-                'chaining',
-                'basic-map-management',
-                'universal-methods',
-                'javascript-methods',
-                'twig-php-methods',
-                'info-windows',
-                'locations',
-                'on-marker-click',
-                'troubleshooting',
+                {
+                    title: 'Overview',
+                    collapsable: false,
+                    children: [
+                        '',
+                        'universal-api',
+                        'chaining',
+                        'locations',
+                    ]
+                },
+                {
+                    title: 'Map Management',
+                    collapsable: false,
+                    children: [
+                        'basic-map-management',
+                        'universal-methods',
+                        'javascript-methods',
+                        'twig-php-methods',
+                    ]
+                },
+                {
+                    title: 'More Features',
+                    collapsable: false,
+                    children: [
+                        'clustering-markers',
+                        'info-windows',
+                        'on-marker-click',
+                        'troubleshooting',
+                    ]
+                },
             ],
             '/static-maps/': [
                 '',
@@ -166,23 +194,42 @@ module.exports = {
 
             // Guides
             '/guides/': [
-                'general-troubleshooting',
-                'setting-map-height',
-                'linking-to-a-map',
-                'setting-marker-icons',
-                'clustering-markers',
-                'changing-map-language',
-                'styling-a-map',
-                'kml-layers',
-                'opening-info-windows',
-                'region-biasing',
-                'filter-by-subfields',
-                'ajax-geocoding-example',
-                'address-in-a-matrix-field',
-                'prevent-zoom-when-scrolling',
-                'required-js-assets',
-                'importing-addresses',
-                'bermuda-triangle',
+                {
+                    title: 'Address Field',
+                    collapsable: false,
+                    children: [
+                        'linking-to-a-map',
+                        'address-in-a-matrix-field',
+                        'importing-addresses',
+                    ]
+                },
+                {
+                    title: 'Dynamic Maps',
+                    collapsable: false,
+                    children: [
+                        'troubleshoot-dynamic-maps',
+                        'required-js-assets',
+                        'setting-map-height',
+                        'setting-marker-icons',
+                        'setting-clustering-icons',
+                        'styling-a-map',
+                        'kml-layers',
+                        'opening-info-windows',
+                        'changing-map-language',
+                        'prevent-zoom-when-scrolling',
+                        'bermuda-triangle',
+                    ]
+                },
+                {
+                    title: 'Proximity Search & Geocoding',
+                    collapsable: false,
+                    children: [
+                        'troubleshoot-geocoding',
+                        'region-biasing',
+                        'filter-by-subfields',
+                        'ajax-geocoding-example',
+                    ]
+                },
             ],
 
             // Updating from Smart Map

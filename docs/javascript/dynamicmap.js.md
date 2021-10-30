@@ -425,6 +425,21 @@ var kml = map.getKml('my-kml');
 ---
 ---
 
+### `getMarkerCluster()`
+
+If [clustering](/dynamic-maps/clustering-markers/) is enabled, get the [Google Maps MarkerClusterer object](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html).
+
+```js
+var cluster = map.getMarkerCluster();
+```
+
+#### Returns
+
+ - A Google Maps [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html) object.
+
+---
+---
+
 ### `tag(options = {})`
 
 Creates a new `<div>` element, detached from the DOM. If a `parentId` is specified, the element will automatically be injected into the specified parent container.

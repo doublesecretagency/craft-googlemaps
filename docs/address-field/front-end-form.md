@@ -115,7 +115,7 @@ We'll assume that your HTML form looks a lot like the [sample above](#sample-add
 
 Download this file, and place it in a public front-end directory.
 
- - [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js)
+ - [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/docs/examples/js/address-field.js)
 
 :::tip This file belongs to you now
 Once you have copied the `address-field.js` file locally, you are free to make any further adjustments as you deem necessary.

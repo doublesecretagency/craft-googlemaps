@@ -8,7 +8,7 @@ description:
 This guide is only relevant if you are working with [dynamic maps](/dynamic-maps/). The JavaScript assets described below are not relevant in any other context.
 :::
 
-When creating a dynamic map with Twig or PHP, there are a couple of JavaScript files which will get automatically loaded on the front-end. These files are required to create and manage the embedded maps. Similarly, we will include a call to the Google Maps JavaScript API.
+To create and manage embedded maps, a few external JavaScript files will be required. It is also necessary for us to load the Google Maps JavaScript API.
 
 Combined, they produce an HTML snippet similar to this...
 
@@ -18,13 +18,15 @@ Combined, they produce an HTML snippet similar to this...
 <script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js"></script>
 ```
 
-For various reasons, you may not want these files to be loaded automatically. It's possible to suppress the initial automatic loading of these assets, then manually load them later.
+If the map is being rendered by Twig or PHP, these JS files will be [automatically](#loaded-automatically) loaded for you. However, if the map is being rendered exclusively via JavaScript, you will be responsible for loading these JS files [manually](#loaded-manually).
+
+For various reasons, you may not want these files to be loaded automatically. It's possible to [suppress](#disable-automatic-loading) the initial automatic loading of these assets, then manually load them later.
 
 ## Loaded Automatically
 
 In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically when rendering a map in Twig or PHP.
 
-:::warning No Autoloading for JS-only Maps
+:::warning No autoloading for JavaScript-only maps
 If your map is being rendered exclusively in JavaScript, the required assets will _not_ be loaded automatically. For purely JS maps, ensure that you load the required assets [manually](#loaded-manually).
 :::
 

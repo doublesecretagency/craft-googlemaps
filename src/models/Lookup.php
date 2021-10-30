@@ -73,7 +73,7 @@ class Lookup extends Model
             return false;
         }
 
-        // Return all of the results
+        // Return all results
         return $results;
     }
 

@@ -44,8 +44,12 @@ googleMaps.getMap('my-map')
 
 This gives you the maximum amount of control over how each map will be rendered.
 
-:::warning Creating or Retrieving Map Objects
+:::tip Creating or Retrieving Map Objects
 Map objects will be stored internally for later use. See the [Map Management](/dynamic-maps/basic-map-management/) methods for details on how to create and/or retrieve maps.
+:::
+
+:::warning Required JS Assets
+If the map is compiled exclusively in JavaScript (without any Twig or PHP), you will likely need to [manually load](/guides/required-js-assets/#loaded-manually) the [required assets](/guides/required-js-assets/).
 :::
 
 ## Language-Specific Methods

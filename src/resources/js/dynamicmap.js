@@ -896,13 +896,13 @@ function DynamicMap(locations, options) {
 
         // If customized clustering
         if (clusterCustom) {
-            // If renderer specified, add to options
-            if (this._cluster.renderer ?? null) {
-                options.renderer = this._cluster.renderer;
-            }
             // If algorithm specified, add to options
             if (this._cluster.algorithm ?? null) {
                 options.algorithm = this._cluster.algorithm;
+            }
+            // If renderer specified, add to options
+            if (this._cluster.renderer ?? null) {
+                options.renderer = this._cluster.renderer;
             }
             // If onClusterClick specified, add to options
             if (this._cluster.onClusterClick ?? null) {

@@ -1,6 +1,6 @@
 /**
- * Front-End Address Fields
- * ========================
+ * Front-End Form
+ * https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/
  *
  * If you are building a front-end form with an Address field,
  * copy & paste this whole file to the front-end of your site.

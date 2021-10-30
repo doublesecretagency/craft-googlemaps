@@ -49,7 +49,7 @@ Most (though not all) of these options are available across JavaScript, Twig, an
 | `zoom`               | JS/Twig/PHP | Set the default zoom level of the map. <span style="white-space:nowrap">(`1`-`22`)</span>
 | `center`             | JS/Twig/PHP | Set the center position of the map.
 | `styles`             | JS/Twig/PHP | An array of [map styles](/guides/styling-a-map/).
-| `cluster`            | JS/Twig/PHP | Enable [marker clustering](/guides/clustering-markers/).
+| `cluster`            | JS/Twig/PHP | Enable [marker clustering](/dynamic-maps/clustering-markers/).
 | `mapOptions`         | JS/Twig/PHP | Accepts any [`google.maps.MapOptions`](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) properties.
 | `markerOptions`      | JS/Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
 | `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
