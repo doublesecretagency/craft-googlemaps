@@ -75,14 +75,13 @@ function DynamicMap(locations, options) {
             this.styles(options.styles);
         }
 
-        // If locations were specified, add markers
-        // (using default markerOptions & infoWindowOptions)
-        if (locations) {
+        // If locations were specified
+        if (locations && locations.length > 0) {
+            // Add markers (using default markerOptions & infoWindowOptions)
             this.markers(locations);
+            // Fit map to marker boundaries
+            this.fit();
         }
-
-        // Fit map to marker boundaries
-        this.fit();
 
         // Optionally zoom the map
         if (options.zoom) {
@@ -417,12 +416,12 @@ function DynamicMap(locations, options) {
 
             // Log status
             if (googleMaps.log) {
-                console.log(`On map "${this.id}", hiding all markers`);
+                console.log(`On map "${this.id}", hiding all markers...`);
             }
 
-            // Detach each marker from this map
+            // Hide each marker individually
             for (var key in this._markers) {
-                this._markers[key].setMap(null);
+                this.hideMarker(key);
             }
 
             // Our work here is done
@@ -443,8 +442,14 @@ function DynamicMap(locations, options) {
             return this;
         }
 
-        // Detach marker from map
-        marker.setMap(null);
+        // If clustering
+        if (this._cluster) {
+            // Remove marker from clusters
+            this._cluster.removeMarker(marker);
+        } else {
+            // Remove marker from map
+            marker.setMap(null);
+        }
 
         // Keep the party going
         return this;
@@ -458,12 +463,12 @@ function DynamicMap(locations, options) {
 
             // Log status
             if (googleMaps.log) {
-                console.log(`On map "${this.id}", showing all markers`);
+                console.log(`On map "${this.id}", showing all markers...`);
             }
 
-            // Attach each marker to this map
+            // Show each marker individually
             for (var key in this._markers) {
-                this._markers[key].setMap(this._map);
+                this.showMarker(key);
             }
 
             // Our work here is done
@@ -484,8 +489,14 @@ function DynamicMap(locations, options) {
             return this;
         }
 
-        // Attach marker to current map
-        marker.setMap(this._map);
+        // If clustering
+        if (this._cluster) {
+            // Add marker to clusters
+            this._cluster.addMarker(marker);
+        } else {
+            // Add marker directly to map
+            marker.setMap(this._map);
+        }
 
         // Keep the party going
         return this;
@@ -833,22 +844,30 @@ function DynamicMap(locations, options) {
         // Create a set of map bounds
         var bounds = new google.maps.LatLngBounds();
 
-        // Initialize loop variable
-        var marker;
+        // Initialize loop variables
+        var key, marker, cluster;
 
-        // Loop through all map markers
-        for (var key in this._markers) {
-
+        // Loop through all markers
+        for (key in this._markers) {
             // Get each marker
             marker = this._markers[key];
-
             // If marker is not tied to a map, skip it
             if (null === marker.map) {
                 continue;
             }
-
             // Extend map boundaries
             bounds.extend(marker.getPosition());
+        }
+
+        // If map uses clustering
+        if (this._cluster) {
+            // Loop through all clusters
+            for (key in this._cluster.clusters) {
+                // Get each cluster
+                cluster = this._cluster.clusters[key];
+                // Extend map boundaries
+                bounds.extend(cluster.position);
+            }
         }
 
         // Return a set of map bounds

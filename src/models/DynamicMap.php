@@ -108,6 +108,19 @@ class DynamicMap extends Model
 
         // Load all map markers
         $this->markers($locations, $options);
+
+        // Fit map to marker boundaries
+        $this->fit();
+
+        // Optionally zoom the map
+        if ($options['zoom'] ?? false) {
+            $this->zoom($options['zoom']);
+        }
+
+        // Optionally center the map
+        if ($options['center'] ?? false) {
+            $this->center($options['center']);
+        }
     }
 
     // ========================================================================= //
