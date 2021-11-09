@@ -37,7 +37,7 @@ Pass the name of your new renderer function in as the `renderer` option value.
 // Set a custom cluster rendering function
 var options = {
     'cluster': {
-        'renderer': MyCustomRenderer
+        'renderer': CustomRenderer
     }
 };
 ```
@@ -45,7 +45,7 @@ var options = {
 {# Set a custom cluster rendering function #}
 {% set options = {
     'cluster': {
-        'renderer': 'MyCustomRenderer'
+        'renderer': 'CustomRenderer'
     }
 } %}
 ```
@@ -53,7 +53,7 @@ var options = {
 // Set a custom cluster rendering function
 $options = [
     'cluster' => [
-        'renderer' => 'MyCustomRenderer'
+        'renderer' => 'CustomRenderer'
     ]
 ];
 ```

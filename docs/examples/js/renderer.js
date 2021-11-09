@@ -5,16 +5,13 @@
  * If you'd like to use custom clustering icons,
  * copy this script and adapt it to your needs.
  *
- * You may rename the object, and/or create different
+ * You may rename this object, and/or create different
  * kinds of cluster renderers. It's possible to use
  * different renderers with different maps.
- *
- * Keep in mind, each cluster icon is effectively
- * the same type of object as a normal Marker.
  */
 
 // Custom rendering object
-const MyCustomRenderer = {
+const CustomRenderer = {
     'render': function ({ count, position }, stats) {
 
         // Whether this cluster has more markers than average, or at least 10
@@ -30,6 +27,11 @@ const MyCustomRenderer = {
     <circle cx="120" cy="120" opacity=".3" r="90" />
     <circle cx="120" cy="120" opacity=".2" r="110" />
   </svg>`);
+
+        /**
+         * Keep in mind, each cluster icon is effectively
+         * the same type of object as a normal Marker.
+         */
 
         // Create the cluster marker using an SVG icon
         return new google.maps.Marker({

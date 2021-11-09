@@ -57,7 +57,7 @@ For more information about these options see the official [MarkerClustererOption
 // Set a custom cluster rendering function
 var options = {
     'cluster': {
-        'renderer': MyCustomRenderer
+        'renderer': CustomRenderer
     }
 };
 ```
@@ -65,7 +65,7 @@ var options = {
 {# Set a custom cluster rendering function #}
 {% set options = {
     'cluster': {
-        'renderer': 'MyCustomRenderer'
+        'renderer': 'CustomRenderer'
     }
 } %}
 ```
@@ -73,7 +73,7 @@ var options = {
 // Set a custom cluster rendering function
 $options = [
     'cluster' => [
-        'renderer' => 'MyCustomRenderer'
+        'renderer' => 'CustomRenderer'
     ]
 ];
 ```
