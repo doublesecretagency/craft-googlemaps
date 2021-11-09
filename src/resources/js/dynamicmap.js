@@ -879,9 +879,19 @@ function DynamicMap(locations, options) {
     // Optionally apply marker clustering
     this._clusterMarkers = function() {
 
-        // Whether to use default or custom options
+        // Whether to use default clustering
         const clusterDefault = (true === this._cluster);
-        const clusterCustom  = ('object' === typeof this._cluster);
+
+        // Get custom Twig/PHP options
+        const twigOptions = googleMaps._cluster[this.id];
+
+        // If provided, get options from Twig/PHP data
+        if (clusterDefault && twigOptions) {
+            this._cluster = twigOptions;
+        }
+
+        // Whether to use custom clustering
+        const clusterCustom = ('object' === typeof this._cluster);
 
         // If not clustering (neither default nor custom), bail
         if (!clusterDefault && !clusterCustom) {

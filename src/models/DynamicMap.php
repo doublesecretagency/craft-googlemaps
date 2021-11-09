@@ -96,6 +96,9 @@ class DynamicMap extends Model
         // Set internal map ID
         $this->id = $options['id'];
 
+        // Set marker clustering behavior
+        $this->_setClustering($options);
+
         // Initialize map DNA without markers
         $this->_dna[] = [
             'type' => 'map',
@@ -798,6 +801,55 @@ class DynamicMap extends Model
         // Set rendered template as infoWindowOptions content
         $options['infoWindowOptions']['content'] = $template;
 
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Optionally cluster the map markers.
+     *
+     * @param array $options
+     */
+    private function _setClustering(array &$options)
+    {
+        // Get clustering options
+        $c = ($options['cluster'] ?? false);
+
+        // If not clustering with custom options, bail
+        if (!$c || !is_array($c)) {
+            return;
+        }
+
+        // Initialize JSON data
+        $json = '';
+
+        // If provided, append algorithm
+        if ($c['algorithm'] ?? false) {
+            $json .= "\n    'algorithm': {$c['algorithm']},";
+        }
+        // If provided, append renderer
+        if ($c['renderer'] ?? false) {
+            $json .= "\n    'renderer': {$c['renderer']},";
+        }
+        // If provided, append onClusterClick
+        if ($c['onClusterClick'] ?? false) {
+            $json .= "\n    'onClusterClick': {$c['onClusterClick']},";
+        }
+
+        // If any custom values were specified
+        if ($json) {
+            // Remove trailing comma
+            $json = rtrim($json, ',');
+            // Get view services
+            $view = Craft::$app->getView();
+            // Set cluster options for this map
+            $cb = "googleMaps._cluster['{$this->id}'] = {{$json}\n};";
+            // Register cluster options at the end of the page
+            $view->registerJs($cb, $view::POS_END);
+        }
+
+        // Flatten to boolean (will retrieve options later)
+        $options['cluster'] = true;
     }
 
 }

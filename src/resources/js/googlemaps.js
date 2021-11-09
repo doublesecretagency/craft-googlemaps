@@ -10,6 +10,9 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of marker callbacks
     _markerCallbacks: {},
 
+    // Initialize collection of cluster options
+    _cluster: {},
+
     // ========================================================================= //
 
     // Create a new map object
