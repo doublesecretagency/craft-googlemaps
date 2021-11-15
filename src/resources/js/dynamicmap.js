@@ -855,7 +855,7 @@ function DynamicMap(locations, options) {
             if (null === marker.map) {
                 continue;
             }
-            // Extend map boundaries
+            // Extend map boundaries to include marker
             bounds.extend(marker.getPosition());
         }
 
@@ -865,8 +865,8 @@ function DynamicMap(locations, options) {
             for (key in this._cluster.clusters) {
                 // Get each cluster
                 cluster = this._cluster.clusters[key];
-                // Extend map boundaries
-                bounds.extend(cluster.position);
+                // Join map boundaries with cluster boundaries
+                bounds.union(cluster.bounds);
             }
         }
 
