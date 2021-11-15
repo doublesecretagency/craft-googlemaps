@@ -89,7 +89,7 @@ In JavaScript, you can get the marker clustering object of an existing map:
 
 ```js
 // Get the marker clustering object
-var cluster = map.getMarkerCluster();
+var clusterer = map.getMarkerClusterer();
 ```
 
 This provides you with a [MarkerClusterer object](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html). What you choose to do with it is entirely up to you.

@@ -8,24 +8,25 @@
 - Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield. ([#26](https://github.com/doublesecretagency/craft-googlemaps/issues/26))
 - Addresses now include an optional [`county`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#county) subfield.
 - Addresses now include an optional [`placeId`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#placeid) subfield. ([#25](https://github.com/doublesecretagency/craft-googlemaps/issues/25))
-- Added [`markerLink` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#navigate-to-a-url) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
-- Added [`markerClick` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#trigger-a-js-callback-function) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
-- Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
 - The [`hideMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidemarker-markerid) method now allows `*` to hide all markers at the same time. ([#39](https://github.com/doublesecretagency/craft-googlemaps/issues/39))
 - The [`showMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showmarker-markerid) method now allows `*` to show all markers at the same time.
 - The [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) method now allows `*` to hide all KML Layers at the same time.
 - The [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) method now allows `*` to show all KML Layers at the same time.
+- Added [`markerLink` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#navigate-to-a-url) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
+- Added [`markerClick` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#trigger-a-js-callback-function) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
+- Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
 
 ### Changed
+- Replaced deprecated [MarkerClustererPlus](https://www.npmjs.com/package/@googlemaps/markerclustererplus) library with newly recommended [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/) library.
 - Improved autocompletion of Address fields by returning a broader set of results.
 - Improved [`fit`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#fit) method to more accurately reflect visible markers.
-- Replaced deprecated [MarkerClustererPlus](https://www.npmjs.com/package/@googlemaps/markerclustererplus) library with newly recommended [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/) library.
+- Renamed `getMarkerCluster` JavaScript method to [`getMarkerClusterer`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getmarkerclusterer) for accuracy.
 
 ## 4.0.11 - 2021-06-18
 
 ### Added
 - Added [`cluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/basic-map-management/#dynamic-map-options) option to easily cluster map markers. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
-- Added [`getMarkerCluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getmarkercluster) JavaScript method. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
+- Added [`getMarkerCluster`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getmarkerclusterer) JavaScript method. ([#9](https://github.com/doublesecretagency/craft-googlemaps/issues/9))
 - Added [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) universal method. ([#10](https://github.com/doublesecretagency/craft-googlemaps/issues/10))
 
 ## 4.0.10 - 2021-06-08

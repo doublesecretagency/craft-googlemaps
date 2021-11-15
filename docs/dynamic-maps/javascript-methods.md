@@ -166,14 +166,14 @@ var kml = map.getKml(kmlId);
 ---
 ---
 
-## `getMarkerCluster()`
+## `getMarkerClusterer()`
 
 If clustering is [enabled](/dynamic-maps/clustering-markers/), get the map's [marker clustering](https://googlemaps.github.io/js-markerclusterer/) object. 
 
 :::code
 ```js
 // Get the map's marker cluster object
-var cluster = map.getMarkerCluster();
+var clusterer = map.getMarkerClusterer();
 ```
 :::
 

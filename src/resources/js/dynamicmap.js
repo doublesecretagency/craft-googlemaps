@@ -649,7 +649,7 @@ function DynamicMap(locations, options) {
     };
 
     // Get the internal marker clustering object
-    this.getMarkerCluster = function() {
+    this.getMarkerClusterer = function() {
 
         // Log status
         if (googleMaps.log) {

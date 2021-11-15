@@ -425,12 +425,12 @@ var kml = map.getKml('my-kml');
 ---
 ---
 
-### `getMarkerCluster()`
+### `getMarkerClusterer()`
 
 If [clustering](/dynamic-maps/clustering-markers/) is enabled, get the [Google Maps MarkerClusterer object](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html).
 
 ```js
-var cluster = map.getMarkerCluster();
+var clusterer = map.getMarkerClusterer();
 ```
 
 #### Returns

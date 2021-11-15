@@ -280,8 +280,6 @@ class ProximitySearchHelper
         // Determine type of address result
         $type = ($address->raw['types'][0] ?? false);
 
-//        Craft::dd($type);
-
         // List of narrowly focused location types
         // will be exempt from the fallback filter
         $focusedTypes = [
@@ -291,6 +289,7 @@ class ProximitySearchHelper
             'locality',     // "Los Angeles"
             'neighborhood', // "Venice, California"
         ];
+
         /**
          * We may need to add to this list of focused types.
          * This is a list of narrowly defined areas, which
