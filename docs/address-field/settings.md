@@ -33,14 +33,15 @@ Feel free to move these subfields into whatever configuration you see fit!
 
 This dropdown allows you to select how the map should appear when the edit page is initially loaded.
 
- - `Open` - The map will be open when the page is loaded.
- - `Closed` (default) - The map will be closed when the page is loaded.
+- `Open if the field has coordinates` _(default)_ - When the field is fresh, it will be loaded with the map closed. Once coordinates have been saved, the field will be loaded with the map open.
+- `Always start open` - The map will always be open when the page is loaded.
+- `Always start closed` - The map will always be closed when the page is loaded.
 
 ## Show map when address search is triggered?
 
 This dropdown allows you to select how the map should react when an address lookup is performed.
 
- - `Open` (default) - The map will automatically open when a lookup is performed.
+ - `Open` _(default)_ - The map will automatically open when a lookup is performed.
  - `Close` - The map will automatically close when a lookup is performed.
  - `No Change` - The map will not react when a lookup is performed.
 
@@ -52,7 +53,7 @@ The map visibility toggle appears just above the address component subfields, in
 
 You can control how the toggle is displayed by selecting whether to show the text label, icon, both, or neither.
 
- - `Text & Icon` (default) - Show both the text label and icon.
+ - `Text & Icon` _(default)_ - Show both the text label and icon.
  - `Text Only` - Show only the text label.
  - `Icon Only` - Show only the icon.
  - `Hidden` - Neither the text label nor icon are shown.
@@ -62,7 +63,7 @@ You can control how the toggle is displayed by selecting whether to show the tex
 The location coordinates appear directly below the address components subfields, and can be shown in one of three ways.
 
  - `Editable` - The coordinates and zoom fields are directly editable by the content editor.
- - `Read Only` (default) - The values of the coordinates and zoom fields will be visible, but not editable by the content author.
+ - `Read Only` _(default)_ - The values of the coordinates and zoom fields will be visible, but not editable by the content author.
  - `Hidden` - The location coordinates and zoom will not be displayed at all. Note that while the coordinate fields are _visually_ hidden, the data will continue to be saved normally.
 
 If you select `Hidden`, bear in mind that this does not prevent the coordinates or zoom from being saved in the database. The field will still save that data normally, as if the coordinates were actually visible. The coordinates and zoom fields will simply be invisible to the content editor.

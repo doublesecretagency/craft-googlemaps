@@ -21,7 +21,7 @@ When searching for a specific address, the Address field will perform an automat
 Selecting an address will automatically populate each of the relevant subfields with that location's data. It will automatically set the values of both the **Latitude** and **Longitude** (even if they are hidden), as well as the current **Zoom** value.
 
 :::warning First field only
-Only the **first** subfield will conduct a lookup. This is usually the "Street Address", but the autocomplete mechanism will be bound to whichever subfield appears first.
+Only the **first** subfield will conduct a lookup. This is often the "Name" or "Street Address", but the autocomplete mechanism will be bound to whichever subfield appears first.
 :::
 
 ## Show or hide the map

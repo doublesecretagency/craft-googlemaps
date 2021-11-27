@@ -31,12 +31,26 @@
 
         <hr>
 
-        <label>Setting a Default Map Starting Position</label>
-        <div class="instructions">
-            <p>Each time you create a new element, this Address field will automatically position the map according to the <strong>coordinates</strong> and <strong>zoom level</strong> specified above. The default map positioning will remain until the user conducts an address lookup, or otherwise adjusts the map and/or marker position.</p>
-            <p>Using the Live Preview field above, you can to set the <strong>default coordinates &amp; zoom level</strong>. Whatever position you save this map to will become the default map orientation for all new instances of this field.</p>
-            <p>Only the <strong>latitude</strong>, <strong>longitude</strong>, and <strong>zoom</strong> will be used to orient the map when a new element is being created. No other data from the Live Preview field will prepopulate future instances of this field.</p>
+        <div class="field">
+            <div class="heading settings-note">
+                <label>Set the Default Map Starting Position</label>
+                <div class="instructions">
+                    <p>You can to set the <strong>default coordinates &amp; zoom level</strong> using the "Preview" field above. Whatever position you save this map to will become the default map orientation for all new instances of this field.</p>
+                    <p>Only the <strong>latitude</strong>, <strong>longitude</strong>, and <strong>zoom</strong> will be used to orient the map when a new element is being created. No other data from the "Preview" field will prepopulate future instances of this field.</p>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
+
+{% css %}
+.settings-note {
+    border-radius: 5px;
+    border: 1px solid #cdd8e4;
+    padding: 12px 14px;
+}
+.settings-note .instructions {
+    margin-top:10px;
+}
+{% endcss %}
