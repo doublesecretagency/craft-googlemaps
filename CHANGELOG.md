@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.0 - 2021-12-01
 
 > {warning} If you are using [marker clustering](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/clustering-markers/), please be aware that the internal library has changed and your code may require minor adjustments as a result.
 
