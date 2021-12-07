@@ -1,5 +1,26 @@
 ---
-description:
+description: Make your maps blend seamlessly with any website, by easily adding your own custom styles.
+meta:
+- property: og:type
+  content: website
+- property: og:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/styling-a-map/
+- property: og:title
+  content: Styling a Map | Google Maps plugin for Craft CMS
+- property: og:description
+  content: Make your maps blend seamlessly with any website, by easily adding your own custom styles.
+- property: og:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/meta/styling-a-map.png
+- property: twitter:card
+  content: summary_large_image
+- property: twitter:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/styling-a-map/
+- property: twitter:title
+  content: Styling a Map | Google Maps plugin for Craft CMS
+- property: twitter:description
+  content: Make your maps blend seamlessly with any website, by easily adding your own custom styles.
+- property: twitter:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/meta/styling-a-map.png
 ---
 
 # Styling a Map
