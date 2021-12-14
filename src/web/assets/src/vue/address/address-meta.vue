@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input type="hidden" :name="`fields[${handle}][formatted]`" v-model="$root.$data.data.address['formatted']" />
-        <input type="hidden" :name="`fields[${handle}][raw]`" v-model="$root.$data.data.address['raw']" />
+        <input type="hidden" :name="`${namespacedName}[formatted]`" v-model="$root.$data.data.address['formatted']" />
+        <input type="hidden" :name="`${namespacedName}[raw]`" v-model="$root.$data.data.address['raw']" />
     </div>
 </template>
 
@@ -9,7 +9,7 @@
     export default {
         data() {
             return {
-                handle: this.$root.$data.handle
+                namespacedName: this.$root.$data.namespacedName
             }
         },
         watch: {
