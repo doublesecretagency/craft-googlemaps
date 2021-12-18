@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- Improved support for using Google Maps JavaScript API constants within Twig/PHP.
+
 ### Fixed
 - Fixed namespacing bug when an Address field is nested within a Matrix field. ([#43](https://github.com/doublesecretagency/craft-googlemaps/issues/43))
 

@@ -20,6 +20,7 @@ use craft\helpers\StringHelper;
 use craft\helpers\Template;
 use craft\models\FieldLayout;
 use craft\web\View;
+use doublesecretagency\googlemaps\enums\GoogleConstants;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
@@ -98,6 +99,9 @@ class DynamicMap extends Model
 
         // Set marker clustering behavior
         $this->_setClustering($options);
+
+        // Replace all `google.maps` token strings
+        $this->_replaceGoogleConstants($options);
 
         // Initialize map DNA without markers
         $this->_dna[] = [
@@ -850,6 +854,68 @@ class DynamicMap extends Model
 
         // Flatten to boolean (will retrieve options later)
         $options['cluster'] = true;
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Replace all `google.maps` constant tokens with their real values.
+     *
+     * @param $options
+     */
+    private function _replaceGoogleConstants(&$options)
+    {
+        // Alias map options
+        $opt =& $options['mapOptions'];
+
+        // Loop through all constant replacement types
+        foreach (GoogleConstants::TYPES as $k1 => $v1) {
+
+            // Switch based on the level 1 value variable type
+            switch (gettype($v1)) {
+
+                // Level 1 value is a string
+                case 'string':
+                    // If the level 1 constant was specified
+                    if ($opt[$k1] ?? false) {
+                        // Replace the constant at level 1
+                        $this->_swapConstant($v1, $opt[$k1]);
+                    }
+                    // Go to next item
+                    continue 2;
+
+                // Level 1 value is an array
+                case 'array':
+                    // Loop through nested replacements
+                    foreach ($v1 as $k2 => $v2) {
+                        // If the level 2 constant was specified
+                        if ($opt[$k1][$k2] ?? false) {
+                            // Replace the constant at level 2
+                            $this->_swapConstant($v2, $opt[$k1][$k2]);
+                        }
+                    }
+                    // Go to next item
+                    continue 2;
+
+            }
+
+        }
+    }
+
+    /**
+     * Swap out a single `google.maps` constant token, replacing it with the real value.
+     *
+     * @param $type
+     * @param $value
+     */
+    private function _swapConstant($type, &$value)
+    {
+        // Trim value
+        $key = trim($value);
+        // Remove prefix
+        $key = str_replace("google.maps.{$type}.", '', $key);
+        // Replace value if possible (fallback to unchanged value)
+        $value = (GoogleConstants::VALUES[$type][$key] ?? $value);
     }
 
 }
