@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.1 - 2021-12-24
 
 ### Changed
 - Improved support for using Google Maps JavaScript API constants within Twig/PHP.
