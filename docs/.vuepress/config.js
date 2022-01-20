@@ -76,6 +76,7 @@ module.exports = {
                         {text: 'Troubleshoot Geocoding', link: '/guides/troubleshoot-geocoding/'},
                         {text: 'Region Biasing', link: '/guides/region-biasing/'},
                         {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
+                        {text: 'Search by Visitor IP', link: '/guides/search-by-visitor-ip/'},
                         {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
                     ] },
                     { text: 'Updating', items: [
@@ -227,6 +228,7 @@ module.exports = {
                         'troubleshoot-geocoding',
                         'region-biasing',
                         'filter-by-subfields',
+                        'search-by-visitor-ip',
                         'ajax-geocoding-example',
                     ]
                 },
