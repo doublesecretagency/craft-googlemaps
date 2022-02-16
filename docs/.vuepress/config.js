@@ -61,6 +61,7 @@ module.exports = {
                     ] },
                     { text: 'Dynamic Maps', items: [
                         {text: 'Troubleshoot Dynamic Maps', link: '/guides/troubleshoot-dynamic-maps/'},
+                        {text: 'Delaying Map Initialization', link: '/guides/delay-map-init/'},
                         {text: 'Required JS Assets', link: '/guides/required-js-assets/'},
                         {text: 'Setting the Map Height', link: '/guides/setting-map-height/'},
                         {text: 'Setting Marker Icons', link: '/guides/setting-marker-icons/'},
@@ -209,6 +210,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         'troubleshoot-dynamic-maps',
+                        'delay-map-init',
                         'required-js-assets',
                         'setting-map-height',
                         'setting-marker-icons',
