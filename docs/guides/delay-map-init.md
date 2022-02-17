@@ -1,5 +1,6 @@
 ---
-description: It's remarkably easy to lazy load a dynamic map. You can optionally suppress the automated initialization, before then initializing the map manually.
+description: It's remarkably easy to lazy load a dynamic map. You can optionally suppress the automated initialization, before then initializing the map yourself.
+
 ---
 
 # Delaying Map Initialization
