@@ -77,7 +77,7 @@ function performLookup() {
     // };
 
     // AJAX call using jQuery
-    $.post(endpoint, data, function(response) {
+    $.post(endpoint, data, function (response) {
 
         // If unsuccessful, emit console warning and bail
         if (!response.success) {

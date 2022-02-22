@@ -1,0 +1,74 @@
+{##
+ # Using Sprig with Google Maps
+ # https://plugins.doublesecretagency.com/google-maps/guides/sprig/
+ #
+ # If you want to use Sprig to manage a proximity search,
+ # copy this Twig component and adapt it to your needs.
+ #
+ # Once this snippet has been copied into your project,
+ # feel free to adjust it as much as you want to more
+ # closely align with the needs of your site.
+ #
+ # This snippet uses Tailwind CSS,
+ # you are free to remove or replace it.
+ #}
+
+{# Configure map options #}
+{% set mapOptions = {
+    'id': 'my-sprig-map',
+    'height': 360
+} %}
+
+{# Set default values if not defined #}
+{% set target = target ?? 'Los Angeles' %}
+{% set range = range ?? 50 %}
+
+{# Configure proximity search options #}
+{% set searchOptions = {
+    'target': target,
+    'range': range
+} %}
+
+{# Conduct the proximity search #}
+{% set locations = craft.entries
+    .section('locations')
+    .address(searchOptions)
+    .orderBy('distance')
+    .all() %}
+
+{# Search input, range select, and button #}
+<form sprig>
+    <div class="flex">
+        <input
+            type="text"
+            name="target"
+            value="{{ target }}"
+            placeholder="Enter a city or postal code..."
+            class="grow px-3 py-2 border border-gray-300"/>
+        <select sprig name="range" class="ml-2 px-3 py-2 border border-gray-300">
+            <option value="10" {{ 10 == range ? 'selected' }}>within 10 miles</option>
+            <option value="25" {{ 25 == range ? 'selected' }}>within 25 miles</option>
+            <option value="50" {{ 50 == range ? 'selected' }}>within 50 miles</option>
+            <option value="100" {{ 100 == range ? 'selected' }}>within 100 miles</option>
+        </select>
+        <button type="submit" class="ml-2 px-6 py-2 text-white bg-green-700 rounded">
+            SEARCH
+        </button>
+    </div>
+</form>
+
+{# Map and search results #}
+<div class="flex mt-2">
+    <div id="search-results" class="w-1/3 pr-2">
+        {% for entry in locations %}
+            <div class="py-2 px-3 border-t border-gray-400">
+                <div class="italic text-sm text-gray-500">{{ entry.address.distance|number_format(1) }} mi.</div>
+                <div class="font-bold">{{ entry.title }}</div>
+                <div>{{ entry.address.multiline(2) }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="map" class="w-2/3">
+        {{ googleMaps.map(locations, mapOptions).tag() }}
+    </div>
+</div>

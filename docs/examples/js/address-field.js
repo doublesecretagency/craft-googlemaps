@@ -107,7 +107,7 @@ window.addressField = window.addressField || {
     // ========================================================================= //
 
     // Format the main street address
-    _formatStreetAddress: function(a) {
+    _formatStreetAddress: function (a) {
 
         // Abbreviate variables
         let streetNumber = a.street_number || '';
@@ -129,7 +129,7 @@ window.addressField = window.addressField || {
     },
 
     // Set the formatted address data
-    _addressComponents: function(components) {
+    _addressComponents: function (components) {
 
         // Initialize formatted address data
         let formatted = {};

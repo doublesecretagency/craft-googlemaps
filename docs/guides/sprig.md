@@ -1,0 +1,124 @@
+---
+description: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+meta:
+- property: og:type
+  content: website
+- property: og:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/sprig/
+- property: og:title
+  content: Proximity Search with Sprig | Google Maps plugin for Craft CMS
+- property: og:description
+  content: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+- property: og:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/sprig.png
+- property: twitter:card
+  content: summary_large_image
+- property: twitter:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/sprig/
+- property: twitter:title
+  content: Proximity Search with Sprig | Google Maps plugin for Craft CMS
+- property: twitter:description
+  content: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+- property: twitter:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/sprig.png
+---
+
+# Proximity Search with Sprig
+
+[Sprig](https://putyourlightson.com/plugins/sprig) is a reactive Twig component framework for Craft, which makes it amazingly easy to create light and dynamic DOM elements. When used together with the Google Maps plugin, it's possible to have a fully featured map populated by the results of a comprehensive proximity search.
+
+Simply follow the instructions below to add a Sprig-powered proximity search to your site. While each implementation will be unique, you can use the code provided below to get started.
+
+## What it Looks Like
+
+Several small pieces play a cooperative role in handling the proximity search...
+
+<img class="dropshadow" :src="$withBase('/images/guides/sprig.png')" alt="Annotated screenshot of Google Maps being used with Sprig" style="max-width:660px">
+
+1. The **search input** is a simple text field for capturing the proximity search `target`.
+2. Optional **search filters** can refine the results (eg: `range`).
+3. An ordinary **submit button** will trigger the search.
+4. A **list of search results** is displayed besides the map.
+5. The **dynamic map** will show markers of the search results.
+
+## How it Works
+
+### 1. Download the `proximity-search.twig` file
+
+Download this file, and place it somewhere in your `templates` folder. It's a common practice to put [Sprig components](https://putyourlightson.com/plugins/sprig#how-it-works) into a `_components` folder, but that is not required.
+
+- [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/docs/examples/twig/_components/proximity-search.twig)
+
+:::tip This file belongs to you now
+Once you have copied the `proximity-search.twig` file locally, you are free to make any further adjustments as you deem necessary.
+:::
+
+### 2. Add the following Twig snippet
+
+Now that you have a copy of the `proximity-search` component, here's how to use it in a template...
+
+```twig
+{# Load required Sprig scripts #}
+{{ sprig.script }}
+
+{# Dynamically inject Sprig component #}
+{{ sprig('_components/proximity-search') }}
+
+{# Reinitialize the map after Sprig loads fresh HTML #}
+{% js %}
+    htmx.on('htmx:afterSettle', function (event) {
+        googleMaps.init('my-sprig-map');
+    });
+{% endjs %}
+```
+
+## Additional Information
+
+### Map IDs must be identical
+
+It is important that the map ID specified in the [`googleMaps.init` method](/javascript/googlemaps.js/#map-initialization-methods) is an exact match of the ID specified when the map was _created_. If they don't match, the map can't be properly reloaded when Sprig updates the component.
+
+```twig
+{# When the map is created #}
+{% set mapOptions = {
+    'id': 'my-sprig-map'
+} %}
+```
+```js
+// When the map is reloaded by Sprig
+htmx.on('htmx:afterSettle', function (event) {
+    googleMaps.init('my-sprig-map');
+});
+```
+
+You could also call `googleMaps.init()` with no parameters, which will initialize _all_ maps on the page.
+
+### Optional callback on `googleMaps.init`
+
+The `init` method also allows for an optional [callback method](/javascript/googlemaps.js/#init-mapid-null-callback-null), if needed:
+
+```js
+htmx.on('htmx:afterSettle', function (event) {
+    googleMaps.init('my-sprig-map', function () {
+        console.log("The map has finished loading!");
+    });
+});
+```
+
+### Autocomplete `target` input
+
+It's possible to use **Google Places Autocomplete** to provide an enhanced `target` input field. This gives users a dynamic list of possible matches while they type their search target. The user can then simply select the matching location from a list of potential matches.
+
+:::tip Enabling the Places API
+For more information, see the instructions for [using the Places API](/address-field/front-end-form/#using-the-places-api) in a front-end form.
+
+While a proximity search is not identical to a front-end form, the Autocomplete implementation will be very similar for both cases.
+:::
+
+If you choose to enhance your Sprig form in this way, consider using the **latitude & longitude** (which can be passed via hidden fields) as the [target](/proximity-search/options/#target) of your proximity search.
+
+1. Store coordinates from Places API result.
+2. Pass those to Twig via hidden input fields.
+3. In Twig, use those [coordinates](/models/coordinates/) to perform the [proximity search](/proximity-search/options/#target).
+
+This saves your search the effort of pinging Google (again) based on a text string. Using the known coordinates will improve search accuracy and reduce the number of calls to the Google API.
