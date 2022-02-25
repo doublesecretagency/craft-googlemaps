@@ -94,6 +94,9 @@ class ProximitySearchHelper
             'units'  => 'mi',
         ];
 
+        // Get default coordinates
+        $defaultCoords = AddressField::DEFAULT_COORDINATES;
+
         // Get specified target
         $target = ($options['target'] ?? null);
 
@@ -112,7 +115,7 @@ class ProximitySearchHelper
 
         // If no coordinates, use default
         if (!$coords) {
-            $coords = AddressField::DEFAULT_COORDINATES;
+            $coords = $defaultCoords;
         }
 
         // Get specified units
@@ -124,12 +127,12 @@ class ProximitySearchHelper
             $units = $default['units'];
         }
 
+        // Get coordinates
+        $lat = ($coords['lat'] ?? $defaultCoords['lat']);
+        $lng = ($coords['lng'] ?? $defaultCoords['lng']);
+
         // Implement haversine formula via SQL
-        $haversine = static::_haversineSql(
-            $coords['lat'],
-            $coords['lng'],
-            $units
-        );
+        $haversine = static::_haversineSql($lat, $lng, $units);
 
         // Get specified range
         $range = ($options['range'] ?? $default['range']);
