@@ -1,5 +1,5 @@
 ---
-description: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+description: Add a reactive proximity search with the help of Sprig! The map and results will update automatically whenever the search criteria changes.
 meta:
 - property: og:type
   content: website
@@ -8,7 +8,7 @@ meta:
 - property: og:title
   content: Proximity Search with Sprig | Google Maps plugin for Craft CMS
 - property: og:description
-  content: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+  content: Add a reactive proximity search with the help of Sprig! The map and results will update automatically whenever the search criteria changes.
 - property: og:image
   content: https://plugins.doublesecretagency.com/google-maps/images/guides/sprig.png
 - property: twitter:card
@@ -18,7 +18,7 @@ meta:
 - property: twitter:title
   content: Proximity Search with Sprig | Google Maps plugin for Craft CMS
 - property: twitter:description
-  content: Using Sprig, you can easily add a reactive proximity search. The map and search results can be automatically refreshed without reloading the page.
+  content: Add a reactive proximity search with the help of Sprig! The map and results will update automatically whenever the search criteria changes.
 - property: twitter:image
   content: https://plugins.doublesecretagency.com/google-maps/images/guides/sprig.png
 ---
@@ -91,7 +91,7 @@ htmx.on('htmx:afterSettle', function (event) {
 });
 ```
 
-You could also call `googleMaps.init()` with no parameters, which will initialize _all_ maps on the page.
+Alternatively, you could call `googleMaps.init()` with no parameters, which initializes _all_ maps on the page.
 
 ### Optional callback on `googleMaps.init`
 
@@ -117,8 +117,8 @@ While a proximity search is not identical to a front-end form, the Autocomplete 
 
 If you choose to enhance your Sprig form in this way, consider using the **latitude & longitude** (which can be passed via hidden fields) as the [target](/proximity-search/options/#target) of your proximity search.
 
-1. Store coordinates from Places API result.
-2. Pass those to Twig via hidden input fields.
-3. In Twig, use those [coordinates](/models/coordinates/) to perform the [proximity search](/proximity-search/options/#target).
+1. Get coordinates from Places API results.
+2. Store the **latitude** and **longitude** via hidden input fields.
+3. Use those [coordinates](/models/coordinates/) as the `target` of your [proximity search](/proximity-search/options/#target).
 
-This saves your search the effort of pinging Google (again) based on a text string. Using the known coordinates will improve search accuracy and reduce the number of calls to the Google API.
+This saves the effort of querying Google (again) based on a text string. Since we already know the coordinates, we can just use them directly. Using known coordinates will improve search accuracy and reduce the number of calls to the Google API.
