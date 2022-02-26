@@ -25,7 +25,7 @@ meta:
 
 # Proximity Search with Sprig
 
-[Sprig](https://putyourlightson.com/plugins/sprig) is a reactive Twig component framework for Craft, which makes it amazingly easy to create light and dynamic DOM elements. When used together with the Google Maps plugin, it's possible to have a fully featured map populated by the results of a comprehensive proximity search.
+[Sprig](https://putyourlightson.com/plugins/sprig) is a reactive component framework for Craft, which makes it amazingly easy to create dynamic components using Twig. When used together with the Google Maps plugin, it's possible to have a fully featured map populated by the results of a comprehensive proximity search.
 
 Simply follow the instructions below to add a Sprig-powered proximity search to your site. While each implementation will be unique, you can use the code provided below to get started.
 
@@ -58,51 +58,47 @@ Once you have copied the `proximity-search.twig` file locally, you are free to m
 Now that you have a copy of the `proximity-search` component, here's how to use it in a template...
 
 ```twig
-{# Load required Sprig scripts #}
-{{ sprig.script }}
-
 {# Dynamically inject Sprig component #}
 {{ sprig('_components/proximity-search') }}
 
-{# Reinitialize the map after Sprig loads fresh HTML #}
-{% js %}
-    htmx.on('htmx:afterSettle', function (event) {
-        googleMaps.init('my-sprig-map');
-    });
-{% endjs %}
+{# Load required Sprig scripts #}
+{{ sprig.script }}
 ```
 
 ## Additional Information
 
 ### Map IDs must be identical
 
-It is important that the map ID specified in the [`googleMaps.init` method](/javascript/googlemaps.js/#map-initialization-methods) is an exact match of the ID specified when the map was _created_. If they don't match, the map can't be properly reloaded when Sprig updates the component.
+It is important that the map ID in the [`googleMaps.init` method](/javascript/googlemaps.js/#map-initialization-methods) matches the map ID when it was created. If they don't match, the map can't be properly reloaded when Sprig updates the component.
 
 ```twig
 {# When the map is created #}
 {% set mapOptions = {
     'id': 'my-sprig-map'
 } %}
-```
-```js
-// When the map is reloaded by Sprig
-htmx.on('htmx:afterSettle', function (event) {
-    googleMaps.init('my-sprig-map');
-});
+
+{# When the map is reloaded by Sprig #}
+{% if sprig.isRequest %}
+    <script>
+        googleMaps.init('my-sprig-map');
+    </script>
+{% endif %}
 ```
 
-Alternatively, you could call `googleMaps.init()` with no parameters, which initializes _all_ maps on the page.
+Alternatively, if you call `googleMaps.init()` with no parameters, _all_ maps will be initialized.
 
 ### Optional callback on `googleMaps.init`
 
 The `init` method also allows for an optional [callback method](/javascript/googlemaps.js/#init-mapid-null-callback-null), if needed:
 
-```js
-htmx.on('htmx:afterSettle', function (event) {
-    googleMaps.init('my-sprig-map', function () {
-        console.log("The map has finished loading!");
-    });
-});
+```twig
+{% if sprig.isRequest %}
+    <script>
+        googleMaps.init('my-sprig-map', function () {
+            console.log("The map has finished loading!");
+        });
+    </script>
+{% endif %}
 ```
 
 ### Autocomplete `target` input

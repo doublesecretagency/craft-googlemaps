@@ -13,9 +13,12 @@
  # you are free to remove or replace it.
  #}
 
+{# ID of the dynamic map #}
+{% set mapId = 'my-sprig-map' %}
+
 {# Configure map options #}
 {% set mapOptions = {
-    'id': 'my-sprig-map',
+    'id': mapId,
     'height': 360
 } %}
 
@@ -72,3 +75,10 @@
         {{ googleMaps.map(locations, mapOptions).tag() }}
     </div>
 </div>
+
+{# Reinitialize the map after Sprig loads fresh HTML #}
+{% if sprig.isRequest %}
+    <script>
+        googleMaps.init('{{ mapId }}');
+    </script>
+{% endif %}
