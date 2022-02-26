@@ -75,7 +75,7 @@ The following filters can be specified in the `components` object:
  - `country`
 :::
 
-You can read more about the acceptable filter values on the [Google documentation](https://developers.google.com/maps/documentation/geocoding/overview#component-filtering).
+You can read more about the acceptable filter values on the [Google documentation](https://developers.google.com/maps/documentation/geocoding/requests-geocoding#component-filtering).
 
 ## Formatting options
 
@@ -132,4 +132,4 @@ When specifying `components` as a string, be sure to follow the pattern describe
 >A filter consists of a list of `component:value` pairs separated by a pipe (`|`).
 :::
 
-For more information, see the official Google docs on [Component Filtering...](https://developers.google.com/maps/documentation/geocoding/overview#component-filtering)
+For more information, see the official Google docs on [Component Filtering...](https://developers.google.com/maps/documentation/geocoding/requests-geocoding#component-filtering)
