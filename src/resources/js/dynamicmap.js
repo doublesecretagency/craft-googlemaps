@@ -372,13 +372,49 @@ function DynamicMap(locations, options) {
             console.log(`On map "${this.id}", opening info window "${markerId}"`);
         }
 
-        // Close all open info windows
-        for (var i in this._infoWindows) {
-            this._infoWindows[i].close();
-        }
-
         // Open the specified info window
         infoWindow.open(this._map, marker);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Close the info window of a specific marker
+    this.closeInfoWindow = function(markerId, assumeSuccess) {
+
+        // If closing all info windows
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", closing all info windows`);
+            }
+
+            // Close each info window individually
+            for (var key in this._infoWindows) {
+                this.closeInfoWindow(key, true);
+            }
+
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`On map "${this.id}", closing info window "${markerId}"`);
+        }
+
+        // Get info window object
+        var infoWindow = this.getInfoWindow(markerId, true);
+
+        // If invalid info window, bail
+        if (!infoWindow) {
+            console.warn(`[GM] Unable to close info window "${markerId}"`);
+            return this;
+        }
+
+        // Close info window
+        infoWindow.close();
 
         // Keep the party going
         return this;
@@ -799,23 +835,18 @@ function DynamicMap(locations, options) {
             return;
         }
 
-        // Get the map which contains the marker
-        var map = marker.getMap();
-
         // Initialize info window object
         this._infoWindows[markerId] = new google.maps.InfoWindow(infoWindowOptions);
 
-        // Pass info windows to callback function
-        var infoWindows = this._infoWindows;
+        // Pass map object into event listener
+        var map = this;
 
         // Add click event to marker
         google.maps.event.addListener(marker, 'click', function() {
             // Close all info windows
-            for (var key in infoWindows) {
-                infoWindows[key].close();
-            }
+            map.closeInfoWindow('*');
             // Open info window for this marker
-            infoWindows[markerId].open(map, marker);
+            map.openInfoWindow(markerId);
         });
 
     };

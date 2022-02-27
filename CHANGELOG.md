@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+- Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) universal method.
+
 ### Changed
 - Improved JavaScript logging.
 

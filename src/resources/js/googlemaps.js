@@ -275,6 +275,11 @@ window.googleMaps = window.googleMaps || {
                     map.openInfoWindow(block.markerId);
                     break;
 
+                // Close the info window of a specific marker
+                case 'closeInfoWindow':
+                    map.closeInfoWindow(block.markerId);
+                    break;
+
                 // Set icon of an existing marker
                 case 'setMarkerIcon':
                     map.setMarkerIcon(block.markerId, block.icon);

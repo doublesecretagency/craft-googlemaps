@@ -236,6 +236,26 @@ Open the info window of a specific marker.
 
 - `markerId` (_string_) - The ID of the marker with the info window that you want to open.
 
+## `closeInfoWindow(markerId)`
+
+:::code
+```js
+map.closeInfoWindow(markerId);
+```
+```twig
+{% do map.closeInfoWindow(markerId) %}
+```
+```php
+$map->closeInfoWindow($markerId);
+```
+:::
+
+Close the info window of a specific marker.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to close.
+
 ## `setMarkerIcon(markerId, icon)`
 
 :::code

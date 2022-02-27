@@ -330,6 +330,24 @@ class DynamicMap extends Model
     }
 
     /**
+     * Close the info window of a specific marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function closeInfoWindow($markerId): DynamicMap
+    {
+        // Add close info window to DNA
+        $this->_dna[] = [
+            'type' => 'closeInfoWindow',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
      * Set the icon of an existing marker.
      *
      * @param string $markerId

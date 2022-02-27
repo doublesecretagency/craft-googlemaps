@@ -266,6 +266,25 @@ map.openInfoWindow('33-address');
 ---
 ---
 
+### `closeInfoWindow(markerId)`
+
+Close the info window of a specific marker.
+
+```js
+map.closeInfoWindow('33-address');
+```
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to close.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ### `setMarkerIcon(markerId, icon)`
 
 Set the icon of an existing marker. Internally uses [`setIcon`](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon).
