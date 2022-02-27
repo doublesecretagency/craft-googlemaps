@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Improved JavaScript logging.
+
 ## 4.1.1 - 2021-12-24
 
 ### Changed

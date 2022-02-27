@@ -364,8 +364,8 @@ function DynamicMap(locations, options) {
     this.openInfoWindow = function(markerId) {
 
         // Get marker and info window objects
-        var marker     = this.getMarker(markerId);
-        var infoWindow = this.getInfoWindow(markerId);
+        var marker     = this.getMarker(markerId, true);
+        var infoWindow = this.getInfoWindow(markerId, true);
 
         // Log status
         if (googleMaps.log) {
@@ -387,13 +387,13 @@ function DynamicMap(locations, options) {
     // Set the icon of an existing marker
     this.setMarkerIcon = function(markerId, icon) {
 
-        // Get specified marker
-        var marker = this.getMarker(markerId);
-
         // Log status
         if (googleMaps.log) {
             console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
         }
+
+        // Get specified marker
+        var marker = this.getMarker(markerId);
 
         // If invalid marker, bail
         if (!marker) {
@@ -409,27 +409,27 @@ function DynamicMap(locations, options) {
     };
 
     // Hide a marker
-    this.hideMarker = function(markerId) {
+    this.hideMarker = function(markerId, assumeSuccess) {
 
         // If hiding all markers
         if ('*' === markerId) {
 
             // Log status
             if (googleMaps.log) {
-                console.log(`On map "${this.id}", hiding all markers...`);
+                console.log(`On map "${this.id}", hiding all markers`);
             }
 
             // Hide each marker individually
             for (var key in this._markers) {
-                this.hideMarker(key);
+                this.hideMarker(key, true);
             }
 
             // Our work here is done
             return;
         }
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`On map "${this.id}", hiding marker "${markerId}"`);
         }
 
@@ -456,27 +456,27 @@ function DynamicMap(locations, options) {
     };
 
     // Show a marker
-    this.showMarker = function(markerId) {
+    this.showMarker = function(markerId, assumeSuccess) {
 
         // If showing all markers
         if ('*' === markerId) {
 
             // Log status
             if (googleMaps.log) {
-                console.log(`On map "${this.id}", showing all markers...`);
+                console.log(`On map "${this.id}", showing all markers`);
             }
 
             // Show each marker individually
             for (var key in this._markers) {
-                this.showMarker(key);
+                this.showMarker(key, true);
             }
 
             // Our work here is done
             return;
         }
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`On map "${this.id}", showing marker "${markerId}"`);
         }
 
@@ -505,7 +505,7 @@ function DynamicMap(locations, options) {
     // ========================================================================= //
 
     // Hide a KML layer
-    this.hideKml = function(kmlId) {
+    this.hideKml = function(kmlId, assumeSuccess) {
 
         // If hiding all KML layers
         if ('*' === kmlId) {
@@ -517,15 +517,15 @@ function DynamicMap(locations, options) {
 
             // Detach each KML layer from this map
             for (var key in this._kmls) {
-                this._kmls[key].setMap(null);
+                this.hideKml(key, true);
             }
 
             // Our work here is done
             return;
         }
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`On map "${this.id}", hiding KML layer "${kmlId}"`);
         }
 
@@ -546,7 +546,7 @@ function DynamicMap(locations, options) {
     };
 
     // Show a KML layer
-    this.showKml = function(kmlId) {
+    this.showKml = function(kmlId, assumeSuccess) {
 
         // If showing all KML layers
         if ('*' === kmlId) {
@@ -558,15 +558,15 @@ function DynamicMap(locations, options) {
 
             // Attach each KML layer to this map
             for (var key in this._kmls) {
-                this._kmls[key].setMap(this._map);
+                this.showKml(key, true);
             }
 
             // Our work here is done
             return;
         }
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`On map "${this.id}", showing KML layer "${kmlId}"`);
         }
 
@@ -589,10 +589,10 @@ function DynamicMap(locations, options) {
     // ========================================================================= //
 
     // Get a specific Google Maps marker object
-    this.getMarker = function(markerId) {
+    this.getMarker = function(markerId, assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`From map "${this.id}", getting existing marker "${markerId}"`);
         }
 
@@ -609,10 +609,10 @@ function DynamicMap(locations, options) {
     };
 
     // Get a specific Google Maps info window object
-    this.getInfoWindow = function(markerId) {
+    this.getInfoWindow = function(markerId, assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`From map "${this.id}", getting existing info window "${markerId}"`);
         }
 
@@ -629,10 +629,10 @@ function DynamicMap(locations, options) {
     };
 
     // Get a specific Google Maps KML layer object
-    this.getKml = function(kmlId) {
+    this.getKml = function(kmlId, assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`From map "${this.id}", getting existing KML layer "${kmlId}"`);
         }
 
@@ -792,7 +792,7 @@ function DynamicMap(locations, options) {
         }
 
         // Get related marker
-        var marker = this._markers[markerId];
+        var marker = this.getMarker(markerId, true);
 
         // If no related marker exists, bail
         if (!marker) {
