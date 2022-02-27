@@ -257,7 +257,7 @@ map.openInfoWindow('33-address');
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to open.
+- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
 
 #### Returns
 
@@ -276,7 +276,7 @@ map.closeInfoWindow('33-address');
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to close.
+- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
 
 #### Returns
 
@@ -315,7 +315,7 @@ map.hideMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to hide.
+ - `markerId` (_string_) - The ID of the marker that you want to hide. Use `*` to hide all markers.
 
 #### Returns
 
@@ -334,7 +334,7 @@ map.showMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to show.
+ - `markerId` (_string_) - The ID of the marker that you want to show. Use `*` to show all markers.
 
 #### Returns
 
@@ -353,7 +353,7 @@ map.hideKml('my-kml');
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to hide.
+ - `kmlId` (_string_) - The ID of the KML layer that you want to hide. Use `*` to hide all KML layers.
 
 #### Returns
 
@@ -372,7 +372,7 @@ map.showKml('my-kml');
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to show.
+ - `kmlId` (_string_) - The ID of the KML layer that you want to show. Use `*` to show all KML layers.
 
 #### Returns
 

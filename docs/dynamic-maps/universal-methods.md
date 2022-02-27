@@ -234,7 +234,7 @@ Open the info window of a specific marker.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to open.
+- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
 
 ## `closeInfoWindow(markerId)`
 
@@ -254,7 +254,7 @@ Close the info window of a specific marker.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to close.
+- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
 
 ## `setMarkerIcon(markerId, icon)`
 

@@ -4,6 +4,7 @@
 
 ### Added
 - Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) universal method.
+- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now allows `*` to open all info windows at the same time.
 
 ### Changed
 - Improved JavaScript logging.

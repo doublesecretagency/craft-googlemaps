@@ -286,7 +286,7 @@ Open the info window of a specific marker.
 
 #### Arguments
 
-- `$markerId` (_string_) - ID of the marker with the target info window.
+- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to open all info windows.
 
 #### Returns
 
@@ -310,7 +310,7 @@ Close the info window of a specific marker.
 
 #### Arguments
 
-- `$markerId` (_string_) - ID of the marker with the target info window.
+- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to close all info windows.
 
 #### Returns
 
@@ -359,7 +359,7 @@ Hide a marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker.
+ - `$markerId` (_string_) - ID of the target marker. Use `*` to hide all markers.
 
 #### Returns
 
@@ -383,7 +383,7 @@ Show a marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker.
+ - `$markerId` (_string_) - ID of the target marker. Use `*` to show all markers.
 
 #### Returns
 
@@ -407,7 +407,7 @@ Hide a KML layer.
 
 #### Arguments
 
- - `$kmlId` (_string_) - ID of the target KML layer.
+ - `$kmlId` (_string_) - ID of the target KML layer. Use `*` to hide all KML layers.
 
 #### Returns
 
@@ -431,7 +431,7 @@ Show a KML layer.
 
 #### Arguments
 
- - `$kmlId` (_string_) - ID of the target KML layer.
+ - `$kmlId` (_string_) - ID of the target KML layer. Use `*` to show all KML layers.
 
 #### Returns
 

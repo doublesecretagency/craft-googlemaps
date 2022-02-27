@@ -361,15 +361,44 @@ function DynamicMap(locations, options) {
     };
 
     // Open the info window of a specific marker
-    this.openInfoWindow = function(markerId) {
+    this.openInfoWindow = function(markerId, assumeSuccess) {
+
+        // If opening all info windows
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", opening all info windows`);
+            }
+
+            // Open each info window individually
+            for (var key in this._infoWindows) {
+                this.openInfoWindow(key, true);
+            }
+
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`On map "${this.id}", opening info window "${markerId}"`);
+        }
 
         // Get marker and info window objects
         var marker     = this.getMarker(markerId, true);
         var infoWindow = this.getInfoWindow(markerId, true);
 
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On map "${this.id}", opening info window "${markerId}"`);
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to find marker "${markerId}"`);
+            return this;
+        }
+
+        // If invalid info window, bail
+        if (!infoWindow) {
+            console.warn(`[GM] Unable to open info window "${markerId}"`);
+            return this;
         }
 
         // Open the specified info window
