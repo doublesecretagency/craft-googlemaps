@@ -425,7 +425,7 @@ function DynamicMap(locations, options) {
             }
 
             // Our work here is done
-            return;
+            return this;
         }
 
         // Log status (if success is not assumed)
@@ -472,7 +472,7 @@ function DynamicMap(locations, options) {
             }
 
             // Our work here is done
-            return;
+            return this;
         }
 
         // Log status (if success is not assumed)
@@ -521,7 +521,7 @@ function DynamicMap(locations, options) {
             }
 
             // Our work here is done
-            return;
+            return this;
         }
 
         // Log status (if success is not assumed)
@@ -562,7 +562,7 @@ function DynamicMap(locations, options) {
             }
 
             // Our work here is done
-            return;
+            return this;
         }
 
         // Log status (if success is not assumed)

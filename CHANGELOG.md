@@ -5,6 +5,9 @@
 ### Changed
 - Improved JavaScript logging.
 
+### Fixed
+- Fixed JavaScript chaining bug.
+
 ## 4.1.1 - 2021-12-24
 
 ### Changed
