@@ -216,46 +216,6 @@ Re-center map on the specified marker.
 
  - `markerId` (_string_) - The ID of the marker that you want to pan to.
 
-## `openInfoWindow(markerId)`
-
-:::code
-```js
-map.openInfoWindow(markerId);
-```
-```twig
-{% do map.openInfoWindow(markerId) %}
-```
-```php
-$map->openInfoWindow($markerId);
-```
-:::
-
-Open the info window of a specific marker.
-
-#### Arguments
-
-- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
-
-## `closeInfoWindow(markerId)`
-
-:::code
-```js
-map.closeInfoWindow(markerId);
-```
-```twig
-{% do map.closeInfoWindow(markerId) %}
-```
-```php
-$map->closeInfoWindow($markerId);
-```
-:::
-
-Close the info window of a specific marker.
-
-#### Arguments
-
-- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
-
 ## `setMarkerIcon(markerId, icon)`
 
 :::code
@@ -316,6 +276,46 @@ Show a marker. The marker will be re-attached to the map.
 #### Arguments
 
 - `markerId` (_string_) - The ID of the marker that you want to show. Use `*` to show all markers.
+
+## `openInfoWindow(markerId)`
+
+:::code
+```js
+map.openInfoWindow(markerId);
+```
+```twig
+{% do map.openInfoWindow(markerId) %}
+```
+```php
+$map->openInfoWindow($markerId);
+```
+:::
+
+Open the info window of a specific marker.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
+
+## `closeInfoWindow(markerId)`
+
+:::code
+```js
+map.closeInfoWindow(markerId);
+```
+```twig
+{% do map.closeInfoWindow(markerId) %}
+```
+```php
+$map->closeInfoWindow($markerId);
+```
+:::
+
+Close the info window of a specific marker.
+
+#### Arguments
+
+- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
 
 ## `hideKml(kmlId)`
 

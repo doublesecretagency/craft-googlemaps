@@ -280,54 +280,6 @@ $map->panToMarker($markerId);
 ---
 ---
 
-### `openInfoWindow($markerId)`
-
-Open the info window of a specific marker.
-
-#### Arguments
-
-- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to open all info windows.
-
-#### Returns
-
-- _self_ - A chainable self-reference to this `DynamicMap` object.
-
-:::code
-```twig
-{% do map.openInfoWindow(markerId) %}
-```
-```php
-$map->openInfoWindow($markerId);
-```
-:::
-
----
----
-
-### `closeInfoWindow($markerId)`
-
-Close the info window of a specific marker.
-
-#### Arguments
-
-- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to close all info windows.
-
-#### Returns
-
-- _self_ - A chainable self-reference to this `DynamicMap` object.
-
-:::code
-```twig
-{% do map.closeInfoWindow(markerId) %}
-```
-```php
-$map->closeInfoWindow($markerId);
-```
-:::
-
----
----
-
 ### `setMarkerIcon($markerId, $icon)`
 
 Set the icon of an existing marker.
@@ -395,6 +347,54 @@ Show a marker.
 ```
 ```php
 $map->showMarker($markerId);
+```
+:::
+
+---
+---
+
+### `openInfoWindow($markerId)`
+
+Open the info window of a specific marker.
+
+#### Arguments
+
+- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to open all info windows.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.openInfoWindow(markerId) %}
+```
+```php
+$map->openInfoWindow($markerId);
+```
+:::
+
+---
+---
+
+### `closeInfoWindow($markerId)`
+
+Close the info window of a specific marker.
+
+#### Arguments
+
+- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to close all info windows.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.closeInfoWindow(markerId) %}
+```
+```php
+$map->closeInfoWindow($markerId);
 ```
 :::
 

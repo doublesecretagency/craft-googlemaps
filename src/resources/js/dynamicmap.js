@@ -360,95 +360,6 @@ function DynamicMap(locations, options) {
         return this;
     };
 
-    // Open the info window of a specific marker
-    this.openInfoWindow = function(markerId, assumeSuccess) {
-
-        // If opening all info windows
-        if ('*' === markerId) {
-
-            // Log status
-            if (googleMaps.log) {
-                console.log(`On map "${this.id}", opening all info windows`);
-            }
-
-            // Open each info window individually
-            for (var key in this._infoWindows) {
-                this.openInfoWindow(key, true);
-            }
-
-            // Our work here is done
-            return this;
-        }
-
-        // Log status (if success is not assumed)
-        if (googleMaps.log && !assumeSuccess) {
-            console.log(`On map "${this.id}", opening info window "${markerId}"`);
-        }
-
-        // Get marker and info window objects
-        var marker     = this.getMarker(markerId, true);
-        var infoWindow = this.getInfoWindow(markerId, true);
-
-        // If invalid marker, bail
-        if (!marker) {
-            console.warn(`[GM] Unable to find marker "${markerId}"`);
-            return this;
-        }
-
-        // If invalid info window, bail
-        if (!infoWindow) {
-            console.warn(`[GM] Unable to open info window "${markerId}"`);
-            return this;
-        }
-
-        // Open the specified info window
-        infoWindow.open(this._map, marker);
-
-        // Keep the party going
-        return this;
-    };
-
-    // Close the info window of a specific marker
-    this.closeInfoWindow = function(markerId, assumeSuccess) {
-
-        // If closing all info windows
-        if ('*' === markerId) {
-
-            // Log status
-            if (googleMaps.log) {
-                console.log(`On map "${this.id}", closing all info windows`);
-            }
-
-            // Close each info window individually
-            for (var key in this._infoWindows) {
-                this.closeInfoWindow(key, true);
-            }
-
-            // Our work here is done
-            return this;
-        }
-
-        // Log status (if success is not assumed)
-        if (googleMaps.log && !assumeSuccess) {
-            console.log(`On map "${this.id}", closing info window "${markerId}"`);
-        }
-
-        // Get info window object
-        var infoWindow = this.getInfoWindow(markerId, true);
-
-        // If invalid info window, bail
-        if (!infoWindow) {
-            console.warn(`[GM] Unable to close info window "${markerId}"`);
-            return this;
-        }
-
-        // Close info window
-        infoWindow.close();
-
-        // Keep the party going
-        return this;
-    };
-
     // Set the icon of an existing marker
     this.setMarkerIcon = function(markerId, icon) {
 
@@ -472,6 +383,8 @@ function DynamicMap(locations, options) {
         // Keep the party going
         return this;
     };
+
+    // ========================================================================= //
 
     // Hide a marker
     this.hideMarker = function(markerId, assumeSuccess) {
@@ -567,7 +480,94 @@ function DynamicMap(locations, options) {
         return this;
     };
 
-    // ========================================================================= //
+    // Open an info window
+    this.openInfoWindow = function(markerId, assumeSuccess) {
+
+        // If opening all info windows
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", opening all info windows`);
+            }
+
+            // Open each info window individually
+            for (var key in this._infoWindows) {
+                this.openInfoWindow(key, true);
+            }
+
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`On map "${this.id}", opening info window "${markerId}"`);
+        }
+
+        // Get marker and info window objects
+        var marker     = this.getMarker(markerId, true);
+        var infoWindow = this.getInfoWindow(markerId, true);
+
+        // If invalid marker, bail
+        if (!marker) {
+            console.warn(`[GM] Unable to find marker "${markerId}"`);
+            return this;
+        }
+
+        // If invalid info window, bail
+        if (!infoWindow) {
+            console.warn(`[GM] Unable to open info window "${markerId}"`);
+            return this;
+        }
+
+        // Open the specified info window
+        infoWindow.open(this._map, marker);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Close an info window
+    this.closeInfoWindow = function(markerId, assumeSuccess) {
+
+        // If closing all info windows
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", closing all info windows`);
+            }
+
+            // Close each info window individually
+            for (var key in this._infoWindows) {
+                this.closeInfoWindow(key, true);
+            }
+
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`On map "${this.id}", closing info window "${markerId}"`);
+        }
+
+        // Get info window object
+        var infoWindow = this.getInfoWindow(markerId, true);
+
+        // If invalid info window, bail
+        if (!infoWindow) {
+            console.warn(`[GM] Unable to close info window "${markerId}"`);
+            return this;
+        }
+
+        // Close info window
+        infoWindow.close();
+
+        // Keep the party going
+        return this;
+    };
 
     // Hide a KML layer
     this.hideKml = function(kmlId, assumeSuccess) {
@@ -814,40 +814,6 @@ function DynamicMap(locations, options) {
 
     };
 
-    // ========================================================================= //
-
-    // Set click event for each marker
-    this._markerClick = function(markerId, callback) {
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`On marker "${markerId}", adding click event callback:`, callback);
-        }
-
-        // Get related marker
-        var marker = this._markers[markerId];
-
-        // If no related marker exists, bail
-        if (!marker) {
-            return;
-        }
-
-        // If callback is a boolean true, bail
-        if (true === callback) {
-            return;
-        }
-
-        // If callback is not a function, warn and bail
-        if ('function' !== typeof callback) {
-            console.warn('[GM] Invalid callback function:', callback);
-            return;
-        }
-
-        // When marker is clicked, trigger the callback
-        google.maps.event.addListener(marker, 'click', callback);
-
-    };
-
     // Create a new info window object
     this._createInfoWindow = function(markerId, infoWindowOptions) {
 
@@ -898,6 +864,38 @@ function DynamicMap(locations, options) {
 
     // ========================================================================= //
 
+    // Set click event for each marker
+    this._markerClick = function(markerId, callback) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`On marker "${markerId}", adding click event callback:`, callback);
+        }
+
+        // Get related marker
+        var marker = this._markers[markerId];
+
+        // If no related marker exists, bail
+        if (!marker) {
+            return;
+        }
+
+        // If callback is a boolean true, bail
+        if (true === callback) {
+            return;
+        }
+
+        // If callback is not a function, warn and bail
+        if ('function' !== typeof callback) {
+            console.warn('[GM] Invalid callback function:', callback);
+            return;
+        }
+
+        // When marker is clicked, trigger the callback
+        google.maps.event.addListener(marker, 'click', callback);
+
+    };
+
     // Get the functional boundaries of the current map
     this._getBounds = function() {
 
@@ -933,8 +931,6 @@ function DynamicMap(locations, options) {
         // Return a set of map bounds
         return bounds;
     };
-
-    // ========================================================================= //
 
     // Optionally apply marker clustering
     this._clusterMarkers = function() {
@@ -983,8 +979,6 @@ function DynamicMap(locations, options) {
         // Create the marker clustering object
         this._cluster = new markerClusterer.MarkerClusterer(options);
     };
-
-    // ========================================================================= //
 
     // Check the container height, emit warning if necessary
     this._checkHeight = function() {

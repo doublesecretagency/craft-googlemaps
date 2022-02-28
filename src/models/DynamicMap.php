@@ -199,6 +199,8 @@ class DynamicMap extends Model
         return $this;
     }
 
+    // ========================================================================= //
+
     /**
      * Style the map.
      *
@@ -312,42 +314,6 @@ class DynamicMap extends Model
     }
 
     /**
-     * Open the info window of a specific marker.
-     *
-     * @param string $markerId
-     * @return $this
-     */
-    public function openInfoWindow($markerId): DynamicMap
-    {
-        // Add open info window to DNA
-        $this->_dna[] = [
-            'type' => 'openInfoWindow',
-            'markerId' => $markerId,
-        ];
-
-        // Keep the party going
-        return $this;
-    }
-
-    /**
-     * Close the info window of a specific marker.
-     *
-     * @param string $markerId
-     * @return $this
-     */
-    public function closeInfoWindow($markerId): DynamicMap
-    {
-        // Add close info window to DNA
-        $this->_dna[] = [
-            'type' => 'closeInfoWindow',
-            'markerId' => $markerId,
-        ];
-
-        // Keep the party going
-        return $this;
-    }
-
-    /**
      * Set the icon of an existing marker.
      *
      * @param string $markerId
@@ -365,6 +331,8 @@ class DynamicMap extends Model
         // Keep the party going
         return $this;
     }
+
+    // ========================================================================= //
 
     /**
      * Hide a marker.
@@ -402,7 +370,41 @@ class DynamicMap extends Model
         return $this;
     }
 
-    // ========================================================================= //
+    /**
+     * Open the info window of a specific marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function openInfoWindow($markerId): DynamicMap
+    {
+        // Add open info window to DNA
+        $this->_dna[] = [
+            'type' => 'openInfoWindow',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Close the info window of a specific marker.
+     *
+     * @param string $markerId
+     * @return $this
+     */
+    public function closeInfoWindow($markerId): DynamicMap
+    {
+        // Add close info window to DNA
+        $this->_dna[] = [
+            'type' => 'closeInfoWindow',
+            'markerId' => $markerId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
 
     /**
      * Hide a KML layer.
