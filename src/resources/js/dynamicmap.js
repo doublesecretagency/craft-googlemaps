@@ -278,6 +278,16 @@ function DynamicMap(locations, options) {
             console.log(`Centering map "${this.id}" on coordinates`, coords);
         }
 
+        // If coordinates do not exist, emit warning and bail
+        if (!coords) {
+            console.warn(`[GM] Unable to center map, invalid coordinates:`, coords);
+            return this;
+        }
+
+        // Ensure coordinates are float values
+        coords.lat = parseFloat(coords.lat);
+        coords.lng = parseFloat(coords.lng);
+
         // Pass object to callback function
         var mapObject = this;
 

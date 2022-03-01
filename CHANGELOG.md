@@ -8,6 +8,7 @@
 
 ### Changed
 - Improved JavaScript logging.
+- Protect against invalid coordinates when centering.
 
 ### Fixed
 - Fixed JavaScript chaining bug.
