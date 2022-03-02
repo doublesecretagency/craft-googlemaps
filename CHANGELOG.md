@@ -5,6 +5,7 @@
 ### Added
 - Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) universal method.
 - The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now allows `*` to open all info windows at the same time.
+- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now allows `*` to set an icon for all markers at the same time.
 
 ### Changed
 - Improved JavaScript logging.

@@ -371,15 +371,32 @@ function DynamicMap(locations, options) {
     };
 
     // Set the icon of an existing marker
-    this.setMarkerIcon = function(markerId, icon) {
+    this.setMarkerIcon = function(markerId, icon, assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // If setting icon for all markers
+        if ('*' === markerId) {
+
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", setting icon for all markers:`, icon);
+            }
+
+            // Set each marker icon individually
+            for (var key in this._markers) {
+                this.setMarkerIcon(key, icon, true);
+            }
+
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`On map "${this.id}", setting icon for marker "${markerId}":`, icon);
         }
 
         // Get specified marker
-        var marker = this.getMarker(markerId);
+        var marker = this.getMarker(markerId, true);
 
         // If invalid marker, bail
         if (!marker) {
