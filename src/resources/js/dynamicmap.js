@@ -373,19 +373,30 @@ function DynamicMap(locations, options) {
     // Set the icon of an existing marker
     this.setMarkerIcon = function(markerId, icon, assumeSuccess) {
 
+        // If setting icon for multiple markers
+        if (Array.isArray(markerId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", setting icon for multiple markers`);
+            }
+            // Set each marker icon individually
+            for (var i in markerId) {
+                this.setMarkerIcon(markerId[i], icon);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If setting icon for all markers
         if ('*' === markerId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", setting icon for all markers:`, icon);
             }
-
             // Set each marker icon individually
             for (var key in this._markers) {
                 this.setMarkerIcon(key, icon, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -416,19 +427,30 @@ function DynamicMap(locations, options) {
     // Hide a marker
     this.hideMarker = function(markerId, assumeSuccess) {
 
+        // If hiding multiple markers
+        if (Array.isArray(markerId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", hiding multiple markers`);
+            }
+            // Hide each marker individually
+            for (var i in markerId) {
+                this.hideMarker(markerId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If hiding all markers
         if ('*' === markerId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", hiding all markers`);
             }
-
             // Hide each marker individually
             for (var key in this._markers) {
                 this.hideMarker(key, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -463,19 +485,30 @@ function DynamicMap(locations, options) {
     // Show a marker
     this.showMarker = function(markerId, assumeSuccess) {
 
+        // If showing multiple markers
+        if (Array.isArray(markerId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", showing multiple markers`);
+            }
+            // Show each marker individually
+            for (var i in markerId) {
+                this.showMarker(markerId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If showing all markers
         if ('*' === markerId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", showing all markers`);
             }
-
             // Show each marker individually
             for (var key in this._markers) {
                 this.showMarker(key, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -510,19 +543,30 @@ function DynamicMap(locations, options) {
     // Open an info window
     this.openInfoWindow = function(markerId, assumeSuccess) {
 
+        // If opening multiple info windows
+        if (Array.isArray(markerId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", opening multiple info windows`);
+            }
+            // Open each info window individually
+            for (var i in markerId) {
+                this.openInfoWindow(markerId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If opening all info windows
         if ('*' === markerId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", opening all info windows`);
             }
-
             // Open each info window individually
             for (var key in this._infoWindows) {
                 this.openInfoWindow(key, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -558,19 +602,30 @@ function DynamicMap(locations, options) {
     // Close an info window
     this.closeInfoWindow = function(markerId, assumeSuccess) {
 
+        // If closing multiple info windows
+        if (Array.isArray(markerId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", closing multiple info windows`);
+            }
+            // Close each info window individually
+            for (var i in markerId) {
+                this.closeInfoWindow(markerId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If closing all info windows
         if ('*' === markerId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", closing all info windows`);
             }
-
             // Close each info window individually
             for (var key in this._infoWindows) {
                 this.closeInfoWindow(key, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -599,19 +654,30 @@ function DynamicMap(locations, options) {
     // Hide a KML layer
     this.hideKml = function(kmlId, assumeSuccess) {
 
+        // If hiding multiple KML layers
+        if (Array.isArray(kmlId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", hiding multiple KML layers`);
+            }
+            // Hide each KML layer individually
+            for (var i in kmlId) {
+                this.hideKml(kmlId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If hiding all KML layers
         if ('*' === kmlId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", hiding all KML layers`);
             }
-
-            // Detach each KML layer from this map
+            // Hide each KML layer individually
             for (var key in this._kmls) {
                 this.hideKml(key, true);
             }
-
             // Our work here is done
             return this;
         }
@@ -640,19 +706,30 @@ function DynamicMap(locations, options) {
     // Show a KML layer
     this.showKml = function(kmlId, assumeSuccess) {
 
+        // If showing multiple KML layers
+        if (Array.isArray(kmlId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`On map "${this.id}", showing multiple KML layers`);
+            }
+            // Show each KML layer individually
+            for (var i in kmlId) {
+                this.showKml(kmlId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
         // If showing all KML layers
         if ('*' === kmlId) {
-
             // Log status
             if (googleMaps.log) {
                 console.log(`On map "${this.id}", showing all KML layers`);
             }
-
-            // Attach each KML layer to this map
+            // Show each KML layer individually
             for (var key in this._kmls) {
                 this.showKml(key, true);
             }
-
             // Our work here is done
             return this;
         }

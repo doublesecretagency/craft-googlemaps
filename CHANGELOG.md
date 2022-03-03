@@ -4,8 +4,15 @@
 
 ### Added
 - Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) universal method.
-- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now allows `*` to open all info windows at the same time.
-- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now allows `*` to set an icon for all markers at the same time.
+- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts `*` to set an icon for all markers at the same time.
+- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts an array of IDs to set an icon for multiple markers at the same time.
+- The [`hideMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidemarker-markerid) method now accepts an array of IDs to hide multiple markers at the same time.
+- The [`showMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showmarker-markerid) method now accepts an array of IDs to show multiple markers at the same time.
+- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now accepts `*` to open all info windows at the same time.
+- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now accepts an array of IDs to open multiple info windows at the same time.
+- The [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) method now accepts an array of IDs to close multiple info windows at the same time.
+- The [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) method now accepts an array of IDs to hide multiple KML layers at the same time.
+- The [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) method now accepts an array of IDs to show multiple KML layers at the same time.
 
 ### Changed
 - Improved JavaScript logging.
@@ -30,10 +37,10 @@
 - Addresses now include an optional [`name`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#name) subfield. ([#26](https://github.com/doublesecretagency/craft-googlemaps/issues/26))
 - Addresses now include an optional [`county`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#county) subfield.
 - Addresses now include an optional [`placeId`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#placeid) subfield. ([#25](https://github.com/doublesecretagency/craft-googlemaps/issues/25))
-- The [`hideMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidemarker-markerid) method now allows `*` to hide all markers at the same time. ([#39](https://github.com/doublesecretagency/craft-googlemaps/issues/39))
-- The [`showMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showmarker-markerid) method now allows `*` to show all markers at the same time.
-- The [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) method now allows `*` to hide all KML Layers at the same time.
-- The [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) method now allows `*` to show all KML Layers at the same time.
+- The [`hideMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidemarker-markerid) method now accepts `*` to hide all markers at the same time. ([#39](https://github.com/doublesecretagency/craft-googlemaps/issues/39))
+- The [`showMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showmarker-markerid) method now accepts `*` to show all markers at the same time.
+- The [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) method now accepts `*` to hide all KML Layers at the same time.
+- The [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) method now accepts `*` to show all KML Layers at the same time.
 - Added [`markerLink` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#navigate-to-a-url) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
 - Added [`markerClick` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/on-marker-click/#trigger-a-js-callback-function) for dynamic map markers. ([#34](https://github.com/doublesecretagency/craft-googlemaps/issues/34))
 - Added a [JS script](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/src/resources/js/address-field.js) and [instructions](https://plugins.doublesecretagency.com/google-maps/address-field/front-end-form/#using-the-places-api) for adding Google Places Autocomplete to front-end forms.
