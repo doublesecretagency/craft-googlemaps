@@ -40,7 +40,7 @@ window.googleMaps = window.googleMaps || {
         // Log status
         if (this.log) {
             console.log(`============================================================`);
-            console.log(`Getting existing map "${mapId}"`);
+            console.log(`[${mapId}] Getting existing map`);
         }
 
         // Get existing map
@@ -96,7 +96,7 @@ window.googleMaps = window.googleMaps || {
             // Log status
             if (this.log) {
                 console.log(`============================================================`);
-                console.log(`Initializing map "${map.id}"`);
+                console.log(`[${map.id}] Initializing map`);
             }
 
             // Get DNA of each map
@@ -118,7 +118,7 @@ window.googleMaps = window.googleMaps || {
 
             // Log status
             if (this.log) {
-                console.log(`Activating marker callbacks:\n`,this._markerCallbacks);
+                console.log(`[${map.id}] Activating marker callbacks:\n`,this._markerCallbacks);
             }
 
             // Loop through marker callbacks of each map
@@ -141,7 +141,7 @@ window.googleMaps = window.googleMaps || {
 
             // Log status
             if (this.log) {
-                console.log(`Running map callback function:\n`,callback);
+                console.log(`[${map.id}] Running map callback function:\n`,callback);
             }
 
             // Execute map callback
@@ -311,7 +311,7 @@ window.googleMaps = window.googleMaps || {
 
         // Log status
         if (this.log) {
-            console.log(`Finished initializing map "${map.id}" 👍`);
+            console.log(`[${map.id}] Finished initializing map 👍`);
         }
 
         // Check whether the resulting div is actually hidden
