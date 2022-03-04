@@ -36,8 +36,8 @@ map.markers([
 
 #### Arguments
 
- - `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
- - `options` (_array_) - Optional parameters to configure the markers. (see below)
+- `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
+- `options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type                 | Default | Description
 |----------------------|:--------------------:|:-------:|-------------
@@ -50,7 +50,7 @@ map.markers([
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -61,8 +61,8 @@ Append a KML layer to an existing map object.
 
 #### Arguments
 
- - `url` (_string_) - Publicly accessible URL of the KML file.
- - `options` (_array_) - Optional parameters to configure the KML layer. (see below)
+- `url` (_string_) - Publicly accessible URL of the KML file.
+- `options` (_array_) - Optional parameters to configure the KML layer. (see below)
  
 | Option             | Type     | Default | Description
 |--------------------|:--------:|:-------:|-------------
@@ -83,7 +83,7 @@ In order for a KML file to work, it must exist at a publicly available URL.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -98,7 +98,7 @@ For more information on how to generate a set of styles, read [Styling a Map](/g
 
 #### Arguments
 
- - `styleSet` (_array_) - A set of styles to be applied to the map.
+- `styleSet` (_array_) - A set of styles to be applied to the map.
 
 ```js
 map.styles([
@@ -121,7 +121,7 @@ map.styles([
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -132,20 +132,20 @@ Change the map's zoom level.
 
 #### Arguments
 
- - `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
+- `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
 
 ```js
 map.zoom(10);
 ```
 
 :::tip Zoom Level Reference
- - `1` is zoomed out, a view of the entire planet.
- - `22` is zoomed in, as close to the ground as possible.
+- `1` is zoomed out, a view of the entire planet.
+- `22` is zoomed in, as close to the ground as possible.
 :::
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -156,7 +156,7 @@ Re-center the map.
 
 #### Arguments
 
- - `coords` (_[coords](/models/coordinates/)_) A simple key-value set of coordinates.
+- `coords` (_[coords](/models/coordinates/)_) A simple key-value set of coordinates.
 
 ```js
 map.center({
@@ -167,7 +167,7 @@ map.center({
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -182,7 +182,7 @@ map.fit();
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -197,7 +197,7 @@ map.refresh();
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -238,11 +238,11 @@ map.panToMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to pan to.
+- `markerId` (_string_) - The ID of the marker that you want to pan to.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -257,12 +257,12 @@ map.setMarkerIcon('33-address', 'http://maps.google.com/mapfiles/ms/micons/green
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
- - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
+- `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -277,11 +277,11 @@ map.hideMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to hide. Use `*` to hide all markers.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -296,11 +296,11 @@ map.showMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to show. Use `*` to show all markers.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -315,7 +315,7 @@ map.openInfoWindow('33-address');
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 #### Returns
 
@@ -334,7 +334,7 @@ map.closeInfoWindow('33-address');
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 #### Returns
 
@@ -353,11 +353,11 @@ map.hideKml('my-kml');
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to hide. Use `*` to hide all KML layers.
+- `kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -372,11 +372,11 @@ map.showKml('my-kml');
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to show. Use `*` to show all KML layers.
+- `kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 ---
 ---
@@ -397,11 +397,11 @@ var marker = map.getMarker('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to access.
+- `markerId` (_string_) - The ID of the marker that you want to access.
 
 #### Returns
 
- - A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
+- A Google Maps [Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object.
 
 ---
 ---
@@ -416,11 +416,11 @@ var infoWindow = map.getInfoWindow('33-address');
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker with the info window that you want to access.
+- `markerId` (_string_) - The ID of the marker with the info window that you want to access.
 
 #### Returns
 
- - A Google Maps [Info Window](https://developers.google.com/maps/documentation/javascript/infowindows) object.
+- A Google Maps [Info Window](https://developers.google.com/maps/documentation/javascript/infowindows) object.
 
 ---
 ---
@@ -435,11 +435,11 @@ var kml = map.getKml('my-kml');
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to access.
+- `kmlId` (_string_) - The ID of the KML layer that you want to access.
 
 #### Returns
 
- - A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
+- A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
 
 ---
 ---
@@ -454,7 +454,7 @@ var clusterer = map.getMarkerClusterer();
 
 #### Returns
 
- - A Google Maps [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html) object.
+- A Google Maps [MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html) object.
 
 ---
 ---
@@ -469,7 +469,7 @@ map.tag({'parentId': 'target-parent-id'});
 
 #### Arguments
 
- - `options` (_array_) - Configuration options for the rendered dynamic map.
+- `options` (_array_) - Configuration options for the rendered dynamic map.
 
 | Option     | Type     | Default | Description
 |:-----------|:--------:|:-------:|-------------
@@ -477,4 +477,4 @@ map.tag({'parentId': 'target-parent-id'});
 
 #### Returns
 
- - A new DOM element. Will always return the newly created element, regardless of whether it was automatically injected into a parent container.
+- A new DOM element. Will always return the newly created element, regardless of whether it was automatically injected into a parent container.

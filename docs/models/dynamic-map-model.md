@@ -37,8 +37,8 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Arguments
 
- - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
- - `$options` (_array_) - Optional parameters to configure the map. (see below)
+- `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
+- `$options` (_array_) - Optional parameters to configure the map. (see below)
 
 ### Dynamic Map Options
 
@@ -61,7 +61,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::tip Locations are Skippable
 If you skip the `locations` parameter, a blank map will be created.
@@ -76,8 +76,8 @@ Append markers to an existing map object.
 
 #### Arguments
 
- - `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
- - `$options` (_array_) - Optional parameters to configure the markers. (see below)
+- `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
+- `$options` (_array_) - Optional parameters to configure the markers. (see below)
  
 | Option               | Type               | Default | Description
 |:---------------------|:------------------:|:-------:|:------------
@@ -92,7 +92,7 @@ Append markers to an existing map object.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -112,8 +112,8 @@ Append one or more KML layers to an existing map object.
 
 #### Arguments
 
- - `$files` (_mixed_)
- - `$options` (_array_) - Optional parameters to configure the KML layers. (see below)
+- `$files` (_mixed_)
+- `$options` (_array_) - Optional parameters to configure the KML layers. (see below)
  
 | Option             | Type     | Default | Description |
 |:-------------------|:--------:|:-------:|:------------|
@@ -122,7 +122,7 @@ Append one or more KML layers to an existing map object.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -146,11 +146,11 @@ For more information on how to generate a set of styles, read [Styling a Map](/g
 
 #### Arguments
 
- - `$styleSet` (_array_) - A set of styles to be applied to the map.
+- `$styleSet` (_array_) - A set of styles to be applied to the map.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -170,11 +170,11 @@ Change the map's zoom level.
 
 #### Arguments
 
- - `$level` (_string_) - The new zoom level. Must be an integer between `1` - `22`.
+- `$level` (_string_) - The new zoom level. Must be an integer between `1` - `22`.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -194,11 +194,11 @@ Re-center the map.
 
 #### Arguments
 
- - `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of [coordinates](/models/coordinates/).
+- `$coords` (_[coords](/models/coordinates/)_) - A simple key-value set of [coordinates](/models/coordinates/).
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -218,7 +218,7 @@ Zoom map to automatically fit all markers within the viewing area.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -242,7 +242,7 @@ There probably aren't a lot of good reasons to use this method in Twig or PHP, b
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -262,11 +262,11 @@ Re-center map on the specified marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker.
+- `$markerId` (_string_) - ID of the target marker.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -286,12 +286,12 @@ Set the icon of an existing marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker.
- - `$icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - URL of marker icon image.
+- `$markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
+- `$icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - URL of marker icon image.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -311,11 +311,11 @@ Hide a marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker. Use `*` to hide all markers.
+- `$markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -335,11 +335,11 @@ Show a marker.
 
 #### Arguments
 
- - `$markerId` (_string_) - ID of the target marker. Use `*` to show all markers.
+- `$markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -359,7 +359,7 @@ Open the info window of a specific marker.
 
 #### Arguments
 
-- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to open all info windows.
+- `$markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 #### Returns
 
@@ -383,7 +383,7 @@ Close the info window of a specific marker.
 
 #### Arguments
 
-- `$markerId` (_string_) - ID of the marker with the target info window. Use `*` to close all info windows.
+- `$markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 #### Returns
 
@@ -407,11 +407,11 @@ Hide a KML layer.
 
 #### Arguments
 
- - `$kmlId` (_string_) - ID of the target KML layer. Use `*` to hide all KML layers.
+- `$kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -431,11 +431,11 @@ Show a KML layer.
 
 #### Arguments
 
- - `$kmlId` (_string_) - ID of the target KML layer. Use `*` to show all KML layers.
+- `$kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
 
 #### Returns
 
- - _self_ - A chainable self-reference to this `DynamicMap` object.
+- _self_ - A chainable self-reference to this `DynamicMap` object.
 
 :::code
 ```twig
@@ -455,7 +455,7 @@ Renders the necessary `<div>` container to hold the map. The final `<div>` will 
 
 #### Arguments
 
- - `$options` (_array_) - Configuration options for the rendered `<div>`.
+- `$options` (_array_) - Configuration options for the rendered `<div>`.
 
 | Option     | Type     | Default | Description
 |:-----------|:--------:|:-------:|:------------
@@ -468,7 +468,7 @@ By setting the `init` option to `false`, the map will not be automatically initi
 
 #### Returns
 
- - _Markup_ - A Twig Markup instance, ready to be rendered in Twig with curly braces.
+- _Markup_ - A Twig Markup instance, ready to be rendered in Twig with curly braces.
 
 :::code
 ```twig
@@ -501,7 +501,7 @@ _Aliased as `dna` property via magic method._
 
 #### Returns
 
- - _array_ - An array of data containing the complete map details.
+- _array_ - An array of data containing the complete map details.
 
 :::code
 ```twig

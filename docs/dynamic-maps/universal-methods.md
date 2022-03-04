@@ -30,8 +30,8 @@ Places additional markers onto the map.
 
 #### Arguments
 
- - `locations` (_[locations](/dynamic-maps/locations/)_) - Will be used to create additional markers for the map.
- - `options` (_array_|_null_) - The `options` parameter allows you to configure the markers in greater detail. These options will _only_ apply to the markers created in this method call.
+- `locations` (_[locations](/dynamic-maps/locations/)_) - Will be used to create additional markers for the map.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure the markers in greater detail. These options will _only_ apply to the markers created in this method call.
 
 :::warning Available Options
 Most, but not all, of these options are available across JavaScript, Twig, and PHP. Please note the few options which are not universally available.
@@ -70,8 +70,8 @@ Applies a KML layer to the map.
 
 #### Arguments
 
- - `url` (_string_) - The URL of a given KML layer. It **must** be publicly hosted on the internet. Google needs to parse the KML file, so it will not work if hosted locally or behind a private URL.
- - `options` (_array_|_null_) - The `options` parameter allows you to configure this KML layer in greater detail.
+- `url` (_string_) - The URL of a given KML layer. It **must** be publicly hosted on the internet. Google needs to parse the KML file, so it will not work if hosted locally or behind a private URL.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure this KML layer in greater detail.
 
 | Option             | Available            | Description |
 |--------------------|:--------------------:|-------------|
@@ -100,7 +100,7 @@ $map->styles($styleSet);
 
 #### Arguments
 
- - `styleSet` (_array_) - A collection of styles, most likely generated elsewhere.
+- `styleSet` (_array_) - A collection of styles, most likely generated elsewhere.
  
 For more information, see the [Styling a Map](/guides/styling-a-map/) guide.
 
@@ -122,11 +122,11 @@ Change the map's zoom level.
 
 #### Arguments
 
- - `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
+- `level` (_int_) - The new zoom level. Must be an integer between `1` - `22`.
  
 :::tip Zoom Level Reference
- - `1` is extremely zoomed out, a view of the entire planet.
- - `22` is extremely zoomed in, as close to the ground as possible.
+- `1` is extremely zoomed out, a view of the entire planet.
+- `22` is extremely zoomed in, as close to the ground as possible.
 :::
 
 ## `center(coords)`
@@ -147,7 +147,7 @@ Re-center the map.
 
 #### Arguments
 
- - `coords` (_[coords](/models/coordinates/)_) - New center point of map.
+- `coords` (_[coords](/models/coordinates/)_) - New center point of map.
 
 ## `fit()`
 
@@ -214,7 +214,7 @@ Re-center map on the specified marker.
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to pan to.
+- `markerId` (_string_) - The ID of the marker that you want to pan to.
 
 ## `setMarkerIcon(markerId, icon)`
 
@@ -234,8 +234,8 @@ Set the icon of an existing marker. Internally uses [`setIcon`](https://develope
 
 #### Arguments
 
- - `markerId` (_string_) - The ID of the marker that you want to set the icon for.
- - `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
+- `icon` (_string_|_[icon](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker.setIcon)_) - The icon to set on the specified marker.
 
 ## `hideMarker(markerId)`
 
@@ -255,7 +255,7 @@ Hide a marker. The marker will not be destroyed, it will simply be detached from
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker that you want to hide. Use `*` to hide all markers.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 ## `showMarker(markerId)`
 
@@ -275,7 +275,7 @@ Show a marker. The marker will be re-attached to the map.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker that you want to show. Use `*` to show all markers.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all markers.
 
 ## `openInfoWindow(markerId)`
 
@@ -295,7 +295,7 @@ Open the info window of a specific marker.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to open. Use `*` to open all info windows.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 ## `closeInfoWindow(markerId)`
 
@@ -315,7 +315,7 @@ Close the info window of a specific marker.
 
 #### Arguments
 
-- `markerId` (_string_) - The ID of the marker with the info window that you want to close. Use `*` to close all info windows.
+- `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
 ## `hideKml(kmlId)`
 
@@ -335,7 +335,7 @@ Hide a KML layer. The KML layer will not be destroyed, it will simply be detache
 
 #### Arguments
 
- - `kmlId` (_string_) - The ID of the KML layer that you want to hide. Use `*` to hide all KML layers.
+- `kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
 
 ## `showKml(kmlId)`
 
@@ -355,4 +355,4 @@ Show a KML layer. The KML layer will be re-attached to the map.
 
 #### Arguments
 
-- `kmlId` (_string_) - The ID of the KML layer that you want to show. Use `*` to show all KML layers.
+- `kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
