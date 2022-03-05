@@ -3,20 +3,20 @@
 ## Unreleased
 
 ### Added
-- Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) universal method.
-- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts `*` to set an icon for all markers at the same time.
 - The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts an array of IDs to set an icon for multiple markers at the same time.
+- The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts `*` to set an icon for all markers at the same time.
 - The [`hideMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidemarker-markerid) method now accepts an array of IDs to hide multiple markers at the same time.
 - The [`showMarker`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showmarker-markerid) method now accepts an array of IDs to show multiple markers at the same time.
-- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now accepts `*` to open all info windows at the same time.
 - The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now accepts an array of IDs to open multiple info windows at the same time.
-- The [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) method now accepts an array of IDs to close multiple info windows at the same time.
+- The [`openInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#openinfowindow-markerid) method now accepts `*` to open all info windows at the same time.
+- Added [`closeInfoWindow`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#closeinfowindow-markerid) method, which accepts an ID, an array of IDs, or `*` to close multiple info windows.
 - The [`hideKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#hidekml-kmlid) method now accepts an array of IDs to hide multiple KML layers at the same time.
 - The [`showKml`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#showkml-kmlid) method now accepts an array of IDs to show multiple KML layers at the same time.
 
 ### Changed
 - Improved JavaScript logging.
 - Protect against invalid coordinates when centering.
+- Deprecated `api` option, replaced with [`params` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/twig-php-methods/#tag-options).
 
 ### Fixed
 - Fixed JavaScript chaining bug.

@@ -479,15 +479,18 @@ class DynamicMap extends Model
             $options['assets'] = true;
         }
 
+        // Deprecated `api` option, replaced with `params` option
+        $options['params'] = ($options['params'] ?? $options['api'] ?? []);
+
         // If no additional API parameters were specified, default to empty array
-        if (!isset($options['api']) || !is_array($options['api'])) {
-            $options['api'] = [];
+        if (!isset($options['params']) || !is_array($options['params'])) {
+            $options['params'] = [];
         }
 
         // If we're permitted to load JS assets
         if ($options['assets']) {
             // Load assets with optional API parameters
-            GoogleMaps::loadAssets($options['api']);
+            GoogleMaps::loadAssets($options['params']);
         }
 
         // If marker callbacks were specified

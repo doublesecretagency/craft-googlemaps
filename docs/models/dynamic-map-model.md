@@ -459,10 +459,11 @@ Renders the necessary `<div>` container to hold the map. The final `<div>` will 
 
 | Option     | Type     | Default | Description
 |:-----------|:--------:|:-------:|:------------
-| `api`      | _object_ | `{}`    | Optional parameters for the Google Maps API.
-| `assets`   | _bool_   | `true`  | Whether to preload the necessary JavaScript assets.
 | `init`     | _bool_   | `true`  | Whether to automatically initialize the map via JavaScript.
+| `assets`   | _bool_   | `true`  | Whether to preload the necessary JavaScript assets.
 | `callback` | _string_ | `null`  | JavaScript function to run after the map has loaded.
+| `params`   | _object_ | `{}`    | Optional [parameters](https://developers.google.com/maps/documentation/javascript/url-params) for the Google Maps API.
+| `api`      | _object_ | `{}`    | _[DEPRECATED]_ Use `params` instead.
 
 By setting the `init` option to `false`, the map will not be automatically initialized in JavaScript. It must therefore be [manually initialized in JavaScript](/dynamic-maps/javascript-methods/#init-mapid-null-callback-null) when the page has completely rendered.
 
@@ -479,7 +480,7 @@ $twigMarkup = $map->tag();
 ```
 :::
 
-If you need to disable the automatic map initialization:
+If you need to [disable the automatic map initialization](/guides/delay-map-init/):
 
 :::code
 ```twig
@@ -487,6 +488,27 @@ If you need to disable the automatic map initialization:
 ```
 ```php
 $twigMarkup = $map->tag(['init' => false]);
+```
+:::
+
+If you need to [change the map language and/or region](/guides/changing-map-language/):
+
+:::code
+```twig
+{{ map.tag({
+    'params': {
+        'language': 'ja',
+        'region': 'JP'
+    }
+}) }}
+```
+```php
+$twigMarkup = $map->tag([
+    'params' => [
+        'language' => 'ja',
+        'region' => 'JP'
+    ]
+]);
 ```
 :::
 

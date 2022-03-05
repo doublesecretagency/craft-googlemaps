@@ -1,32 +1,36 @@
 ---
-description:
+description: It's easy to change the language of your map by adding a few extra query parameters to the Google Maps API URL.
 ---
 
 # Changing the Map Language
 
-If you want to manually specify the **language** and/or **region** of a map, you must append additional query parameters to the URL of the Google Maps API.
+If you want to control the **language** and/or **region** of a map, you'll need additional [query parameters](https://developers.google.com/maps/documentation/javascript/localization#Language) appended to the URL of the Google Maps API.
 
-However, the API URL is typically called _automatically_. You don't have direct access to it, and will rarely need to manage it directly:
+## Default API URL
 
-:::code
-```twig Default API URL
+Internally, the API URL is generated **automatically**. You don't have direct access to it, and will rarely need to manage it directly.
+
+```twig 
 https://maps.googleapis.com/maps/api/js?key=[KEY]
 ```
-:::
 
-But there are those times when you need to manually manipulate the API URL. For example, if you want the map to appear in Japanese (biased around the region of Japan), you would specify the `language` and `region` as part of the API URL...
+The `key` parameter will always be applied automatically, there's no need to ever include it manually.
 
-:::code
-```twig API URL with Language & Region Parameters
+## Custom API URL
+
+Sometimes you'll need to adjust the URL even further. For various reasons, you may decide to add some extra [query parameters](https://developers.google.com/maps/documentation/javascript/url-params) beyond what gets applied automatically.
+
+For example, if you want the map to appear in Japanese (biased around the region of Japan), you would need to specify the `language` and `region` as part of the API URL.
+
+```twig 
 https://maps.googleapis.com/maps/api/js?key=[KEY]&language=ja&region=JP
 ```
-:::
 
-Fortunately, you can append query parameters via the [`api` option](/dynamic-maps/twig-php-methods/#tag-options) of the `tag` method...
+Fortunately, it's easy to add query parameters via the `params` option of the [`tag` method](/dynamic-maps/twig-php-methods/#tag-options):
 
 ```twig
 {{ googleMaps.map(locations).tag({
-    'api': {
+    'params': {
         'language': 'ja',
         'region': 'JP'
     }

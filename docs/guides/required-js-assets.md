@@ -14,6 +14,7 @@ Combined, they produce an HTML snippet similar to this...
 
 ```html
 <script src="https://maps.googleapis.com/maps/api/js?key=[KEY]" defer></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js" defer></script>
 <script src="https://yourwebsite.com/cpresources/[HASH]/js/googlemaps.js"></script>
 <script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js"></script>
 ```
@@ -34,9 +35,41 @@ If your map is being rendered exclusively in JavaScript, the required assets wil
 
 If necessary, you can prevent the required assets from being loaded automatically.  When the `tag` method is appended, simply set the `assets` value to `false`.
 
+:::code
 ```twig
-{{ googleMaps.map(locations).tag({'assets': false}) }}
+{# Bypass default asset loading #}
+{{ map.tag({'assets': false}) }}
 ```
+```php
+// Bypass default asset loading
+$twigMarkup = $map->tag(['assets' => false]);
+```
+:::
+
+Or if you do want to load the assets, but just need more control over the Google Maps API URL, you can use the `params` option to make further adjustments. This allows you to add [query parameters](https://developers.google.com/maps/documentation/javascript/url-params) to the Google Maps API URL.
+
+:::code
+```twig
+{# Show map in Japanese #}
+{{ map.tag({
+    'params': {
+        'language': 'ja',
+        'region': 'JP'
+    }
+}) }}
+```
+```php
+// Show map in Japanese
+$twigMarkup = $map->tag([
+    'params' => [
+        'language' => 'ja',
+        'region' => 'JP'
+    ]
+]);
+```
+:::
+
+
 
 For more info, see the complete [list of options...](/dynamic-maps/twig-php-methods/#tag-options)
 
@@ -91,4 +124,4 @@ $assets = GoogleMaps::getAssets();
 ```
 :::
 
-Like `loadAssets`, the `getAssets` method can accept an optional array of [API URL parameters](https://developers.google.com/maps/documentation/javascript/url-params).
+Like `loadAssets`, the `getAssets` method can accept an optional array of [query parameters](https://developers.google.com/maps/documentation/javascript/url-params) for the Google Maps API URL.
