@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed conflict between clustering and info windows.
+
 ## 4.1.2 - 2022-03-07
 
 ### Added

@@ -390,7 +390,7 @@ function DynamicMap(locations, options) {
         // If setting icon for all markers
         if ('*' === markerId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Setting icon for all markers:`, icon);
             }
             // Set each marker icon individually
@@ -444,7 +444,7 @@ function DynamicMap(locations, options) {
         // If hiding all markers
         if ('*' === markerId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Hiding all markers`);
             }
             // Hide each marker individually
@@ -502,7 +502,7 @@ function DynamicMap(locations, options) {
         // If showing all markers
         if ('*' === markerId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Showing all markers`);
             }
             // Show each marker individually
@@ -560,7 +560,7 @@ function DynamicMap(locations, options) {
         // If opening all info windows
         if ('*' === markerId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Opening all info windows`);
             }
             // Open each info window individually
@@ -619,7 +619,7 @@ function DynamicMap(locations, options) {
         // If closing all info windows
         if ('*' === markerId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Closing all info windows`);
             }
             // Close each info window individually
@@ -671,7 +671,7 @@ function DynamicMap(locations, options) {
         // If hiding all KML layers
         if ('*' === kmlId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Hiding all KML layers`);
             }
             // Hide each KML layer individually
@@ -723,7 +723,7 @@ function DynamicMap(locations, options) {
         // If showing all KML layers
         if ('*' === kmlId) {
             // Log status
-            if (googleMaps.log) {
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Showing all KML layers`);
             }
             // Show each KML layer individually
@@ -943,7 +943,7 @@ function DynamicMap(locations, options) {
         // Add click event to marker
         google.maps.event.addListener(marker, 'click', function() {
             // Close all info windows
-            map.closeInfoWindow('*');
+            map.closeInfoWindow('*', true);
             // Open info window for this marker
             map.openInfoWindow(markerId);
         });
@@ -1061,7 +1061,7 @@ function DynamicMap(locations, options) {
         // Set clustering options
         const options = {
             'map': this._map,
-            'markers':  [],
+            'markers': [],
         };
 
         // If customized clustering
@@ -1078,6 +1078,26 @@ function DynamicMap(locations, options) {
             if (this._cluster.onClusterClick ?? null) {
                 options.onClusterClick = this._cluster.onClusterClick;
             }
+        }
+
+        // If no onClusterClick defined, use default (native) function
+        const onClusterClick =
+            options.onClusterClick ??
+            markerClusterer.defaultOnClusterClickHandler;
+
+        // Set parent map object
+        const parent = this;
+
+        // Wrap onClusterClick with a safeguard function
+        options.onClusterClick = function (event, cluster, map) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`[${parent.id}] Opening cluster of ${cluster.markers.length} markers`);
+            }
+            // Close all info windows
+            parent.closeInfoWindow('*', true);
+            // Run original onClusterClick function
+            onClusterClick(event, cluster, map);
         }
 
         // Create the marker clustering object
