@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.2 - 2022-03-07
 
 ### Added
 - The [`setMarkerIcon`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/universal-methods/#setmarkericon-markerid-icon) method now accepts an array of IDs to set an icon for multiple markers at the same time.
