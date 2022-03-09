@@ -186,7 +186,7 @@
 
                     // If google object doesn't exist yet, log message and bail
                     if (!google) {
-                        console.error('The `google` object has not yet been loaded.');
+                        console.error('[GM] The `google` object has not yet been loaded.');
                         return;
                     }
 

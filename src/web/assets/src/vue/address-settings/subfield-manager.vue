@@ -5,6 +5,7 @@
                 <th scope="col" class="singleline-cell textual">Label</th>
                 <th scope="col" class="number-cell textual" style="text-align:right">Width</th>
                 <th scope="col" class="checkbox-cell" style="text-align:center" title="Include a subfield in the visible layout.">Show</th>
+                <th scope="col" class="checkbox-cell" style="text-align:center" title="Show autocomplete matches when typing.">Auto</th>
 <!--                <th scope="col" class="checkbox-cell" style="text-align:center" title="Require a subfield when saving an address.">Req.</th>-->
                 <th>&nbsp;</th>
             </tr>
@@ -22,9 +23,14 @@
                         <input type="checkbox" :name="fieldName(subfield.key, 'enabled')" v-model="$root.$data.settings.subfieldConfig[subfield.key].enabled" :id="`enabled-${subfield.key}`" class="checkbox" value="1" /><label :for="`enabled-${subfield.key}`"></label>
                     </div>
                 </td>
+                <td class="checkbox-cell" style="width:15%; text-align:center;">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" :name="fieldName(subfield.key, 'autocomplete')" v-model="$root.$data.settings.subfieldConfig[subfield.key].autocomplete" :id="`autocomplete-${subfield.key}`" class="checkbox" value="1" /><label :for="`autocomplete-${subfield.key}`"></label>
+                    </div>
+                </td>
 <!--                <td class="checkbox-cell" style="width:15%; text-align:center;">-->
 <!--                    <div class="checkbox-wrapper">-->
-<!--                        <input type="checkbox" :name="fieldName(subfield.key, 'required')" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" value=1" /><label :for="`required-${subfield.key}`"></label>-->
+<!--                        <input type="checkbox" :name="fieldName(subfield.key, 'required')" v-model="$root.$data.settings.subfieldConfig[subfield.key].required" :id="`required-${subfield.key}`" class="checkbox" value="1" /><label :for="`required-${subfield.key}`"></label>-->
 <!--                    </div>-->
 <!--                </td>-->
                 <td class="thin action">

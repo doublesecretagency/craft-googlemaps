@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+- Allow multiple subfields to perform Autocomplete. ([#42](https://github.com/doublesecretagency/craft-googlemaps/issues/42))
+
 ### Fixed
 - Fixed conflict between clustering and info windows.
 

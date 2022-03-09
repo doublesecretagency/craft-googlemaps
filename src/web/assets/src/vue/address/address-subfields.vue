@@ -3,7 +3,7 @@
         <input
             v-for="subfield in subfieldDisplay()"
             :placeholder="subfield.label"
-            :ref="(subfield.enabled ? 'autocomplete' : '')"
+            :ref="subfield.key"
             v-model="$root.$data.data.address[subfield.key]"
             :class="inputClasses"
             autocomplete="chrome-off"
@@ -22,7 +22,6 @@
             return {
                 handle: this.$root.$data.handle,
                 namespacedName: this.$root.$data.namespacedName,
-                autocomplete: false,
                 inputClasses: [
                     'text',
                     'fullwidth'
@@ -31,61 +30,47 @@
         },
         mounted() {
             try {
-                const google = window.google;
-                const options = {
-                    fields: [
-                        'address_components',
-                        'formatted_address',
-                        'geometry.location',
-                        'name',
-                        'place_id'
-                    ]
-                };
-
                 // If google object doesn't exist yet, log message and bail
-                if (!google) {
-                    console.error('The `google` object has not yet been loaded.');
+                if (!window.google) {
+                    console.error('[GM] The `google` object has not yet been loaded.');
                     return;
                 }
 
-                // If no subfields exist, bail
-                if (!this.$refs.autocomplete) {
-                    return;
+                // Get field settings
+                const settings = this.$root.$data.settings;
+
+                // Initialize loop variables
+                let subfield, enabled, autocomplete;
+                let first = false; // Key of the FIRST subfield
+                let activate = []; // Array of subfields to activate
+
+                // Loop through all subfields
+                for (let key in settings.subfieldConfig) {
+                    // Get each subfield
+                    subfield = settings.subfieldConfig[key];
+                    // Get subfield values
+                    enabled      = (1 === parseInt(subfield.enabled ?? 0));
+                    autocomplete = (1 === parseInt(subfield.autocomplete ?? 0));
+                    // Get key of FIRST enabled subfield
+                    if (!first && enabled) {
+                        first = key;
+                    }
+                    // If set to autocomplete, copy to array
+                    if (autocomplete) {
+                        activate.push(this.$refs[key][0]);
+                    }
                 }
 
-                // Get first subfield
-                const $first = this.$refs.autocomplete[0];
+                // If the autocomplete array is empty
+                if (!activate.length) {
+                    // Activate only the FIRST subfield
+                    activate.push(this.$refs[first][0]);
+                }
 
-                // Create an Autocomplete object
-                this.autocomplete = new google.maps.places.Autocomplete($first, options);
-
-                // Listen for autocomplete trigger
-                this.autocomplete.addListener('place_changed', () => {
-
-                    // Get newly selected place
-                    let place = this.autocomplete.getPlace();
-
-                    // Configure address data based on place
-                    this.setAddressData(place);
-
-                    // Get settings
-                    let settings = this.$root.$data.settings;
-
-                    // If not changing the map visibility, bail
-                    if ('noChange' === settings.mapOnSearch) {
-                        return;
-                    }
-
-                    // Change map visibility based on settings
-                    this.$root.$data.settings.showMap = ('open' === settings.mapOnSearch);
-                });
-
-                // Prevent address selection from attempting to submit the form
-                google.maps.event.addDomListener($first, 'keydown', (event) => {
-                    if (event.keyCode === 13) {
-                        event.preventDefault();
-                    }
-                });
+                // Activate autocomplete for selected subfields
+                for (let i in activate) {
+                    this.setAutocomplete(activate[i]);
+                }
 
             } catch (error) {
 
@@ -95,6 +80,45 @@
             }
         },
         methods: {
+
+            // Initialize Autocomplete for a single input field
+            setAutocomplete($input) {
+
+                // Create an Autocomplete object
+                let autocomplete = new window.google.maps.places.Autocomplete($input, {
+                    fields: [
+                        'address_components',
+                        'formatted_address',
+                        'geometry.location',
+                        'name',
+                        'place_id'
+                    ]
+                });
+
+                // Listen for autocomplete trigger
+                autocomplete.addListener('place_changed', () => {
+                    // Get newly selected place
+                    let place = autocomplete.getPlace();
+                    // Configure address data based on place
+                    this.setAddressData(place);
+                    // Get settings
+                    const settings = this.$root.$data.settings;
+                    // If not changing the map visibility, bail
+                    if ('noChange' === settings.mapOnSearch) {
+                        return;
+                    }
+                    // Change map visibility based on settings
+                    this.$root.$data.settings.showMap = ('open' === settings.mapOnSearch);
+                });
+
+                // Prevent address selection from attempting to submit the form
+                window.google.maps.event.addDomListener($input, 'keydown', (event) => {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                    }
+                });
+
+            },
 
             // Populate address data when Autocomplete selected
             setAddressData(place) {
