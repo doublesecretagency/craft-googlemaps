@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.3 - 2022-03-09
 
 ### Added
 - Allow multiple subfields to perform Autocomplete. ([#42](https://github.com/doublesecretagency/craft-googlemaps/issues/42))
