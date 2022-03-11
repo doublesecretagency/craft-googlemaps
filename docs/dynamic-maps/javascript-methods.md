@@ -168,7 +168,7 @@ var kml = map.getKml(kmlId);
 
 ## `getMarkerClusterer()`
 
-If clustering is [enabled](/dynamic-maps/clustering-markers/), get the map's [marker clustering](https://googlemaps.github.io/js-markerclusterer/) object. 
+If clustering is [enabled](/dynamic-maps/clustering-markers/), get the map's [marker clustering](https://googlemaps.github.io/js-markerclusterer/) object.
 
 :::code
 ```js
@@ -180,3 +180,57 @@ var clusterer = map.getMarkerClusterer();
 #### Returns
 
 - A [marker clustering](https://googlemaps.github.io/js-markerclusterer/) object. Will return `false` if clustering is not enabled.
+
+---
+---
+
+## `getZoom()`
+
+Get the current zoom level.
+
+:::code
+```js
+// Get the current zoom level of the map
+var level = map.getZoom();
+```
+:::
+
+#### Returns
+
+- An integer between `1` - `22` representing the current zoom level.
+
+---
+---
+
+## `getCenter()`
+
+Get the center point coordinates of the map based on its current position.
+
+:::code
+```js
+// Get the current center point of the map
+var coords = map.getCenter();
+```
+:::
+
+#### Returns
+
+- A set of [coordinates](/models/coordinates/) representing the current map center.
+
+---
+---
+
+## `getBounds()`
+
+Get the [bounds](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBounds) of the map based on its current position.
+
+:::code
+```js
+// Get the current bounds of the map
+var bounds = map.getBounds();
+```
+:::
+
+#### Returns
+
+- A set of [bounds](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBounds), which is effectively a pair of [coordinates](/models/coordinates/), representing the Southwest & Northeast corners of a rectangle.

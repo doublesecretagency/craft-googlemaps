@@ -459,6 +459,51 @@ var clusterer = map.getMarkerClusterer();
 ---
 ---
 
+### `getZoom()`
+
+Get the current zoom level.
+
+```js
+var level = map.getZoom();
+```
+
+#### Returns
+
+- An integer between `1` - `22` representing the current zoom level.
+
+---
+---
+
+### `getCenter()`
+
+Get the center point coordinates of the map based on its current position.
+
+```js
+var coords = map.getCenter();
+```
+
+#### Returns
+
+- A set of [coordinates](/models/coordinates/) representing the current map center.
+
+---
+---
+
+### `getBounds()`
+
+Get the [bounds](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBounds) of the map based on its current position.
+
+```js
+var bounds = map.getBounds();
+```
+
+#### Returns
+
+- A set of [bounds](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBounds), which is effectively a pair of [coordinates](/models/coordinates/), representing the Southwest & Northeast corners of a rectangle.
+
+---
+---
+
 ### `tag(options = {})`
 
 Creates a new `<div>` element, detached from the DOM. If a `parentId` is specified, the element will automatically be injected into the specified parent container.

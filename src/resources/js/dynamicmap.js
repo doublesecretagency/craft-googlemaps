@@ -269,7 +269,7 @@ function DynamicMap(locations, options) {
 
         // Ensure coordinates are valid
         coords = coords
-            || this._getBounds().getCenter()
+            || this._determineBounds().getCenter()
             || this._d.center
             || null;
 
@@ -315,7 +315,7 @@ function DynamicMap(locations, options) {
         }
 
         // Fit bounds of current map
-        this._map.fitBounds(this._getBounds());
+        this._map.fitBounds(this._determineBounds());
 
         // Keep the party going
         return this;
@@ -829,6 +829,42 @@ function DynamicMap(locations, options) {
         return this._cluster;
     };
 
+    // Get the current zoom level of the map
+    this.getZoom = function() {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`[${this.id}] Getting the current zoom level of the map`);
+        }
+
+        // Return zoom level
+        return this._map.getZoom();
+    };
+
+    // Get the current center point of the map
+    this.getCenter = function() {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`[${this.id}] Getting the current center point of the map`);
+        }
+
+        // Return the center coordinates
+        return this._map.getCenter();
+    };
+
+    // Get the current bounds of the map
+    this.getBounds = function() {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`[${this.id}] Getting the current bounds of the map`);
+        }
+
+        // Return a pair of bounds coordinates
+        return this._map.getBounds();
+    };
+
     // ========================================================================= //
 
     // Generate a complete map element
@@ -1001,7 +1037,7 @@ function DynamicMap(locations, options) {
     };
 
     // Get the functional boundaries of the current map
-    this._getBounds = function() {
+    this._determineBounds = function() {
 
         // Create a set of map bounds
         var bounds = new google.maps.LatLngBounds();

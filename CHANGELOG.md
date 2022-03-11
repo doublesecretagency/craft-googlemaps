@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Added [`getZoom`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getzoom) JavaScript method. ([#35](https://github.com/doublesecretagency/craft-googlemaps/issues/35))
+- Added [`getCenter`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getcenter) JavaScript method. ([#35](https://github.com/doublesecretagency/craft-googlemaps/issues/35))
+- Added [`getBounds`](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/javascript-methods/#getbounds) JavaScript method. ([#35](https://github.com/doublesecretagency/craft-googlemaps/issues/35))
+
 ## 4.1.3 - 2022-03-09
 
 ### Added
