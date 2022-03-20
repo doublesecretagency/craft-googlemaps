@@ -95,7 +95,7 @@ class GoogleMapsPlugin extends Plugin
         Event::on(
             Entry::class,
             Element::EVENT_REGISTER_EXPORTERS,
-            function(RegisterElementExportersEvent $event) {
+            static function (RegisterElementExportersEvent $event) {
                 $event->exporters[] = AddressesCondensedExporter::class;
                 $event->exporters[] = AddressesExpandedExporter::class;
             }

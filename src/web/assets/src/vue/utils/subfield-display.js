@@ -88,7 +88,7 @@ function displayConfig(arrangement) {
             key: subfield.key,
             label: subfield.label,
             enabled: subfield.enabled,
-            // required: subfield.required,
+            required: subfield.required,
             styles: styles
         });
 

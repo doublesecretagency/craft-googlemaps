@@ -23,6 +23,7 @@ use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\helpers\ProximitySearchHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
+use doublesecretagency\googlemaps\validators\AddressValidator;
 use doublesecretagency\googlemaps\web\assets\AddressFieldAsset;
 use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
 
@@ -151,6 +152,13 @@ class AddressField extends Field implements PreviewableFieldInterface
     public $coordinatesMode = 'readOnly';
 
     /**
+     * Whether the coordinates subfields are required.
+     *
+     * @var bool
+     */
+    public $requireCoordinates = true;
+
+    /**
      * Default coordinates of a new Address field.
      *
      * @var array|null
@@ -266,6 +274,11 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // If value is an array, load it directly into an Address model
         if (is_array($value)) {
+            // Get coordinates
+            $lat  = ($value['lat']  ?? null);
+            $lng  = ($value['lng']  ?? null);
+            $zoom = ($value['zoom'] ?? null);
+            // Return Address model
             return new AddressModel([
                 'elementId' => (int) ($element->id ?? null),
                 'fieldId'   => (int) ($this->id ?? null),
@@ -280,9 +293,9 @@ class AddressField extends Field implements PreviewableFieldInterface
                 'county'    => ($value['county'] ?? null),
                 'country'   => ($value['country'] ?? null),
                 'placeId'   => ($value['placeId'] ?? null),
-                'lat'       => (float) ($value['lat'] ?? null),
-                'lng'       => (float) ($value['lng'] ?? null),
-                'zoom'      => (int) ($value['zoom'] ?? null),
+                'lat'       => (is_numeric($lat) ? (float) $lat : null),
+                'lng'       => (is_numeric($lng) ? (float) $lng : null),
+                'zoom'      => (is_numeric($zoom) ? (int) $zoom : null),
             ]);
         }
 
@@ -324,6 +337,24 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Return an Address model
         return new AddressModel($attr);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * @inheritdoc
+     */
+    public function getElementValidationRules(): array
+    {
+        // If not required, skip validation
+        if (!$this->required) {
+            return [];
+        }
+
+        // Apply validation rule
+        return [
+            [AddressValidator::class]
+        ];
     }
 
     // ========================================================================= //
@@ -442,34 +473,6 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Modify the element query to perform a proximity search
         ProximitySearchHelper::modifyElementsQuery($query, $options, $this);
     }
-
-    // ========================================================================= //
-
-    // TODO: Add field validation
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function getElementValidationRules(): array
-//    {
-//        return [
-//            ['validateCoords'],
-//        ];
-//    }
-//
-//    public function validateCoords(ElementInterface $element)
-//    {
-//        $address = $element->getFieldValue($this->handle);
-//
-//        $hasLat = (bool) $address->lat;
-//        $hasLng = (bool) $address->lng;
-//        $validLat = ($hasLat ? is_numeric($address->lat) : true);
-//        $validLng = ($hasLng ? is_numeric($address->lng) : true);
-//
-//        if (!($validLat && $validLng)) {
-//            $element->addError($this->handle, Craft::t('google-maps', 'If coordinates are specified, they must be numbers.'));
-//        }
-//    }
 
 }
 

@@ -1,3 +1,5 @@
+{% from '_includes/forms' import lightswitchField %}
+
 {% set dropdown = 'google-maps/_form/select' %}
 
 {% include dropdown with {
@@ -73,3 +75,14 @@
         ],
     }
 } %}
+
+{# Adjust padding of lightswitch #}
+{% css '.address-settings-fields .lightswitch-inner-container {padding-left: 4px;}' %}
+
+{{ lightswitchField({
+    label: "Require Coordinates"|t('google-maps'),
+    instructions: 'Check coordinates if field is required.',
+    name: 'requireCoordinates',
+    on: settings.requireCoordinates ?? true,
+    onLabel: "Address must include valid coordinates"
+}) }}
