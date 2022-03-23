@@ -5,7 +5,8 @@
             :placeholder="subfield.label"
             :ref="subfield.key"
             v-model="$root.$data.data.address[subfield.key]"
-            :class="inputClasses"
+            class="text fullwidth"
+            :class="{'required': subfield.required}"
             autocomplete="chrome-off"
             :name="`${namespacedName}[${subfield.key}]`"
             :style="subfield.styles"
@@ -21,11 +22,7 @@
         data() {
             return {
                 handle: this.$root.$data.handle,
-                namespacedName: this.$root.$data.namespacedName,
-                inputClasses: [
-                    'text',
-                    'fullwidth'
-                ]
+                namespacedName: this.$root.$data.namespacedName
             }
         },
         mounted() {

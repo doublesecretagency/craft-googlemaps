@@ -22,10 +22,12 @@ This area is a snapshot of the final Address field. What you see here is a direc
 
 You can use the subfield manager to finely customize all of the address component fields. With this tool, you can...
 
- - Change the text label of each subfield.
- - Change the width of each subfield.
- - Set whether each subfield is visible.
- - Rearrange the order of all subfields.
+ - Change the **text label** of each subfield.
+ - Change the **width** of each subfield.
+ - Set which subfields are **visible**.
+ - Set which subfields use **autocomplete**.
+ - Set which subfields will be **required**.
+ - **Rearrange** the order of all subfields.
 
 Feel free to move these subfields into whatever configuration you see fit!
 

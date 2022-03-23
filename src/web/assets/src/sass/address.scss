@@ -34,6 +34,11 @@
   }
 }
 
+// Highlight required subfields for validation
+.errors .required {
+  border: 1px solid #cf1124 !important;
+}
+
 // ========================================================================= //
 
 // When nested within a Super Table field, adjust top & bottom margins

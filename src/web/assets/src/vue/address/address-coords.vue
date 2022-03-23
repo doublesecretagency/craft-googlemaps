@@ -5,7 +5,7 @@
             :placeholder="coord.label"
             :type="getType"
             :readonly="getReadOnly"
-            :class="getInputClasses"
+            :class="getInputClasses(coord.key)"
             v-model.number="$root.$data.data.coords[coord.key]"
             autocomplete="chrome-off"
             :name="`${namespacedName}[${coord.key}]`"
@@ -30,8 +30,10 @@
             getReadOnly() {
                 // Whether the coordinate fields should be read-only
                 return !['editable','hidden'].includes(this.$root.$data.settings.coordinatesMode);
-            },
-            getInputClasses() {
+            }
+        },
+        methods: {
+            getInputClasses(key) {
                 // Get the coordinates mode from settings
                 let mode = this.$root.$data.settings.coordinatesMode;
 
@@ -40,16 +42,18 @@
                     return [];
                 }
 
+                // Whether to mark coordinates as required
+                let requireCoordinates = (key !== 'zoom' && this.$root.$data.settings.requireCoordinates);
+
                 // Return array of input classes
                 return [
                     'text',
                     'code',
                     'fullwidth',
-                    ('editable' !== mode ? 'disabled' : null)
+                    ('editable' !== mode ? 'disabled' : null),
+                    (requireCoordinates ? 'required' : null),
                 ];
-            }
-        },
-        methods: {
+            },
             // Get the display array
             coordinatesDisplay() {
                 return [
