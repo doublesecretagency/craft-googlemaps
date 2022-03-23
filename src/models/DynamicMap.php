@@ -479,8 +479,13 @@ class DynamicMap extends Model
             $options['assets'] = true;
         }
 
-        // Deprecated `api` option, replaced with `params` option
-        $options['params'] = ($options['params'] ?? $options['api'] ?? []);
+        // Deprecated `api` option
+        if ($options['api'] ?? false) {
+            // Replaced with `params` option
+            $options['params'] = $options['api'];
+            // Log deprecation notice
+            Craft::$app->getDeprecator()->log('`api` option', '[Google Maps] The `api` option of the `tag()` method has been deprecated. Use the `params` option instead.');
+        }
 
         // If no additional API parameters were specified, default to empty array
         if (!isset($options['params']) || !is_array($options['params'])) {
