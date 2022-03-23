@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.4 - 2022-03-23
 
 ### Added
 - Address subfields & coordinates can now be marked as required. ([#3](https://github.com/doublesecretagency/craft-googlemaps/issues/3))
