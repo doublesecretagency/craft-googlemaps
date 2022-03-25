@@ -160,11 +160,6 @@ function DynamicMap(locations, options) {
             // Create a new marker
             this._createMarker(coords, options.markerOptions);
 
-            // If content provided, create a new info window
-            if (options.infoWindowOptions.content) {
-                this._createInfoWindow(markerId, options.infoWindowOptions);
-            }
-
             // If callback is a boolean true
             if (true === options.markerClick) {
                 // Suppress click and link
@@ -389,7 +384,7 @@ function DynamicMap(locations, options) {
 
         // If setting icon for all markers
         if ('*' === markerId) {
-            // Log status
+            // Log status (if success is not assumed)
             if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Setting icon for all markers:`, icon);
             }
@@ -954,12 +949,30 @@ function DynamicMap(locations, options) {
 
     };
 
-    // Create a new info window object
-    this._createInfoWindow = function(markerId, infoWindowOptions) {
+    // Create a new KML layer
+    this._createKml = function(url, options) {
+
+        // Get KML ID or generate a random one
+        var kmlId = options.id || this._generateId('kml');
 
         // Log status
         if (googleMaps.log) {
-            console.log(`[${this.id}] Adding info window "${markerId}"`);
+            console.log(`[${this.id}] Adding KML layer "${kmlId}"`);
+        }
+
+        // Initialize KML object
+        this._kmls[kmlId] = new google.maps.KmlLayer(options);
+
+    };
+
+    // ========================================================================= //
+
+    // Set info window for each marker
+    this._initInfoWindow = function(markerId, infoWindowOptions) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`[${this.id}] Adding info window to marker "${markerId}"`);
         }
 
         // Get related marker
@@ -986,26 +999,8 @@ function DynamicMap(locations, options) {
 
     };
 
-    // Create a new KML layer
-    this._createKml = function(url, options) {
-
-        // Get KML ID or generate a random one
-        var kmlId = options.id || this._generateId('kml');
-
-        // Log status
-        if (googleMaps.log) {
-            console.log(`[${this.id}] Adding KML layer "${kmlId}"`);
-        }
-
-        // Initialize KML object
-        this._kmls[kmlId] = new google.maps.KmlLayer(options);
-
-    };
-
-    // ========================================================================= //
-
     // Set click event for each marker
-    this._markerClick = function(markerId, callback) {
+    this._initMarkerClick = function(markerId, callback) {
 
         // Log status
         if (googleMaps.log) {
@@ -1013,7 +1008,7 @@ function DynamicMap(locations, options) {
         }
 
         // Get related marker
-        var marker = this._markers[markerId];
+        var marker = this.getMarker(markerId, true);
 
         // If no related marker exists, bail
         if (!marker) {
@@ -1035,6 +1030,8 @@ function DynamicMap(locations, options) {
         google.maps.event.addListener(marker, 'click', callback);
 
     };
+
+    // ========================================================================= //
 
     // Get the functional boundaries of the current map
     this._determineBounds = function() {

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Refactored how info windows are loaded.
+
 ## 4.1.4 - 2022-03-23
 
 ### Added

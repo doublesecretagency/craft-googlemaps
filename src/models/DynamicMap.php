@@ -49,6 +49,11 @@ class DynamicMap extends Model
     private $_dna = [];
 
     /**
+     * @var array Collection of info windows tied to markers.
+     */
+    private $_infoWindows = [];
+
+    /**
      * @var array Collection of JS callback functions tied to markers.
      */
     private $_markerCallbacks = [];
@@ -498,6 +503,24 @@ class DynamicMap extends Model
             GoogleMaps::loadAssets($options['params']);
         }
 
+        // If info windows were specified
+        if ($this->_infoWindows) {
+            // Initialize list of info windows
+            $infoWindows = '';
+            // Loop through info windows
+            foreach ($this->_infoWindows as $markerId => $infoWindow) {
+                // JSON encode the info window options
+                $infoWindowOptions = Json::encode($infoWindow);
+                // Append each info window to list
+                $infoWindows .= "    '{$markerId}': {$infoWindowOptions},\n";
+            }
+
+            // Associate info windows with this map
+            $iw = "googleMaps._listInfoWindows['{$this->id}'] = {\n{$infoWindows}};";
+            // Register info windows at the end of the page
+            $view->registerJs($iw, $view::POS_END);
+        }
+
         // If marker callbacks were specified
         if ($this->_markerCallbacks) {
             // Initialize list of callbacks
@@ -508,7 +531,7 @@ class DynamicMap extends Model
                 $jsCallbacks .= "    '{$markerId}': {$callback},\n";
             }
             // Associate callbacks with this map
-            $cb = "googleMaps._markerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
+            $cb = "googleMaps._listMarkerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
             // Register callbacks at the end of the page
             $view->registerJs($cb, $view::POS_END);
         }
@@ -592,6 +615,8 @@ class DynamicMap extends Model
         if ($options['infoWindowTemplate'] ?? false) {
             // Add an info window for the marker
             $this->_markerInfoWindow($location, $options, $isCoords);
+            // Remove template path from DNA
+            unset($options['infoWindowTemplate']);
         }
 
         // If marker click callback specified and is a string
@@ -833,6 +858,14 @@ class DynamicMap extends Model
         // Set rendered template as infoWindowOptions content
         $options['infoWindowOptions']['content'] = $template;
 
+        // Get the marker ID
+        $markerId = $infoWindow['markerId'];
+
+        // Transfer info window to future JS array
+        $this->_infoWindows[$markerId] = $options['infoWindowOptions'];
+
+        // Remove info window from DNA
+        unset($options['infoWindowOptions']);
     }
 
     // ========================================================================= //

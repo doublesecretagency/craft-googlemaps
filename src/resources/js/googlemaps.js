@@ -7,8 +7,11 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of maps
     _maps: {},
 
+    // Initialize collection of info windows
+    _listInfoWindows: {},
+
     // Initialize collection of marker callbacks
-    _markerCallbacks: {},
+    _listMarkerCallbacks: {},
 
     // Initialize collection of cluster options
     _cluster: {},
@@ -35,10 +38,10 @@ window.googleMaps = window.googleMaps || {
     },
 
     // Get a specified map object
-    getMap: function(mapId) {
+    getMap: function(mapId, assumeSuccess) {
 
-        // Log status
-        if (this.log) {
+        // Log status (if success is not assumed)
+        if (this.log && !assumeSuccess) {
             console.log(`============================================================`);
             console.log(`[${mapId}] Getting existing map`);
         }
@@ -113,24 +116,50 @@ window.googleMaps = window.googleMaps || {
 
         }
 
-        // If any marker callbacks were specified
-        if (Object.keys(this._markerCallbacks).length) {
+        // Initialize loop variables
+        var mId, m, markerId, iw, cb;
+
+        // If any info windows were specified
+        if (Object.keys(this._listInfoWindows).length) {
 
             // Log status
             if (this.log) {
-                console.log(`[${map.id}] Activating marker callbacks:\n`,this._markerCallbacks);
+                console.log(`[${map.id}] Activating all info windows`);
+            }
+
+            // Loop through info windows of each map
+            for (mId in this._listInfoWindows) {
+                // Get current map
+                m = this.getMap(mId, true);
+                // Loop through info windows of current map
+                for (markerId in this._listInfoWindows[mId]) {
+                    // Get info window
+                    iw = this._listInfoWindows[mId][markerId];
+                    // Activate info window function
+                    m._initInfoWindow(markerId, iw);
+                }
+            }
+
+        }
+
+        // If any marker callbacks were specified
+        if (Object.keys(this._listMarkerCallbacks).length) {
+
+            // Log status
+            if (this.log) {
+                console.log(`[${map.id}] Activating all marker callbacks`);
             }
 
             // Loop through marker callbacks of each map
-            for (var mId in this._markerCallbacks) {
+            for (mId in this._listMarkerCallbacks) {
                 // Get current map
-                var m = this.getMap(mId);
+                m = this.getMap(mId, true);
                 // Loop through marker callbacks of current map
-                for (var markerId in this._markerCallbacks[mId]) {
+                for (markerId in this._listMarkerCallbacks[mId]) {
                     // Get marker callback
-                    var cb = this._markerCallbacks[mId][markerId];
+                    cb = this._listMarkerCallbacks[mId][markerId];
                     // Activate marker callback function
-                    m._markerClick(markerId, cb);
+                    m._initMarkerClick(markerId, cb);
                 }
             }
 
