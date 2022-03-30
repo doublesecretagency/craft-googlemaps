@@ -171,13 +171,13 @@ function DynamicMap(locations, options) {
             if (options.markerClick) {
 
                 // Attach listener for specified function
-                this._markerClick(markerId, options.markerClick);
+                this._initMarkerClick(markerId, options.markerClick);
 
             // Else if marker link specified and valid
             } else if (options.markerLink && 'string' === typeof options.markerLink) {
 
                 // Attach listener which directs to specified link
-                this._markerClick(markerId, function () {
+                this._initMarkerClick(markerId, function () {
                     window.location.href = options.markerLink;
                 });
 

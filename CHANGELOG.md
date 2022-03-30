@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed `markerClick` regression. ([#49](https://github.com/doublesecretagency/craft-googlemaps/issues/49))
+
 ## 4.1.5 - 2022-03-25
 
 ### Changed
