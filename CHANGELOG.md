@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed `markerClick` regression. ([#49](https://github.com/doublesecretagency/craft-googlemaps/issues/49))
+- Improved messaging regarding "Required" subfields and coordinates. ([#47](https://github.com/doublesecretagency/craft-googlemaps/issues/47))
 
 ## 4.1.5 - 2022-03-25
 

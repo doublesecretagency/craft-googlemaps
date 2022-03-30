@@ -31,6 +31,12 @@ You can use the subfield manager to finely customize all of the address componen
 
 Feel free to move these subfields into whatever configuration you see fit!
 
+:::warning Required Subfields and/or Coordinates
+If any of your subfields or coordinates are required, you **must also** set the field to be "Required" when adding it to your field layout.
+
+<img class="dropshadow" :src="$withBase('/images/address-field/required.png')" alt="Screenshot of field layout" width="331" style="margin-bottom:20px">
+:::
+
 ## Show map on initial load?
 
 This dropdown allows you to select how the map should appear when the edit page is initially loaded.

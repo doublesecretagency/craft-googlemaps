@@ -4,9 +4,9 @@
             <tr>
                 <th scope="col" class="singleline-cell textual">Label</th>
                 <th scope="col" class="number-cell textual" style="text-align:right">Width</th>
-                <th scope="col" class="checkbox-cell" style="text-align:center" title="Include a subfield in the visible layout.">Show</th>
-                <th scope="col" class="checkbox-cell" style="text-align:center" title="Show autocomplete matches when typing.">Auto</th>
-                <th scope="col" class="checkbox-cell" style="text-align:center" title="Check subfield if field is required.">Req.</th>
+                <th scope="col" class="checkbox-cell" style="text-align:center; cursor:help;" title="Selected subfields will be shown in the visible layout. (Non-selected subfields will be included as hidden inputs.)">Show</th>
+                <th scope="col" class="checkbox-cell" style="text-align:center; cursor:help;" title="When typing an address, Google Places Autocomplete will be active on the selected subfields.">Auto</th>
+                <th scope="col" class="checkbox-cell" style="text-align:center; cursor:help; white-space:nowrap;" title="If the field is marked as &quot;Required&quot;, it must include the selected subfields. See warning message below.">Req.<span class="required" aria-hidden="true"></span></th>
                 <th>&nbsp;</th>
             </tr>
         </thead>

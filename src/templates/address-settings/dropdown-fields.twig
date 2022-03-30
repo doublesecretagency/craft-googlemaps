@@ -81,8 +81,9 @@
 
 {{ lightswitchField({
     label: "Require Coordinates"|t('google-maps'),
-    instructions: 'Check coordinates if field is required.',
+    instructions: 'If enabled, this Address **must** include a valid set of coordinates. Only applicable when the Address field is marked as \"Required\" in the field layout. ',
     name: 'requireCoordinates',
+    required: true,
     on: settings.requireCoordinates ?? true,
-    onLabel: "Address must include valid coordinates"
+    onLabel: 'Require coordinates when field is "Required"'
 }) }}

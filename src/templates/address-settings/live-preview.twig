@@ -31,13 +31,23 @@
 
         <hr>
 
-        <div class="field">
+        <div class="field" style="margin-top:10px">
             <div class="heading settings-note">
                 <label>Set the Default Map Starting Position</label>
                 <div class="instructions">
                     <p>You can to set the <strong>default coordinates &amp; zoom level</strong> using the "Preview" field above. Whatever position you save this map to will become the default map orientation for all new instances of this field.</p>
                     <p>Only the <strong>latitude</strong>, <strong>longitude</strong>, and <strong>zoom</strong> will be used to orient the map when a new element is being created. No other data from the "Preview" field will prepopulate future instances of this field.</p>
                 </div>
+            </div>
+
+            <div class="heading settings-note warning" style="margin-top:12px">
+                <label>Required Subfields and/or Coordinates (<span class="required" aria-hidden="true"></span>)</label>
+                <div class="instructions">
+                    <p>If any of your subfields or coordinates are required, you <strong>must also</strong> set the field to be "Required" when adding it to your field layout.</p>
+                </div>
+                {% set screenshotPath = '@doublesecretagency/googlemaps/web/assets/dist/images/required.png' %}
+                {% set screenshotSrc = view.getAssetManager().getPublishedUrl(screenshotPath, true) %}
+                <img class="screenshot" src="{{ screenshotSrc }}" alt="Screenshot of field layout">
             </div>
         </div>
 
@@ -52,5 +62,23 @@
 }
 .settings-note .instructions {
     margin-top:10px;
+}
+.settings-note.warning {
+    background-color: rgba(255,229,100,0.3);
+    border-color: #e7c000;
+    color: #6b5900;
+}
+.settings-note.warning .required:after {
+    margin: 0 0;
+}
+img.screenshot {
+    width: 331px;
+    max-width: 100%;
+    margin: 13px auto 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #edf2f7;
+    border-radius: 0.3rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
 {% endcss %}
