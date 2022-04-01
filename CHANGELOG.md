@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.6 - 2022-04-01
 
 ### Fixed
 - Fixed info window regression. ([#48](https://github.com/doublesecretagency/craft-googlemaps/issues/48))
