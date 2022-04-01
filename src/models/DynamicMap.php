@@ -722,9 +722,18 @@ class DynamicMap extends Model
         // If location is an Address Model
         if ($location instanceof Address) {
 
+            // Get the relevant field
+            /** @var AddressField $field */
+            $field = $location->getField();
+
             // Set address and coordinates
             $infoWindow['address'] = $location;
             $infoWindow['coords'] = $location->getCoords();
+
+            // If field is known, set marker ID
+            if ($field) {
+                $infoWindow['markerId'] = "{$location->id}-{$field->handle}";
+            }
 
             // Create info window
             $this->_createInfoWindow($options, $infoWindow);
@@ -859,10 +868,13 @@ class DynamicMap extends Model
         $options['infoWindowOptions']['content'] = $template;
 
         // Get the marker ID
-        $markerId = $infoWindow['markerId'];
+        $markerId = ($infoWindow['markerId'] ?? false);
 
-        // Transfer info window to future JS array
-        $this->_infoWindows[$markerId] = $options['infoWindowOptions'];
+        // If a marker ID exists
+        if ($markerId) {
+            // Transfer info window to future JS array
+            $this->_infoWindows[$markerId] = $options['infoWindowOptions'];
+        }
 
         // Remove info window from DNA
         unset($options['infoWindowOptions']);

@@ -11,10 +11,12 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
+use Craft;
 use craft\base\Element;
 use craft\helpers\StringHelper;
 use craft\models\FieldLayout;
 use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\models\Address;
 use doublesecretagency\googlemaps\models\Location;
 
 /**
@@ -53,6 +55,22 @@ class MapHelper
      */
     public static function extractCoords($locations, array $options = []): array
     {
+        // If it's an Address Model, return the coordinates w/ optional ID
+        if ($locations instanceof Address) {
+            // Get the Address coordinates
+            $coords = $locations->getCoords();
+            // Get the relevant field
+            /** @var AddressField $field */
+            $field = Craft::$app->getFields()->getFieldById($locations->fieldId);
+            // If a field exists
+            if ($field) {
+                // Add marker ID to the coordinates
+                $coords['id'] = "{$locations->id}-{$field->handle}";
+            }
+            // Return the full coordinates
+            return $coords;
+        }
+
         // If it's a Location Model, return the coordinates
         if ($locations instanceof Location) {
             return [$locations->getCoords()];
@@ -86,6 +104,22 @@ class MapHelper
 
         // Loop through all locations
         foreach ($locations as $location) {
+
+            // If it's an Address Model, return the coordinates w/ optional ID
+            if ($location instanceof Address) {
+                // Get the Address coordinates
+                $coords = $location->getCoords();
+                // Get the relevant field
+                /** @var AddressField $field */
+                $field = Craft::$app->getFields()->getFieldById($location->fieldId);
+                // If a field exists
+                if ($field) {
+                    // Add marker ID to the coordinates
+                    $coords['id'] = "{$location->id}-{$field->handle}";
+                }
+                // Append the full coordinates
+                $results[] = $coords;
+            }
 
             // If it's a Location Model, add the coordinates to results
             if ($location instanceof Location) {

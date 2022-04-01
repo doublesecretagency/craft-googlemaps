@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Fixed
+- Fixed info window regression. ([#48](https://github.com/doublesecretagency/craft-googlemaps/issues/48))
 - Fixed `markerClick` regression. ([#49](https://github.com/doublesecretagency/craft-googlemaps/issues/49))
 - Improved messaging regarding "Required" subfields and coordinates. ([#47](https://github.com/doublesecretagency/craft-googlemaps/issues/47))
 
