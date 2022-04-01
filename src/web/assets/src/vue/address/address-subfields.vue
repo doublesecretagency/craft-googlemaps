@@ -130,8 +130,11 @@
                 // Set all subfield data
                 addressComponents(components, data.address);
 
+                // Whether the `name` value matches the `street1` value
+                let boringName = (place.name === data.address['street1']);
+
                 // Append address meta data
-                data.address['name']      = place.name;
+                data.address['name']      = (!boringName ? place.name : null);
                 data.address['placeId']   = place.place_id;
                 data.address['formatted'] = place.formatted_address;
                 data.address['raw']       = JSON.stringify(place);

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Prevents the `name` subfield from being just a copy of `street1` subfield.
+
 ## 4.1.6 - 2022-04-01
 
 ### Fixed
