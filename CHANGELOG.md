@@ -4,6 +4,8 @@
 
 ### Changed
 - Prevents the `name` subfield from being just a copy of `street1` subfield.
+- Prevents the map from appearing as a grey box when zoom or center are missing.
+- Changed the default zoom level to 11.
 
 ## 4.1.6 - 2022-04-01
 

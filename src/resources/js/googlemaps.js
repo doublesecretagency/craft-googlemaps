@@ -338,13 +338,13 @@ window.googleMaps = window.googleMaps || {
 
         }
 
+        // Check to ensure the map is visible
+        map._checkMapVisibility();
+
         // Log status
         if (this.log) {
             console.log(`[${map.id}] Finished initializing map 👍`);
         }
-
-        // Check whether the resulting div is actually hidden
-        map._checkHeight();
 
         // Store map object for future reference
         this._maps[map.id] = map;

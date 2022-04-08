@@ -20,6 +20,7 @@ function DynamicMap(locations, options) {
 
     // Initialize defaults
     this._d = {};
+    this._defaultZoom = 11;
 
     // ========================================================================= //
 
@@ -47,7 +48,7 @@ function DynamicMap(locations, options) {
         this.div.style.display = 'block';
 
         // Set defaults (with fallbacks)
-        this._d.zoom              = options.zoom              || 4;
+        this._d.zoom              = options.zoom              || null;
         this._d.center            = options.center            || null;
         this._d.markerOptions     = options.markerOptions     || {};
         this._d.infoWindowOptions = options.infoWindowOptions || {};
@@ -79,18 +80,6 @@ function DynamicMap(locations, options) {
         if (locations && locations.length > 0) {
             // Add markers (using default markerOptions & infoWindowOptions)
             this.markers(locations);
-            // Fit map to marker boundaries
-            this.fit();
-        }
-
-        // Optionally zoom the map
-        if (options.zoom) {
-            this.zoom(options.zoom);
-        }
-
-        // Optionally center the map
-        if (options.center) {
-            this.center(options.center);
         }
     };
 
@@ -229,15 +218,16 @@ function DynamicMap(locations, options) {
     };
 
     // Zoom map to specified level
-    this.zoom = function(level) {
+    this.zoom = function(level, assumeSuccess) {
 
         // Ensure level is valid
-        level = level
-            || this._d.zoom
-            || 4;
+        level = level || this._d.zoom;
 
-        // Log status
-        if (googleMaps.log) {
+        // Update default zoom level
+        this._d.zoom = level;
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`[${this.id}] Zooming map to level`, level);
         }
 
@@ -252,24 +242,20 @@ function DynamicMap(locations, options) {
             mapObject._map.setZoom(level);
         });
 
-        // Update default zoom level
-        this._d.zoom = level;
-
         // Keep the party going
         return this;
     };
 
     // Center the map on a set of coordinates
-    this.center = function(coords) {
+    this.center = function(coords, assumeSuccess) {
 
         // Ensure coordinates are valid
         coords = coords
             || this._determineBounds().getCenter()
-            || this._d.center
-            || null;
+            || this._d.center;
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`[${this.id}] Centering map on coordinates`, coords);
         }
 
@@ -283,6 +269,9 @@ function DynamicMap(locations, options) {
         coords.lat = parseFloat(coords.lat);
         coords.lng = parseFloat(coords.lng);
 
+        // Update default center coordinates
+        this._d.center = coords;
+
         // Pass object to callback function
         var mapObject = this;
 
@@ -294,23 +283,33 @@ function DynamicMap(locations, options) {
             mapObject._map.setCenter(coords);
         });
 
-        // Update default center coordinates
-        this._d.center = coords;
-
         // Keep the party going
         return this;
     };
 
     // Fit map according to bounds
-    this.fit = function() {
+    this.fit = function(assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`[${this.id}] Fitting map to existing boundaries`);
         }
 
         // Fit bounds of current map
         this._map.fitBounds(this._determineBounds());
+
+        // Get the total number of markers
+        const totalMarkers = Object.keys(this._markers).length;
+
+        // If no markers exist
+        if (!totalMarkers) {
+            // Example coordinates
+            const zeroZero = {'lat':0,'lng':0};
+            // Log error message
+            console.error(`[GM] No markers exist, the map will be centered in the middle of the ocean! 🐙`, zeroZero);
+            // We are in the ocean, zoom out
+            this.zoom(2, true);
+        }
 
         // Keep the party going
         return this;
@@ -370,8 +369,8 @@ function DynamicMap(locations, options) {
 
         // If setting icon for multiple markers
         if (Array.isArray(markerId)) {
-            // Log status
-            if (googleMaps.log) {
+            // Log status (if success is not assumed)
+            if (googleMaps.log && !assumeSuccess) {
                 console.log(`[${this.id}] Setting icon for multiple markers`);
             }
             // Set each marker icon individually
@@ -825,10 +824,10 @@ function DynamicMap(locations, options) {
     };
 
     // Get the current zoom level of the map
-    this.getZoom = function() {
+    this.getZoom = function(assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`[${this.id}] Getting the current zoom level of the map`);
         }
 
@@ -837,10 +836,10 @@ function DynamicMap(locations, options) {
     };
 
     // Get the current center point of the map
-    this.getCenter = function() {
+    this.getCenter = function(assumeSuccess) {
 
-        // Log status
-        if (googleMaps.log) {
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
             console.log(`[${this.id}] Getting the current center point of the map`);
         }
 
@@ -876,13 +875,13 @@ function DynamicMap(locations, options) {
         // If no valid parent container specified
         if (!parentId || 'string' !== typeof parentId) {
 
+            // Check to ensure the map is visible
+            this._checkMapVisibility();
+
             // Log status
             if (googleMaps.log) {
                 console.log(`[${this.id}] Finished initializing map as a detached element 👍`);
             }
-
-            // Check the container height
-            this._checkHeight();
 
             // Return the element as-is
             return this.div;
@@ -899,13 +898,13 @@ function DynamicMap(locations, options) {
             console.warn(`[GM] Unable to find target container #${parentId}`);
         }
 
+        // Check to ensure the map is visible
+        this._checkMapVisibility();
+
         // Log status
         if (googleMaps.log) {
             console.log(`[${this.id}] Finished initializing map in container "${parentId}" 👍`);
         }
-
-        // Check the container height
-        this._checkHeight();
 
         // Return map container
         return this.div;
@@ -1137,6 +1136,16 @@ function DynamicMap(locations, options) {
         this._cluster = new markerClusterer.MarkerClusterer(options);
     };
 
+    // ========================================================================= //
+
+    // Check to ensure the map is visible, emit warnings if necessary
+    this._checkMapVisibility = function() {
+        // Check the container height
+        this._checkHeight();
+        // Prevent the map from appearing as a grey box
+        this._preventGreyBox();
+    };
+
     // Check the container height, emit warning if necessary
     this._checkHeight = function() {
 
@@ -1156,6 +1165,52 @@ function DynamicMap(locations, options) {
         // Zero pixels tall, emit warning
         var url = 'https://plugins.doublesecretagency.com/google-maps/guides/setting-map-height/';
         console.warn(`[GM] The map is not visible because its parent container is zero pixels tall. More info: ${url}`);
+
+    };
+
+    // Prevent the map from appearing as a grey box, emit warnings if necessary
+    this._preventGreyBox = function() {
+
+        // Get the total number of markers
+        const totalMarkers = Object.keys(this._markers).length;
+
+        // Get current zoom & center
+        let zoom   = this.getZoom(true);
+        let center = this.getCenter(true);
+
+        // Fallback to default values
+        zoom   = zoom   || this._d.zoom;
+        center = center || this._d.center;
+
+        // If center was specified
+        if (center) {
+
+            // Center on specified coordinates
+            this.center(center);
+
+            // If no zoom specified
+            if (!zoom) {
+                // Set to default zoom level
+                zoom = this._defaultZoom;
+            }
+
+        } else {
+
+            // Fit to the existing markers
+            this.fit();
+
+            // If only a single marker on the map
+            if (1 === totalMarkers) {
+                // Adjust zoom to a reasonable distance
+                zoom = this._defaultZoom;
+            }
+
+        }
+
+        // If level was specified, zoom
+        if (zoom) {
+            this.zoom(zoom);
+        }
 
     };
 
