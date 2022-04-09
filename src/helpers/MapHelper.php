@@ -59,9 +59,11 @@ class MapHelper
         if ($locations instanceof Address) {
             // Get the Address coordinates
             $coords = $locations->getCoords();
-            // Get the relevant field
+            // If field ID exists, get relevant field
             /** @var AddressField $field */
-            $field = Craft::$app->getFields()->getFieldById($locations->fieldId);
+            $field = $locations->fieldId
+                ? Craft::$app->getFields()->getFieldById($locations->fieldId)
+                : null;
             // If a field exists
             if ($field) {
                 // Add marker ID to the coordinates

@@ -7,6 +7,9 @@
 - Prevents the map from appearing as a grey box when zoom or center are missing.
 - Changed the default zoom level to 11.
 
+### Fixed
+- Fixed a bug which occurs when getting coordinates from a custom Address model.
+
 ## 4.1.6 - 2022-04-01
 
 ### Fixed
