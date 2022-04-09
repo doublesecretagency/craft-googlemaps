@@ -9,6 +9,7 @@
 
 ### Fixed
 - Fixed a bug which occurs when getting coordinates from a custom Address model.
+- Fixed a bug which occurs when using only a single Address model on a static map.
 
 ## 4.1.6 - 2022-04-01
 

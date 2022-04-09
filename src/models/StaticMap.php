@@ -14,7 +14,6 @@ namespace doublesecretagency\googlemaps\models;
 use craft\base\Element;
 use craft\base\Model;
 use craft\helpers\Html;
-use craft\helpers\Json;
 use craft\helpers\Template;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;

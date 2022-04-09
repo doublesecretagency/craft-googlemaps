@@ -70,7 +70,7 @@ class MapHelper
                 $coords['id'] = "{$locations->id}-{$field->handle}";
             }
             // Return the full coordinates
-            return $coords;
+            return [$coords];
         }
 
         // If it's a Location Model, return the coordinates
