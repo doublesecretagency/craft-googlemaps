@@ -97,24 +97,16 @@ function DynamicMap(locations, options) {
         options = options || {};
 
         // Ensure marker options are valid
-        options.markerOptions = options.markerOptions
-            || this._d.markerOptions
-            || {};
+        options.markerOptions = options.markerOptions || this._d.markerOptions;
 
         // Ensure info window options are valid
-        options.infoWindowOptions = options.infoWindowOptions
-            || this._d.infoWindowOptions
-            || {};
+        options.infoWindowOptions = options.infoWindowOptions || this._d.infoWindowOptions;
 
         // Ensure marker link is valid
-        options.markerLink = options.markerLink
-            || this._d.markerLink
-            || null;
+        options.markerLink = options.markerLink || this._d.markerLink;
 
         // Ensure marker click event is valid
-        options.markerClick = options.markerClick
-            || this._d.markerClick
-            || null;
+        options.markerClick = options.markerClick || this._d.markerClick;
 
         // Set map
         options.markerOptions.map = this._map;
@@ -148,6 +140,11 @@ function DynamicMap(locations, options) {
 
             // Create a new marker
             this._createMarker(coords, options.markerOptions);
+
+            // If content provided, create a new info window
+            if (options.infoWindowOptions.content) {
+                this._initInfoWindow(markerId, options.infoWindowOptions);
+            }
 
             // If callback is a boolean true
             if (true === options.markerClick) {

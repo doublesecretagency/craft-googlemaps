@@ -8,6 +8,7 @@
 - Changed the default zoom level to 11.
 
 ### Fixed
+- Actually fixed info window regression. ([#49](https://github.com/doublesecretagency/craft-googlemaps/issues/49#issuecomment-1084302614))
 - Fixed a bug which occurs when getting coordinates from a custom Address model.
 - Fixed a bug which occurs when using only a single Address model on a static map.
 
