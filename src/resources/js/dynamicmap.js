@@ -866,23 +866,22 @@ function DynamicMap(locations, options) {
             console.log(`[${this.id}] Rendering map`);
         }
 
+        // Ensure options are valid
+        options = options || {};
+
         // Get the ID of the parent container
         var parentId = (options.parentId || null);
 
         // If no valid parent container specified
         if (!parentId || 'string' !== typeof parentId) {
-
             // Check to ensure the map is visible
             this._checkMapVisibility();
-
             // Log status
             if (googleMaps.log) {
                 console.log(`[${this.id}] Finished initializing map as a detached element 👍`);
             }
-
             // Return the element as-is
             return this.div;
-
         }
 
         // Get specified parent container
