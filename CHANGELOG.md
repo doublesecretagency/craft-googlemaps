@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.8 - 2022-04-11
+
+### Fixed
+- Fixed minor bug in JavaScript `tag` method.
+
 ## 4.1.7 - 2022-04-10
 
 ### Changed
