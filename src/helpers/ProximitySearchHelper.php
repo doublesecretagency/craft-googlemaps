@@ -138,7 +138,7 @@ class ProximitySearchHelper
         $range = ($options['range'] ?? $default['range']);
 
         // Ensure range is valid
-        if (!is_numeric($range) || $range < 1) {
+        if (!is_numeric($range) || $range <= 0) {
             $range = $default['range'];
         }
 

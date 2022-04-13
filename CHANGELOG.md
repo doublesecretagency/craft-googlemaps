@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Allow `range` to be a float between 0 and 1.
+
 ## 4.1.8 - 2022-04-11
 
 ### Fixed

@@ -584,7 +584,10 @@ function DynamicMap(locations, options) {
         }
 
         // Open the specified info window
-        infoWindow.open(this._map, marker);
+        infoWindow.open({
+            'map': this._map,
+            'anchor': marker
+        });
 
         // Keep the party going
         return this;
