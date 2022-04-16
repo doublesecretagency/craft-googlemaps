@@ -22,16 +22,16 @@ class FromScratch
 {
 
     /**
-     * @var Migration Internalized migration object.
+     * @var Migration|null Internalized migration object.
      */
-    private static $_migration;
+    private static ?Migration $_migration = null;
 
     /**
      * Install and configure tables from scratch.
      *
-     * @param $migration
+     * @param Migration $migration
      */
-    public static function update($migration)
+    public static function update(Migration $migration): void
     {
         // Share migration locally
         static::$_migration = $migration;
@@ -53,7 +53,7 @@ class FromScratch
     /**
      * Creates the tables.
      */
-    private static function _createTables()
+    private static function _createTables(): void
     {
         static::$_migration->createTable('{{%googlemaps_addresses}}', [
             'id'          => static::$_migration->primaryKey(),
@@ -82,7 +82,7 @@ class FromScratch
     /**
      * Creates the indexes.
      */
-    private static function _createIndexes()
+    private static function _createIndexes(): void
     {
         static::$_migration->createIndex(null, '{{%googlemaps_addresses}}', ['elementId']);
         static::$_migration->createIndex(null, '{{%googlemaps_addresses}}', ['fieldId']);
@@ -91,7 +91,7 @@ class FromScratch
     /**
      * Adds the foreign keys.
      */
-    private static function _addForeignKeys()
+    private static function _addForeignKeys(): void
     {
         static::$_migration->addForeignKey(null, '{{%googlemaps_addresses}}', ['elementId'], '{{%elements}}', ['id'], 'CASCADE');
         static::$_migration->addForeignKey(null, '{{%googlemaps_addresses}}', ['fieldId'],   '{{%fields}}',   ['id'], 'CASCADE');

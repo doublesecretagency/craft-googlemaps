@@ -24,12 +24,12 @@ class Location extends Model
     /**
      * @var float|null Latitude of location.
      */
-    public $lat;
+    public ?float $lat = null;
 
     /**
      * @var float|null Longitude of location.
      */
-    public $lng;
+    public ?float $lng = null;
 
     // ========================================================================= //
 
@@ -76,12 +76,17 @@ class Location extends Model
     /**
      * Calculate the distance between this location and a second location.
      *
-     * @param mixed $location
+     * @param array|Location|null $location
      * @param string $units
      * @return float|null
      */
-    public function getDistance($location, $units = 'miles')
+    public function getDistance(array|Location|null $location = null, string $units = 'miles'): ?float
     {
+        // If no location specified, bail
+        if (!$location) {
+            return null;
+        }
+
         // If starting point has no coordinates, bail
         if (!$this->hasCoords()) {
             return null;
@@ -105,10 +110,10 @@ class Location extends Model
     /**
      * Get the ending point to measure distance.
      *
-     * @param mixed $location
-     * @return array|false
+     * @param array|Location $location
+     * @return array|null
      */
-    private function _getPointB($location)
+    private function _getPointB(array|Location $location): ?array
     {
         // If location is a natural set of coordinates, return it as-is
         if (is_array($location) && isset($location['lat'], $location['lng'])) {
@@ -117,7 +122,7 @@ class Location extends Model
 
         // If ending point is not a Location Model, return false
         if (!($location instanceof Location)) {
-            return false;
+            return null;
         }
 
         // Return coordinates of the Location Model
@@ -192,7 +197,7 @@ class Location extends Model
      * @param Location|null $origin
      * @return string
      */
-    public function linkToDirections(array $parameters = [], Location $origin = null): string
+    public function linkToDirections(array $parameters = [], ?Location $origin = null): string
     {
         // If invalid coordinates, bail
         if (!$this->hasCoords()) {

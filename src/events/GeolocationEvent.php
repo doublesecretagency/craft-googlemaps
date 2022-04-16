@@ -22,24 +22,18 @@ class GeolocationEvent extends Event
 {
 
     /**
-     * Which service was used to detect the location.
-     *
-     * @var string
+     * @var string Which service was used to detect the location.
      */
-    public $service;
+    public string $service;
 
     /**
-     * The visitor's IP address.
-     *
-     * @var string
+     * @var string The visitor's IP address.
      */
-    public $ip;
+    public string $ip;
 
     /**
-     * The resulting Visitor location data.
-     *
-     * @var Visitor
+     * @var Visitor The resulting Visitor location data.
      */
-    public $visitor;
+    public Visitor $visitor;
 
 }

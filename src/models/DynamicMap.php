@@ -41,22 +41,22 @@ class DynamicMap extends Model
     /**
      * @var string The ID of this map model.
      */
-    public $id;
+    public string $id;
 
     /**
      * @var array Collection of internal data representing a map to be rendered.
      */
-    private $_dna = [];
+    private array $_dna = [];
 
     /**
      * @var array Collection of info windows tied to markers.
      */
-    private $_infoWindows = [];
+    private array $_infoWindows = [];
 
     /**
      * @var array Collection of JS callback functions tied to markers.
      */
-    private $_markerCallbacks = [];
+    private array $_markerCallbacks = [];
 
     // ========================================================================= //
 
@@ -67,7 +67,7 @@ class DynamicMap extends Model
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'To display a map, append `.tag()` to the map object.';
     }
@@ -75,7 +75,7 @@ class DynamicMap extends Model
     /**
      * Initialize a Dynamic Map object.
      *
-     * @param array|Element|Address $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @param array $config
      * @throws Exception
@@ -83,7 +83,7 @@ class DynamicMap extends Model
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function __construct($locations = [], array $options = [], array $config = [])
+    public function __construct(array|Element|Location $locations = [], array $options = [], array $config = [])
     {
         // Call parent constructor
         parent::__construct($config);
@@ -127,7 +127,7 @@ class DynamicMap extends Model
     /**
      * Add one or more markers to the map.
      *
-     * @param array|Element|Address $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @return $this
      * @throws Exception
@@ -135,7 +135,7 @@ class DynamicMap extends Model
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function markers($locations, array $options = []): DynamicMap
+    public function markers(array|Element|Location $locations, array $options = []): DynamicMap
     {
         // If no locations were specified, bail
         if (!$locations) {
@@ -173,7 +173,7 @@ class DynamicMap extends Model
      * @param array $options
      * @return $this
      */
-    public function kml($url, array $options = []): DynamicMap
+    public function kml(string $url, array $options = []): DynamicMap
     {
         // If no url was specified, bail
         if (!$url) {
@@ -293,7 +293,7 @@ class DynamicMap extends Model
      * @param string $markerId
      * @return $this
      */
-    public function panToMarker($markerId): DynamicMap
+    public function panToMarker(string $markerId): DynamicMap
     {
         // Add pan to marker to DNA
         $this->_dna[] = [
@@ -308,10 +308,11 @@ class DynamicMap extends Model
     /**
      * Set the icon of an existing marker.
      *
-     * @param string $markerId
+     * @param string|array $markerId
+     * @param string|array $icon
      * @return $this
      */
-    public function setMarkerIcon($markerId, $icon): DynamicMap
+    public function setMarkerIcon(string|array $markerId, string|array $icon): DynamicMap
     {
         // Add marker icon to DNA
         $this->_dna[] = [
@@ -329,10 +330,10 @@ class DynamicMap extends Model
     /**
      * Hide a marker.
      *
-     * @param string $markerId
+     * @param string|array $markerId
      * @return $this
      */
-    public function hideMarker($markerId): DynamicMap
+    public function hideMarker(string|array $markerId): DynamicMap
     {
         // Add call to hide marker
         $this->_dna[] = [
@@ -347,10 +348,10 @@ class DynamicMap extends Model
     /**
      * Show a marker.
      *
-     * @param string $markerId
+     * @param string|array $markerId
      * @return $this
      */
-    public function showMarker($markerId): DynamicMap
+    public function showMarker(string|array $markerId): DynamicMap
     {
         // Add call to show marker
         $this->_dna[] = [
@@ -365,10 +366,10 @@ class DynamicMap extends Model
     /**
      * Open the info window of a specific marker.
      *
-     * @param string $markerId
+     * @param string|array $markerId
      * @return $this
      */
-    public function openInfoWindow($markerId): DynamicMap
+    public function openInfoWindow(string|array $markerId): DynamicMap
     {
         // Add open info window to DNA
         $this->_dna[] = [
@@ -383,10 +384,10 @@ class DynamicMap extends Model
     /**
      * Close the info window of a specific marker.
      *
-     * @param string $markerId
+     * @param string|array $markerId
      * @return $this
      */
-    public function closeInfoWindow($markerId): DynamicMap
+    public function closeInfoWindow(string|array $markerId): DynamicMap
     {
         // Add close info window to DNA
         $this->_dna[] = [
@@ -401,10 +402,10 @@ class DynamicMap extends Model
     /**
      * Hide a KML layer.
      *
-     * @param string $kmlId
+     * @param string|array $kmlId
      * @return $this
      */
-    public function hideKml($kmlId): DynamicMap
+    public function hideKml(string|array $kmlId): DynamicMap
     {
         // Add call to hide KML layer
         $this->_dna[] = [
@@ -419,10 +420,10 @@ class DynamicMap extends Model
     /**
      * Show a KML layer.
      *
-     * @param string $kmlId
+     * @param string|array $kmlId
      * @return $this
      */
-    public function showKml($kmlId): DynamicMap
+    public function showKml(string|array $kmlId): DynamicMap
     {
         // Add call to show KML layer
         $this->_dna[] = [
@@ -562,14 +563,14 @@ class DynamicMap extends Model
     /**
      * Create individual markers one at a time.
      *
-     * @param $locations
-     * @param $options
+     * @param array|Element|Location $locations
+     * @param array $options
      * @throws Exception
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    private function _individualMarkers($locations, $options)
+    private function _individualMarkers(array|Element|Location $locations, array $options): void
     {
         // Initialize infoWindowOptions
         $options = $options ?? [];
@@ -582,8 +583,11 @@ class DynamicMap extends Model
         if (is_array($locations) && !$isCoords) {
             // Loop through each location
             foreach ($locations as $l) {
-                // Call method recursively
-                $this->_individualMarkers($l, $options);
+                // If the location is valid
+                if ($l) {
+                    // Call method recursively
+                    $this->_individualMarkers($l, $options);
+                }
             }
             // Our work here is done
             return;
@@ -633,9 +637,12 @@ class DynamicMap extends Model
     // ========================================================================= //
 
     /**
-     * Create marker click listener in JavaScript.
+     * Add marker click listener in JavaScript.
+     *
+     * @param string $markerId
+     * @param array $options
      */
-    private function _markerClick($markerId, $options)
+    private function _markerClick(string $markerId, array $options): void
     {
         // Get optional callback
         $callback = ($options['markerClick'] ?? false);
@@ -654,14 +661,14 @@ class DynamicMap extends Model
     /**
      * Parse a dynamic marker string.
      *
-     * @param $location
-     * @param $string
+     * @param array|Element|Location $location
+     * @param string $string
      * @throws Exception
      * @throws LoaderError
      * @throws SyntaxError
      * @throws Throwable
      */
-    private function _parseLocationString($location, &$string)
+    private function _parseLocationString(array|Element|Location $location, string &$string): void
     {
         // Get view services
         $view = Craft::$app->getView();
@@ -682,11 +689,11 @@ class DynamicMap extends Model
     /**
      * Creates a single marker with a corresponding info window.
      *
-     * @param $location
-     * @param $options
-     * @param $isCoords
+     * @param array|Element|Location $location
+     * @param array $options
+     * @param bool $isCoords
      */
-    private function _markerInfoWindow($location, &$options, $isCoords)
+    private function _markerInfoWindow(array|Element|Location $location, array &$options, bool $isCoords): void
     {
         // Initialize marker data
         $infoWindow = [
@@ -779,7 +786,7 @@ class DynamicMap extends Model
             // Get all fields associated with Element
             /** @var FieldLayout $layout */
             $layout = $location->getFieldLayout();
-            $fields = $layout->getFields();
+            $fields = $layout->getCustomFields();
 
             // Loop through all relevant fields
             foreach ($fields as $f) {
@@ -819,14 +826,18 @@ class DynamicMap extends Model
     }
 
     /**
-     * Creates the info window of a single marker.
+     * Add the info window of a single marker.
      *
-     * @param mixed $location
      * @param array $options
      * @param array $infoWindow
      */
-    private function _createInfoWindow(&$options, $infoWindow)
+    private function _createInfoWindow(array &$options, array $infoWindow): void
     {
+        // If invalid coordinates, bail
+        if (!($infoWindow['coords'] ?? false)) {
+            return;
+        }
+
         // Get view services
         $view = Craft::$app->getView();
 
@@ -857,11 +868,14 @@ class DynamicMap extends Model
         // Get the marker ID
         $markerId = ($infoWindow['markerId'] ?? false);
 
-        // If a marker ID exists
-        if ($markerId) {
-            // Transfer info window to future JS array
-            $this->_infoWindows[$markerId] = $options['infoWindowOptions'];
+        // If no marker ID exists
+        if (!$markerId) {
+            // Set the marker ID based on merged coordinates
+            $markerId = implode(',', $infoWindow['coords']);
         }
+
+        // Transfer info window to future JS array
+        $this->_infoWindows[$markerId] = $options['infoWindowOptions'];
 
         // Remove info window from DNA
         unset($options['infoWindowOptions']);
@@ -874,7 +888,7 @@ class DynamicMap extends Model
      *
      * @param array $options
      */
-    private function _setClustering(array &$options)
+    private function _setClustering(array &$options): void
     {
         // Get clustering options
         $c = ($options['cluster'] ?? false);
@@ -921,9 +935,9 @@ class DynamicMap extends Model
     /**
      * Replace all `google.maps` constant tokens with their real values.
      *
-     * @param $options
+     * @param array $options
      */
-    private function _replaceGoogleConstants(&$options)
+    private function _replaceGoogleConstants(array &$options): void
     {
         // Alias map options
         $opt =& $options['mapOptions'];
@@ -965,10 +979,10 @@ class DynamicMap extends Model
     /**
      * Swap out a single `google.maps` constant token, replacing it with the real value.
      *
-     * @param $type
-     * @param $value
+     * @param string $type
+     * @param string $value
      */
-    private function _swapConstant($type, &$value)
+    private function _swapConstant(string $type, string &$value): void
     {
         // Trim value
         $key = trim($value);

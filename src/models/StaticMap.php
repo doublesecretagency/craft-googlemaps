@@ -30,27 +30,27 @@ class StaticMap extends Model
     /**
      * @var string The ID of this map model.
      */
-    public $id;
+    public string $id;
 
     /**
      * @var array Collection of internal data representing a map to be rendered.
      */
-    private $_dna = [];
+    private array $_dna = [];
 
     /**
      * @var array Internalized set of options.
      */
-    private $_mapOptions;
+    private array $_mapOptions;
 
     /**
      * @var int Map image width.
      */
-    private $_w = 640;
+    private int $_w = 640;
 
     /**
      * @var int Map image height.
      */
-    private $_h = 320;
+    private int $_h = 320;
 
     // ========================================================================= //
 
@@ -61,7 +61,7 @@ class StaticMap extends Model
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'To display a map, append `.tag()` to the map object.';
     }
@@ -69,11 +69,11 @@ class StaticMap extends Model
     /**
      * Initialize a Static Map object.
      *
-     * @param array|Element|Address $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @param array $config
      */
-    public function __construct($locations = [], array $options = [], array $config = [])
+    public function __construct(array|Element|Location $locations = [], array $options = [], array $config = [])
     {
         // Ensure options are a valid array
         if (!$options || !is_array($options)) {
@@ -107,11 +107,11 @@ class StaticMap extends Model
     /**
      * Add one or more markers to the map.
      *
-     * @param array|Element|Address $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @return $this
      */
-    public function markers($locations, array $options = []): StaticMap
+    public function markers(array|Element|Location $locations, array $options = []): StaticMap
     {
         // If no locations were specified, bail
         if (!$locations) {
@@ -139,8 +139,8 @@ class StaticMap extends Model
                 }
                 throw new Exception("Each static map marker property must be a string. {$error}");
             }
-            // If value is not a string, skip
-            if (!is_string($v)) {
+            // If value is not a string or numeric, skip
+            if (!is_string($v) && !is_numeric($v)) {
                 continue;
             }
             // Append URL parts to generate static map
@@ -165,11 +165,11 @@ class StaticMap extends Model
     /**
      * Add a defined path to the map.
      *
-     * @param array|Element|Address $points
+     * @param array|Element|Location $points
      * @param array $options
      * @return $this
      */
-    public function path($points, array $options = []): StaticMap
+    public function path(array|Element|Location $points, array $options = []): StaticMap
     {
         // If no points were specified, bail
         if (!$points) {
@@ -263,7 +263,7 @@ class StaticMap extends Model
      * @param array|string $coords
      * @return $this
      */
-    public function center($coords): StaticMap
+    public function center(array|string $coords): StaticMap
     {
         // If not a valid set of coordinates, bail
         $validFormat = (is_string($coords) || is_array($coords));
@@ -373,7 +373,7 @@ class StaticMap extends Model
      *
      * @param array $options
      */
-    private function _setDimensions(array $options)
+    private function _setDimensions(array $options): void
     {
         // Internalize official dimensions
         $this->_w = ($options['width']  ?? $this->_w);
@@ -391,7 +391,7 @@ class StaticMap extends Model
      *
      * @param array $options
      */
-    private function _setFormatting($options)
+    private function _setFormatting(array $options): void
     {
         // If a image format was specified, apply it
         if (isset($options['format']) && is_string($options['format'])) {
@@ -419,7 +419,7 @@ class StaticMap extends Model
      *
      * @param array $options
      */
-    private function _setPositioning($options)
+    private function _setPositioning(array $options): void
     {
         // If valid zoom specified, apply it
         if (isset($options['zoom']) && is_int($options['zoom'])) {
@@ -442,7 +442,7 @@ class StaticMap extends Model
      *
      * @param array $options
      */
-    private function _setVisibility($options)
+    private function _setVisibility(array $options): void
     {
         // If no visibility point specified
         if (!isset($options['visible'])) {

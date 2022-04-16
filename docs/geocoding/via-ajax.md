@@ -43,7 +43,7 @@ The response of each AJAX call will come in the following format:
 ```json
 {
     success: bool,
-    error: null|string,
+    error: string|null,
     results: mixed // depends on which endpoint
 }
 ```

@@ -23,7 +23,7 @@ class m210914_223501_add_subfields extends Migration
     /**
      * @inheritdoc
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Table of all Addresses
         $table = '{{%googlemaps_addresses}}';
@@ -50,7 +50,7 @@ class m210914_223501_add_subfields extends Migration
     /**
      * @inheritdoc
      */
-    public function safeDown()
+    public function safeDown(): bool
     {
         echo "m210914_223501_add_subfields cannot be reverted.\n";
         return false;

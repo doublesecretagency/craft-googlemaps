@@ -12,11 +12,14 @@
 namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
+use craft\base\Element;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
+use doublesecretagency\googlemaps\models\Location;
 use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\models\Visitor;
+use GuzzleHttp\Exception\GuzzleException;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
@@ -30,7 +33,7 @@ class GoogleMaps
     /**
      * @var array An internally managed collection of Dynamic Maps.
      */
-    private static $_maps = [];
+    private static array $_maps = [];
 
     // ========================================================================= //
     // Dynamic Maps
@@ -43,14 +46,14 @@ class GoogleMaps
      * @param array $params Optional parameters for the Google Maps API.
      * @return string[] Collection of JS files required to display maps.
      */
-    public static function getAssets(array $params = [])
+    public static function getAssets(array $params = []): array
     {
         // Get asset manager
         $manager = Craft::$app->getAssetManager();
         $assets = '@doublesecretagency/googlemaps/resources';
 
         // Link to Google Maps JavaScript API URL
-        $files = [GoogleMaps::getApiUrl($params)];
+        $files = [self::getApiUrl($params)];
 
         // CDN for MarkerClusterer library
         $files[] = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
@@ -69,7 +72,7 @@ class GoogleMaps
      * @param array $params Optional parameters for the Google Maps API.
      * @throws InvalidConfigException
      */
-    public static function loadAssets(array $params = [])
+    public static function loadAssets(array $params = []): void
     {
         // Get view service
         $view = Craft::$app->getView();
@@ -99,11 +102,11 @@ class GoogleMaps
     /**
      * Create a new Dynamic Map object.
      *
-     * @param mixed $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @return DynamicMap
      */
-    public static function map($locations = [], array $options = []): DynamicMap
+    public static function map(array|Element|Location $locations = [], array $options = []): DynamicMap
     {
         // Create a new map object
         $map = new DynamicMap($locations, $options);
@@ -122,7 +125,7 @@ class GoogleMaps
      * @return DynamicMap|null
      * @throws Exception
      */
-    public static function getMap(string $mapId)
+    public static function getMap(string $mapId): ?DynamicMap
     {
         // Get existing map object
         $map = (static::$_maps[$mapId] ?? false);
@@ -144,11 +147,11 @@ class GoogleMaps
     /**
      * Create a new Static Map object.
      *
-     * @param mixed $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @return StaticMap
      */
-    public static function img($locations = [], array $options = []): StaticMap
+    public static function img(array|Element|Location $locations = [], array $options = []): StaticMap
     {
         return new StaticMap($locations, $options);
     }
@@ -161,10 +164,10 @@ class GoogleMaps
     /**
      * Perform a geocoding lookup.
      *
-     * @param array|string $target
-     * @return Lookup|false
+     * @param array|string|null $target
+     * @return Lookup
      */
-    public static function lookup($target = null)
+    public static function lookup(array|string|null $target = null): Lookup
     {
         return GeocodingHelper::lookup($target);
     }
@@ -179,6 +182,7 @@ class GoogleMaps
      *
      * @param array $config
      * @return Visitor
+     * @throws GuzzleException
      */
     public static function getVisitor(array $config = []): Visitor
     {

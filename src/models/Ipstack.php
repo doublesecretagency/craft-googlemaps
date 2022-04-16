@@ -13,8 +13,10 @@ namespace doublesecretagency\googlemaps\models;
 
 use Craft;
 use craft\base\Model;
+use craft\helpers\App;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 
 /**
@@ -27,22 +29,27 @@ class Ipstack extends Model
     /**
      * @const Geocoding service definition.
      */
-    const SERVICE = 'ipstack';
+    public const SERVICE = 'ipstack';
 
     /**
      * @var string ipstack API endpoint.
      */
-    private static $_endpoint = 'http://api.ipstack.com/';
+    private static string $_endpoint = 'http://api.ipstack.com/';
 
     /**
-     * @var string Internal error message.
+     * @var string|null Internal error message.
      */
-    private static $_error;
+    private static ?string $_error = null;
 
     /**
      * Get a Visitor Model containing the visitor's location.
+     *
+     * @param string|null $ip
+     * @param array $parameters
+     * @return Visitor
+     * @throws GuzzleException
      */
-    public static function geolocate($ip, array $parameters = []): Visitor
+    public static function geolocate(?string $ip, array $parameters = []): Visitor
     {
         // Get cache service
         $cache = Craft::$app->getCache();
@@ -94,11 +101,19 @@ class Ipstack extends Model
 
     /**
      * Ping the ipstack API endpoint.
+     *
+     * @param string|null $ip
+     * @param array $parameters
+     * @return array|null
+     * @throws GuzzleException
      */
-    private static function _pingEndpoint($ip, $parameters)
+    private static function _pingEndpoint(?string $ip, array $parameters): ?array
     {
+        /** @var Settings $settings */
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
         // Get ipstack access credentials
-        $parameters['access_key'] = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->ipstackApiAccessKey);
+        $parameters['access_key'] = App::parseEnv($settings->ipstackApiAccessKey);
 
         // If no IP, let ipstack autodetect
         $ip = ($ip ?? 'check');
@@ -125,10 +140,10 @@ class Ipstack extends Model
     /**
      * Interpret the response returned by the ipstack API.
      *
-     * @param $response
-     * @return Visitor|false
+     * @param array|null $response
+     * @return Visitor|null
      */
-    private static function _parseResponse($response)
+    private static function _parseResponse(?array $response): ?Visitor
     {
         // Determine whether API call was successful
         if (array_key_exists('ip', $response) && array_key_exists('type', $response)) {
@@ -137,14 +152,14 @@ class Ipstack extends Model
             $success = false;
         } else {
             static::$_error = Craft::t('google-maps', 'Unable to parse ipstack API response.');
-            return false;
+            return null;
         }
 
         // If unsuccessful, return why
         if (!$success) {
             // https://ipstack.com/documentation#errors
             static::$_error = Craft::t('google-maps', $response['error']['info']);
-            return false;
+            return null;
         }
 
         // Return results as a Visitor Model

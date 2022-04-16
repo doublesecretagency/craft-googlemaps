@@ -26,7 +26,7 @@ class AddressFieldSettingsAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -48,7 +48,6 @@ class AddressFieldSettingsAsset extends AssetBundle
                 'callback' => 'initAddressFieldSettings',
             ]),
         ];
-
     }
 
 }

@@ -21,37 +21,37 @@ class Visitor extends Location
     /**
      * @var string|null The name of the service used to perform the geolocation.
      */
-    public $service;
+    public ?string $service = null;
 
     /**
      * @var string|null The IP address of the geolocation lookup.
      */
-    public $ip;
+    public ?string $ip = null;
 
     /**
      * @var string|null The city determined by the geolocation lookup.
      */
-    public $city;
+    public ?string $city = null;
 
     /**
      * @var string|null The state determined by the geolocation lookup.
      */
-    public $state;
+    public ?string $state = null;
 
     /**
      * @var string|null The country determined by the geolocation lookup.
      */
-    public $country;
+    public ?string $country = null;
 
     /**
      * @var array|null Raw JSON response data from original call to the geolocation service.
      */
-    public $raw;
+    public ?array $raw = null;
 
     /**
      * @var string|null Error message, set when an error occurs.
      */
-    public $error;
+    public ?string $error = null;
 
     // ========================================================================= //
 

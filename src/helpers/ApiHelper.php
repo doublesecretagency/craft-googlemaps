@@ -11,9 +11,10 @@
 
 namespace doublesecretagency\googlemaps\helpers;
 
-use Craft;
+use craft\helpers\App;
 use craft\helpers\UrlHelper;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\models\Settings;
 
 /**
  * Class ApiHelper
@@ -25,12 +26,12 @@ class ApiHelper
     /**
      * @var string|null Google API browser key.
      */
-    private static $_browserKey;
+    private static ?string $_browserKey = null;
 
     /**
      * @var string|null Google API server key.
      */
-    private static $_serverKey;
+    private static ?string $_serverKey = null;
 
     // ========================================================================= //
 
@@ -41,9 +42,11 @@ class ApiHelper
      */
     public static function getBrowserKey(): string
     {
+        /** @var Settings $settings */
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
         // Only load once
         if (null === static::$_browserKey) {
-            static::$_browserKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->browserKey);
+            static::$_browserKey = App::parseEnv($settings->browserKey);
         }
         // Return key
         return trim(static::$_browserKey);
@@ -56,9 +59,11 @@ class ApiHelper
      */
     public static function getServerKey(): string
     {
+        /** @var Settings $settings */
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
         // Only load once
         if (null === static::$_serverKey) {
-            static::$_serverKey = Craft::parseEnv(GoogleMapsPlugin::$plugin->getSettings()->serverKey);
+            static::$_serverKey = App::parseEnv($settings->serverKey);
         }
         // Return key
         return trim(static::$_serverKey);

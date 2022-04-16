@@ -27,7 +27,7 @@ class AddressFieldAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -45,7 +45,6 @@ class AddressFieldAsset extends AssetBundle
             'js/address.js',
             $this->_getApiUrl(),
         ];
-
     }
 
     /**

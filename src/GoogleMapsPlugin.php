@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps;
 
 use Craft;
 use craft\base\Element;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\elements\Entry;
 use craft\events\PluginEvent;
@@ -39,42 +40,42 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @event GeocodingEvent The event that is triggered after a geocoding address lookup has been performed.
      */
-    const EVENT_AFTER_GEOCODING = 'afterGeocoding';
+    public const EVENT_AFTER_GEOCODING = 'afterGeocoding';
 
     /**
      * @event GeolocationEvent The event that is triggered after a visitor geolocation has been performed.
      */
-    const EVENT_AFTER_GEOLOCATION = 'afterGeolocation';
+    public const EVENT_AFTER_GEOLOCATION = 'afterGeolocation';
 
     /**
      * @var bool The plugin has a settings page.
      */
-    public $hasCpSettings = true;
+    public bool $hasCpSettings = true;
 
     /**
      * @var string Current schema version of the plugin.
      */
-    public $schemaVersion = '4.1.0';
+    public string $schemaVersion = '4.1.0';
 
     /**
-     * @var Plugin Self-referential plugin property.
+     * @var GoogleMapsPlugin Self-referential plugin property.
      */
-    public static $plugin;
+    public static GoogleMapsPlugin $plugin;
 
     /**
      * @var array Collection of settings to be migrated.
      */
-    public static $migrateSettings = [];
+    public static array $migrateSettings = [];
 
     /**
      * @var string|null Existing license key to be migrated.
      */
-    public static $migrateLicenseKey;
+    public static ?string $migrateLicenseKey = null;
 
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -146,7 +147,7 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel(): Settings
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -154,7 +155,7 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @inheritdoc
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
         // Reference assets
         $view = Craft::$app->getView();

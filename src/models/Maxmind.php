@@ -13,8 +13,10 @@ namespace doublesecretagency\googlemaps\models;
 
 use Craft;
 use craft\base\Model;
+use craft\helpers\App;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 
 /**
@@ -27,22 +29,27 @@ class Maxmind extends Model
     /**
      * @const Geocoding service definition.
      */
-    const SERVICE = 'maxmind';
+    public const SERVICE = 'maxmind';
 
     /**
      * @var string MaxMind API endpoint.
      */
-    private static $_endpoint = 'https://geoip.maxmind.com/geoip/v2.0/';
+    private static string $_endpoint = 'https://geoip.maxmind.com/geoip/v2.0/';
 
     /**
-     * @var string Internal error message.
+     * @var string|null Internal error message.
      */
-    private static $_error;
+    private static ?string $_error = null;
 
     /**
      * Get a Visitor Model containing the visitor's location.
+     *
+     * @param string|null $ip
+     * @param array $parameters
+     * @return Visitor
+     * @throws GuzzleException
      */
-    public static function geolocate($ip, array $parameters = []): Visitor
+    public static function geolocate(?string $ip, array $parameters = []): Visitor
     {
         // Get cache service
         $cache = Craft::$app->getCache();
@@ -94,21 +101,25 @@ class Maxmind extends Model
 
     /**
      * Ping the MaxMind API endpoint.
+     *
+     * @param string|null $ip
+     * @return array|null
+     * @throws GuzzleException
      */
-    private static function _pingEndpoint($ip)
+    private static function _pingEndpoint(?string $ip): ?array
     {
-        // Get plugin settings
+        /** @var Settings $settings */
         $settings = GoogleMapsPlugin::$plugin->getSettings();
 
         // Get MaxMind access credentials
-        $userId = Craft::parseEnv($settings->maxmindUserId);
-        $licenseKey = Craft::parseEnv($settings->maxmindLicenseKey);
+        $userId = App::parseEnv($settings->maxmindUserId);
+        $licenseKey = App::parseEnv($settings->maxmindLicenseKey);
         $service = $settings->maxmindService;
 
         // If service is disabled
         if (!$service) {
             static::$_error = 'Please select a MaxMind Web Service.';
-            return false;
+            return null;
         }
 
         // If no IP, let MaxMind autodetect
@@ -139,15 +150,15 @@ class Maxmind extends Model
     /**
      * Interpret the response returned by the MaxMind API.
      *
-     * @param $response
-     * @return Visitor|false
+     * @param array|null $response
+     * @return Visitor|null
      */
-    private static function _parseResponse($response)
+    private static function _parseResponse(?array $response): ?Visitor
     {
         // If no response was provided
         if (!$response) {
             static::$_error = Craft::t('google-maps', 'Cannot connect to MaxMind. Your API credentials may be invalid.');
-            return false;
+            return null;
         }
 
         // Determine whether API call was successful
@@ -157,14 +168,14 @@ class Maxmind extends Model
             $success = false;
         } else {
             static::$_error = Craft::t('google-maps', 'Unable to parse MaxMind API response.');
-            return false;
+            return null;
         }
 
         // If unsuccessful, return why
         if (!$success) {
             // https://dev.maxmind.com/minfraud/#Errors
             static::$_error = Craft::t('google-maps', $response['error']);
-            return false;
+            return null;
         }
 
         // Return results as a Visitor Model

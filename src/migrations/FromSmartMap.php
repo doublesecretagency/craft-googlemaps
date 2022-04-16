@@ -17,6 +17,7 @@ use craft\fields\MissingField;
 use craft\helpers\Json;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
+use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\records\Address;
 
 /**
@@ -29,7 +30,7 @@ class FromSmartMap
     /**
      * Migrate existing data from Smart Map.
      */
-    public static function update()
+    public static function update(): void
     {
         // Don’t make the same project config changes twice
         $existingSchema = Craft::$app->getProjectConfig()->get('plugins.google-maps.schemaVersion', true);
@@ -41,7 +42,7 @@ class FromSmartMap
             static::_migrateAddressFieldSettings();
         }
 
-        // Migrate all of the existing Address data
+        // Migrate all existing Address data
         static::_migrateAddressFieldData();
 
         // Uninstall Smart Map
@@ -53,11 +54,14 @@ class FromSmartMap
     /**
      * Migrate all plugin settings from Smart Map.
      */
-    private static function _migratePluginSettings()
+    private static function _migratePluginSettings(): void
     {
+        /** @var Settings $settings */
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
         // Get settings for both plugins
         $smartMap = Craft::$app->getProjectConfig()->get('plugins.smart-map');
-        $googleMaps = (GoogleMapsPlugin::$plugin->getSettings()->getAttributes() ?? []);
+        $googleMaps = ($settings->getAttributes() ?? []);
 
         // If no Smart Map settings exist, log warning and bail
         if (!$smartMap) {
@@ -88,7 +92,7 @@ class FromSmartMap
     /**
      * Migrate the settings of existing Address fields.
      */
-    private static function _migrateAddressFieldSettings()
+    private static function _migrateAddressFieldSettings(): void
     {
         // Class name of Smart Map Address field type
         $smAddress = 'doublesecretagency\\smartmap\\fields\\Address';
@@ -157,7 +161,7 @@ class FromSmartMap
     /**
      * Migrate the data of existing Address fields.
      */
-    private static function _migrateAddressFieldData()
+    private static function _migrateAddressFieldData(): void
     {
         // Get all existing Smart Map data
         $rows = (new Query())
@@ -206,8 +210,8 @@ class FromSmartMap
 
             // Save record
             $record->save();
-
         }
+
     }
 
     // ========================================================================= //

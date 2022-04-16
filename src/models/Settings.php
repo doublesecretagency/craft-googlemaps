@@ -23,51 +23,51 @@ class Settings extends Model
     /**
      * @var string|null Google API Browser Key.
      */
-    public $browserKey;
+    public ?string $browserKey = null;
 
     /**
      * @var string|null Google API Server Key.
      */
-    public $serverKey;
+    public ?string $serverKey = null;
 
     /**
      * @var string|null Optional geolocation service. Can be 'ipstack', 'maxmind', or null.
      */
-    public $geolocationService;
+    public ?string $geolocationService = null;
 
     /**
      * @var string|null ipstack API Access Key.
      */
-    public $ipstackApiAccessKey;
+    public ?string $ipstackApiAccessKey = null;
 
     /**
      * @var string|null MaxMind User ID.
      */
-    public $maxmindUserId;
+    public ?string $maxmindUserId = null;
 
     /**
      * @var string|null MaxMind License Key.
      */
-    public $maxmindLicenseKey;
+    public ?string $maxmindLicenseKey = null;
 
     /**
      * @var string|null MaxMind Service.
      */
-    public $maxmindService;
+    public ?string $maxmindService = null;
 
     /**
      * @var bool Whether to log JS progress to console. Only relevant when rendering a dynamic map.
      */
-    public $enableJsLogging = true;
+    public bool $enableJsLogging = true;
 
     /**
      * @var int Control the size of map UI elements in Address fields.
      */
-    public $fieldControlSize = 27;
+    public int $fieldControlSize = 27;
 
     /**
      * @var array Additional optional parameters for configuring Address fields.
      */
-    public $fieldParams = [];
+    public array $fieldParams = [];
 
 }

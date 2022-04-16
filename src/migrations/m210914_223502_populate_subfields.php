@@ -26,7 +26,7 @@ class m210914_223502_populate_subfields extends Migration
     /**
      * @inheritdoc
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Get all existing Address data
         $rows = (new Query())
@@ -67,7 +67,7 @@ class m210914_223502_populate_subfields extends Migration
     /**
      * @inheritdoc
      */
-    public function safeDown()
+    public function safeDown(): bool
     {
         echo "m210914_223502_populate_subfields cannot be reverted.\n";
         return false;

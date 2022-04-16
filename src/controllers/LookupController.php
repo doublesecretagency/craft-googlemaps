@@ -27,7 +27,7 @@ class LookupController extends Controller
     /**
      * @inheritdoc
      */
-    protected $allowAnonymous = true;
+    protected array|bool|int $allowAnonymous = true;
 
     /**
      * Returns all results from geocoding lookup.
@@ -66,7 +66,7 @@ class LookupController extends Controller
 
     /**
      * Perform the actual geocoding lookup.
-     * Returns results based on the specified format.
+     * Returns the results based on specified format.
      *
      * @param string $format
      * @return Response
@@ -106,7 +106,7 @@ class LookupController extends Controller
         }
 
         // If something went wrong, return an error
-        if (false === $results) {
+        if (null === $results) {
             // Except the one error message that isn't actually an error
             $exception = 'The geocode was successful but returned no results.';
             // But for any other reason, return an error
@@ -120,8 +120,8 @@ class LookupController extends Controller
         }
 
         // If no results and we wanted `all`
-        if (!$results && 'all' == $format) {
-            // Convert falsy response to an empty array
+        if (!$results && ('all' === $format)) {
+            // Convert null response to an empty array
             $results = [];
         }
 

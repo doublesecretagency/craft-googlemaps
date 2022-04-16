@@ -23,7 +23,7 @@ class Install extends Migration
     /**
      * @inheritdoc
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         // Configure the plugin from scratch
         FromScratch::update($this);
@@ -43,7 +43,7 @@ class Install extends Migration
     /**
      * @inheritdoc
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTableIfExists('{{%googlemaps_addresses}}');
     }

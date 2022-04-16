@@ -24,7 +24,7 @@ class SettingsAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -36,7 +36,6 @@ class SettingsAsset extends AssetBundle
         $this->js = [
             'js/settings.js',
         ];
-
     }
 
 }

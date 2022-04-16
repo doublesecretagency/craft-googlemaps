@@ -24,7 +24,7 @@ class GeocodingHelper
     /**
      * @var array Countries whose street number precedes the street name.
      */
-    private static $_countriesWithNumberFirst = [
+    private static array $_countriesWithNumberFirst = [
         'Australia',
         'Canada',
         'France',
@@ -45,7 +45,7 @@ class GeocodingHelper
     /**
      * @var array Countries with a comma after the street name.
      */
-    private static $_companiesWithCommaAfterStreet = [
+    private static array $_companiesWithCommaAfterStreet = [
         'Italy',
     ];
 
@@ -57,7 +57,7 @@ class GeocodingHelper
      * @param array $unformatted
      * @return array
      */
-    public static function restructureComponents($unformatted)
+    public static function restructureComponents(array $unformatted): array
     {
         // Initialize formatted address data
         $formatted = [];
@@ -137,10 +137,10 @@ class GeocodingHelper
     /**
      * Initialize a geocoding lookup by configuring a Lookup Model.
      *
-     * @param array|string $target
+     * @param array|string|null $target
      * @return Lookup
      */
-    public static function lookup($target = []): Lookup
+    public static function lookup(array|string|null $target = []): Lookup
     {
         // If a string target was specified, convert to array
         if (is_string($target) || is_numeric($target)) {

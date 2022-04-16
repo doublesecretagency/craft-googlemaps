@@ -27,82 +27,82 @@ class Address extends Location
     /**
      * @var int|null ID of address.
      */
-    public $id;
+    public ?int $id = null;
 
     /**
      * @var int|null ID of element containing address.
      */
-    public $elementId;
+    public ?int $elementId = null;
 
     /**
      * @var int|null ID of field containing address.
      */
-    public $fieldId;
+    public ?int $fieldId = null;
 
     /**
      * @var string|null Pre-formatted single-line address pulled directly from Google API results.
      */
-    public $formatted;
+    public ?string $formatted = null;
 
     /**
      * @var array|null Raw JSON response data from original Google API call.
      */
-    public $raw;
+    public ?array $raw = null;
 
     /**
      * @var string|null Name of place or business.
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * @var string|null Street name and number.
      */
-    public $street1;
+    public ?string $street1 = null;
 
     /**
      * @var string|null Apartment or suite number.
      */
-    public $street2;
+    public ?string $street2 = null;
 
     /**
      * @var string|null City.
      */
-    public $city;
+    public ?string $city = null;
 
     /**
      * @var string|null State (or province, territory, etc).
      */
-    public $state;
+    public ?string $state = null;
 
     /**
      * @var string|null Zip code (or postal code, etc).
      */
-    public $zip;
+    public ?string $zip = null;
 
     /**
      * @var string|null County or district (political or administrative).
      */
-    public $county;
+    public ?string $county = null;
 
     /**
      * @var string|null Country.
      */
-    public $country;
+    public ?string $country = null;
 
     /**
      * @var string|null Place ID as assigned by the Google API.
      */
-    public $placeId;
+    public ?string $placeId = null;
 
     /**
      * @var float|null Distance from another specified point.
      */
-    public $distance;
+    public ?float $distance = null;
 
     /**
      * @var int|null Zoom level of map.
      */
-    public $zoom;
+    public ?int $zoom = null;
 
     // ========================================================================= //
 
@@ -114,7 +114,7 @@ class Address extends Location
     public function __toString(): string
     {
         // Get Google-formatted address
-        $googleFormatted = (string) trim($this->formatted);
+        $googleFormatted = trim((string) $this->formatted);
 
         // If Google-formatted address exists, return it
         if ($googleFormatted) {
@@ -140,7 +140,7 @@ class Address extends Location
      *
      * @return ElementInterface|null
      */
-    public function getElement()
+    public function getElement(): ?ElementInterface
     {
         // If element ID does not exist, bail
         if (!$this->elementId) {
@@ -156,7 +156,7 @@ class Address extends Location
      *
      * @return FieldInterface|null
      */
-    public function getField()
+    public function getField(): ?FieldInterface
     {
         // If field ID does not exist, bail
         if (!$this->fieldId) {
@@ -234,7 +234,7 @@ class Address extends Location
     /**
      * @inheritdoc
      */
-    public function getDistance($location = null, $units = 'miles')
+    public function getDistance(array|Location|null $location = null, string $units = 'miles'): ?float
     {
         // If no location specified and distance is already known, return it
         if (!$location && $this->distance) {
@@ -278,7 +278,7 @@ class Address extends Location
     /**
      * @inheritdoc
      */
-    public function linkToDirections(array $parameters = [], Location $origin = null): string
+    public function linkToDirections(array $parameters = [], ?Location $origin = null): string
     {
         // If invalid coordinates, bail
         if (!$this->hasCoords()) {

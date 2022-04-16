@@ -30,27 +30,27 @@ class Lookup extends Model
     /**
      * @var string|null Error message, set when an error occurs.
      */
-    public $error;
+    public ?string $error = null;
 
     /**
-     * @var mixed Internal target, converted to array prior to Lookup.
+     * @var array|string Internal target, converted to array prior to Lookup.
      */
-    private $_target;
+    private array|string $_target;
 
     /**
      * @var string Google Geocoding API endpoint.
      */
-    private $_endpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
+    private string $_endpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
 
     // ========================================================================= //
 
     /**
      * Construct the Lookup object.
      *
-     * @param array $target
+     * @param array|string $target
      * @param array $config
      */
-    public function __construct(array $target = [], array $config = [])
+    public function __construct(array|string $target = [], array $config = [])
     {
         // Set target internally
         $this->_target = $target;
@@ -64,13 +64,13 @@ class Lookup extends Model
     /**
      * Returns all results from geocoding lookup.
      *
-     * @return array|false
+     * @return array|null
      */
-    public function all()
+    public function all(): ?array
     {
-        // If no geocoding results, return false
+        // If no geocoding results, return null
         if (!$results = $this->_runLookup()) {
-            return false;
+            return null;
         }
 
         // Return all results
@@ -80,13 +80,13 @@ class Lookup extends Model
     /**
      * Returns first result from geocoding lookup.
      *
-     * @return Address|false
+     * @return Address|null
      */
-    public function one()
+    public function one(): ?Address
     {
-        // If no geocoding results, return false
+        // If no geocoding results, return null
         if (!$results = $this->_runLookup()) {
-            return false;
+            return null;
         }
 
         /** @var Address $address */
@@ -99,13 +99,13 @@ class Lookup extends Model
     /**
      * Returns coordinates of first result from geocoding lookup.
      *
-     * @return array|false
+     * @return array|null
      */
-    public function coords()
+    public function coords(): ?array
     {
-        // If no geocoding results, return false
+        // If no geocoding results, return null
         if (!$results = $this->_runLookup()) {
-            return false;
+            return null;
         }
 
         /** @var Address $address */
@@ -118,11 +118,12 @@ class Lookup extends Model
     // ========================================================================= //
 
     /**
-     * Perform lookup.
+     * Perform the geocoding lookup.
      *
-     * @return bool|mixed
+     * @return array|null An array of Address models, or
+     *                    null if an error was received.
      */
-    private function _runLookup()
+    private function _runLookup(): ?array
     {
         // Get cache service
         $cache = Craft::$app->getCache();
@@ -148,7 +149,7 @@ class Lookup extends Model
             $cache->delete($this->_target);
             // Get error message from results
             $this->error = $results;
-            $results = false;
+            $results = null;
         }
 
         // Trigger geocoding event
@@ -167,10 +168,10 @@ class Lookup extends Model
     /**
      * Ping the Google Geocoding API endpoint.
      *
-     * @param $target
-     * @return mixed
+     * @param array $target
+     * @return array Response from geocoding endpoint.
      */
-    private function _pingEndpoint($target)
+    private function _pingEndpoint(array $target): array
     {
         // Append server key
         $target['key'] = GoogleMaps::getServerKey();
@@ -201,10 +202,10 @@ class Lookup extends Model
     /**
      * Properly format a string of components.
      *
-     * @param $components
+     * @param array|string $components
      * @return string Formatted string of components.
      */
-    private function _formatComponents($components): string
+    private function _formatComponents(array|string $components): string
     {
         // Already formatted properly, return as-is
         if (is_string($components)) {
@@ -225,16 +226,17 @@ class Lookup extends Model
         }
 
         // Return compiled string of components
-        return (string) implode('|', $c);
+        return implode('|', $c);
     }
 
     /**
      * Interpret the response returned by the Google Geocoding API.
      *
-     * @param $response
-     * @return array|string
+     * @param array $response
+     * @return array|string An array of Address models, or
+     *                      a string w/ an error message.
      */
-    private function _parseResponse($response)
+    private function _parseResponse(array $response): array|string
     {
         // No error by default
         $error = null;

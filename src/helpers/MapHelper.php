@@ -32,7 +32,7 @@ class MapHelper
      * @param string|null $prefix
      * @return string
      */
-    public static function generateId(string $prefix = null): string
+    public static function generateId(?string $prefix = null): string
     {
         // Generate random hash
         $hash = StringHelper::randomString(6);
@@ -49,11 +49,11 @@ class MapHelper
      * Coordinates will always be returned inside a parent array,
      * to compensate for Elements with multiple Address Fields.
      *
-     * @param mixed $locations
+     * @param array|Element|Location $locations
      * @param array $options
      * @return array Collection of coordinate sets
      */
-    public static function extractCoords($locations, array $options = []): array
+    public static function extractCoords(array|Element|Location $locations, array $options = []): array
     {
         // If it's an Address Model, return the coordinates w/ optional ID
         if ($locations instanceof Address) {
@@ -66,7 +66,7 @@ class MapHelper
                 : null;
             // If a field exists
             if ($field) {
-                // Add marker ID to the coordinates
+                // Set the marker ID based on element ID and field handle
                 $coords['id'] = "{$locations->id}-{$field->handle}";
             }
             // Return the full coordinates
@@ -75,11 +75,19 @@ class MapHelper
 
         // If it's a Location Model, return the coordinates
         if ($locations instanceof Location) {
-            return [$locations->getCoords()];
+            // Get the Location coordinates
+            $coords = $locations->getCoords();
+            // Set the marker ID based on merged coordinates
+            $coords['id'] = implode(',', $coords);
+            // Return the full coordinates
+            return [$coords];
         }
 
         // If it's a natural set of coordinates, return as-is
         if (is_array($locations) && isset($locations['lat'], $locations['lng'])) {
+            // Set the marker ID based on merged coordinates
+            $locations['id'] = implode(',', $locations);
+            // Return the full coordinates
             return [$locations];
         }
 
@@ -125,11 +133,19 @@ class MapHelper
 
             // If it's a Location Model, add the coordinates to results
             if ($location instanceof Location) {
-                $results[] = $location->getCoords();
+                // Get the Location coordinates
+                $coords = $location->getCoords();
+                // Set the marker ID based on merged coordinates
+                $coords['id'] = implode(',', $coords);
+                // Append the full coordinates
+                $results[] = $coords;
             }
 
             // If it's a natural set of coordinates, add them to results as-is
             if (is_array($location) && isset($location['lat'], $location['lng'])) {
+                // Set the marker ID based on merged coordinates
+                $location['id'] = implode(',', $location);
+                // Append the full coordinates
                 $results[] = $location;
             }
 
@@ -141,7 +157,7 @@ class MapHelper
             // Get all fields associated with Element
             /** @var FieldLayout $layout */
             $layout = $location->getFieldLayout();
-            $fields = $layout->getFields();
+            $fields = $layout->getCustomFields();
 
             // Loop through all relevant fields
             foreach ($fields as $f) {

@@ -21,7 +21,7 @@ abstract class GoogleConstants
     /**
      * Array of constants, mapped to their replacement types.
      */
-    const TYPES = [
+    public const TYPES = [
         // Level 1
         'mapTypeId' => 'MapTypeId',
         // Level 2
@@ -57,7 +57,7 @@ abstract class GoogleConstants
      *
      * Match strings prefixed with `google.maps` (eg: "google.maps.ControlPosition.TOP")
      */
-    const VALUES = [
+    public const VALUES = [
 
         'ControlPosition' => [
             // Broad

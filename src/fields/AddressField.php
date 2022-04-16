@@ -37,7 +37,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * Default coordinates. (Bermuda Triangle)
      */
-    const DEFAULT_COORDINATES = [
+    public const DEFAULT_COORDINATES = [
         'lat' => 32.3113966,
         'lng' => -64.7527469,
         'zoom' => 6
@@ -46,7 +46,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * Default subfield configuration.
      */
-    const DEFAULT_SUBFIELD_CONFIG = [
+    public const DEFAULT_SUBFIELD_CONFIG = [
         'name' => [
             'label'    => 'Name',
             'width'    => 100,
@@ -117,7 +117,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var bool
      */
-    public $showMap = false;
+    public bool $showMap = false;
 
     /**
      * What should the map be
@@ -125,7 +125,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var string "default", "open" or "close"
      */
-    public $mapOnStart = 'default';
+    public string $mapOnStart = 'default';
 
     /**
      * What should the map be
@@ -133,7 +133,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var string "open", "close" or "noChange"
      */
-    public $mapOnSearch = 'open';
+    public string $mapOnSearch = 'open';
 
     /**
      * How should we display
@@ -141,7 +141,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var string "both", "text", "icon" or "hidden"
      */
-    public $visibilityToggle = 'both';
+    public string $visibilityToggle = 'both';
 
     /**
      * How should we display
@@ -149,14 +149,14 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var string "editable", "readOnly" or "hidden"
      */
-    public $coordinatesMode = 'readOnly';
+    public string $coordinatesMode = 'readOnly';
 
     /**
      * Whether the coordinates subfields are required.
      *
      * @var bool
      */
-    public $requireCoordinates = true;
+    public bool $requireCoordinates = true;
 
     /**
      * Default coordinates of a new Address field.
@@ -165,25 +165,25 @@ class AddressField extends Field implements PreviewableFieldInterface
      */
     // TODO: Should probably just be null, right? Let the fallback kick in later, in JS or PHP
     // public $coordinatesDefault;
-    public $coordinatesDefault = self::DEFAULT_COORDINATES;
+    public ?array $coordinatesDefault = self::DEFAULT_COORDINATES;
 
     /**
      * Full configuration of subfields.
      *
      * @var array|null
      */
-    public $subfieldConfig = self::DEFAULT_SUBFIELD_CONFIG;
+    public ?array $subfieldConfig = self::DEFAULT_SUBFIELD_CONFIG;
 
     // ========================================================================= //
 
     /**
      * LEGACY: Properties required for Smart Map migration
      */
-    public $dragPinDefault;
-    public $dragPinLatitude;
-    public $dragPinLongitude;
-    public $dragPinZoom;
-    public $layout;
+    public ?bool $dragPinDefault = null;
+    public ?float $dragPinLatitude = null;
+    public ?float $dragPinLongitude = null;
+    public ?int $dragPinZoom = null;
+    public ?array $layout = null;
 
     // ========================================================================= //
 
@@ -210,7 +210,7 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @inheritdoc
      */
-    public function afterElementSave(ElementInterface $element, bool $isNew)
+    public function afterElementSave(ElementInterface $element, bool $isNew): void
     {
         /** @var Entry $element */
 
@@ -259,11 +259,11 @@ class AddressField extends Field implements PreviewableFieldInterface
     }
 
     /**
-     * Prep value for use as the data leaves the database.
+     * As the data leaves the database, prepare the Address value for use.
      *
      * @inheritdoc
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): ?AddressModel
     {
         /** @var Entry $element */
 
@@ -362,7 +362,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         // Reference assets
         $view = Craft::$app->getView();
@@ -378,7 +378,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // Reference assets
         $view = Craft::$app->getView();
@@ -463,15 +463,15 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function modifyElementsQuery(ElementQueryInterface $query, $options = [])
+    public function modifyElementsQuery(ElementQueryInterface $query, mixed $value): void
     {
         // If options are not properly specified, bail
-        if (!is_array($options)) {
+        if (!is_array($value)) {
             return;
         }
 
         // Modify the element query to perform a proximity search
-        ProximitySearchHelper::modifyElementsQuery($query, $options, $this);
+        ProximitySearchHelper::modifyElementsQuery($query, $value, $this);
     }
 
 }

@@ -26,26 +26,26 @@ class ProximitySearchHelper
     /**
      * @var ElementQueryInterface The actual element query (passed by reference) which is being called.
      */
-    private static $_query;
+    private static ElementQueryInterface $_query;
 
     /**
      * @var AddressField The field used to generate a proximity search. (aka "myAddressField")
      */
-    private static $_field;
+    private static AddressField $_field;
 
     /**
      * @var array|string Optionally filter results by individual subfields.
      */
-    private static $_subfieldFilter;
+    private static array|string $_subfieldFilter;
 
     /**
      * Modify the existing elements query to perform a proximity search.
      *
-     * @param $query
-     * @param $options
-     * @param $field
+     * @param ElementQueryInterface $query
+     * @param array $options
+     * @param AddressField $field
      */
-    public static function modifyElementsQuery($query, $options, $field)
+    public static function modifyElementsQuery(ElementQueryInterface $query, array $options, AddressField $field): void
     {
         // Internalize objects
         static::$_query = $query;
@@ -86,7 +86,7 @@ class ProximitySearchHelper
      *
      * @param array $options
      */
-    private static function _applyProximitySearch(array $options)
+    private static function _applyProximitySearch(array $options): void
     {
         // Set proximity search defaults
         $default = [
@@ -174,7 +174,7 @@ class ProximitySearchHelper
      *
      * @param array|null $subfields
      */
-    private static function _applySubfields($subfields)
+    private static function _applySubfields(?array $subfields): void
     {
         // If not an array, bail
         if (!is_array($subfields)) {
@@ -230,7 +230,7 @@ class ProximitySearchHelper
      *
      * @param bool $requireCoords
      */
-    private static function _applyRequireCoords(bool $requireCoords)
+    private static function _applyRequireCoords(bool $requireCoords): void
     {
         // If coordinates are not required, bail
         if (!$requireCoords) {
@@ -253,17 +253,17 @@ class ProximitySearchHelper
      * If necessary, this method will reconfigure the subfields filter
      * as part of the subfield filter fallback mechanism.
      *
-     * @param mixed $target
-     * @return array|false Set of coordinates based on specified target.
+     * @param array|string|null $target
+     * @return array|null Set of coordinates based on specified target.
      * @throws ExitException
      */
-    private static function _lookupCoords($target)
+    private static function _lookupCoords(array|string|null $target): ?array
     {
         // Perform geocoding based on specified target
         $address = GoogleMaps::lookup($target)->one();
 
         // Get coordinates of specified target
-        $coords = ($address ? $address->getCoords() : false);
+        $coords = ($address ? $address->getCoords() : null);
 
         // If fallback filter is disabled, bail with coordinates
         if ('fallback' !== static::$_subfieldFilter) {
@@ -367,10 +367,10 @@ class ProximitySearchHelper
     /**
      * Based on the target provided, determine a center point for the proximity search.
      *
-     * @param mixed $target
-     * @return array|false Set of coordinates to use as center of proximity search.
+     * @param array|string $target
+     * @return array|null Set of coordinates to use as center of proximity search.
      */
-    private static function _getTargetCoords($target)
+    private static function _getTargetCoords(array|string $target): ?array
     {
         // Get coordinates based on type of target specified
         switch (gettype($target)) {

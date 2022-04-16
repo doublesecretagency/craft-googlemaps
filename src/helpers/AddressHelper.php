@@ -36,10 +36,10 @@ class AddressHelper
     /**
      * Generate a published icon URL.
      *
-     * @param $filename
+     * @param string $filename
      * @return string|false
      */
-    private static function _publishSvg($filename)
+    private static function _publishSvg(string $filename): string|false
     {
         $manager = Craft::$app->getAssetManager();
         $assets = '@doublesecretagency/googlemaps/web/assets/dist';

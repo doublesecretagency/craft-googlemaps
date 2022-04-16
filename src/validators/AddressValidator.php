@@ -25,7 +25,7 @@ class AddressValidator extends Validator
     /**
      * @inheritdoc
      */
-    public function validateAttribute($model, $attribute)
+    public function validateAttribute($model, $attribute): void
     {
         // Valid until proven otherwise
         $valid = true;

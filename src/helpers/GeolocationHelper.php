@@ -16,7 +16,9 @@ use doublesecretagency\googlemaps\events\GeolocationEvent;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Ipstack;
 use doublesecretagency\googlemaps\models\Maxmind;
+use doublesecretagency\googlemaps\models\Settings;
 use doublesecretagency\googlemaps\models\Visitor;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class GeolocationHelper
@@ -30,14 +32,18 @@ class GeolocationHelper
      *
      * @param array $config
      * @return Visitor
+     * @throws GuzzleException
      */
-    public static function getVisitor($config = []): Visitor
+    public static function getVisitor(array $config = []): Visitor
     {
+        /** @var Settings $settings */
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
         // Set geolocation service
-        $selected = GoogleMapsPlugin::$plugin->getSettings()->geolocationService;
-        $service = ($config['service'] ?? $selected);
+        $service = ($config['service'] ?? $settings->geolocationService);
 
         // Get API model of the specified geolocation service
+        /** @var Ipstack|Maxmind $model */
         $model = static::_getApiModel($service);
 
         // If a valid service model is not available, bail
@@ -84,10 +90,10 @@ class GeolocationHelper
     /**
      * Load the selected API model.
      *
-     * @param $selected
+     * @param string $selected
      * @return string|null
      */
-    private static function _getApiModel($selected)
+    private static function _getApiModel(string $selected): ?string
     {
         // Supported geolocation services
         $supported = [

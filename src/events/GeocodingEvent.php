@@ -21,17 +21,13 @@ class GeocodingEvent extends Event
 {
 
     /**
-     * Target used to generate geocoding query.
-     *
-     * @var array
+     * @var array Target used to generate geocoding query.
      */
-    public $target;
+    public array $target;
 
     /**
-     * Results of geocoding address lookup.
-     *
-     * @var array
+     * @var array Results of geocoding address lookup.
      */
-    public $results;
+    public array $results;
 
 }
