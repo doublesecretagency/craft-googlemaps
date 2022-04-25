@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.2.1 - 2022-04-25
+
+### Fixed
+- Fixed typecasting of event parameters.
+
 ## 4.2.0 - 2022-04-18
 
 ### Added
