@@ -27,9 +27,9 @@ class GeolocationEvent extends Event
     public string $service;
 
     /**
-     * @var string The visitor's IP address.
+     * @var string|null The visitor's IP address.
      */
-    public string $ip;
+    public ?string $ip;
 
     /**
      * @var Visitor The resulting Visitor location data.
