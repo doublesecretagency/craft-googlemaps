@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.2.2 - 2022-05-09
 
 ### Fixed
 - Fixed bug affecting zoom level of a single marker.
