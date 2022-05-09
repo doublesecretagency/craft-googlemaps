@@ -20,7 +20,9 @@ function DynamicMap(locations, options) {
 
     // Initialize defaults
     this._d = {};
-    this._defaultZoom = 11;
+
+    // Set a comfortable default zoom level
+    this._comfortableZoom = 11;
 
     // ========================================================================= //
 
@@ -1170,9 +1172,6 @@ function DynamicMap(locations, options) {
     // Prevent the map from appearing as a grey box, emit warnings if necessary
     this._preventGreyBox = function() {
 
-        // Get the total number of markers
-        const totalMarkers = Object.keys(this._markers).length;
-
         // Get current zoom & center
         let zoom   = this.getZoom(true);
         let center = this.getCenter(true);
@@ -1189,8 +1188,8 @@ function DynamicMap(locations, options) {
 
             // If no zoom specified
             if (!zoom) {
-                // Set to default zoom level
-                zoom = this._defaultZoom;
+                // Set to a comfortable zoom level
+                zoom = this._comfortableZoom;
             }
 
         } else {
@@ -1198,10 +1197,16 @@ function DynamicMap(locations, options) {
             // Fit to the existing markers
             this.fit();
 
-            // If only a single marker on the map
-            if (1 === totalMarkers) {
-                // Adjust zoom to a reasonable distance
-                zoom = this._defaultZoom;
+            // Get the total number of markers
+            const totalMarkers = Object.keys(this._markers).length;
+
+            // Whether there is only a single marker on the map
+            let oneMarker = (1 === totalMarkers);
+
+            // If only one marker and no zoom specified
+            if (oneMarker && !zoom) {
+                // Set to a comfortable zoom level
+                zoom = this._comfortableZoom;
             }
 
         }
