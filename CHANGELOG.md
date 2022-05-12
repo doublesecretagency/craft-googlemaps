@@ -1,14 +1,19 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Load JavaScript inline when using Sprig. ([#52](https://github.com/doublesecretagency/craft-googlemaps/issues/52))
+
 ## 4.2.2 - 2022-05-09
 
 ### Fixed
-- Fixed bug affecting zoom level of a single marker.
+- Fixed bug affecting zoom level of a single marker. ([#53](https://github.com/doublesecretagency/craft-googlemaps/issues/53))
 
 ## 4.2.1 - 2022-04-25
 
 ### Fixed
-- Fixed typecasting of event parameters.
+- Fixed typecasting of event parameters. ([#54](https://github.com/doublesecretagency/craft-googlemaps/issues/54))
 
 ## 4.2.0 - 2022-04-18
 

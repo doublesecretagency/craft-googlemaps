@@ -7,15 +7,6 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of maps
     _maps: {},
 
-    // Initialize collection of info windows
-    _listInfoWindows: {},
-
-    // Initialize collection of marker callbacks
-    _listMarkerCallbacks: {},
-
-    // Initialize collection of cluster options
-    _cluster: {},
-
     // ========================================================================= //
 
     // Create a new map object
@@ -119,8 +110,11 @@ window.googleMaps = window.googleMaps || {
         // Initialize loop variables
         var mId, m, markerId, iw, cb;
 
+        // Get data for info windows
+        var _infoWindows = window._gmData.infoWindows;
+
         // If any info windows were specified
-        if (Object.keys(this._listInfoWindows).length) {
+        if (Object.keys(_infoWindows).length) {
 
             // Log status
             if (this.log) {
@@ -128,13 +122,13 @@ window.googleMaps = window.googleMaps || {
             }
 
             // Loop through info windows of each map
-            for (mId in this._listInfoWindows) {
+            for (mId in _infoWindows) {
                 // Get current map
                 m = this.getMap(mId, true);
                 // Loop through info windows of current map
-                for (markerId in this._listInfoWindows[mId]) {
+                for (markerId in _infoWindows[mId]) {
                     // Get info window
-                    iw = this._listInfoWindows[mId][markerId];
+                    iw = _infoWindows[mId][markerId];
                     // Activate info window function
                     m._initInfoWindow(markerId, iw);
                 }
@@ -142,8 +136,11 @@ window.googleMaps = window.googleMaps || {
 
         }
 
+        // Get data for marker callbacks
+        var _markerCallbacks = window._gmData.markerCallbacks;
+
         // If any marker callbacks were specified
-        if (Object.keys(this._listMarkerCallbacks).length) {
+        if (Object.keys(_markerCallbacks).length) {
 
             // Log status
             if (this.log) {
@@ -151,13 +148,13 @@ window.googleMaps = window.googleMaps || {
             }
 
             // Loop through marker callbacks of each map
-            for (mId in this._listMarkerCallbacks) {
+            for (mId in _markerCallbacks) {
                 // Get current map
                 m = this.getMap(mId, true);
                 // Loop through marker callbacks of current map
-                for (markerId in this._listMarkerCallbacks[mId]) {
+                for (markerId in _markerCallbacks[mId]) {
                     // Get marker callback
-                    cb = this._listMarkerCallbacks[mId][markerId];
+                    cb = _markerCallbacks[mId][markerId];
                     // Activate marker callback function
                     m._initMarkerClick(markerId, cb);
                 }

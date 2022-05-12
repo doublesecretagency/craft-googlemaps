@@ -58,6 +58,11 @@ class DynamicMap extends Model
      */
     private array $_markerCallbacks = [];
 
+    /**
+     * @var array Clustering options for this map.
+     */
+    private array $_clusterOptions = [];
+
     // ========================================================================= //
 
     /**
@@ -464,9 +469,6 @@ class DynamicMap extends Model
             }
         });
 
-        // Get view service
-        $view = Craft::$app->getView();
-
         // Unless otherwise specified, preload the necessary JavaScript assets
         if (!isset($options['assets']) || !is_bool($options['assets'])) {
             $options['assets'] = true;
@@ -491,37 +493,29 @@ class DynamicMap extends Model
             GoogleMaps::loadAssets($options['params']);
         }
 
-        // If info windows were specified
-        if ($this->_infoWindows) {
-            // Initialize list of info windows
-            $infoWindows = '';
-            // Loop through info windows
-            foreach ($this->_infoWindows as $markerId => $infoWindow) {
-                // JSON encode the info window options
-                $infoWindowOptions = Json::encode($infoWindow);
-                // Append each info window to list
-                $infoWindows .= "    '{$markerId}': {$infoWindowOptions},\n";
-            }
+        // Compile map container
+        $html = Html::modifyTagAttributes('<div>Loading map...</div>', [
+            'id' => $this->id,
+            'class' => 'gm-map',
+            'data-dna' => Json::encode($this->_dna),
+        ]);
 
-            // Associate info windows with this map
-            $iw = "googleMaps._listInfoWindows['{$this->id}'] = {\n{$infoWindows}};";
-            // Register info windows at the end of the page
-            $view->registerJs($iw, $view::POS_END);
-        }
+        // Get view service
+        $view = Craft::$app->getView();
 
-        // If marker callbacks were specified
-        if ($this->_markerCallbacks) {
-            // Initialize list of callbacks
-            $jsCallbacks = '';
-            // Loop through callbacks
-            foreach ($this->_markerCallbacks as $markerId => $callback) {
-                // Append each callback to list
-                $jsCallbacks .= "    '{$markerId}': {$callback},\n";
-            }
-            // Associate callbacks with this map
-            $cb = "googleMaps._listMarkerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
-            // Register callbacks at the end of the page
-            $view->registerJs($cb, $view::POS_END);
+        // Render all additional JavaScript
+        $javascript = $this->_additionalJs();
+
+        // Whether the Sprig class exists
+        $usingSprig = class_exists('putyourlightson\sprig\Sprig');
+
+        // If the website is using Sprig
+        if ($usingSprig) {
+            // Register JS inline, immediately after the map
+            $html .= "\n<script>{$javascript}\n</script>";
+        } else {
+            // Register JS at the end of the page
+            $view->registerJs($javascript, $view::POS_END);
         }
 
         // Initialize the map (unless intentionally suppressed)
@@ -534,13 +528,6 @@ class DynamicMap extends Model
             // Register JS at the end of the page
             $view->registerJs($js, $view::POS_END);
         }
-
-        // Compile map container
-        $html = Html::modifyTagAttributes('<div>Loading map...</div>', [
-            'id' => $this->id,
-            'class' => 'gm-map',
-            'data-dna' => Json::encode($this->_dna),
-        ]);
 
         // Return Markup
         return Template::raw($html);
@@ -893,41 +880,95 @@ class DynamicMap extends Model
         // Get clustering options
         $c = ($options['cluster'] ?? false);
 
-        // If not clustering with custom options, bail
-        if (!$c || !is_array($c)) {
+        // If not clustering, bail
+        if (!$c) {
             return;
         }
 
-        // Initialize JSON data
-        $json = '';
-
-        // If provided, append algorithm
-        if ($c['algorithm'] ?? false) {
-            $json .= "\n    'algorithm': {$c['algorithm']},";
-        }
-        // If provided, append renderer
-        if ($c['renderer'] ?? false) {
-            $json .= "\n    'renderer': {$c['renderer']},";
-        }
-        // If provided, append onClusterClick
-        if ($c['onClusterClick'] ?? false) {
-            $json .= "\n    'onClusterClick': {$c['onClusterClick']},";
-        }
-
-        // If any custom values were specified
-        if ($json) {
-            // Remove trailing comma
-            $json = rtrim($json, ',');
-            // Get view services
-            $view = Craft::$app->getView();
-            // Set cluster options for this map
-            $cb = "googleMaps._cluster['{$this->id}'] = {{$json}\n};";
-            // Register cluster options at the end of the page
-            $view->registerJs($cb, $view::POS_END);
+        // If an array of clustering options was provided
+        if (is_array($c)) {
+            // Initialize JSON data
+            $json = [];
+            // If provided, append algorithm
+            if ($c['algorithm'] ?? false) {
+                $json['algorithm'] = $c['algorithm'];
+            }
+            // If provided, append renderer
+            if ($c['renderer'] ?? false) {
+                $json['renderer'] = $c['renderer'];
+            }
+            // If provided, append onClusterClick
+            if ($c['onClusterClick'] ?? false) {
+                $json['onClusterClick'] = $c['onClusterClick'];
+            }
+            // Enable clustering with custom options
+            $this->_clusterOptions = $json;
         }
 
         // Flatten to boolean (will retrieve options later)
         $options['cluster'] = true;
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Compile all additional JavaScript.
+     *
+     * @return string
+     */
+    private function _additionalJs(): string
+    {
+        // Initialize additional JS data
+        $javascript = "
+window._gmData = {
+    cluster: [],
+    infoWindows: [],
+    markerCallbacks: [],
+};";
+
+        // If marker clustering was specified
+        if ($this->_clusterOptions) {
+            // Initialize cluster
+            $cluster = '';
+            // Loop through clustering options
+            foreach ($this->_clusterOptions as $option => $value) {
+                // Append each cluster option
+                $cluster .= "    '{$option}': {$value},\n";
+            }
+            // Add clustering to this map
+            $javascript .= "\nwindow._gmData.cluster['{$this->id}'] = {\n{$cluster}};";
+        }
+
+        // If info windows were specified
+        if ($this->_infoWindows) {
+            // Initialize list of info windows
+            $infoWindows = '';
+            // Loop through info windows
+            foreach ($this->_infoWindows as $markerId => $infoWindow) {
+                // JSON encode the info window options
+                $infoWindowOptions = Json::encode($infoWindow);
+                // Append each info window to list
+                $infoWindows .= "    '{$markerId}': {$infoWindowOptions},\n";
+            }
+            // Associate info windows with this map
+            $javascript .= "\nwindow._gmData.infoWindows['{$this->id}'] = {\n{$infoWindows}};";
+        }
+
+        // If marker callbacks were specified
+        if ($this->_markerCallbacks) {
+            // Initialize list of callbacks
+            $jsCallbacks = '';
+            // Loop through callbacks
+            foreach ($this->_markerCallbacks as $markerId => $callback) {
+                // Append each callback to list
+                $jsCallbacks .= "    '{$markerId}': {$callback},\n";
+            }
+            // Associate callbacks with this map
+            $javascript .= "\nwindow._gmData.markerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
+        }
+
+        // Return compiled JavaScript
+        return $javascript;
     }
 
     // ========================================================================= //

@@ -1075,8 +1075,11 @@ function DynamicMap(locations, options) {
         // Whether to use default clustering
         const clusterDefault = (true === this._cluster);
 
+        // Get clustering options data
+        let _cluster = window._gmData.cluster;
+
         // Get custom Twig/PHP options
-        const twigOptions = googleMaps._cluster[this.id];
+        const twigOptions = _cluster[this.id];
 
         // If provided, get options from Twig/PHP data
         if (clusterDefault && twigOptions) {
