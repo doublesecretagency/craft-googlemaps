@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.2.3 - 2022-05-13
 
 ### Fixed
 - Load JavaScript inline when using Sprig. ([#52](https://github.com/doublesecretagency/craft-googlemaps/issues/52))
