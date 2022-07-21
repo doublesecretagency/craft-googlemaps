@@ -19,6 +19,10 @@ Combined, they produce an HTML snippet similar to this...
 <script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js"></script>
 ```
 
+:::warning Not seeing these lines in your source code?
+Make sure that the `<html>`, `<head>`, and `<body>` tags are properly formed (including their respective closing tags). Craft requires those HTML tags to be correctly formed, in order to inject the necessary JavaScript libraries.
+:::
+
 If the map is being rendered by Twig or PHP, these JS files will be [automatically](#loaded-automatically) loaded for you. However, if the map is being rendered exclusively via JavaScript, you will be responsible for loading these JS files [manually](#loaded-manually).
 
 For various reasons, you may not want these files to be loaded automatically. It's possible to [suppress](#disable-automatic-loading) the initial automatic loading of these assets, then manually load them later.

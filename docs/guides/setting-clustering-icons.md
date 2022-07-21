@@ -28,6 +28,12 @@ Now that you have a new JavaScript file, be sure to load it into the page...
 {% js url('path/to/renderer.js') %}
 ```
 
+If you are also using the [Sprig](https://plugins.craftcms.com/sprig) plugin, you'll want the renderer file to be loaded `at head`...
+
+```twig
+{% js url('path/to/renderer.js') at head %}
+```
+
 ## Enable custom icon rendering
 
 Pass the name of your new renderer function in as the `renderer` option value.

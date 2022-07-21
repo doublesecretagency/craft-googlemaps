@@ -9,6 +9,8 @@
     "doc": "docs"
   },
   "scripts": {
+    "watch": "vuepress dev docs",
+    "prod": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "nuke": "rm -rf node_modules/ && rm package-lock.json && npm cache clear --force && npm update"
