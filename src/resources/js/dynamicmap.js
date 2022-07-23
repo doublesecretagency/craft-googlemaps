@@ -1076,10 +1076,10 @@ function DynamicMap(locations, options) {
         const clusterDefault = (true === this._cluster);
 
         // Get clustering options data
-        let _cluster = window._gmData.cluster;
+        let _cluster = (window._gmData ? window._gmData.cluster : []);
 
-        // Get custom Twig/PHP options
-        const twigOptions = _cluster[this.id];
+        // Get custom Twig/PHP options, fallback to null
+        const twigOptions = _cluster[this.id] || null;
 
         // If provided, get options from Twig/PHP data
         if (clusterDefault && twigOptions) {
