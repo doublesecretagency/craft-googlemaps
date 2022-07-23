@@ -22,6 +22,7 @@ use craft\models\FieldLayout;
 use craft\web\View;
 use doublesecretagency\googlemaps\enums\GoogleConstants;
 use doublesecretagency\googlemaps\fields\AddressField;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 use doublesecretagency\googlemaps\helpers\MapHelper;
 use Throwable;
@@ -918,9 +919,19 @@ class DynamicMap extends Model
      */
     private function _additionalJs(): string
     {
+        // Whether devMode is enabled
+        $inDevMode = Craft::$app->getConfig()->getGeneral()->devMode;
+
+        // Whether JavaScript logging is enabled
+        $loggingEnabled = (GoogleMapsPlugin::$plugin->getSettings()->enableJsLogging ?? true);
+
+        // Set whether to enable logging to the console
+        $logging = ($inDevMode && $loggingEnabled) ? 'true' : 'false';
+
         // Initialize additional JS data
         $javascript = "
 window._gmData = {
+    logging: {$logging},
     cluster: [],
     infoWindows: [],
     markerCallbacks: [],

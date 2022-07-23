@@ -2,7 +2,7 @@
 window.googleMaps = window.googleMaps || {
 
     // Log progress to console (enabled in devMode)
-    log: false,
+    log: (window._gmData ? window._gmData.logging : false),
 
     // Initialize collection of maps
     _maps: {},

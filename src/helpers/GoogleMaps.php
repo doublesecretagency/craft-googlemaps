@@ -82,18 +82,7 @@ class GoogleMaps
 
         // Load each JS file
         foreach ($assets as $file) {
-            $view->registerJsFile($file);
-        }
-
-        // Whether devMode is enabled
-        $inDevMode = Craft::$app->getConfig()->general->devMode;
-
-        // Whether JavaScript logging is enabled
-        $loggingEnabled = (GoogleMapsPlugin::$plugin->getSettings()->enableJsLogging ?? true);
-
-        // If permitted, enable logging via JavaScript
-        if ($inDevMode && $loggingEnabled) {
-            $view->registerJs('googleMaps.log = true;', $view::POS_END);
+            $view->registerJsFile($file, ['defer' => true]);
         }
     }
 

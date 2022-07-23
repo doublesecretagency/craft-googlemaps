@@ -15,8 +15,8 @@ Combined, they produce an HTML snippet similar to this...
 ```html
 <script src="https://maps.googleapis.com/maps/api/js?key=[KEY]" defer></script>
 <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js" defer></script>
-<script src="https://yourwebsite.com/cpresources/[HASH]/js/googlemaps.js"></script>
-<script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js"></script>
+<script src="https://yourwebsite.com/cpresources/[HASH]/js/googlemaps.js" defer></script>
+<script src="https://yourwebsite.com/cpresources/[HASH]/js/dynamicmap.js" defer></script>
 ```
 
 :::warning Not seeing these lines in your source code?
