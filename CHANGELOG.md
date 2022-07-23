@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.4 - 2022-07-23
+
+### Changed
+- All required JavaScript assets now load with `defer` attribute. ([#61](https://github.com/doublesecretagency/craft-googlemaps/issues/61))
+
+### Fixed
+- Fixed a minor conflict from recent clustering changes.
+
 ## 4.2.3 - 2022-05-13
 
 ### Fixed
