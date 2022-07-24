@@ -507,11 +507,8 @@ class DynamicMap extends Model
         // Render all additional JavaScript
         $javascript = $this->_additionalJs();
 
-        // Whether the Sprig class exists
-        $usingSprig = class_exists('putyourlightson\sprig\Sprig');
-
-        // If the website is using Sprig
-        if ($usingSprig) {
+        // If using inline JavaScript
+        if ($options['inline'] ?? false) {
             // Register JS inline, immediately after the map
             $html .= "\n<script>{$javascript}\n</script>";
         } else {

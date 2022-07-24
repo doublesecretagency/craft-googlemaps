@@ -22,17 +22,13 @@ If multiple renderers are required, you may copy and/or rename the files and fun
 
 ## Load JS script into the page
 
-Now that you have a new JavaScript file, be sure to load it into the page...
-
-```twig
-{% js url('path/to/renderer.js') %}
-```
-
-If you are also using the [Sprig](https://plugins.craftcms.com/sprig) plugin, you'll want the renderer file to be loaded `at head`...
+Now that you have a new JavaScript file, load it into the page...
 
 ```twig
 {% js url('path/to/renderer.js') at head %}
 ```
+
+The file should be loaded `at head` to ensure that it's available when needed.
 
 ## Enable custom icon rendering
 

@@ -37,22 +37,24 @@ If you are working in Twig, you can use curly braces to output the map directly.
 |:-----------|:--------:|:-------:|:------------
 | `init`     | _bool_   | `true`  | Whether to automatically initialize the map via JavaScript.
 | `assets`   | _bool_   | `true`  | Whether to preload the necessary JavaScript assets.
+| `inline`   | _bool_   | `false` | Whether to render JS immediately after map `<div>`.
 | `callback` | _string_ | `null`  | JavaScript function to run after the map has loaded.
 | `params`   | _object_ | `{}`    | Optional [parameters](https://developers.google.com/maps/documentation/javascript/url-params) for the Google Maps API.
 | `api`      | _object_ | `{}`    | _[DEPRECATED]_ Use `params` instead.
 
-The `init` option allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig.
+**The `init` option**
 
-If you need to [disable the automatic map initialization](/guides/delay-map-init/):
+Allows the map to be automatically rendered via JavaScript, after the `<div>` element has first been loaded onto the page via Twig. See how to [disable automatic initialization...](/guides/delay-map-init/)
 
-:::code
-```twig
-{{ map.tag({'init': false}) }}
-```
-```php
-$twigMarkup = $map->tag(['init' => false]);
-```
+**The `inline` option**
+
+:::warning Enable for Sprig-loaded maps
+If you are using [Sprig](https://plugins.craftcms.com/sprig) (or a similar tool) for DOM manipulation, you will likely need to enable the `inline` option.
 :::
+
+This puts all relevant JavaScript **immediately after** the map container, allowing Sprig to refresh the JavaScript each time the `div` is reloaded.  If you leave `inline` disabled, all JavaScript will be injected into the footer by default, beyond the reach of Sprig.
+
+**The `params` option**
 
 If you need to [change the map language and/or region](/guides/changing-map-language/):
 

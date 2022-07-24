@@ -72,7 +72,8 @@
         {% endfor %}
     </div>
     <div id="map" class="w-2/3">
-        {{ googleMaps.map(locations, mapOptions).tag() }}
+        {# Enabling `inline` keeps important JS right next to the map #}
+        {{ googleMaps.map(locations, mapOptions).tag({'inline': true}) }}
     </div>
 </div>
 
