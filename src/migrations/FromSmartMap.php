@@ -121,7 +121,7 @@ class FromSmartMap
 
                 // If Missing field, go one level deeper
                 if ($inactiveAddress) {
-                    $oldSettings = Json::decode($oldSettings['settings']);
+                    $oldSettings = Json::decodeIfJson($oldSettings['settings']);
                 }
 
                 // Reconfigure field settings
@@ -249,7 +249,7 @@ class FromSmartMap
 
         // Return updated field settings
         return [
-            'showMap' => null,
+            'showMap' => false,
             'mapOnStart' => 'default',
             'mapOnSearch' => 'open',
             'visibilityToggle' => 'both',
