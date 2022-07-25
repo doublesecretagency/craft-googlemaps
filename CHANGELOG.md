@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed minor bug in migration from Smart Map. (thanks @bencroker)
+
 ## 4.2.5 - 2022-07-24
 
 > {tip} If using Sprig, enable the `inline` option in the Twig/PHP `tag` method.
