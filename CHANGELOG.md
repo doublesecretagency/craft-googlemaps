@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.2.5 - 2022-07-24
+
+> {tip} If using Sprig, enable the `inline` option in the Twig/PHP `tag` method.
+
+### Added
+- Added a new `inline` option for the [Twig/PHP `tag` method](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/twig-php-methods/#tag-options).
+
+### Changed
+- JavaScript will no longer be injected inline automatically when Sprig is installed.
+
 ## 4.2.4 - 2022-07-23
 
 ### Changed
