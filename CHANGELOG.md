@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed minor bug in migration from Smart Map. (thanks @bencroker)
+- Removed an old symlink which could cause conflicts with `rsync`. ([#63](https://github.com/doublesecretagency/craft-googlemaps/issues/63))
 
 ## 4.2.5 - 2022-07-24
 
