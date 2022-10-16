@@ -13,9 +13,11 @@ namespace doublesecretagency\googlemaps;
 
 use Craft;
 use craft\base\Element;
+use craft\base\Field;
 use craft\base\Model;
 use craft\base\Plugin;
 use craft\elements\Entry;
+use craft\events\ModelEvent;
 use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterElementExportersEvent;
@@ -83,6 +85,49 @@ class GoogleMapsPlugin extends Plugin
         // Load Twig extension
         Craft::$app->getView()->registerTwigExtension(new Extension());
 
+        // Register all events
+        $this->_registerFieldType();
+        $this->_registerExporters();
+        $this->_postInstallRedirect();
+        $this->_normalizeSubfieldConfig();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function createSettingsModel(): ?Model
+    {
+        return new Settings();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function settingsHtml(): ?string
+    {
+        // Reference assets
+        $view = Craft::$app->getView();
+        $view->registerAssetBundle(SettingsAsset::class);
+
+        // Get data from config file
+        $configFile = Craft::$app->getConfig()->getConfigFromFile('google-maps');
+
+        // Load plugin settings template
+        return $view->renderTemplate('google-maps/settings', [
+            'configFile' => $configFile,
+            'settings' => $this->getSettings(),
+        ]);
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Register the field type.
+     *
+     * @return void
+     */
+    private function _registerFieldType(): void
+    {
         // Register field type
         Event::on(
             Fields::class,
@@ -91,7 +136,15 @@ class GoogleMapsPlugin extends Plugin
                 $event->types[] = AddressField::class;
             }
         );
+    }
 
+    /**
+     * Register the exporters.
+     *
+     * @return void
+     */
+    private function _registerExporters(): void
+    {
         // Register exporters
         Event::on(
             Entry::class,
@@ -101,7 +154,16 @@ class GoogleMapsPlugin extends Plugin
                 $event->exporters[] = AddressesExpandedExporter::class;
             }
         );
+    }
 
+    /**
+     * After the plugin has been installed,
+     * redirect to the "Welcome" settings page.
+     *
+     * @return void
+     */
+    private function _postInstallRedirect(): void
+    {
         // After the plugin has been installed
         Event::on(
             Plugins::class,
@@ -145,30 +207,31 @@ class GoogleMapsPlugin extends Plugin
     }
 
     /**
-     * @inheritdoc
+     * When the field settings are saved,
+     * normalize the subfield configuration.
+     *
+     * @return void
      */
-    protected function createSettingsModel(): ?Model
+    private function _normalizeSubfieldConfig(): void
     {
-        return new Settings();
-    }
+        // Adjust field settings when they are saved
+        Event::on(
+            Field::class,
+            Field::EVENT_BEFORE_SAVE,
+            function (ModelEvent $event) {
 
-    /**
-     * @inheritdoc
-     */
-    protected function settingsHtml(): ?string
-    {
-        // Reference assets
-        $view = Craft::$app->getView();
-        $view->registerAssetBundle(SettingsAsset::class);
+                // Get field settings
+                $fieldSettings = $event->sender;
 
-        // Get data from config file
-        $configFile = Craft::$app->getConfig()->getConfigFromFile('google-maps');
+                // If no subfield config, bail
+                if (!($fieldSettings->subfieldConfig ?? false)) {
+                    return;
+                }
 
-        // Load plugin settings template
-        return $view->renderTemplate('google-maps/settings', [
-            'configFile' => $configFile,
-            'settings' => $this->getSettings(),
-        ]);
+                // Strictly typecast all subfield settings
+                AddressField::typecastSubfieldConfig($fieldSettings->subfieldConfig);
+            }
+        );
     }
 
 }

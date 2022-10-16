@@ -10,76 +10,47 @@
 </template>
 
 <script>
-    import AddressToggle from './address-toggle.vue';
-    import AddressSubfields from './address-subfields.vue';
-    import AddressCoords from './address-coords.vue';
-    import AddressMeta from './address-meta.vue';
-    import AddressMap from './address-map.vue';
+// Import Pinia
+import { mapStores } from 'pinia';
+import { useAddressStore } from '../stores/AddressStore';
 
-    export default {
-        name: 'AddressField',
-        components: {
-            'address-toggle': AddressToggle,
-            'address-subfields': AddressSubfields,
-            'address-coords': AddressCoords,
-            'address-meta': AddressMeta,
-            'address-map': AddressMap
-        },
-        props: ['settings', 'data'],
-        // data() {
-        //     return {
-        //         // google: false,
-        //         initialized: false,
-        //     }
-        // },
-        computed: {
-            // Compute locally for watching
-            lat() {
-                return this.data.coords['lat'];
-            },
-            lng() {
-                return this.data.coords['lng'];
-            }
-        },
-        methods: {
-            // Check whether coordinates are valid
-            validCoords(coords) {
+import AddressToggle from './address-toggle.vue';
+import AddressSubfields from './address-subfields.vue';
+import AddressCoords from './address-coords.vue';
+import AddressMeta from './address-meta.vue';
+import AddressMap from './address-map.vue';
 
-                // If no coordinates specified
-                if (!coords) {
-                    // Use internal coordinates
-                    coords = {
-                        'lat': this.data.coords['lat'],
-                        'lng': this.data.coords['lng']
-                    };
-                }
+export default {
+    name: 'AddressField',
+    components: {
+        'address-toggle': AddressToggle,
+        'address-subfields': AddressSubfields,
+        'address-coords': AddressCoords,
+        'address-meta': AddressMeta,
+        'address-map': AddressMap
+    },
+    props: {
+        namespace: Object,
+        settings: Object,
+        data: Object,
+        images: Object
+    },
+    computed: {
+        // Load Pinia store
+        ...mapStores(useAddressStore)
+    },
+    setup(props) {
+        // Get the Pinia store
+        const addressStore = useAddressStore();
 
-                // Loop through coordinates
-                for (let key in coords) {
-                    // Ignore the zoom value
-                    if ('zoom' === key) {
-                        continue;
-                    }
-                    // Get individual coordinate
-                    let coord = coords[key];
-                    // If coordinate is not a number or string, return false
-                    if (!['number','string'].includes(typeof coord)) {
-                        return false;
-                    }
-                    // If coordinate is not numeric, return false
-                    if (isNaN(coord)) {
-                        return false;
-                    }
-                    // If coordinate is an empty string, return false
-                    if ('' === coord) {
-                        return false;
-                    }
-                }
+        // Set Pinia values from props
+        addressStore.namespace = props.namespace;
+        addressStore.settings = props.settings;
+        addressStore.data = props.data;
+        addressStore.images = props.images;
 
-                // Coordinates are valid!
-                return true;
-
-            }
-        }
-    }
+        // Whether to show the map by default
+        addressStore.showMap = props.settings.showMap;
+    },
+}
 </script>

@@ -1,47 +1,28 @@
-import AddressField from './../vue/address/address.vue';
-import SubfieldManager from './../vue/address-settings/subfield-manager.vue';
-import DefaultCoords from './../vue/address-settings/default-coords.vue';
+// Import Vue components
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-// Disable silly message
-Vue.config.productionTip = false;
+import AddressFieldSettings from '../vue/address-settings/address-settings';
 
 // Initialize Vue instance
 window.initAddressFieldSettings = () => {
 
     // Get all matching DOM elements
-    const elements = document.querySelectorAll('.address-settings');
+    const elements = document.querySelectorAll('.address-settings-container');
 
-    // Set class which marks element as loaded
-    const alreadyLoaded = 'vue-mounted';
+    // If no matching elements found, bail
+    if (!elements.length) {
+        console.warn('[GM] Unable to load Vue. Cannot find the `address-settings-container`.')
+        return;
+    }
 
-    // Initialize Vue for each element
-    elements.forEach(el => {
+    // Initialize new Vue instance
+    const app = createApp(AddressFieldSettings);
+    // const app = createApp(AddressFieldSettings, addressFieldSettingsConfig);
 
-        // If already mounted, skip this one
-        if (el.classList.contains(alreadyLoaded)) {
-            return;
-        }
+    // Initialize Pinia
+    app.use(createPinia());
 
-        // Initialize new Vue instance
-        new Vue({
-            el: el,
-            components: {
-                'address-field': AddressField,
-                'subfield-manager': SubfieldManager,
-                'default-coords': DefaultCoords
-            },
-            mounted() {
-                // Mark element as mounted
-                const element = document.getElementById(el.id);
-                element.classList.add(alreadyLoaded);
-            },
-            data: {
-                settings: settings,
-                data: data,
-                icons: icons
-            }
-        });
-
-    })
-
+    // Mount to the first matching container
+    app.mount(elements[0]);
 }

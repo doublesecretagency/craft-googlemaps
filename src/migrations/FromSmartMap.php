@@ -256,60 +256,78 @@ class FromSmartMap
             'coordinatesMode' => 'readOnly',
             'coordinatesDefault' => $coordinates,
             'subfieldConfig' => [
-                'street1' => [
-                    'label' => 'Street Address',
-                    'width' => (int) ($old['layout']['street1']['width'] ?? 100),
-                    'enabled' => (int) ($old['layout']['street1']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['street1']['position'] ?? 1),
+                [
+                    'handle'       => 'name',
+                    'label'        => 'Name',
+                    'width'        => 100,
+                    'enabled'      => false,
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'street2' => [
-                    'label' => 'Apartment or Suite',
-                    'width' => (int) ($old['layout']['street2']['width'] ?? 100),
-                    'enabled' => (int) ($old['layout']['street2']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['street2']['position'] ?? 2),
+                [
+                    'handle'       => 'street1',
+                    'label'        => 'Street Address',
+                    'width'        => (int) ($old['layout']['street1']['width'] ?? 100),
+                    'enabled'      => (bool) ($old['layout']['street1']['enable'] ?? true),
+                    'autocomplete' => true,
+                    'required'     => false
                 ],
-                'city' => [
-                    'label' => 'City',
-                    'width' => (int) ($old['layout']['city']['width'] ?? 50),
-                    'enabled' => (int) ($old['layout']['city']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['city']['position'] ?? 3),
+                [
+                    'handle'       => 'street2',
+                    'label'        => 'Apartment or Suite',
+                    'width'        => (int) ($old['layout']['street2']['width'] ?? 100),
+                    'enabled'      => (bool) ($old['layout']['street2']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'state' => [
-                    'label' => 'State',
-                    'width' => (int) ($old['layout']['state']['width'] ?? 15),
-                    'enabled' => (int) ($old['layout']['state']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['state']['position'] ?? 4),
+                [
+                    'handle'       => 'city',
+                    'label'        => 'City',
+                    'width'        => (int) ($old['layout']['city']['width'] ?? 50),
+                    'enabled'      => (bool) ($old['layout']['city']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'zip' => [
-                    'label' => 'Zip Code',
-                    'width' => (int) ($old['layout']['zip']['width'] ?? 35),
-                    'enabled' => (int) ($old['layout']['zip']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['zip']['position'] ?? 5),
+                [
+                    'handle'       => 'state',
+                    'label'        => 'State',
+                    'width'        => (int) ($old['layout']['state']['width'] ?? 15),
+                    'enabled'      => (bool) ($old['layout']['state']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'country' => [
-                    'label' => 'Country',
-                    'width' => (int) ($old['layout']['country']['width'] ?? 100),
-                    'enabled' => (int) ($old['layout']['country']['enable'] ?? 1),
-                    'position' => (int) ($old['layout']['country']['position'] ?? 6),
+                [
+                    'handle'       => 'zip',
+                    'label'        => 'Zip Code',
+                    'width'        => (int) ($old['layout']['zip']['width'] ?? 35),
+                    'enabled'      => (bool) ($old['layout']['zip']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'name' => [
-                    'label' => 'Name',
-                    'width' => 100,
-                    'enabled' => 0,
-                    'position' => 101,
+                [
+                    'handle'       => 'county',
+                    'label'        => 'County or District',
+                    'width'        => 100,
+                    'enabled'      => false,
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'county' => [
-                    'label' => 'County or District',
-                    'width' => 100,
-                    'enabled' => 0,
-                    'position' => 102,
+                [
+                    'handle'       => 'country',
+                    'label'        => 'Country',
+                    'width'        => (int) ($old['layout']['country']['width'] ?? 100),
+                    'enabled'      => (bool) ($old['layout']['country']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
                 ],
-                'placeId' => [
-                    'label' => 'Place ID',
-                    'width' => 100,
-                    'enabled' => 0,
-                    'position' => 103,
-                ]
+                [
+                    'handle'       => 'placeId',
+                    'label'        => 'Place ID',
+                    'width'        => 100,
+                    'enabled'      => false,
+                    'autocomplete' => false,
+                    'required'     => false
+                ],
             ]
         ];
     }

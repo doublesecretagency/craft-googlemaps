@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- Completely refactored how Vue powers the Address field. Now updated to use Vue 3 and Pinia.
+
 ### Fixed
 - Fixed minor bug in migration from Smart Map. (thanks @bencroker)
 - Removed an old symlink which could cause conflicts with `rsync`. ([#63](https://github.com/doublesecretagency/craft-googlemaps/issues/63))

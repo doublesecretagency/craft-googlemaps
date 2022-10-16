@@ -1,86 +1,104 @@
 <template>
     <div>
-        <input
-            v-for="coord in coordinatesDisplay()"
-            :placeholder="coord.label"
-            :type="getType"
-            :readonly="getReadOnly"
-            :class="getInputClasses(coord.key)"
-            v-model.number="$root.$data.data.coords[coord.key]"
+        <input v-for="input in getInputs()"
+            :type="config.type"
+            :placeholder="input.label"
+            :readonly="config.readOnly"
+            v-model.number="addressStore.data.coords[input.key]"
+            :name="`${addressStore.namespace.name}[${input.key}]`"
+            :class="getInputClasses(input.key)"
+            :style="input.styles"
             autocomplete="chrome-off"
-            :name="`${namespacedName}[${coord.key}]`"
-            :style="coord.styles"
         />
     </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                handle: this.$root.$data.handle,
-                namespacedName: this.$root.$data.namespacedName
-            }
-        },
-        computed: {
-            getType() {
-                // What type of input should the coordinate fields be?
-                return ('hidden' === this.$root.$data.settings.coordinatesMode ? 'hidden' : 'number');
-            },
-            getReadOnly() {
-                // Whether the coordinate fields should be read-only
-                return !['editable','hidden'].includes(this.$root.$data.settings.coordinatesMode);
-            }
-        },
-        methods: {
-            getInputClasses(key) {
-                // Get the coordinates mode from settings
-                let mode = this.$root.$data.settings.coordinatesMode;
+// Import Pinia
+import { mapStores } from 'pinia';
+import { useAddressStore } from '../stores/AddressStore';
 
-                // If hidden, return empty array
-                if ('hidden' === mode) {
-                    return [];
+export default {
+    computed: {
+        // Load Pinia store
+        ...mapStores(useAddressStore),
+
+        /**
+         * Get coordinates formatting configuration.
+         */
+        config()
+        {
+            // Get the Pinia store
+            const addressStore = useAddressStore();
+            // Return configuration
+            return addressStore.configCoords;
+        },
+    },
+    methods: {
+
+        /**
+         * Configure the inputs for coordinates.
+         */
+        getInputs()
+        {
+            return [
+                {
+                    key: 'lat',
+                    label: 'Latitude',
+                    styles: {'width': '43%'}
+                },
+                {
+                    key: 'lng',
+                    label: 'Longitude',
+                    styles: {'width': '43%'}
+                },
+                {
+                    key: 'zoom',
+                    label: 'Zoom',
+                    styles: {'width': '11%'}
                 }
+            ];
+        },
 
-                // Whether to mark coordinates as required
-                let requireCoordinates = (key !== 'zoom' && this.$root.$data.settings.requireCoordinates);
+        /**
+         * Configure the classes for each input.
+         */
+        getInputClasses(key)
+        {
+            // Get the Pinia store
+            const addressStore = useAddressStore();
 
-                // Return array of input classes
-                return [
-                    'text',
-                    'code',
-                    'fullwidth',
-                    ('editable' !== mode ? 'disabled' : null),
-                    (requireCoordinates ? 'required' : null),
-                ];
-            },
-            // Get the display array
-            coordinatesDisplay() {
-                return [
-                    {
-                        key: 'lat',
-                        label: 'Latitude',
-                        styles: {'width': '43%'}
-                    },
-                    {
-                        key: 'lng',
-                        label: 'Longitude',
-                        styles: {'width': '43%'}
-                    },
-                    {
-                        key: 'zoom',
-                        label: 'Zoom',
-                        styles: {'width': '11%'}
-                    }
-                ];
+            // Get the field settings
+            const settings = addressStore.settings;
+
+            // If hidden, return an empty array
+            if ('hidden' === settings.coordinatesMode) {
+                return [];
             }
+
+            // Whether the coordinates are editable
+            const isEditable = ('editable' !== settings.coordinatesMode);
+
+            // Whether to mark coordinates as required
+            const requireCoordinates = (settings.requireCoordinates && (key !== 'zoom'));
+
+            // Return array of input classes
+            return [
+                'text',
+                'code',
+                'fullwidth',
+                (isEditable ? 'disabled' : null),
+                (requireCoordinates ? 'required' : null),
+            ];
         }
+
     }
+}
 </script>
 
 <style scoped>
-    .disabled {
-        opacity: 0.60;
-        background-color: #e4eaf4;
-    }
+.disabled {
+    opacity: 0.60;
+    background-color: #e4eaf4;
+}
 </style>

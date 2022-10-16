@@ -4,6 +4,80 @@ description:
 
 # Setting Marker Icons
 
+**Per the [Google Maps API](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)**:
+
+<img class="dropshadow" :src="$withBase('/images/guides/icon-definition.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon" style="max-width:500px">
+
+In other words, there are **two ways** to configure a marker icon...
+
+1. **String** - You can simply specify the path to your marker icon file.
+
+:::code
+```js
+var icon = '/path/to/marker.png';
+```
+```twig
+{% set icon = '/path/to/marker.png' %}
+```
+```php
+$icon = '/path/to/marker.png';
+```
+:::
+
+2. **Array** - Accepts parameters from Google's native [Icon interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
+
+:::code
+```js
+var icon = {
+    'url': '/path/to/marker.png'
+};
+```
+```twig
+{% set icon = {
+    'url': '/path/to/marker.png'
+} %}
+```
+```php
+$icon = [
+    'url' => '/path/to/marker.png'
+];
+```
+:::
+
+---
+---
+
+## Control the size of a marker icon
+
+Configure the icon as an array, specifying `scaledSize` to control the marker size.
+
+:::code
+```js
+// Specify the dimensions of a marker icon
+var icon = {
+    'url': '/path/to/marker.png',
+    'scaledSize': {'width': 30, 'height': 40}
+};
+```
+```twig
+{# Specify the dimensions of a marker icon #}
+{% set icon = {
+    'url': '/path/to/marker.png',
+    'scaledSize': {'width': 30, 'height': 40}
+} %}
+```
+```php
+// Specify the dimensions of a marker icon
+$icon = [
+    'url' => '/path/to/marker.png',
+    'scaledSize' => ['width' => 30, 'height' => 40]
+];
+```
+:::
+
+---
+---
+
 ## Set icons for a batch of markers
 
 If you've got multiple groups of markers, you can specify a different icon for each batch of markers.
@@ -72,16 +146,6 @@ $map->markers($restaurants, [
 // Display map
 $twigMarkup = $map->tag();
 ```
-:::
-
-The `icon` value will be passed as a parameter of the `markerOptions` value.
-
-From the Google Maps API documentation regarding [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)...
-
-<img class="dropshadow" :src="$withBase('/images/guides/icon.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon" style="max-width:580px">
-
-:::warning markerOptions.icon
-If you specify a `markerOptions` value during the initial `map` declaration, it will be treated as the default `markerOptions` value for all future markers. Since this can contain an `icon` value, it effectively allows you to define a specific fallback icon.
 :::
 
 ---

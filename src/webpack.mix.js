@@ -7,8 +7,7 @@ const dist = 'web/assets/dist';
 // Run Mix
 mix
 
-    // Use Vue 2
-    .vue({version: 2})
+    .vue({version: 3})
 
     // Webpack config
     .webpackConfig({

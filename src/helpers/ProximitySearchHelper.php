@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\elements\db\ElementQueryInterface;
+use doublesecretagency\googlemaps\enums\Defaults;
 use doublesecretagency\googlemaps\fields\AddressField;
 use yii\base\ExitException;
 
@@ -95,7 +96,7 @@ class ProximitySearchHelper
         ];
 
         // Get default coordinates
-        $defaultCoords = AddressField::DEFAULT_COORDINATES;
+        $defaultCoords = Defaults::COORDINATES;
 
         // Get specified target
         $target = ($options['target'] ?? null);
@@ -182,7 +183,7 @@ class ProximitySearchHelper
         }
 
         // Get handles of all subfields
-        $valid = array_keys(AddressField::DEFAULT_SUBFIELD_CONFIG);
+        $valid = array_column(Defaults::SUBFIELDCONFIG, 'handle');
 
         // Complete list of valid subfields
         $whitelist = array_merge($valid, ['lat','lng']);
@@ -394,7 +395,7 @@ class ProximitySearchHelper
         }
 
         // Something's not right, return default coordinates
-        return AddressField::DEFAULT_COORDINATES;
+        return Defaults::COORDINATES;
     }
 
     /**

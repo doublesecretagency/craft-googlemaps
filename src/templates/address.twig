@@ -1,0 +1,10 @@
+<script>
+    // Ensure Address field config array exists
+    if ('undefined' === typeof addressFieldConfigs) {
+        addressFieldConfigs = [];
+    }
+    // Transfer PHP data to JavaScript via Twig
+    addressFieldConfigs.push({{ config|json_encode|raw }});
+</script>
+
+<div id="{{ config.namespace.handle }}"></div>

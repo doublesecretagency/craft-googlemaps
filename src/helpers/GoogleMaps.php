@@ -13,7 +13,6 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\base\Element;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Location;
 use doublesecretagency\googlemaps\models\Lookup;

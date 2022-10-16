@@ -18,8 +18,8 @@ use craft\base\PreviewableFieldInterface;
 use craft\elements\db\ElementQueryInterface;
 use craft\elements\Entry;
 use craft\helpers\Json;
+use doublesecretagency\googlemaps\enums\Defaults;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
-use doublesecretagency\googlemaps\helpers\AddressHelper;
 use doublesecretagency\googlemaps\helpers\ProximitySearchHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
@@ -33,84 +33,6 @@ use doublesecretagency\googlemaps\web\assets\AddressFieldSettingsAsset;
  */
 class AddressField extends Field implements PreviewableFieldInterface
 {
-
-    /**
-     * Default coordinates. (Bermuda Triangle)
-     */
-    public const DEFAULT_COORDINATES = [
-        'lat' => 32.3113966,
-        'lng' => -64.7527469,
-        'zoom' => 6
-    ];
-
-    /**
-     * Default subfield configuration.
-     */
-    public const DEFAULT_SUBFIELD_CONFIG = [
-        'name' => [
-            'label'    => 'Name',
-            'width'    => 100,
-            'position' => 1,
-            'enabled'  => 0,
-            'required' => false
-        ],
-        'street1' => [
-            'label'    => 'Street Address',
-            'width'    => 100,
-            'position' => 2,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'street2' => [
-            'label'    => 'Apartment or Suite',
-            'width'    => 100,
-            'position' => 3,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'city' => [
-            'label'    => 'City',
-            'width'    => 50,
-            'position' => 4,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'state' => [
-            'label'    => 'State',
-            'width'    => 15,
-            'position' => 5,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'zip' => [
-            'label'    => 'Zip Code',
-            'width'    => 35,
-            'position' => 6,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'county' => [
-            'label'    => 'County or District',
-            'width'    => 100,
-            'position' => 7,
-            'enabled'  => 0,
-            'required' => false
-        ],
-        'country' => [
-            'label'    => 'Country',
-            'width'    => 100,
-            'position' => 8,
-            'enabled'  => 1,
-            'required' => false
-        ],
-        'placeId' => [
-            'label'    => 'Place ID',
-            'width'    => 100,
-            'position' => 9,
-            'enabled'  => 0,
-            'required' => false
-        ],
-    ];
 
     /**
      * Whether to show the map.
@@ -163,16 +85,14 @@ class AddressField extends Field implements PreviewableFieldInterface
      *
      * @var array|null
      */
-    // TODO: Should probably just be null, right? Let the fallback kick in later, in JS or PHP
-    // public $coordinatesDefault;
-    public ?array $coordinatesDefault = self::DEFAULT_COORDINATES;
+    public ?array $coordinatesDefault = Defaults::COORDINATES;
 
     /**
      * Full configuration of subfields.
      *
      * @var array|null
      */
-    public ?array $subfieldConfig = self::DEFAULT_SUBFIELD_CONFIG;
+    public ?array $subfieldConfig = Defaults::SUBFIELDCONFIG;
 
     // ========================================================================= //
 
@@ -362,33 +282,13 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml(): ?string
+    public function getInputHtml(mixed $address, ?ElementInterface $element = null): string
     {
-        // Reference assets
-        $view = Craft::$app->getView();
-        $view->registerAssetBundle(AddressFieldSettingsAsset::class);
-
-        // Load fieldtype settings template
-        return $view->renderTemplate('google-maps/address-settings', [
-            'icons' => AddressHelper::visibilityIcons(),
-            'settings' => $this->_getExtraSettings()
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
-    {
-        // Reference assets
-        $view = Craft::$app->getView();
-        $view->registerAssetBundle(AddressFieldAsset::class);
+        // Whether the field has existing coordinates
+        $coordsExist = ($address instanceof AddressModel && $address->hasCoords());
 
         // Get extended settings
         $settings = $this->_getExtraSettings();
-
-        // Whether the field has existing coordinates
-        $coordsExist = ($value instanceof AddressModel && $value->hasCoords());
 
         // By default, show map if coordinates exist
         if ('default' === $settings['mapOnStart']) {
@@ -396,16 +296,147 @@ class AddressField extends Field implements PreviewableFieldInterface
             $settings['mapOnStart'] = ($coordsExist ? 'open' : 'close');
         }
 
+        // Load view service
+        $view = Craft::$app->getView();
+
+        // Register assets
+        $view->registerAssetBundle(AddressFieldAsset::class);
+
         // Load fieldtype input template
         return $view->renderTemplate('google-maps/address', [
-            'address' => $value,
-            'handle' => $this->handle,
-            'icons' => AddressHelper::visibilityIcons(),
-            'settings' => $settings,
+            'config' => [
+                'namespace' => [
+                    'id' => $view->namespaceInputId($this->handle),
+                    'name' => $view->namespaceInputName($this->handle),
+                    'handle' => $this->handle,
+                ],
+                'settings' => $settings,
+                'data' => $this->_getAddressData($address),
+                'images' => $this->_publishImages([
+                    'iconOn' => 'marker.svg',
+                    'iconOff' => 'marker-hollow.svg',
+                ]),
+            ]
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSettingsHtml(): ?string
+    {
+        // Load view service
+        $view = Craft::$app->getView();
+
+        // Register assets
+        $view->registerAssetBundle(AddressFieldSettingsAsset::class);
+
+        // Load fieldtype settings template
+        return $view->renderTemplate('google-maps/address-settings', [
+            'config' => [
+                'namespace' => [
+                    'id' => $view->namespaceInputId('PLACEHOLDER'),
+                    'name' => $view->namespaceInputName('PLACEHOLDER'),
+                    'handle' => 'PLACEHOLDER',
+                ],
+                'settings' => $this->_getExtraSettings(),
+                'data' => $this->_getAddressData(),
+                'images' => $this->_publishImages([
+                    'iconOn' => 'marker.svg',
+                    'iconOff' => 'marker-hollow.svg',
+                    'required' => 'required.png',
+                ]),
+            ]
         ]);
     }
 
     // ========================================================================= //
+
+    /**
+     * Typecast the subfield configuration.
+     *
+     * @param $subfieldConfig
+     */
+    public static function typecastSubfieldConfig(&$subfieldConfig): void
+    {
+        // Strictly typecast each subfield setting
+        array_walk($subfieldConfig, function (&$value) {
+            $value = [
+                'handle'       => (string) ($value['handle'] ?? ''),
+                'label'        => (string) ($value['label'] ?? ''),
+                'width'        => (int) ($value['width'] ?? 100),
+                'enabled'      => (bool) ($value['enabled'] ?? false),
+                'autocomplete' => (bool) ($value['autocomplete'] ?? false),
+                'required'     => (bool) ($value['required'] ?? false),
+            ];
+        });
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Normalize the subfield configuration.
+     *
+     * @return array
+     */
+    private function _normalizeSubfieldConfig($subfieldConfig): array
+    {
+        // What kind of array is the subfield configuration?
+        $isSequential  = (array_key_exists(0, $subfieldConfig));         // (NEW STYLE)
+        $isAssociative = (array_key_exists('street1', $subfieldConfig)); // (OLD STYLE)
+
+        // If it's a sequential array
+        if ($isSequential) {
+            // Strictly typecast all subfield settings
+            static::typecastSubfieldConfig($subfieldConfig);
+            // Return the existing subfield config
+            return $subfieldConfig;
+        }
+
+        // If it's NOT an associative array
+        if (!$isAssociative) {
+            // It's misconfigured, return the default configuration
+            return Defaults::SUBFIELDCONFIG;
+        }
+
+        // Initialize new config
+        $newConfig = [];
+
+        // Loop through default subfield configuration
+        foreach (Defaults::SUBFIELDCONFIG as $defaultConfig) {
+
+            // Get the existing config
+            $oldConfig = ($subfieldConfig[$defaultConfig['handle']] ?? []);
+
+            // Append new config for each subfield
+            $newConfig[] = [
+                'handle'       => $defaultConfig['handle'],
+                'label'        => (string) ($oldConfig['label'] ?? $defaultConfig['label']),
+                'width'        => (int) ($oldConfig['width'] ?? $defaultConfig['width']),
+                'enabled'      => (bool) ($oldConfig['enabled'] ?? false),
+                'autocomplete' => (bool) ($oldConfig['autocomplete'] ?? false),
+                'required'     => (bool) ($oldConfig['required'] ?? false),
+            ];
+        }
+
+        // Reorder the new config based on the old config's `position` value
+        usort($newConfig, function ($a, $b) use ($subfieldConfig) {
+
+            // Get original subfield configs
+            $subfieldA = ($subfieldConfig[$a['handle']] ?? []);
+            $subfieldB = ($subfieldConfig[$b['handle']] ?? []);
+
+            // Get original positions
+            $positionA = (int) ($subfieldA['position'] ?? 100);
+            $positionB = (int) ($subfieldB['position'] ?? 101);
+
+            // Return sorting results
+            return ($positionA < $positionB) ? -1 : 1;
+        });
+
+        // Return new subfield config
+        return $newConfig;
+    }
 
     /**
      * Get the field settings with some extra information.
@@ -423,39 +454,65 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Set the control size of map UI elements
         $settings['controlSize'] = GoogleMapsPlugin::$plugin->getSettings()->fieldControlSize;
 
-        // Get existing subfield config
-        $subfieldConfig = $settings['subfieldConfig'] ?? [];
-
-        // Start boosted `position` counter
-        $boostedPosition = 101;
-
-        // Loop through default subfields
-        foreach (self::DEFAULT_SUBFIELD_CONFIG as $handle => $subfield) {
-
-            // If subfield already exists, skip it
-            if (array_key_exists($handle, $subfieldConfig)) {
-                continue;
-            }
-
-            // Ensure subfield appears at the end
-            $subfield['position'] = $boostedPosition++;
-
-            // Disable subfield by default
-            $subfield['enabled'] = 0;
-
-            // Not using `required` (yet)
-            unset($subfield['required']);
-
-            // Append unused subfield to existing config
-            $subfieldConfig[$handle] = $subfield;
-
-        }
-
-        // Update subfield config
-        $settings['subfieldConfig'] = $subfieldConfig;
+        // Normalize the subfield config
+        $settings['subfieldConfig'] = $this->_normalizeSubfieldConfig($settings['subfieldConfig'] ?? []);
 
         // Return settings
         return $settings;
+    }
+
+    /**
+     * Extract data from an Address model,
+     * or set everything to null if no model.
+     *
+     * @param AddressModel|null $address
+     * @return array[]
+     */
+    private function _getAddressData(?AddressModel $address = null): array
+    {
+        return [
+            'address'=> [
+                'formatted' => ($address->formatted ?? null),
+                'raw'       => ($address->raw ?? null),
+                'name'      => ($address->name ?? null),
+                'street1'   => ($address->street1 ?? null),
+                'street2'   => ($address->street2 ?? null),
+                'city'      => ($address->city ?? null),
+                'state'     => ($address->state ?? null),
+                'zip'       => ($address->zip ?? null),
+                'county'    => ($address->county ?? null),
+                'country'   => ($address->country ?? null),
+                'placeId'   => ($address->placeId ?? null),
+            ],
+            'coords'=> [
+                'lat'  => ($address->lat ?? null),
+                'lng'  => ($address->lng ?? null),
+                'zoom' => ($address->zoom ?? null),
+            ]
+        ];
+    }
+
+    /**
+     * Publish a set of images, returning their published URLs.
+     *
+     * @param array $images
+     * @return array
+     */
+    private function _publishImages(array $images): array
+    {
+        // Load asset manager
+        $assetManager = Craft::$app->getAssetManager();
+
+        // Directory of images
+        $directory = '@doublesecretagency/googlemaps/web/assets/dist';
+
+        // Publish each image, and change each value to the published URL
+        array_walk($images, function (&$value) use ($assetManager, $directory) {
+            $value = $assetManager->getPublishedUrl($directory, true, "images/{$value}");
+        });
+
+        // Return published images
+        return $images;
     }
 
     // ========================================================================= //
