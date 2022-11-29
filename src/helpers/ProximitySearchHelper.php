@@ -13,9 +13,12 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\elements\db\ElementQueryInterface;
+use craft\fields\Number;
+use craft\helpers\ElementHelper;
 use doublesecretagency\googlemaps\enums\Defaults;
 use doublesecretagency\googlemaps\fields\AddressField;
 use yii\base\ExitException;
+use yii\web\HttpException;
 
 /**
  * Class ProximitySearchHelper
@@ -119,6 +122,10 @@ class ProximitySearchHelper
             $coords = $defaultCoords;
         }
 
+        // Get coordinates
+        $lat = ($coords['lat'] ?? $defaultCoords['lat']);
+        $lng = ($coords['lng'] ?? $defaultCoords['lng']);
+
         // Get specified units
         $units = ($options['units'] ?? $default['units']);
 
@@ -128,13 +135,6 @@ class ProximitySearchHelper
             $units = $default['units'];
         }
 
-        // Get coordinates
-        $lat = ($coords['lat'] ?? $defaultCoords['lat']);
-        $lng = ($coords['lng'] ?? $defaultCoords['lng']);
-
-        // Implement haversine formula via SQL
-        $haversine = static::_haversineSql($lat, $lng, $units);
-
         // Get specified range
         $range = ($options['range'] ?? $default['range']);
 
@@ -142,6 +142,9 @@ class ProximitySearchHelper
         if (!is_numeric($range) || $range <= 0) {
             $range = $default['range'];
         }
+
+        // Implement haversine formula via SQL
+        $haversine = static::_haversineSql($lat, $lng, $units);
 
         // Modify subquery, sort by nearest
         static::$_query->subQuery->addSelect(
@@ -154,8 +157,11 @@ class ProximitySearchHelper
             "[[subquery.distance]] AS [[{$fieldHandle}]]"
         );
 
+        // Whether the database is MySQL
+        $isMySql = Craft::$app->getDb()->getIsMysql();
+
         // Handle distance based on database type
-        if (Craft::$app->getDb()->getIsMysql()) {
+        if ($isMySql) {
             // Configure for MySQL
             static::$_query->subQuery->having(
                 '[[distance]] <= :range',
@@ -167,6 +173,47 @@ class ProximitySearchHelper
                 '[[distance]] <= :range',
                 [':range' => $range]
             );
+        }
+
+        // Get reverse radius field handle
+        $reverseRadius = ($options['reverseRadius'] ?? null);
+
+        // If performing a reverse proximity search
+        if ($reverseRadius) {
+
+            // Get the reverse radius field
+            $field = Craft::$app->getFields()->getFieldByHandle($reverseRadius);
+
+            // If the field does not exist
+            if (!$field) {
+                // Throw an error
+                throw new HttpException(500, "The \"{$reverseRadius}\" field does not exist. Please specify a Number field for the `reverseRadius` option.");
+            }
+
+            // If not a Number field type
+            if (!is_a($field, Number::class)) {
+                // Get the actual field class
+                $actualClass = get_class($field);
+                // Throw an error
+                throw new HttpException(500, "The \"{$reverseRadius}\" field is a {$actualClass}. Please specify a Number field for the `reverseRadius` option.");
+            }
+
+            // Get name of content column
+            $column = ElementHelper::fieldColumnFromField($field);
+
+            // Filter by the reverse radius
+            if ($isMySql) {
+                // Configure for MySQL
+                static::$_query->query->andHaving(
+                    "[[distance]] <= [[{$column}]]"
+                );
+            } else {
+                // Configure for Postgres
+                static::$_query->query->andWhere(
+                    "[[distance]] <= [[{$column}]]"
+                );
+            }
+
         }
     }
 

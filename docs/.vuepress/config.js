@@ -79,6 +79,7 @@ module.exports = {
                         {text: 'Filter by Subfields', link: '/guides/filter-by-subfields/'},
                         {text: 'Search by Visitor IP', link: '/guides/search-by-visitor-ip/'},
                         {text: 'AJAX Geocoding Example', link: '/guides/ajax-geocoding-example/'},
+                        {text: 'Reverse Proximity Search', link: '/guides/reverse-proximity-search/'},
                         {text: 'Proximity Search with Sprig', link: '/guides/sprig/'},
                     ] },
                     { text: 'Updating', items: [
@@ -233,6 +234,7 @@ module.exports = {
                         'filter-by-subfields',
                         'search-by-visitor-ip',
                         'ajax-geocoding-example',
+                        'reverse-proximity-search',
                         'sprig',
                     ]
                 },

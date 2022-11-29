@@ -4,13 +4,14 @@ description:
 
 # Options
 
-| Option                            | Type     | Default | Description                                      |
-|-----------------------------------|:--------:|:-------:|--------------------------------------------------|
-| [`target`](#target)               | _mixed_  | `null`  | Center point for the proximity search.           |
-| [`range`](#range)                 | _int_    | `500`   | The search radius, measured in `units`.          |
-| [`units`](#units)                 | _string_ | `'mi'`  | Unit of measurement, either miles or kilometers. |
-| [`subfields`](#subfields)         | _mixed_  | `null`  | Filter by contents of specific subfields.        |
-| [`requireCoords`](#requirecoords) | _bool_   | `false` | Whether results should only include Addresses with valid coordinates. |
+| Option                            |   Type   | Default | Description                                                           |
+|-----------------------------------|:--------:|:-------:|-----------------------------------------------------------------------|
+| [`target`](#target)               | _mixed_  | `null`  | Center point for the proximity search.                                |
+| [`range`](#range)                 |  _int_   |  `500`  | The search radius, measured in `units`.                               |
+| [`units`](#units)                 | _string_ | `'mi'`  | Unit of measurement, either miles or kilometers.                      |
+| [`subfields`](#subfields)         | _mixed_  | `null`  | Filter by contents of specific subfields.                             |
+| [`requireCoords`](#requirecoords) |  _bool_  | `false` | Whether results should only include Addresses with valid coordinates. |
+| [`reverseRadius`](#reverseradius) | _string_ | `null`  | Handle of field to use for a reverse proximity search.                |
 
 ## `target`
 
@@ -68,3 +69,9 @@ When conducting proximity searches across a broad area, you may find it helpful 
 Determines whether a valid set of coordinates is required. If set to `true`, the results will only include Addresses which have valid coordinates.
 
 A set of coordinates is considered valid only if both the `latitude` and `longitude` values are populated.
+
+## `reverseRadius`
+
+When specified, this will **invert** the proximity search logic. Instead of using a single radius, centered around the given target, <u>each location can specify its own individual range</u>.
+
+For complete details, see the guide for a [Reverse Proximity Search...](/guides/reverse-proximity-search/)

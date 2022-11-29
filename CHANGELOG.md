@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+- Added support for [reverse proximity searches](https://plugins.doublesecretagency.com/google-maps/guides/reverse-proximity-search/).
+
 ### Changed
 - Completely refactored how Vue powers the Address field. Now updated to use Vue 3 and Pinia.
 
