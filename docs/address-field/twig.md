@@ -4,11 +4,13 @@ description: Here's a basic example of how you might use an Address field in a T
 
 # Using an Address in Twig
 
+## Example
+
+This is a very simple example of what is possible with the Address field...
+
 <img class="dropshadow" :src="$withBase('/images/address-field/basic-example.png')" alt="Example using the address of the Empire State Building">
 
-The screenshot above is a very simple example of what is possible with the Address field. Each Address field will provide an [Address Model](/models/address-model/), which is extremely powerful and flexible.
-
-Here is the Twig code which generated that screenshot...
+And here is the Twig code which produced the screenshot above...
 
 ```twig
 {# Show the entry title #}
@@ -34,7 +36,7 @@ Here is the Twig code which generated that screenshot...
 
 ## Breaking it down
 
-Every Address field returns an **Address Model**. The example above is relying on several distinct features of the Address Model...
+Each Address field returns an [Address Model](/models/address-model/), which is extremely powerful and flexible. The example above is relying on several distinct features of the Address Model...
 
  - We used `multiline` to display a complete address, formatted across multiple lines.
  - We used `linkToMap` and `linkToDirections` to display direct links to Google Maps.

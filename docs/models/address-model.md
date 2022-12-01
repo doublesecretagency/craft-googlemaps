@@ -28,15 +28,15 @@ You can access `lat` and `lng` just as easily as `street1` and `street2`.
 
 ### `id`
 
-_int_ - ID of the address.
+_int_ - ID of the Address.
 
 ### `elementId`
 
-_int_ - ID of the element containing the address.
+_int_ - Element ID of the element containing the Address.
 
 ### `fieldId`
 
-_int_ - ID of the field containing the address.
+_int_ - Field ID of the Address field.
 
 ### `formatted`
 

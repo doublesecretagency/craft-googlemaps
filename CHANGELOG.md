@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- Added support for [using an Address in GraphQL](https://plugins.doublesecretagency.com/google-maps/address-field/graphql/).
 - Added support for [reverse proximity searches](https://plugins.doublesecretagency.com/google-maps/guides/reverse-proximity-search/).
 
 ### Changed

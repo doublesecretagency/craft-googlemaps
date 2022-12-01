@@ -57,7 +57,7 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @var string Current schema version of the plugin.
      */
-    public string $schemaVersion = '4.1.0';
+    public string $schemaVersion = '4.3.0';
 
     /**
      * @var GoogleMapsPlugin Self-referential plugin property.
@@ -88,7 +88,11 @@ class GoogleMapsPlugin extends Plugin
         // Register all events
         $this->_registerFieldType();
         $this->_registerExporters();
+
+        // Redirect after plugin install
         $this->_postInstallRedirect();
+
+        // Normalize the subfield configuration
         $this->_normalizeSubfieldConfig();
     }
 
@@ -155,6 +159,8 @@ class GoogleMapsPlugin extends Plugin
             }
         );
     }
+
+    // ========================================================================= //
 
     /**
      * After the plugin has been installed,

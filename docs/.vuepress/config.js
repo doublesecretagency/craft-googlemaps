@@ -49,6 +49,7 @@ module.exports = {
                     {text: 'JavaScript', link: '/javascript/'},
                     {text: 'Twig/PHP', link: '/helper/'},
                     {text: 'Models', link: '/models/'},
+                    {text: 'GraphQL', link: '/graphql/'},
                 ]
             },
             {
@@ -104,7 +105,8 @@ module.exports = {
                 '',
                 'how-it-works',
                 'settings',
-                'in-twig',
+                'twig',
+                'graphql',
                 'front-end-form',
                 'export',
             ],
@@ -194,6 +196,26 @@ module.exports = {
                 'maxmind-model',
                 'settings-model',
                 'coordinates',
+            ],
+            '/graphql/': [
+                {
+                    title: 'Overview',
+                    collapsable: false,
+                    children: [
+                        '',
+                    ]
+                },
+                {
+                    title: 'Custom Types',
+                    collapsable: false,
+                    children: [
+                        'address-type',
+                        'raw-type',
+                        'component-type',
+                        'geometry-type',
+                        'location-type',
+                    ]
+                },
             ],
 
             // Guides
