@@ -228,9 +228,32 @@ class StaticMap extends Model
             // Initialize path parts
             $parts = [];
 
+            // Get optional feature and element values
+            $feature = ($subset['featureType'] ?? false);
+            $element = ($subset['elementType'] ?? false);
+
+            // Get required style rules
+            $styleRules = ($subset['stylers'] ?? []);
+
+            // If a feature was specified, prepend it
+            if ($feature) {
+                $parts[] = "feature:{$feature}";
+            }
+
+            // If an element was specified, prepend it
+            if ($element) {
+                $parts[] = "element:{$element}";
+            }
+
             // Compile each subset of styles
-            foreach ($subset as $k => $v) {
-                $parts[] = "{$k}:{$v}";
+            foreach ($styleRules as $rule) {
+                // Loop through each rule
+                foreach ($rule as $k => $v) {
+                    // Replace symbol for URL
+                    $v = str_replace('#', '0x', $v);
+                    // Append part
+                    $parts[] = "{$k}:{$v}";
+                }
             }
 
             // Add to map DNA
