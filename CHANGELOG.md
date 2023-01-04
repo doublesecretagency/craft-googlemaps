@@ -12,6 +12,7 @@
 ### Fixed
 - Fixed `styles` option for static maps. ([#70](https://github.com/doublesecretagency/craft-googlemaps/issues/70))
 - Fixed minor bug in migration from Smart Map. (thanks @bencroker)
+- Fixed a bug which prevented multiple maps from having info windows at the same time.
 - Removed an old symlink which could cause conflicts with `rsync`. ([#63](https://github.com/doublesecretagency/craft-googlemaps/issues/63))
 
 ## 4.2.5 - 2022-07-24

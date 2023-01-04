@@ -105,59 +105,47 @@ window.googleMaps = window.googleMaps || {
             // Render each map
             this._unpack(dna);
 
-        }
+            // Get dynamic map
+            let dynamicMap = this.getMap(map.id, true);
 
-        // Initialize loop variables
-        var mId, m, markerId, iw, cb;
+            // Get data for info windows and marker callbacks
+            var _infoWindows     = window._gmData.infoWindows[map.id]     || [];
+            var _markerCallbacks = window._gmData.markerCallbacks[map.id] || [];
 
-        // Get data for info windows
-        var _infoWindows = window._gmData.infoWindows;
+            // If any info windows were specified
+            if (Object.keys(_infoWindows).length) {
 
-        // If any info windows were specified
-        if (Object.keys(_infoWindows).length) {
+                // Log status
+                if (this.log) {
+                    console.log(`[${map.id}] Activating all info windows`);
+                }
 
-            // Log status
-            if (this.log) {
-                console.log(`[${map.id}] Activating all info windows`);
-            }
-
-            // Loop through info windows of each map
-            for (mId in _infoWindows) {
-                // Get current map
-                m = this.getMap(mId, true);
                 // Loop through info windows of current map
-                for (markerId in _infoWindows[mId]) {
+                for (let markerId in _infoWindows) {
                     // Get info window
-                    iw = _infoWindows[mId][markerId];
+                    let infoWindow = _infoWindows[markerId];
                     // Activate info window function
-                    m._initInfoWindow(markerId, iw);
+                    dynamicMap._initInfoWindow(markerId, infoWindow);
                 }
+
             }
 
-        }
+            // If any marker callbacks were specified
+            if (Object.keys(_markerCallbacks).length) {
 
-        // Get data for marker callbacks
-        var _markerCallbacks = window._gmData.markerCallbacks;
+                // Log status
+                if (this.log) {
+                    console.log(`[${map.id}] Activating all marker callbacks`);
+                }
 
-        // If any marker callbacks were specified
-        if (Object.keys(_markerCallbacks).length) {
-
-            // Log status
-            if (this.log) {
-                console.log(`[${map.id}] Activating all marker callbacks`);
-            }
-
-            // Loop through marker callbacks of each map
-            for (mId in _markerCallbacks) {
-                // Get current map
-                m = this.getMap(mId, true);
                 // Loop through marker callbacks of current map
-                for (markerId in _markerCallbacks[mId]) {
+                for (let markerId in _markerCallbacks) {
                     // Get marker callback
-                    cb = _markerCallbacks[mId][markerId];
+                    let callback = _markerCallbacks[markerId];
                     // Activate marker callback function
-                    m._initMarkerClick(markerId, cb);
+                    dynamicMap._initMarkerClick(markerId, callback);
                 }
+
             }
 
         }

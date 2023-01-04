@@ -926,13 +926,22 @@ class DynamicMap extends Model
         $logging = ($inDevMode && $loggingEnabled) ? 'true' : 'false';
 
         // Initialize additional JS data
-        $javascript = "
+        $initData = "
 window._gmData = {
     logging: {$logging},
     cluster: [],
     infoWindows: [],
     markerCallbacks: [],
 };";
+
+        // Get view service
+        $view = Craft::$app->getView();
+
+        // Initialize shared GM data for all maps
+        $view->registerJs($initData, $view::POS_HEAD);
+
+        // Initialize unique GM data for each map
+        $gmData = '';
 
         // If marker clustering was specified
         if ($this->_clusterOptions) {
@@ -944,7 +953,7 @@ window._gmData = {
                 $cluster .= "    '{$option}': {$value},\n";
             }
             // Add clustering to this map
-            $javascript .= "\nwindow._gmData.cluster['{$this->id}'] = {\n{$cluster}};";
+            $gmData .= "\nwindow._gmData.cluster['{$this->id}'] = {\n{$cluster}};";
         }
 
         // If info windows were specified
@@ -959,7 +968,7 @@ window._gmData = {
                 $infoWindows .= "    '{$markerId}': {$infoWindowOptions},\n";
             }
             // Associate info windows with this map
-            $javascript .= "\nwindow._gmData.infoWindows['{$this->id}'] = {\n{$infoWindows}};";
+            $gmData .= "\nwindow._gmData.infoWindows['{$this->id}'] = {\n{$infoWindows}};";
         }
 
         // If marker callbacks were specified
@@ -972,11 +981,11 @@ window._gmData = {
                 $jsCallbacks .= "    '{$markerId}': {$callback},\n";
             }
             // Associate callbacks with this map
-            $javascript .= "\nwindow._gmData.markerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
+            $gmData .= "\nwindow._gmData.markerCallbacks['{$this->id}'] = {\n{$jsCallbacks}};";
         }
 
         // Return compiled JavaScript
-        return $javascript;
+        return $gmData;
     }
 
     // ========================================================================= //
