@@ -4,23 +4,23 @@ description:
 
 # GraphQL
 
-### Retrieving an Address field
+### Getting & Setting an Address
 
-To get all data from an Address field, see [Using an Address in GraphQL...](/address-field/graphql/)
-
----
----
+:::warning Basic Usage
+To get or set the data of an Address field, see [Using an Address in GraphQL...](/address-field/graphql/)
+:::
 
 ### Custom Types
 
-The Google Maps plugin introduces several custom GraphQL types to handle Address data.
+The Google Maps plugin introduces the following custom GraphQL types:
 
-:::warning Focus on the Address type
-Most of what you need to know can be found in the `GoogleMaps_Address` type. Unless you need to dig further into the raw data, the Address type alone will cover 95% of use-cases.
+- [`GoogleMaps_Address`](/graphql/types/address/) _(for queries)_
+- [`GoogleMaps_AddressInput`](/graphql/types/address-input/) _(for mutations)_
+
+### Arguments
+
+Both custom types use the same set of arguments.
+
+:::tip Details
+See this [list of Arguments](/graphql/types/address/#arguments) for more details. 
 :::
-
-- [**`GoogleMaps_Address`**](/graphql/address-type/)
-- [`GoogleMaps_Raw`](/graphql/raw-type/)
-- [`GoogleMaps_Component`](/graphql/component-type/)
-- [`GoogleMaps_Geometry`](/graphql/geometry-type/)
-- [`GoogleMaps_Location`](/graphql/location-type/)

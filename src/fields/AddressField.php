@@ -21,6 +21,7 @@ use craft\helpers\Json;
 use doublesecretagency\googlemaps\enums\Defaults;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\gql\types\Address as AddressType;
+use doublesecretagency\googlemaps\gql\types\input\AddressInput;
 use doublesecretagency\googlemaps\helpers\ProximitySearchHelper;
 use doublesecretagency\googlemaps\models\Address as AddressModel;
 use doublesecretagency\googlemaps\records\Address as AddressRecord;
@@ -539,6 +540,18 @@ class AddressField extends Field implements PreviewableFieldInterface
     public function getContentGqlType(): Type|array
     {
         return AddressType::getType();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentGqlMutationArgumentType(): Type|array
+    {
+        return [
+            'name' => $this->handle,
+            'type' => AddressInput::getType(),
+            'description' => $this->instructions,
+        ];
     }
 
 }

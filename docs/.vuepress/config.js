@@ -209,11 +209,8 @@ module.exports = {
                     title: 'Custom Types',
                     collapsable: false,
                     children: [
-                        'address-type',
-                        'raw-type',
-                        'component-type',
-                        'geometry-type',
-                        'location-type',
+                        'types/address',
+                        'types/address-input',
                     ]
                 },
             ],

@@ -2,7 +2,7 @@
 description:
 ---
 
-# Address Type
+# GoogleMaps_Address
 
 ```graphql
 type GoogleMaps_Address {
@@ -27,6 +27,16 @@ type GoogleMaps_Address {
 }
 ```
 
+:::warning For queries only
+To edit an Address field via a mutation, see the [`GoogleMaps_AddressInput` input](/graphql/types/address-input/).
+:::
+
+:::tip How to write a query
+For complete instructions on using the `GoogleMaps_Address` type in a query, read the docs for [Getting an Address](/address-field/graphql/#getting-an-address) with GraphQL.
+:::
+
+## Arguments
+
 ### `id`
 
 _Int_ - ID of the Address.
@@ -45,7 +55,7 @@ _String_ - A nicely-formatted single-line interpretation of the address, provide
 
 ### `raw`
 
-[_GoogleMaps_Raw_](/graphql/raw-type/) - The original data used to create this Address Model. Contains the full response from the original Google API call.
+_GoogleMaps_Raw_ - The original data used to create this Address Model. Contains the full JSON response from the original Google API call.
 
 ### `name`
 

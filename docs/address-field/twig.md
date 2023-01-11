@@ -17,7 +17,7 @@ And here is the Twig code which produced the screenshot above...
 <h1>{{ entry.title }}</h1>
 
 {# Get an Address Model from the Address field #}
-{% set address = entry.address %}
+{% set address = entry.myAddressField %}
 
 {# Show the complete address with line breaks #}
 <div class="full-address">
