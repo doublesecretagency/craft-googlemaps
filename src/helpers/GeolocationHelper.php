@@ -90,10 +90,10 @@ class GeolocationHelper
     /**
      * Load the selected API model.
      *
-     * @param string $selected
+     * @param string|null $selected
      * @return string|null
      */
-    private static function _getApiModel(string $selected): ?string
+    private static function _getApiModel(?string $selected): ?string
     {
         // Supported geolocation services
         $supported = [
