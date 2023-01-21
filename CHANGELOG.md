@@ -10,6 +10,7 @@
 - Completely refactored how Vue powers the Address field. Now updated to use Vue 3 and Pinia.
 
 ### Fixed
+- Set a default noop callback to prevent a Google Maps API console error.
 - Fixed `styles` option for static maps. ([#70](https://github.com/doublesecretagency/craft-googlemaps/issues/70))
 - Fixed minor bug in migration from Smart Map. (thanks @bencroker)
 - Fixed bug which occurred when "Geolocation Service" was set to "None". ([#72](https://github.com/doublesecretagency/craft-googlemaps/issues/72))

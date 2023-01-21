@@ -107,6 +107,12 @@ class ApiHelper
         // Add the browser key
         $params['key'] = static::getBrowserKey();
 
+        // If callback wasn't specified
+        if (!($params['callback'] ?? false)) {
+            // Use native JS noop as a fallback
+            $params['callback'] = 'Function.prototype';
+        }
+
         // Return the fully compiled URL
         return UrlHelper::urlWithParams($apiUrl, $params);
     }
