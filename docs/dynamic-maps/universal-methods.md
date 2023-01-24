@@ -52,6 +52,36 @@ Most, but not all, of these options are available across JavaScript, Twig, and P
 For more info, please consult either the [JavaScript object](/javascript/dynamicmap.js/#markers-locations-options) or the [Dynamic Map model](/models/dynamic-map-model/#markers-locations-options).
 :::
 
+## `circles(locations, options)`
+
+:::code
+```js
+map.circles(locations, options);
+```
+```twig
+{% do map.circles(locations, options) %}
+```
+```php
+$map->circles($locations, $options);
+```
+:::
+
+Places one or more circles onto the map.
+
+#### Arguments
+
+- `locations` (_[locations](/dynamic-maps/locations/)_) - Will be used to add circles to the map.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure circles in greater detail.
+
+| Option          | Available            | Description |
+|-----------------|:--------------------:|-------------|
+| `id`            | JavaScript, Twig/PHP | Reference point for each circle. |
+| `circleOptions` | JavaScript, Twig/PHP | Accepts any [`google.maps.CircleOptions`](https://developers.google.com/maps/documentation/javascript/reference/polygon#CircleOptions) properties. |
+
+:::tip How to Draw Circles
+For a more elaborate explanation, see the guide for [Drawing Circles...](/guides/drawing-circles/)
+:::
+
 ## `kml(url, options)`
 
 :::code

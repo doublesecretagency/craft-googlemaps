@@ -13,6 +13,7 @@ function DynamicMap(locations, options) {
     // Initialize collections
     this._markers = {};
     this._infoWindows = {};
+    this._circles = {};
     this._kmls = {};
 
     // Initialize marker cluster
@@ -53,6 +54,7 @@ function DynamicMap(locations, options) {
         this._d.zoom              = options.zoom              || null;
         this._d.center            = options.center            || null;
         this._d.markerOptions     = options.markerOptions     || {};
+        this._d.circleOptions     = options.circleOptions     || {};
         this._d.infoWindowOptions = options.infoWindowOptions || {};
         this._d.markerLink        = options.markerLink        || null;
         this._d.markerClick       = options.markerClick       || null;
@@ -171,6 +173,55 @@ function DynamicMap(locations, options) {
 
             }
 
+        }
+
+        // Keep the party going
+        return this;
+    };
+
+    // Add a set of circles to the map
+    this.circles = function(locations, options) {
+
+        // If no locations, bail
+        if (!locations) {
+            return;
+        }
+        // Ensure options are valid
+        options = options || {};
+
+        // Ensure circle options are valid
+        options.circleOptions = options.circleOptions || this._d.circleOptions;
+
+        // Ensure radius is valid (default to 50 kilometers)
+        options.circleOptions.radius = options.circleOptions.radius || 50000;
+
+        // Set map
+        options.circleOptions.map = this._map;
+
+        // Force locations to be an array structure
+        if (!Array.isArray(locations)) {
+            locations = [locations];
+        }
+
+        // Loop through all locations
+        for (var i in locations) {
+
+            // Get individual coordinates
+            var coords = locations[i];
+
+            // If coordinates are not valid, skip
+            if (!coords.hasOwnProperty('lat') || !coords.hasOwnProperty('lng')) {
+                continue;
+            }
+
+            // Get circle ID or generate a random one
+            var circleId = options.id || coords.id || this._generateId('circle');
+
+            // Set circle ID back to coordinates object
+            coords.id = circleId;
+
+            // Create a new circle
+            this._createCircle(coords, options.circleOptions);
         }
 
         // Keep the party going
@@ -297,15 +348,16 @@ function DynamicMap(locations, options) {
         // Fit bounds of current map
         this._map.fitBounds(this._determineBounds());
 
-        // Get the total number of markers
+        // Get the total number of markers and circles
         const totalMarkers = Object.keys(this._markers).length;
+        const totalCircles = Object.keys(this._circles).length;
 
-        // If no markers exist
-        if (!totalMarkers) {
+        // If no markers or circles exist
+        if (!totalMarkers && !totalCircles) {
             // Example coordinates
             const zeroZero = {'lat':0,'lng':0};
             // Log error message
-            console.error(`[GM] No markers exist, the map will be centered in the middle of the ocean! 🐙`, zeroZero);
+            console.error(`[GM] No items on the map, it will be centered in the middle of the ocean! 🐙`, zeroZero);
             // We are in the ocean, zoom out
             this.zoom(2, true);
         }
@@ -949,6 +1001,22 @@ function DynamicMap(locations, options) {
 
     };
 
+    // Create a new circle object
+    this._createCircle = function(coords, circleOptions) {
+
+        // Log status
+        if (googleMaps.log) {
+            console.log(`[${this.id}] Adding circle "${coords.id}"`);
+        }
+
+        // Set circle center based on coordinates
+        circleOptions.center = coords;
+
+        // Initialize circle object
+        this._circles[coords.id] = new google.maps.Circle(circleOptions);
+
+    };
+
     // Create a new KML layer
     this._createKml = function(url, options) {
 
@@ -1040,7 +1108,7 @@ function DynamicMap(locations, options) {
         var bounds = new google.maps.LatLngBounds();
 
         // Initialize loop variables
-        var key, marker, cluster;
+        var key, marker, circle, cluster;
 
         // Loop through all markers
         for (key in this._markers) {
@@ -1052,6 +1120,18 @@ function DynamicMap(locations, options) {
             }
             // Extend map boundaries to include marker
             bounds.extend(marker.getPosition());
+        }
+
+        // Loop through all circles
+        for (key in this._circles) {
+            // Get each circle
+            circle = this._circles[key];
+            // If circle is not tied to a map, skip it
+            if (null === circle.map) {
+                continue;
+            }
+            // Extend map boundaries to include circle
+            bounds.extend(circle.getCenter());
         }
 
         // If map uses clustering
@@ -1197,17 +1277,18 @@ function DynamicMap(locations, options) {
 
         } else {
 
-            // Fit to the existing markers
+            // Fit to the existing items
             this.fit();
 
-            // Get the total number of markers
+            // Get the total number of markers and circles
             const totalMarkers = Object.keys(this._markers).length;
+            const totalCircles = Object.keys(this._circles).length;
 
-            // Whether there is only a single marker on the map
-            let oneMarker = (1 === totalMarkers);
+            // Total number of items on the map
+            const total = totalMarkers + totalCircles;
 
-            // If only one marker and no zoom specified
-            if (oneMarker && !zoom) {
+            // If only one item and no zoom specified
+            if ((1 === total) && !zoom) {
                 // Set to a comfortable zoom level
                 zoom = this._comfortableZoom;
             }

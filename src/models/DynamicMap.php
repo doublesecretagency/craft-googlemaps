@@ -173,6 +173,31 @@ class DynamicMap extends Model
     }
 
     /**
+     * Add one or more circles to the map.
+     *
+     * @param array|Element|Location $locations
+     * @param array $options
+     * @return $this
+     */
+    public function circles(array|Element|Location $locations, array $options = []): DynamicMap
+    {
+        // If no locations were specified, bail
+        if (!$locations) {
+            return $this;
+        }
+
+        // Add circles to DNA
+        $this->_dna[] = [
+            'type' => 'circles',
+            'locations' => MapHelper::extractCoords($locations, $options),
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
      * Add a KML layer to the map.
      *
      * @param string $url

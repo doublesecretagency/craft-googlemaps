@@ -55,6 +55,45 @@ map.markers([
 ---
 ---
 
+### `circles(locations, options = [])`
+
+Add one or more circles to an existing map.
+
+#### Arguments
+
+- `locations` (_[coords](/models/coordinates/)_|_array_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
+- `options` (_array_) - Optional parameters to configure circles. (see below)
+
+| Option | Type     |                           Default                           | Description
+|--------|:--------:|:-----------------------------------------------------------:|-------------
+| `id`   | _string_ | <span style="white-space:nowrap">`"circle-{random}"`</span> | Reference point for each circle.
+| `circleOptions` | _object_ | _null_ | Accepts any [`google.maps.CircleOptions`](https://developers.google.com/maps/documentation/javascript/reference/polygon#CircleOptions) properties.
+
+```js
+const location = {'lat': 40.730610, 'lng': -73.935242};
+const options = {'circleOptions': {
+    strokeColor: "#226666",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#226666",
+    fillOpacity: 0.35,
+    radius: 100000
+}};
+
+map.circles(location, options);
+```
+
+:::tip How to Draw Circles
+For a more elaborate explanation, see the guide for [Drawing Circles...](/guides/drawing-circles/)
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ### `kml(url, options = [])`
 
 Append a KML layer to an existing map object.
@@ -64,10 +103,10 @@ Append a KML layer to an existing map object.
 - `url` (_string_) - Publicly accessible URL of the KML file.
 - `options` (_array_) - Optional parameters to configure the KML layer. (see below)
  
-| Option             | Type     | Default | Description
-|--------------------|:--------:|:-------:|-------------
-| `id`               | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
-| `kmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties.
+| Option | Type     | Default | Description
+|--------|:--------:|:-------:|-------------
+| `id`   | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
+| `kmlLayerOptions` | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties.
 
 ```js
 map.kml('https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml');

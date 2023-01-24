@@ -5,6 +5,7 @@
 ### Added
 - Added support for [using an Address in GraphQL](https://plugins.doublesecretagency.com/google-maps/address-field/graphql/).
 - Added support for [reverse proximity searches](https://plugins.doublesecretagency.com/google-maps/guides/reverse-proximity-search/).
+- Added support for [drawing circles on a map](https://plugins.doublesecretagency.com/google-maps/guides/drawing-circles/).
 
 ### Changed
 - Completely refactored how Vue powers the Address field. Now updated to use Vue 3 and Pinia.

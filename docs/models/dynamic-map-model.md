@@ -106,6 +106,36 @@ $map->markers($locations);
 ---
 ---
 
+### `circles($locations, $options = [])`
+
+Add one or more circles to an existing map object.
+
+#### Arguments
+
+- `$locations` (_mixed_) - See a description of acceptable [locations...](/dynamic-maps/locations/)
+- `$options` (_array_) - Optional parameters to configure circles. (see below)
+
+| Option          | Type     | Default | Description              
+|:----------------|:--------:|:-------:|:-------------
+| `id`            | _string_ | <span style="white-space:nowrap">`"circle-{random}"`</span> | Reference point for each circle.
+| `circleOptions` | _object_ | _null_  | Accepts any [`google.maps.CircleOptions`](https://developers.google.com/maps/documentation/javascript/reference/polygon#CircleOptions) properties.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.circles(locations) %}
+```
+```php
+$map->circles($locations);
+```
+:::
+
+---
+---
+
 ### `kml($files, $options = [])`
 
 Append one or more KML layers to an existing map object.

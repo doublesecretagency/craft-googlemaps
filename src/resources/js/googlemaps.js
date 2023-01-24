@@ -249,6 +249,11 @@ window.googleMaps = window.googleMaps || {
                     map.markers(block.locations, block.options);
                     break;
 
+                // Add circles to the map
+                case 'circles':
+                    map.circles(block.locations, block.options);
+                    break;
+
                 // Add KML layer to the map
                 case 'kml':
                     map.kml(block.url, block.options);
