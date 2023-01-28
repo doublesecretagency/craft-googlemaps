@@ -431,6 +431,54 @@ $map->closeInfoWindow($markerId);
 ---
 ---
 
+### `hideCircle($circleId)`
+
+Hide a circle.
+
+#### Arguments
+
+- `$circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideCircle(circleId) %}
+```
+```php
+$map->hideCircle($circleId);
+```
+:::
+
+---
+---
+
+### `showCircle($circleId)`
+
+Show a circle.
+
+#### Arguments
+
+- `$circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showCircle(circleId) %}
+```
+```php
+$map->showCircle($circleId);
+```
+:::
+
+---
+---
+
 ### `hideKml($kmlId)`
 
 Hide a KML layer.

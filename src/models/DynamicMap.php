@@ -431,6 +431,42 @@ class DynamicMap extends Model
     }
 
     /**
+     * Hide a circle.
+     *
+     * @param string|array $circleId
+     * @return $this
+     */
+    public function hideCircle(string|array $circleId): DynamicMap
+    {
+        // Add call to hide circle
+        $this->_dna[] = [
+            'type' => 'hideCircle',
+            'circleId' => $circleId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a circle.
+     *
+     * @param string|array $circleId
+     * @return $this
+     */
+    public function showCircle(string|array $circleId): DynamicMap
+    {
+        // Add call to show circle
+        $this->_dna[] = [
+            'type' => 'showCircle',
+            'circleId' => $circleId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
      * Hide a KML layer.
      *
      * @param string|array $kmlId

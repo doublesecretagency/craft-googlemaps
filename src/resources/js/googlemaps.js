@@ -314,6 +314,16 @@ window.googleMaps = window.googleMaps || {
                     map.closeInfoWindow(block.markerId);
                     break;
 
+                // Hide a circle
+                case 'hideCircle':
+                    map.hideCircle(block.circleId);
+                    break;
+
+                // Show a circle
+                case 'showCircle':
+                    map.showCircle(block.circleId);
+                    break;
+
                 // Hide a KML layer
                 case 'hideKml':
                     map.hideKml(block.kmlId);

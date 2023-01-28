@@ -382,6 +382,44 @@ map.closeInfoWindow('33-address');
 ---
 ---
 
+### `hideCircle(circleId)`
+
+Hide a circle. The circle will not be destroyed, it will simply be detached from the map.
+
+```js
+map.hideCircle('my-circle');
+```
+
+#### Arguments
+
+- `circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showCircle(circleId)`
+
+Show a circle. The circle will be re-attached to the map.
+
+```js
+map.showCircle('my-circle');
+```
+
+#### Arguments
+
+- `circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ### `hideKml(kmlId)`
 
 Hide a KML layer. The KML layer will not be destroyed, it will simply be detached from the map.

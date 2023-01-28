@@ -347,6 +347,46 @@ Close the info window of a specific marker.
 
 - `markerId` (_string_|_array_|`'*'`) - A marker ID, array of marker IDs, or `'*'` for all info windows.
 
+## `hideCircle(circleId)`
+
+:::code
+```js
+map.hideCircle(circleId);
+```
+```twig
+{% do map.hideCircle(circleId) %}
+```
+```php
+$map->hideCircle($circleId);
+```
+:::
+
+Hide a circle. The circle will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
+## `showCircle(circleId)`
+
+:::code
+```js
+map.showCircle(circleId);
+```
+```twig
+{% do map.showCircle(circleId) %}
+```
+```php
+$map->showCircle($circleId);
+```
+:::
+
+Show a circle. The circle will be re-attached to the map.
+
+#### Arguments
+
+- `circleId` (_string_|_array_|`'*'`) - A circle ID, array of circle IDs, or `'*'` for all circles.
+
 ## `hideKml(kmlId)`
 
 :::code

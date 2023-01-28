@@ -64,11 +64,11 @@ Here is a practical example in Twig...
 {% set options = {
     'circleOptions': {
         'radius': 50000,
+        'fillColor': '#7A9F35',
+        'fillOpacity': 0.35,
         'strokeColor': '#7A9F35',
         'strokeOpacity': 0.8,
         'strokeWeight': 2,
-        'fillColor': '#7A9F35',
-        'fillOpacity': 0.35,
     }
 } %}
 
@@ -80,11 +80,11 @@ In the example above, all circles will be the exact same **size** and **color**.
 
 ## Setting a Radius
 
-### The radius must be nested below `circleOptions`
+### The radius must be nested below `circleOptions`.
 
-As noted above, be sure that the `radius` value is being specified within the `circleOptions` option.
+As noted above, be sure that the `radius` value is specified within the `circleOptions` option.
 
-### The radius must have a value in meters
+### The radius must have a value in meters.
 
 The Google Maps API is expecting the `radius` to be specified in [meters](https://developers.google.com/maps/documentation/javascript/shapes#circles).
 
@@ -130,7 +130,7 @@ Create each circle individually by looping through all locations and configuring
 {% set map = googleMaps.map() %}
 
 {# Loop over all circles #}
-{% for circle in craft.entries.section('circles').all() %}
+{% for entry in craft.entries.section('circles').all() %}
     
     {# Set the options for each circle individually #}
     {% set options = {
@@ -138,7 +138,7 @@ Create each circle individually by looping through all locations and configuring
     } %}
 
     {# Add configured circle to the map #}
-    {% do map.circles(circle, options) %}
+    {% do map.circles(entry, options) %}
 
 {% endfor %}
 ```
@@ -150,28 +150,28 @@ Here's one possible way to dynamically manage the size and color of each circle.
 ```twig
 {# Set the shared options for all circles #}
 {% set baseCircleOptions = {
+    'fillOpacity': 0.35,
     'strokeOpacity': 0.8,
     'strokeWeight': 2,
-    'fillOpacity': 0.35,
 } %}
 
 {# Initialize a map object #}
 {% set map = googleMaps.map() %}
 
 {# Loop over all circles #}
-{% for circle in craft.entries.section('circles').all() %}
+{% for entry in craft.entries.section('circles').all() %}
 
     {# Set the options for a single circle #}
     {% set options = {
         'circleOptions': baseCircleOptions|merge({
-            'radius': (circle.radius * 1000),
-            'fillColor': circle.color.getHex(),
-            'strokeColor': circle.color.getHex(),
+            'radius': (entry.radius * 1000),
+            'fillColor': entry.color.getHex(),
+            'strokeColor': entry.color.getHex(),
         })
     } %}
 
     {# Add configured circle to the map #}
-    {% do map.circles(circle, options) %}
+    {% do map.circles(entry, options) %}
 
 {% endfor %}
 ```
@@ -191,4 +191,44 @@ Once you have those fields and Twig snippet in place, you'll be able to generate
 
 :::warning Various Approaches
 While the example above uses two additional fields (**Radius** and **Color**) to control the circle options, there are many other ways to manage how your circles are displayed. Feel free to adapt this approach to better fit your existing architecture.
+:::
+
+## Hiding or Showing a Circle
+
+To dynamically show or hide your circles, you can use [`hideCircle`](/dynamic-maps/universal-methods/#hidecircle-circleid) and [`showCircle`](/dynamic-maps/universal-methods/#showcircle-circleid)...
+
+:::code
+```js
+// Hide a circle
+map.hideCircle(circleId);
+
+// Show a circle
+map.showCircle(circleId);
+```
+```twig
+{# Hide a circle #}
+{% do map.hideCircle(circleId) %}
+
+{# Show a circle #}
+{% do map.showCircle(circleId) %}
+```
+```php
+// Hide a circle
+$map->hideCircle($circleId);
+
+// Show a circle
+$map->showCircle($circleId);
+```
+:::
+
+The `circleId` is a string (or array) which identifies the specific circle(s) that you are targeting.
+
+|                      | Format                        | Type     |
+|:---------------------|:------------------------------|:---------|
+| **One circle**       | `'{elementId}-{fieldHandle}'` | _string_ |
+| **Multiple circles** | An array of circle IDs        | _array_  |
+| **All circles**      | `'*'`                         | _string_ |
+
+:::tip More Info
+For more information, see the Universal API regarding [`hideCircle`](/dynamic-maps/universal-methods/#hidecircle-circleid) and [`showCircle`](/dynamic-maps/universal-methods/#showcircle-circleid).
 :::

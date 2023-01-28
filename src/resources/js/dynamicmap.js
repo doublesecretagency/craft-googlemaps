@@ -699,6 +699,110 @@ function DynamicMap(locations, options) {
         return this;
     };
 
+    // Hide a circle
+    this.hideCircle = function(circleId, assumeSuccess) {
+
+        // If hiding multiple circles
+        if (Array.isArray(circleId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`[${this.id}] Hiding multiple circles`);
+            }
+            // Hide each circle individually
+            for (var i in circleId) {
+                this.hideCircle(circleId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
+        // If hiding all circles
+        if ('*' === circleId) {
+            // Log status
+            if (googleMaps.log && !assumeSuccess) {
+                console.log(`[${this.id}] Hiding all circles`);
+            }
+            // Hide each circle individually
+            for (var key in this._circles) {
+                this.hideCircle(key, true);
+            }
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`[${this.id}] Hiding circle "${circleId}"`);
+        }
+
+        // Get specified circle
+        var circle = this.getCircle(circleId, true);
+
+        // If invalid circle, bail
+        if (!circle) {
+            console.warn(`[GM] Unable to hide circle "${circleId}"`);
+            return this;
+        }
+
+        // Detach circle from map
+        circle.setMap(null);
+
+        // Keep the party going
+        return this;
+    };
+
+    // Show a circle
+    this.showCircle = function(circleId, assumeSuccess) {
+
+        // If showing multiple circles
+        if (Array.isArray(circleId)) {
+            // Log status
+            if (googleMaps.log) {
+                console.log(`[${this.id}] Showing multiple circles`);
+            }
+            // Show each circle individually
+            for (var i in circleId) {
+                this.showCircle(circleId[i]);
+            }
+            // Our work here is done
+            return this;
+        }
+
+        // If showing all circles
+        if ('*' === circleId) {
+            // Log status
+            if (googleMaps.log && !assumeSuccess) {
+                console.log(`[${this.id}] Showing all circles`);
+            }
+            // Show each circle individually
+            for (var key in this._circles) {
+                this.showCircle(key, true);
+            }
+            // Our work here is done
+            return this;
+        }
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`[${this.id}] Showing circle "${circleId}"`);
+        }
+
+        // Get specified circle
+        var circle = this.getCircle(circleId, true);
+
+        // If invalid circle, bail
+        if (!circle) {
+            console.warn(`[GM] Unable to show circle "${circleId}"`);
+            return this;
+        }
+
+        // Attach circle to current map
+        circle.setMap(this._map);
+
+        // Keep the party going
+        return this;
+    };
+
     // Hide a KML layer
     this.hideKml = function(kmlId, assumeSuccess) {
 
@@ -736,7 +840,7 @@ function DynamicMap(locations, options) {
         }
 
         // Get specified KML layer
-        var kml = this.getKml(kmlId);
+        var kml = this.getKml(kmlId, true);
 
         // If invalid KML layer, bail
         if (!kml) {
@@ -788,7 +892,7 @@ function DynamicMap(locations, options) {
         }
 
         // Get specified KML layer
-        var kml = this.getKml(kmlId);
+        var kml = this.getKml(kmlId, true);
 
         // If invalid KML layer, bail
         if (!kml) {
