@@ -464,6 +464,25 @@ var infoWindow = map.getInfoWindow('33-address');
 ---
 ---
 
+### `getCircle(circleId)`
+
+Get the [Google Maps Circle object](https://developers.google.com/maps/documentation/javascript/shapes#circles) of a specified circle.
+
+```js
+var circle = map.getCircle('my-circle');
+```
+
+#### Arguments
+
+- `circleId` (_string_) - The ID of the circle that you want to access.
+
+#### Returns
+
+- A Google Maps [Circle](https://developers.google.com/maps/documentation/javascript/shapes#circles) object.
+
+---
+---
+
 ### `getKml(kmlId)`
 
 Get the [Google Maps KML Layer object](https://developers.google.com/maps/documentation/javascript/kml) of a specified KML layer.

@@ -845,6 +845,26 @@ function DynamicMap(locations, options) {
         return infoWindow;
     };
 
+    // Get a specific Google Maps circle object
+    this.getCircle = function(circleId, assumeSuccess) {
+
+        // Log status (if success is not assumed)
+        if (googleMaps.log && !assumeSuccess) {
+            console.log(`[${this.id}] Getting existing circle "${circleId}"`);
+        }
+
+        // Get existing circle
+        var circle = this._circles[circleId];
+
+        // If circle does not exist, emit warning
+        if (!circle) {
+            console.warn(`[GM] Unable to find circle "${circleId}"`);
+        }
+
+        // Return circle
+        return circle;
+    };
+
     // Get a specific Google Maps KML layer object
     this.getKml = function(kmlId, assumeSuccess) {
 
