@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.0 - 2023-01-31
 
 ### Added
 - Added support for [using an Address in GraphQL](https://plugins.doublesecretagency.com/google-maps/address-field/graphql/).
