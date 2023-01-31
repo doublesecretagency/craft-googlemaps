@@ -1,51 +1,78 @@
 ---
-description:
+description: In a typical proximity search, only the radius of the searcher is relevant. In a reverse proximity search, each location can have its own valid radius to account for.
+meta:
+- property: og:type
+  content: website
+- property: og:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/reverse-proximity-search/
+- property: og:title
+  content: Reverse Proximity Search | Google Maps plugin for Craft CMS
+- property: og:description
+  content: In a typical proximity search, only the radius of the searcher is relevant. In a reverse proximity search, each location can have its own valid radius to account for.
+- property: og:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/proximity-search-reverse.png
+- property: twitter:card
+  content: summary_large_image
+- property: twitter:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/reverse-proximity-search/
+- property: twitter:title
+  content: Reverse Proximity Search | Google Maps plugin for Craft CMS
+- property: twitter:description
+  content: In a typical proximity search, only the radius of the searcher is relevant. In a reverse proximity search, each location can have its own valid radius to account for.
+- property: twitter:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/proximity-search-reverse.png
 ---
 
 # Reverse Proximity Search
 
-Typically, a proximity search is conducted by measuring the **distance from a center point**. You can optionally specify a search radius to limit results to be within a specific geographic circle.
+Typically, a proximity search is conducted by measuring the distance from a center point. You can optionally specify a search radius to limit results to be within a specific geographic circle.
 
-In a [typical proximity search](/proximity-search/), this is specified via the standard [`range` option](/proximity-search/options/)...
+In a typical [proximity search](/proximity-search/), this is specified via the standard [`range` option](/proximity-search/options/)...
 
 :::code
 ```twig
-{# Get results within 50 miles #}
+{# Get results within 20 kilometers #}
 {% set options = {
     'target': target,
-    'range': 50
+    'range': 20,
+    'units': 'km'
 } %}
 ```
 ```php
-// Get results within 50 miles
+// Get results within 20 kilometers
 $options = [
     'target' => $target,
-    'range' => 50
+    'range' => 20,
+    'units' => 'km'
 ];
 ```
 :::
 
-[PICTURE OF A TYPICAL SEARCH RADIUS]
+This approach works great for 98% of proximity search situations. It assumes that the **center point** is solely responsible for determining how far away a valid destination can be.
 
-This approach works great for 95% of situations. It assumes that the **center point** determines how far away a location is allowed to be.
+#### Visualization of a normal proximity search:
 
-Occasionally, however, you will need to flip that logic around. If each location has a distinct allowable radius, then you can't rely on a singular search range from the point of origin.
+<img class="dropshadow" :src="$withBase('/images/guides/proximity-search-normal.png')" alt="Visualization of a normal proximity search" width="604" style="margin-top:10px; margin-bottom:10px;">
+
+However, you will occasionally need to flip that logic around. Sometimes, each location will have a **different permissible range**. If each location has a different allowable radius, then you can't just rely on a singular search range from the point of origin.
 
 ## A Practical Example
 
 Let's say you are running a network of radio stations. Each station should be available to users within a predetermined distance from the radio station. If you are close enough to a given station, you will be able to access their feed.
 
-But **each station has a different radius**. Some stations are available within 5 miles of a user, others are available within 10 miles, etc.
+**But each station has a different antennae range!** Some stations are available within 5 kilometers of a user, others are available within 10 kilometers, etc. Your proximity search will need to take into account the individual radius of each location.
 
-In other words, your proximity search needs to look more like this...
+#### Visualization of a reverse proximity search:
 
-[PICTURE OF A REVERSE PROXIMITY SEARCH, MULTIPLE RADII]
+<img class="dropshadow" :src="$withBase('/images/guides/proximity-search-reverse.png')" alt="Visualization of a reverse proximity search" width="604" style="margin-top:10px; margin-bottom:6px;">
+
+In the example above, **there is only one valid result**. The user (green marker) is only within range (blue circle) of a single radio station.
 
 ## Reverse Radius
 
 When you need to perform a reverse proximity search, there are only two simple steps:
 
-1. Add a new `Number` field to your existing locations channel. You can name it "Location Range" (or whatever you'd prefer). This new field will be used to store the radius of each location.
+1. Add a new **Number** field to your existing locations channel. Name it "Location Range" (or whatever you prefer). This new field will be used to store the radius of each location.
 
 2. When writing the proximity search query, use the [`reverseRadius` option](/proximity-search/options/). Specify the handle of your new field (ie: `locationRange`).
 
