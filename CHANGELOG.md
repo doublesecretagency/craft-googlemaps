@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.1 - 2023-02-06
 
 ### Fixed
 - Fixed bug in migration to `4.3.0`. (thanks @bencroker)
