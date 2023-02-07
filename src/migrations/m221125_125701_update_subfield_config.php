@@ -31,55 +31,60 @@ class m221125_125701_update_subfield_config extends Migration
      */
     public function safeUp(): bool
     {
-        // Get services
-        $fieldsService = Craft::$app->getFields();
-        $matrixService = Craft::$app->getMatrix();
+        $projectConfig = Craft::$app->getProjectConfig();
+        $schemaVersion = $projectConfig->get('plugins.google-maps.schemaVersion', true);
 
-        // Get all fields
-        $allFields = $fieldsService->getAllFields(false);
+        if (version_compare($schemaVersion, '4.3.0', '<')) {
+            // Get services
+            $fieldsService = Craft::$app->getFields();
+            $matrixService = Craft::$app->getMatrix();
 
-        // Filter only Address fields
-        $addressFields = array_filter($allFields, function($field) {
-            // Enabled Address field
-            if (is_a($field, AddressField::class)) {
-                return true;
-            }
-            // Disabled Address field
-            if (is_a($field, MissingField::class) && ($field->expectedType === AddressField::class)) {
-                return true;
-            }
-            // Not an Address field
-            return false;
-        });
+            // Get all fields
+            $allFields = $fieldsService->getAllFields(false);
 
-        // Loop through Address fields
-        foreach ($addressFields as $field) {
-
-            // Normalize the subfield config
-            $field->subfieldConfig = $this->_normalizeSubfieldConfig($field->subfieldConfig);
-
-            // Save the updated Address field
-            $fieldsService->saveField($field, false);
-
-            // Split up the context string
-            $context = explode(':', $field->context);
-
-            // If Address is inside a Matrix field
-            if ('matrixBlockType' === $context[0]) {
-                // Get the UID of the Matrix block type
-                $uid = $context[1];
-                // Get the ID of the Matrix block type
-                $blockTypeId = Db::idByUid(Table::MATRIXBLOCKTYPES, $uid);
-                // Get the Matrix block type
-                $blockType = $matrixService->getBlockTypeById($blockTypeId);
-                // If no matching block type, skip it
-                if (!$blockType) {
-                    continue;
+            // Filter only Address fields
+            $addressFields = array_filter($allFields, function($field) {
+                // Enabled Address field
+                if (is_a($field, AddressField::class)) {
+                    return true;
                 }
-                // Save the Matrix block type
-                $matrixService->saveBlockType($blockType, false);
-            }
+                // Disabled Address field
+                if (is_a($field, MissingField::class) && ($field->expectedType === AddressField::class)) {
+                    return true;
+                }
+                // Not an Address field
+                return false;
+            });
 
+            // Loop through Address fields
+            foreach ($addressFields as $field) {
+
+                // Normalize the subfield config
+                $field->subfieldConfig = $this->_normalizeSubfieldConfig($field->subfieldConfig);
+
+                // Save the updated Address field
+                $fieldsService->saveField($field, false);
+
+                // Split up the context string
+                $context = explode(':', $field->context);
+
+                // If Address is inside a Matrix field
+                if ('matrixBlockType' === $context[0]) {
+                    // Get the UID of the Matrix block type
+                    $uid = $context[1];
+                    // Get the ID of the Matrix block type
+                    $blockTypeId = Db::idByUid(Table::MATRIXBLOCKTYPES, $uid);
+                    // Get the Matrix block type
+                    $blockType = $matrixService->getBlockTypeById($blockTypeId);
+                    // If no matching block type, skip it
+                    if (!$blockType) {
+                        continue;
+                    }
+                    // Save the Matrix block type
+                    $matrixService->saveBlockType($blockType, false);
+                }
+
+            }
         }
 
         // Success
