@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed bug in migration to `4.3.0`. (thanks @bencroker)
+
 ## 4.3.0 - 2023-01-31
 
 ### Added
