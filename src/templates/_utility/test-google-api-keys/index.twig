@@ -1,0 +1,40 @@
+{% css %}
+/* Table */
+table.api-keys {
+    border: 1px solid rgba(123,135,147,.5)
+}
+table.api-keys td:first-child {
+    padding-left: 12px;
+}
+table.api-keys td:last-child {
+    padding-right: 12px;
+}
+/* Highlight test results */
+tr.valid td {
+    background-color: #c6f7e2;
+}
+tr.invalid td {
+    background-color: #ffe3e3;
+}
+{% endcss %}
+
+{# Determine status of server key #}
+{% set serverKeyStatus = (results.success ?? false) ? 'valid' : 'invalid' %}
+
+<p>For the Google Maps plugin to function properly, a valid set of <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">API keys</a> is required.</p>
+
+<table class="api-keys">
+    <tr class="{{ serverKeyStatus }}">
+        <td><strong>Server Key</strong></td>
+        <td>{{ googleMaps.serverKey ?: '[server key missing]' }}</td>
+    </tr>
+    <tr id="browser-key-status">
+        <td><strong>Browser Key</strong></td>
+        <td>{{ googleMaps.browserKey ?: '[browser key missing]' }}</td>
+    </tr>
+</table>
+
+<hr>
+{% include 'google-maps/_utility/test-google-api-keys/server-key' %}
+<hr>
+{% include 'google-maps/_utility/test-google-api-keys/browser-key' %}

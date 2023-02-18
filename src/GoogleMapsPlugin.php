@@ -24,10 +24,12 @@ use craft\events\RegisterElementExportersEvent;
 use craft\helpers\UrlHelper;
 use craft\services\Fields;
 use craft\services\Plugins;
+use craft\services\Utilities;
 use doublesecretagency\googlemaps\exporters\AddressesCondensedExporter;
 use doublesecretagency\googlemaps\exporters\AddressesExpandedExporter;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
+use doublesecretagency\googlemaps\utilities\TestGoogleApiKeysUtility;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
 use yii\base\Event;
@@ -85,6 +87,11 @@ class GoogleMapsPlugin extends Plugin
         // Load Twig extension
         Craft::$app->getView()->registerTwigExtension(new Extension());
 
+        // Register enhancements for the control panel
+        if (Craft::$app->getRequest()->getIsCpRequest()) {
+            $this->_registerUtilities();
+        }
+
         // Register all events
         $this->_registerFieldType();
         $this->_registerExporters();
@@ -132,7 +139,6 @@ class GoogleMapsPlugin extends Plugin
      */
     private function _registerFieldType(): void
     {
-        // Register field type
         Event::on(
             Fields::class,
             Fields::EVENT_REGISTER_FIELD_TYPES,
@@ -149,13 +155,26 @@ class GoogleMapsPlugin extends Plugin
      */
     private function _registerExporters(): void
     {
-        // Register exporters
         Event::on(
             Entry::class,
             Element::EVENT_REGISTER_EXPORTERS,
             static function (RegisterElementExportersEvent $event) {
                 $event->exporters[] = AddressesCondensedExporter::class;
                 $event->exporters[] = AddressesExpandedExporter::class;
+            }
+        );
+    }
+
+    /**
+     * Register utilities.
+     */
+    private function _registerUtilities(): void
+    {
+        Event::on(
+            Utilities::class,
+            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            static function(RegisterComponentTypesEvent $event) {
+                $event->types[] = TestGoogleApiKeysUtility::class;
             }
         );
     }

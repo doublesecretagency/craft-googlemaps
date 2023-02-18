@@ -1,0 +1,77 @@
+<script>
+// Suppress console logging for hidden map
+window._gmData.logging = false;
+
+// Delay the success message
+let successTimeout;
+
+// 1. Fired every time the API connects
+function gm_authSuccess() {
+    // Whether the browser key exists (via Twig)
+    const browserKeyExists = {{ googleMaps.browserKey ? 'true' : 'false' }};
+    // If the browser key is missing
+    if (!browserKeyExists) {
+        // Change the error message
+        $('.browser-key-error').html(
+            `No browser key provided. For more information, see <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">the documentation...</a>`
+        );
+        // Show the error message
+        gm_authFailure();
+        // Bail
+        return;
+    }
+    // Stall success message, in case it actually fails
+    successTimeout = setTimeout(() => {
+        console.log('[GM] Browser key authentication successful ✅');
+        // Display status message
+        $('.browser-key-results').hide();
+        $('.results-valid').show();
+        // Highlight browser key
+        $('#browser-key-status').removeClass('invalid').addClass('valid');
+        // If the server key map was loaded
+        if (document.getElementById('test-server-key')) {
+            // Initialize the map
+            googleMaps.init('test-server-key');
+        }
+    }, 1000);
+}
+
+// 2. Additionally fired when the API key fails
+function gm_authFailure() {
+    console.log('[GM] Browser key authentication failed ❌');
+    // Stop success message
+    clearTimeout(successTimeout);
+    // Display status message
+    $('.browser-key-results').hide();
+    $('.results-invalid').show();
+    // Highlight browser key
+    $('#browser-key-status').removeClass('valid').addClass('invalid');
+}
+</script>
+
+<h2>Browser Key</h2>
+
+{# Pending results #}
+<div class="readable browser-key-results">
+    <blockquote class="note tip">
+        <p>Checking the browser key...</p>
+    </blockquote>
+</div>
+
+{# Show success message #}
+<div class="pane browser-key-results results-valid" style="display:none">
+    <p><span class="checkmark-icon"></span> Success, the browser key is valid!</p>
+</div>
+
+{# Show error message #}
+<div class="readable browser-key-results results-invalid" style="display:none">
+    <blockquote class="note warning">
+        <p class="browser-key-error">The browser key is not valid.</p>
+    </blockquote>
+</div>
+
+{# Load required JavaScript files, then trigger the callback #}
+{% do googleMaps.loadAssets({'callback': 'gm_authSuccess'}) %}
+
+{# Hidden map to trigger API test #}
+{{ googleMaps.map({'lat':0,'lng':0}, {'id':'test-browser-key'}).tag({'assets': false}) }}
