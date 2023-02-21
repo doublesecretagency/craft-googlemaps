@@ -55,6 +55,10 @@ module.exports = {
             {
                 text: 'Guides',
                 items: [
+                    { text: 'Utilities', items: [
+                        {text: 'Test Google API Keys', link: '/guides/test-google-api-keys/'},
+                        {text: 'Test Address Lookup', link: '/guides/test-address-lookup/'},
+                    ] },
                     { text: 'Address Field', items: [
                         {text: 'Linking to a Map', link: '/guides/linking-to-a-map/'},
                         {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
@@ -218,6 +222,14 @@ module.exports = {
 
             // Guides
             '/guides/': [
+                {
+                    title: 'Utilities',
+                    collapsable: false,
+                    children: [
+                        'test-google-api-keys',
+                        'test-address-lookup',
+                    ]
+                },
                 {
                     title: 'Address Field',
                     collapsable: false,

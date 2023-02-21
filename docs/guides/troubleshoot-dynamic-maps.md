@@ -4,6 +4,10 @@ description:
 
 # Troubleshoot Dynamic Maps
 
+:::warning Problems with the API keys?
+Use the [Test Google API Keys](/guides/test-google-api-keys/) utility to troubleshoot your API keys.
+:::
+
 ## The map isn't visible
 
 If you see the words "Loading Map", _skip to the next answer._

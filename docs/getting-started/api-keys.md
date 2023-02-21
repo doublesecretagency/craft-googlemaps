@@ -6,11 +6,15 @@ description: Learn how to create Google API keys and add them to your Craft CMS 
 
 In order to use the Google Maps API, you will need to generate two distinct API keys. Follow the official instructions provided by Google in order to set up both a **browser key** and **server key**.
 
-:::warning Official Google Links
+:::tip Official Google Links
 In addition to the plugin documentation, you may also find it helpful to consult the official Google guides for getting set up...
 
  - [Get an API Key](https://developers.google.com/maps/documentation/geocoding/get-api-key)
  - [Getting started with Google Maps Platform](https://developers.google.com/maps/gmp-get-started)
+:::
+
+:::warning Problems with the API keys?
+You can troubleshoot your API keys using the [Test Google API Keys](/guides/test-google-api-keys/) utility.
 :::
 
 ## Authorize required services

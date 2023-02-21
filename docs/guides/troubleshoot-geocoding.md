@@ -4,6 +4,10 @@ description:
 
 # Troubleshoot Proximity Search & Geocoding
 
+:::warning Location can't be found?
+Use the [Test Address Lookup](/guides/test-address-lookup/) utility to check that the Google Geocoding API is returning the expected results.
+:::
+
 ## Search or geocoding is yielding no results
 
 If you are certain that your [proximity search](/proximity-search/) or [address lookup](/geocoding/) should be returning results, and is instead returning nothing, it's possible that something is wrong with your **Google API keys**. Please check your keys thoroughly to ensure that they have the proper credentials, and that you have enabled all [required API services](/getting-started/api-keys/#authorize-required-services).
