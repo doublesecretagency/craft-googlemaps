@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.2 - 2023-02-21
 
 ### Added
 - Added a utility for testing the Google API keys. ([#8](https://github.com/doublesecretagency/craft-googlemaps/issues/8))
