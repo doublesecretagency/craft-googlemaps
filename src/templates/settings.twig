@@ -48,6 +48,14 @@
     }
 } %}
 
+{% if not welcome %}
+    <div class="readable">
+        <blockquote class="note tip">
+            <p>Experiencing issues? <a href="{{ cpUrl('utilities/test-google-api-keys') }}">Test the Google API keys.</a></p>
+        </blockquote>
+    </div>
+{% endif %}
+
 <hr>
 
 <h2>Visitor Geolocation</h2>

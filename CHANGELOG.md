@@ -4,6 +4,7 @@
 
 ### Added
 - Added a utility for testing the Google API keys. ([#8](https://github.com/doublesecretagency/craft-googlemaps/issues/8))
+- Added a utility for testing an address lookup.
 
 ### Fixed
 - Improved coupling of marker IDs and info window IDs.

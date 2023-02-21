@@ -1,0 +1,63 @@
+{% from '_includes/forms' import textField %}
+
+{# No key status by default #}
+{% set serverKeyStatus = null %}
+
+{# Whether the API call was successful #}
+{% set apiSuccess = (results.success ?? false) %}
+
+{# If target was specified #}
+{% if target %}
+    {# Determine status of server key #}
+    {% set serverKeyStatus = (results.success ?? false) ? 'valid' : 'invalid' %}
+{% endif %}
+
+{# If there was a geocoding error #}
+{% if target and not apiSuccess %}
+    <div class="readable">
+        <blockquote class="note warning">
+            <p>Experiencing issues? <a href="{{ cpUrl('utilities/test-google-api-keys') }}">Test the Google API keys.</a></p>
+        </blockquote>
+    </div>
+{% endif %}
+
+<p>With this utility, you can look up any address or location via the Google Geocoding API.</p>
+<p>If the location is valid, it will be displayed on a map with more information.</p>
+
+<form>
+    <div id="field" class="field" style="margin-top:26px !important">
+        <div class="heading"><label id="label">Enter a Location</label></div>
+        <div class="input ltr">
+            <div class="flex flex-nowrap">
+                <div class="flex-grow">
+                    <input
+                        type="text"
+                        class="ltr text fullwidth"
+                        name="target"
+                        value="{{ target }}"
+                        autocomplete="off"
+                    />
+                </div>
+                <div>
+                    <button type="submit" class="btn submit">Search For Location</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{# If API call was successful #}
+{% if apiSuccess %}
+    {# Get address from results #}
+    {% set address = (results.results ?? false) %}
+    {# Decide how to display the results #}
+    {% if (address.hasCoords() ?? false) %}
+        {% include 'google-maps/_utility/test-address-lookup/map' %}
+    {% elseif address %}
+        {# Else, if mysterious results, show them #}
+        <div>{{ address|json_encode }}</div>
+    {% else %}
+        {# Else, everything worked but there were no matching results #}
+        <p class="warning has-icon"><span class="icon" aria-hidden="true" style="margin-right:5px"></span> <span>No matching results were found.</span></p>
+    {% endif %}
+{% endif %}

@@ -29,6 +29,7 @@ use doublesecretagency\googlemaps\exporters\AddressesCondensedExporter;
 use doublesecretagency\googlemaps\exporters\AddressesExpandedExporter;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Settings;
+use doublesecretagency\googlemaps\utilities\TestAddressLookupUtility;
 use doublesecretagency\googlemaps\utilities\TestGoogleApiKeysUtility;
 use doublesecretagency\googlemaps\web\assets\SettingsAsset;
 use doublesecretagency\googlemaps\web\twig\Extension;
@@ -175,6 +176,7 @@ class GoogleMapsPlugin extends Plugin
             Utilities::EVENT_REGISTER_UTILITY_TYPES,
             static function(RegisterComponentTypesEvent $event) {
                 $event->types[] = TestGoogleApiKeysUtility::class;
+                $event->types[] = TestAddressLookupUtility::class;
             }
         );
     }

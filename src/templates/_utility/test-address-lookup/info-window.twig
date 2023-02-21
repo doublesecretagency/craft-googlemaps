@@ -1,0 +1,13 @@
+{% css %}
+.address {
+    min-width: 200px;
+    font-size: 16px;
+}
+.coords {
+    font-style: italic;
+    margin-top: 10px;
+}
+{% endcss %}
+
+<div class="address">{{ "#{address.multiline}<br />#{address.country}"|raw }}</div>
+<div class="coords">[{{ address.coords|join(', ') }}]</div>

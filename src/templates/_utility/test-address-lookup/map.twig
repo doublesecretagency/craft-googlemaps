@@ -1,0 +1,31 @@
+{# Set map ID #}
+{% set mapId = 'test-server-key' %}
+
+{# Configure the map #}
+{% set mapOptions = {
+    'id': mapId,
+    'zoom': 8,
+    'height': 400,
+    'infoWindowTemplate': 'google-maps/_utility/test-address-lookup/info-window',
+    'mapOptions': {
+        'mapTypeControl': false,
+        'fullscreenControl': false,
+        'streetViewControl': false,
+    }
+} %}
+
+{# If mappable, show map #}
+<div style="margin-top:8px">{{ googleMaps.map(address, mapOptions).tag({'callback':'openInfoWindow'}) }}</div>
+
+<script>
+// Callback to automatically open info window
+function openInfoWindow() {
+    // Get map and info windows
+    const map = googleMaps.getMap('{{ mapId }}');
+    const infoWindows = window._gmData.infoWindows['{{ mapId }}'];
+    // Open every info window
+    for (markerId in infoWindows) {
+        map.openInfoWindow(markerId);
+    }
+}
+</script>
