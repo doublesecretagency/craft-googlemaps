@@ -64,10 +64,16 @@ class MapHelper
             $field = $locations->fieldId
                 ? Craft::$app->getFields()->getFieldById($locations->fieldId)
                 : null;
-            // If a field exists
-            if ($field) {
-                // Set the marker ID based on element ID and field handle
-                $coords['id'] = "{$locations->id}-{$field->handle}";
+            // If coordinates ID has not already been set
+            if (!($coords['id'] ?? false)) {
+                // If a field exists
+                if ($field) {
+                    // Set the marker ID based on element ID and field handle
+                    $coords['id'] = "{$locations->id}-{$field->handle}";
+                } else {
+                    // Generate a marker ID
+                    $coords['id'] = MapHelper::generateId('marker');
+                }
             }
             // Return the full coordinates
             return [$coords];
@@ -78,7 +84,7 @@ class MapHelper
             // Get the Location coordinates
             $coords = $locations->getCoords();
             // Set the marker ID based on merged coordinates
-            $coords['id'] = implode(',', $coords);
+            $coords['id'] = ($coords['id'] ?? implode(',', $coords));
             // Return the full coordinates
             return [$coords];
         }
@@ -86,7 +92,7 @@ class MapHelper
         // If it's a natural set of coordinates, return as-is
         if (is_array($locations) && isset($locations['lat'], $locations['lng'])) {
             // Set the marker ID based on merged coordinates
-            $locations['id'] = implode(',', $locations);
+            $locations['id'] = ($locations['id'] ?? implode(',', $locations));
             // Return the full coordinates
             return [$locations];
         }
@@ -125,7 +131,7 @@ class MapHelper
                 // If a field exists
                 if ($field) {
                     // Add marker ID to the coordinates
-                    $coords['id'] = "{$location->id}-{$field->handle}";
+                    $coords['id'] = ($coords['id'] ?? "{$location->id}-{$field->handle}");
                 }
                 // Append the full coordinates
                 $results[] = $coords;
@@ -136,7 +142,7 @@ class MapHelper
                 // Get the Location coordinates
                 $coords = $location->getCoords();
                 // Set the marker ID based on merged coordinates
-                $coords['id'] = implode(',', $coords);
+                $coords['id'] = ($coords['id'] ?? implode(',', $coords));
                 // Append the full coordinates
                 $results[] = $coords;
             }
@@ -144,7 +150,7 @@ class MapHelper
             // If it's a natural set of coordinates, add them to results as-is
             if (is_array($location) && isset($location['lat'], $location['lng'])) {
                 // Set the marker ID based on merged coordinates
-                $location['id'] = implode(',', $location);
+                $location['id'] = ($location['id'] ?? implode(',', $location));
                 // Append the full coordinates
                 $results[] = $location;
             }

@@ -147,7 +147,7 @@ function DynamicMap(locations, options) {
 
             // If content provided, create a new info window
             if (options.infoWindowOptions.content) {
-                this._initInfoWindow(markerId, options.infoWindowOptions);
+                this._initInfoWindow(coords.id, options.infoWindowOptions);
             }
 
             // If callback is a boolean true

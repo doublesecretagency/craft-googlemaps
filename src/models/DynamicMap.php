@@ -650,6 +650,8 @@ class DynamicMap extends Model
 
         // If info window template specified
         if ($options['infoWindowTemplate'] ?? false) {
+            // Get the marker ID
+            $options['id'] = ($options['id'] ?? $coords[0]['id'] ?? 'err');
             // Add an info window for the marker
             $this->_markerInfoWindow($location, $options, $isCoords);
             // Remove template path from DNA
@@ -744,6 +746,7 @@ class DynamicMap extends Model
         // Initialize marker data
         $infoWindow = [
             'mapId' => $this->id,
+            'markerId' => ($options['id'] ?? null)
         ];
 
         // If location is a set of coordinates
@@ -770,9 +773,16 @@ class DynamicMap extends Model
             $infoWindow['address'] = $location;
             $infoWindow['coords'] = $location->getCoords();
 
-            // If field is known, set marker ID
-            if ($field) {
-                $infoWindow['markerId'] = "{$location->id}-{$field->handle}";
+            // If no marker ID exists
+            if (!$infoWindow['markerId']) {
+                // If field is known
+                if ($field) {
+                    // Set marker ID based on element data
+                    $infoWindow['markerId'] = "{$location->id}-{$field->handle}";
+                } else {
+                    // Set marker ID based on merged coordinates
+                    $infoWindow['markerId'] = implode(',', $infoWindow['coords']);
+                }
             }
 
             // Create info window
@@ -912,13 +922,7 @@ class DynamicMap extends Model
         $options['infoWindowOptions']['content'] = $template;
 
         // Get the marker ID
-        $markerId = ($infoWindow['markerId'] ?? false);
-
-        // If no marker ID exists
-        if (!$markerId) {
-            // Set the marker ID based on merged coordinates
-            $markerId = implode(',', $infoWindow['coords']);
-        }
+        $markerId = $infoWindow['markerId'];
 
         // Transfer info window to future JS array
         $this->_infoWindows[$markerId] = $options['infoWindowOptions'];

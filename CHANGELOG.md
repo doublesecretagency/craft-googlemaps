@@ -5,6 +5,9 @@
 ### Added
 - Added a utility for testing the Google API keys. ([#8](https://github.com/doublesecretagency/craft-googlemaps/issues/8))
 
+### Fixed
+- Improved coupling of marker IDs and info window IDs.
+
 ## 4.3.1 - 2023-02-06
 
 ### Fixed
