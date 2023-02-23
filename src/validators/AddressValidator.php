@@ -57,9 +57,10 @@ class AddressValidator extends Validator
         $config = ($field->subfieldConfig ?? []);
 
         // Loop through subfield config settings
-        foreach ($config as $handle => $settings) {
+        foreach ($config as $settings) {
 
             // Extract subfield settings
+            $handle   = ($settings['handle'] ?? 'err');
             $label    = ($settings['label'] ?? $handle);
             $enabled  = ($settings['enabled'] ?? false);
             $required = ($settings['required'] ?? false);

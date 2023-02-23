@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed subfield validation bug.
+
 ## 4.3.2 - 2023-02-21
 
 ### Added
