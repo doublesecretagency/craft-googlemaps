@@ -79,8 +79,15 @@ export default {
             // Whether the coordinates are editable
             const isEditable = ('editable' !== settings.coordinatesMode);
 
+            // Whether the existing coordinates are valid
+            const validCoords = addressStore.validateCoords(addressStore.data.coords);
+
             // Whether to mark coordinates as required
-            const requireCoordinates = (settings.requireCoordinates && (key !== 'zoom'));
+            const requireCoordinates = (
+                settings.requireCoordinates
+                && (key !== 'zoom')
+                && !validCoords
+            );
 
             // Return array of input classes
             return [

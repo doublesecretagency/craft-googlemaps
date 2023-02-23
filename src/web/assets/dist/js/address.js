@@ -17891,8 +17891,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Whether the coordinates are editable
       var isEditable = 'editable' !== settings.coordinatesMode;
 
+      // Whether the existing coordinates are valid
+      var validCoords = addressStore.validateCoords(addressStore.data.coords);
+
       // Whether to mark coordinates as required
-      var requireCoordinates = settings.requireCoordinates && key !== 'zoom';
+      var requireCoordinates = settings.requireCoordinates && key !== 'zoom' && !validCoords;
 
       // Return array of input classes
       return ['text', 'code', 'fullwidth', isEditable ? 'disabled' : null, requireCoordinates ? 'required' : null];

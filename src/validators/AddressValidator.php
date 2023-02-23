@@ -91,8 +91,11 @@ class AddressValidator extends Validator
         // Whether coordinates are required
         $reqCoords = (bool) ($field->requireCoordinates ?? true);
 
-        // If coordinates are required, but invalid
-        if ($reqCoords && !$address->hasCoords()) {
+        // Show error if coordinates are required but invalid
+        $showCoordsError = ($reqCoords && !$address->hasCoords());
+
+        // If coordinates error should be shown
+        if ($showCoordsError) {
             // Mark entire field as invalid
             $valid = false;
         }
@@ -103,7 +106,7 @@ class AddressValidator extends Validator
         }
 
         // Set error message
-        $this->addError($model, $attribute, $this->_getMessage($reqSubfields, $reqCoords));
+        $this->addError($model, $attribute, $this->_getMessage($reqSubfields, $showCoordsError));
     }
 
     /**
