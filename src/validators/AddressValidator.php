@@ -75,9 +75,6 @@ class AddressValidator extends Validator
                 continue;
             }
 
-            // Add label to list of required subfields
-            $reqSubfields[] = "**{$label}**";
-
             // Get the subfield value
             $value = ($address[$handle] ?? false);
 
@@ -85,6 +82,8 @@ class AddressValidator extends Validator
             if (!$value) {
                 // Mark entire field as invalid
                 $valid = false;
+                // Add label to list of required subfields
+                $reqSubfields[] = "**{$label}**";
             }
 
         }

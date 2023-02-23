@@ -18653,6 +18653,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           event.preventDefault();
         }
       });
+    },
+    /**
+     * Whether a subfield is both required and empty.
+     */
+    isRequiredAndInvalid: function isRequiredAndInvalid(subfield) {
+      // If subfield is not required, return false
+      if (!subfield.required) {
+        return false;
+      }
+
+      // Get the Pinia store
+      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
+
+      // If subfield is not empty, return false
+      if (addressStore.data.address[subfield.handle]) {
+        return false;
+      }
+
+      // Subfield is required and empty
+      return true;
     }
   }
 });
@@ -19528,7 +19548,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       name: "".concat(_ctx.addressStore.namespace.name, "[").concat(subfield.handle, "]"),
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text fullwidth", {
-        'required': subfield.required
+        'required': $options.isRequiredAndInvalid(subfield)
       }]),
       style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(subfield.styles),
       autocomplete: "chrome-off"

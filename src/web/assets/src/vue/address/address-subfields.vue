@@ -7,7 +7,7 @@
             v-model="addressStore.data.address[subfield.handle]"
             :name="`${addressStore.namespace.name}[${subfield.handle}]`"
             class="text fullwidth"
-            :class="{'required': subfield.required}"
+            :class="{'required': isRequiredAndInvalid(subfield)}"
             :style="subfield.styles"
             autocomplete="chrome-off"
         />
@@ -113,7 +113,29 @@ export default {
                     event.preventDefault();
                 }
             });
-        }
+        },
+
+        /**
+         * Whether a subfield is both required and empty.
+         */
+        isRequiredAndInvalid(subfield)
+        {
+            // If subfield is not required, return false
+            if (!subfield.required) {
+                return false;
+            }
+
+            // Get the Pinia store
+            const addressStore = useAddressStore();
+
+            // If subfield is not empty, return false
+            if (addressStore.data.address[subfield.handle]) {
+                return false;
+            }
+
+            // Subfield is required and empty
+            return true;
+        },
 
     }
 }

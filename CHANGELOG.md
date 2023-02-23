@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- When validation fails, only highlight the invalid subfields. ([#77](https://github.com/doublesecretagency/craft-googlemaps/issues/77))
+
 ### Fixed
 - Fixed subfield validation bug.
 
