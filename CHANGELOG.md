@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.3 - 2023-02-24
 
 ### Changed
 - When validation fails, only highlight the invalid subfields. ([#77](https://github.com/doublesecretagency/craft-googlemaps/issues/77))
