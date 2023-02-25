@@ -141,7 +141,7 @@ export default {
 
                 // When map is zoomed, update zoom value
                 google.maps.event.addListener(this.map, 'zoom_changed', () => {
-                    addressStore.data.coords['zoom'] = this.map.getZoom();
+                    addressStore.data.coords['zoom'] = this.map.getZoom() || 11;
                 });
 
             } catch (error) {

@@ -18430,7 +18430,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         // When map is zoomed, update zoom value
         google.maps.event.addListener(this.map, 'zoom_changed', function () {
-          addressStore.data.coords['zoom'] = _this2.map.getZoom();
+          addressStore.data.coords['zoom'] = _this2.map.getZoom() || 11;
         });
       } catch (error) {
         // Unable to initialize the map
