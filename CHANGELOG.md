@@ -7,6 +7,8 @@
 
 ### Fixed
 - Fixed subfield validation bug.
+- Fixed slideout bug. ([#69](https://github.com/doublesecretagency/craft-googlemaps/issues/69))
+- Fixed Matrix bug. ([#74](https://github.com/doublesecretagency/craft-googlemaps/issues/74))
 
 ## 4.3.2 - 2023-02-21
 
