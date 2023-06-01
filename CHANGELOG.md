@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.4 - 2023-06-01
 
 ### Fixed
 - Fixed bug which occurred when using multiple Address fields inside a Matrix field. ([#80](https://github.com/doublesecretagency/craft-googlemaps/issues/80))
