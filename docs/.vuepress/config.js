@@ -105,7 +105,7 @@ module.exports = {
                 // 'diagnostics', // TODO: Add diagnostics tools
             ],
 
-            // Features
+            // How It Works
             '/address-field/': [
                 '',
                 'how-it-works',

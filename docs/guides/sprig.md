@@ -101,6 +101,17 @@ The `init` method also allows for an optional [callback method](/javascript/goog
 {% endif %}
 ```
 
+### Ensure `inline` is enabled
+
+To display the map in Twig, you always need the [`tag` method](/dynamic-maps/twig-php-methods/#tag-options) to render the map. When using Sprig, however, it's also very important to **enable the `inline` option**.
+
+This ensures that any relevant JavaScript will be rendered immediately after the map, _within the scope of your Sprig template_.
+
+```twig
+{# Enabling `inline` keeps important JS right next to the map #}
+{{ googleMaps.map(locations).tag({'inline': true}) }}
+```
+
 ### Autocomplete `target` input
 
 It's possible to use **Google Places Autocomplete** to provide an enhanced `target` input field. This gives users a dynamic list of possible matches while they type their search target. The user can then simply select the matching location from a list of potential matches.
