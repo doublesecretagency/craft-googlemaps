@@ -6,11 +6,14 @@ export const useAddressSettingsStore = defineStore('addressSettings', () => {
     // ========================================================================= //
     // State
 
-    // Internalize data from PHP
-    const namespace = ref(addressFieldSettingsConfig.namespace);
-    const settings  = ref(addressFieldSettingsConfig.settings);
-    const data      = ref(addressFieldSettingsConfig.data);
-    const images    = ref(addressFieldSettingsConfig.images);
+    const namespace = ref({
+        id: null,
+        name: null,
+        handle: null,
+    });
+    const settings = ref({});
+    const data = ref({});
+    const images = ref({});
 
     // Options for each dropdown select
     const options = {

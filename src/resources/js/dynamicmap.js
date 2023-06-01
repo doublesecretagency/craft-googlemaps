@@ -1363,7 +1363,7 @@ function DynamicMap(locations, options) {
         }
 
         // Get current height of container div
-        var height = this.div.scrollHeight;
+        var height = this.div.clientHeight;
 
         // If height is a positive number, check is successful
         if (0 < height) {

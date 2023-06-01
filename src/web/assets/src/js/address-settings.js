@@ -12,17 +12,24 @@ window.initAddressFieldSettings = () => {
 
     // If no matching elements found, bail
     if (!elements.length) {
-        console.warn('[GM] Unable to load Vue. Cannot find the `address-settings-container`.')
+        console.warn('[GM] Unable to load Vue. Cannot find an `address-settings-container`.')
         return;
     }
 
-    // Initialize new Vue instance
-    const app = createApp(AddressFieldSettings);
-    // const app = createApp(AddressFieldSettings, addressFieldSettingsConfig);
+    // Loop through each element
+    elements.forEach(container => {
 
-    // Initialize Pinia
-    app.use(createPinia());
+        // Get the config data
+        const config = JSON.parse(container.dataset.config);
 
-    // Mount to the first matching container
-    app.mount(elements[0]);
+        // Initialize new Vue instance
+        const app = createApp(AddressFieldSettings, config);
+
+        // Initialize Pinia
+        app.use(createPinia());
+
+        // Mount to the container
+        app.mount(container);
+    });
+
 }

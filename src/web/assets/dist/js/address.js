@@ -18427,13 +18427,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'AddressField',
   components: {
-    'address-toggle': _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'address-subfields': _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'address-coords': _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'address-meta': _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    'address-map': _address_map_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    AddressToggle: _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AddressSubfields: _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AddressCoords: _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    AddressMeta: _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    AddressMap: _address_map_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     namespace: Object,

@@ -58,10 +58,10 @@
                                     <input type="checkbox"
                                         :name="getName(index, 'enabled')"
                                         v-model="element.enabled"
-                                        :id="`enabled-${element.handle}`"
+                                        :id="`enabled-${element.handle}-${rand}`"
                                         class="checkbox"
                                         value="1"
-                                    ><label :for="`enabled-${element.handle}`"></label>
+                                    ><label :for="`enabled-${element.handle}-${rand}`"></label>
                                 </div>
                             </td>
                             <td class="checkbox-cell" style="width:15%; text-align:center;">
@@ -70,10 +70,10 @@
                                         type="checkbox"
                                         :name="getName(index, 'autocomplete')"
                                         v-model="element.autocomplete"
-                                        :id="`autocomplete-${element.handle}`"
+                                        :id="`autocomplete-${element.handle}-${rand}`"
                                         class="checkbox"
                                         value="1"
-                                    ><label :for="`autocomplete-${element.handle}`"></label>
+                                    ><label :for="`autocomplete-${element.handle}-${rand}`"></label>
                                 </div>
                             </td>
                             <td class="checkbox-cell" style="width:15%; text-align:center;">
@@ -82,10 +82,10 @@
                                         type="checkbox"
                                         :name="getName(index, 'required')"
                                         v-model="element.required"
-                                        :id="`required-${element.handle}`"
+                                        :id="`required-${element.handle}-${rand}`"
                                         class="checkbox"
                                         value="1"
-                                    ><label :for="`required-${element.handle}`"></label>
+                                    ><label :for="`required-${element.handle}-${rand}`"></label>
                                 </div>
                             </td>
                             <td class="thin action">
@@ -109,6 +109,16 @@ import { useAddressSettingsStore } from '../stores/AddressSettingsStore';
 import draggable from 'vuedraggable';
 
 export default {
+    data() {
+        // Get a random string of numbers
+        const rand = Math.random()
+            .toString()
+            .replace(/^0\./, '');
+
+        return {
+            'rand': rand,
+        }
+    },
     components: {
         draggable,
     },

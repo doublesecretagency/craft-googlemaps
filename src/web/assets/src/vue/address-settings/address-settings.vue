@@ -22,16 +22,31 @@ import LivePreview from './live-preview';
 import SubfieldManager from './subfield-manager';
 
 export default {
-    name: 'AddressSettingsField',
     components: {
         AdditionalNotes,
         DropdownFields,
         LivePreview,
         SubfieldManager,
     },
+    props: {
+        namespace: Object,
+        settings: Object,
+        data: Object,
+        images: Object
+    },
     computed: {
         // Load Pinia store
         ...mapStores(useAddressSettingsStore)
+    },
+    setup(props) {
+        // Get the Pinia store
+        const addressSettingsStore = useAddressSettingsStore();
+
+        // Set Pinia values from props
+        addressSettingsStore.namespace = props.namespace;
+        addressSettingsStore.settings = props.settings;
+        addressSettingsStore.data = props.data;
+        addressSettingsStore.images = props.images;
     },
 }
 </script>

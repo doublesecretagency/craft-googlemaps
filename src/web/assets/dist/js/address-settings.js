@@ -17881,14 +17881,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'AddressSettingsField',
   components: {
     AdditionalNotes: _additional_notes__WEBPACK_IMPORTED_MODULE_1__["default"],
     DropdownFields: _dropdown_fields__WEBPACK_IMPORTED_MODULE_2__["default"],
     LivePreview: _live_preview__WEBPACK_IMPORTED_MODULE_3__["default"],
     SubfieldManager: _subfield_manager__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_5__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore))
+  props: {
+    namespace: Object,
+    settings: Object,
+    data: Object,
+    images: Object
+  },
+  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_5__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)),
+  setup: function setup(props) {
+    // Get the Pinia store
+    var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
+
+    // Set Pinia values from props
+    addressSettingsStore.namespace = props.namespace;
+    addressSettingsStore.settings = props.settings;
+    addressSettingsStore.data = props.data;
+    addressSettingsStore.images = props.images;
+  }
 });
 
 /***/ }),
@@ -18154,6 +18169,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // Vue Draggable (based on SortableJS)
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    // Get a random string of numbers
+    var rand = Math.random().toString().replace(/^0\./, '');
+    return {
+      'rand': rand
+    };
+  },
   components: {
     draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_1___default())
   },
@@ -18799,13 +18821,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'AddressField',
   components: {
-    'address-toggle': _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'address-subfields': _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'address-coords': _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'address-meta': _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    'address-map': _address_map_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    AddressToggle: _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AddressSubfields: _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AddressCoords: _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    AddressMeta: _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    AddressMap: _address_map_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     namespace: Object,
@@ -19395,33 +19416,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": function onUpdateModelValue($event) {
           return element.enabled = $event;
         },
-        id: "enabled-".concat(element.handle),
+        id: "enabled-".concat(element.handle, "-").concat($data.rand),
         "class": "checkbox",
         value: "1"
       }, null, 8 /* PROPS */, _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.enabled]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "enabled-".concat(element.handle)
+        "for": "enabled-".concat(element.handle, "-").concat($data.rand)
       }, null, 8 /* PROPS */, _hoisted_14)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "checkbox",
         name: $options.getName(index, 'autocomplete'),
         "onUpdate:modelValue": function onUpdateModelValue($event) {
           return element.autocomplete = $event;
         },
-        id: "autocomplete-".concat(element.handle),
+        id: "autocomplete-".concat(element.handle, "-").concat($data.rand),
         "class": "checkbox",
         value: "1"
       }, null, 8 /* PROPS */, _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.autocomplete]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "autocomplete-".concat(element.handle)
+        "for": "autocomplete-".concat(element.handle, "-").concat($data.rand)
       }, null, 8 /* PROPS */, _hoisted_18)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "checkbox",
         name: $options.getName(index, 'required'),
         "onUpdate:modelValue": function onUpdateModelValue($event) {
           return element.required = $event;
         },
-        id: "required-".concat(element.handle),
+        id: "required-".concat(element.handle, "-").concat($data.rand),
         "class": "checkbox",
         value: "1"
       }, null, 8 /* PROPS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.required]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "required-".concat(element.handle)
+        "for": "required-".concat(element.handle, "-").concat($data.rand)
       }, null, 8 /* PROPS */, _hoisted_22)])]), _hoisted_23], 10 /* CLASS, PROPS */, _hoisted_5)];
     }),
     _: 1 /* STABLE */
@@ -19657,11 +19678,14 @@ var useAddressSettingsStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)
   // ========================================================================= //
   // State
 
-  // Internalize data from PHP
-  var namespace = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(addressFieldSettingsConfig.namespace);
-  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(addressFieldSettingsConfig.settings);
-  var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(addressFieldSettingsConfig.data);
-  var images = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(addressFieldSettingsConfig.images);
+  var namespace = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+    id: null,
+    name: null,
+    handle: null
+  });
+  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+  var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+  var images = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
 
   // Options for each dropdown select
   var options = {
@@ -33220,19 +33244,24 @@ window.initAddressFieldSettings = function () {
 
   // If no matching elements found, bail
   if (!elements.length) {
-    console.warn('[GM] Unable to load Vue. Cannot find the `address-settings-container`.');
+    console.warn('[GM] Unable to load Vue. Cannot find an `address-settings-container`.');
     return;
   }
 
-  // Initialize new Vue instance
-  var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_vue_address_settings_address_settings__WEBPACK_IMPORTED_MODULE_1__["default"]);
-  // const app = createApp(AddressFieldSettings, addressFieldSettingsConfig);
+  // Loop through each element
+  elements.forEach(function (container) {
+    // Get the config data
+    var config = JSON.parse(container.dataset.config);
 
-  // Initialize Pinia
-  app.use((0,pinia__WEBPACK_IMPORTED_MODULE_2__.createPinia)());
+    // Initialize new Vue instance
+    var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_vue_address_settings_address_settings__WEBPACK_IMPORTED_MODULE_1__["default"], config);
 
-  // Mount to the first matching container
-  app.mount(elements[0]);
+    // Initialize Pinia
+    app.use((0,pinia__WEBPACK_IMPORTED_MODULE_2__.createPinia)());
+
+    // Mount to the container
+    app.mount(container);
+  });
 };
 })();
 

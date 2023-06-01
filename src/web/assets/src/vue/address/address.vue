@@ -21,13 +21,12 @@ import AddressMeta from './address-meta.vue';
 import AddressMap from './address-map.vue';
 
 export default {
-    name: 'AddressField',
     components: {
-        'address-toggle': AddressToggle,
-        'address-subfields': AddressSubfields,
-        'address-coords': AddressCoords,
-        'address-meta': AddressMeta,
-        'address-map': AddressMap
+        AddressToggle,
+        AddressSubfields,
+        AddressCoords,
+        AddressMeta,
+        AddressMap
     },
     props: {
         namespace: Object,
