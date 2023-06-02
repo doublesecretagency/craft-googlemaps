@@ -1307,22 +1307,22 @@ function DynamicMap(locations, options) {
         // If customized clustering
         if (clusterCustom) {
             // If algorithm specified, add to options
-            if (this._cluster.algorithm ?? null) {
+            if (this._cluster.algorithm || null) {
                 options.algorithm = this._cluster.algorithm;
             }
             // If renderer specified, add to options
-            if (this._cluster.renderer ?? null) {
+            if (this._cluster.renderer || null) {
                 options.renderer = this._cluster.renderer;
             }
             // If onClusterClick specified, add to options
-            if (this._cluster.onClusterClick ?? null) {
+            if (this._cluster.onClusterClick || null) {
                 options.onClusterClick = this._cluster.onClusterClick;
             }
         }
 
         // If no onClusterClick defined, use default (native) function
         const onClusterClick =
-            options.onClusterClick ??
+            options.onClusterClick ||
             markerClusterer.defaultOnClusterClickHandler;
 
         // Set parent map object

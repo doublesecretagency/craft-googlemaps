@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Fixed
+- Improved backwards-compatibility of dynamic maps JavaScript. ([#85](https://github.com/doublesecretagency/craft-googlemaps/issues/85))
 - Removed explicit check for MaxMind’s `location` value. ([#87](https://github.com/doublesecretagency/craft-googlemaps/issues/87))
 
 ## 4.3.4 - 2023-06-01
