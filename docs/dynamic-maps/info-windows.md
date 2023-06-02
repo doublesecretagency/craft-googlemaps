@@ -1,5 +1,26 @@
 ---
 description: Clicking on a marker can trigger an info window based on your own custom Twig template. Find out how to add info windows to a dynamic map.
+meta:
+  - property: og:type
+    content: website
+  - property: og:url
+    content: https://plugins.doublesecretagency.com/google-maps/dynamic-maps/info-windows/
+  - property: og:title
+    content: Info Windows | Google Maps plugin for Craft CMS
+  - property: og:description
+    content: Clicking on a marker can trigger an info window based on your own custom Twig template. Find out how to add info windows to a dynamic map.
+  - property: og:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/maps/info-window.png
+  - property: twitter:card
+    content: summary_large_image
+  - property: twitter:url
+    content: https://plugins.doublesecretagency.com/google-maps/dynamic-maps/info-windows/
+  - property: twitter:title
+    content: Info Windows | Google Maps plugin for Craft CMS
+  - property: twitter:description
+    content: Clicking on a marker can trigger an info window based on your own custom Twig template. Find out how to add info windows to a dynamic map.
+  - property: twitter:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/maps/info-window.png
 ---
 
 # Info Windows
