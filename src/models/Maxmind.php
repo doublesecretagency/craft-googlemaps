@@ -162,7 +162,7 @@ class Maxmind extends Model
         }
 
         // Determine whether API call was successful
-        if (array_key_exists('location', $response) && array_key_exists('maxmind', $response)) {
+        if (array_key_exists('maxmind', $response)) {
             $success = true;
         } else if (array_key_exists('code', $response) && array_key_exists('error', $response)) {
             $success = false;
