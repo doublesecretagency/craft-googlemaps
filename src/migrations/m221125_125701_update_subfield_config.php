@@ -76,9 +76,13 @@ class m221125_125701_update_subfield_config extends Migration
             // If Address is inside a Matrix field
             if ('matrixBlockType' === $context[0]) {
                 // Get the UID of the Matrix block type
-                $uid = $context[1];
+                $uid = ($context[1] ?? null);
                 // Get the ID of the Matrix block type
                 $blockTypeId = Db::idByUid(Table::MATRIXBLOCKTYPES, $uid);
+                // If unable to fetch the ID, skip it
+                if (!$blockTypeId) {
+                    continue;
+                }
                 // Get the Matrix block type
                 $blockType = $matrixService->getBlockTypeById($blockTypeId);
                 // If no matching block type, skip it
