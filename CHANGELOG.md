@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.5 - 2023-06-05
 
 ### Fixed
 - Improved backwards-compatibility of dynamic maps JavaScript. ([#85](https://github.com/doublesecretagency/craft-googlemaps/issues/85))
