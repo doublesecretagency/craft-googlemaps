@@ -38,7 +38,7 @@ class AddressesExpandedExporter extends ElementExporter
     public function export(ElementQueryInterface $query): array
     {
         // Export the Address data
-        return ExporterHelper::export($query, function(&$data, $element, $addressFields) {
+        return ExporterHelper::export($query, static function(&$data, $element, $addressFields) {
 
             // Loop through each Address field
             foreach ($addressFields as $field) {
@@ -53,13 +53,25 @@ class AddressesExpandedExporter extends ElementExporter
 
                 // Append config for coordinates
                 $subfieldConfig = array_merge($field->subfieldConfig, [
-                    'lat'  => ['label' => Craft::t('google-maps', 'Latitude')],
-                    'lng'  => ['label' => Craft::t('google-maps', 'Longitude')],
-                    'zoom' => ['label' => Craft::t('google-maps', 'Zoom')],
+                    [
+                        'handle' => 'lat',
+                        'label' => Craft::t('google-maps', 'Latitude')
+                    ],
+                    [
+                        'handle' => 'lng',
+                        'label' => Craft::t('google-maps', 'Longitude')
+                    ],
+                    [
+                        'handle' => 'zoom',
+                        'label' => Craft::t('google-maps', 'Zoom')
+                    ],
                 ]);
 
                 // Loop through each subfield
-                foreach ($subfieldConfig as $handle => $subfield) {
+                foreach ($subfieldConfig as $subfield) {
+
+                    // Get the subfield handle
+                    $handle = ($subfield['handle'] ?? '');
 
                     // Get the user-configured subfield label
                     $label = ($subfield['label'] ?? $handle);
@@ -67,9 +79,19 @@ class AddressesExpandedExporter extends ElementExporter
                     // Prefix each column with the field name
                     $column = "{$field->name} - {$label}";
 
+                    // Get the subfield value
+                    $value = ($address->{$handle} ?? '');
+
+                    // Typecast coordinate values
+                    if ($value && in_array($handle, ['lat','lng'])) {
+                        $value = (float) trim($value);
+                    } else if ($value && ($handle === 'zoom')) {
+                        $value = (int) trim($value);
+                    }
+
                     // Append new subfield column
                     $data[] = [
-                        $column => ($address->{$handle} ?? '')
+                        $column => $value
                     ];
 
                 }

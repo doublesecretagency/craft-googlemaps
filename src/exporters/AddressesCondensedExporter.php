@@ -37,7 +37,7 @@ class AddressesCondensedExporter extends ElementExporter
     public function export(ElementQueryInterface $query): array
     {
         // Export the Address data
-        return ExporterHelper::export($query, function(&$data, $element, $addressFields) {
+        return ExporterHelper::export($query, static function(&$data, $element, $addressFields) {
 
             // Loop through each Address field
             foreach ($addressFields as $field) {
