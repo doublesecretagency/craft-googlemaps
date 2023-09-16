@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed a bug which caused subfields to be omitted from "Addresses (expanded)" exports. ([#91](https://github.com/doublesecretagency/craft-googlemaps/issues/91))
+- Partially fixed a conflict between clustering and info windows. ([#95](https://github.com/doublesecretagency/craft-googlemaps/issues/95))
 
 ## 4.3.5 - 2023-06-05
 

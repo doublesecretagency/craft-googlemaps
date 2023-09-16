@@ -1334,8 +1334,11 @@ function DynamicMap(locations, options) {
             if (googleMaps.log) {
                 console.log(`[${parent.id}] Opening cluster of ${cluster.markers.length} markers`);
             }
-            // Close all info windows
-            parent.closeInfoWindow('*', true);
+            // After a brief pause
+            setTimeout(()=> {
+                // Close all info windows
+                parent.closeInfoWindow('*', true);
+            }, 100);
             // Run original onClusterClick function
             onClusterClick(event, cluster, map);
         }
