@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.6 - 2023-09-18
 
 ### Changed
 - Added cache-busting to the Google Maps API URL to prevent a rare map loading error. ([#92](https://github.com/doublesecretagency/craft-googlemaps/issues/92))
