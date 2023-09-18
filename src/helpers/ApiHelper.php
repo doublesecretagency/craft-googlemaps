@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use craft\helpers\App;
 use craft\helpers\UrlHelper;
+use DateTime;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\Settings;
 
@@ -106,6 +107,9 @@ class ApiHelper
 
         // Add the browser key
         $params['key'] = static::getBrowserKey();
+
+        // Add cache-busting token
+        $params['cache'] = (new DateTime())->format('Az');
 
         // If callback wasn't specified
         if (!($params['callback'] ?? false)) {

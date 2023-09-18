@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- Added cache-busting to the Google Maps API URL to prevent a rare map loading error. ([#92](https://github.com/doublesecretagency/craft-googlemaps/issues/92))
+
 ### Fixed
 - Fixed a bug which caused subfields to be omitted from "Addresses (expanded)" exports. ([#91](https://github.com/doublesecretagency/craft-googlemaps/issues/91))
 - Partially fixed a conflict between clustering and info windows. ([#95](https://github.com/doublesecretagency/craft-googlemaps/issues/95))
