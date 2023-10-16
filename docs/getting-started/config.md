@@ -38,8 +38,9 @@ return [
     'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
     'maxmindService'    => getenv('MAXMIND_SERVICE'),
 
-    // Whether to log JS progress to the console (when a map is rendered)
+    // Manage JS resources (when rendering a dynamic map on the front-end)
     'enableJsLogging' => true,
+    'minifyJsFiles' => false,
 
     // Control the size of map UI elements in Address fields
     'fieldControlSize' => 27,
@@ -69,6 +70,17 @@ Whether to [log dynamic map progress](/dynamic-maps/troubleshooting/) to the Jav
 ```php
 // Prevent dynamic maps from logging to the console
 'enableJsLogging' => false
+```
+
+### `minifyJsFiles`
+
+_bool_ - Defaults to `false`.
+
+Whether to use minified JavaScript files when rendering a dynamic map on the front-end.
+
+```php
+// Use minified JS files to render a map on the front-end
+'minifyJsFiles' => true
 ```
 
 ### `fieldControlSize`

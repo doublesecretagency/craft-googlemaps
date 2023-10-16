@@ -31,8 +31,9 @@ return [
     //'maxmindLicenseKey' => getenv('MAXMIND_LICENSEKEY'),
     //'maxmindService' => getenv('MAXMIND_SERVICE'),
 
-    // Whether to log JS progress to the console (when a map is rendered)
+    // Manage JS resources (when rendering a dynamic map on the front-end)
     //'enableJsLogging' => true,
+    //'minifyJsFiles' => false,
 
     // Control the size of map UI elements in Address fields
     //'fieldControlSize' => 27,

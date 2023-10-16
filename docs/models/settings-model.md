@@ -55,3 +55,22 @@ _string_ - MaxMind Service. Only relevant if `geolocationService` is set to **ma
 ### `enableJsLogging`
 
 _bool_ - Whether to allow logging to the JavaScript console. Only relevant when displaying a dynamic map. Defaults to `true`.
+
+### `minifyJsFiles`
+
+_bool_ - Whether to use minified front-end JavaScript files. Only relevant when rendering a dynamic map. Defaults to `false`.
+
+### `fieldControlSize`
+
+_int_ - Control the size of map UI elements in Address fields. Defaults to `27`.
+
+### `fieldParams`
+
+_array_ - Additional optional parameters for configuring Address fields.
+
+---
+---
+
+:::warning Additional Details
+For more detailed information, check out the docs regarding the [PHP Config File...](/getting-started/config/)
+:::

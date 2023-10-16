@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Optionally use minified JavaScript files for dynamic maps on the front-end. ([#98](https://github.com/doublesecretagency/craft-googlemaps/issues/98))
+
 ## 4.3.6 - 2023-09-18
 
 ### Changed

@@ -1335,7 +1335,7 @@ function DynamicMap(locations, options) {
                 console.log(`[${parent.id}] Opening cluster of ${cluster.markers.length} markers`);
             }
             // After a brief pause
-            setTimeout(()=> {
+            setTimeout(() => {
                 // Close all info windows
                 parent.closeInfoWindow('*', true);
             }, 100);

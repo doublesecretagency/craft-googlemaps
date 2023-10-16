@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\base\Element;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Location;
 use doublesecretagency\googlemaps\models\Lookup;
@@ -57,9 +58,15 @@ class GoogleMaps
         // CDN for MarkerClusterer library
         $files[] = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
 
+        // Whether to use minified JavaScript files
+        $minifyJsFiles = (GoogleMapsPlugin::$plugin->getSettings()->minifyJsFiles ?? false);
+
+        // Optionally use minified files
+        $min = ($minifyJsFiles ? 'min.' : '');
+
         // Append both JS files required by plugin
-        $files[] = $manager->getPublishedUrl($assets, true, 'js/googlemaps.js');
-        $files[] = $manager->getPublishedUrl($assets, true, 'js/dynamicmap.js');
+        $files[] = $manager->getPublishedUrl($assets, true, "js/googlemaps.{$min}js");
+        $files[] = $manager->getPublishedUrl($assets, true, "js/dynamicmap.{$min}js");
 
         // Return list of files
         return $files;

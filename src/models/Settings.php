@@ -61,6 +61,11 @@ class Settings extends Model
     public bool $enableJsLogging = true;
 
     /**
+     * @var bool Whether to use minified front-end JavaScript files. Only relevant when rendering a dynamic map.
+     */
+    public bool $minifyJsFiles = false;
+
+    /**
      * @var int Control the size of map UI elements in Address fields.
      */
     public int $fieldControlSize = 27;
