@@ -534,6 +534,29 @@ class AddressField extends Field implements PreviewableFieldInterface
         ProximitySearchHelper::modifyElementsQuery($query, $value, $this);
     }
 
+    // ========================================================================= //
+
+    /**
+     * @inheritdoc
+     */
+    public function getSearchKeywords(mixed $value, ElementInterface $element): string
+    {
+        /** @var AddressModel $value */
+        return implode(' ', [
+            $value->name,
+            $value->street1,
+            $value->street2,
+            $value->city,
+            $value->state,
+            $value->zip,
+            $value->county,
+            $value->country,
+            $value->formatted,
+        ]);
+    }
+
+    // ========================================================================= //
+
     /**
      * @inheritdoc
      */
