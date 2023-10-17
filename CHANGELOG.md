@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.7 - 2023-10-17
 
 ### Added
 - Address fields can now be added to the search index. ([#21](https://github.com/doublesecretagency/craft-googlemaps/issues/21))
