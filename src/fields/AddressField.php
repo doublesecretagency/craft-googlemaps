@@ -543,6 +543,7 @@ class AddressField extends Field implements PreviewableFieldInterface
     {
         /** @var AddressModel $value */
         return implode(' ', [
+            $value->formatted,
             $value->name,
             $value->street1,
             $value->street2,
@@ -551,7 +552,6 @@ class AddressField extends Field implements PreviewableFieldInterface
             $value->zip,
             $value->county,
             $value->country,
-            $value->formatted,
         ]);
     }
 
