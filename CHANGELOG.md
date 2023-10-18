@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.8 - 2023-10-18
 
 ### Changed
 - Marked Address field as compatible with the Mapbox plugin.
