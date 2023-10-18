@@ -18,6 +18,7 @@ use craft\base\Model;
 use craft\base\Plugin;
 use craft\elements\Entry;
 use craft\events\ConfigEvent;
+use craft\events\DefineCompatibleFieldTypesEvent;
 use craft\events\ModelEvent;
 use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
@@ -97,6 +98,7 @@ class GoogleMapsPlugin extends Plugin
 
         // Register all events
         $this->_registerFieldType();
+        $this->_registerCompatibleFieldTypes();
         $this->_registerExporters();
 
         // Manage conversions of the Address field
@@ -155,6 +157,27 @@ class GoogleMapsPlugin extends Plugin
     }
 
     /**
+     * Register all field type compatibility.
+     * Declare THIS field safe for OTHER fields.
+     *
+     * @return void
+     */
+    private function _registerCompatibleFieldTypes(): void
+    {
+        Event::on(
+            Fields::class,
+            Fields::EVENT_DEFINE_COMPATIBLE_FIELD_TYPES,
+            static function (DefineCompatibleFieldTypesEvent $event) {
+                // If it's a Mapbox field
+                if (is_a($event->field, 'doublesecretagency\mapbox\fields\AddressField')) {
+                    // Tell it that the Google Maps field is compatible
+                    $event->compatibleTypes[] = AddressField::class;
+                }
+            }
+        );
+    }
+
+    /**
      * Register the exporters.
      *
      * @return void
@@ -195,7 +218,7 @@ class GoogleMapsPlugin extends Plugin
      */
     private function _manageFieldTypeConversions(): void
     {
-        // If Mapbox plugin is not installed, bail
+        // If Mapbox plugin is not installed and enabled, bail
         if (!Craft::$app->getPlugins()->isPluginEnabled('mapbox')) {
             return;
         }

@@ -29,13 +29,7 @@ meta:
 
 Converting from an "Address (Mapbox)" field to an "Address (Google Maps)" field is relatively straightforward... simply **switch the field type** on the field's settings page.
 
-<img class="dropshadow" :src="$withBase('/images/guides/switch-field-type.png')" alt="Screenshot of field type select being switched to Address (Google Maps)" width="233" style="margin-left:20px; margin-bottom:4px;">
-
-:::warning Ignorable Warning ⚠️
-You might be warned that these two field types are not compatible, but they actually are!
-
-It is safe to ignore the warning about field type compatibility.
-:::
+<img class="dropshadow" :src="$withBase('/images/guides/switch-field-type.png')" alt="Screenshot of field type select being switched to Address (Google Maps)" width="210" style="margin-left:20px; margin-bottom:4px;">
 
 Once you have saved the field as an "Address (Google Maps)" field, all data associated with that field will automatically be imported into the Google Maps plugin.
 

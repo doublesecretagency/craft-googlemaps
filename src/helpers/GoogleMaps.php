@@ -52,17 +52,17 @@ class GoogleMaps
         $manager = Craft::$app->getAssetManager();
         $assets = '@doublesecretagency/googlemaps/resources';
 
-        // Link to Google Maps JavaScript API URL
-        $files = [self::getApiUrl($params)];
-
-        // CDN for MarkerClusterer library
-        $files[] = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
-
         // Whether to use minified JavaScript files
         $minifyJsFiles = (GoogleMapsPlugin::$plugin->getSettings()->minifyJsFiles ?? false);
 
         // Optionally use minified files
         $min = ($minifyJsFiles ? 'min.' : '');
+
+        // Link to Google Maps JavaScript API URL
+        $files = [self::getApiUrl($params)];
+
+        // CDN for MarkerClusterer library
+        $files[] = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
 
         // Append both JS files required by plugin
         $files[] = $manager->getPublishedUrl($assets, true, "js/googlemaps.{$min}js");

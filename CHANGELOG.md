@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Changed
+- Marked Address field as compatible with the Mapbox plugin.
 - Now requires a minimum of Craft 4.5.7.
 
 ## 4.3.7 - 2023-10-17
