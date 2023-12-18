@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.3.9 - 2023-12-18
 
 ### Added
 - Added support for [element collections](https://craftcms.com/docs/4.x/element-queries.html#collect). 
