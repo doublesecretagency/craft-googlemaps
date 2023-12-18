@@ -14,6 +14,7 @@ namespace doublesecretagency\googlemaps\models;
 use Craft;
 use craft\base\Element;
 use craft\base\Model;
+use craft\elements\ElementCollection;
 use craft\helpers\Html;
 use craft\helpers\Json;
 use craft\helpers\StringHelper;
@@ -81,7 +82,7 @@ class DynamicMap extends Model
     /**
      * Initialize a Dynamic Map object.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @param array $config
      * @throws Exception
@@ -89,7 +90,7 @@ class DynamicMap extends Model
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function __construct(array|Element|Location $locations = [], array $options = [], array $config = [])
+    public function __construct(array|ElementCollection|Element|Location $locations = [], array $options = [], array $config = [])
     {
         // Call parent constructor
         parent::__construct($config);
@@ -133,7 +134,7 @@ class DynamicMap extends Model
     /**
      * Add one or more markers to the map.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @return $this
      * @throws Exception
@@ -141,7 +142,7 @@ class DynamicMap extends Model
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function markers(array|Element|Location $locations, array $options = []): DynamicMap
+    public function markers(array|ElementCollection|Element|Location $locations, array $options = []): DynamicMap
     {
         // If no locations were specified, bail
         if (!$locations) {
@@ -175,11 +176,11 @@ class DynamicMap extends Model
     /**
      * Add one or more circles to the map.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @return $this
      */
-    public function circles(array|Element|Location $locations, array $options = []): DynamicMap
+    public function circles(array|ElementCollection|Element|Location $locations, array $options = []): DynamicMap
     {
         // If no locations were specified, bail
         if (!$locations) {
@@ -609,14 +610,14 @@ class DynamicMap extends Model
     /**
      * Create individual markers one at a time.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @throws Exception
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    private function _individualMarkers(array|Element|Location $locations, array $options): void
+    private function _individualMarkers(array|ElementCollection|Element|Location $locations, array $options): void
     {
         // Initialize infoWindowOptions
         $options = $options ?? [];
@@ -709,14 +710,14 @@ class DynamicMap extends Model
     /**
      * Parse a dynamic marker string.
      *
-     * @param array|Element|Location $location
+     * @param array|ElementCollection|Element|Location $location
      * @param string $string
      * @throws Exception
      * @throws LoaderError
      * @throws SyntaxError
      * @throws Throwable
      */
-    private function _parseLocationString(array|Element|Location $location, string &$string): void
+    private function _parseLocationString(array|ElementCollection|Element|Location $location, string &$string): void
     {
         // Get view services
         $view = Craft::$app->getView();
@@ -737,11 +738,11 @@ class DynamicMap extends Model
     /**
      * Creates a single marker with a corresponding info window.
      *
-     * @param array|Element|Location $location
+     * @param array|ElementCollection|Element|Location $location
      * @param array $options
      * @param bool $isCoords
      */
-    private function _markerInfoWindow(array|Element|Location $location, array &$options, bool $isCoords): void
+    private function _markerInfoWindow(array|ElementCollection|Element|Location $location, array &$options, bool $isCoords): void
     {
         // Initialize marker data
         $infoWindow = [

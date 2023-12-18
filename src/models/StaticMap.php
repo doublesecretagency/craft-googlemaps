@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\models;
 
 use craft\base\Element;
 use craft\base\Model;
+use craft\elements\ElementCollection;
 use craft\helpers\Html;
 use craft\helpers\Template;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
@@ -69,11 +70,11 @@ class StaticMap extends Model
     /**
      * Initialize a Static Map object.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @param array $config
      */
-    public function __construct(array|Element|Location $locations = [], array $options = [], array $config = [])
+    public function __construct(array|ElementCollection|Element|Location $locations = [], array $options = [], array $config = [])
     {
         // Ensure options are a valid array
         if (!$options || !is_array($options)) {
@@ -107,11 +108,11 @@ class StaticMap extends Model
     /**
      * Add one or more markers to the map.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @return $this
      */
-    public function markers(array|Element|Location $locations, array $options = []): StaticMap
+    public function markers(array|ElementCollection|Element|Location $locations, array $options = []): StaticMap
     {
         // If no locations were specified, bail
         if (!$locations) {
@@ -165,11 +166,11 @@ class StaticMap extends Model
     /**
      * Add a defined path to the map.
      *
-     * @param array|Element|Location $points
+     * @param array|ElementCollection|Element|Location $points
      * @param array $options
      * @return $this
      */
-    public function path(array|Element|Location $points, array $options = []): StaticMap
+    public function path(array|ElementCollection|Element|Location $points, array $options = []): StaticMap
     {
         // If no points were specified, bail
         if (!$points) {

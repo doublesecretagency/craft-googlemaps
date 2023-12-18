@@ -17,39 +17,39 @@ The `locations` value can be a set of [coordinates](/models/coordinates/), or an
 
 :::code
 ```js
-// Just one set of coordinates
+// As a single set of coordinates
 var locations = {
     'lat':  32.3113966,
     'lng': -64.7527469
 };
 
-// An array of coordinate sets
+// As an array of coordinate sets
 var locations = [
     {'lat': 37.2430548, 'lng': -115.7930198},
     {'lat': 57.3009274, 'lng':   -4.4496567}
 ];
 ```
 ```twig
-{# Just one set of coordinates #}
+{# As a single set of coordinates #}
 {% set locations = {
     'lat':  32.3113966,
     'lng': -64.7527469
 } %}
 
-{# An array of coordinate sets #}
+{# As an array of coordinate sets #}
 {% set locations = [
     {'lat': 37.2430548, 'lng': -115.7930198},
     {'lat': 57.3009274, 'lng':   -4.4496567}
 ] %}
 ```
 ```php
-// Just one set of coordinates
+// As a single set of coordinates
 $locations = [
     'lat' =>  32.3113966,
     'lng' => -64.7527469
 ];
 
-// An array of coordinate sets
+// As an array of coordinate sets
 $locations = [
     ['lat' => 37.2430548, 'lng' => -115.7930198],
     ['lat' => 57.3009274, 'lng' =>   -4.4496567]
@@ -70,20 +70,20 @@ The `locations` value can be set as an individual [Address Model](/models/addres
 
 :::code
 ```twig
-{# Just one Address Model #}
+{# As a single Address Model #}
 {% set locations = entry.myAddressField %}
 
-{# An array of Address Models #}
+{# As an array of Address Models #}
 {% set locations = [
     entry.homeAddress,
     entry.businessAddress
 ] %}
 ```
 ```php
-// Just one Address Model
+// As a single Address Model
 $locations = $entry->myAddressField;
 
-// An array of Address Models
+// As an array of Address Models
 $locations = [
     $entry->homeAddress,
     $entry->businessAddress
@@ -96,22 +96,28 @@ $locations = [
 
 ## Elements
 
-The `locations` value can be set as an individual [Element](https://craftcms.com/docs/3.x/elements.html), or as an array of Elements. This can include any native Element Types (ie: Entries, Categories, Users, etc), as well as any custom Element Types introduced by other plugins or modules.
+The `locations` value can be set as an individual [Element](https://craftcms.com/docs/3.x/elements.html), or as an array (or collection) of Elements. This can include any native Element Types (ie: Entries, Categories, Users, etc), as well as any custom Element Types introduced by other plugins or modules.
 
 :::code
 ```twig
-{# Just one Element #}
+{# As a single Element #}
 {% set locations = entry %}
 
-{# An array of Elements #}
+{# As an array of Elements #}
 {% set locations = craft.entries.all() %}
+
+{# As a collection of Elements #}
+{% set locations = craft.entries.collect() %}
 ```
 ```php
-// Just one Element
+// As a single Element
 $locations = $entry;
 
-// An array of Elements
+// As an array of Elements
 $locations = Entry::find()->all();
+
+// As a collection of Elements
+$locations = Entry::find()->collect();
 ```
 :::
 

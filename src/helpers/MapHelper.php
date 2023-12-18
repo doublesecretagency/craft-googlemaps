@@ -13,6 +13,7 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\base\Element;
+use craft\elements\ElementCollection;
 use craft\helpers\StringHelper;
 use craft\models\FieldLayout;
 use doublesecretagency\googlemaps\fields\AddressField;
@@ -49,11 +50,11 @@ class MapHelper
      * Coordinates will always be returned inside a parent array,
      * to compensate for Elements with multiple Address Fields.
      *
-     * @param array|Element|Location $locations
+     * @param array|ElementCollection|Element|Location $locations
      * @param array $options
      * @return array Collection of coordinate sets
      */
-    public static function extractCoords(array|Element|Location $locations, array $options = []): array
+    public static function extractCoords(array|ElementCollection|Element|Location $locations, array $options = []): array
     {
         // If it's an Address Model, return the coordinates w/ optional ID
         if ($locations instanceof Address) {
@@ -97,8 +98,15 @@ class MapHelper
             return [$locations];
         }
 
-        // Force array syntax
+        // If it's an Element Collection
+        if ($locations instanceof ElementCollection) {
+            // Convert to an array
+            $locations = $locations->all();
+        }
+
+        // If still not an array
         if (!is_array($locations)) {
+            // Create single-item array
             $locations = [$locations];
         }
 
