@@ -164,6 +164,11 @@ class GoogleMapsPlugin extends Plugin
      */
     private function _registerCompatibleFieldTypes(): void
     {
+        // If unable to mark fields as compatible, bail (requires Craft 4.5.7+)
+        if (!class_exists(DefineCompatibleFieldTypesEvent::class)) {
+            return;
+        }
+        // Mark fields as compatible
         Event::on(
             Fields::class,
             Fields::EVENT_DEFINE_COMPATIBLE_FIELD_TYPES,

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Restores a required minimum of Craft 4.0.0.
+
 ## 4.3.9 - 2023-12-18
 
 ### Added
