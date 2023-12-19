@@ -13,7 +13,6 @@ namespace doublesecretagency\googlemaps\helpers;
 
 use Craft;
 use craft\base\Element;
-use craft\elements\ElementCollection;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\models\DynamicMap;
 use doublesecretagency\googlemaps\models\Location;
@@ -21,6 +20,7 @@ use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\models\Visitor;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Collection;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
@@ -98,11 +98,11 @@ class GoogleMaps
     /**
      * Create a new Dynamic Map object.
      *
-     * @param array|ElementCollection|Element|Location $locations
+     * @param array|Collection|Element|Location $locations
      * @param array $options
      * @return DynamicMap
      */
-    public static function map(array|ElementCollection|Element|Location $locations = [], array $options = []): DynamicMap
+    public static function map(array|Collection|Element|Location $locations = [], array $options = []): DynamicMap
     {
         // Create a new map object
         $map = new DynamicMap($locations, $options);
@@ -143,11 +143,11 @@ class GoogleMaps
     /**
      * Create a new Static Map object.
      *
-     * @param array|ElementCollection|Element|Location $locations
+     * @param array|Collection|Element|Location $locations
      * @param array $options
      * @return StaticMap
      */
-    public static function img(array|ElementCollection|Element|Location $locations = [], array $options = []): StaticMap
+    public static function img(array|Collection|Element|Location $locations = [], array $options = []): StaticMap
     {
         return new StaticMap($locations, $options);
     }

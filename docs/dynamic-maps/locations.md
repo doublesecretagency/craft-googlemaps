@@ -122,5 +122,5 @@ $locations = Entry::find()->collect();
 :::
 
 :::tip Elements must have a valid Address field
-When using an Element, ensure that it has at least one Address field attached to it. The plugin will automatically render all valid addresses on the map.
+When using an Element, ensure that it has at least one Address field attached to it. The plugin will automatically render each valid Address field on the map.
 :::
