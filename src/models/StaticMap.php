@@ -119,6 +119,12 @@ class StaticMap extends Model
             return $this;
         }
 
+        // If locations are a Collection
+        if ($locations instanceof Collection) {
+            // Convert to an array
+            $locations = $locations->all();
+        }
+
         // Initialize marker parts
         $parts = [];
 

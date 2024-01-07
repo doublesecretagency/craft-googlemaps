@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Improved support for [collections](https://craftcms.com/docs/4.x/element-queries.html#collect).
+
 ## 4.3.10 - 2023-12-19
 
 ### Changed
