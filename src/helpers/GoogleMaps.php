@@ -59,6 +59,10 @@ class GoogleMaps
         // Optionally use minified files
         $min = ($minifyJsFiles ? 'min.' : '');
 
+        // Pin to v3.55 of the API
+        // https://github.com/doublesecretagency/craft-googlemaps/issues/106
+        $params = array_merge($params, ['v' => '3.55']);
+
         // Link to Google Maps JavaScript API URL
         $files = [self::getApiUrl($params)];
 
