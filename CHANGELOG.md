@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.4.0 - 2024-02-24
 
 ### Changed
 - Pinned API version to avoid deprecation warnings. ([#106](https://github.com/doublesecretagency/craft-googlemaps/issues/106))
