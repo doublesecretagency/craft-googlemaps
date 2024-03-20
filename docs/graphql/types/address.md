@@ -17,8 +17,10 @@ type GoogleMaps_Address {
   city: String
   state: String
   zip: String
+  neighborhood: String
   county: String
   country: String
+  countryCode: String
   placeId: String
   distance: Float
   zoom: Int
@@ -81,6 +83,10 @@ _String_ - The state. (aka: province)
 
 _String_ - The zip code. (aka: postal code)
 
+### `neighborhood`
+
+_String_ - The neighborhood.
+
 ### `county`
 
 _String_ - The local county. (aka: district)
@@ -88,6 +94,10 @@ _String_ - The local county. (aka: district)
 ### `country`
 
 _String_ - The country. (aka: nation)
+
+### `countryCode`
+
+_String_ - The country code.
 
 ### `placeId`
 

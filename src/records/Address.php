@@ -28,8 +28,10 @@ use craft\db\ActiveRecord;
  * @property string $city City.
  * @property string $state State (or province, territory, etc).
  * @property string $zip Zip code (or postal code, etc).
+ * @property string $neighborhood Neighborhood.
  * @property string $county County or district (political or administrative).
  * @property string $country Country.
+ * @property string $countryCode Country code.
  * @property string $placeId Place ID as assigned by the Google API.
  * @property float $distance Distance from another specified point.
  * @property float $lat Latitude of location.

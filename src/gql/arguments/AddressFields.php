@@ -72,6 +72,10 @@ class AddressFields extends Arguments
                 'type' => Type::string(),
                 'description' => "The zip code. (aka: postal code)",
             ],
+            'neighborhood' => [
+                'type' => Type::string(),
+                'description' => "The neighborhood.",
+            ],
             'county' => [
                 'type' => Type::string(),
                 'description' => "The local county. (aka: district)",
@@ -79,6 +83,10 @@ class AddressFields extends Arguments
             'country' => [
                 'type' => Type::string(),
                 'description' => "The country. (aka: nation)",
+            ],
+            'countryCode' => [
+                'type' => Type::string(),
+                'description' => "The country code.",
             ],
             'placeId' => [
                 'type' => Type::string(),

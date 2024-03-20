@@ -186,26 +186,28 @@ class FromSmartMap
 
             // Create a new Address for Google Maps
             $record = new Address([
-                'id'          => ($data['id'] ?: null),
-                'elementId'   => ($data['elementId'] ?: null),
-                'fieldId'     => ($data['fieldId'] ?: null),
-                'formatted'   => null,
-                'raw'         => null,
-                'name'        => null,
-                'street1'     => ($data['street1'] ?: null),
-                'street2'     => ($data['street2'] ?: null),
-                'city'        => ($data['city'] ?: null),
-                'state'       => ($data['state'] ?: null),
-                'zip'         => ($data['zip'] ?: null),
-                'county'      => null,
-                'country'     => ($data['country'] ?: null),
-                'placeId'     => null,
-                'lat'         => ($data['lat'] ?: null),
-                'lng'         => ($data['lng'] ?: null),
-                'zoom'        => 11,
-                'dateCreated' => ($data['dateCreated'] ?: null),
-                'dateUpdated' => ($data['dateUpdated'] ?: null),
-                'uid'         => ($data['uid'] ?: null),
+                'id'           => ($data['id'] ?: null),
+                'elementId'    => ($data['elementId'] ?: null),
+                'fieldId'      => ($data['fieldId'] ?: null),
+                'formatted'    => null,
+                'raw'          => null,
+                'name'         => null,
+                'street1'      => ($data['street1'] ?: null),
+                'street2'      => ($data['street2'] ?: null),
+                'city'         => ($data['city'] ?: null),
+                'state'        => ($data['state'] ?: null),
+                'zip'          => ($data['zip'] ?: null),
+                'neighborhood' => null,
+                'county'       => null,
+                'country'      => ($data['country'] ?: null),
+                'countryCode'  => null,
+                'placeId'      => null,
+                'lat'          => ($data['lat'] ?: null),
+                'lng'          => ($data['lng'] ?: null),
+                'zoom'         => 11,
+                'dateCreated'  => ($data['dateCreated'] ?: null),
+                'dateUpdated'  => ($data['dateUpdated'] ?: null),
+                'uid'          => ($data['uid'] ?: null),
             ]);
 
             // Save record
@@ -305,6 +307,14 @@ class FromSmartMap
                     'required'     => false
                 ],
                 [
+                    'handle'       => 'neighborhood',
+                    'label'        => 'Neighborhood',
+                    'width'        => 100,
+                    'enabled'      => false,
+                    'autocomplete' => false,
+                    'required'     => false
+                ],
+                [
                     'handle'       => 'county',
                     'label'        => 'County or District',
                     'width'        => 100,
@@ -317,6 +327,14 @@ class FromSmartMap
                     'label'        => 'Country',
                     'width'        => (int) ($old['layout']['country']['width'] ?? 100),
                     'enabled'      => (bool) ($old['layout']['country']['enable'] ?? true),
+                    'autocomplete' => false,
+                    'required'     => false
+                ],
+                [
+                    'handle'       => 'countryCode',
+                    'label'        => 'Country Code',
+                    'width'        => 100,
+                    'enabled'      => false,
                     'autocomplete' => false,
                     'required'     => false
                 ],

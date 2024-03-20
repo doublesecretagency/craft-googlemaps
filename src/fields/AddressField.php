@@ -161,20 +161,22 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Set record attributes
         $record->setAttributes([
-            'formatted' => ($data['formatted'] ?: null),
-            'raw'       => ($data['raw'] ?: null),
-            'name'      => ($data['name'] ?: null),
-            'street1'   => ($data['street1'] ?: null),
-            'street2'   => ($data['street2'] ?: null),
-            'city'      => ($data['city'] ?: null),
-            'state'     => ($data['state'] ?: null),
-            'zip'       => ($data['zip'] ?: null),
-            'county'    => ($data['county'] ?: null),
-            'country'   => ($data['country'] ?: null),
-            'placeId'   => ($data['placeId'] ?: null),
-            'lat'       => ($data['lat'] ?: null),
-            'lng'       => ($data['lng'] ?: null),
-            'zoom'      => ($data['zoom'] ?: null),
+            'formatted'    => ($data['formatted']    ?: null),
+            'raw'          => ($data['raw']          ?: null),
+            'name'         => ($data['name']         ?: null),
+            'street1'      => ($data['street1']      ?: null),
+            'street2'      => ($data['street2']      ?: null),
+            'city'         => ($data['city']         ?: null),
+            'state'        => ($data['state']        ?: null),
+            'zip'          => ($data['zip']          ?: null),
+            'neighborhood' => ($data['neighborhood'] ?: null),
+            'county'       => ($data['county']       ?: null),
+            'country'      => ($data['country']      ?: null),
+            'countryCode'  => ($data['countryCode']  ?: null),
+            'placeId'      => ($data['placeId']      ?: null),
+            'lat'          => ($data['lat']          ?: null),
+            'lng'          => ($data['lng']          ?: null),
+            'zoom'         => ($data['zoom']         ?: null),
         ], false);
 
         // Save record
@@ -203,22 +205,24 @@ class AddressField extends Field implements PreviewableFieldInterface
             $zoom = ($value['zoom'] ?? null);
             // Return Address model
             return new AddressModel([
-                'elementId' => (int) ($element->id ?? null),
-                'fieldId'   => (int) ($this->id ?? null),
-                'formatted' => (($value['formatted'] ?? null) ?: null),
-                'raw'       => (($value['raw'] ?? null) ?: null),
-                'name'      => ($value['name'] ?? null),
-                'street1'   => ($value['street1'] ?? null),
-                'street2'   => ($value['street2'] ?? null),
-                'city'      => ($value['city'] ?? null),
-                'state'     => ($value['state'] ?? null),
-                'zip'       => ($value['zip'] ?? null),
-                'county'    => ($value['county'] ?? null),
-                'country'   => ($value['country'] ?? null),
-                'placeId'   => ($value['placeId'] ?? null),
-                'lat'       => (is_numeric($lat) ? (float) $lat : null),
-                'lng'       => (is_numeric($lng) ? (float) $lng : null),
-                'zoom'      => (is_numeric($zoom) ? (int) $zoom : null),
+                'elementId'    => (int) ($element->id ?? null),
+                'fieldId'      => (int) ($this->id    ?? null),
+                'formatted'    => ($value['formatted']    ?? null),
+                'raw'          => ($value['raw']          ?? null),
+                'name'         => ($value['name']         ?? null),
+                'street1'      => ($value['street1']      ?? null),
+                'street2'      => ($value['street2']      ?? null),
+                'city'         => ($value['city']         ?? null),
+                'state'        => ($value['state']        ?? null),
+                'zip'          => ($value['zip']          ?? null),
+                'neighborhood' => ($value['neighborhood'] ?? null),
+                'county'       => ($value['county']       ?? null),
+                'country'      => ($value['country']      ?? null),
+                'countryCode'  => ($value['countryCode']  ?? null),
+                'placeId'      => ($value['placeId']      ?? null),
+                'lat'          => (is_numeric($lat) ? (float) $lat : null),
+                'lng'          => (is_numeric($lng) ? (float) $lng : null),
+                'zoom'         => (is_numeric($zoom) ? (int) $zoom : null),
             ]);
         }
 
@@ -363,14 +367,14 @@ class AddressField extends Field implements PreviewableFieldInterface
     public static function typecastSubfieldConfig(&$subfieldConfig): void
     {
         // Strictly typecast each subfield setting
-        array_walk($subfieldConfig, function (&$value) {
+        array_walk($subfieldConfig, static function (&$value) {
             $value = [
-                'handle'       => (string) ($value['handle'] ?? ''),
-                'label'        => (string) ($value['label'] ?? ''),
-                'width'        => (int) ($value['width'] ?? 100),
-                'enabled'      => (bool) ($value['enabled'] ?? false),
-                'autocomplete' => (bool) ($value['autocomplete'] ?? false),
-                'required'     => (bool) ($value['required'] ?? false),
+                'handle'       => (string) ($value['handle']       ?? ''),
+                'label'        => (string) ($value['label']        ?? ''),
+                'width'        => (int)    ($value['width']        ?? 100),
+                'enabled'      => (bool)   ($value['enabled']      ?? false),
+                'autocomplete' => (bool)   ($value['autocomplete'] ?? false),
+                'required'     => (bool)   ($value['required']     ?? false),
             ];
         });
     }
@@ -390,6 +394,19 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // If it's a sequential array
         if ($isSequential) {
+            // Get existing subfield handles
+            $handles = [];
+            foreach ($subfieldConfig as $subfield) {
+                $handles[] = $subfield['handle'];
+            }
+            // Loop through default subfields
+            foreach (Defaults::SUBFIELDCONFIG as $subfield) {
+                // If subfield doesn't already exist
+                if (!in_array($subfield['handle'], $handles, true)) {
+                    // Append to subfield config
+                    $subfieldConfig[] = $subfield;
+                }
+            }
             // Strictly typecast all subfield settings
             static::typecastSubfieldConfig($subfieldConfig);
             // Return the existing subfield config
@@ -414,11 +431,11 @@ class AddressField extends Field implements PreviewableFieldInterface
             // Append new config for each subfield
             $newConfig[] = [
                 'handle'       => $defaultConfig['handle'],
-                'label'        => (string) ($oldConfig['label'] ?? $defaultConfig['label']),
-                'width'        => (int) ($oldConfig['width'] ?? $defaultConfig['width']),
-                'enabled'      => (bool) ($oldConfig['enabled'] ?? false),
-                'autocomplete' => (bool) ($oldConfig['autocomplete'] ?? false),
-                'required'     => (bool) ($oldConfig['required'] ?? false),
+                'label'        => (string) ($oldConfig['label']        ?? $defaultConfig['label']),
+                'width'        => (int)    ($oldConfig['width']        ?? $defaultConfig['width']),
+                'enabled'      => (bool)   ($oldConfig['enabled']      ?? false),
+                'autocomplete' => (bool)   ($oldConfig['autocomplete'] ?? false),
+                'required'     => (bool)   ($oldConfig['required']     ?? false),
             ];
         }
 
@@ -475,17 +492,19 @@ class AddressField extends Field implements PreviewableFieldInterface
     {
         return [
             'address'=> [
-                'formatted' => ($address->formatted ?? null),
-                'raw'       => ($address->raw ?? null),
-                'name'      => ($address->name ?? null),
-                'street1'   => ($address->street1 ?? null),
-                'street2'   => ($address->street2 ?? null),
-                'city'      => ($address->city ?? null),
-                'state'     => ($address->state ?? null),
-                'zip'       => ($address->zip ?? null),
-                'county'    => ($address->county ?? null),
-                'country'   => ($address->country ?? null),
-                'placeId'   => ($address->placeId ?? null),
+                'formatted'    => ($address->formatted    ?? null),
+                'raw'          => ($address->raw          ?? null),
+                'name'         => ($address->name         ?? null),
+                'street1'      => ($address->street1      ?? null),
+                'street2'      => ($address->street2      ?? null),
+                'city'         => ($address->city         ?? null),
+                'state'        => ($address->state        ?? null),
+                'zip'          => ($address->zip          ?? null),
+                'neighborhood' => ($address->neighborhood ?? null),
+                'county'       => ($address->county       ?? null),
+                'country'      => ($address->country      ?? null),
+                'countryCode'  => ($address->countryCode  ?? null),
+                'placeId'      => ($address->placeId      ?? null),
             ],
             'coords'=> [
                 'lat'  => ($address->lat ?? null),
@@ -550,8 +569,10 @@ class AddressField extends Field implements PreviewableFieldInterface
             $value->city,
             $value->state,
             $value->zip,
+            $value->neighborhood,
             $value->county,
             $value->country,
+            $value->countryCode,
         ]);
     }
 

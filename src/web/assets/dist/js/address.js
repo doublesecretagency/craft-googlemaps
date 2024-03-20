@@ -18914,8 +18914,12 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
       // Set value from component
       switch (type) {
         case 'locality':
+        case 'neighborhood':
+          apiData[type] = c['long_name'];
+          break;
         case 'country':
           apiData[type] = c['long_name'];
+          apiData['countryCode'] = c['short_name'];
           break;
         default:
           apiData[type] = c['short_name'];
@@ -18932,8 +18936,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     address.city = apiData['locality'];
     address.state = apiData['administrative_area_level_1'];
     address.zip = apiData['postal_code'];
+    address.neighborhood = apiData['neighborhood'];
     address.county = apiData['administrative_area_level_2'];
     address.country = apiData['country'];
+    address.countryCode = apiData['countryCode'];
 
     // Country-specific adjustments
     switch (apiData['country']) {

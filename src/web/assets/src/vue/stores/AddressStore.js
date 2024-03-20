@@ -213,8 +213,12 @@ export const useAddressStore = defineStore('address', () => {
             // Set value from component
             switch (type) {
                 case 'locality':
+                case 'neighborhood':
+                    apiData[type] = c['long_name'];
+                    break;
                 case 'country':
                     apiData[type] = c['long_name'];
+                    apiData['countryCode'] = c['short_name'];
                     break;
                 default:
                     apiData[type] = c['short_name'];
@@ -226,13 +230,15 @@ export const useAddressStore = defineStore('address', () => {
         const address = data.value.address;
 
         // Set address data to Vue
-        address.street1 = _formatStreet(apiData);
-        address.street2 = null;
-        address.city    = apiData['locality'];
-        address.state   = apiData['administrative_area_level_1'];
-        address.zip     = apiData['postal_code'];
-        address.county  = apiData['administrative_area_level_2'];
-        address.country = apiData['country'];
+        address.street1      = _formatStreet(apiData);
+        address.street2      = null;
+        address.city         = apiData['locality'];
+        address.state        = apiData['administrative_area_level_1'];
+        address.zip          = apiData['postal_code'];
+        address.neighborhood = apiData['neighborhood'];
+        address.county       = apiData['administrative_area_level_2'];
+        address.country      = apiData['country'];
+        address.countryCode  = apiData['countryCode'];
 
         // Country-specific adjustments
         switch (apiData['country']) {

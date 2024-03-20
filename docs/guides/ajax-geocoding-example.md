@@ -106,7 +106,10 @@ function performLookup() {
         // $('#city').val(address.city);
         // $('#state').val(address.state);
         // $('#zip').val(address.zip);
+        // $('#neighborhood').val(address.neighborhood);
+        // $('#county').val(address.county);
         // $('#country').val(address.country);
+        // $('#countryCode').val(address.countryCode);
 
     });
 

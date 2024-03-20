@@ -80,6 +80,14 @@ abstract class Defaults
             'required'     => false
         ],
         [
+            'handle'       => 'neighborhood',
+            'label'        => 'Neighborhood',
+            'width'        => 100,
+            'enabled'      => false,
+            'autocomplete' => false,
+            'required'     => false
+        ],
+        [
             'handle'       => 'county',
             'label'        => 'County or District',
             'width'        => 100,
@@ -92,6 +100,14 @@ abstract class Defaults
             'label'        => 'Country',
             'width'        => 100,
             'enabled'      => true,
+            'autocomplete' => false,
+            'required'     => false
+        ],
+        [
+            'handle'       => 'countryCode',
+            'label'        => 'Country Code',
+            'width'        => 100,
+            'enabled'      => false,
             'autocomplete' => false,
             'required'     => false
         ],

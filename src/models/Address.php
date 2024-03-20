@@ -80,6 +80,11 @@ class Address extends Location
     public ?string $zip = null;
 
     /**
+     * @var string|null Neighborhood.
+     */
+    public ?string $neighborhood = null;
+
+    /**
      * @var string|null County or district (political or administrative).
      */
     public ?string $county = null;
@@ -88,6 +93,11 @@ class Address extends Location
      * @var string|null Country.
      */
     public ?string $country = null;
+
+    /**
+     * @var string|null Country code.
+     */
+    public ?string $countryCode = null;
 
     /**
      * @var string|null Place ID as assigned by the Google API.

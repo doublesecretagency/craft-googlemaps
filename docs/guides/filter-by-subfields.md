@@ -72,8 +72,10 @@ You can filter by any of the following [Address Model](/models/address-model/) s
 - `city`
 - `state`
 - `zip`
+- `neighborhood`
 - `county`
 - `country`
+- `countryCode`
 - `placeId`
 - `lat`
 - `lng`

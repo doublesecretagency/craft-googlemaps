@@ -62,8 +62,11 @@ class GeocodingHelper
         // Initialize formatted address data
         $formatted = [];
 
+        // Get address components
+        $components = ($unformatted['address_components'] ?? []);
+
         // Loop through address components
-        foreach ($unformatted['address_components'] as $component) {
+        foreach ($components as $component) {
             // If types aren't specified, skip
             if (!isset($component['types']) || !$component['types']) {
                 continue;
@@ -72,8 +75,12 @@ class GeocodingHelper
             $c = $component['types'][0];
             switch ($c) {
                 case 'locality':
+                case 'neighborhood':
+                    $formatted[$c] = $component['long_name'];
+                    break;
                 case 'country':
                     $formatted[$c] = $component['long_name'];
+                    $formatted['countryCode'] = $component['short_name'];
                     break;
                 default:
                     $formatted[$c] = $component['short_name'];
@@ -82,13 +89,15 @@ class GeocodingHelper
         }
 
         // Get components
-        $streetNumber = ($formatted['street_number'] ?? null);
-        $streetName   = ($formatted['route'] ?? null);
-        $city         = ($formatted['locality'] ?? null);
+        $streetNumber = ($formatted['street_number']               ?? null);
+        $streetName   = ($formatted['route']                       ?? null);
+        $city         = ($formatted['locality']                    ?? null);
         $state        = ($formatted['administrative_area_level_1'] ?? null);
-        $zip          = ($formatted['postal_code'] ?? null);
+        $zip          = ($formatted['postal_code']                 ?? null);
+        $neighborhood = ($formatted['neighborhood']                ?? null);
         $county       = ($formatted['administrative_area_level_2'] ?? null);
-        $country      = ($formatted['country'] ?? null);
+        $country      = ($formatted['country']                     ?? null);
+        $countryCode  = ($formatted['countryCode']                 ?? null);
 
         // Country-specific adjustments
         switch ($country) {
@@ -117,18 +126,20 @@ class GeocodingHelper
 
         // Return formatted address data
         return [
-            'name'    => ($unformatted['name'] ?? null),
-            'street1' => $street1,
-            'street2' => null,
-            'city'    => $city,
-            'state'   => $state,
-            'zip'     => $zip,
-            'county'  => $county,
-            'country' => $country,
-            'placeId' => ($unformatted['place_id'] ?? null),
-            'lat'     => $lat,
-            'lng'     => $lng,
-            'raw'     => $unformatted,
+            'name'         => ($unformatted['name'] ?? null),
+            'street1'      => $street1,
+            'street2'      => null,
+            'city'         => $city,
+            'state'        => $state,
+            'zip'          => $zip,
+            'neighborhood' => $neighborhood,
+            'county'       => $county,
+            'country'      => $country,
+            'countryCode'  => $countryCode,
+            'placeId'      => ($unformatted['place_id'] ?? null),
+            'lat'          => $lat,
+            'lng'          => $lng,
+            'raw'          => $unformatted,
         ];
     }
 

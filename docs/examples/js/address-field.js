@@ -80,19 +80,21 @@ window.addressField = window.addressField || {
             let address = this._addressComponents(components);
 
             // Set all input values
-            document.getElementById('address-name').value      = place.name      || null;
-            document.getElementById('address-street1').value   = address.street1 || null;
-            document.getElementById('address-street2').value   = address.street2 || null;
-            document.getElementById('address-city').value      = address.city    || null;
-            document.getElementById('address-state').value     = address.state   || null;
-            document.getElementById('address-zip').value       = address.zip     || null;
-            document.getElementById('address-county').value    = address.county  || null;
-            document.getElementById('address-country').value   = address.country || null;
-            document.getElementById('address-placeId').value   = place.placeId   || null;
-            document.getElementById('address-lat').value       = parseFloat(coords.lat().toFixed(7)) || null;
-            document.getElementById('address-lng').value       = parseFloat(coords.lng().toFixed(7)) || null;
-            document.getElementById('address-formatted').value = place.formatted_address || null;
-            document.getElementById('address-raw').value       = JSON.stringify(place) || null;
+            document.getElementById('address-name').value         = place.name           || null;
+            document.getElementById('address-street1').value      = address.street1      || null;
+            document.getElementById('address-street2').value      = address.street2      || null;
+            document.getElementById('address-city').value         = address.city         || null;
+            document.getElementById('address-state').value        = address.state        || null;
+            document.getElementById('address-zip').value          = address.zip          || null;
+            document.getElementById('address-neighborhood').value = address.neighborhood || null;
+            document.getElementById('address-county').value       = address.county       || null;
+            document.getElementById('address-country').value      = address.country      || null;
+            document.getElementById('address-countryCode').value  = address.countryCode  || null;
+            document.getElementById('address-placeId').value      = place.placeId        || null;
+            document.getElementById('address-lat').value          = parseFloat(coords.lat().toFixed(7)) || null;
+            document.getElementById('address-lng').value          = parseFloat(coords.lng().toFixed(7)) || null;
+            document.getElementById('address-formatted').value    = place.formatted_address || null;
+            document.getElementById('address-raw').value          = JSON.stringify(place) || null;
         });
 
         // Prevent address selection from attempting to submit the form
@@ -146,8 +148,12 @@ window.addressField = window.addressField || {
             // Format component
             switch (type) {
                 case 'locality':
+                case 'neighborhood':
+                    formatted[type] = c['long_name'];
+                    break;
                 case 'country':
                     formatted[type] = c['long_name'];
+                    formatted['countryCode'] = c['short_name'];
                     break;
                 default:
                     formatted[type] = c['short_name'];
@@ -157,13 +163,15 @@ window.addressField = window.addressField || {
         });
 
         // Set address data to Vue
-        data.street1 = this._formatStreetAddress(formatted);
-        data.street2 = null;
-        data.city    = formatted['locality'];
-        data.state   = formatted['administrative_area_level_1'];
-        data.zip     = formatted['postal_code'];
-        data.county  = formatted['county'];
-        data.country = formatted['country'];
+        data.street1      = this._formatStreetAddress(formatted);
+        data.street2      = null;
+        data.city         = formatted['locality'];
+        data.state        = formatted['administrative_area_level_1'];
+        data.zip          = formatted['postal_code'];
+        data.neighborhood = formatted['neighborhood'];
+        data.county       = formatted['county'];
+        data.country      = formatted['country'];
+        data.countryCode  = formatted['countryCode'];
 
         // Country-specific adjustments
         switch (formatted['country']) {

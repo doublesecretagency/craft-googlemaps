@@ -70,6 +70,10 @@ _string_ - The state. (aka: province)
 
 _string_ - The zip code. (aka: postal code)
 
+### `neighborhood`
+
+_string_ - The neighborhood.
+
 ### `county`
 
 _string_ - The local county. (aka: district)
@@ -81,6 +85,10 @@ _string_ - The country. (aka: nation)
 :::warning Similar sounding, but very different
 We recognize that `county` and `country` are extremely similar words, and apologize on behalf of the English language.
 :::
+
+### `countryCode`
+
+_string_ - The country code.
 
 ### `placeId`
 
@@ -144,7 +152,7 @@ Identical to [parent method](/models/location-model/#linktodirections-parameters
 
 ### `isEmpty()`
 
-_bool_ - Returns whether _all_ of the non-coordinate address fields are empty, or whether they contain any data at all. Specifically looks to see if data exists in any of the following subfields:
+_bool_ - Returns whether _all_ the non-coordinate address fields are empty, or whether they contain any data at all. Specifically looks to see if data exists in any of the following subfields:
 
  - `street1`
  - `street2`

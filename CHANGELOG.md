@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Addresses now include an optional [`neighborhood`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#neighborhood) subfield.
+- Addresses now include an optional [`countryCode`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#countrycode) subfield.
+
 ## 4.4.0 - 2024-02-24
 
 ### Changed

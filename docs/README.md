@@ -42,24 +42,24 @@ features:
   details: Find out where your visitors are coming from based on their IP address.
 ---
 
+<div align="center" style="margin-bottom:60px">
+    <a href="/google-maps/dynamic-maps/info-windows">
+        <h3 style="text-align:center">Info Windows</h3>
+        <img class="dropshadow" :src="$withBase('/images/maps/info-window.png')" alt="Example of an info window on a generated map" width="850"/>
+    </a>
+</div>
+
 <div align="center" style="margin-bottom:30px">
     <a href="/google-maps/dynamic-maps/clustering-markers">
-        <h3 style="text-align:center">Example of Marker Clusters:</h3>
+        <h3 style="text-align:center">Marker Clusters</h3>
         <img class="dropshadow" :src="$withBase('/images/maps/clustering-markers.png')" alt="Example of a generated map featuring several marker clusters" width="850"/>
     </a>
 </div>
 
 <div align="center" style="margin-bottom:30px">
     <a href="/google-maps/proximity-search">
-        <h3 style="text-align:center">Example of Proximity Searching:</h3>
+        <h3 style="text-align:center">Proximity Searching</h3>
         <img class="dropshadow" :src="$withBase('/images/guides/sprig.png')" alt="Example of a proximity search using Sprig" width="850"/>
-    </a>
-</div>
-
-<div align="center" style="margin-bottom:60px">
-    <a href="/google-maps/dynamic-maps/info-windows">
-        <h3 style="text-align:center">Example of Info Windows:</h3>
-        <img class="dropshadow" :src="$withBase('/images/maps/info-window.png')" alt="Example of an info window on a generated map" width="850"/>
     </a>
 </div>
 

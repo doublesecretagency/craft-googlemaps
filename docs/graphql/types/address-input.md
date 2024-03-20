@@ -17,8 +17,10 @@ input GoogleMaps_AddressInput {
   city: String
   state: String
   zip: String
+  neighborhood: String
   county: String
   country: String
+  countryCode: String
   placeId: String
   distance: Float
   zoom: Int
