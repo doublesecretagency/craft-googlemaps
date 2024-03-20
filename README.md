@@ -1,4 +1,4 @@
-<img align="left" src="https://plugins.doublesecretagency.com/google-maps/images/icon.svg" alt="Plugin icon">
+<img width="66" align="left" src="https://plugins.doublesecretagency.com/google-maps/images/icon.svg" alt="Plugin icon">
 
 # Google Maps plugin for Craft CMS
 
