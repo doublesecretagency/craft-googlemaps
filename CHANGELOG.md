@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.5.0 - 2024-03-21
 
 ### Added
 - Addresses now include an optional [`neighborhood`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#neighborhood) subfield. ([#44](https://github.com/doublesecretagency/craft-googlemaps/issues/44))

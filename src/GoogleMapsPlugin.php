@@ -63,7 +63,7 @@ class GoogleMapsPlugin extends Plugin
     /**
      * @var string Current schema version of the plugin.
      */
-    public string $schemaVersion = '4.3.0';
+    public string $schemaVersion = '4.5.0';
 
     /**
      * @var GoogleMapsPlugin Self-referential plugin property.
