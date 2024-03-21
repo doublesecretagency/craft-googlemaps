@@ -114,6 +114,11 @@ class Address extends Location
      */
     public ?int $zoom = null;
 
+    /**
+     * @var array|null Handles of visible subfields.
+     */
+    public ?array $enabledSubfields = null;
+
     // ========================================================================= //
 
     /**
@@ -186,14 +191,24 @@ class Address extends Location
      */
     public function isEmpty(): bool
     {
-        return (
-            empty($this->street1) &&
-            empty($this->street2) &&
-            empty($this->city) &&
-            empty($this->state) &&
-            empty($this->zip) &&
-            empty($this->country)
-        );
+        // Assumed empty by default
+        $isEmpty = true;
+
+        // Loop through enabled subfields
+        foreach ($this->enabledSubfields as $subfield) {
+
+            // If subfield is not empty
+            if (!empty($this->{$subfield})) {
+                // Mark address as not empty
+                $isEmpty = false;
+                // Break the loop
+                break;
+            }
+
+        }
+
+        // Return whether address is empty
+        return $isEmpty;
     }
 
     /**
@@ -204,28 +219,39 @@ class Address extends Location
      */
     public function multiline(int $maxLines = 3): Markup
     {
+        // Get enabled subfields
+        $enabled = $this->enabledSubfields;
+
+        // Only show enabled subfields
+        $street1 = (in_array('street1', $enabled, true) ? $this->street1 : '');
+        $street2 = (in_array('street2', $enabled, true) ? $this->street2 : '');
+        $city    = (in_array('city',    $enabled, true) ? $this->city    : '');
+        $state   = (in_array('state',   $enabled, true) ? $this->state   : '');
+        $zip     = (in_array('zip',     $enabled, true) ? $this->zip     : '');
+        $country = (in_array('country', $enabled, true) ? $this->country : '');
+
         // Determine glue for each part
         $cityGlue = (2 <= $maxLines ? '<br />' : ', ');
         $unitGlue = (3 <= $maxLines ? '<br />' : ', ');
 
         // Whether the address has street info and city/state info
-        $hasStreet = ($this->street1 || $this->street2);
-        $hasCityState = ($this->city || $this->state || $this->zip);
+        $hasStreet = ($street1 || $street2);
+        $hasCityState = ($city || $state || $zip);
 
         // Manually format multi-line address
         $formatted  = '';
-        $formatted .= ($this->street1 ?: '');
-        $formatted .= ($this->street1 && $this->street2 ? $unitGlue : '');
-        $formatted .= ($this->street2 ?: '');
+        $formatted .= $street1;
+        $formatted .= ($street1 && $street2 ? $unitGlue : '');
+        $formatted .= $street2;
         $formatted .= ($hasStreet && $hasCityState ? $cityGlue : '');
-        $formatted .= ($this->city ?: '');
-        $formatted .= (($this->city && $this->state) ? ', ' : '');
-        $formatted .= ($this->state ?: '').' ';
-        $formatted .= ($this->zip ?: '');
+        $formatted .= $city;
+        $formatted .= ($city && $state ? ', ' : '');
+        $formatted .= $state.' ';
+        $formatted .= $zip;
 
         // Optionally append country
         if (4 <= $maxLines) {
-            $formatted .= ($this->country ? "<br />{$this->country}" : '');
+            $formatted .= ($country ? "<br />{$country}" : '');
         }
 
         // Merge repeated commas

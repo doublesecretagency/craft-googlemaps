@@ -3,8 +3,11 @@
 ## Unreleased
 
 ### Added
-- Addresses now include an optional [`neighborhood`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#neighborhood) subfield.
-- Addresses now include an optional [`countryCode`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#countrycode) subfield.
+- Addresses now include an optional [`neighborhood`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#neighborhood) subfield. ([#44](https://github.com/doublesecretagency/craft-googlemaps/issues/44))
+- Addresses now include an optional [`countryCode`](https://plugins.doublesecretagency.com/google-maps/models/address-model/#countrycode) subfield. ([#104](https://github.com/doublesecretagency/craft-googlemaps/issues/104))
+
+### Changed
+- `isEmpty` and `multiline` methods now respect whether a subfield is visible. ([#82](https://github.com/doublesecretagency/craft-googlemaps/issues/82))
 
 ## 4.4.0 - 2024-02-24
 

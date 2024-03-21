@@ -102,6 +102,10 @@ _float_ - Alias for `getDistance()`.
 
 _int_ - Zoom level of the map as shown in the control panel.
 
+### `enabledSubfields`
+
+_array_ - Handles of visible subfields.
+
 ---
 ---
 

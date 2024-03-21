@@ -223,6 +223,7 @@ class AddressField extends Field implements PreviewableFieldInterface
                 'lat'          => (is_numeric($lat) ? (float) $lat : null),
                 'lng'          => (is_numeric($lng) ? (float) $lng : null),
                 'zoom'         => (is_numeric($zoom) ? (int) $zoom : null),
+                'enabledSubfields' => $this->_getEnabledSubfields(),
             ]);
         }
 
@@ -256,6 +257,9 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Convert raw data to an array
         $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
+
+        // Get handles of visible subfields
+        $attr['enabledSubfields'] = $this->_getEnabledSubfields();
 
         // If part of a proximity search, get the distance
         if ($value && is_numeric($value)) {
@@ -384,9 +388,10 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * Normalize the subfield configuration.
      *
+     * @param array $subfieldConfig
      * @return array
      */
-    private function _normalizeSubfieldConfig($subfieldConfig): array
+    private function _normalizeSubfieldConfig(array $subfieldConfig): array
     {
         // What kind of array is the subfield configuration?
         $isSequential  = (array_key_exists(0, $subfieldConfig));         // (NEW STYLE)
@@ -535,6 +540,34 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Return published images
         return $images;
+    }
+
+    // ========================================================================= //
+
+    /**
+     * Get handles of enabled subfields.
+     *
+     * @return array
+     */
+    private function _getEnabledSubfields(): array
+    {
+        // Get the subfield configuration
+        $subfieldConfig = ($this->subfieldConfig ?? Defaults::SUBFIELDCONFIG);
+
+        // Initialize array of handles
+        $handles = [];
+
+        // Loop through subfield configuration
+        foreach ($subfieldConfig as $subfield) {
+            // If the subfield is enabled
+            if ($subfield['enabled'] ?? false) {
+                // Append to array of handles
+                $handles[] = $subfield['handle'];
+            }
+        }
+
+        // Return handles
+        return $handles;
     }
 
     // ========================================================================= //
