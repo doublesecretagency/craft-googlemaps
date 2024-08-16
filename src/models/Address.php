@@ -15,6 +15,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\base\FieldInterface;
 use craft\helpers\Template;
+use doublesecretagency\googlemaps\enums\Defaults;
 use Twig\Markup;
 
 /**
@@ -120,9 +121,9 @@ class Address extends Location
     public ?int $zoom = null;
 
     /**
-     * @var array|null Handles of visible subfields.
+     * @var array Handles of visible subfields.
      */
-    public ?array $enabledSubfields = null;
+    public array $enabledSubfields = [];
 
     // ========================================================================= //
 
@@ -226,6 +227,12 @@ class Address extends Location
     {
         // Get enabled subfields
         $enabled = $this->enabledSubfields;
+
+        // If no subfields are enabled
+        if (!$enabled) {
+            // Use the default subfield handles
+            $enabled = array_column(Defaults::SUBFIELDCONFIG, 'handle');
+        }
 
         // Only show enabled subfields
         $street1 = (in_array('street1', $enabled, true) ? $this->street1 : '');

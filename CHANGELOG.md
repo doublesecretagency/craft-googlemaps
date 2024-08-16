@@ -8,6 +8,9 @@
 ### Added
 - [Multisite support](https://plugins.doublesecretagency.com/google-maps/address-field/multisite-support/). ([#11](https://github.com/doublesecretagency/craft-googlemaps/issues/11))
 
+### Fixed
+- Fixed bug in “Test Address Lookup” utility.
+
 ## 4.5.2 - 2024-04-12
 
 ### Fixed
