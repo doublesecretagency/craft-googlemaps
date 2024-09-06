@@ -145,6 +145,44 @@ If the marker was based on a [geolocated visitor](/geolocation/), there will be 
 |:-----------|:------------
 | `visitor`  | A [Visitor Model](/models/visitor-model/) derived from a [Visitor Geolocation](/geolocation/) process.
 
+## Additional Variables via `infoWindowData`
+
+In addition to the dynamic variables listed above, you can provide **custom data** to an info window using the [`infoWindowData` option](/dynamic-maps/basic-map-management/#dynamic-map-options).
+
+This data will be passed along to the info window template.
+
+```twig
+{% do map.markers(entry, {
+    'infoWindowTemplate': 'example/my-info-window',
+    'infoWindowData': {
+        'twigVariableOne': firstValue,
+        'twigVariableTwo': secondValue
+    }
+}) %}
+```
+
+### Separate `markers` for unique info window data
+
+Typically, you can generate a batch of `markers` which all share the same `infoWindowTemplate`. Despite sharing the same template, the automatic variables will be unique for each marker.
+
+However, if you're using `infoWindowData`, you may find it more convenient to create each marker individually (with `markers`), so that you may pass unique `infoWindowData` for each marker.
+
+```twig
+{# Create each marker (and info window) individually #}
+{% for entry in entries %}
+
+    {# Add marker with unique info window data #}
+    {% do map.markers(entry, {
+        'infoWindowTemplate': 'example/my-info-window',
+        'infoWindowData': {
+            'twigVariableOne': firstValue,
+            'twigVariableTwo': secondValue
+        }
+    }) %}
+
+{% endfor %}
+```
+
 ## Info Window Template Errors
 
 In the event of an error in your Twig code, an error message will be thrown. The message will be contained within the info window itself, in order to streamline debugging.

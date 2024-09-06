@@ -55,6 +55,7 @@ Once you have the map object in hand, you can then chain other methods to furthe
 | `markerOptions`      | _object_          | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
 | `infoWindowOptions`  | _object_          | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | _string_          | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
+| `infoWindowData`     | _array_           | _null_  | Additional data for passing into an [info window](/dynamic-maps/info-windows/).
 | `markerLink`         | _string_          | _null_  | URL to go to when each marker is clicked.
 | `markerClick`        | _string_          | _null_  | JS callback function triggered when each marker is clicked.
 | `field`              | _string_\|_array_ | _null_  | Address field(s) to be included on the map. (includes all by default)
@@ -86,6 +87,7 @@ Append markers to an existing map object.
 | `markerOptions`      | _object_           | _null_  | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
 | `infoWindowOptions`  | _object_           | _null_  | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | _string_           | _null_  | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
+| `infoWindowData`     | _array_            | _null_  | Additional data for passing into an [info window](/dynamic-maps/info-windows/).
 | `markerLink`         | _string_           | _null_  | URL to go to when each marker is clicked.
 | `markerClick`        | _string_           | _null_  | JS callback function triggered when each marker is clicked.
 | `field`              | _string_\|_array_  | _null_  | Address field(s) to be included on the map. (includes all by default)

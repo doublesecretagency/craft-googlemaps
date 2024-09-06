@@ -907,6 +907,12 @@ class DynamicMap extends Model
         // Attempt to render the Twig template
         try {
 
+            // Get additional info window data
+            $data = ($options['infoWindowData'] ?? []);
+
+            // Merge in specified custom data
+            $infoWindow = array_merge($infoWindow, $data);
+
             // Render specified info window template
             $template = $view->renderTemplate($options['infoWindowTemplate'], $infoWindow);
 

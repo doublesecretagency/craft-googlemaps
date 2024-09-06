@@ -54,6 +54,7 @@ Most (though not all) of these options are available across JavaScript, Twig, an
 | `markerOptions`      | JS/Twig/PHP | Accepts any [`google.maps.MarkerOptions`](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) properties.
 | `infoWindowOptions`  | JS/Twig/PHP | Accepts any [`google.maps.InfoWindowOptions`](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindowOptions) properties.
 | `infoWindowTemplate` | Twig/PHP    | Template path to use for creating [info windows](/dynamic-maps/info-windows/).
+| `infoWindowData`     | Twig/PHP    | Additional data for passing into an [info window](/dynamic-maps/info-windows/).
 | `markerLink`         | JS/Twig/PHP | URL to go to when each marker is clicked.
 | `markerClick`        | JS/Twig/PHP | JS callback function triggered when each marker is clicked.
 | `field`              | Twig/PHP    | Address field(s) to be included on the map. (includes all by default)
