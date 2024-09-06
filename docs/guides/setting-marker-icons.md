@@ -4,48 +4,57 @@ description:
 
 # Setting Marker Icons
 
-**Per the [Google Maps API](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)**:
+To customize a marker icon, you can set either a **string** or an **array of [options](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon)**.
 
-<img class="dropshadow" :src="$withBase('/images/guides/icon-definition.png')" alt="Screenshot of the Google Maps documentation featuring the definition of icon" style="max-width:500px">
-
-In other words, there are **two ways** to configure a marker icon...
-
-1. **String** - You can simply specify the path to your marker icon file.
+1. **As a string** - Specify only the path to your marker icon file.
 
 :::code
 ```js
-var icon = '/path/to/marker.png';
+map.markers(locations, {
+    'icon': '/path/to/marker.png'
+});
 ```
 ```twig
-{% set icon = '/path/to/marker.png' %}
+{% do map.markers(locations, {
+    'icon': '/path/to/marker.png'
+}) %}
 ```
 ```php
-$icon = '/path/to/marker.png';
+$map->markers($locations, [
+    'icon' => '/path/to/marker.png'
+]);
 ```
 :::
 
-2. **Array** - Accepts parameters from Google's native [Icon interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
+2. **As an array of options** - Specify an array of parameters from Google's native [Icon interface](https://developers.google.com/maps/documentation/javascript/reference/marker#Icon).
 
 :::code
 ```js
-var icon = {
-    'url': '/path/to/marker.png'
-};
+map.markers(locations, {
+    'icon': {
+        'url': '/path/to/marker.png'
+    }
+});
 ```
 ```twig
-{% set icon = {
-    'url': '/path/to/marker.png'
-} %}
+{% do map.markers(locations, {
+    'icon': {
+        'url': '/path/to/marker.png'
+    }
+}) %}
 ```
 ```php
-$icon = [
-    'url' => '/path/to/marker.png'
-];
+$map->markers($locations, [
+    'icon' => [
+        'url' => '/path/to/marker.png'
+    ]
+]);
 ```
 :::
 
----
----
+:::warning Google Maps API Documentation
+For more information, see the [Google Maps API docs...](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.icon)
+:::
 
 ## Control the size of a marker icon
 
@@ -54,24 +63,30 @@ Configure the icon as an array, specifying `scaledSize` to control the marker si
 :::code
 ```js
 // Specify the dimensions of a marker icon
-var icon = {
-    'url': '/path/to/marker.png',
-    'scaledSize': {'width': 30, 'height': 40}
-};
+map.markers(locations, {
+    'icon': {
+        'url': '/path/to/marker.png',
+        'scaledSize': {'width': 30, 'height': 40}
+    }
+});
 ```
 ```twig
 {# Specify the dimensions of a marker icon #}
-{% set icon = {
-    'url': '/path/to/marker.png',
-    'scaledSize': {'width': 30, 'height': 40}
-} %}
+{% do map.markers(locations, {
+    'icon': {
+        'url': '/path/to/marker.png',
+        'scaledSize': {'width': 30, 'height': 40}
+    }
+}) %}
 ```
 ```php
 // Specify the dimensions of a marker icon
-$icon = [
-    'url' => '/path/to/marker.png',
-    'scaledSize' => ['width' => 30, 'height' => 40]
-];
+$map->markers($locations, [
+    'icon' => [
+        'url' => '/path/to/marker.png',
+        'scaledSize' => ['width' => 30, 'height' => 40]
+    ]
+]);
 ```
 :::
 

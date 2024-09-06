@@ -7,7 +7,7 @@ description:
 | Option                            |   Type   | Default | Description                                                           |
 |-----------------------------------|:--------:|:-------:|-----------------------------------------------------------------------|
 | [`target`](#target)               | _mixed_  | `null`  | Center point for the proximity search.                                |
-| [`range`](#range)                 |  _int_   |  `500`  | The search radius, measured in `units`.                               |
+| [`range`](#range)                 |  _int_   | `null`  | The search radius, measured in `units`.                               |
 | [`units`](#units)                 | _string_ | `'mi'`  | Unit of measurement, either miles or kilometers.                      |
 | [`subfields`](#subfields)         | _mixed_  | `null`  | Filter by contents of specific subfields.                             |
 | [`requireCoords`](#requirecoords) |  _bool_  | `false` | Whether results should only include Addresses with valid coordinates. |
@@ -45,6 +45,12 @@ $options = [
     'units' => 'kilometers',
 ];
 ```
+:::
+
+:::warning Default range changed in Craft 5
+As of Craft 5, `range` is `null` by default. Prior to Craft 5, the default `range` was `500`.
+
+This change makes it easier to get complete proximity search results, regardless of distance.
 :::
 
 ## `units`
