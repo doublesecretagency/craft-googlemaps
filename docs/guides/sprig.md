@@ -58,11 +58,8 @@ Once you have copied the `proximity-search.twig` file locally, you are free to m
 Now that you have a copy of the `proximity-search` component, here's how to use it in a template...
 
 ```twig
-{# Dynamically inject Sprig component #}
+{# Load the Sprig component #}
 {{ sprig('_components/proximity-search') }}
-
-{# Load required Sprig scripts #}
-{{ sprig.script }}
 ```
 
 ## Additional Information
@@ -79,9 +76,10 @@ It is important that the map ID in the [`googleMaps.init` method](/javascript/go
 
 {# When the map is reloaded by Sprig #}
 {% if sprig.isRequest %}
-    <script>
+    {% set js %}
         googleMaps.init('my-sprig-map');
-    </script>
+    {% endset %}
+    {% do sprig.registerJs(js) %}
 {% endif %}
 ```
 
@@ -93,11 +91,12 @@ The `init` method also allows for an optional [callback method](/javascript/goog
 
 ```twig
 {% if sprig.isRequest %}
-    <script>
+    {% set js %}
         googleMaps.init('my-sprig-map', function () {
             console.log("The map has finished loading!");
         });
-    </script>
+    {% endset %}
+    {% do sprig.registerJs(js) %}
 {% endif %}
 ```
 
