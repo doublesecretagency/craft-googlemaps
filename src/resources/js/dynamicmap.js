@@ -315,9 +315,9 @@ function DynamicMap(locations, options) {
             return this;
         }
 
-        // Ensure coordinates are float values
-        coords.lat = parseFloat(coords.lat);
-        coords.lng = parseFloat(coords.lng);
+        // Ensure coordinates are float values, fallback to zero
+        coords.lat = (coords.lat ? parseFloat(coords.lat) : 0);
+        coords.lng = (coords.lng ? parseFloat(coords.lng) : 0);
 
         // Update default center coordinates
         this._d.center = coords;
@@ -1392,6 +1392,16 @@ function DynamicMap(locations, options) {
 
         // If center was specified
         if (center) {
+
+            // Get coordinates
+            let lat = center.lat();
+            let lng = center.lng();
+
+            // Sanitize center
+            center = {
+                'lat': (isNaN(lat) ? 0 : lat),
+                'lng': (isNaN(lng) ? 0 : lng)
+            }
 
             // Center on specified coordinates
             this.center(center);

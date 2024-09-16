@@ -11,6 +11,7 @@
 
 ### Fixed
 - Fixed bug in “Test Address Lookup” utility.
+- Fixed small centering bugs in dynamic maps.
 
 ## 4.5.2 - 2024-04-12
 
