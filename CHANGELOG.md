@@ -8,6 +8,7 @@
 ### Added
 - Added [multisite support](https://plugins.doublesecretagency.com/google-maps/address-field/multisite-support/). ([#11](https://github.com/doublesecretagency/craft-googlemaps/issues/11))
 - Added [`infoWindowData` option](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/info-windows/#additional-variables-via-infowindowdata).
+- Added ability to convert Address fields from the Ether Maps plugin.
 
 ### Fixed
 - Fixed bug in “Test Address Lookup” utility.

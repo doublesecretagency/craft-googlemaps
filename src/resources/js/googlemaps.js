@@ -60,6 +60,11 @@ window.googleMaps = window.googleMaps || {
         // Get selected map containers
         var containers = this._whichMaps(mapId);
 
+        // If no _gmData object exists, emit warning
+        if (!window._gmData) {
+            console.warn(`[GM] The window._gmData object has not been defined`);
+        }
+
         // Loop through containers
         for (var i in containers) {
 
@@ -108,42 +113,47 @@ window.googleMaps = window.googleMaps || {
             // Get dynamic map
             let dynamicMap = this.getMap(map.id, true);
 
-            // Get data for info windows and marker callbacks
-            var _infoWindows     = window._gmData.infoWindows[map.id]     || [];
-            var _markerCallbacks = window._gmData.markerCallbacks[map.id] || [];
+            // If _gmData object exists
+            if (window._gmData ?? null) {
 
-            // If any info windows were specified
-            if (Object.keys(_infoWindows).length) {
+                // Get data for info windows and marker callbacks
+                const _infoWindows     = window._gmData.infoWindows[map.id]     || [];
+                const _markerCallbacks = window._gmData.markerCallbacks[map.id] || [];
 
-                // Log status
-                if (this.log) {
-                    console.log(`[${map.id}] Activating all info windows`);
+                // If any info windows were specified
+                if (Object.keys(_infoWindows).length) {
+
+                    // Log status
+                    if (this.log) {
+                        console.log(`[${map.id}] Activating all info windows`);
+                    }
+
+                    // Loop through info windows of current map
+                    for (let markerId in _infoWindows) {
+                        // Get info window
+                        let infoWindow = _infoWindows[markerId];
+                        // Activate info window function
+                        dynamicMap._initInfoWindow(markerId, infoWindow);
+                    }
+
                 }
 
-                // Loop through info windows of current map
-                for (let markerId in _infoWindows) {
-                    // Get info window
-                    let infoWindow = _infoWindows[markerId];
-                    // Activate info window function
-                    dynamicMap._initInfoWindow(markerId, infoWindow);
-                }
+                // If any marker callbacks were specified
+                if (Object.keys(_markerCallbacks).length) {
 
-            }
+                    // Log status
+                    if (this.log) {
+                        console.log(`[${map.id}] Activating all marker callbacks`);
+                    }
 
-            // If any marker callbacks were specified
-            if (Object.keys(_markerCallbacks).length) {
+                    // Loop through marker callbacks of current map
+                    for (let markerId in _markerCallbacks) {
+                        // Get marker callback
+                        let callback = _markerCallbacks[markerId];
+                        // Activate marker callback function
+                        dynamicMap._initMarkerClick(markerId, callback);
+                    }
 
-                // Log status
-                if (this.log) {
-                    console.log(`[${map.id}] Activating all marker callbacks`);
-                }
-
-                // Loop through marker callbacks of current map
-                for (let markerId in _markerCallbacks) {
-                    // Get marker callback
-                    let callback = _markerCallbacks[markerId];
-                    // Activate marker callback function
-                    dynamicMap._initMarkerClick(markerId, callback);
                 }
 
             }
