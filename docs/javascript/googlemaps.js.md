@@ -9,7 +9,7 @@ This file contains the `googleMaps` JavaScript object. Additionally, a `googleMa
 **Use this object as a starting point for creating maps.**
 
 ```js
-var map = googleMaps.map(locations);
+const map = googleMaps.map(locations);
 ```
 
 :::warning How it works
@@ -28,21 +28,21 @@ Calling this method will create a new [`DynamicMap` map object](/javascript/dyna
 
 ```js
 // Marker locations
-var locations = [
+const locations = [
     {'lat': 40.730610, 'lng': -73.935242},  // New York
     {'lat': 34.052235, 'lng': -118.243683}, // Los Angeles
     {'lat': 41.881832, 'lng': -87.623177}   // Chicago
 ];
 
 // Map options
-var options = {
+const options = {
     'id': 'us-cities',
     'height': 300,
     'zoom': 5
 };
 
 // Create a new DynamicMap object
-var map = googleMaps.map(locations, options);
+const map = googleMaps.map(locations, options);
 ```
 
 The map object is a starting point which sets the map-building chain in motion. You will be able to build upon the map by adding markers, KML layers, etc.
@@ -85,7 +85,7 @@ If you omit the `locations` parameter, or pass in an empty array, a blank map wi
 ### `getMap(mapId)`
 
 ```js
-var map = googleMaps.getMap('my-map');
+const map = googleMaps.getMap('my-map');
 ```
 
 Retrieve an existing map object.

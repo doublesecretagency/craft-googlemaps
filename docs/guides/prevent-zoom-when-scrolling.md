@@ -10,13 +10,13 @@ It is a common frustration that a map will zoom in or out as you scroll past it.
 
 :::code
 ```js
-var options = {
+const options = {
     'mapOptions': {
         'gestureHandling': 'cooperative'
     }
 };
 
-var map = googleMaps.map(locations, options);
+const map = googleMaps.map(locations, options);
 ```
 ```twig
 {% set options = {

@@ -37,7 +37,7 @@ Pass the name of your new renderer function in as the `renderer` option value.
 :::code
 ```js
 // Set a custom cluster rendering function
-var options = {
+const options = {
     'cluster': {
         'renderer': CustomRenderer
     }

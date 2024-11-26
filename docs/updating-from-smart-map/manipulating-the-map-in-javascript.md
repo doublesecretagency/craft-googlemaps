@@ -10,7 +10,7 @@ In Smart Map, you were relegated to JavaScript in order to accomplish things whi
 
 :::code
 ```js
-var map = googleMaps.getMap(mapId);
+const map = googleMaps.getMap(mapId);
 ```
 ```twig
 {% set map = googleMaps.getMap(mapId) %}
@@ -38,10 +38,10 @@ We've also changed how you access an existing map:
 
 ```js
 // OLD
-var map = smartMap.map['my-map'];
+const map = smartMap.map['my-map'];
 
 // NEW
-var map = googleMaps.getMap('my-map');
+const map = googleMaps.getMap('my-map');
 ```
 
 Overall, the new `map` object is _much_ more powerful and flexible. Once you have a [map object](/javascript/googlemaps.js/#map-locations-options) in hand, it's easy to [chain](/dynamic-maps/chaining/) other configuration commands.
@@ -65,7 +65,7 @@ $map->markers($locations, $options);
 In JavaScript, you can also access the raw [Google Marker](https://developers.google.com/maps/documentation/javascript/reference/marker) object:
 
 ```js
-var marker = map.getMarker(markerId);
+const marker = map.getMarker(markerId);
 ```
 
 ## Info Windows
@@ -75,7 +75,7 @@ You can easily create info windows using [Twig or PHP](/dynamic-maps/info-window
 In JavaScript, you can also access the raw [Google Info Window](https://developers.google.com/maps/documentation/javascript/reference/info-window) object:
 
 ```js
-var infoWindow = map.getInfoWindow(markerId);
+const infoWindow = map.getInfoWindow(markerId);
 ```
 
 For more information, see the guide on [Opening Info Windows...](/guides/opening-info-windows/)

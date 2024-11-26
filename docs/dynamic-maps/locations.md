@@ -18,13 +18,13 @@ The `locations` value can be a set of [coordinates](/models/coordinates/), or an
 :::code
 ```js
 // As a single set of coordinates
-var locations = {
+const locations = {
     'lat':  32.3113966,
     'lng': -64.7527469
 };
 
 // As an array of coordinate sets
-var locations = [
+const locations = [
     {'lat': 37.2430548, 'lng': -115.7930198},
     {'lat': 57.3009274, 'lng':   -4.4496567}
 ];

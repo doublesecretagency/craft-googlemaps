@@ -100,11 +100,11 @@ If you've got multiple groups of markers, you can specify a different icon for e
 :::code
 ```js
 // Get all bars & restaurants
-var bars        = {'lat': 37.2430548, 'lng': -115.7930198}; // Coords only in JS
-var restaurants = {'lat': 57.3009274, 'lng':   -4.4496567}; // Coords only in JS
+const bars        = {'lat': 37.2430548, 'lng': -115.7930198}; // Coords only in JS
+const restaurants = {'lat': 57.3009274, 'lng':   -4.4496567}; // Coords only in JS
 
 // Create a dynamic map (with no markers)
-var map = googleMaps.map();
+const map = googleMaps.map();
 
 // Add all bar markers
 map.markers(bars, {

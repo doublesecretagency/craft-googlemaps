@@ -28,7 +28,7 @@ Practically speaking, your code could look something like this...
 :::code
 ```js
 // Create a plain dynamic map
-var map = googleMaps.map();
+const map = googleMaps.map();
 
 // Add a KML layer to the map
 map.kml(url);
@@ -137,5 +137,5 @@ This method is only available [in JavaScript](/dynamic-maps/javascript-methods/#
 
 ```js
 // Get the raw Google KML layer object
-var kml = map.getKml('my-kml');
+const kml = map.getKml('my-kml');
 ```

@@ -11,7 +11,7 @@ If your users need to perform an address lookup without loading a new page, you 
 Returns `results` as an array of [Address Models](/models/address-model/), or an empty array if nothing is found.
 
 ```js
-var endpoint = '/actions/google-maps/lookup/all';
+const endpoint = '/actions/google-maps/lookup/all';
 ```
 
 [_See full details of `all()`_](/models/lookup-model/#all)
@@ -21,7 +21,7 @@ var endpoint = '/actions/google-maps/lookup/all';
 Returns `results` as a single [Address Model](/models/address-model/), or `null` if nothing is found.
 
 ```js
-var endpoint = '/actions/google-maps/lookup/one';
+const endpoint = '/actions/google-maps/lookup/one';
 ```
 
 [_See full details of `one()`_](/models/lookup-model/#one)
@@ -31,7 +31,7 @@ var endpoint = '/actions/google-maps/lookup/one';
 Returns `results` as a single set of coordinates, or `null` if nothing is found.
 
 ```js
-var endpoint = '/actions/google-maps/lookup/coords';
+const endpoint = '/actions/google-maps/lookup/coords';
 ```
 
 [_See full details of `coords()`_](/models/lookup-model/#coords)

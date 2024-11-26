@@ -64,6 +64,7 @@ module.exports = {
                         {text: 'Address in a Matrix Field', link: '/guides/address-in-a-matrix-field/'},
                         {text: 'Importing Addresses', link: '/guides/importing-addresses/'},
                         {text: 'Converting from Mapbox', link: '/guides/converting-from-mapbox/'},
+                        {text: 'Converting from Ether Maps', link: '/guides/converting-from-ether-maps/'},
                     ] },
                     { text: 'Dynamic Maps', items: [
                         {text: 'Troubleshoot Dynamic Maps', link: '/guides/troubleshoot-dynamic-maps/'},
@@ -242,6 +243,7 @@ module.exports = {
                         'address-in-a-matrix-field',
                         'importing-addresses',
                         'converting-from-mapbox',
+                        'converting-from-ether-maps',
                     ]
                 },
                 {

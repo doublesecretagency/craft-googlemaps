@@ -29,7 +29,7 @@ In Twig/PHP, you can specify Element data using single-bracket tokens.
 :::code
 ```js
 // Link to a static URL
-var options = {
+const options = {
     'markerLink': 'https://www.example.com'
 };
 ```
@@ -77,12 +77,12 @@ In Twig/PHP, you can specify Element data using single-bracket tokens.
 :::code
 ```js
 // Using a named JS function
-var options = {
+const options = {
     'markerClick': myCallbackFunction
 };
 
 // Using an anonymous JS function
-var options = {
+const options = {
     'markerClick': function (event) {
         console.log(event);
     }

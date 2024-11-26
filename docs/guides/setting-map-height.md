@@ -34,7 +34,7 @@ The other recommended way to control the map height is to set it when the map is
 
 :::code
 ```js
-var map = googleMaps.map(locations, {
+const map = googleMaps.map(locations, {
     'height': 320
 });
 ```

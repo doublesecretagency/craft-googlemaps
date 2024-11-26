@@ -38,7 +38,7 @@ map.tag({'parentId': 'target-parent-id'});
 ````
 ```js Manual Placement
 // Place the HTML element manually
-var mapDiv = map.tag();
+const mapDiv = map.tag();
 document.getElementById('target-parent-id').appendChild(mapDiv);
 ```
 :::
@@ -107,7 +107,7 @@ Get the Google Maps [Marker](https://developers.google.com/maps/documentation/ja
 :::code
 ```js
 // Get the specified Marker object
-var marker = map.getMarker(markerId);
+const marker = map.getMarker(markerId);
 ```
 :::
 
@@ -129,7 +129,7 @@ Get the Google Maps [Info Window](https://developers.google.com/maps/documentati
 :::code
 ```js
 // Get the specified Info Window object
-var infoWindow = map.getInfoWindow(markerId);
+const infoWindow = map.getInfoWindow(markerId);
 ```
 :::
 
@@ -151,7 +151,7 @@ Get the Google Maps [Circle](https://developers.google.com/maps/documentation/ja
 :::code
 ```js
 // Get the specified circle object
-var circle = map.getCircle(circleId);
+const circle = map.getCircle(circleId);
 ```
 :::
 
@@ -173,7 +173,7 @@ Get the Google Maps [KML Layer](https://developers.google.com/maps/documentation
 :::code
 ```js
 // Get the specified KML layer object
-var kml = map.getKml(kmlId);
+const kml = map.getKml(kmlId);
 ```
 :::
 
@@ -195,7 +195,7 @@ If clustering is [enabled](/dynamic-maps/clustering-markers/), get the map's [ma
 :::code
 ```js
 // Get the map's marker cluster object
-var clusterer = map.getMarkerClusterer();
+const clusterer = map.getMarkerClusterer();
 ```
 :::
 
@@ -213,7 +213,7 @@ Get the current zoom level.
 :::code
 ```js
 // Get the current zoom level of the map
-var level = map.getZoom();
+const level = map.getZoom();
 ```
 :::
 
@@ -231,7 +231,7 @@ Get the center point coordinates of the map based on its current position.
 :::code
 ```js
 // Get the current center point of the map
-var coords = map.getCenter();
+const coords = map.getCenter();
 ```
 :::
 
@@ -249,7 +249,7 @@ Get the [bounds](https://developers.google.com/maps/documentation/javascript/ref
 :::code
 ```js
 // Get the current bounds of the map
-var bounds = map.getBounds();
+const bounds = map.getBounds();
 ```
 :::
 

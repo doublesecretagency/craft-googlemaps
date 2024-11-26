@@ -73,23 +73,23 @@ Copy & paste this code into your script editor. **Make all necessary changes for
 function geocode() {
     
   // Get the current Google Sheet
-  var sheet = SpreadsheetApp.getActiveSheet();
+  const sheet = SpreadsheetApp.getActiveSheet();
    
   // Get the range and cell values
-  var range = sheet.getDataRange();
-  var cells = range.getValues();
+  const range = sheet.getDataRange();
+  const cells = range.getValues();
 
   // Initialize columns (starting with labels)
-  var latitudes  = [['Latitude']];
-  var longitudes = [['Longitude']];
-  var formatted  = [['Formatted']];
-  var raw        = [['Raw']];
+  const latitudes  = [['Latitude']];
+  const longitudes = [['Longitude']];
+  const formatted  = [['Formatted']];
+  const raw        = [['Raw']];
   
   // Loop over each row
-  for (var i = 1; i < cells.length; i++) {
+  for (let i = 1; i < cells.length; i++) {
 
     // Blank coords by default
-    var lat = lng = f = r = '';
+    let lat = lng = f = r = '';
     
     /**
      * You may need to adjust the column numbers below.
@@ -103,14 +103,14 @@ function geocode() {
     if (cells[i][1]) {
       
       // Compile address string
-      var address = `${cells[i][1]}, ${cells[i][3]}, ${cells[i][5]}`;
+      const address = `${cells[i][1]}, ${cells[i][3]}, ${cells[i][5]}`;
 
       // Log the target address
       console.log(address);
 
       // Perform geocode lookup
-      var geocoder = Maps.newGeocoder().geocode(address);
-      var res = geocoder.results[0];
+      const geocoder = Maps.newGeocoder().geocode(address);
+      const res = geocoder.results[0];
   
       // If results were found, get coords
       if (res) {

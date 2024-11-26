@@ -41,10 +41,10 @@ You can specify the `styles` option when you create the initial map...
 :::code
 ```js
 // Set of map styles, formatted as a JSON array
-var styleSet = [...];
+const styleSet = [...];
 
 // Apply styles to the map
-var map = googleMaps.map(locations, {
+const map = googleMaps.map(locations, {
     'styles': styleSet
 });
 ```
@@ -75,7 +75,7 @@ You can also apply styles to an existing map...
 :::code
 ```js
 // Get an existing map
-var map = googleMaps.getMap(mapId);
+const map = googleMaps.getMap(mapId);
 
 // Style the map
 map.styles(styleSet);

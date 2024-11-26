@@ -32,14 +32,14 @@ The premise is effectively the same, but the POST endpoints have changed:
 
 ```js
 // OLD ENDPOINTS
-var endpoint = '/actions/smart-map/lookup'; // became "all"
-var endpoint = '/actions/smart-map/lookup/coords';
+const endpoint = '/actions/smart-map/lookup'; // became "all"
+const endpoint = '/actions/smart-map/lookup/coords';
 ```
 ```js
 // NEW ENDPOINTS
-var endpoint = '/actions/google-maps/lookup/all';
-var endpoint = '/actions/google-maps/lookup/one';
-var endpoint = '/actions/google-maps/lookup/coords';
+const endpoint = '/actions/google-maps/lookup/all';
+const endpoint = '/actions/google-maps/lookup/one';
+const endpoint = '/actions/google-maps/lookup/coords';
 ```
 
 :::tip New Documentation

@@ -16,7 +16,7 @@ Switch between languages to see the similarities...
 
 :::code
 ```js
-var map = googleMaps.map(locations, options);
+const map = googleMaps.map(locations, options);
 ```
 ```twig
 {% set map = googleMaps.map(locations, options) %}
@@ -30,7 +30,7 @@ $map = GoogleMaps::map($locations, $options);
 
 :::code
 ```js
-var map = googleMaps.map()
+const map = googleMaps.map()
     .markers(locations, options)
     .styles(styleSet)
     .center(coords)

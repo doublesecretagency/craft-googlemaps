@@ -56,10 +56,10 @@ These geocoding endpoints are **framework agnostic**. You can use any framework 
 function performLookup() {
 
     // Specify which endpoint to ping
-    var endpoint = '/actions/google-maps/lookup/one';
+    const endpoint = '/actions/google-maps/lookup/one';
 
     // Initialize data for the AJAX call
-    var data = {};
+    const data = {};
 
     // Append CSRF Token to outgoing data
     data[window.csrfTokenName] = window.csrfTokenValue;
@@ -94,7 +94,7 @@ function performLookup() {
         console.log(response.results);
 
         // In this case, we retrieved a single Address
-        var address = response.results;
+        const address = response.results;
 
         // Set the input values of the coordinates fields
         $('#lat').val(address.lat);

@@ -24,7 +24,7 @@ When creating a map object, you can inject a set of styles immediately.
 
 :::code
 ```js
-var map = googleMaps.map(locations, {
+const map = googleMaps.map(locations, {
     'styles': styleSet
 });
 ```

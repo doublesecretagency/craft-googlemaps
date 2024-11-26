@@ -20,7 +20,7 @@ Use the `map` method to create a new map object.
 
 :::code
 ```js
-var map = googleMaps.map(locations, options);
+const map = googleMaps.map(locations, options);
 ```
 ```twig
 {% set map = googleMaps.map(locations, options) %}
@@ -72,7 +72,7 @@ Retrieve an existing map object. The `mapId` value would have been set when the 
 
 :::code
 ```js
-var map = googleMaps.getMap(mapId);
+const map = googleMaps.getMap(mapId);
 ```
 ```twig
 {% set map = googleMaps.getMap(mapId) %}

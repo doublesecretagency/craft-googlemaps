@@ -469,7 +469,7 @@ The following methods are the only ones which do not return a chainable map obje
 Get the [Google Maps Marker object](https://developers.google.com/maps/documentation/javascript/reference/marker) of a specified marker.
 
 ```js
-var marker = map.getMarker('33-address');
+const marker = map.getMarker('33-address');
 ```
 
 #### Arguments
@@ -488,7 +488,7 @@ var marker = map.getMarker('33-address');
 Get the [Google Maps Info Window object](https://developers.google.com/maps/documentation/javascript/infowindows) of a specified info window.
 
 ```js
-var infoWindow = map.getInfoWindow('33-address');
+const infoWindow = map.getInfoWindow('33-address');
 ```
 
 #### Arguments
@@ -507,7 +507,7 @@ var infoWindow = map.getInfoWindow('33-address');
 Get the [Google Maps Circle object](https://developers.google.com/maps/documentation/javascript/shapes#circles) of a specified circle.
 
 ```js
-var circle = map.getCircle('my-circle');
+const circle = map.getCircle('my-circle');
 ```
 
 #### Arguments
@@ -526,7 +526,7 @@ var circle = map.getCircle('my-circle');
 Get the [Google Maps KML Layer object](https://developers.google.com/maps/documentation/javascript/kml) of a specified KML layer.
 
 ```js
-var kml = map.getKml('my-kml');
+const kml = map.getKml('my-kml');
 ```
 
 #### Arguments
@@ -545,7 +545,7 @@ var kml = map.getKml('my-kml');
 If [clustering](/dynamic-maps/clustering-markers/) is enabled, get the [Google Maps MarkerClusterer object](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html).
 
 ```js
-var clusterer = map.getMarkerClusterer();
+const clusterer = map.getMarkerClusterer();
 ```
 
 #### Returns
@@ -560,7 +560,7 @@ var clusterer = map.getMarkerClusterer();
 Get the current zoom level.
 
 ```js
-var level = map.getZoom();
+const level = map.getZoom();
 ```
 
 #### Returns
@@ -575,7 +575,7 @@ var level = map.getZoom();
 Get the center point coordinates of the map based on its current position.
 
 ```js
-var coords = map.getCenter();
+const coords = map.getCenter();
 ```
 
 #### Returns
@@ -590,7 +590,7 @@ var coords = map.getCenter();
 Get the [bounds](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBounds) of the map based on its current position.
 
 ```js
-var bounds = map.getBounds();
+const bounds = map.getBounds();
 ```
 
 #### Returns

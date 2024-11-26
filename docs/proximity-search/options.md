@@ -1,8 +1,31 @@
 ---
-description:
+description: A list of options available when conducting a proximity search.
+meta:
+  - property: og:type
+    content: website
+  - property: og:url
+    content: https://plugins.doublesecretagency.com/google-maps/proximity-search/options/
+  - property: og:title
+    content: Proximity Search Options | Google Maps plugin for Craft CMS
+  - property: og:description
+    content: A list of options available when conducting a proximity search.
+  - property: og:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/proximity-search/search-terms.png
+  - property: twitter:card
+    content: summary_large_image
+  - property: twitter:url
+    content: https://plugins.doublesecretagency.com/google-maps/proximity-search/options/
+  - property: twitter:title
+    content: Proximity Search Options | Google Maps plugin for Craft CMS
+  - property: twitter:description
+    content: A list of options available when conducting a proximity search.
+  - property: twitter:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/proximity-search/search-terms.png
 ---
 
 # Options
+
+<img class="dropshadow" :src="$withBase('/images/proximity-search/search-terms.png')" alt="Diagram of common proximity search terms" style="max-width:100%; margin-top:4px;">
 
 | Option                            |   Type   | Default | Description                                                           |
 |-----------------------------------|:--------:|:-------:|-----------------------------------------------------------------------|

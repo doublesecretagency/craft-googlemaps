@@ -1,5 +1,26 @@
 ---
-description:
+description: In other words, "You are lost." The point you were trying to plot on a map does not exist. You have somehow found yourself trapped in the Bermuda Triangle.
+meta:
+  - property: og:type
+    content: website
+  - property: og:url
+    content: https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
+  - property: og:title
+    content: Bermuda Triangle | Google Maps plugin for Craft CMS
+  - property: og:description
+    content: In other words, "You are lost." The point you were trying to plot on a map does not exist. You have somehow found yourself trapped in the Bermuda Triangle.
+  - property: og:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/guides/bermuda-triangle.png
+  - property: twitter:card
+    content: summary_large_image
+  - property: twitter:url
+    content: https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
+  - property: twitter:title
+    content: Bermuda Triangle | Google Maps plugin for Craft CMS
+  - property: twitter:description
+    content: In other words, "You are lost." The point you were trying to plot on a map does not exist. You have somehow found yourself trapped in the Bermuda Triangle.
+  - property: twitter:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/guides/bermuda-triangle.png
 ---
 
 # Bermuda Triangle

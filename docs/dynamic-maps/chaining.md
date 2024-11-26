@@ -10,7 +10,7 @@ description: Add layers of complexity by chaining commands together. The same se
 
 :::code
 ```js
-var map = googleMaps.map(locations)
+const map = googleMaps.map(locations)
     .styles(styleSet)
     .center(coords)
     .zoom(level);
@@ -41,7 +41,7 @@ A chain must always **begin** with the creation of a map object. No matter how y
 
 :::code
 ```js
-var map = googleMaps.map(locations, options);
+const map = googleMaps.map(locations, options);
 ```
 ```twig
 {% set map = googleMaps.map(locations, options) %}
@@ -55,7 +55,7 @@ Or if you want to reference a map that has already been created, you can retriev
 
 :::code
 ```js
-var map = googleMaps.getMap(mapId);
+const map = googleMaps.getMap(mapId);
 ```
 ```twig
 {% set map = googleMaps.getMap(mapId) %}
@@ -115,7 +115,7 @@ map.tag({'parentId': 'my-map-container'});
 map.tag();
 
 // Creates a new HTML element, detached from the DOM
-var mapDiv = map.tag();
+const mapDiv = map.tag();
 ```
 :::
 
