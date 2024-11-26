@@ -152,8 +152,8 @@ SQL;
             return;
         }
 
-        // If unable to transfer data between field types, bail (requires Craft 4.13.0+)
-        if (!class_exists(ApplyFieldSaveEvent::class)) {
+        // If unable to transfer data between field types, bail (requires Craft 4.13.3+)
+        if (version_compare(Craft::$app->getVersion(), '4.13.3', '<')) {
             return;
         }
 
@@ -168,21 +168,18 @@ SQL;
                     return;
                 }
 
-                // If not a Google Maps Address field, bail
-                if (!($field instanceof AddressField)) {
+                // If not currently an Ether "Map" field, bail
+                if (!($field instanceof \ether\simplemap\fields\MapField)) {
                     return;
                 }
 
-                // Get the original field
-                $oldField = Craft::$app->getFields()->getFieldById($field->id);
-
-                // If no original field, bail
-                if (!$oldField) {
+                // If no new field config, bail
+                if (!$newConfig = $event->config) {
                     return;
                 }
 
-                // If original field wasn't a Maps Map field, bail
-                if (!$oldField instanceof \ether\simplemap\fields\MapField) {
+                // If new field isn't an "Address (Google Maps)" field, bail
+                if ($newConfig['type'] !== AddressField::class) {
                     return;
                 }
 

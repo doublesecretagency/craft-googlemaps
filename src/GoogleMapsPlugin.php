@@ -17,7 +17,6 @@ use craft\base\Field;
 use craft\base\Model;
 use craft\base\Plugin;
 use craft\elements\Entry;
-use craft\events\ApplyFieldSaveEvent;
 use craft\events\DefineCompatibleFieldTypesEvent;
 use craft\events\ModelEvent;
 use craft\events\PluginEvent;
@@ -183,8 +182,8 @@ class GoogleMapsPlugin extends Plugin
                     'doublesecretagency\mapbox\fields\AddressField',
                 ];
 
-                // If able to transfer data between field types (requires Craft 4.13.0+)
-                if (class_exists(ApplyFieldSaveEvent::class)) {
+                // If able to transfer data between field types (requires Craft 4.13.3+)
+                if (version_compare(Craft::$app->getVersion(), '4.13.3', '>=')) {
                     $compatible[] = 'ether\simplemap\fields\MapField';
                 }
 
