@@ -1,12 +1,37 @@
 ---
-description:
+description: When the general tools of Google Maps are not enough, you can always turn to KML layers. Within the context of a KML layer, the options to decorate a map are practically boundless.
+meta:
+- property: og:type
+  content: website
+- property: og:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/kml-layers/
+- property: og:title
+  content: KML Layers | Google Maps plugin for Craft CMS
+- property: og:description
+  content: When the general tools of Google Maps are not enough, you can always turn to KML layers. Within the context of a KML layer, the options to decorate a map are practically boundless.
+- property: og:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/kml-chicago-subway.png
+- property: twitter:card
+  content: summary_large_image
+- property: twitter:url
+  content: https://plugins.doublesecretagency.com/google-maps/guides/kml-layers/
+- property: twitter:title
+  content: KML Layers | Google Maps plugin for Craft CMS
+- property: twitter:description
+  content: When the general tools of Google Maps are not enough, you can always turn to KML layers. Within the context of a KML layer, the options to decorate a map are practically boundless.
+- property: twitter:image
+  content: https://plugins.doublesecretagency.com/google-maps/images/guides/kml-chicago-subway.png
 ---
 
 # KML Layers
 
 When the general tools of Google Maps are not enough, you can always turn to [KML layers](https://developers.google.com/maps/documentation/javascript/examples/layer-kml) in order to "kick it up a notch". Within the context of a KML layer, the options to decorate a map are practically boundless.
 
-There are a few tools for creating a KML layer, here's the official Google resource:
+Here is a map of the **Chicago subway system** using a KML layer...
+
+<img class="dropshadow" :src="$withBase('/images/guides/kml-chicago-subway.png')" alt="Screenshot of a KML layer showing a map of the Chicago subway system" style="max-width:764px; margin-top:4px;">
+
+There are a few tools for creating KML layers, here's the official Google resource:
  - [Google My Maps](https://www.google.com/maps/about/mymaps/)
 
 However you go about creating your KML layer, it's easy to apply it to an existing map...

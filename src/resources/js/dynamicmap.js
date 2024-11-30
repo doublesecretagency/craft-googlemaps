@@ -1394,8 +1394,8 @@ function DynamicMap(locations, options) {
         if (center) {
 
             // Get coordinates
-            let lat = center.lat();
-            let lng = center.lng();
+            let lat = center.lat ?? center.lat();
+            let lng = center.lng ?? center.lng();
 
             // Sanitize center
             center = {
