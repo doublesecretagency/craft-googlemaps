@@ -18,6 +18,8 @@ use craft\helpers\ElementHelper;
 use craft\services\Fields;
 use craft\services\ProjectConfig;
 use doublesecretagency\googlemaps\fields\AddressField;
+use Exception;
+use RuntimeException;
 use Yii;
 use yii\base\Event;
 
@@ -186,17 +188,98 @@ SQL;
                 // Compile the column name
                 $fieldColumn = ElementHelper::fieldColumn($field->columnPrefix, $field->handle, $field->columnSuffix);
 
-                // If using MySQL
-                if (Craft::$app->getDb()->getIsMysql()) {
-                    $query = static::_queryMySqlMapsFields($fieldColumn);
+                // Default global context
+                if ($field->context === 'global') {
+
+                    // Table containing the field's content
+                    $contentTable = static::_prefix('content');
+
+                // Matrix Block context
+                } else if (str_starts_with($field->context, 'matrixBlockType:')) {
+
+                    // Extract the UID from the context
+                    $uid = substr($field->context, 16);
+
+                    // Get all matrix block types
+                    $allTypes = Craft::$app->getMatrix()->getAllBlockTypes();
+
+                    // Find the block type by UID
+                    $blockType = null;
+                    foreach ($allTypes as $type) {
+                        // If block type found, break
+                        if ($type->uid === $uid) {
+                            $blockType = $type;
+                            break;
+                        }
+                    }
+
+                    // If block type not found, bail
+                    if (!$blockType) {
+                        // Throw an error
+                        throw new Exception("Unidentified block type: {$uid}");
+                    }
+
+                    // Get the handle of the owner Matrix field
+                    $matrixHandle = strtolower($blockType->getField()->handle);
+
+                    // Table containing the field's content
+                    $contentTable = static::_prefix("matrixcontent_{$matrixHandle}");
+
+                // Super Table context
+                } else if (str_starts_with($field->context, 'superTableBlockType:')) {
+
+                    // Extract the UID from the context
+                    $uid = substr($field->context, 20);
+
+                    // Get all Super Table block types
+                    $allTypes = \verbb\supertable\SuperTable::getInstance()?->getService()->getAllBlockTypes() ?? [];
+
+                    // Find the block type by UID
+                    $blockType = null;
+                    foreach ($allTypes as $type) {
+                        // If block type found, break
+                        if ($type->uid === $uid) {
+                            $blockType = $type;
+                            break;
+                        }
+                    }
+
+                    // If block type not found, bail
+                    if (!$blockType) {
+                        // Throw an error
+                        throw new Exception("Unidentified block type: {$uid}");
+                    }
+
+                    // Get the handle of the owner Super Table field
+                    $stHandle = strtolower($blockType->getField()->handle);
+
+                    // Table containing the field's content
+                    $contentTable = static::_prefix("stc_{$stHandle}");
+
+                // Unknown context
                 } else {
-                    $query = static::_queryPostgresMapsFields($fieldColumn);
+
+                    // Throw an error
+                    throw new Exception("Unsupported context: {$field->context}");
+
                 }
 
-                // Execute the SQL statement
-                Yii::$app->db->createCommand($query)
-                    ->bindValues([':fieldId' => $field->id])
-                    ->execute();
+                // If using MySQL
+                if (Craft::$app->getDb()->getIsMysql()) {
+                    $query = static::_queryMySqlMapsFields($contentTable, $fieldColumn);
+                } else {
+                    $query = static::_queryPostgresMapsFields($contentTable, $fieldColumn);
+                }
+
+                try {
+                    // Execute the SQL statement
+                    Yii::$app->db->createCommand($query)
+                        ->bindValues([':fieldId' => $field->id])
+                        ->execute();
+                } catch (Exception $e) {
+                    $message = "\nSomething went wrong, unable to migrate Address data for field: {$field->name}\n\n{$e->getMessage()}\n\n";
+                    throw new RuntimeException($message);
+                }
             }
         );
 
@@ -205,13 +288,13 @@ SQL;
     /**
      * Returns the MySQL query for converting Maps fields to Google Maps fields.
      *
+     * @param string $contentTable
      * @param string $fieldColumn
      * @return string
      */
-    private static function _queryMySqlMapsFields(string $fieldColumn): string
+    private static function _queryMySqlMapsFields(string $contentTable, string $fieldColumn): string
     {
-        // Define the table names
-        $content      = static::_prefix('content');
+        // Define the Google Maps table
         $gm_addresses = static::_prefix('googlemaps_addresses');
 
         // Merge and escape column names
@@ -222,64 +305,64 @@ SQL;
 INSERT INTO [[{$gm_addresses}]] ({$addressColumns})
 
 SELECT
-    [[{$content}]].[[elementId]] AS [[elementId]],
-    [[{$content}]].[[siteId]] AS [[siteId]],
+    [[{$contentTable}]].[[elementId]] AS [[elementId]],
+    [[{$contentTable}]].[[siteId]] AS [[siteId]],
     :fieldId AS [[fieldId]],
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.address')), '') AS [[formatted]],
-    [[{$content}]].[[{$fieldColumn}]] AS [[raw]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.address')), '') AS [[formatted]],
+    [[{$contentTable}]].[[{$fieldColumn}]] AS [[raw]],
     NULL AS [[name]],
     -- Combine street number with the first part of the address and replace empty string with NULL
     NULLIF(
         CONCAT(
-            JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.number')), ' ',
-            SUBSTRING_INDEX(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.address')), ', ', 1)
+            JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.number')), ' ',
+            SUBSTRING_INDEX(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.address')), ', ', 1)
         ), 
         ''
     ) AS [[street1]],
     NULL AS [[street2]],
     -- Replace empty strings with NULL for city, state, zip, county, and country
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.city')), '') AS [[city]],
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.state')), '') AS [[state]],
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.postcode')), '') AS [[zip]],
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.county')), '') AS [[county]],
-    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.country')), '') AS [[country]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.city')), '') AS [[city]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.state')), '') AS [[state]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.postcode')), '') AS [[zip]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.county')), '') AS [[county]],
+    NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.country')), '') AS [[country]],
     -- Extract neighborhood (second part of the address, if exists)
     CASE
-        WHEN JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.address')) LIKE '%,%'
-            THEN SUBSTRING_INDEX(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.parts.address')), ', ', -1)
+        WHEN JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.address')) LIKE '%,%'
+            THEN SUBSTRING_INDEX(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.parts.address')), ', ', -1)
         ELSE NULL
     END AS [[neighborhood]],
     -- Extract lat and lng from JSON, handling 'null' strings
-    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.lat')), ''), 'null') AS [[lat]],
-    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.lng')), ''), 'null') AS [[lng]],
-    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$content}]].[[{$fieldColumn}]], '$.zoom')), ''), 'null') AS [[zoom]],
-    [[{$content}]].[[dateCreated]],
-    [[{$content}]].[[dateUpdated]],
-    [[{$content}]].[[uid]]
+    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.lat')), ''), 'null') AS [[lat]],
+    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.lng')), ''), 'null') AS [[lng]],
+    NULLIF(NULLIF(JSON_UNQUOTE(JSON_EXTRACT([[{$contentTable}]].[[{$fieldColumn}]], '$.zoom')), ''), 'null') AS [[zoom]],
+    [[{$contentTable}]].[[dateCreated]],
+    [[{$contentTable}]].[[dateUpdated]],
+    [[{$contentTable}]].[[uid]]
 
-FROM [[{$content}]]
+FROM [[{$contentTable}]]
 
 WHERE {$fieldColumn} IS NOT NULL
     AND NOT EXISTS (
         SELECT 1
         FROM [[{$gm_addresses}]]
-        WHERE [[{$gm_addresses}]].[[uid]] = [[{$content}]].[[uid]]
+        WHERE [[{$gm_addresses}]].[[uid]] = [[{$contentTable}]].[[uid]]
     )
 
-ORDER BY [[{$content}]].[[elementId]] ASC, [[{$content}]].[[siteId]] ASC;
+ORDER BY [[{$contentTable}]].[[elementId]] ASC, [[{$contentTable}]].[[siteId]] ASC;
 MYSQL;
     }
 
     /**
      * Returns the Postgres query for converting Maps fields to Google Maps fields.
      *
+     * @param string $contentTable
      * @param string $fieldColumn
      * @return string
      */
-    private static function _queryPostgresMapsFields(string $fieldColumn): string
+    private static function _queryPostgresMapsFields(string $contentTable, string $fieldColumn): string
     {
-        // Define the table names
-        $content      = static::_prefix('content');
+        // Define the Google Maps table
         $gm_addresses = static::_prefix('googlemaps_addresses');
 
         // Merge and escape column names
@@ -290,58 +373,58 @@ MYSQL;
 INSERT INTO [[{$gm_addresses}]] ({$addressColumns})
 
 SELECT
-    [[{$content}]].[[elementId]] AS [[elementId]],
-    [[{$content}]].[[siteId]] AS [[siteId]],
+    [[{$contentTable}]].[[elementId]] AS [[elementId]],
+    [[{$contentTable}]].[[siteId]] AS [[siteId]],
     :fieldId AS [[fieldId]],
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'address', '') AS [[formatted]],
-    [[{$content}]].[[{$fieldColumn}]] AS [[raw]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'address', '') AS [[formatted]],
+    [[{$contentTable}]].[[{$fieldColumn}]] AS [[raw]],
     NULL AS [[name]],
     -- Use COALESCE to handle NULLs in street1 concatenation
     NULLIF(
-        COALESCE(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'number', '') || ' ' || 
-        COALESCE(SPLIT_PART(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address', ', ', 1), ''), 
+        COALESCE(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'number', '') || ' ' || 
+        COALESCE(SPLIT_PART(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address', ', ', 1), ''), 
         ''
     ) AS [[street1]],
     NULL AS [[street2]],
     -- Replace empty strings with NULL for city, state, zip, county, and country
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'city', '') AS [[city]],
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'state', '') AS [[state]],
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'postcode', '') AS [[zip]],
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'county', '') AS [[county]],
-    NULLIF(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'country', '') AS [[country]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'city', '') AS [[city]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'state', '') AS [[state]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'postcode', '') AS [[zip]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'county', '') AS [[county]],
+    NULLIF(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'country', '') AS [[country]],
     -- Extract neighborhood (second part of the address, if exists)
     CASE
-        WHEN ([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address' LIKE '%,%'
-            THEN SPLIT_PART(([[{$content}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address', ', ', 2)
+        WHEN ([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address' LIKE '%,%'
+            THEN SPLIT_PART(([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->'parts'->>'address', ', ', 2)
         ELSE NULL
     END AS [[neighborhood]],
     -- Extract lat and lng from JSON, with regex check for numeric values
     CASE 
-        WHEN ([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'lat' ~ '^-?\d+(\.\d+)?$' 
-        THEN (([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'lat')::numeric 
+        WHEN ([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'lat' ~ '^-?\d+(\.\d+)?$' 
+        THEN (([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'lat')::numeric 
         ELSE NULL 
     END AS [[lat]],
     CASE 
-        WHEN ([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'lng' ~ '^-?\d+(\.\d+)?$' 
-        THEN (([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'lng')::numeric 
+        WHEN ([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'lng' ~ '^-?\d+(\.\d+)?$' 
+        THEN (([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'lng')::numeric 
         ELSE NULL 
     END AS [[lng]],
     CASE 
-        WHEN ([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'zoom' ~ '^\d+(\.\d+)?$' 
-        THEN (([[{$content}]].[[{$fieldColumn}]]::jsonb)->>'zoom')::numeric 
+        WHEN ([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'zoom' ~ '^\d+(\.\d+)?$' 
+        THEN (([[{$contentTable}]].[[{$fieldColumn}]]::jsonb)->>'zoom')::numeric 
         ELSE NULL 
     END AS [[zoom]],
-    [[{$content}]].[[dateCreated]],
-    [[{$content}]].[[dateUpdated]],
-    [[{$content}]].[[uid]]
-FROM [[{$content}]]
-WHERE [[{$content}]].[[{$fieldColumn}]] IS NOT NULL
+    [[{$contentTable}]].[[dateCreated]],
+    [[{$contentTable}]].[[dateUpdated]],
+    [[{$contentTable}]].[[uid]]
+FROM [[{$contentTable}]]
+WHERE [[{$contentTable}]].[[{$fieldColumn}]] IS NOT NULL
     AND NOT EXISTS (
         SELECT 1
         FROM [[{$gm_addresses}]]
-        WHERE [[{$gm_addresses}]].[[uid]] = [[{$content}]].[[uid]]
+        WHERE [[{$gm_addresses}]].[[uid]] = [[{$contentTable}]].[[uid]]
     )
-ORDER BY [[{$content}]].[[elementId]] ASC, [[{$content}]].[[siteId]] ASC;
+ORDER BY [[{$contentTable}]].[[elementId]] ASC, [[{$contentTable}]].[[siteId]] ASC;
 POSTGRES;
     }
 
