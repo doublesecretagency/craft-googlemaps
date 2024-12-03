@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.0 - 2024-12-03
 
 > [!WARNING]
 > This update runs a [significant migration](https://plugins.doublesecretagency.com/google-maps/address-field/multisite-support/#multisite-migration), which may notably increase the size of the `googlemaps_addresses` table for multisite projects. Please ensure that you have backed up the database before performing this migration.
