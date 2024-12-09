@@ -138,20 +138,38 @@ class m240530_122024_multisite_support extends Migration
                 continue;
             }
 
-            // Adjust row accordingly
-            foreach ($rows as &$row) {
-                $row['id'] = null;                  // Allow fresh ID
-                $row['siteId'] = $siteId;           // Specify each site ID
-                $row['dateUpdated'] = $dateUpdated; // Update date updated
-                $row['uid'] = StringHelper::UUID(); // Generate new UUID
+            // Initialize row data
+            $data = [];
+
+            // Loop over all existing rows
+            foreach ($rows as $row) {
+
+                // Compile row data
+                $r = [];
+                foreach ($columns as $col) {
+                    $r[$col] = ($row[$col] ?? null);
+                }
+
+                // Update row data
+                $r['id'] = null;                  // Allow fresh ID
+                $r['siteId'] = $siteId;           // Specify each site ID
+                $r['dateUpdated'] = $dateUpdated; // Update date updated
+                $r['uid'] = StringHelper::UUID(); // Generate new UUID
+
+                // Add row data to array
+                $data[] = $r;
             }
 
-            // Prevent complications
-            unset($row);
+            // If no data, skip
+            if (!$data) {
+                continue;
+            }
 
-            // Insert all rows for this site
-            $this->batchInsert(Install::GM_ADDRESSES, $columns, $rows);
-
+            // Use upsert to handle conflicts
+            foreach ($data as $rowData) {
+                // Upsert the data of a single row
+                $this->upsert(Install::GM_ADDRESSES, $rowData, false);
+            }
         }
 
         // Set the site ID of all the original Addresses
