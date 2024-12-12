@@ -42,14 +42,14 @@ class m240530_122024_multisite_support extends Migration
         // Add new column indexes
         $this->_newIndexes();
 
-        // Add new foreign keys
-        $this->_newForeignKeys();
-
         // Populate new columns with existing data
         $this->_populateData();
 
         // Make new column not nullable, AFTER the column has been populated
         $this->alterColumn(Install::GM_ADDRESSES, 'siteId', $this->integer()->notNull());
+
+        // Add new foreign keys
+        $this->_newForeignKeys();
 
         // Post an announcement
         $this->_announcement();

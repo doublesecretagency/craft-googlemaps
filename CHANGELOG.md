@@ -3,7 +3,7 @@
 ## Unreleased
 
 ### Fixed
-- Patched bug in multisite migration. ([#124](https://github.com/doublesecretagency/craft-googlemaps/issues/124))
+- Patched bugs in multisite migration. ([#124](https://github.com/doublesecretagency/craft-googlemaps/issues/124), [#125](https://github.com/doublesecretagency/craft-googlemaps/issues/125))
 
 ## 4.6.0 - 2024-12-03
 
