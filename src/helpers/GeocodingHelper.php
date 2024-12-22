@@ -140,6 +140,7 @@ class GeocodingHelper
             'lat'          => $lat,
             'lng'          => $lng,
             'raw'          => $unformatted,
+            'formatted'    => ($unformatted['formatted_address'] ?? null),
         ];
     }
 

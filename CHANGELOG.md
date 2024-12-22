@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+- Added formatted address to geocoding lookup results.
+
 ### Fixed
 - Patched bug in multisite migration. ([#127](https://github.com/doublesecretagency/craft-googlemaps/issues/127))
 
