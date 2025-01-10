@@ -202,8 +202,8 @@ class m240530_122024_multisite_support extends Migration
                 continue;
             }
 
-            // Extract raw data from Address field
-            $raw = ($content['raw'] ?? null);
+            // Normalize raw value
+            $content['raw'] = AddressField::normalizeRaw($content['raw'] ?? null);
 
             // Get current time as a fallback
             $now = DateTimeHelper::currentUTCDateTime()->format('Y-m-d H:i:s');
@@ -214,7 +214,7 @@ class m240530_122024_multisite_support extends Migration
                 'siteId'       => (int) $elementSite['siteId'],
                 'fieldId'      => (int) $content['fieldId'],
                 'formatted'    => ($content['formatted'] ?? null),
-                'raw'          => ($raw ? Json::encode($raw) : null),
+                'raw'          => ($content['raw'] ? Json::encode($content['raw']) : null),
                 'name'         => ($content['name'] ?? null),
                 'street1'      => ($content['street1'] ?? null),
                 'street2'      => ($content['street2'] ?? null),

@@ -7,6 +7,7 @@
 
 ### Fixed
 - Patched bug in multisite migration. ([#127](https://github.com/doublesecretagency/craft-googlemaps/issues/127))
+- Nullify raw `[object Object]` values.
 
 ## 5.1.0 - 2024-12-03
 
