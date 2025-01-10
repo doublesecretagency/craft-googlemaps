@@ -232,6 +232,8 @@ class AddressField extends Field implements PreviewableFieldInterface
             $lat  = ($value['lat']  ?? null);
             $lng  = ($value['lng']  ?? null);
             $zoom = ($value['zoom'] ?? null);
+            // Normalize raw value
+            $value['raw'] = static::normalizeRaw($value['raw'] ?? null);
             // Return Address model
             return new AddressModel([
                 'elementId'    => (int) $elementId,
@@ -291,12 +293,8 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['lat'] = ($attr['lat'] ? (float) $attr['lat'] : null);
         $attr['lng'] = ($attr['lng'] ? (float) $attr['lng'] : null);
 
-        // Check if JSON is valid
-        // Must use this function to validate (I know it's redundant)
-        $valid = json_decode($attr['raw']);
-
-        // Convert raw data to an array
-        $attr['raw'] = ($valid ? Json::decode($attr['raw']) : null);
+        // Normalize raw value
+        $attr['raw'] = static::normalizeRaw($attr['raw'] ?? null);
 
         // Get handles of visible subfields
         $attr['enabledSubfields'] = $this->_getEnabledSubfields();
@@ -308,6 +306,33 @@ class AddressField extends Field implements PreviewableFieldInterface
 
         // Return an Address model
         return new AddressModel($attr);
+    }
+
+    /**
+     * Normalize the raw value.
+     *
+     * @param mixed $raw
+     * @return array|null
+     */
+    public static function normalizeRaw(mixed $raw): ?array
+    {
+        // If already an array, return as-is
+        if (is_array($raw)) {
+            return $raw;
+        }
+
+        // If not a string, return null
+        if (!is_string($raw)) {
+            return null;
+        }
+
+        // If string contains `[object Object]`, return null
+        if (str_contains($raw, '[object Object]')) {
+            return null;
+        }
+
+        // Convert string to an array
+        return Json::decode($raw);
     }
 
     // ========================================================================= //
