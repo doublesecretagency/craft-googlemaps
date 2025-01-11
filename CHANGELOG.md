@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.1.1 - 2025-01-10
 
 ### Added
 - Added formatted address to geocoding lookup results.
