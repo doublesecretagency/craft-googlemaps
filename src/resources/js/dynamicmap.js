@@ -1379,6 +1379,8 @@ function DynamicMap(locations, options) {
 
     };
 
+    // ========================================================================= //
+
     // Prevent the map from appearing as a grey box, emit warnings if necessary
     this._preventGreyBox = function() {
 
@@ -1397,19 +1399,88 @@ function DynamicMap(locations, options) {
             let lat = center.lat ?? center.lat();
             let lng = center.lng ?? center.lng();
 
-            // Sanitize center
-            center = {
+            // Set sanitized center
+            this.center({
                 'lat': (isNaN(lat) ? 0 : lat),
                 'lng': (isNaN(lng) ? 0 : lng)
-            }
+            });
 
-            // Center on specified coordinates
-            this.center(center);
+        } else {
+
+            // Set an appropriate center
+            this._preventGreyBoxSetCenter(zoom);
+
+        }
+
+        // If zoom is specified, set it
+        if (zoom) {
+            this.zoom(zoom);
+        }
+    };
+
+    // To prevent the map from appearing as a grey box, set an appropriate center
+    this._preventGreyBoxSetCenter = function(zoom) {
+
+        // Get the total number of markers and circles
+        let totalMarkers = Object.keys(this._markers).length;
+        let totalCircles = Object.keys(this._circles).length;
+
+        // Presume non-solo markers/circles
+        let soloMarker = null;
+        let soloCircle = null;
+
+        // If just one marker, get it
+        if (1 === totalMarkers) {
+            soloMarker = this._markers[Object.keys(this._markers)[0]];
+        }
+
+        // If just one circle, get it
+        if (1 === totalCircles) {
+            soloCircle = this._circles[Object.keys(this._circles)[0]];
+        }
+
+        // If only one marker and one circle
+        if (soloMarker && soloCircle) {
+            // Get center coordinates of each
+            const markerCenter = soloMarker.position;
+            const circleCenter = soloCircle.getCenter();
+            // If marker and circle are in the same place
+            if (markerCenter.equals(circleCenter)) {
+                // Intentionally ignore the circle
+                totalCircles = 0;
+            }
+        }
+
+        // Total number of items on the map
+        const grandTotal = totalMarkers + totalCircles;
+
+        // If only one item
+        if (1 === grandTotal) {
 
             // If no zoom specified
             if (!zoom) {
                 // Set to a comfortable zoom level
-                zoom = this._comfortableZoom;
+                this.zoom(this._comfortableZoom);
+            }
+
+            // If sole item is a marker
+            if (soloMarker) {
+
+                // Set center coordinates
+                this.center({
+                    'lat': soloMarker.position.lat(),
+                    'lng': soloMarker.position.lng()
+                });
+
+            // Else, if sole item is a circle
+            } else if (soloCircle) {
+
+                // Set center coordinates
+                this.center({
+                    'lat': soloCircle.getCenter().lat(),
+                    'lng': soloCircle.getCenter().lng()
+                });
+
             }
 
         } else {
@@ -1417,26 +1488,7 @@ function DynamicMap(locations, options) {
             // Fit to the existing items
             this.fit();
 
-            // Get the total number of markers and circles
-            const totalMarkers = Object.keys(this._markers).length;
-            const totalCircles = Object.keys(this._circles).length;
-
-            // Total number of items on the map
-            const total = totalMarkers + totalCircles;
-
-            // If only one item and no zoom specified
-            if ((1 === total) && !zoom) {
-                // Set to a comfortable zoom level
-                zoom = this._comfortableZoom;
-            }
-
         }
-
-        // If level was specified, zoom
-        if (zoom) {
-            this.zoom(zoom);
-        }
-
     };
 
     // ========================================================================= //
