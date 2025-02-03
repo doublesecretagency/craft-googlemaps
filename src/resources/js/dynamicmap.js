@@ -300,9 +300,7 @@ function DynamicMap(locations, options) {
     this.center = function(coords, assumeSuccess) {
 
         // Ensure coordinates are valid
-        coords = coords
-            || this._determineBounds().getCenter()
-            || this._d.center;
+        coords = coords || this._d.center;
 
         // Log status (if success is not assumed)
         if (googleMaps.log && !assumeSuccess) {
@@ -345,22 +343,35 @@ function DynamicMap(locations, options) {
             console.log(`[${this.id}] Fitting map to existing boundaries`);
         }
 
-        // Fit bounds of current map
-        this._map.fitBounds(this._determineBounds());
+        // Get bounds
+        var bounds = this._determineBounds();
 
-        // Get the total number of markers and circles
-        const totalMarkers = Object.keys(this._markers).length;
-        const totalCircles = Object.keys(this._circles).length;
-
-        // If no markers or circles exist
-        if (!totalMarkers && !totalCircles) {
+        // If bounds are empty
+        if (bounds.isEmpty()) {
             // Example coordinates
             const zeroZero = {'lat':0,'lng':0};
             // Log error message
             console.error(`[GM] No items on the map, it will be centered in the middle of the ocean! 🐙`, zeroZero);
+            // Center the map
+            this.center(zeroZero, true);
             // We are in the ocean, zoom out
             this.zoom(2, true);
+            // Bail
+            return this;
         }
+
+        // If bounds are just a single point
+        if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+            // Center the map
+            this.center(bounds.getCenter().toJSON(), true);
+            // Quietly zoom to a comfortable level
+            this.zoom(this._comfortableZoom, true);
+            // Bail
+            return this;
+        }
+
+        // Fit bounds of current map
+        this._map.fitBounds(bounds);
 
         // Keep the party going
         return this;
@@ -1407,87 +1418,14 @@ function DynamicMap(locations, options) {
 
         } else {
 
-            // Set an appropriate center
-            this._preventGreyBoxSetCenter(zoom);
+            // Fit to the existing items
+            this.fit();
 
         }
 
         // If zoom is specified, set it
         if (zoom) {
             this.zoom(zoom);
-        }
-    };
-
-    // To prevent the map from appearing as a grey box, set an appropriate center
-    this._preventGreyBoxSetCenter = function(zoom) {
-
-        // Get the total number of markers and circles
-        let totalMarkers = Object.keys(this._markers).length;
-        let totalCircles = Object.keys(this._circles).length;
-
-        // Presume non-solo markers/circles
-        let soloMarker = null;
-        let soloCircle = null;
-
-        // If just one marker, get it
-        if (1 === totalMarkers) {
-            soloMarker = this._markers[Object.keys(this._markers)[0]];
-        }
-
-        // If just one circle, get it
-        if (1 === totalCircles) {
-            soloCircle = this._circles[Object.keys(this._circles)[0]];
-        }
-
-        // If only one marker and one circle
-        if (soloMarker && soloCircle) {
-            // Get center coordinates of each
-            const markerCenter = soloMarker.position;
-            const circleCenter = soloCircle.getCenter();
-            // If marker and circle are in the same place
-            if (markerCenter.equals(circleCenter)) {
-                // Intentionally ignore the circle
-                totalCircles = 0;
-            }
-        }
-
-        // Total number of items on the map
-        const grandTotal = totalMarkers + totalCircles;
-
-        // If only one item
-        if (1 === grandTotal) {
-
-            // If no zoom specified
-            if (!zoom) {
-                // Set to a comfortable zoom level
-                this.zoom(this._comfortableZoom);
-            }
-
-            // If sole item is a marker
-            if (soloMarker) {
-
-                // Set center coordinates
-                this.center({
-                    'lat': soloMarker.position.lat(),
-                    'lng': soloMarker.position.lng()
-                });
-
-            // Else, if sole item is a circle
-            } else if (soloCircle) {
-
-                // Set center coordinates
-                this.center({
-                    'lat': soloCircle.getCenter().lat(),
-                    'lng': soloCircle.getCenter().lng()
-                });
-
-            }
-
-        } else {
-
-            // Fit to the existing items
-            this.fit();
-
         }
     };
 
