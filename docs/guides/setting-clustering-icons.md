@@ -12,7 +12,7 @@ Here is a helpful script which replicates the default behavior...
 
 Download this file, and place it into a public front-end directory.
 
-- [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/docs/examples/js/renderer.js)
+- [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v5/docs/examples/js/renderer.js)
 
 :::tip This file belongs to you now
 Once you have copied the `renderer.js` file locally, you are free to make any further adjustments as you deem necessary.

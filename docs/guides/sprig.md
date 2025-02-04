@@ -47,7 +47,7 @@ Several small pieces play a cooperative role in handling the proximity search...
 
 Download this file, and place it somewhere in your `templates` folder. It's a common practice to put [Sprig components](https://putyourlightson.com/plugins/sprig#how-it-works) into a `_components` folder, but that is not required.
 
-- [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v4/docs/examples/twig/_components/proximity-search.twig)
+- [**Latest version on GitHub**](https://github.com/doublesecretagency/craft-googlemaps/blob/v5/docs/examples/twig/_components/proximity-search.twig)
 
 :::tip This file belongs to you now
 Once you have copied the `proximity-search.twig` file locally, you are free to make any further adjustments as you deem necessary.
