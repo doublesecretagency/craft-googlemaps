@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed bug where a map may not load properly with only one marker. ([#126](https://github.com/doublesecretagency/craft-googlemaps/issues/126))
+
 ## 4.6.1 - 2024-12-12
 
 ### Fixed

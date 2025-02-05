@@ -300,9 +300,7 @@ function DynamicMap(locations, options) {
     this.center = function(coords, assumeSuccess) {
 
         // Ensure coordinates are valid
-        coords = coords
-            || this._determineBounds().getCenter()
-            || this._d.center;
+        coords = coords || this._d.center;
 
         // Log status (if success is not assumed)
         if (googleMaps.log && !assumeSuccess) {
@@ -345,22 +343,35 @@ function DynamicMap(locations, options) {
             console.log(`[${this.id}] Fitting map to existing boundaries`);
         }
 
-        // Fit bounds of current map
-        this._map.fitBounds(this._determineBounds());
+        // Get bounds
+        var bounds = this._determineBounds();
 
-        // Get the total number of markers and circles
-        const totalMarkers = Object.keys(this._markers).length;
-        const totalCircles = Object.keys(this._circles).length;
-
-        // If no markers or circles exist
-        if (!totalMarkers && !totalCircles) {
+        // If bounds are empty
+        if (bounds.isEmpty()) {
             // Example coordinates
             const zeroZero = {'lat':0,'lng':0};
             // Log error message
             console.error(`[GM] No items on the map, it will be centered in the middle of the ocean! 🐙`, zeroZero);
+            // Center the map
+            this.center(zeroZero, true);
             // We are in the ocean, zoom out
             this.zoom(2, true);
+            // Bail
+            return this;
         }
+
+        // If bounds are just a single point
+        if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+            // Center the map
+            this.center(bounds.getCenter().toJSON(), true);
+            // Quietly zoom to a comfortable level
+            this.zoom(this._comfortableZoom, true);
+            // Bail
+            return this;
+        }
+
+        // Fit bounds of current map
+        this._map.fitBounds(bounds);
 
         // Keep the party going
         return this;
@@ -1379,6 +1390,8 @@ function DynamicMap(locations, options) {
 
     };
 
+    // ========================================================================= //
+
     // Prevent the map from appearing as a grey box, emit warnings if necessary
     this._preventGreyBox = function() {
 
@@ -1397,46 +1410,23 @@ function DynamicMap(locations, options) {
             let lat = center.lat ?? center.lat();
             let lng = center.lng ?? center.lng();
 
-            // Sanitize center
-            center = {
+            // Set sanitized center
+            this.center({
                 'lat': (isNaN(lat) ? 0 : lat),
                 'lng': (isNaN(lng) ? 0 : lng)
-            }
-
-            // Center on specified coordinates
-            this.center(center);
-
-            // If no zoom specified
-            if (!zoom) {
-                // Set to a comfortable zoom level
-                zoom = this._comfortableZoom;
-            }
+            });
 
         } else {
 
             // Fit to the existing items
             this.fit();
 
-            // Get the total number of markers and circles
-            const totalMarkers = Object.keys(this._markers).length;
-            const totalCircles = Object.keys(this._circles).length;
-
-            // Total number of items on the map
-            const total = totalMarkers + totalCircles;
-
-            // If only one item and no zoom specified
-            if ((1 === total) && !zoom) {
-                // Set to a comfortable zoom level
-                zoom = this._comfortableZoom;
-            }
-
         }
 
-        // If level was specified, zoom
+        // If zoom is specified, set it
         if (zoom) {
             this.zoom(zoom);
         }
-
     };
 
     // ========================================================================= //
