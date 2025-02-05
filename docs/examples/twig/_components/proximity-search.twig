@@ -79,7 +79,8 @@
 
 {# Reinitialize the map after Sprig loads fresh HTML #}
 {% if sprig.isRequest %}
-    <script>
+    {% set js %}
         googleMaps.init('{{ mapId }}');
-    </script>
+    {% endset %}
+    {% do sprig.registerJs(js) %}
 {% endif %}
