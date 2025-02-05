@@ -261,7 +261,7 @@ class AddressField extends Field implements PreviewableFieldInterface
             $lng  = ($value['lng']  ?? null);
             $zoom = ($value['zoom'] ?? null);
             // Normalize raw value
-            $value['raw'] = static::normalizeRaw($value['raw']);
+            $value['raw'] = static::normalizeRaw($value['raw'] ?? null);
             // Return Address model
             return new AddressModel([
                 'elementId'    => (int) $elementId,
@@ -313,7 +313,7 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['lng'] = ($attr['lng'] ? (float) $attr['lng'] : null);
 
         // Normalize raw value
-        $attr['raw'] = static::normalizeRaw($attr['raw']);
+        $attr['raw'] = static::normalizeRaw($attr['raw'] ?? null);
 
         // Get handles of visible subfields
         $attr['enabledSubfields'] = $this->_getEnabledSubfields();

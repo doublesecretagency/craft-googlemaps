@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed bug where a map may not load properly with only one marker. ([#126](https://github.com/doublesecretagency/craft-googlemaps/issues/126))
+- Fixed bug which caused an error in Feed Me. ([#131](https://github.com/doublesecretagency/craft-googlemaps/issues/131))
 
 ## 5.1.1 - 2025-01-10
 
