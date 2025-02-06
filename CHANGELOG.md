@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Patched bug in multisite migration. ([#130](https://github.com/doublesecretagency/craft-googlemaps/issues/130))
+
 ## 5.1.2 - 2025-02-05
 
 ### Fixed
