@@ -15,6 +15,7 @@ use Craft;
 use craft\db\Migration;
 use craft\db\Query;
 use craft\db\Table;
+use craft\errors\SiteNotFoundException;
 use craft\helpers\DateTimeHelper;
 use craft\helpers\Json;
 use craft\helpers\StringHelper;
@@ -67,6 +68,7 @@ class m240530_122024_multisite_support extends Migration
 
     /**
      * Add new columns.
+     *
      * @throws NotSupportedException
      */
     private function _newColumns(): void
@@ -102,20 +104,28 @@ class m240530_122024_multisite_support extends Migration
     /**
      * Populate new column with existing data.
      *
-     * @throws Exception if critical data is missing or operations fail.
+     * @throws Exception
      */
     private function _populateData(): void
     {
-        // Get the primary site ID
-        $primarySiteId = Craft::$app->getSites()->getPrimarySite()->id;
+        // Start by attempting to get Address data from the `elements_sites` table.
+        $this->_phase1();
 
-        // Set the primary site ID for all existing Addresses
-        $this->update(
-            Install::GM_ADDRESSES,
-            ['[[siteId]]' => $primarySiteId],
-            ['[[siteId]]' => null]
-        );
+        // For records without a `siteId`, attempt to get the `siteId` from the `elements_sites` table.
+        $this->_phase2();
 
+        // For all remaining records, set the primary site ID.
+        $this->_phase3();
+    }
+
+    /**
+     * Start by attempting to get Address data from the `elements_sites` table.
+     *
+     * @return void
+     * @throws Exception
+     */
+    private function _phase1(): void
+    {
         // Get the UIDs of all Address fields
         $fieldUids = (new Query())
             ->select('[[uid]]')
@@ -152,8 +162,10 @@ class m240530_122024_multisite_support extends Migration
 
                         // If the element is this Address field
                         if (($element['fieldUid'] ?? null) === $fieldUid) {
+
                             // Migrate Address data for this field layout element
                             $this->_migrate($element['uid']);
+
                         }
 
                     }
@@ -167,6 +179,65 @@ class m240530_122024_multisite_support extends Migration
     }
 
     /**
+     * For records without a `siteId`, attempt to get the `siteId` from the `elements_sites` table.
+     *
+     * @return void
+     * @throws Exception
+     */
+    private function _phase2(): void
+    {
+        // Get all rows where `siteId` is NULL
+        $addresses = (new Query())
+            ->select(['[[id]]', '[[elementId]]'])
+            ->from(Install::GM_ADDRESSES)
+            ->where(['[[siteId]]' => null])
+            ->all();
+
+        // Loop over each Address
+        foreach ($addresses as $address) {
+
+            // Get the `elementId` for this Address
+            $elementId = $address['elementId'];
+
+            // Find the corresponding row with a matching `elementId`
+            $siteId = (new Query())
+                ->select(['[[siteId]]'])
+                ->from(Table::ELEMENTS_SITES)
+                ->where(['[[elementId]]' => $elementId])
+                ->scalar();
+
+            // If a `siteId` is found, update the `googlemaps_addresses` table
+            if ($siteId) {
+                $this->update(
+                    Install::GM_ADDRESSES,
+                    ['[[siteId]]' => $siteId],
+                    ['[[id]]' => $address['id']]
+                );
+            }
+        }
+    }
+
+    /**
+     * For all remaining records, set the primary site ID.
+     *
+     * @return void
+     * @throws SiteNotFoundException
+     */
+    private function _phase3(): void
+    {
+        // Get the primary site ID
+        $primarySiteId = Craft::$app->getSites()->getPrimarySite()->id;
+
+        // Set the primary site ID for all remaining Addresses
+        $this->update(
+            Install::GM_ADDRESSES,
+            ['[[siteId]]' => $primarySiteId],
+            ['[[siteId]]' => null]
+        );
+    }
+
+    // ========================================================================= //
+    /**
      * Migrate Address data for a specific field layout element.
      *
      * @param string $fieldLayoutElementUid
@@ -174,6 +245,7 @@ class m240530_122024_multisite_support extends Migration
      */
     private function _migrate(string $fieldLayoutElementUid): void
     {
+
         // Get all element sites with content containing this field layout element
         $elementSites = (new Query())
             ->select('[[id]], [[elementId]], [[siteId]], [[content]], [[dateCreated]], [[dateUpdated]]')
@@ -186,9 +258,6 @@ class m240530_122024_multisite_support extends Migration
             return;
         }
 
-        // Initialize array for batch insertion
-        $rows = [];
-
         // Loop over each element site
         foreach ($elementSites as $elementSite) {
 
@@ -196,15 +265,15 @@ class m240530_122024_multisite_support extends Migration
             $elementSiteContent = Json::decode($elementSite['content']) ?? [];
 
             // Get the Address data from the content
-            $content = $elementSiteContent[$fieldLayoutElementUid] ?? null;
+            $address = $elementSiteContent[$fieldLayoutElementUid] ?? null;
 
             // If no Address data found, bail
-            if (!$content) {
+            if (!$address) {
                 continue;
             }
 
             // Normalize raw value
-            $content['raw'] = AddressField::normalizeRaw($content['raw'] ?? null);
+            $address['raw'] = AddressField::normalizeRaw($address['raw'] ?? null);
 
             // Get current time as a fallback
             $now = DateTimeHelper::currentUTCDateTime()->format('Y-m-d H:i:s');
@@ -213,84 +282,107 @@ class m240530_122024_multisite_support extends Migration
             $gmAddress = [
                 'elementId'    => (int) $elementSite['elementId'],
                 'siteId'       => (int) $elementSite['siteId'],
-                'fieldId'      => (int) $content['fieldId'],
-                'formatted'    => ($content['formatted'] ?? null),
-                'raw'          => ($content['raw'] ? Json::encode($content['raw']) : null),
-                'name'         => ($content['name'] ?? null),
-                'street1'      => ($content['street1'] ?? null),
-                'street2'      => ($content['street2'] ?? null),
-                'city'         => ($content['city'] ?? null),
-                'state'        => ($content['state'] ?? null),
-                'zip'          => ($content['zip'] ?? null),
-                'neighborhood' => ($content['neighborhood'] ?? null),
-                'county'       => ($content['county'] ?? null),
-                'country'      => ($content['country'] ?? null),
-                'countryCode'  => ($content['countryCode'] ?? null),
-                'placeId'      => ($content['placeId'] ?? null),
-                'lat'          => (float) $content['lat'],
-                'lng'          => (float) $content['lng'],
-                'zoom'         => (int) ($content['zoom'] ?? 11),
+                'fieldId'      => (int) $address['fieldId'],
+                'formatted'    => ($address['formatted'] ?? null),
+                'raw'          => ($address['raw'] ? Json::encode($address['raw']) : null),
+                'name'         => ($address['name'] ?? null),
+                'street1'      => ($address['street1'] ?? null),
+                'street2'      => ($address['street2'] ?? null),
+                'city'         => ($address['city'] ?? null),
+                'state'        => ($address['state'] ?? null),
+                'zip'          => ($address['zip'] ?? null),
+                'neighborhood' => ($address['neighborhood'] ?? null),
+                'county'       => ($address['county'] ?? null),
+                'country'      => ($address['country'] ?? null),
+                'countryCode'  => ($address['countryCode'] ?? null),
+                'placeId'      => ($address['placeId'] ?? null),
+                'lat'          => (float) $address['lat'],
+                'lng'          => (float) $address['lng'],
+                'zoom'         => (int) ($address['zoom'] ?? 11),
                 'dateCreated'  => ($elementSite['dateCreated'] ?? $now),
                 'dateUpdated'  => ($elementSite['dateUpdated'] ?? $now),
                 'uid'          => StringHelper::UUID(), // Generate new UUID
             ];
 
-            // Add the Address data to the batch
-            $rows[] = $gmAddress;
-
             // Update the content with the new Address data
             $elementSiteContent[$fieldLayoutElementUid] = $gmAddress;
 
-            try {
-                // Update the element site with the new content
-                Yii::$app->db
-                    ->createCommand()
-                    ->update(
-                        Table::ELEMENTS_SITES,
-                        ['content' => $elementSiteContent],
-                        ['id' => $elementSite['id']]
-                    )
-                    ->execute();
-            } catch (Exception $e) {
-                // Log error
-                $error = $e->getMessage();
-                Craft::error("Error updating element site [{$elementSite['id']}]: {$error}");
-            }
+            // Migrate Address data in the `elements_sites` table
+            $this->_migrateElementsSitesTable($elementSiteContent, $elementSite['id']);
+
+            // Migrate Address data in the `googlemaps_addresses` table
+            $this->_migrateGoogleMapsAddressesTable($gmAddress);
+
         }
+    }
 
-        // If no rows to insert, bail
-        if (!$rows) {
-            return;
-        }
-
-        // Extract column names from the first row
-        $columns = array_keys($rows[0]);
-
-        // Prepare the base SQL using `batchInsert`
-        $sql = $this->db->createCommand()
-            ->batchInsert(Install::GM_ADDRESSES, $columns, $rows)
-            ->getRawSql();
-
-        // If using MySQL
-        if (Craft::$app->getDb()->getIsMysql()) {
-            // MySQL syntax to update conflicting rows
-            $updateClause = implode(', ', array_map(function($col) {
-                return "$col = VALUES($col)";
-            }, $columns));
-            $sql .= " ON DUPLICATE KEY UPDATE {$updateClause}";
-        } else {
-            // Postgres syntax to update conflicting rows
-            $updateClause = implode(', ', array_map(function($col) {
-                return "\"$col\" = EXCLUDED.\"$col\"";
-            }, $columns));
-            $sql .= " ON CONFLICT (\"elementId\", \"siteId\", \"fieldId\") DO UPDATE SET {$updateClause}";
-        }
-
+    /**
+     * Migrate Address data in the `elements_sites` table.
+     *
+     * @param array $elementSiteContent
+     * @param int $elementSiteId
+     */
+    private function _migrateElementsSitesTable(array $elementSiteContent, int $elementSiteId): void
+    {
         try {
-            // Batch insert these Addresses
-            $this->db->createCommand($sql)->execute();
+
+            // Update the element site with the new content
+            Yii::$app->db
+                ->createCommand()
+                ->update(
+                    Table::ELEMENTS_SITES,
+                    ['content' => $elementSiteContent],
+                    ['id' => $elementSiteId]
+                )
+                ->execute();
+
         } catch (Exception $e) {
-            Craft::error("Error during batch insert: ".$e->getMessage());
+            // Log error
+            $error = $e->getMessage();
+            Craft::error("Error updating element site [{$elementSiteId}]: {$error}");
+        }
+    }
+
+    /**
+     * Migrate Address data in the `googlemaps_addresses` table.
+     *
+     * @param array $gmAddress
+     */
+    private function _migrateGoogleMapsAddressesTable(array $gmAddress): void
+    {
+        try {
+
+            // Check for a matching Address record with a NULL `siteId`
+            $existingId = (new Query())
+                ->select('id')
+                ->from(Install::GM_ADDRESSES)
+                ->where([
+                    'elementId' => $gmAddress['elementId'],
+                    'siteId' => null,
+                    'fieldId' => $gmAddress['fieldId'],
+                ])
+                ->scalar();
+
+            // If a matching Address record exists
+            if ($existingId) {
+
+                // Update the `siteId` for the existing Address record
+                $this->update(
+                    Install::GM_ADDRESSES,
+                    ['siteId' => $gmAddress['siteId']],
+                    ['id' => $existingId]
+                );
+
+            } else {
+
+                // Otherwise, insert a new Address record
+                $this->insert(Install::GM_ADDRESSES, $gmAddress);
+
+            }
+        } catch (Exception $e) {
+            // Log error
+            $error = $e->getMessage();
+            Craft::error("Error processing address data for {$gmAddress['elementId']}-{$gmAddress['siteId']}-{$gmAddress['fieldId']}: {$error}");
         }
 
     }
