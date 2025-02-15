@@ -5,6 +5,7 @@
 ### Fixed
 - Significantly refactored multisite migration. ([#130](https://github.com/doublesecretagency/craft-googlemaps/issues/130))
 - Fixed visual overlap of field handle and map toggle occurring in Craft 5.6+.
+- Load maps asynchronously. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
 
 ## 5.1.2 - 2025-02-05
 
