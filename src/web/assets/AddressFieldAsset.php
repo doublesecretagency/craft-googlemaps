@@ -56,6 +56,7 @@ class AddressFieldAsset extends AssetBundle
     {
         // Required API URL configuration options
         $params = [
+            'loading' => 'async',
             'libraries' => 'places',
             'callback' => 'initAddressField',
         ];

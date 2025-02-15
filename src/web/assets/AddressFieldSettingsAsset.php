@@ -44,6 +44,7 @@ class AddressFieldSettingsAsset extends AssetBundle
             'js/Sortable.min.js',
             'js/address-settings.js',
             GoogleMaps::getApiUrl([
+                'loading' => 'async',
                 'libraries' => 'places',
                 'callback' => 'initAddressFieldSettings',
             ]),
