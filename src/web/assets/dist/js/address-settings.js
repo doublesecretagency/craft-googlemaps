@@ -18759,16 +18759,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return toggleOffset;
       }
 
+      // Compile new class
+      var toggleClass = "gm-toggle-".concat(this.config.style);
+
       // Look at parent element to get nearby items
       var copyTextBtn = this.container.getElementsByClassName('copytextbtn');
+      var copyAttribute = this.container.getElementsByTagName('craft-copy-attribute');
+      var actionBtn = this.container.getElementsByClassName('action-btn');
       var instructions = this.container.getElementsByClassName('instructions');
 
-      // If "copy" div is visible
+      // If "copy" div is visible (Craft < 5.6)
       if (copyTextBtn.length) {
-        // Compile new class
-        var toggleClass = "gm-toggle-".concat(this.config.style);
         // Add new class to "copy" div
         copyTextBtn[0].classList.add(toggleClass);
+      }
+
+      // If "copy" div is visible (Craft 5.6+)
+      if (copyAttribute.length) {
+        // Add new class to "copy" div
+        copyAttribute[0].classList.add(toggleClass);
+      } else if (actionBtn.length) {
+        // Add new class to menu button
+        actionBtn[0].classList.add(toggleClass);
       }
 
       // If field has instructions

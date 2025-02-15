@@ -65,16 +65,28 @@ export default {
                 return toggleOffset;
             }
 
-            // Look at parent element to get nearby items
-            let copyTextBtn  = this.container.getElementsByClassName('copytextbtn');
-            let instructions = this.container.getElementsByClassName('instructions');
+            // Compile new class
+            const toggleClass = `gm-toggle-${this.config.style}`;
 
-            // If "copy" div is visible
+            // Look at parent element to get nearby items
+            let copyTextBtn   = this.container.getElementsByClassName('copytextbtn');
+            let copyAttribute = this.container.getElementsByTagName('craft-copy-attribute');
+            let actionBtn     = this.container.getElementsByClassName('action-btn');
+            let instructions  = this.container.getElementsByClassName('instructions');
+
+            // If "copy" div is visible (Craft < 5.6)
             if (copyTextBtn.length) {
-                // Compile new class
-                const toggleClass = `gm-toggle-${this.config.style}`;
                 // Add new class to "copy" div
                 copyTextBtn[0].classList.add(toggleClass);
+            }
+
+            // If "copy" div is visible (Craft 5.6+)
+            if (copyAttribute.length) {
+                // Add new class to "copy" div
+                copyAttribute[0].classList.add(toggleClass);
+            } else if (actionBtn.length) {
+                // Add new class to menu button
+                actionBtn[0].classList.add(toggleClass);
             }
 
             // If field has instructions

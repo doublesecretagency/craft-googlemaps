@@ -1,10 +1,16 @@
-.field .copytextbtn.gm-toggle-both {
+.field .copytextbtn.gm-toggle-both,
+.field craft-copy-attribute.gm-toggle-both,
+.field .action-btn.gm-toggle-both {
   margin-right: 94px;
 }
-.field .copytextbtn.gm-toggle-text {
+.field .copytextbtn.gm-toggle-text,
+.field craft-copy-attribute.gm-toggle-text,
+.field .action-btn.gm-toggle-text {
   margin-right: 79px;
 }
-.field .copytextbtn.gm-toggle-icon {
+.field .copytextbtn.gm-toggle-icon,
+.field craft-copy-attribute.gm-toggle-icon,
+.field .action-btn.gm-toggle-icon {
   margin-right: 21px;
 }
 

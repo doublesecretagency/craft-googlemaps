@@ -1,6 +1,8 @@
 // To accommodate the map toggle, adjust margin of "copy" div
 .field {
-  .copytextbtn {
+  .copytextbtn,          // Craft < 5.6
+  craft-copy-attribute,  // Craft 5.6+ (copy handle)
+  .action-btn {          // Craft 5.6+ (menu button)
     &.gm-toggle-both {margin-right: 94px;}
     &.gm-toggle-text {margin-right: 79px;}
     &.gm-toggle-icon {margin-right: 21px;}
