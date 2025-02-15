@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.3 - 2025-02-15
 
 ### Fixed
 - Load maps asynchronously. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
