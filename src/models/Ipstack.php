@@ -18,6 +18,7 @@ use craft\helpers\Json;
 use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use yii\base\Exception;
 
 /**
  * Class Ipstack
@@ -47,7 +48,6 @@ class Ipstack extends Model
      * @param string|null $ip
      * @param array $parameters
      * @return Visitor
-     * @throws GuzzleException
      */
     public static function geolocate(?string $ip, array $parameters = []): Visitor
     {
@@ -68,11 +68,15 @@ class Ipstack extends Model
             return $results;
         }
 
-        // Get geolocation response
-        $response = static::_pingEndpoint($ip, $parameters);
-
-        // Convert API response into geolocation data
-        $results = static::_parseResponse($response);
+        try {
+            // Get geolocation response
+            $response = static::_pingEndpoint($ip, $parameters);
+            // Convert API response into geolocation data
+            $results = static::_parseResponse($response);
+        } catch (GuzzleException|Exception $e) {
+            // Log error
+            static::$_error = Craft::t('google-maps', "Error performing visitor geolocation, unable to connect to ipstack. {$e->getMessage()}");
+        }
 
         // If an error occurred
         if (static::$_error) {
@@ -80,6 +84,8 @@ class Ipstack extends Model
             return new Visitor([
                 'service' => static::SERVICE,
                 'ip' => $ip,
+                'lat' => 0,
+                'lng' => 0,
                 'error' => static::$_error,
             ]);
         }
@@ -105,7 +111,7 @@ class Ipstack extends Model
      * @param string|null $ip
      * @param array $parameters
      * @return array|null
-     * @throws GuzzleException
+     * @throws GuzzleException|Exception
      */
     private static function _pingEndpoint(?string $ip, array $parameters): ?array
     {
@@ -131,6 +137,13 @@ class Ipstack extends Model
             if (($response = $e->getResponse()) === null || $response->getStatusCode() === 500) {
                 throw $e;
             }
+        }
+
+        // If not a valid response, throw an exception
+        if (200 !== $response->getStatusCode()) {
+            $code = $response->getStatusCode();
+            $phrase = $response->getReasonPhrase();
+            throw new Exception("[{$code}] {$phrase}");
         }
 
         // Return raw geolocation results

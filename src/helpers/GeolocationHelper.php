@@ -80,6 +80,7 @@ class GeolocationHelper
                 'service' => $service,
                 'ip' => $ip,
                 'visitor' => $visitor,
+                'error' => $visitor->error,
             ])
         );
 

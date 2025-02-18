@@ -13,6 +13,7 @@ This event is triggered when a [visitor geolocation](/geolocation/) is performed
 | `service` | _string_ | Which geolocation service was used (`ipstack` or `MaxMind`).
 | `ip`      | _string_ | The visitor's IP address (automatically detected by default).
 | `visitor` | [Visitor](/models/visitor-model/) | Complete geolocation lookup results.
+| `error`   | _string_ | Error message (if an error occurred).
 
 ## Example
 
@@ -34,6 +35,9 @@ Event::on(
     
         // The resulting Visitor Model
         $event->visitor;
+
+        // Error message if unsuccessful
+        $event->error;
 
     }
 );
