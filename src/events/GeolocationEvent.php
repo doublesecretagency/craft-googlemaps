@@ -29,11 +29,16 @@ class GeolocationEvent extends Event
     /**
      * @var string|null The visitor's IP address.
      */
-    public ?string $ip;
+    public ?string $ip = null;
 
     /**
      * @var Visitor The resulting Visitor location data.
      */
     public Visitor $visitor;
+
+    /**
+     * @var string|null Error message (if an error occurred).
+     */
+    public ?string $error = null;
 
 }

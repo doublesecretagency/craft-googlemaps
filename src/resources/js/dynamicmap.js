@@ -131,6 +131,11 @@ function DynamicMap(locations, options) {
             // Get individual coordinates
             var coords = locations[i];
 
+            // If an error is present, show in console
+            if (coords.error){
+                console.error(`[GM] ${coords.error}`);
+            }
+
             // If coordinates are not valid, skip
             if (!coords.hasOwnProperty('lat') || !coords.hasOwnProperty('lng')) {
                 continue;

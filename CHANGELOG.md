@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- Improved response when ipstack is offline.
+
 ### Fixed
 - Significantly refactored multisite migration. ([#130](https://github.com/doublesecretagency/craft-googlemaps/issues/130))
 - Fixed visual overlap of field handle and map toggle occurring in Craft 5.6+.

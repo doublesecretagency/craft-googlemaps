@@ -85,6 +85,8 @@ class MapHelper
             $coords = $locations->getCoords();
             // Set the marker ID based on merged coordinates
             $coords['id'] = ($coords['id'] ?? implode(',', $coords));
+            // Get the error if it exists
+            $coords['error'] = $locations->error ?? null;
             // Return the full coordinates
             return [$coords];
         }
