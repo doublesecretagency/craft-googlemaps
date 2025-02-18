@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.4 - 2025-02-17
 
 ### Changed
 - Improved response when ipstack is offline.
