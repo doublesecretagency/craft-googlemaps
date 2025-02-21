@@ -25,6 +25,9 @@ abstract class GoogleConstants
         // Level 1
         'mapTypeId' => 'MapTypeId',
         // Level 2
+        'cameraControlOptions' => [
+            'position' => 'ControlPosition',
+        ],
         'fullscreenControlOptions' => [
             'position' => 'ControlPosition',
         ],
