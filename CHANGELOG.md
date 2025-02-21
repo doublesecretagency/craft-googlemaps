@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.5 - 2025-02-21
 
 ### Added
 - Added `cameraControlOptions` definition.
