@@ -18673,7 +18673,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Prevent address selection from attempting to submit the form
       $input.addEventListener('keydown', function (event) {
         // If "Return" or "Enter" key was pressed
-        if (event.keyCode === 13) {
+        if (event.key === 'Enter') {
           // Do nothing
           event.preventDefault();
         }
