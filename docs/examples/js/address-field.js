@@ -98,8 +98,8 @@ window.addressField = window.addressField || {
         });
 
         // Prevent address selection from attempting to submit the form
-        google.maps.event.addDomListener(subfield, 'keydown', (event) => {
-            if (event.keyCode === 13) {
+        subfield.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
                 event.preventDefault();
             }
         });

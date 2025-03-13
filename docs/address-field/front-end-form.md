@@ -128,7 +128,12 @@ Add the following lines to your Twig template, then adjust them accordingly...
 ```twig
 {% do googleMaps.loadAssets({'libraries': 'places'}) %}
 {% js 'path/to/address-field.js' %}
-{% js 'window.addressField.activateSubfield("myAddressField-street1");' %}
+{% js %}
+    {# When the page is loaded, activate the subfield #}
+    window.addEventListener('load', function() {
+        window.addressField.activateSubfield('myAddressField-street1');
+    });
+{% endjs %}
 ```
 
 In order, these three lines will:

@@ -108,7 +108,7 @@ export default {
             // Prevent address selection from attempting to submit the form
             $input.addEventListener('keydown', (event) => {
                 // If "Return" or "Enter" key was pressed
-                if (event.keyCode === 13) {
+                if (event.key === 'Enter') {
                     // Do nothing
                     event.preventDefault();
                 }
