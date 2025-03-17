@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.1.5 - 2025-03-17
 
 ### Changed
 - Regressed asynchronous map loading. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
