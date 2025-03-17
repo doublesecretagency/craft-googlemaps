@@ -59,8 +59,14 @@ class GoogleMaps
         // Optionally use minified files
         $min = ($minifyJsFiles ? 'min.' : '');
 
-        // Load asynchronously
-        $params = array_merge($params, ['loading' => 'async']);
+        /**
+         * Temporarily disabled async loading, see:
+         * - https://github.com/doublesecretagency/craft-googlemaps/issues/117
+         * - https://github.com/doublesecretagency/craft-googlemaps/issues/133
+         */
+
+//        // Load asynchronously
+//        $params = array_merge($params, ['loading' => 'async']);
 
         // Link to Google Maps JavaScript API URL
         $files = [self::getApiUrl($params)];

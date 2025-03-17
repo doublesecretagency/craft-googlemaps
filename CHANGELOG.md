@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Regressed asynchronous map loading. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
+
+### Fixed
+- Fix bug breaking maps on Mac + Firefox. ([#133](https://github.com/doublesecretagency/craft-googlemaps/issues/133))
+
 ## 4.6.5 - 2025-02-21
 
 ### Added
