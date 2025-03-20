@@ -34,7 +34,7 @@ class JsApiAsset extends AssetBundle
         ];
 
         // Whether to use minified JavaScript files
-        $minifyJsFiles = (GoogleMapsPlugin::$plugin->getSettings()->minifyJsFiles ?? false);
+        $minifyJsFiles = (GoogleMapsPlugin::getInstance()?->getSettings()->minifyJsFiles ?? false);
 
         // Optionally use minified files
         $min = ($minifyJsFiles ? 'min.' : '');
