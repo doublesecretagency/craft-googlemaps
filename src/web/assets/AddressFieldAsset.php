@@ -43,8 +43,11 @@ class AddressFieldAsset extends AssetBundle
 
         $this->js = [
             'js/address.js',
-            $this->_getApiUrl(),
         ];
+
+        if (GoogleMapsPlugin::getInstance()) {
+            $this->js[] = $this->_getApiUrl();
+        }
     }
 
     /**
