@@ -28,6 +28,10 @@ class GoogleMapsAsset extends AssetBundle
     {
         parent::init();
 
+        if (!GoogleMapsPlugin::getInstance()) {
+            return;
+        }
+
         // Load Google Maps API
         $this->js = [
             GoogleMaps::getApiUrl()
