@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed compatibility issue with Craft Cloud. ([#121](https://github.com/doublesecretagency/craft-googlemaps/issues/121)) (thanks @timkelty)
+
 ## 5.1.5 - 2025-03-17
 
 ### Changed
