@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.7 - 2025-04-04
 
 ### Fixed
 - Fixed compatibility issue with Craft Cloud. ([#121](https://github.com/doublesecretagency/craft-googlemaps/issues/121))
