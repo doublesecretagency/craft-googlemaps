@@ -105,6 +105,19 @@ class AddressField extends Field implements PreviewableFieldInterface
     // ========================================================================= //
 
     /**
+     * Dead-end recipient of Preview data
+     * when field settings are saved.
+     * 
+     * NOT USED ANYWHERE:
+     * Only exists to satisfy saving the field settings.
+     * 
+     * @var array
+     */
+    public array $settingsPreview = [];
+
+    // ========================================================================= //
+
+    /**
      * Static configuration of a proximity search, if one is being carried out.
      *
      * @var array|null
@@ -411,6 +424,7 @@ class AddressField extends Field implements PreviewableFieldInterface
                     'iconOn' => 'marker.svg',
                     'iconOff' => 'marker-hollow.svg',
                 ]),
+                'isRevision' => ($element?->getIsRevision() ?? false),
             ]
         ]);
     }
@@ -426,13 +440,16 @@ class AddressField extends Field implements PreviewableFieldInterface
         // Register assets
         $view->registerAssetBundle(AddressFieldSettingsAsset::class);
 
+        // Get namespace
+        $ns = $view->getNamespace();
+
         // Load fieldtype settings template
         return $view->renderTemplate('google-maps/address-settings', [
             'config' => [
                 'namespace' => [
-                    'id' => $view->namespaceInputId('PLACEHOLDER'),
-                    'name' => $view->namespaceInputName('PLACEHOLDER'),
-                    'handle' => 'PLACEHOLDER',
+                    'id' => $view->namespaceInputId('gm-settings-preview'),
+                    'name' => $ns,
+                    'handle' => $ns,
                 ],
                 'settings' => $this->_getExtraSettings(),
                 'data' => $this->_getAddressData(),

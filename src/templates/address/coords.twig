@@ -1,0 +1,79 @@
+{# Basic coordinates configuration #}
+{% set coordsConfig = [
+    {
+        key: 'lat',
+        label: 'Latitude',
+        styles: 'width:43%;'
+    },
+    {
+        key: 'lng',
+        label: 'Longitude',
+        styles: 'width:43%;'
+    },
+    {
+        key: 'zoom',
+        label: 'Zoom',
+        styles: 'width:11%;'
+    }
+] %}
+
+{# Get coordinates mode #}
+{% set mode = config.settings.coordinatesMode %}
+
+{# Whether coordinates are required #}
+{% set required = config.settings.requireCoordinates %}
+
+{# Get coordinates data #}
+{% set coordsData = config.data.coords %}
+
+{# If no zoom value, set default #}
+{% if not (coordsData['zoom'] ?? false) %}
+    {% set coordsData = coordsData|merge({'zoom': 11}) %}
+{% endif %}
+
+{# Render coordinates #}
+<div>
+    {% for input in coordsConfig -%}
+        <input
+            type="{{ mode == 'hidden' ? 'hidden' : 'number' }}"
+            placeholder="{{ input.label }}"
+            {{ mode not in ['editable','hidden'] ? 'readonly' }}
+            value="{{ coordsData[input.key] }}"
+            name="{{ "#{config.namespace.handle}[#{input.key}]" }}"
+            class="{{ _self.classes(input, mode, required) }}"
+            style="{{ input.styles }}"
+            autocomplete="chrome-off"
+        />
+    {%- endfor %}
+</div>
+
+{# Compile classes for subfield #}
+{% macro classes(input, mode, required) %}
+    {%- apply spaceless -%}
+
+        {# If not hidden #}
+        {% if mode != 'hidden' %}
+
+            {# Whether the existing coordinates are valid #}
+            {% set validCoords = true %}
+
+            {# TODO: Port from Vue #}
+{#            const validCoords = addressStore._validateCoords(addressStore.data.coords); #}
+
+            {# Whether the coordinates are editable #}
+            {% set isEditable = (mode != 'editable' ? 'disabled') %}
+
+            {# Whether to mark coordinates as required #}
+            {% if required and not validCoords and (input.key != 'zoom') %}
+                {% set requireCoordinates = 'required' %}
+            {% else %}
+                {% set requireCoordinates = '' %}
+            {% endif %}
+
+            {# Render all classes #}
+            {{ "text code fullwidth #{isEditable} #{requireCoordinates}" }}
+
+        {% endif %}
+
+    {%- endapply -%}
+{% endmacro %}

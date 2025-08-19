@@ -2,7 +2,12 @@
 
 ## Unreleased
 
+### Changed
+- Progressively enhanced Address fields (loads everything via Twig, then hydrates with Vue).
+
 ### Fixed
+- Fixed bug which caused Address fields to unnecessarily be marked as changed. ([#138](https://github.com/doublesecretagency/craft-googlemaps/issues/138))
+- Fixed bug which rendered an Address field dynamically when viewed as a revision. ([#150](https://github.com/doublesecretagency/craft-googlemaps/issues/150))
 - Fixed Postgres proximity search bug.
 - Fixed Postgres reverse proximity search bug.
 

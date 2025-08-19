@@ -61,7 +61,7 @@ class AddressFieldAsset extends AssetBundle
         $params = [
             'loading' => 'async',
             'libraries' => 'places',
-            'callback' => 'initAddressField',
+//            'callback' => 'initAddressField',
         ];
 
         // Get optional field parameters

@@ -1,0 +1,45 @@
+{# Render all subfields #}
+<div>
+    {% for subfield in config.settings.subfieldConfig -%}
+        <input
+            type="text"
+            placeholder="{{ subfield.label ~ (subfield.required ? ' *' : '') }}"
+            value="{{ config.data.address[subfield.handle] }}"
+            name="{{ "#{config.namespace.handle}[#{subfield.handle}]" }}"
+            class="text fullwidth"
+{#          :class="{'required': isRequiredAndInvalid(subfield)}" #}
+            style="{{ _self.styles(subfield) }}"
+            autocomplete="chrome-off"
+        />
+    {%- endfor %}
+</div>
+
+{# Compile styles for subfield #}
+{% macro styles(subfield) %}
+    {%- apply spaceless -%}
+
+        {# Initialize input styles and width #}
+        {% set styles = '' %}
+
+        {# If the subfield is disabled #}
+        {% if not subfield.enabled %}
+            {# Render it, but keep it hidden #}
+            {% set styles = "display:none;" %}
+        {% else %}
+            {# Get subfield width #}
+            {% set width = subfield.width %}
+            {# Never go over 100% #}
+            {% if 100 < width %}
+                {% set width = 100 %}
+            {% endif %}
+            {# Give up 1% width to the right margin #}
+            {% set width = width - 1 %}
+            {# Append width to styles #}
+            {% set styles = "width:#{width}%;" %}
+        {% endif %}
+
+        {# Render styles #}
+        {{ styles }}
+
+    {%- endapply -%}
+{% endmacro %}

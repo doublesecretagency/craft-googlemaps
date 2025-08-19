@@ -1,0 +1,88 @@
+{% import '_includes/forms' as forms %}
+
+{% set options = {
+    'mapOnStart': {
+        'default' : 'Open if the field has coordinates',
+        'open'    : 'Always start open',
+        'close'   : 'Always start closed',
+    },
+    'mapOnSearch': {
+        'open'     : 'Open',
+        'close'    : 'Close',
+        'noChange' : 'No Change',
+    },
+    'visibilityToggle': {
+        'both'   : 'Text & Icon',
+        'text'   : 'Text Only',
+        'icon'   : 'Icon Only',
+        'hidden' : 'Hidden',
+    },
+    'coordinatesMode': {
+        'editable' : 'Editable',
+        'readOnly' : 'Read Only',
+        'hidden'   : 'Hidden',
+    }
+} %}
+
+<div>
+    {{ forms.selectField({
+        id: 'map-on-start',
+        name: 'mapOnStart',
+        label: "Show map on initial load?",
+        instructions: "When the field is initially loaded, the map should...",
+        options: options.mapOnStart,
+        value: config.settings.mapOnStart ?? null,
+        attrs: {
+            'data-gm-settings-select': 'true',
+            'data-gm-setting-key': 'mapOnStart'
+        }
+    }) }}
+    {{ forms.selectField({
+        id: 'map-on-search',
+        name: 'mapOnSearch',
+        label: "Show map when address search is triggered?",
+        instructions: "When an address lookup is performed, the map should...",
+        options: options.mapOnSearch,
+        value: config.settings.mapOnSearch ?? null,
+        attrs: {
+            'data-gm-settings-select': 'true',
+            'data-gm-setting-key': 'mapOnSearch'
+        }
+    }) }}
+    {{ forms.selectField({
+        id: 'visibility-toggle',
+        name: 'visibilityToggle',
+        label: "Map Visibility Toggle",
+        instructions: "How should the map visibility toggle be displayed?",
+        options: options.visibilityToggle,
+        value: config.settings.visibilityToggle ?? null,
+        attrs: {
+            'data-gm-settings-select': 'true',
+            'data-gm-setting-key': 'visibilityToggle'
+        }
+    }) }}
+    {{ forms.selectField({
+        id: 'coordinates-mode',
+        name: 'coordinatesMode',
+        label: "Display Coordinates",
+        instructions: "How should the location coordinates be displayed?",
+        options: options.coordinatesMode,
+        value: config.settings.coordinatesMode ?? null,
+        attrs: {
+            'data-gm-settings-select': 'true',
+            'data-gm-setting-key': 'coordinatesMode'
+        }
+    }) }}
+
+    {{ forms.lightswitchField({
+        id: 'require-coordinates',
+        name: 'requireCoordinates',
+        label: "Require Coordinates",
+        instructions: 'If enabled, this Address **must** include a valid set of coordinates. Only applicable when the Address field is also marked as "Required" in the field layout.',
+        onLabel: 'Require coordinates when field is "Required"',
+        on: config.settings.requireCoordinates ?? false,
+        attrs: {
+            'data-gm-setting-key': 'requireCoordinates'
+        }
+    }) }}
+</div>

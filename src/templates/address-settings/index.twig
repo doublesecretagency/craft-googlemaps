@@ -1,0 +1,24 @@
+{# Ensure both id and handle are aligned #}
+{% set config = config ?? {} %}
+{% set config = config|merge({
+    namespace: (config.namespace ?? {})|merge({
+        id: (config.namespace.id ?? config.namespace.handle ?? 'gm-settings-preview')
+    })
+}) %}
+
+<div data-gm-settings-root>
+    <div data-gm-settings-vue-mount>
+        <div id="address-settings-container" class="address-settings-container" data-config="{{ config|json_encode }}">
+            <div id="address-settings" class="address-settings">
+                <div class="address-settings-fields">
+                    {% include 'google-maps/address-settings/subfield-manager' %}
+                    {% include 'google-maps/address-settings/dropdown-fields' %}
+                </div>
+                <div class="address-settings-preview">
+                    {% include 'google-maps/address-settings/live-preview' %}
+                    {% include 'google-maps/address-settings/additional-notes' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

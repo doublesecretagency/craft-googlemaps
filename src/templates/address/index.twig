@@ -1,0 +1,14 @@
+<div
+    id="{{ config.namespace.id }}"
+    data-gm-address-root
+    data-config="{{ config|json_encode|e('html_attr') }}"
+>
+    <div class="address-field">
+        {% include 'google-maps/address/toggle' %}
+        {% include 'google-maps/address/subfields' %}
+        {% include 'google-maps/address/coords' %}
+        {% include 'google-maps/address/meta' %}
+        <div style="clear:both"></div>
+        {% include 'google-maps/address/map' %}
+    </div>
+</div>

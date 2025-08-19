@@ -1,0 +1,12 @@
+<div>
+    <input
+        type="hidden"
+        name="{{ config.namespace.handle }}[formatted]"
+        value="{{ config.data.address['formatted'] }}"
+    />
+    <input
+        type="hidden"
+        name="{{ config.namespace.handle }}[raw]"
+        value="{{ config.data.address['raw']|json_encode }}"
+    />
+</div>

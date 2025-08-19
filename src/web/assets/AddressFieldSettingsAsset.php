@@ -39,6 +39,7 @@ class AddressFieldSettingsAsset extends AssetBundle
 
         $this->css = [
             'css/address.css',
+            'css/address-settings.css',
         ];
 
         $this->js = [
@@ -50,7 +51,7 @@ class AddressFieldSettingsAsset extends AssetBundle
             $this->js[] = GoogleMaps::getApiUrl([
                 'loading' => 'async',
                 'libraries' => 'places',
-                'callback' => 'initAddressFieldSettings',
+//                'callback' => 'initAddressFieldSettings',
             ]);
         }
 

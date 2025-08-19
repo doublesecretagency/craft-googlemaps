@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js":
@@ -7,7 +8,6 @@
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BASE_TRANSITION": () => (/* binding */ BASE_TRANSITION),
@@ -5063,7 +5063,6 @@ const noopDirectiveTransform = () => ({ props: [] });
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BASE_TRANSITION": () => (/* reexport safe */ _vue_compiler_core__WEBPACK_IMPORTED_MODULE_0__.BASE_TRANSITION),
@@ -5705,7 +5704,6 @@ function parse(template, options = {}) {
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HOOK_PLUGIN_SETTINGS_SET": () => (/* binding */ HOOK_PLUGIN_SETTINGS_SET),
@@ -5723,7 +5721,6 @@ const HOOK_PLUGIN_SETTINGS_SET = 'plugin:settings:set';
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getDevtoolsGlobalHook": () => (/* binding */ getDevtoolsGlobalHook),
@@ -5752,7 +5749,6 @@ const isProxyAvailable = typeof Proxy === 'function';
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isPerformanceSupported": () => (/* reexport safe */ _time_js__WEBPACK_IMPORTED_MODULE_0__.isPerformanceSupported),
@@ -5799,7 +5795,6 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ApiProxy": () => (/* binding */ ApiProxy)
@@ -5923,7 +5918,6 @@ class ApiProxy {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isPerformanceSupported": () => (/* binding */ isPerformanceSupported),
@@ -5962,7 +5956,6 @@ function now() {
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EffectScope": () => (/* binding */ EffectScope),
@@ -7261,7 +7254,6 @@ function deferredComputed(getter) {
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* binding */ BaseTransition),
@@ -15312,7 +15304,6 @@ const compatUtils = (null);
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* reexport safe */ _vue_runtime_core__WEBPACK_IMPORTED_MODULE_0__.BaseTransition),
@@ -17173,7 +17164,6 @@ const initDirectivesForSSR = () => {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EMPTY_ARR": () => (/* binding */ EMPTY_ARR),
@@ -17828,1855 +17818,285 @@ function genPropsAccessExp(name) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./web/assets/src/js/address-hydrator.js":
+/*!***********************************************!*\
+  !*** ./web/assets/src/js/address-hydrator.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _vue_stores_AddressStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../vue/stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
+// Vue component used to hydrate Address fields
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-/* harmony import */ var _additional_notes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./additional-notes */ "./web/assets/src/vue/address-settings/additional-notes.vue");
-/* harmony import */ var _dropdown_fields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropdown-fields */ "./web/assets/src/vue/address-settings/dropdown-fields.vue");
-/* harmony import */ var _live_preview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./live-preview */ "./web/assets/src/vue/address-settings/live-preview.vue");
-/* harmony import */ var _subfield_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./subfield-manager */ "./web/assets/src/vue/address-settings/subfield-manager.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
+// Pinia store that owns Address field behavior
 
 
-
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    AdditionalNotes: _additional_notes__WEBPACK_IMPORTED_MODULE_1__["default"],
-    DropdownFields: _dropdown_fields__WEBPACK_IMPORTED_MODULE_2__["default"],
-    LivePreview: _live_preview__WEBPACK_IMPORTED_MODULE_3__["default"],
-    SubfieldManager: _subfield_manager__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
+/**
+ * Hydrate a server-rendered Address field and bind it to the Address store.
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'AddressHydrator',
+  // Root element and server-provided config for this field instance
   props: {
-    namespace: Object,
-    settings: Object,
-    data: Object,
-    images: Object
+    rootEl: {
+      type: HTMLElement,
+      required: true
+    },
+    config: {
+      type: Object,
+      required: true
+    }
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_5__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)),
+  /**
+   * Initialize store state and wire DOM, map, and autocomplete behavior.
+   */
   setup: function setup(props) {
-    // Get the Pinia store
-    var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
+    // Create store instance for this Address field
+    var store = (0,_vue_stores_AddressStore__WEBPACK_IMPORTED_MODULE_1__.useAddressStore)();
 
-    // Set Pinia values from props
-    addressSettingsStore.namespace = props.namespace;
-    addressSettingsStore.settings = props.settings;
-    addressSettingsStore.data = props.data;
-    addressSettingsStore.images = props.images;
-  }
-});
+    // Track teardown callbacks for this hydrator
+    var cleanups = [];
 
-/***/ }),
+    // Register a cleanup callback to run on unmount
+    var registerCleanup = function registerCleanup(fn) {
+      return cleanups.push(fn);
+    };
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js ***!
-  \********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+    // Utility to set element display style
+    var setElDisplay = function setElDisplay(el, display) {
+      // If no element, bail
+      if (!el) {
+        return;
+      }
+      // Set display style
+      el.style.display = display;
+    };
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    namespace: Object
-  },
-  computed: _objectSpread(_objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)), {}, {
-    coordinatesDefault: function coordinatesDefault() {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-
-      // Get all potential coordinates options
-      var settingsCoords = addressSettingsStore.settings.coordinatesDefault;
-      var dataCoords = addressSettingsStore.data.coords;
-
-      // If coordinates from data are valid, return them
-      if (dataCoords['lat'] && dataCoords['lng']) {
-        return dataCoords;
+    // Utility to synchronize toggle UI with store config
+    var syncToggleUi = function syncToggleUi(_ref, cfg) {
+      var toggleEl = _ref.toggleEl,
+        textEl = _ref.textEl,
+        iconEl = _ref.iconEl;
+      // If no config, bail
+      if (!cfg) {
+        return;
       }
 
-      // If coordinates from settings are valid, return them
-      if (settingsCoords['lat'] && settingsCoords['lng']) {
-        return settingsCoords;
+      // Get toggle style
+      var style = cfg.style || 'both';
+
+      // Show or hide the toggle control
+      setElDisplay(toggleEl, style === 'hidden' ? 'none' : '');
+
+      // If text element exists
+      if (textEl) {
+        // If style is icon-only
+        if (style === 'icon') {
+          // Hide text element
+          setElDisplay(textEl, 'none');
+        } else {
+          // Show text element and set content
+          setElDisplay(textEl, '');
+          textEl.textContent = cfg.text || '';
+        }
       }
 
-      // Return empty coordinates
-      return {
-        lat: null,
-        lng: null,
-        zoom: null
+      // If icon element exists
+      if (iconEl) {
+        // If style is text-only or no icon configured
+        if (style === 'text' || !cfg.icon) {
+          // Hide icon element and clear src
+          setElDisplay(iconEl, 'none');
+          iconEl.removeAttribute('src');
+        } else {
+          // Show icon element and set src
+          setElDisplay(iconEl, '');
+          iconEl.setAttribute('src', cfg.icon);
+        }
+      }
+    };
+
+    // Seed store from DOM and server config
+    store.initFromDom(props.rootEl, props.config);
+
+    /**
+     * Wire field behavior once the DOM is ready.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      // Get root element for this field instance
+      var root = props.rootEl;
+
+      // Bind DOM inputs to store state
+      store.connectDom(root);
+
+      // Enable Places Autocomplete for configured subfields
+      store.connectAutocomplete(root);
+
+      // Initialize map and marker bindings
+      store.connectMap(root);
+
+      // Locate map visibility toggle rendered by Twig
+      var toggleEl = root.querySelector('[data-gm-toggle]');
+
+      // If no toggle element, bail
+      if (!toggleEl) {
+        return;
+      }
+
+      // Group toggle UI elements
+      var toggleUi = {
+        toggleEl: toggleEl,
+        textEl: toggleEl.querySelector('[data-gm-toggle-text]'),
+        iconEl: toggleEl.querySelector('[data-gm-toggle-icon]')
       };
-    }
-  }),
-  methods: {
-    // Get namespaced field name
-    getName: function getName(setting) {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return the namespaced field name
-      return addressSettingsStore.getName("[coordinatesDefault][".concat(setting, "]"));
-    }
-  }
-});
 
-/***/ }),
+      // Toggle map visibility when user clicks the control
+      var onClick = function onClick(event) {
+        event.preventDefault();
+        store.changeVisibility();
+      };
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _lightswitch_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lightswitch-field */ "./web/assets/src/vue/address-settings/lightswitch-field.vue");
-/* harmony import */ var _select_field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./select-field */ "./web/assets/src/vue/address-settings/select-field.vue");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    LightswitchField: _lightswitch_field__WEBPACK_IMPORTED_MODULE_0__["default"],
-    SelectField: _select_field__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    // Activate the lightswitch toggle
-    $('.lightswitch', this.$refs.container).lightswitch();
-    // Watch the toggle switch to see if it changes
-    this.watchToggle();
-  },
-  props: {
-    label: String,
-    instructions: String,
-    onLabel: String,
-    namespace: Object,
-    markRequired: Boolean
-  },
-  computed: _objectSpread(_objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)), {}, {
-    /**
-     * Whether coordinates are required.
-     */
-    required: function required() {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return whether coordinates are required
-      return addressSettingsStore.settings.requireCoordinates;
-    }
-  }),
-  methods: {
-    /**
-     * Get namespaced field name.
-     */
-    getName: function getName(setting) {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return the namespaced field name
-      return addressSettingsStore.getName("[".concat(setting, "]"));
-    },
-    /**
-     * Watch the toggle switch to see if it changes.
-     */
-    watchToggle: function watchToggle() {
-      var _this = this;
-      // Create mutation observer
-      var observer = new MutationObserver(function () {
-        // Get the Pinia store
-        var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-        // Update whether coordinates are required
-        addressSettingsStore.settings.requireCoordinates = 'true' === _this.$refs.button.ariaChecked;
+      // Attach click handler and register teardown
+      toggleEl.addEventListener('click', onClick);
+      registerCleanup(function () {
+        return toggleEl.removeEventListener('click', onClick);
       });
-      // Listen to attribute changes on the button
-      observer.observe(this.$refs.button, {
-        attributes: true
-      });
-    }
-  }
-});
 
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-/* harmony import */ var _address_address__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../address/address */ "./web/assets/src/vue/address/address.vue");
-/* harmony import */ var _default_coords__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./default-coords */ "./web/assets/src/vue/address-settings/default-coords.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    AddressField: _address_address__WEBPACK_IMPORTED_MODULE_1__["default"],
-    DefaultCoords: _default_coords__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_3__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    label: String,
-    instructions: String,
-    model: String,
-    namespace: Object
-  },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)),
-  methods: {
-    // Get namespaced field name
-    getName: function getName(setting) {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return the namespaced field name
-      return addressSettingsStore.getName("[".concat(setting, "]"));
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-
-// Vue Draggable (based on SortableJS)
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    // Get a random string of numbers
-    var rand = Math.random().toString().replace(/^0\./, '');
-    return {
-      'rand': rand
-    };
-  },
-  components: {
-    draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_1___default())
-  },
-  computed: _objectSpread(_objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_2__.mapStores)(_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)), {}, {
-    /**
-     * Bubble the subfield configuration.
-     * Necessary to prevent conflicts.
-     */
-    subfieldConfig: function subfieldConfig() {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return the subfield configuration
-      return addressSettingsStore.settings.subfieldConfig;
-    }
-  }),
-  methods: {
-    /**
-     * Get namespaced field name.
-     */
-    getName: function getName(index, setting) {
-      // Get the Pinia store
-      var addressSettingsStore = (0,_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_0__.useAddressSettingsStore)();
-      // Return the namespaced field name
-      return addressSettingsStore.getName("[subfieldConfig][".concat(index, "][").concat(setting, "]"));
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js ***!
-  \***********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread(_objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)), {}, {
-    /**
-     * Get coordinates formatting configuration.
-     */
-    config: function config() {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-      // Return configuration
-      return addressStore.configCoords;
-    }
-  }),
-  methods: {
-    /**
-     * Configure the inputs for coordinates.
-     */
-    getInputs: function getInputs() {
-      return [{
-        key: 'lat',
-        label: 'Latitude',
-        styles: {
-          'width': '43%'
-        }
+      // Keep toggle UI synced with store state
+      var stopToggleWatch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        return store.configToggle;
+      }, function (cfg) {
+        return syncToggleUi(toggleUi, cfg);
       }, {
-        key: 'lng',
-        label: 'Longitude',
-        styles: {
-          'width': '43%'
-        }
+        immediate: true,
+        deep: true
+      });
+      registerCleanup(stopToggleWatch);
+
+      // Keep toggle offset in sync with layout changes
+      var stopMarginWatch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        return store.marginTop;
+      }, function (offset) {
+        var px = typeof offset === 'number' ? offset : 0;
+        toggleEl.style.marginTop = "".concat(px, "px");
       }, {
-        key: 'zoom',
-        label: 'Zoom',
-        styles: {
-          'width': '11%'
-        }
-      }];
-    },
-    /**
-     * Configure the classes for each input.
-     */
-    getInputClasses: function getInputClasses(key) {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
+        immediate: true
+      });
+      registerCleanup(stopMarginWatch);
 
-      // Get the field settings
-      var settings = addressStore.settings;
+      // Mark the toggle container as hydrated
+      var toggleContainer = root.querySelector('.map-toggle-container');
 
-      // If hidden, return an empty array
-      if ('hidden' === settings.coordinatesMode) {
-        return [];
+      // If toggle container exists, add hydrated class
+      if (toggleContainer) {
+        toggleContainer.classList.add('is-hydrated');
       }
+    });
 
-      // Whether the coordinates are editable
-      var isEditable = 'editable' !== settings.coordinatesMode;
+    /**
+     * Tear down all bindings created by this hydrator.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeUnmount)(function () {
+      // Run all registered cleanup callbacks
+      cleanups.forEach(function (fn) {
+        try {
+          fn();
+        } catch (e) {}
+      });
 
-      // Whether the existing coordinates are valid
-      var validCoords = addressStore.validateCoords(addressStore.data.coords);
+      // Disconnect Autocomplete instances and guards
+      store.disconnectAutocomplete();
 
-      // Whether to mark coordinates as required
-      var requireCoordinates = settings.requireCoordinates && key !== 'zoom' && !validCoords;
+      // Disconnect DOM bindings
+      store.disconnectDom();
 
-      // Return array of input classes
-      return ['text', 'code', 'fullwidth', isEditable ? 'disabled' : null, requireCoordinates ? 'required' : null];
-    }
-  }
-});
+      // Disconnect map resources
+      store.disconnectMap();
+    });
 
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    // Make map & marker universally available
+    // Expose the store instance for external access if needed
     return {
-      map: null,
-      marker: null
+      addressStore: store
     };
-  },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)),
-  watch: {
-    // When coordinates are changed, update the marker position
-    'addressStore.data.coords.lat': function addressStoreDataCoordsLat() {
-      this._updateMarkerPosition();
-    },
-    'addressStore.data.coords.lng': function addressStoreDataCoordsLng() {
-      this._updateMarkerPosition();
-    },
-    // When zoom level is changed, update the map zoom
-    'addressStore.data.coords.zoom': function addressStoreDataCoordsZoom() {
-      this._updateZoomLevel();
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
-    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var center;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              // Attempt to get map center from field
-              center = _this._getFieldCenter(); // Initialize map using coordinates from field data or settings
-              if (!center) {
-                _context.next = 4;
-                break;
-              }
-              _this.initMap(center);
-              return _context.abrupt("return");
-            case 4:
-              _context.next = 6;
-              return new Promise(function (resolve, reject) {
-                // Output console notification
-                console.log('Attempting geolocation...');
-                // Attempt geolocation
-                navigator.geolocation.getCurrentPosition(resolve, reject, {
-                  timeout: 5000
-                });
-              }).then(
-              // SUCCESS
-              function (result) {
-                // Output console notification
-                console.log('Success!');
-                // If coordinates are invalid, bail
-                if (!result.coords) {
-                  return;
-                }
-                // Initialize map based on user's current location
-                _this.initMap({
-                  lat: result.coords.latitude,
-                  lng: result.coords.longitude,
-                  zoom: 10
-                });
-              },
-              // FAILED
-              function (error) {
-                // Output error message in console
-                console.warn('[GM] Unable to perform HTML5 geolocation.', error);
-                // Use the generic fallback coordinates (Bermuda Triangle)
-                // https://plugins.doublesecretagency.com/google-maps/guides/bermuda-triangle/
-                _this.initMap({
-                  lat: 32.3113966,
-                  lng: -64.7527469,
-                  zoom: 6
-                });
-              });
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  methods: {
-    /**
-     * Initialize the map.
-     */
-    initMap: function initMap(startingPosition) {
-      var _this2 = this;
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-      try {
-        var google = window.google;
-
-        // If google object doesn't exist yet, log message and bail
-        if (!google) {
-          console.error('[GM] The `google` object has not yet been loaded.');
-          return;
-        }
-
-        // Determine map center
-        var mapCenter = {
-          lat: parseFloat(startingPosition.lat),
-          lng: parseFloat(startingPosition.lng)
-        };
-
-        // Create the map
-        this.map = new google.maps.Map(this.$el, {
-          streetViewControl: false,
-          fullscreenControl: false,
-          center: mapCenter,
-          zoom: parseInt(startingPosition.zoom),
-          controlSize: addressStore.settings.controlSize
-        });
-
-        // Create a draggable marker
-        this.marker = new google.maps.Marker({
-          position: mapCenter,
-          map: this.map,
-          draggable: true
-        });
-
-        // When marker is dropped, re-center the map
-        google.maps.event.addListener(this.marker, 'dragend', function () {
-          var position = _this2.marker.getPosition();
-          addressStore.data.coords = {
-            'lat': parseFloat(position.lat().toFixed(7)),
-            'lng': parseFloat(position.lng().toFixed(7)),
-            'zoom': _this2.map.getZoom()
-          };
-          _this2._centerMap();
-        });
-
-        // When map is zoomed, update zoom value
-        google.maps.event.addListener(this.map, 'zoom_changed', function () {
-          addressStore.data.coords['zoom'] = _this2.map.getZoom() || 11;
-        });
-      } catch (error) {
-        // Unable to initialize the map
-        console.error(error);
-      }
-    },
-    // ========================================================================= //
-    /**
-     * Center map based on current marker position.
-     */
-    _centerMap: function _centerMap() {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // Get coordinates
-      var coords = JSON.parse(JSON.stringify(addressStore.data.coords));
-
-      // If missing coordinates, bail
-      if (!coords['lat'] || !coords['lng']) {
-        return;
-      }
-
-      // Center map on marker coordinates
-      this.map.panTo(coords);
-    },
-    // ========================================================================= //
-    /**
-     * Attempt to get map center coordinates based on the field data or settings.
-     */
-    _getFieldCenter: function _getFieldCenter() {
-      // Get the Pinia store
-      var a = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // If valid, get coords from the existing field data
-      if (a.validateCoords(a.data.coords)) {
-        return a.data.coords;
-      }
-
-      // If valid, get default coords from the field settings
-      if (a.validateCoords(a.settings.coordinatesDefault)) {
-        return a.settings.coordinatesDefault;
-      }
-
-      // Unable to get any coordinates from the field
-      return false;
-    },
-    // ========================================================================= //
-    /**
-     * Update the marker position.
-     */
-    _updateMarkerPosition: function _updateMarkerPosition() {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // Check whether field has valid coordinates
-      var validCoords = addressStore.validateCoords(addressStore.data.coords);
-
-      // If field does not have valid coordinates, bail
-      if (!validCoords) {
-        return;
-      }
-
-      // Get coordinates
-      var coords = addressStore.data.coords;
-
-      // Set marker position
-      this.marker.setPosition({
-        lat: parseFloat(coords.lat.toFixed(7)),
-        lng: parseFloat(coords.lng.toFixed(7))
-      });
-
-      // Center map
-      this._centerMap();
-
-      // Update zoom based on map level
-      addressStore.data.coords['zoom'] = this.map.getZoom();
-    },
-    /**
-     * Update the zoom level.
-     */
-    _updateZoomLevel: function _updateZoomLevel() {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // Get zoom level from field data
-      var zoom = parseInt(addressStore.data.coords['zoom']);
-
-      // Corrections for incorrect zoom value
-      if (0 === zoom || zoom < 0) {
-        // Fallback when zoom is too low
-        zoom = 0;
-      } else if (!zoom || isNaN(zoom)) {
-        // Fallback when zoom is invalid
-        zoom = 11;
-      }
-
-      // Set map zoom level
-      this.map.setZoom(zoom);
-    }
   }
-});
+}));
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************************************************************************************************************************************/
+/***/ "./web/assets/src/js/address-settings-hydrator.js":
+/*!********************************************************!*\
+  !*** ./web/assets/src/js/address-settings-hydrator.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _address_hydrator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-hydrator */ "./web/assets/src/js/address-hydrator.js");
+// Import Vue primitives used by the settings preview hydrator
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
+// Reuse the main AddressHydrator so preview behavior matches real fields
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)),
-  mounted: function mounted() {
-    // Initialize the Autocomplete functionality
-    this.initAutocomplete();
-  },
-  methods: {
-    /**
-     * Initialize the Autocomplete functionality.
-     */
-    initAutocomplete: function initAutocomplete() {
-      var _this = this;
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-      try {
-        // If google object doesn't exist yet, log message and bail
-        if (!window.google) {
-          console.error('[GM] The `google` object has not yet been loaded.');
-          return;
-        }
-
-        // Make a list of subfields to activate
-        var activate = [];
-
-        // Loop through all subfields
-        addressStore.settings.subfieldConfig.forEach(function (subfield) {
-          // Set fallbacks
-          subfield.enabled = subfield.enabled || false;
-          subfield.autocomplete = subfield.autocomplete || false;
-          // If enabled and set to autocomplete, copy to array
-          if (subfield.enabled && subfield.autocomplete) {
-            activate.push(_this.$refs[subfield.handle][0]);
-          }
-        });
-
-        // Activate autocomplete for selected subfields
-        for (var i in activate) {
-          this._activateAutocomplete(activate[i]);
-        }
-      } catch (error) {
-        // Something went wrong
-        console.error(error);
-      }
-    },
-    /**
-     * Activate Autocomplete for a single input field.
-     */
-    _activateAutocomplete: function _activateAutocomplete($input) {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // If subfield is hidden, bail
-      if ('none' === $input.style.display) {
-        return;
-      }
-
-      // Create an Autocomplete object
-      var autocomplete = new window.google.maps.places.Autocomplete($input, {
-        fields: ['address_components', 'formatted_address', 'geometry.location', 'name', 'place_id']
-      });
-
-      // Listen for autocomplete trigger
-      autocomplete.addListener('place_changed', function () {
-        // Get newly selected place
-        var place = autocomplete.getPlace();
-        // Update data accordingly
-        addressStore.updateData(place);
-      });
-
-      // Prevent address selection from attempting to submit the form
-      $input.addEventListener('keydown', function (event) {
-        // If "Return" or "Enter" key was pressed
-        if (event.key === 'Enter') {
-          // Do nothing
-          event.preventDefault();
-        }
-      });
-    },
-    /**
-     * Whether a subfield is both required and empty.
-     */
-    isRequiredAndInvalid: function isRequiredAndInvalid(subfield) {
-      // If subfield is not required, return false
-      if (!subfield.required) {
-        return false;
-      }
-
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-
-      // If subfield is not empty, return false
-      if (addressStore.data.address[subfield.handle]) {
-        return false;
-      }
-
-      // Subfield is required and empty
-      return true;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js ***!
-  \***********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      // Field container not mounted by default
-      container: null
-    };
-  },
-  computed: _objectSpread(_objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)), {}, {
-    /**
-     * Get toggle formatting configuration.
-     */
-    config: function config() {
-      // Get the Pinia store
-      var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
-      // Return configuration
-      return addressStore.configToggle;
-    },
-    /**
-     * Dynamically set the top margin.
-     */
-    marginTop: function marginTop() {
-      // Set default toggle offset
-      var toggleOffset = -25;
-
-      // If the toggle is hidden
-      if ('hidden' === this.config.style) {
-        // Return the default offset
-        return toggleOffset;
-      }
-
-      // If field container is not fully mounted
-      if (!this.container) {
-        // Return the default offset
-        return toggleOffset;
-      }
-
-      // Compile new class
-      var toggleClass = "gm-toggle-".concat(this.config.style);
-
-      // Look at parent element to get nearby items
-      var copyTextBtn = this.container.getElementsByClassName('copytextbtn');
-      var copyAttribute = this.container.getElementsByTagName('craft-copy-attribute');
-      var actionBtn = this.container.getElementsByClassName('action-btn');
-      var instructions = this.container.getElementsByClassName('instructions');
-
-      // If "copy" div is visible (Craft < 5.6)
-      if (copyTextBtn.length) {
-        // Add new class to "copy" div
-        copyTextBtn[0].classList.add(toggleClass);
-      }
-
-      // If "copy" div is visible (Craft 5.6+)
-      if (copyAttribute.length) {
-        // Add new class to "copy" div
-        copyAttribute[0].classList.add(toggleClass);
-      } else if (actionBtn.length) {
-        // Add new class to menu button
-        actionBtn[0].classList.add(toggleClass);
-      }
-
-      // If field has instructions
-      if (instructions.length) {
-        // Measure height of instructions div
-        var height = instructions[0].clientHeight;
-        // Adjust toggle offset accordingly
-        toggleOffset -= height;
-      }
-
-      // Return the adjusted toggle offset
-      return toggleOffset;
-    }
-  }),
-  mounted: function mounted() {
-    // Find the parent field container
-    this.container = this.$el.closest('.field');
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=script&lang=js":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=script&lang=js ***!
-  \****************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
-/* harmony import */ var _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-toggle.vue */ "./web/assets/src/vue/address/address-toggle.vue");
-/* harmony import */ var _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-subfields.vue */ "./web/assets/src/vue/address/address-subfields.vue");
-/* harmony import */ var _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./address-coords.vue */ "./web/assets/src/vue/address/address-coords.vue");
-/* harmony import */ var _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./address-meta.vue */ "./web/assets/src/vue/address/address-meta.vue");
-/* harmony import */ var _address_map_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./address-map.vue */ "./web/assets/src/vue/address/address-map.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// Import Pinia
-
-
-
-
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    AddressToggle: _address_toggle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    AddressSubfields: _address_subfields_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AddressCoords: _address_coords_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    AddressMeta: _address_meta_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    AddressMap: _address_map_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
-  },
+/**
+ * Mount AddressHydrator for the field settings preview.
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'AddressSettingsHydrator',
+  // Root element and server-provided config for this field instance
   props: {
-    namespace: Object,
-    settings: Object,
-    data: Object,
-    images: Object
+    rootEl: {
+      type: HTMLElement,
+      required: true
+    },
+    config: {
+      type: Object,
+      required: true
+    }
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_6__.mapStores)(_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)),
+  /**
+   * Render the preview and ensure any global instance is cleaned up on unmount.
+   */
   setup: function setup(props) {
-    // Get the Pinia store
-    var addressStore = (0,_stores_AddressStore__WEBPACK_IMPORTED_MODULE_0__.useAddressStore)();
+    // Read namespace id so we can unregister the global preview instance on teardown
+    var getNamespaceId = function getNamespaceId() {
+      var _props$config, _props$config$namespa;
+      return (_props$config = props.config) === null || _props$config === void 0 ? void 0 : (_props$config$namespa = _props$config.namespace) === null || _props$config$namespa === void 0 ? void 0 : _props$config$namespa.id;
+    };
 
-    // Set Pinia values from props
-    addressStore.namespace = props.namespace;
-    addressStore.settings = props.settings;
-    addressStore.data = props.data;
-    addressStore.images = props.images;
+    // Keep the mount hook available for preview-only behavior
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      // Intentionally left blank
+    });
 
-    // Whether to show the map by default
-    addressStore.showMap = props.settings.showMap;
+    // If a preview instance was registered, remove it when this component is destroyed
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeUnmount)(function () {
+      var id = getNamespaceId();
+      if (!id || !window.__gmAddressInstances) {
+        return;
+      }
+
+      // Remove this preview instance so stale references don’t accumulate
+      delete window.__gmAddressInstances[id];
+    });
+
+    // Render AddressHydrator with the settings root element and config
+    return function () {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)(_address_hydrator__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        rootEl: props.rootEl,
+        config: props.config
+      });
+    };
   }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-b4b455d2"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  "class": "field"
-};
-var _hoisted_2 = {
-  "class": "heading"
-};
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"instructions\" data-v-b4b455d2><p style=\"color:#000;\" data-v-b4b455d2><strong data-v-b4b455d2>↑ </strong> Use this preview field to <strong data-v-b4b455d2>set the default map starting position</strong>. <strong data-v-b4b455d2>↑</strong></p><ul data-v-b4b455d2><li data-v-b4b455d2><strong data-v-b4b455d2>Search</strong> for a central starting location.</li><li data-v-b4b455d2><strong data-v-b4b455d2>Drag &amp; drop</strong> the pin to set a more precise location.</li><li data-v-b4b455d2><strong data-v-b4b455d2>Zoom</strong> in or out to a comfortable default viewing level.</li></ul></div><hr data-v-b4b455d2>", 2);
-var _hoisted_5 = {
-  "class": "field",
-  style: {
-    "margin-top": "10px"
-  }
-};
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"heading settings-note\" data-v-b4b455d2><label data-v-b4b455d2>Set the Default Map Starting Position</label><div class=\"instructions\" data-v-b4b455d2><p data-v-b4b455d2>You can to set the <strong data-v-b4b455d2>default coordinates &amp; zoom level</strong> using the &quot;Preview&quot; field above. Whatever position you save this map to will become the default map orientation for all new instances of this field.</p><p data-v-b4b455d2>Only the <strong data-v-b4b455d2>latitude</strong>, <strong data-v-b4b455d2>longitude</strong>, and <strong data-v-b4b455d2>zoom</strong> will be used to orient the map when a new element is being created. No other data from the &quot;Preview&quot; field will prepopulate future instances of this field.</p></div></div>", 1);
-var _hoisted_7 = {
-  "class": "heading settings-note warning",
-  style: {
-    "margin-top": "12px"
-  }
-};
-var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Required Subfields and/or Coordinates ("), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "required",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(")")], -1 /* HOISTED */);
-});
-var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "instructions"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("If any of your subfields or coordinates are required, you "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "must also"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" set the field to be \"Required\" when adding it to your field layout.")])], -1 /* HOISTED */);
-});
-var _hoisted_10 = ["src"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "screenshot",
-    src: _ctx.addressSettingsStore.images.required,
-    alt: "Screenshot of field layout"
-  }, null, 8 /* PROPS */, _hoisted_10)])])])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-706b7e50"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  id: "address-settings",
-  "class": "address-settings"
-};
-var _hoisted_2 = {
-  "class": "address-settings-fields"
-};
-var _hoisted_3 = {
-  "class": "address-settings-preview"
-};
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_subfield_manager = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("subfield-manager");
-  var _component_dropdown_fields = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("dropdown-fields");
-  var _component_live_preview = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("live-preview");
-  var _component_additional_notes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("additional-notes");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_subfield_manager), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_dropdown_fields)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_live_preview), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_additional_notes)])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4 ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  "class": "default-coords"
-};
-var _hoisted_2 = ["name"];
-var _hoisted_3 = ["name"];
-var _hoisted_4 = ["name"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: $options.getName('lat'),
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $options.coordinatesDefault['lat'] = $event;
-    })
-  }, null, 8 /* PROPS */, _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.coordinatesDefault['lat']]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: $options.getName('lng'),
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $options.coordinatesDefault['lng'] = $event;
-    })
-  }, null, 8 /* PROPS */, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.coordinatesDefault['lng']]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: $options.getName('zoom'),
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $options.coordinatesDefault['zoom'] = $event;
-    })
-  }, null, 8 /* PROPS */, _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.coordinatesDefault['zoom']]])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29 ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_select_field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("select-field");
-  var _component_lightswitch_field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("lightswitch-field");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_select_field, {
-    label: "Show map on initial load?",
-    instructions: "When the field is initially loaded, the map should...",
-    model: "mapOnStart",
-    namespace: {
-      id: 'map-on-start',
-      name: 'mapOnStart'
-    }
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_select_field, {
-    label: "Show map when address search is triggered?",
-    instructions: "When an address lookup is performed, the map should...",
-    model: "mapOnSearch",
-    namespace: {
-      id: 'map-on-search',
-      name: 'mapOnSearch'
-    }
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_select_field, {
-    label: "Map Visibility Toggle",
-    instructions: "How should the map visibility toggle be displayed?",
-    model: "visibilityToggle",
-    namespace: {
-      id: 'visibility-toggle',
-      name: 'visibilityToggle'
-    }
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_select_field, {
-    label: "Display Coordinates",
-    instructions: "How should the location coordinates be displayed?",
-    model: "coordinatesMode",
-    namespace: {
-      id: 'coordinates-mode',
-      name: 'coordinatesMode'
-    }
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_lightswitch_field, {
-    label: "Require Coordinates",
-    instructions: "If enabled, this Address <strong>must</strong> include a valid set of coordinates. Only applicable when the Address field is marked as \"Required\" in the field layout.",
-    onLabel: "Require coordinates when field is \"Required\"",
-    markRequired: true,
-    namespace: {
-      id: 'require-coordinates',
-      name: 'requireCoordinates'
-    }
-  })]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-085b032a"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = ["id", "data-attribute"];
-var _hoisted_2 = {
-  "class": "heading"
-};
-var _hoisted_3 = ["id", "for"];
-var _hoisted_4 = {
-  key: 0,
-  "class": "visually-hidden"
-};
-var _hoisted_5 = {
-  key: 1,
-  "aria-hidden": "true",
-  "class": "required"
-};
-var _hoisted_6 = ["id"];
-var _hoisted_7 = ["innerHTML"];
-var _hoisted_8 = {
-  "class": "input ltr"
-};
-var _hoisted_9 = {
-  "class": "lightswitch-outer-container"
-};
-var _hoisted_10 = ["id"];
-var _hoisted_11 = {
-  "class": "lightswitch-inner-container"
-};
-var _hoisted_12 = ["id", "aria-checked", "aria-labelledby", "aria-describedby"];
-var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "lightswitch-container"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "handle"
-  })], -1 /* HOISTED */);
-});
-var _hoisted_14 = ["name", "value"];
-var _hoisted_15 = ["innerHTML"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    id: "".concat($props.namespace.id, "-field"),
-    "data-attribute": $props.namespace.id,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)("field ".concat($props.namespace.id, "-field")),
-    ref: "container"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    id: "".concat($props.namespace.id, "-label"),
-    "for": $props.namespace.id
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label), 1 /* TEXT */), $props.markRequired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, "Required")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.markRequired ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8 /* PROPS */, _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "".concat($props.namespace.id, "-instructions"),
-    "class": "instructions"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    innerHTML: $props.instructions
-  }, null, 8 /* PROPS */, _hoisted_7)], 8 /* PROPS */, _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    id: "".concat($props.namespace.id, "-desc"),
-    "class": "visually-hidden"
-  }, "Check for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.onLabel) + ".", 9 /* TEXT, PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "button",
-    id: $props.namespace.id,
-    role: "switch",
-    "aria-checked": $options.required,
-    "aria-labelledby": "".concat($props.namespace.id, "-label"),
-    "aria-describedby": "".concat($props.namespace.id, "-instructions ").concat($props.namespace.id, "-desc"),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["lightswitch has-labels", {
-      'on': $options.required
-    }]),
-    ref: "button"
-  }, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: $options.getName($props.namespace.name),
-    value: $options.required ? 1 : null
-  }, null, 8 /* PROPS */, _hoisted_14)], 10 /* CLASS, PROPS */, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "data-toggle": "on",
-    "aria-hidden": "true",
-    innerHTML: $props.onLabel
-  }, null, 8 /* PROPS */, _hoisted_15)])])])], 10 /* CLASS, PROPS */, _hoisted_1);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-bee9e93a"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  "class": "field"
-};
-var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "heading"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Preview"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "instructions"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "This is how the field will look...")])], -1 /* HOISTED */);
-});
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_address_field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-field");
-  var _component_default_coords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("default-coords");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_field, {
-    namespace: {
-      id: '',
-      name: '',
-      handle: ''
-    },
-    settings: _ctx.addressSettingsStore.settings,
-    data: _ctx.addressSettingsStore.data,
-    images: _ctx.addressSettingsStore.images
-  }, null, 8 /* PROPS */, ["settings", "data", "images"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_default_coords)])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65 ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = ["id", "data-attribute"];
-var _hoisted_2 = {
-  "class": "heading"
-};
-var _hoisted_3 = ["id", "for"];
-var _hoisted_4 = ["id"];
-var _hoisted_5 = ["innerHTML"];
-var _hoisted_6 = {
-  "class": "input ltr"
-};
-var _hoisted_7 = {
-  "class": "select"
-};
-var _hoisted_8 = ["id", "name", "aria-describedby", "aria-labelledby"];
-var _hoisted_9 = ["value"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    id: "".concat($props.namespace.id, "-field"),
-    "data-attribute": "".concat($props.namespace.id),
-    "class": "field"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    id: "".concat($props.namespace.id, "-label"),
-    "for": $props.namespace.id
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label), 9 /* TEXT, PROPS */, _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "".concat($props.namespace.id, "-instructions"),
-    "class": "instructions"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    innerHTML: $props.instructions
-  }, null, 8 /* PROPS */, _hoisted_5)], 8 /* PROPS */, _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    id: $props.namespace.id,
-    name: $options.getName($props.namespace.name),
-    "aria-describedby": "".concat($props.namespace.id, "-instructions"),
-    "aria-labelledby": "".concat($props.namespace.id, "-label"),
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.addressSettingsStore.settings[$props.model] = $event;
-    })
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.addressSettingsStore.options[$props.model], function (opt, val) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      value: val
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(opt), 9 /* TEXT, PROPS */, _hoisted_9);
-  }), 256 /* UNKEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_8), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addressSettingsStore.settings[$props.model]]])])])], 8 /* PROPS */, _hoisted_1);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-5276bf96"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  "class": "field"
-};
-var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "heading"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Subfield Manager"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "instructions"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Rename, resize, rearrange, require, or hide each subfield...")])], -1 /* HOISTED */);
-});
-var _hoisted_3 = {
-  "class": "editable fullwidth"
-};
-var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    scope: "col",
-    "class": "singleline-cell textual"
-  }, "Label"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    scope: "col",
-    "class": "number-cell textual",
-    style: {
-      "text-align": "right"
-    }
-  }, "Width"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    scope: "col",
-    "class": "checkbox-cell",
-    style: {
-      "text-align": "center",
-      "cursor": "help"
-    },
-    title: "Selected subfields will be shown in the visible layout. (Non-selected subfields will be included as hidden inputs.)"
-  }, "Show"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    scope: "col",
-    "class": "checkbox-cell",
-    style: {
-      "text-align": "center",
-      "cursor": "help"
-    },
-    title: "When typing an address, Google Places Autocomplete will be active on the selected subfields."
-  }, "Auto"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    scope: "col",
-    "class": "checkbox-cell",
-    style: {
-      "text-align": "center",
-      "cursor": "help",
-      "white-space": "nowrap"
-    },
-    title: "If the field is marked as \"Required\", it must include the selected subfields. See warning message below."
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Req."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "required",
-    "aria-hidden": "true"
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, " ")])], -1 /* HOISTED */);
-});
-var _hoisted_5 = ["data-handle"];
-var _hoisted_6 = {
-  "class": "singleline-cell textual"
-};
-var _hoisted_7 = ["name", "value"];
-var _hoisted_8 = ["name", "onUpdate:modelValue", "placeholder"];
-var _hoisted_9 = {
-  "class": "textual code",
-  style: {
-    "width": "15%",
-    "text-align": "right"
-  }
-};
-var _hoisted_10 = ["name", "onUpdate:modelValue"];
-var _hoisted_11 = {
-  "class": "checkbox-cell",
-  style: {
-    "width": "15%",
-    "text-align": "center"
-  }
-};
-var _hoisted_12 = {
-  "class": "checkbox-wrapper"
-};
-var _hoisted_13 = ["name", "onUpdate:modelValue", "id"];
-var _hoisted_14 = ["for"];
-var _hoisted_15 = {
-  "class": "checkbox-cell",
-  style: {
-    "width": "15%",
-    "text-align": "center"
-  }
-};
-var _hoisted_16 = {
-  "class": "checkbox-wrapper"
-};
-var _hoisted_17 = ["name", "onUpdate:modelValue", "id"];
-var _hoisted_18 = ["for"];
-var _hoisted_19 = {
-  "class": "checkbox-cell",
-  style: {
-    "width": "15%",
-    "text-align": "center"
-  }
-};
-var _hoisted_20 = {
-  "class": "checkbox-wrapper"
-};
-var _hoisted_21 = ["name", "onUpdate:modelValue", "id"];
-var _hoisted_22 = ["for"];
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-    "class": "thin action"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "move icon",
-    title: "Reorder"
-  })], -1 /* HOISTED */);
-});
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_draggable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("draggable");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_draggable, {
-    tag: "tbody",
-    list: $options.subfieldConfig,
-    "item-key": "handle",
-    handle: ".move",
-    "ghost-class": "sortable-ghost"
-  }, {
-    item: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
-      var element = _ref.element,
-        index = _ref.index;
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
-        "data-handle": element.handle,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-          'disabled': !element.enabled
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "hidden",
-        name: $options.getName(index, 'handle'),
-        value: element.handle
-      }, null, 8 /* PROPS */, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        name: $options.getName(index, 'label'),
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return element.label = $event;
-        },
-        rows: "1",
-        style: {
-          "min-height": "34px"
-        },
-        placeholder: element.handle
-      }, null, 8 /* PROPS */, _hoisted_8), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, element.label]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "number",
-        name: $options.getName(index, 'width'),
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return element.width = $event;
-        },
-        style: {
-          "min-height": "34px",
-          "max-width": "60px",
-          "text-align": "right",
-          "border": "none"
-        }
-      }, null, 8 /* PROPS */, _hoisted_10), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, element.width, void 0, {
-        number: true
-      }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "checkbox",
-        name: $options.getName(index, 'enabled'),
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return element.enabled = $event;
-        },
-        id: "enabled-".concat(element.handle, "-").concat($data.rand),
-        "class": "checkbox",
-        value: "1"
-      }, null, 8 /* PROPS */, _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.enabled]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "enabled-".concat(element.handle, "-").concat($data.rand)
-      }, null, 8 /* PROPS */, _hoisted_14)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "checkbox",
-        name: $options.getName(index, 'autocomplete'),
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return element.autocomplete = $event;
-        },
-        id: "autocomplete-".concat(element.handle, "-").concat($data.rand),
-        "class": "checkbox",
-        value: "1"
-      }, null, 8 /* PROPS */, _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.autocomplete]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "autocomplete-".concat(element.handle, "-").concat($data.rand)
-      }, null, 8 /* PROPS */, _hoisted_18)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "checkbox",
-        name: $options.getName(index, 'required'),
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return element.required = $event;
-        },
-        id: "required-".concat(element.handle, "-").concat($data.rand),
-        "class": "checkbox",
-        value: "1"
-      }, null, 8 /* PROPS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, element.required]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-        "for": "required-".concat(element.handle, "-").concat($data.rand)
-      }, null, 8 /* PROPS */, _hoisted_22)])]), _hoisted_23], 10 /* CLASS, PROPS */, _hoisted_5)];
-    }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["list"])])])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-457209b9"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = ["type", "placeholder", "readonly", "onUpdate:modelValue", "name"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.getInputs(), function (input) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-      type: $options.config.type,
-      placeholder: input.label,
-      readonly: $options.config.readOnly,
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return _ctx.addressStore.data.coords[input.key] = $event;
-      },
-      name: "".concat(_ctx.addressStore.namespace.name, "[").concat(input.key, "]"),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.getInputClasses(input.key)),
-      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(input.styles),
-      autocomplete: "chrome-off"
-    }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_1)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, _ctx.addressStore.data.coords[input.key], void 0, {
-      number: true
-    }]]);
-  }), 256 /* UNKEYED_FRAGMENT */))]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1 ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  "class": "gm-map"
-};
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Loading map...", -1 /* HOISTED */);
-var _hoisted_3 = [_hoisted_2];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_3, 512 /* NEED_PATCH */)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.addressStore.settings.showMap]]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0 ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = ["name"];
-var _hoisted_2 = ["name"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: "".concat(_ctx.addressStore.namespace.name, "[formatted]"),
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.addressStore.data.address['formatted'] = $event;
-    })
-  }, null, 8 /* PROPS */, _hoisted_1), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.addressStore.data.address['formatted']]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: "".concat(_ctx.addressStore.namespace.name, "[raw]"),
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.addressStore.data.address['raw'] = $event;
-    })
-  }, null, 8 /* PROPS */, _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.addressStore.data.address['raw']]])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = ["placeholder", "onUpdate:modelValue", "name"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.addressStore.subfields, function (subfield) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-      type: "text",
-      placeholder: subfield.label + (subfield.required ? ' *' : ''),
-      ref_for: true,
-      ref: subfield.handle,
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return _ctx.addressStore.data.address[subfield.handle] = $event;
-      },
-      name: "".concat(_ctx.addressStore.namespace.name, "[").concat(subfield.handle, "]"),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text fullwidth", {
-        'required': $options.isRequiredAndInvalid(subfield)
-      }]),
-      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(subfield.styles),
-      autocomplete: "chrome-off"
-    }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_1)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.addressStore.data.address[subfield.handle]]]);
-  }), 256 /* UNKEYED_FRAGMENT */))]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-064615ef"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  "class": "map-toggle-container"
-};
-var _hoisted_2 = {
-  key: 0
-};
-var _hoisted_3 = ["title", "src"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1, ['hidden' !== $options.config.style ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
-    key: 0,
-    "class": "map-toggle",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.addressStore.changeVisibility();
-    }),
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
-      'margin-top': "".concat($options.marginTop, "px")
-    })
-  }, ['icon' !== $options.config.style ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.config.text), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), 'text' !== $options.config.style ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
-    key: 1,
-    "class": "map-toggle-icon",
-    alt: "Marker icon",
-    title: 'icon' === $options.config.style ? $options.config.text : false,
-    src: $options.config.icon
-  }, null, 8 /* PROPS */, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4 /* STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942":
-/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942 ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  "class": "address-field"
-};
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  style: {
-    "clear": "both"
-  }
-}, null, -1 /* HOISTED */);
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_address_toggle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-toggle");
-  var _component_address_subfields = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-subfields");
-  var _component_address_coords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-coords");
-  var _component_address_meta = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-meta");
-  var _component_address_map = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("address-map");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_toggle), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_subfields), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_coords), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_meta), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_address_map)]);
-}
+}));
 
 /***/ }),
 
@@ -19686,7 +18106,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useAddressSettingsStore": () => (/* binding */ useAddressSettingsStore)
@@ -19695,110 +18114,442 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
 
 
-var useAddressSettingsStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addressSettings', function () {
-  // ========================================================================= //
-  // State
 
-  var namespace = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
-    id: null,
-    name: null,
-    handle: null
+// Define the Pinia store that backs the Address field settings UI
+var useAddressSettingsStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('AddressSettings', function () {
+  // Settings object for the live preview
+  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+    previewConfig: null
   });
-  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
-  var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
-  var images = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
 
-  // Options for each dropdown select
-  var options = {
-    // "Show map on initial load?"
-    'mapOnStart': {
-      'default': 'Open if the field has coordinates',
-      'open': 'Always start open',
-      'close': 'Always start closed'
-    },
-    // "Show map when address search is triggered?"
-    'mapOnSearch': {
-      'open': 'Open',
-      'close': 'Close',
-      'noChange': 'No Change'
-    },
-    // "Map Visibility Toggle"
-    'visibilityToggle': {
-      'both': 'Text & Icon',
-      'text': 'Text Only',
-      'icon': 'Icon Only',
-      'hidden': 'Hidden'
-    },
-    // "Display Coordinates"
-    'coordinatesMode': {
-      'editable': 'Editable',
-      'readOnly': 'Read Only',
-      'hidden': 'Hidden'
+  // Form model representing the Address field settings
+  var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+    subfields: [],
+    showMapOnLoad: 'coords',
+    // 'open' | 'closed' | 'coords'
+    onSearch: 'open',
+    // 'open' | 'close' | 'noChange'
+    visibilityToggle: 'both',
+    // 'text' | 'icon' | 'both' | 'hidden'
+    coordinatesMode: 'editable',
+    // 'editable' | 'readonly' | 'hidden'
+    requireCoordinates: false
+  });
+
+  // Computed preview configuration derived from the form model
+  var previewConfig = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return {
+      subfieldConfig: form.subfields.map(function (_ref) {
+        var key = _ref.key,
+          label = _ref.label,
+          width = _ref.width,
+          show = _ref.show,
+          auto = _ref.auto,
+          req = _ref.req;
+        return {
+          handle: key,
+          label: label,
+          width: width,
+          enabled: !!show,
+          autocomplete: !!auto,
+          required: !!req
+        };
+      }),
+      visibilityToggle: form.visibilityToggle,
+      coordinatesMode: form.coordinatesMode,
+      mapOnSearch: form.onSearch,
+      showMap: form.showMapOnLoad !== 'closed',
+      requireCoordinates: !!form.requireCoordinates
+    };
+  });
+
+  /**
+   * Read the current settings DOM and sync it into the reactive form model.
+   */
+  function setFromDom(root) {
+    // Helper to get a dropdown value
+    var getDropdownValue = function getDropdownValue(name) {
+      // Get the specified element
+      var el = root.querySelector("[name$=\"[".concat(name, "]\"]"));
+      // If no element, bail
+      if (!el) {
+        return undefined;
+      }
+      // Return the value
+      return el.value;
+    };
+
+    // Helper to get a lightswitch value
+    var getLightswitchValue = function getLightswitchValue(settingName) {
+      var _hidden$closest;
+      // Get the specified hidden input
+      var hidden = root.querySelector("input[type=\"hidden\"][name$=\"[".concat(settingName, "]\"]"));
+      // If no hidden input, bail
+      if (!hidden) {
+        return null;
+      }
+      // Get the associated lightswitch button
+      var btn = (_hidden$closest = hidden.closest('.lightswitch-outer-container')) === null || _hidden$closest === void 0 ? void 0 : _hidden$closest.querySelector('.lightswitch');
+      // If no button, bail
+      if (!btn) {
+        return null;
+      }
+      // Return whether the lightswitch is on
+      return btn.getAttribute('aria-checked') === 'true';
+    };
+
+    // Helper to read a text field value
+    var readTextField = function readTextField(row, index, suffix) {
+      var _el$value;
+      // Get the specified element
+      var el = row.querySelector("textarea[name$=\"[".concat(index, "][").concat(suffix, "]\"],") + "input[type=\"text\"][name$=\"[".concat(index, "][").concat(suffix, "]\"]"));
+      // If no element, bail
+      if (!el) {
+        return '';
+      }
+      // Return the value
+      return (_el$value = el.value) !== null && _el$value !== void 0 ? _el$value : '';
+    };
+
+    // Helper to read a number field value
+    var readNumberField = function readNumberField(row, index, suffix) {
+      // Get the specified element
+      var el = row.querySelector("input[type=\"number\"][name$=\"[".concat(index, "][").concat(suffix, "]\"]"));
+      // If no element, bail
+      if (!el) {
+        return 0;
+      }
+      // Get the value
+      var value = el.value;
+      // If value is empty, return 0
+      if (value === undefined || value === null || value === '') {
+        return 0;
+      }
+      // Return the numeric value
+      return Number(value);
+    };
+
+    // Helper to read a boolean field value
+    var readBooleanField = function readBooleanField(row, index, suffix) {
+      // Get the specified element
+      var el = row.querySelector("input[type=\"checkbox\"][name*=\"[subfieldConfig][".concat(index, "][").concat(suffix, "]\"]"));
+      // If element found, return its checked state
+      if (el) {
+        return !!el.checked;
+      }
+      // Fallback: check for a hidden input
+      el = row.querySelector("input[type=\"hidden\"][name*=\"[subfieldConfig][".concat(index, "][").concat(suffix, "]\"]"));
+      // If there is a hidden input, interpret its value
+      if (el) {
+        var val = (el.value || '').toString().toLowerCase();
+        return val === '1' || val === 'true' || val === 'on';
+      }
+      // If the suffix is 'enabled', infer from row class
+      if (suffix === 'enabled') {
+        var isDisabled = row.classList.contains('disabled');
+        return !isDisabled;
+      }
+      // Default to false
+      return false;
+    };
+
+    // Get all subfield rows
+    var rows = root.querySelectorAll('[data-gm-subfield-row]');
+
+    // Initialize result array
+    var result = [];
+
+    // Loop through each subfield row
+    rows.forEach(function (row) {
+      // Get the subfield key
+      var key = row.getAttribute('data-key');
+
+      // If no key, bail
+      if (!key) {
+        return;
+      }
+
+      // Get the subfield index
+      var index = row.getAttribute('data-index');
+
+      // If no index, bail
+      if (!index) {
+        return;
+      }
+
+      // Read all relevant fields from the row
+      var label = readTextField(row, index, 'label');
+      var width = readNumberField(row, index, 'width') || 100;
+      var show = readBooleanField(row, index, 'enabled');
+      var auto = readBooleanField(row, index, 'autocomplete');
+      var req = readBooleanField(row, index, 'required');
+
+      // Append the normalized subfield configuration to the result array
+      result.push({
+        key: key,
+        label: label,
+        width: width,
+        show: show,
+        auto: auto,
+        req: req
+      });
+    });
+
+    // Persist the normalized subfield configurations into the reactive form model
+    form.subfields = result;
+
+    // Get dropdown value for whether to show the map on start
+    var rawStart = getDropdownValue('mapOnStart');
+
+    // If a value was found
+    if (rawStart) {
+      // Push the raw value into the form model
+      form.mapOnStart = rawStart;
+      // Push whether to show the map on load into the form model
+      form.showMapOnLoad = rawStart === 'default' ? 'coords' : rawStart === 'open' ? 'open' : 'closed'; // 'close'
     }
-  };
 
-  // ========================================================================= //
-  // Getters
+    // Get dropdown value for whether to show the map on search
+    var mapOnSearch = getDropdownValue('mapOnSearch');
 
-  /**
-   * Bubble the `mapOnStart` settings value.
-   */
-  var _mapOnStart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-    // Get deeper settings value
-    return settings.value.mapOnStart;
-  });
-
-  // ========================================================================= //
-  // Watchers
-
-  /**
-   * Watch for the map visibility setting to change.
-   */
-  (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(_mapOnStart, function () {
-    // Show or hide the map
-    // based on the new `mapOnStart` value
-    switch (settings.value.mapOnStart) {
-      case 'open':
-        // Open the map
-        settings.value.showMap = true;
-        break;
-      case 'close':
-        // Close the map
-        settings.value.showMap = false;
-        break;
-      default:
-        // Convert coordinates to boolean
-        var lat = !!data.value.coords.lat;
-        var lng = !!data.value.coords.lng;
-        // Open the map if
-        // the field has coordinates
-        settings.value.showMap = lat && lng;
-        break;
+    // If a value was found
+    if (mapOnSearch) {
+      // Push whether to show the map on search into the form model
+      form.mapOnSearch = mapOnSearch;
+      // Push whether to show the map on search into the form model
+      form.onSearch = mapOnSearch; // keep existing alias
     }
-  });
 
-  // ========================================================================= //
-  // Actions
+    // Get dropdown value for the visibility toggle setting
+    var visibilityToggle = getDropdownValue('visibilityToggle');
 
-  /**
-   * Get a namespaced field name.
-   */
-  function getName(replacement) {
-    return namespace.value.name.replace(/\[PLACEHOLDER]/, replacement);
+    // If a value was found
+    if (visibilityToggle) {
+      // Push the value into the form model
+      form.visibilityToggle = visibilityToggle;
+    }
+
+    // Get dropdown value for the coordinates mode setting
+    var coordinatesMode = getDropdownValue('coordinatesMode');
+
+    // If a value was found
+    if (coordinatesMode) {
+      // Push the value into the form model
+      form.coordinatesMode = coordinatesMode;
+    }
+
+    // Push lightswitch value for the require coordinates setting
+    form.requireCoordinates = getLightswitchValue('requireCoordinates');
+
+    // If settings object is defined
+    if (typeof settings !== 'undefined') {
+      var _form$mapOnStart, _form$mapOnSearch, _form$visibilityToggl, _form$coordinatesMode;
+      // Push the updated preview configuration into the settings object
+      settings.previewConfig = {
+        subfieldConfig: result.map(function (sf) {
+          return {
+            key: sf.key,
+            handle: sf.key,
+            label: sf.label,
+            width: sf.width,
+            enabled: sf.show,
+            required: sf.req,
+            autocomplete: sf.auto
+          };
+        }),
+        mapOnStart: (_form$mapOnStart = form.mapOnStart) !== null && _form$mapOnStart !== void 0 ? _form$mapOnStart : null,
+        mapOnSearch: (_form$mapOnSearch = form.mapOnSearch) !== null && _form$mapOnSearch !== void 0 ? _form$mapOnSearch : null,
+        visibilityToggle: (_form$visibilityToggl = form.visibilityToggle) !== null && _form$visibilityToggl !== void 0 ? _form$visibilityToggl : null,
+        coordinatesMode: (_form$coordinatesMode = form.coordinatesMode) !== null && _form$coordinatesMode !== void 0 ? _form$coordinatesMode : null,
+        requireCoordinates: !!form.requireCoordinates
+      };
+    }
   }
 
-  // ========================================================================= //
+  /**
+   * Apply enabled/disabled styling to a single subfield row.
+   */
+  function applyRowUi(row) {
+    // Get the subfield row index
+    var index = row.getAttribute('data-index');
 
-  // Return reactive values
+    // If no index, bail
+    if (!index) {
+      return;
+    }
+
+    // Get the enabled checkbox
+    var enabledEl = row.querySelector("input[type=\"checkbox\"][name*=\"[subfieldConfig][".concat(index, "][enabled]\"]"));
+
+    // Determine whether the subfield is enabled
+    var isEnabled = enabledEl ? !!enabledEl.checked : true;
+
+    // Toggle the disabled class on the row
+    row.classList.toggle('disabled', !isEnabled);
+
+    // Get the label element
+    var labelEl = row.querySelector("textarea[name$=\"[".concat(index, "][label]\"], input[type=\"text\"][name$=\"[").concat(index, "][label]\"]"));
+
+    // If label element found, disable/enable it
+    if (labelEl) {
+      labelEl.disabled = !isEnabled;
+    }
+  }
+
+  /**
+   * Bind listeners so any UI change re-syncs state and updates the preview.
+   */
+  function bindDomListeners(root) {
+    var _hidden$closest2;
+    // Apply initial UI state to all subfield rows
+    root.querySelectorAll('[data-gm-subfield-row]').forEach(applyRowUi);
+
+    // Loop through all subfield inputs/selects/textareas
+    root.querySelectorAll('[data-gm-subfield-row] input, ' + '[data-gm-subfield-row] select, ' + '[data-gm-subfield-row] textarea').forEach(function (el) {
+      // Define the change handler
+      var onChange = function onChange() {
+        // Get the closest subfield row
+        var row = el.closest('[data-gm-subfield-row]');
+        // If row found
+        if (row) {
+          // Apply UI changes
+          applyRowUi(row);
+        }
+        // Sync the store from the DOM
+        setFromDom(root);
+      };
+
+      // Attach the event listeners
+      el.addEventListener('input', onChange);
+      el.addEventListener('change', onChange);
+    });
+
+    // Attach a listener for subfield reordering
+    root.addEventListener('gm:subfields:reordered', function () {
+      setFromDom(root);
+    });
+
+    // Loop through all settings selects and checkboxes
+    root.querySelectorAll('[data-gm-settings-select], [data-gm-settings-checkbox]').forEach(function (el) {
+      // Attach a listener so the store stays in sync with user interaction
+      el.addEventListener('change', function () {
+        return setFromDom(root);
+      });
+    });
+
+    // Define the setting names to bind
+    var settingNames = ['mapOnStart', 'mapOnSearch', 'visibilityToggle', 'coordinatesMode'];
+
+    // Loop through each setting name
+    settingNames.forEach(function (name) {
+      // Loop through each matching element
+      root.querySelectorAll("[name$=\"[".concat(name, "]\"]")).forEach(function (el) {
+        // If already bound, skip
+        if (el.__gmSettingsBound) {
+          return;
+        }
+        // Attach a listener so the store stays in sync with user interaction
+        el.addEventListener('change', function () {
+          return setFromDom(root);
+        });
+        el.__gmSettingsBound = true;
+      });
+    });
+
+    // Get the require coordinates hidden input
+    var hidden = root.querySelector('input[type="hidden"][name$="[requireCoordinates]"]');
+
+    // Get the associated lightswitch button
+    var btn = hidden === null || hidden === void 0 ? void 0 : (_hidden$closest2 = hidden.closest('.lightswitch-outer-container')) === null || _hidden$closest2 === void 0 ? void 0 : _hidden$closest2.querySelector('.lightswitch');
+
+    // If button found and not already bound
+    if (btn && !btn.__gmSettingsBound) {
+      // Attach a listener so the store stays in sync with user interaction
+      btn.addEventListener('click', function () {
+        // // Get whether the lightswitch is on
+        // const isOn = btn.getAttribute('aria-checked') === 'true';
+        setFromDom(root);
+      });
+
+      // Mark this button as bound so we don’t double-bind
+      btn.__gmSettingsBound = true;
+    }
+
+    // Get the subfields table
+    var table = root.querySelector('table.gm-subfields');
+
+    // If table found and Garnish DragSort is available
+    if (table && window.Garnish && window.Garnish.DragSort && window.$) {
+      // If not already initialized
+      if (!table.__gmSubfieldDragSort) {
+        // Wrap the table in a jQuery object
+        var $table = window.$(table);
+
+        // Reindex the subfield rows after a reorder
+        var reindexRows = function reindexRows() {
+          // Get all subfield rows
+          var rows = table.querySelectorAll('tbody [data-gm-subfield-row]');
+
+          // Loop through each row and update its data-index and input names
+          rows.forEach(function (row, newIndex) {
+            // Get the new and old indices
+            var newIdx = String(newIndex);
+            var oldIdx = row.getAttribute('data-index');
+
+            // If indices are the same, skip
+            if (oldIdx === newIdx) {
+              return;
+            }
+
+            // Update the row's data-index attribute
+            row.setAttribute('data-index', newIdx);
+
+            // Get all named inputs/textareas/selects within the row
+            row.querySelectorAll('input[name], textarea[name], select[name]')
+
+            // Loop through each input and update its name attribute
+            .forEach(function (inp) {
+              // Get the old name
+              var oldName = inp.getAttribute('name');
+
+              // If no old name, skip
+              if (!oldName) {
+                return;
+              }
+
+              // Generate the updated name by replacing the old index with the new index
+              var updated = oldName.replace(/\[subfieldConfig]\[\d+]/, "[subfieldConfig][".concat(newIdx, "]"));
+
+              // If the name has changed, update the input's name attribute
+              if (updated !== oldName) {
+                inp.setAttribute('name', updated);
+              }
+            });
+          });
+
+          // Dispatch a custom event indicating that subfields have been reordered
+          root.dispatchEvent(new CustomEvent('gm:subfields:reordered', {
+            bubbles: true
+          }));
+        };
+
+        // Enable Garnish DragSort on the subfields table
+        table.__gmSubfieldDragSort = new window.Garnish.DragSort($table.find('tbody tr'), {
+          handle: '.move',
+          axis: 'y',
+          collapseDraggees: true,
+          onSortChange: reindexRows
+        });
+      }
+    }
+  }
+
+  // Expose the store's state and actions
   return {
-    // State
-    namespace: namespace,
-    settings: settings,
-    data: data,
-    images: images,
-    options: options,
-    // Actions
-    getName: getName
+    form: form,
+    previewConfig: previewConfig,
+    setFromDom: setFromDom,
+    bindDomListeners: bindDomListeners
   };
 });
 
@@ -19810,14 +18561,26 @@ var useAddressSettingsStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useAddressStore": () => (/* binding */ useAddressStore)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -19828,19 +18591,89 @@ var formatCountries = {
   // Put comma after the street name
   commaAfterStreet: ['Italy']
 };
+
+/**
+ * Read a value from a nested object using a dot-notation path.
+ */
+var getNestedValue = function getNestedValue(object, path) {
+  // Break the dot-notation path into individual object keys
+  var pathParts = path.split('.');
+
+  // Walk the object one level at a time, stopping if a segment is missing
+  return pathParts.reduce(function (currentValue, key) {
+    return currentValue === null || currentValue === void 0 ? void 0 : currentValue[key];
+  }, object);
+};
+
+/**
+ * Set a value on a nested object using a dot-notation path.
+ */
+var setNestedValue = function setNestedValue(object, path, value) {
+  // Break the dot-notation path into individual object keys
+  var pathParts = path.split('.');
+
+  // Extract the final key that will receive the assigned value
+  var finalKey = pathParts.pop();
+
+  // Walk the object hierarchy, creating missing levels as needed
+  var targetObject = pathParts.reduce(function (currentObject, key) {
+    // If the current level does not exist, initialize it
+    if (currentObject[key] === undefined) {
+      currentObject[key] = {};
+    }
+    return currentObject[key];
+  }, object);
+
+  // Assign the value at the resolved path
+  targetObject[finalKey] = value;
+};
+
+// Define the Pinia store for address fields
 var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('address', function () {
   // ========================================================================= //
   // State
 
+  // Default settings
+  var DEFAULT_SETTINGS = {
+    showMap: true,
+    visibilityToggle: 'both',
+    coordinatesMode: 'editable',
+    mapOnSearch: 'noChange',
+    subfieldConfig: [],
+    coordinatesDefault: null,
+    controlSize: 28,
+    requireCoordinates: false
+  };
+
+  // Configure the store state
   var namespace = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
     id: null,
     name: null,
     handle: null
   });
-  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
-  var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+  var settings = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(_objectSpread({}, DEFAULT_SETTINGS));
+  var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+    address: {},
+    coords: {}
+  });
   var images = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+  var isRevision = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
   var formatting = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(formatCountries);
+
+  // Margin top for the map toggle button
+  var marginTop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(-25);
+
+  // Internal variables
+  var _rootEl = null; // Root element for this Address field instance
+  var _resizeObs = null; // ResizeObserver for instruction height changes
+  var _unsubscribers = []; // Reactive watchers / observers to dispose
+  var _domUnbinders = []; // DOM event listeners to remove
+  var _map = null; // google.maps.Map instance
+  var _marker = null; // Map marker synced to coordinates
+  var _autocompletes = []; // Active Places Autocomplete instances
+  var _formSubmitGuards = new Map(); // formEl -> submit handler mapping
+  var _blockNextSubmit = false; // One-shot guard to prevent accidental submit
+  var _suppressDomEvents = false; // Prevent Store→DOM updates from re-triggering Autocomplete
 
   // When address data is changed
   (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(data, function () {
@@ -19857,14 +18690,27 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * Formatting configuration for the map visibility toggle.
    */
   var configToggle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-    // Abbreviate variable
+    // Get the settings
     var s = settings.value;
-    // Return configuration
+
+    // Read the configured icon assets, if available
+    var iconOn = images.value.iconOn || null;
+    var iconOff = images.value.iconOff || null;
+    var hasIcons = !!(iconOn && iconOff);
+
+    // Start from the saved visibility toggle style
+    var style = s.visibilityToggle || 'both'; // both | text | icon | hidden
+
+    // If icon assets are missing, fall back to text-only to avoid broken UI
+    if (!hasIcons && style !== 'hidden') {
+      style = 'text';
+    }
+
+    // Build the toggle configuration used by the visibility control
     return {
-      'style': s.visibilityToggle,
-      // both | text | icon
-      'text': s.showMap ? 'Hide Map' : 'Show Map',
-      'icon': s.showMap ? images.value.iconOff : images.value.iconOn
+      style: style,
+      text: s.showMap ? 'Hide Map' : 'Show Map',
+      icon: hasIcons ? s.showMap ? iconOff : iconOn : null
     };
   });
 
@@ -19872,12 +18718,13 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * Formatting configuration for the coordinates subfields.
    */
   var configCoords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-    // Get the coordinates mode
+    // Read current coordinates mode from settings
     var mode = settings.value.coordinatesMode;
-    // Return configuration
+
+    // Build input configuration based on the selected mode
     return {
-      'type': 'hidden' === mode ? 'hidden' : 'number',
-      'readOnly': !['editable', 'hidden'].includes(mode)
+      type: 'hidden' === mode ? 'hidden' : 'number',
+      readOnly: !['editable', 'hidden'].includes(mode)
     };
   });
 
@@ -19920,36 +18767,715 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   // Actions
 
   /**
+   * Initialize store state from the already-rendered DOM.
+   */
+  function initFromDom(rootElement, config) {
+    var _config$settings, _cfg$showMap, _cfg$visibilityToggle, _cfg$coordinatesMode, _cfg$mapOnSearch, _cfg$coordinatesDefau, _cfg$controlSize, _cfg$requireCoordinat, _config$data$address, _config$data, _config$data$coords, _config$data2, _config$images;
+    // Store root element for later DOM coordination
+    _rootEl = rootElement;
+
+    // Capture namespace metadata used to scope DOM bindings
+    namespace.value = {
+      id: config.namespace.id,
+      name: config.namespace.name,
+      handle: config.namespace.handle
+    };
+
+    // Seed settings using defaults, overridden by provided config
+    var cfg = (_config$settings = config === null || config === void 0 ? void 0 : config.settings) !== null && _config$settings !== void 0 ? _config$settings : {};
+    settings.value = _objectSpread(_objectSpread(_objectSpread({}, DEFAULT_SETTINGS), settings.value), {}, {
+      showMap: (_cfg$showMap = cfg.showMap) !== null && _cfg$showMap !== void 0 ? _cfg$showMap : DEFAULT_SETTINGS.showMap,
+      visibilityToggle: (_cfg$visibilityToggle = cfg.visibilityToggle) !== null && _cfg$visibilityToggle !== void 0 ? _cfg$visibilityToggle : DEFAULT_SETTINGS.visibilityToggle,
+      coordinatesMode: (_cfg$coordinatesMode = cfg.coordinatesMode) !== null && _cfg$coordinatesMode !== void 0 ? _cfg$coordinatesMode : DEFAULT_SETTINGS.coordinatesMode,
+      mapOnSearch: (_cfg$mapOnSearch = cfg.mapOnSearch) !== null && _cfg$mapOnSearch !== void 0 ? _cfg$mapOnSearch : DEFAULT_SETTINGS.mapOnSearch,
+      subfieldConfig: Array.isArray(cfg.subfieldConfig) ? cfg.subfieldConfig : DEFAULT_SETTINGS.subfieldConfig,
+      coordinatesDefault: (_cfg$coordinatesDefau = cfg.coordinatesDefault) !== null && _cfg$coordinatesDefau !== void 0 ? _cfg$coordinatesDefau : DEFAULT_SETTINGS.coordinatesDefault,
+      controlSize: (_cfg$controlSize = cfg.controlSize) !== null && _cfg$controlSize !== void 0 ? _cfg$controlSize : DEFAULT_SETTINGS.controlSize,
+      requireCoordinates: (_cfg$requireCoordinat = cfg.requireCoordinates) !== null && _cfg$requireCoordinat !== void 0 ? _cfg$requireCoordinat : DEFAULT_SETTINGS.requireCoordinates
+    });
+
+    // Initialize address and coordinate data from namespaced inputs
+    data.value = {
+      address: _objectSpread({}, (_config$data$address = (_config$data = config.data) === null || _config$data === void 0 ? void 0 : _config$data.address) !== null && _config$data$address !== void 0 ? _config$data$address : {}),
+      coords: _objectSpread({}, (_config$data$coords = (_config$data2 = config.data) === null || _config$data2 === void 0 ? void 0 : _config$data2.coords) !== null && _config$data$coords !== void 0 ? _config$data$coords : {})
+    };
+
+    // Load icon and image assets used by UI controls
+    images.value = _objectSpread({}, (_config$images = config.images) !== null && _config$images !== void 0 ? _config$images : {});
+
+    // Mark field as read-only when rendering a revision
+    isRevision.value = !!config.isRevision;
+  }
+
+  /**
+   * Wire DOM inputs to reactive state so address data, map state,
+   * and settings-driven UI all stay synchronized.
+   */
+  function connectDom(rootEl) {
+    // Capture root element so other helpers can query within this field instance
+    _rootEl = rootEl;
+
+    // Define DOM-to-store bindings using name suffixes so this works across Craft namespaces
+    // - entry fields: fields[address][street1]
+    // - settings preview: types[...][street1] (or other Craft namespaces)
+    var bindings = [{
+      selector: "input[name$=\"[street1]\"]",
+      path: 'address.street1'
+    }, {
+      selector: "input[name$=\"[street2]\"]",
+      path: 'address.street2'
+    }, {
+      selector: "input[name$=\"[city]\"]",
+      path: 'address.city'
+    }, {
+      selector: "input[name$=\"[state]\"]",
+      path: 'address.state'
+    }, {
+      selector: "input[name$=\"[zip]\"]",
+      path: 'address.zip'
+    }, {
+      selector: "input[name$=\"[country]\"]",
+      path: 'address.country'
+    }, {
+      selector: "input[name$=\"[countryCode]\"]",
+      path: 'address.countryCode'
+    },
+    // Support coords inputs named either [lat] or [coords][lat] (and same for lng/zoom)
+    {
+      selector: "input[name$=\"[lat]\"],  input[name$=\"[coords][lat]\"]",
+      path: 'coords.lat'
+    }, {
+      selector: "input[name$=\"[lng]\"],  input[name$=\"[coords][lng]\"]",
+      path: 'coords.lng'
+    }, {
+      selector: "input[name$=\"[zoom]\"], input[name$=\"[coords][zoom]\"]",
+      path: 'coords.zoom'
+    }];
+
+    // Bind DOM → Store so user edits immediately update reactive state
+    bindings.forEach(function (_ref) {
+      var selector = _ref.selector,
+        path = _ref.path;
+      // If input does not exist for this binding, bail
+      var el = rootEl.querySelector(selector);
+      if (!el) {
+        return;
+      }
+
+      // Normalize input value so numbers become numbers and empty values become null
+      var handler = function handler() {
+        var raw = el.value;
+        var v = el.type === 'number' ? raw === '' ? null : Number.isFinite(Number(raw)) ? Number(raw) : null : raw;
+        setNestedValue(data.value, path, v);
+      };
+
+      // Listen to both input and change so Craft/Garnish-style widgets stay in sync
+      el.addEventListener('input', handler);
+      el.addEventListener('change', handler);
+      _domUnbinders.push(function () {
+        el.removeEventListener('input', handler);
+        el.removeEventListener('change', handler);
+      });
+    });
+
+    // Bind Store → DOM so programmatic updates (map, autocomplete, preview settings) reflect in inputs
+    bindings.forEach(function (_ref2) {
+      var selector = _ref2.selector,
+        path = _ref2.path;
+      // If input does not exist for this binding, bail
+      var el = rootEl.querySelector(selector);
+      if (!el) {
+        return;
+      }
+
+      // Watch the specific nested value so we only update DOM when that value changes
+      var stop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        return getNestedValue(data.value, path);
+      }, function (val) {
+        // Get the next input value as a string
+        var next = (val !== null && val !== void 0 ? val : '') + '';
+
+        // If the input value is already correct, bail
+        if (el.value === next) {
+          return;
+        }
+
+        // Update the input value to reflect the store state
+        el.value = next;
+
+        // If DOM events are not suppressed, dispatch events so dependent behaviors can react
+        // (e.g. Craft UI, masks, other listeners, etc.)
+        if (!_suppressDomEvents) {
+          el.dispatchEvent(new Event('input', {
+            bubbles: true
+          }));
+          el.dispatchEvent(new Event('change', {
+            bubbles: true
+          }));
+        }
+      }, {
+        immediate: true
+      });
+      _unsubscribers.push(stop);
+    });
+
+    // Add a delegated click handler so Twig-rendered map toggle controls can call into the store
+    // Add data-action="toggle-map" to the toggle element in Twig.
+    var clickHandler = function clickHandler(e) {
+      var t = e.target.closest('[data-action="toggle-map"]');
+      if (t) {
+        changeVisibility();
+        _applyVisibilityToDom(rootEl);
+      }
+    };
+    rootEl.addEventListener('click', clickHandler);
+    _domUnbinders.push(function () {
+      return rootEl.removeEventListener('click', clickHandler);
+    });
+
+    // Watch map visibility so the DOM wrapper can be shown/hidden without remounting anything
+    var stopVis = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+      return settings.value.showMap;
+    }, function () {
+      return _applyVisibilityToDom(rootEl);
+    }, {
+      immediate: true
+    });
+    _unsubscribers.push(stopVis);
+
+    // Watch subfield config so the settings preview can reorder/show/hide inputs immediately
+    var stopSubfields = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+      return settings.value.subfieldConfig;
+    }, function () {
+      return _syncSubfieldsToDom(rootEl);
+    }, {
+      deep: true,
+      immediate: true
+    });
+    _unsubscribers.push(stopSubfields);
+
+    // Watch coordinates mode so lat/lng/zoom inputs can switch between editable/readonly/hidden
+    var stopCoordsMode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+      return settings.value.coordinatesMode;
+    }, function () {
+      return _applyCoordinatesModeToDom(rootEl);
+    }, {
+      immediate: true
+    });
+    _unsubscribers.push(stopCoordsMode);
+
+    // Watch requireCoordinates so the UI can communicate required-ness for coordinate inputs
+    var stopRequireCoords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+      return !!settings.value.requireCoordinates;
+    }, function () {
+      return _applyRequireCoordinatesToDom(rootEl);
+    }, {
+      immediate: true
+    });
+    _unsubscribers.push(stopRequireCoords);
+
+    // Defer toggle positioning until layout is stable so measurements reflect final DOM geometry
+    requestAnimationFrame(_updateTogglePosition);
+
+    // Recompute toggle positioning when toggle style changes so layout stays visually aligned
+    var stopStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+      return settings.value.visibilityToggle;
+    }, function () {
+      requestAnimationFrame(_updateTogglePosition);
+    });
+    _unsubscribers.push(stopStyle);
+  }
+
+  /**
+   * Tear down all DOM bindings and reactive watchers created by connectDom().
+   */
+  function disconnectDom() {
+    // Dispose reactive watchers
+    _unsubscribers.forEach(function (fn) {
+      return fn();
+    });
+    _unsubscribers = [];
+
+    // Remove DOM event listeners
+    _domUnbinders.forEach(function (fn) {
+      return fn();
+    });
+    _domUnbinders = [];
+  }
+
+  /**
+   * Connect and initialize the Google Map instance.
+   */
+  function connectMap(_x) {
+    return _connectMap.apply(this, arguments);
+  }
+  /**
+   * Tear down the Google Map and marker instances.
+   */
+  function _connectMap() {
+    _connectMap = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(rootEl) {
+      var mapEl, maps, center, _pos$coords$latitude, _pos$coords, _pos$coords$longitude, _pos$coords2, pos, mapOptions, position, dragListener, zoomListener, removeListener, stopCoords, stopZoom;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              // Set root element reference
+              _rootEl = rootEl;
+
+              // Get the map element
+              mapEl = rootEl.querySelector('[data-role="map"]'); // If no map element, bail
+              if (mapEl) {
+                _context.next = 4;
+                break;
+              }
+              return _context.abrupt("return");
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
+              return _ensureClassicMaps();
+            case 7:
+              maps = _context.sent;
+              _context.next = 14;
+              break;
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](4);
+              console.warn(_context.t0.message);
+              return _context.abrupt("return");
+            case 14:
+              // Get initial center position
+              center = _getFieldCenter(); // If no center yet, try to use browser geolocation
+              if (!(!center && navigator.geolocation)) {
+                _context.next = 27;
+                break;
+              }
+              _context.prev = 16;
+              _context.next = 19;
+              return new Promise(function (res, rej) {
+                return navigator.geolocation.getCurrentPosition(res, rej, {
+                  timeout: 5000
+                });
+              });
+            case 19:
+              pos = _context.sent;
+              // Set center from geolocation results
+              center = {
+                lat: (_pos$coords$latitude = (_pos$coords = pos.coords) === null || _pos$coords === void 0 ? void 0 : _pos$coords.latitude) !== null && _pos$coords$latitude !== void 0 ? _pos$coords$latitude : 0,
+                lng: (_pos$coords$longitude = (_pos$coords2 = pos.coords) === null || _pos$coords2 === void 0 ? void 0 : _pos$coords2.longitude) !== null && _pos$coords$longitude !== void 0 ? _pos$coords$longitude : 0,
+                zoom: 10
+              };
+              // Update field data with geolocated coords
+              data.value.coords = {
+                lat: +center.lat,
+                lng: +center.lng,
+                zoom: center.zoom
+              };
+              _context.next = 27;
+              break;
+            case 24:
+              _context.prev = 24;
+              _context.t1 = _context["catch"](16);
+              console.warn('[GM] Geolocation unavailable:', _context.t1);
+            case 27:
+              // If still no center, use hardcoded default (Bermuda Triangle)
+              if (!center) {
+                center = {
+                  lat: 32.3113966,
+                  lng: -64.7527469,
+                  zoom: 6
+                };
+              }
+
+              // Configure map options
+              mapOptions = {
+                center: {
+                  lat: +center.lat,
+                  lng: +center.lng
+                },
+                zoom: _safeZoom(center.zoom),
+                streetViewControl: false,
+                fullscreenControl: false,
+                mapTypeControl: false,
+                controlSize: settings.value.controlSize
+              }; // Build the map
+              _map = new window.google.maps.Map(mapEl, mapOptions);
+
+              // Set position of map marker
+              position = {
+                lat: +center.lat,
+                lng: +center.lng
+              }; // Add a marker to the map
+              _marker = new window.google.maps.Marker({
+                position: position,
+                map: _map,
+                draggable: !isRevision.value // Disable dragging on revisions
+              });
+
+              // If viewing as a revision,
+              // prevent map from being interactive
+              if (!isRevision.value) {
+                _context.next = 34;
+                break;
+              }
+              return _context.abrupt("return");
+            case 34:
+              // Update subfield coords when marker is dragged
+              dragListener = window.google.maps.event.addListener(_marker, 'dragend', function () {
+                var _map$getZoom;
+                var p = _marker.getPosition();
+                var next = {
+                  lat: +p.lat().toFixed(7),
+                  lng: +p.lng().toFixed(7),
+                  zoom: (_map$getZoom = _map.getZoom()) !== null && _map$getZoom !== void 0 ? _map$getZoom : _safeZoom(11)
+                };
+                data.value.coords = next;
+                _centerMap();
+              }); // Update subfield zoom when map is zoomed
+              zoomListener = window.google.maps.event.addListener(_map, 'zoom_changed', function () {
+                var _data$value$coords3;
+                var z = _map.getZoom();
+                if (!isFinite(+z)) {
+                  return;
+                }
+                if (+((_data$value$coords3 = data.value.coords) === null || _data$value$coords3 === void 0 ? void 0 : _data$value$coords3.zoom) !== +z) {
+                  data.value.coords = _objectSpread(_objectSpread({}, data.value.coords), {}, {
+                    zoom: +z
+                  });
+                }
+              }); // Helper to remove a listener
+              removeListener = function removeListener(h) {
+                var _window$google$maps$e3, _window$google$maps$e4;
+                if (!h) {
+                  return;
+                }
+                if (typeof h.remove === 'function') h.remove();else (_window$google$maps$e3 = window.google.maps.event) === null || _window$google$maps$e3 === void 0 ? void 0 : (_window$google$maps$e4 = _window$google$maps$e3.removeListener) === null || _window$google$maps$e4 === void 0 ? void 0 : _window$google$maps$e4.call(_window$google$maps$e3, h);
+              }; // Cleanup both listeners on disconnect
+              _domUnbinders.push(function () {
+                return removeListener(dragListener);
+              });
+              _domUnbinders.push(function () {
+                return removeListener(zoomListener);
+              });
+
+              // Stop watching for changes to coordinates
+              stopCoords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+                var _data$value$coords4, _data$value$coords5;
+                return [(_data$value$coords4 = data.value.coords) === null || _data$value$coords4 === void 0 ? void 0 : _data$value$coords4.lat, (_data$value$coords5 = data.value.coords) === null || _data$value$coords5 === void 0 ? void 0 : _data$value$coords5.lng];
+              }, function (_ref6) {
+                var _marker$getPosition, _marker2;
+                var _ref7 = _slicedToArray(_ref6, 2),
+                  lat = _ref7[0],
+                  lng = _ref7[1];
+                // If coordinates are not valid, bail
+                if (!_areCoordsValid({
+                  lat: lat,
+                  lng: lng
+                })) {
+                  return;
+                }
+                if (!isFinite(+lat) || !isFinite(+lng)) {
+                  return;
+                }
+                var pos = {
+                  lat: +lat,
+                  lng: +lng
+                };
+                var cur = (_marker$getPosition = (_marker2 = _marker).getPosition) === null || _marker$getPosition === void 0 ? void 0 : _marker$getPosition.call(_marker2);
+                var same = cur && Math.abs(cur.lat() - pos.lat) < 1e-9 && Math.abs(cur.lng() - pos.lng) < 1e-9;
+                if (!same) {
+                  _marker.setPosition(pos);
+                  _centerMap();
+                }
+              }, {
+                immediate: true
+              }); // Stop watching for changes to zoom
+              stopZoom = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+                var _data$value$coords6;
+                return (_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.zoom;
+              }, function (zoom) {
+                var _map$getZoom2, _map2;
+                if (!isFinite(+zoom) || !_map) {
+                  return;
+                }
+                var next = _safeZoom(zoom);
+                if (((_map$getZoom2 = (_map2 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map2)) !== next) _map.setZoom(next);
+              }, {
+                immediate: true
+              }); // Cleanup watchers on disconnect
+              _unsubscribers.push(stopCoords, stopZoom);
+            case 42:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[4, 10], [16, 24]]);
+    }));
+    return _connectMap.apply(this, arguments);
+  }
+  function disconnectMap() {
+    // If a marker exists, remove it from the map and release the reference
+    if (_marker) {
+      _marker.setMap(null);
+      _marker = null;
+    }
+
+    // Clear the map reference so it can be garbage collected
+    _map = null;
+  }
+
+  /**
+   * Attach Google Places Autocomplete to configured address subfields.
+   *
+   * This wires Places selections into store state and installs guards
+   * to prevent accidental form submission while the dropdown is active.
+   */
+  function connectAutocomplete(_x2) {
+    return _connectAutocomplete.apply(this, arguments);
+  }
+  /**
+   * Disconnect all Places Autocomplete instances and remove related submit guards.
+   */
+  function _connectAutocomplete() {
+    _connectAutocomplete = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(rootEl) {
+      var targets;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!(!rootEl || _autocompletes.length)) {
+                _context2.next = 2;
+                break;
+              }
+              return _context2.abrupt("return");
+            case 2:
+              _context2.prev = 2;
+              _context2.next = 5;
+              return _ensurePlaces();
+            case 5:
+              _context2.next = 10;
+              break;
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](2);
+              return _context2.abrupt("return");
+            case 10:
+              // Select inputs that should receive Autocomplete
+              targets = _selectAutocompleteTargets(rootEl); // If no targets found, bail
+              if (targets.length) {
+                _context2.next = 13;
+                break;
+              }
+              return _context2.abrupt("return");
+            case 13:
+              // Loop through targets and wire up Autocomplete
+              targets.forEach(function (el) {
+                // Initialize Places Autocomplete on the input
+                var ac = new window.google.maps.places.Autocomplete(el, {
+                  fields: ['address_components', 'formatted_address', 'geometry', 'name', 'place_id']
+                  // types: ['address'] // optional
+                });
+
+                // Apply selected place data into store state
+                var placeListener = ac.addListener('place_changed', function () {
+                  var _ac$getPlace;
+                  // Get the selected place
+                  var place = (_ac$getPlace = ac.getPlace) === null || _ac$getPlace === void 0 ? void 0 : _ac$getPlace.call(ac);
+
+                  // If no place selected, bail
+                  if (!place) {
+                    return;
+                  }
+
+                  // Temporarily suppress DOM events so programmatic updates
+                  // do not re-trigger Autocomplete or other listeners
+                  _suppressDomEvents = true;
+                  try {
+                    _applyPlaceToData(place);
+                  } finally {
+                    // Re-enable DOM events after Vue has flushed updates
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)(function () {
+                      _suppressDomEvents = false;
+                    });
+                  }
+                });
+
+                // Intercept Enter key presses while the Places menu is open
+                // so selection does not implicitly submit the form
+                var keydown = function keydown(e) {
+                  // If the event is part of an IME composition, ignore it
+                  if (e.isComposing) {
+                    return; // IME safety
+                  }
+                  // If the key pressed was not the Enter key, bail
+                  if (e.key !== 'Enter') {
+                    return;
+                  }
+                  // If the Places menu is open
+                  if (_isPlacesMenuOpen()) {
+                    // Block the next form submit and prevent default Enter behavior
+                    _blockNextSubmit = true;
+                    e.preventDefault();
+                  }
+                };
+
+                // Attach keydown listener to the input element
+                el.addEventListener('keydown', keydown, {
+                  capture: true
+                });
+
+                // Install a form-level submit guard as a final backstop
+                var formEl = el.form || rootEl.closest('form') || document.querySelector('form');
+
+                // If the form exists and we haven't already installed a guard on it
+                if (formEl && !_formSubmitGuards.has(formEl)) {
+                  // Define the submit handler
+                  var onSubmit = function onSubmit(ev) {
+                    // If a Places Enter was just consumed, or the menu is still open, bail
+                    if (_blockNextSubmit || _isPlacesMenuOpen()) {
+                      ev.preventDefault();
+                      _blockNextSubmit = false;
+                    }
+                  };
+
+                  // Capture submit early so we can preempt native submission
+                  formEl.addEventListener('submit', onSubmit, {
+                    capture: true
+                  });
+
+                  // Guard against keypress-driven submits in older browsers
+                  var onKeypress = function onKeypress(ev) {
+                    if (ev.key === 'Enter' && _isPlacesMenuOpen()) {
+                      ev.preventDefault();
+                      _blockNextSubmit = true;
+                    }
+                  };
+
+                  // Attach keypress listener to the form
+                  formEl.addEventListener('keypress', onKeypress, {
+                    capture: true
+                  });
+
+                  // Record that we've installed a guard on this form
+                  _formSubmitGuards.set(formEl, {
+                    onSubmit: onSubmit,
+                    onKeypress: onKeypress
+                  });
+                }
+
+                // Track this Autocomplete instance so it can be cleaned up later
+                _autocompletes.push({
+                  el: el,
+                  ac: ac,
+                  listener: placeListener,
+                  keydown: keydown,
+                  formEl: formEl
+                });
+              });
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[2, 7]]);
+    }));
+    return _connectAutocomplete.apply(this, arguments);
+  }
+  function disconnectAutocomplete() {
+    // Tear down Autocomplete listeners and input-level key handlers
+    _autocompletes.forEach(function (_ref3) {
+      var el = _ref3.el,
+        ac = _ref3.ac,
+        listener = _ref3.listener,
+        keydown = _ref3.keydown;
+      try {
+        var _window$google, _window$google$maps, _window$google$maps$e, _window$google$maps$e2;
+        (_window$google = window.google) === null || _window$google === void 0 ? void 0 : (_window$google$maps = _window$google.maps) === null || _window$google$maps === void 0 ? void 0 : (_window$google$maps$e = _window$google$maps.event) === null || _window$google$maps$e === void 0 ? void 0 : (_window$google$maps$e2 = _window$google$maps$e.removeListener) === null || _window$google$maps$e2 === void 0 ? void 0 : _window$google$maps$e2.call(_window$google$maps$e, listener);
+      } catch (_unused) {}
+      try {
+        var _window$google2, _window$google2$maps, _window$google2$maps$, _window$google2$maps$2;
+        (_window$google2 = window.google) === null || _window$google2 === void 0 ? void 0 : (_window$google2$maps = _window$google2.maps) === null || _window$google2$maps === void 0 ? void 0 : (_window$google2$maps$ = _window$google2$maps.event) === null || _window$google2$maps$ === void 0 ? void 0 : (_window$google2$maps$2 = _window$google2$maps$.clearInstanceListeners) === null || _window$google2$maps$2 === void 0 ? void 0 : _window$google2$maps$2.call(_window$google2$maps$, ac);
+      } catch (_unused2) {}
+      try {
+        var _el$removeEventListen;
+        el === null || el === void 0 ? void 0 : (_el$removeEventListen = el.removeEventListener) === null || _el$removeEventListen === void 0 ? void 0 : _el$removeEventListen.call(el, 'keydown', keydown, {
+          capture: true
+        });
+      } catch (_unused3) {}
+    });
+    _autocompletes = [];
+
+    // Remove form-level submit guards installed for Autocomplete protection
+    _formSubmitGuards.forEach(function (_ref4, formEl) {
+      var onSubmit = _ref4.onSubmit,
+        onKeypress = _ref4.onKeypress;
+      try {
+        var _formEl$removeEventLi;
+        formEl === null || formEl === void 0 ? void 0 : (_formEl$removeEventLi = formEl.removeEventListener) === null || _formEl$removeEventLi === void 0 ? void 0 : _formEl$removeEventLi.call(formEl, 'submit', onSubmit, {
+          capture: true
+        });
+      } catch (_unused4) {}
+      try {
+        var _formEl$removeEventLi2;
+        formEl === null || formEl === void 0 ? void 0 : (_formEl$removeEventLi2 = formEl.removeEventListener) === null || _formEl$removeEventLi2 === void 0 ? void 0 : _formEl$removeEventLi2.call(formEl, 'keypress', onKeypress, {
+          capture: true
+        });
+      } catch (_unused5) {}
+    });
+    _formSubmitGuards.clear();
+
+    // Reset one-shot submit guard state
+    _blockNextSubmit = false;
+  }
+
+  /**
    * Toggle visibility of the map.
    */
   function changeVisibility() {
+    // Invert current visibility state
     settings.value.showMap = !settings.value.showMap;
+  }
+
+  /**
+   * Merge settings updates coming from the settings preview UI.
+   */
+  function applySettings(partial) {
+    // If input is missing or not an object, bail
+    if (!partial || _typeof(partial) !== 'object') {
+      return;
+    }
+
+    // Merge provided settings into existing reactive settings state
+    settings.value = _objectSpread(_objectSpread({}, settings.value), partial);
+
+    // Autocomplete and DOM wiring are managed elsewhere by watchers
   }
 
   /**
    * Check whether coordinates are valid.
    */
-  function validateCoords(coords) {
-    // Loop through coordinates
-    for (var key in coords) {
-      // Skip the zoom value
-      if ('zoom' === key) {
-        continue;
-      }
-      // Get individual coordinate
-      var coord = coords[key];
-      // If coordinate is not a number or string, return false
-      if (!['number', 'string'].includes(_typeof(coord))) {
-        return false;
-      }
-      // If coordinate is not numeric, return false
-      if (isNaN(coord)) {
-        return false;
-      }
-      // If coordinate is an empty string, return false
-      if ('' === coord) {
-        return false;
-      }
+  function _areCoordsValid(coords) {
+    // If coords is missing or not an object, mark as invalid
+    if (!coords || _typeof(coords) !== 'object') {
+      return false;
+    }
+
+    // If either lat or lng is missing, mark as invalid
+    if (!('lat' in coords) || !('lng' in coords)) {
+      return false;
+    }
+
+    // If either lat or lng is null, mark as invalid
+    if (coords.lat === null || coords.lng === null) {
+      return false;
+    }
+
+    // Get lat & lng as numbers
+    var lat = Number(coords.lat);
+    var lng = Number(coords.lng);
+
+    // If either lat or lng is not a finite number, mark as invalid
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+      return false;
     }
 
     // Success, coordinates are valid!
@@ -19959,7 +19485,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   /**
    * Populate address data when Autocomplete selected.
    */
-  function updateData(place) {
+  function _applyPlaceToData(place) {
     // Set address subfield data
     _setAddressData(place.address_components);
 
@@ -19994,6 +19520,648 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
 
     // Change map visibility based on settings
     settings.value.showMap = 'open' === settings.value.mapOnSearch;
+  }
+
+  /**
+   * Apply current map visibility setting to the DOM.
+   */
+  function _applyVisibilityToDom(rootEl) {
+    // Locate the map wrapper rendered by the Twig template
+    var mapWrap = rootEl.querySelector('[data-role="map-wrapper"]');
+
+    // If wrapper element is missing, bail
+    if (!mapWrap) {
+      return;
+    }
+
+    // Show or hide the map based on current visibility setting
+    mapWrap.style.display = settings.value.showMap ? '' : 'none';
+  }
+
+  /**
+   * Apply the selected coordinates mode to lat/lng/zoom inputs.
+   */
+  function _applyCoordinatesModeToDom(rootEl) {
+    // If root element is missing, bail
+    if (!rootEl) {
+      return;
+    }
+
+    // Read current coordinates mode from settings
+    var mode = settings.value.coordinatesMode; // 'editable' | 'readOnly' | 'hidden'
+
+    // Select a coordinate input by key, supporting both flat and nested names
+    var selectInput = function selectInput(key) {
+      return rootEl.querySelector("input[name$=\"[".concat(key, "]\"], input[name$=\"[coords][").concat(key, "]\"]"));
+    };
+
+    // Apply mode behavior to each coordinate input
+    ['lat', 'lng', 'zoom'].forEach(function (key) {
+      var el = selectInput(key);
+
+      // If input does not exist for this key, bail
+      if (!el) {
+        return;
+      }
+      if (mode === 'hidden') {
+        // Hide input while preserving its value
+        el.type = 'hidden';
+        el.readOnly = false;
+      } else {
+        // Show input and toggle editability based on mode
+        el.type = 'number';
+        el.readOnly = mode !== 'editable';
+      }
+    });
+  }
+
+  /**
+   * Apply required-coordinate UI affordances to lat/lng inputs.
+   */
+  function _applyRequireCoordinatesToDom(rootEl) {
+    // If root element is missing, bail
+    if (!rootEl) {
+      return;
+    }
+
+    // TEMP: Is this feature too ugly to exist?
+    return;
+    // ENDTEMP
+
+    // Select a coordinate input by key, supporting both flat and nested names
+    var selectInput = function selectInput(key) {
+      return rootEl.querySelector("input[name$=\"[".concat(key, "]\"], input[name$=\"[coords][").concat(key, "]\"]"));
+    };
+
+    // Read whether coordinates are required from settings
+    var requireCoords = !!settings.value.requireCoordinates;
+
+    // Update placeholders to reflect required state
+    ['lat', 'lng'].forEach(function (key) {
+      var el = selectInput(key);
+
+      // If input does not exist for this key, bail
+      if (!el) {
+        return;
+      }
+
+      // Cache the original placeholder so we can toggle the required indicator
+      if (!el.dataset.gmBasePlaceholder) {
+        el.dataset.gmBasePlaceholder = el.placeholder || (key === 'lat' ? 'Latitude' : 'Longitude');
+      }
+
+      // Append or remove required indicator without mutating the base placeholder
+      el.placeholder = el.dataset.gmBasePlaceholder + (requireCoords ? ' *' : '');
+    });
+  }
+
+  /**
+   * Synchronize preview subfield DOM inputs with settings.subfieldConfig.
+   *
+   * This reorders inputs to match configuration order, then applies
+   * visibility, placeholder text, and width rules to each subfield.
+   */
+  function _syncSubfieldsToDom(rootEl) {
+    // If root element is missing, bail
+    if (!rootEl) {
+      return;
+    }
+
+    // Read current subfield configuration (fallback to empty array)
+    var cfg = settings.value.subfieldConfig || [];
+
+    /**
+     * 1) Reorder DOM inputs to match configuration order
+     */
+
+    // Initialize shared parent container reference
+    var parent = null;
+
+    // Initialize collection of ordered inputs
+    var orderedInputs = [];
+
+    // Loop through each configured subfield
+    cfg.forEach(function (sf) {
+      // If subfield config is missing or malformed, bail
+      if (!sf || !sf.handle) {
+        return;
+      }
+
+      // Select input by suffix so outer Craft namespace does not matter
+      var input = rootEl.querySelector("input[name$=\"[".concat(sf.handle, "]\"]"));
+
+      // If input does not exist for this subfield, bail
+      if (!input) {
+        return;
+      }
+
+      // Capture the shared parent container on first match
+      if (!parent) {
+        parent = input.parentElement;
+      }
+
+      // Only reorder inputs that live in the same container
+      if (input.parentElement === parent) {
+        orderedInputs.push(input);
+      }
+    });
+
+    // If we have a parent and at least one input to reorder
+    if (parent && orderedInputs.length) {
+      // Re-append inputs in the desired order
+      orderedInputs.forEach(function (input) {
+        // Move each input to the end of the parent to reorder
+        parent.appendChild(input);
+      });
+    }
+
+    /**
+     * 2) Apply enabled, label, and width settings to each subfield
+     */
+
+    // Loop through each configured subfield
+    cfg.forEach(function (sf) {
+      // If subfield config is missing or malformed, bail
+      if (!sf || !sf.handle) {
+        return;
+      }
+
+      // Select input again after potential reordering
+      var input = rootEl.querySelector("input[name$=\"[".concat(sf.handle, "]\"]"));
+
+      // If input does not exist for this subfield, bail
+      if (!input) {
+        return;
+      }
+
+      // Apply visibility based on enabled flag (default to enabled)
+      var enabled = sf.enabled === undefined ? true : !!sf.enabled;
+      input.style.display = enabled ? '' : 'none';
+
+      // Apply label and required indicator to placeholder
+      if (sf.label !== undefined || sf.required !== undefined) {
+        // Get placeholder text (fallback to handle if label is empty)
+        var placeholder = sf.label && sf.label.trim().length ? sf.label : sf.handle;
+
+        // If required, append indicator
+        if (sf.required) {
+          placeholder += ' *';
+        }
+
+        // Set the placeholder on the input
+        input.placeholder = placeholder;
+      }
+
+      // Apply width percentage, mirroring Twig macro behavior
+      if (sf.width !== undefined && sf.width !== null) {
+        // Parse width as a number
+        var width = Number(sf.width);
+
+        // If width is valid and positive, clamp and apply
+        if (!Number.isNaN(width) && width > 0) {
+          // If width exceeds 100%, clamp it
+          if (width > 100) {
+            width = 100;
+          }
+
+          // Subtract 1% to account for right margin (Twig parity)
+          width = width - 1;
+          input.style.width = "".concat(width, "%");
+        } else {
+          // If width is invalid, allow CSS to control layout
+          input.style.removeProperty('width');
+        }
+      }
+    });
+  }
+
+  /**
+   * Calculate and apply the toggle UI offset so it sits correctly alongside Craft’s field chrome.
+   */
+  function _updateTogglePosition() {
+    // Start with the default offset used when no extra UI elements affect layout
+    var offset = -27;
+
+    // Get the current visibility toggle style from settings
+    var style = settings.value.visibilityToggle; // 'both' | 'text' | 'icon' | 'hidden'
+
+    // If toggle is hidden or root element is missing, bail
+    if (style === 'hidden' || !_rootEl) {
+      marginTop.value = offset;
+      return;
+    }
+
+    // Find the Craft field container so we can target nearby UI elements consistently
+    var container = _rootEl.closest('.field');
+
+    // Build a stable class name so CSS can style the right UI variant
+    var toggleClass = "gm-toggle-".concat(style);
+
+    // Support Craft < 5.6 where the copy UI uses the legacy button class
+    var copyTextBtn = container.getElementsByClassName('copytextbtn');
+    if (copyTextBtn.length) {
+      copyTextBtn[0].classList.add(toggleClass);
+    }
+
+    // Support Craft 5.6+ where the copy UI may be a web component or action button
+    var copyAttribute = container.getElementsByTagName('craft-copy-attribute');
+
+    // Also support action-btn variant used in some Craft builds
+    var actionBtn = container.getElementsByClassName('action-btn');
+
+    // If either copy UI variant exists, apply the toggle class to it
+    if (copyAttribute.length) {
+      copyAttribute[0].classList.add(toggleClass);
+    } else if (actionBtn.length) {
+      actionBtn[0].classList.add(toggleClass);
+    }
+
+    // If instructions are present, subtract their height so the toggle doesn’t overlap them
+    var instructions = container.getElementsByClassName('instructions');
+
+    // If instructions exist, adjust offset accordingly
+    if (instructions.length) {
+      // Subtract the height of the instructions element
+      var h = instructions[0].clientHeight || 0;
+      offset -= h;
+
+      // If a previous observer exists, disconnect it before attaching a new one
+      if (_resizeObs) {
+        try {
+          _resizeObs.disconnect();
+        } catch (_) {}
+      }
+
+      // Attach a ResizeObserver to the instructions to react to size changes
+      if (typeof ResizeObserver !== 'undefined') {
+        // Create and attach the observer
+        _resizeObs = new ResizeObserver(function () {
+          // Recalculate on the next frame to avoid layout thrash during resize
+          requestAnimationFrame(_updateTogglePosition);
+        });
+        // Observe the instructions element
+        _resizeObs.observe(instructions[0]);
+        // Unbind observer on disconnect
+        _domUnbinders.push(function () {
+          try {
+            _resizeObs.disconnect();
+          } catch (_) {}
+          _resizeObs = null;
+        });
+      }
+    }
+
+    // Publish the final computed offset for the UI to consume
+    marginTop.value = offset;
+  }
+
+  /**
+   * Ensure classic Google Maps constructors are available (google.maps.Map / google.maps.Marker).
+   */
+  function _ensureClassicMaps() {
+    return _ensureClassicMaps2.apply(this, arguments);
+  }
+  /**
+   * Ensure the Google Places library is available before wiring Autocomplete.
+   */
+  function _ensureClassicMaps2() {
+    _ensureClassicMaps2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var timeoutMs,
+        intervalMs,
+        wait,
+        maps,
+        _args4 = arguments;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              timeoutMs = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : 12000;
+              intervalMs = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : 50;
+              // Poll until classic constructors exist (optionally importing libraries when using the new loader)
+              wait = function wait() {
+                return new Promise(function (resolve, reject) {
+                  // Record start time for timeout tracking
+                  var start = Date.now();
+
+                  // Define polling tick function
+                  var tick = /*#__PURE__*/function () {
+                    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                      var g, m;
+                      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                        while (1) {
+                          switch (_context3.prev = _context3.next) {
+                            case 0:
+                              // Get google.maps namespace
+                              g = window.google;
+                              m = g === null || g === void 0 ? void 0 : g.maps; // If importLibrary exists and constructors are missing, attempt to load them
+                              if (!(m !== null && m !== void 0 && m.importLibrary && (!m.Map || !m.Marker))) {
+                                _context3.next = 12;
+                                break;
+                              }
+                              _context3.prev = 3;
+                              _context3.next = 6;
+                              return m.importLibrary('maps');
+                            case 6:
+                              _context3.next = 8;
+                              return m.importLibrary('marker');
+                            case 8:
+                              _context3.next = 12;
+                              break;
+                            case 10:
+                              _context3.prev = 10;
+                              _context3.t0 = _context3["catch"](3);
+                            case 12:
+                              if (!(m !== null && m !== void 0 && m.Map && m !== null && m !== void 0 && m.Marker)) {
+                                _context3.next = 14;
+                                break;
+                              }
+                              return _context3.abrupt("return", resolve(m));
+                            case 14:
+                              if (!(Date.now() - start > timeoutMs)) {
+                                _context3.next = 16;
+                                break;
+                              }
+                              return _context3.abrupt("return", reject(new Error('[GM] Maps API not ready (classic constructors missing)')));
+                            case 16:
+                              // Schedule next poll
+                              setTimeout(tick, intervalMs);
+                            case 17:
+                            case "end":
+                              return _context3.stop();
+                          }
+                        }
+                      }, _callee3, null, [[3, 10]]);
+                    }));
+                    return function tick() {
+                      return _ref8.apply(this, arguments);
+                    };
+                  }();
+
+                  // Start first tick immediately
+                  tick();
+                });
+              }; // Wait for constructors to become available
+              _context4.next = 5;
+              return wait();
+            case 5:
+              maps = _context4.sent;
+              if (!(typeof maps.Map !== 'function' || typeof maps.Marker !== 'function')) {
+                _context4.next = 8;
+                break;
+              }
+              throw new Error('[GM] Expected google.maps.Map/Marker constructors, but found: ' + JSON.stringify({
+                Map: _typeof(maps.Map),
+                Marker: _typeof(maps.Marker)
+              }));
+            case 8:
+              return _context4.abrupt("return", maps);
+            case 9:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+    return _ensureClassicMaps2.apply(this, arguments);
+  }
+  function _ensurePlaces() {
+    return _ensurePlaces2.apply(this, arguments);
+  }
+  /**
+   * Determine whether a Places Autocomplete dropdown menu is currently visible.
+   */
+  function _ensurePlaces2() {
+    _ensurePlaces2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var timeoutMs,
+        intervalMs,
+        _window$google3,
+        _window$google3$maps,
+        start,
+        maps,
+        hasAutocomplete,
+        _args5 = arguments;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              timeoutMs = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : 12000;
+              intervalMs = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : 50;
+              _context5.next = 4;
+              return _ensureClassicMaps(timeoutMs, intervalMs);
+            case 4:
+              _context5.prev = 4;
+              if (!((_window$google3 = window.google) !== null && _window$google3 !== void 0 && (_window$google3$maps = _window$google3.maps) !== null && _window$google3$maps !== void 0 && _window$google3$maps.importLibrary)) {
+                _context5.next = 8;
+                break;
+              }
+              _context5.next = 8;
+              return window.google.maps.importLibrary('places');
+            case 8:
+              _context5.next = 12;
+              break;
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](4);
+            case 12:
+              // Start a timeout window so we don’t wait forever on a misconfigured Maps load
+              start = Date.now(); // Poll for Places library readiness
+            case 13:
+              // Read current Maps namespace from the global so we observe it as it becomes available
+              maps = window.google && window.google.maps; // Check for the Places Autocomplete constructor as the readiness signal
+              hasAutocomplete = !!(maps && maps.places && typeof maps.places.Autocomplete === 'function'); // If Places is ready, return the Maps namespace for downstream use
+              if (!hasAutocomplete) {
+                _context5.next = 17;
+                break;
+              }
+              return _context5.abrupt("return", maps);
+            case 17:
+              if (!(Date.now() - start >= timeoutMs)) {
+                _context5.next = 19;
+                break;
+              }
+              throw new Error('[GM] Places library not loaded. Include `libraries=places` or importLibrary("places").');
+            case 19:
+              _context5.next = 21;
+              return new Promise(function (r) {
+                return setTimeout(r, intervalMs);
+              });
+            case 21:
+              _context5.next = 13;
+              break;
+            case 23:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[4, 10]]);
+    }));
+    return _ensurePlaces2.apply(this, arguments);
+  }
+  function _isPlacesMenuOpen() {
+    // Query all possible Places dropdown containers
+    var containers = document.querySelectorAll('.pac-container');
+
+    // Look for any container that is visible and has suggestion items
+    var _iterator = _createForOfIteratorHelper(containers),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _c$getBoundingClientR;
+        var c = _step.value;
+        // Check for at least one suggestion item
+        var hasItems = !!c.querySelector('.pac-item');
+
+        // Use layout participation or bounds as a visibility signal
+        var rect = ((_c$getBoundingClientR = c.getBoundingClientRect) === null || _c$getBoundingClientR === void 0 ? void 0 : _c$getBoundingClientR.call(c)) || {
+          width: 0,
+          height: 0
+        };
+        var visible = !!(c.offsetParent || rect.width && rect.height);
+
+        // If suggestions are visible, treat the menu as open
+        if (hasItems && visible) return true;
+      }
+
+      // Otherwise, treat the menu as closed
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    return false;
+  }
+
+  /**
+   * Resolve the initial map center using field data or settings defaults.
+   */
+  function _getFieldCenter() {
+    // If coordinates are valid in field data
+    if (_areCoordsValid(data.value.coords)) {
+      // Extract coordinates from field data
+      var _data$value$coords = data.value.coords,
+        lat = _data$value$coords.lat,
+        lng = _data$value$coords.lng,
+        zoom = _data$value$coords.zoom;
+      // Return normalized coordinates
+      return {
+        lat: +lat,
+        lng: +lng,
+        zoom: isFinite(+zoom) ? +zoom : 11
+      };
+    }
+
+    // Fall back to default coordinates
+    var def = settings.value.coordinatesDefault;
+
+    // If default coordinates are valid
+    if (def && _areCoordsValid(def)) {
+      // Extract default coordinates from settings
+      var _lat = def.lat,
+        _lng = def.lng,
+        _zoom = def.zoom;
+      // Return normalized coordinates
+      return {
+        lat: +_lat,
+        lng: +_lng,
+        zoom: isFinite(+_zoom) ? +_zoom : 11
+      };
+    }
+
+    // No center is defined
+    return null;
+  }
+
+  /**
+   * Center the map on the current coordinate values.
+   */
+  function _centerMap() {
+    var _data$value$coords2;
+    // If map or marker is not initialized, bail
+    if (!_map || !_marker) {
+      return;
+    }
+
+    // Read current coordinates from store
+    var _ref5 = (_data$value$coords2 = data.value.coords) !== null && _data$value$coords2 !== void 0 ? _data$value$coords2 : {},
+      lat = _ref5.lat,
+      lng = _ref5.lng;
+
+    // If coordinates are not valid numbers, bail
+    if (!isFinite(+lat) || !isFinite(+lng)) {
+      return;
+    }
+
+    // Pan map to the resolved coordinate position
+    _map.panTo({
+      lat: +lat,
+      lng: +lng
+    });
+  }
+
+  /**
+   * Normalize a zoom value so it is always safe to apply to the map.
+   */
+  function _safeZoom(z) {
+    // Coerce input into an integer zoom value
+    var num = parseInt(z, 10);
+
+    // If value is not a finite number, fall back to a reasonable default
+    if (!isFinite(num)) {
+      return 11;
+    }
+
+    // Clamp negative zoom levels to zero
+    if (num < 0) {
+      return 0;
+    }
+
+    // Return normalized zoom value
+    return num;
+  }
+
+  /**
+   * Select which subfield input elements should have autocomplete enabled.
+   */
+  function _selectAutocompleteTargets(rootEl) {
+    var _settings$value$subfi;
+    // Initialize selected elements array
+    var selected = [];
+
+    // Loop over the subfield config
+    (_settings$value$subfi = settings.value.subfieldConfig) === null || _settings$value$subfi === void 0 ? void 0 : _settings$value$subfi.forEach(function (sf) {
+      // If subfield is disabled, skip it
+      if (!(sf !== null && sf !== void 0 && sf.enabled)) {
+        return;
+      }
+      // If autocomplete is explicitly off, skip it
+      if ((sf === null || sf === void 0 ? void 0 : sf.autocomplete) === false) {
+        return;
+      }
+      // Get the input element for this subfield
+      var el = rootEl.querySelector("input[name$=\"[".concat(sf.handle, "]\"]"));
+      // If found and visible, add it to the selected list
+      if (el && getComputedStyle(el).display !== 'none') {
+        selected.push(el);
+      }
+    });
+
+    // If nothing is explicitly selected
+    if (!selected.length) {
+      // Fallback to `street1` or `name` field
+      for (var _i = 0, _arr = ['street1', 'name']; _i < _arr.length; _i++) {
+        var handle = _arr[_i];
+        // Get the subfield input element
+        var el = rootEl.querySelector("input[name$=\"[".concat(handle, "]\"]"));
+        // If found, add it and stop
+        if (el) {
+          selected.push(el);
+          break;
+        }
+      }
+    }
+
+    // Return selected subfield input elements
+    return selected;
   }
 
   /**
@@ -20076,12 +20244,15 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * Normalize the address data when anything changes.
    */
   function _normalizeData() {
-    // If coordinates are invalid
-    if (!validateCoords(data.value.coords)) {
-      // Reset the meta fields
-      data.value.address['formatted'] = null;
-      data.value.address['raw'] = null;
+    // If coordinates are valid
+    if (_areCoordsValid(data.value.coords)) {
+      // Continue on normally
+      return;
     }
+
+    // Reset the meta fields
+    data.value.address['formatted'] = null;
+    data.value.address['raw'] = null;
   }
 
   // ========================================================================= //
@@ -20094,1723 +20265,23 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     data: data,
     images: images,
     formatting: formatting,
+    marginTop: marginTop,
     // Getters
     configToggle: configToggle,
     configCoords: configCoords,
     subfields: subfields,
     // Actions
+    initFromDom: initFromDom,
+    connectDom: connectDom,
+    disconnectDom: disconnectDom,
+    connectMap: connectMap,
+    disconnectMap: disconnectMap,
+    connectAutocomplete: connectAutocomplete,
+    disconnectAutocomplete: disconnectAutocomplete,
     changeVisibility: changeVisibility,
-    validateCoords: validateCoords,
-    updateData: updateData
+    applySettings: applySettings
   };
 });
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.settings-note[data-v-b4b455d2] {\n    border-radius: 5px;\n    border: 1px solid #cdd8e4;\n    padding: 12px 14px;\n}\n.settings-note .instructions[data-v-b4b455d2] {\n    margin-top:10px;\n}\n.settings-note.warning[data-v-b4b455d2] {\n    background-color: rgba(255,229,100,0.3);\n    border-color: #e7c000;\n    color: #6b5900;\n}\n.settings-note.warning .required[data-v-b4b455d2]:after {\n    margin: 0 0;\n}\nimg.screenshot[data-v-b4b455d2] {\n    width: 331px;\n    max-width: 100%;\n    margin: 13px auto 5px;\n    border-style: solid;\n    border-width: 1px;\n    border-color: #edf2f7;\n    border-radius: 0.3rem;\n    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.address-settings[data-v-706b7e50] {\n    display: flex;\n    flex-direction: row;\n}\n.address-settings-fields[data-v-706b7e50] {\n    flex-direction: column;\n    flex: 4;\n    margin-right: 30px;\n}\n.address-settings-preview[data-v-706b7e50] {\n    flex-direction: column;\n    flex: 5;\n}\n\n/* Contained within a Matrix field */\n.mc-fieldtype-settings .address-settings[data-v-706b7e50] {\n    display: block;\n}\n.mc-fieldtype-settings .address-settings-fields[data-v-706b7e50] {\n    margin-right: auto;\n    margin-bottom: 24px;\n}\n.mc-fieldtype-settings .address-settings-preview[data-v-706b7e50] {}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.address-settings-fields .lightswitch-inner-container[data-v-085b032a] {\n    padding-left: 4px;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.field .heading[data-v-bee9e93a] {\n    margin-right: 94px;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.disabled[data-v-5276bf96] {\n    pointer-events: initial;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.disabled[data-v-457209b9] {\n    opacity: 0.60;\n    background-color: #e4eaf4;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.map-toggle[data-v-064615ef] {\n    float: right;\n    margin-right: 8px;\n    cursor: pointer;\n}\n.map-toggle-icon[data-v-064615ef] {\n    display: inline;\n    height: 14px;\n    margin-left: 5px;\n    margin-bottom: -2px;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-// eslint-disable-next-line func-names
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item);
-
-      if (item[2]) {
-        return "@media ".concat(item[2], " {").concat(content, "}");
-      }
-
-      return content;
-    }).join("");
-  }; // import a list of modules into the list
-  // eslint-disable-next-line func-names
-
-
-  list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === "string") {
-      // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, ""]];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var i = 0; i < this.length; i++) {
-        // eslint-disable-next-line prefer-destructuring
-        var id = this[i][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _i = 0; _i < modules.length; _i++) {
-      var item = [].concat(modules[_i]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-
-      if (mediaQuery) {
-        if (!item[2]) {
-          item[2] = mediaQuery;
-        } else {
-          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_style_index_0_id_b4b455d2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_style_index_0_id_b4b455d2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_style_index_0_id_b4b455d2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_style_index_0_id_706b7e50_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_style_index_0_id_706b7e50_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_style_index_0_id_706b7e50_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_style_index_0_id_085b032a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_style_index_0_id_085b032a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_style_index_0_id_085b032a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_style_index_0_id_bee9e93a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_style_index_0_id_bee9e93a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_style_index_0_id_bee9e93a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_style_index_0_id_5276bf96_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_style_index_0_id_5276bf96_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_style_index_0_id_5276bf96_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_style_index_0_id_457209b9_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_style_index_0_id_457209b9_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_style_index_0_id_457209b9_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_style_index_0_id_064615ef_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_style_index_0_id_064615ef_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_style_index_0_id_064615ef_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var isOldIE = function isOldIE() {
-  var memo;
-  return function memorize() {
-    if (typeof memo === 'undefined') {
-      // Test for IE <= 9 as proposed by Browserhacks
-      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-      // Tests for existence of standard globals is to allow style-loader
-      // to operate correctly into non-standard environments
-      // @see https://github.com/webpack-contrib/style-loader/issues/177
-      memo = Boolean(window && document && document.all && !window.atob);
-    }
-
-    return memo;
-  };
-}();
-
-var getTarget = function getTarget() {
-  var memo = {};
-  return function memorize(target) {
-    if (typeof memo[target] === 'undefined') {
-      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
-
-      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-        try {
-          // This will throw an exception if access to iframe is blocked
-          // due to cross-origin restrictions
-          styleTarget = styleTarget.contentDocument.head;
-        } catch (e) {
-          // istanbul ignore next
-          styleTarget = null;
-        }
-      }
-
-      memo[target] = styleTarget;
-    }
-
-    return memo[target];
-  };
-}();
-
-var stylesInDom = [];
-
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-
-  for (var i = 0; i < stylesInDom.length; i++) {
-    if (stylesInDom[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-
-  return result;
-}
-
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var index = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3]
-    };
-
-    if (index !== -1) {
-      stylesInDom[index].references++;
-      stylesInDom[index].updater(obj);
-    } else {
-      stylesInDom.push({
-        identifier: identifier,
-        updater: addStyle(obj, options),
-        references: 1
-      });
-    }
-
-    identifiers.push(identifier);
-  }
-
-  return identifiers;
-}
-
-function insertStyleElement(options) {
-  var style = document.createElement('style');
-  var attributes = options.attributes || {};
-
-  if (typeof attributes.nonce === 'undefined') {
-    var nonce =  true ? __webpack_require__.nc : 0;
-
-    if (nonce) {
-      attributes.nonce = nonce;
-    }
-  }
-
-  Object.keys(attributes).forEach(function (key) {
-    style.setAttribute(key, attributes[key]);
-  });
-
-  if (typeof options.insert === 'function') {
-    options.insert(style);
-  } else {
-    var target = getTarget(options.insert || 'head');
-
-    if (!target) {
-      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
-    }
-
-    target.appendChild(style);
-  }
-
-  return style;
-}
-
-function removeStyleElement(style) {
-  // istanbul ignore if
-  if (style.parentNode === null) {
-    return false;
-  }
-
-  style.parentNode.removeChild(style);
-}
-/* istanbul ignore next  */
-
-
-var replaceText = function replaceText() {
-  var textStore = [];
-  return function replace(index, replacement) {
-    textStore[index] = replacement;
-    return textStore.filter(Boolean).join('\n');
-  };
-}();
-
-function applyToSingletonTag(style, index, remove, obj) {
-  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
-
-  /* istanbul ignore if  */
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = replaceText(index, css);
-  } else {
-    var cssNode = document.createTextNode(css);
-    var childNodes = style.childNodes;
-
-    if (childNodes[index]) {
-      style.removeChild(childNodes[index]);
-    }
-
-    if (childNodes.length) {
-      style.insertBefore(cssNode, childNodes[index]);
-    } else {
-      style.appendChild(cssNode);
-    }
-  }
-}
-
-function applyToTag(style, options, obj) {
-  var css = obj.css;
-  var media = obj.media;
-  var sourceMap = obj.sourceMap;
-
-  if (media) {
-    style.setAttribute('media', media);
-  } else {
-    style.removeAttribute('media');
-  }
-
-  if (sourceMap && typeof btoa !== 'undefined') {
-    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
-
-  /* istanbul ignore if  */
-
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    while (style.firstChild) {
-      style.removeChild(style.firstChild);
-    }
-
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var singleton = null;
-var singletonCounter = 0;
-
-function addStyle(obj, options) {
-  var style;
-  var update;
-  var remove;
-
-  if (options.singleton) {
-    var styleIndex = singletonCounter++;
-    style = singleton || (singleton = insertStyleElement(options));
-    update = applyToSingletonTag.bind(null, style, styleIndex, false);
-    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-  } else {
-    style = insertStyleElement(options);
-    update = applyToTag.bind(null, style, options);
-
-    remove = function remove() {
-      removeStyleElement(style);
-    };
-  }
-
-  update(obj);
-  return function updateStyle(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
-        return;
-      }
-
-      update(obj = newObj);
-    } else {
-      remove();
-    }
-  };
-}
-
-module.exports = function (list, options) {
-  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-  // tags it will allow on a page
-
-  if (!options.singleton && typeof options.singleton !== 'boolean') {
-    options.singleton = isOldIE();
-  }
-
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-
-    if (Object.prototype.toString.call(newList) !== '[object Array]') {
-      return;
-    }
-
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDom[index].references--;
-    }
-
-    var newLastIdentifiers = modulesToDom(newList, options);
-
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-
-      var _index = getIndexByIdentifier(_identifier);
-
-      if (stylesInDom[_index].references === 0) {
-        stylesInDom[_index].updater();
-
-        stylesInDom.splice(_index, 1);
-      }
-    }
-
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/dist/exportHelper.js":
-/*!******************************************************!*\
-  !*** ./node_modules/vue-loader/dist/exportHelper.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-// runtime helper for setting properties on components
-// in a tree-shakable way
-exports["default"] = (sfc, props) => {
-    const target = sfc.__vccOpts || sfc;
-    for (const [key, val] of props) {
-        target[key] = val;
-    }
-    return target;
-};
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/additional-notes.vue":
-/*!******************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/additional-notes.vue ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _additional_notes_vue_vue_type_template_id_b4b455d2_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true */ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true");
-/* harmony import */ var _additional_notes_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./additional-notes.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js");
-/* harmony import */ var _additional_notes_vue_vue_type_style_index_0_id_b4b455d2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css */ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_additional_notes_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_additional_notes_vue_vue_type_template_id_b4b455d2_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-b4b455d2"],['__file',"web/assets/src/vue/address-settings/additional-notes.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/address-settings.vue":
-/*!******************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/address-settings.vue ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_settings_vue_vue_type_template_id_706b7e50_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-settings.vue?vue&type=template&id=706b7e50&scoped=true */ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true");
-/* harmony import */ var _address_settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-settings.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js");
-/* harmony import */ var _address_settings_vue_vue_type_style_index_0_id_706b7e50_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css */ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_address_settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_settings_vue_vue_type_template_id_706b7e50_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-706b7e50"],['__file',"web/assets/src/vue/address-settings/address-settings.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/default-coords.vue":
-/*!****************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/default-coords.vue ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _default_coords_vue_vue_type_template_id_73988bb4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./default-coords.vue?vue&type=template&id=73988bb4 */ "./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4");
-/* harmony import */ var _default_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./default-coords.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_default_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_default_coords_vue_vue_type_template_id_73988bb4__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address-settings/default-coords.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/dropdown-fields.vue":
-/*!*****************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/dropdown-fields.vue ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _dropdown_fields_vue_vue_type_template_id_49446d29__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropdown-fields.vue?vue&type=template&id=49446d29 */ "./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29");
-/* harmony import */ var _dropdown_fields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropdown-fields.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_dropdown_fields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_dropdown_fields_vue_vue_type_template_id_49446d29__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address-settings/dropdown-fields.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/lightswitch-field.vue":
-/*!*******************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/lightswitch-field.vue ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _lightswitch_field_vue_vue_type_template_id_085b032a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true */ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true");
-/* harmony import */ var _lightswitch_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lightswitch-field.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js");
-/* harmony import */ var _lightswitch_field_vue_vue_type_style_index_0_id_085b032a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css */ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_lightswitch_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_lightswitch_field_vue_vue_type_template_id_085b032a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-085b032a"],['__file',"web/assets/src/vue/address-settings/lightswitch-field.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/live-preview.vue":
-/*!**************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/live-preview.vue ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _live_preview_vue_vue_type_template_id_bee9e93a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./live-preview.vue?vue&type=template&id=bee9e93a&scoped=true */ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true");
-/* harmony import */ var _live_preview_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./live-preview.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js");
-/* harmony import */ var _live_preview_vue_vue_type_style_index_0_id_bee9e93a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css */ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_live_preview_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_live_preview_vue_vue_type_template_id_bee9e93a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-bee9e93a"],['__file',"web/assets/src/vue/address-settings/live-preview.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/select-field.vue":
-/*!**************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/select-field.vue ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _select_field_vue_vue_type_template_id_31d32b65__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./select-field.vue?vue&type=template&id=31d32b65 */ "./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65");
-/* harmony import */ var _select_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./select-field.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_select_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_select_field_vue_vue_type_template_id_31d32b65__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address-settings/select-field.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/subfield-manager.vue":
-/*!******************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/subfield-manager.vue ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _subfield_manager_vue_vue_type_template_id_5276bf96_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true */ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true");
-/* harmony import */ var _subfield_manager_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./subfield-manager.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js");
-/* harmony import */ var _subfield_manager_vue_vue_type_style_index_0_id_5276bf96_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css */ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_subfield_manager_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_subfield_manager_vue_vue_type_template_id_5276bf96_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-5276bf96"],['__file',"web/assets/src/vue/address-settings/subfield-manager.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-coords.vue":
-/*!*******************************************************!*\
-  !*** ./web/assets/src/vue/address/address-coords.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_coords_vue_vue_type_template_id_457209b9_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-coords.vue?vue&type=template&id=457209b9&scoped=true */ "./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true");
-/* harmony import */ var _address_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-coords.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js");
-/* harmony import */ var _address_coords_vue_vue_type_style_index_0_id_457209b9_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css */ "./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_address_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_coords_vue_vue_type_template_id_457209b9_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-457209b9"],['__file',"web/assets/src/vue/address/address-coords.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-map.vue":
-/*!****************************************************!*\
-  !*** ./web/assets/src/vue/address/address-map.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_map_vue_vue_type_template_id_54adced1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-map.vue?vue&type=template&id=54adced1 */ "./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1");
-/* harmony import */ var _address_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-map.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_address_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_map_vue_vue_type_template_id_54adced1__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address/address-map.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-meta.vue":
-/*!*****************************************************!*\
-  !*** ./web/assets/src/vue/address/address-meta.vue ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_meta_vue_vue_type_template_id_1e2654e0__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-meta.vue?vue&type=template&id=1e2654e0 */ "./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0");
-/* harmony import */ var _address_meta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-meta.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_address_meta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_meta_vue_vue_type_template_id_1e2654e0__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address/address-meta.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-subfields.vue":
-/*!**********************************************************!*\
-  !*** ./web/assets/src/vue/address/address-subfields.vue ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_subfields_vue_vue_type_template_id_6ce2c62e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-subfields.vue?vue&type=template&id=6ce2c62e */ "./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e");
-/* harmony import */ var _address_subfields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-subfields.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_address_subfields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_subfields_vue_vue_type_template_id_6ce2c62e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address/address-subfields.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-toggle.vue":
-/*!*******************************************************!*\
-  !*** ./web/assets/src/vue/address/address-toggle.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_toggle_vue_vue_type_template_id_064615ef_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address-toggle.vue?vue&type=template&id=064615ef&scoped=true */ "./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true");
-/* harmony import */ var _address_toggle_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address-toggle.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js");
-/* harmony import */ var _address_toggle_vue_vue_type_style_index_0_id_064615ef_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css */ "./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_address_toggle_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_toggle_vue_vue_type_template_id_064615ef_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-064615ef"],['__file',"web/assets/src/vue/address/address-toggle.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address.vue":
-/*!************************************************!*\
-  !*** ./web/assets/src/vue/address/address.vue ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _address_vue_vue_type_template_id_0378b942__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./address.vue?vue&type=template&id=0378b942 */ "./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942");
-/* harmony import */ var _address_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./address.vue?vue&type=script&lang=js */ "./web/assets/src/vue/address/address.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_Users_lindseydiloreto_Sites_plugins_packages_craft_googlemaps_src_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_address_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_address_vue_vue_type_template_id_0378b942__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"web/assets/src/vue/address/address.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js":
-/*!******************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./additional-notes.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js":
-/*!******************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-settings.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js":
-/*!****************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_default_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_default_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./default-coords.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_dropdown_fields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_dropdown_fields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./dropdown-fields.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js":
-/*!*******************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./lightswitch-field.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js":
-/*!**************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./live-preview.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js":
-/*!**************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_select_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_select_field_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./select-field.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js":
-/*!******************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./subfield-manager.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js":
-/*!*******************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-coords.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js":
-/*!****************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-map.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js":
-/*!*****************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_meta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_meta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-meta.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js":
-/*!**********************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_subfields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_subfields_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-subfields.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js":
-/*!*******************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-toggle.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address.vue?vue&type=script&lang=js":
-/*!************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address.vue?vue&type=script&lang=js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true":
-/*!************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_template_id_b4b455d2_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_template_id_b4b455d2_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=template&id=b4b455d2&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true":
-/*!************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_template_id_706b7e50_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_template_id_706b7e50_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-settings.vue?vue&type=template&id=706b7e50&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=template&id=706b7e50&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4":
-/*!**********************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4 ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_default_coords_vue_vue_type_template_id_73988bb4__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_default_coords_vue_vue_type_template_id_73988bb4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./default-coords.vue?vue&type=template&id=73988bb4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/default-coords.vue?vue&type=template&id=73988bb4");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29":
-/*!***********************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29 ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_dropdown_fields_vue_vue_type_template_id_49446d29__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_dropdown_fields_vue_vue_type_template_id_49446d29__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./dropdown-fields.vue?vue&type=template&id=49446d29 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/dropdown-fields.vue?vue&type=template&id=49446d29");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true":
-/*!*************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true ***!
-  \*************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_template_id_085b032a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_template_id_085b032a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=template&id=085b032a&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true":
-/*!********************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_template_id_bee9e93a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_template_id_bee9e93a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./live-preview.vue?vue&type=template&id=bee9e93a&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=template&id=bee9e93a&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65":
-/*!********************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65 ***!
-  \********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_select_field_vue_vue_type_template_id_31d32b65__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_select_field_vue_vue_type_template_id_31d32b65__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./select-field.vue?vue&type=template&id=31d32b65 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/select-field.vue?vue&type=template&id=31d32b65");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true":
-/*!************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_template_id_5276bf96_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_template_id_5276bf96_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=template&id=5276bf96&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true":
-/*!*************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true ***!
-  \*************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_template_id_457209b9_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_template_id_457209b9_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-coords.vue?vue&type=template&id=457209b9&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=template&id=457209b9&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1":
-/*!**********************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1 ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_map_vue_vue_type_template_id_54adced1__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_map_vue_vue_type_template_id_54adced1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-map.vue?vue&type=template&id=54adced1 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-map.vue?vue&type=template&id=54adced1");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0":
-/*!***********************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0 ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_meta_vue_vue_type_template_id_1e2654e0__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_meta_vue_vue_type_template_id_1e2654e0__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-meta.vue?vue&type=template&id=1e2654e0 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-meta.vue?vue&type=template&id=1e2654e0");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e":
-/*!****************************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_subfields_vue_vue_type_template_id_6ce2c62e__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_subfields_vue_vue_type_template_id_6ce2c62e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-subfields.vue?vue&type=template&id=6ce2c62e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-subfields.vue?vue&type=template&id=6ce2c62e");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true":
-/*!*************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true ***!
-  \*************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_template_id_064615ef_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_template_id_064615ef_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-toggle.vue?vue&type=template&id=064615ef&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=template&id=064615ef&scoped=true");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942":
-/*!******************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942 ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_vue_vue_type_template_id_0378b942__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_vue_vue_type_template_id_0378b942__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address.vue?vue&type=template&id=0378b942 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address.vue?vue&type=template&id=0378b942");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css":
-/*!**************************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css ***!
-  \**************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_additional_notes_vue_vue_type_style_index_0_id_b4b455d2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/additional-notes.vue?vue&type=style&index=0&id=b4b455d2&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css":
-/*!**************************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css ***!
-  \**************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_settings_vue_vue_type_style_index_0_id_706b7e50_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/address-settings.vue?vue&type=style&index=0&id=706b7e50&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css":
-/*!***************************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css ***!
-  \***************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_lightswitch_field_vue_vue_type_style_index_0_id_085b032a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/lightswitch-field.vue?vue&type=style&index=0&id=085b032a&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css":
-/*!**********************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css ***!
-  \**********************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_live_preview_vue_vue_type_style_index_0_id_bee9e93a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/live-preview.vue?vue&type=style&index=0&id=bee9e93a&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css":
-/*!**************************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css ***!
-  \**************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_subfield_manager_vue_vue_type_style_index_0_id_5276bf96_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address-settings/subfield-manager.vue?vue&type=style&index=0&id=5276bf96&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css":
-/*!***************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css ***!
-  \***************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_coords_vue_vue_type_style_index_0_id_457209b9_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-coords.vue?vue&type=style&index=0&id=457209b9&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css":
-/*!***************************************************************************************************************!*\
-  !*** ./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css ***!
-  \***************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_address_toggle_vue_vue_type_style_index_0_id_064615ef_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./web/assets/src/vue/address/address-toggle.vue?vue&type=style&index=0&id=064615ef&scoped=true&lang=css");
-
 
 /***/ }),
 
@@ -21820,7 +20291,6 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* reexport safe */ _vue_runtime_dom__WEBPACK_IMPORTED_MODULE_0__.BaseTransition),
@@ -22048,8982 +20518,12 @@ function compileToFunction(template, options) {
 
 /***/ }),
 
-/***/ "./node_modules/vuedraggable/dist/vuedraggable.umd.js":
-/*!************************************************************!*\
-  !*** ./node_modules/vuedraggable/dist/vuedraggable.umd.js ***!
-  \************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(true)
-		module.exports = factory(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js"), __webpack_require__(/*! sortablejs */ "./node_modules/vuedraggable/node_modules/sortablejs/modular/sortable.esm.js"));
-	else {}
-})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE__8bbf__, __WEBPACK_EXTERNAL_MODULE_a352__) {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __nested_webpack_require_770__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_770__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__nested_webpack_require_770__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__nested_webpack_require_770__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__nested_webpack_require_770__.d = function(exports, name, getter) {
-/******/ 		if(!__nested_webpack_require_770__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__nested_webpack_require_770__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__nested_webpack_require_770__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __nested_webpack_require_770__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__nested_webpack_require_770__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __nested_webpack_require_770__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__nested_webpack_require_770__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__nested_webpack_require_770__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__nested_webpack_require_770__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__nested_webpack_require_770__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __nested_webpack_require_770__(__nested_webpack_require_770__.s = "fb15");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "00ee":
-/***/ (function(module, exports, __nested_webpack_require_4246__) {
-
-var wellKnownSymbol = __nested_webpack_require_4246__("b622");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var test = {};
-
-test[TO_STRING_TAG] = 'z';
-
-module.exports = String(test) === '[object z]';
-
-
-/***/ }),
-
-/***/ "0366":
-/***/ (function(module, exports, __nested_webpack_require_4526__) {
-
-var aFunction = __nested_webpack_require_4526__("1c0b");
-
-// optional / simple context binding
-module.exports = function (fn, that, length) {
-  aFunction(fn);
-  if (that === undefined) return fn;
-  switch (length) {
-    case 0: return function () {
-      return fn.call(that);
-    };
-    case 1: return function (a) {
-      return fn.call(that, a);
-    };
-    case 2: return function (a, b) {
-      return fn.call(that, a, b);
-    };
-    case 3: return function (a, b, c) {
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function (/* ...args */) {
-    return fn.apply(that, arguments);
-  };
-};
-
-
-/***/ }),
-
-/***/ "057f":
-/***/ (function(module, exports, __nested_webpack_require_5202__) {
-
-var toIndexedObject = __nested_webpack_require_5202__("fc6a");
-var nativeGetOwnPropertyNames = __nested_webpack_require_5202__("241c").f;
-
-var toString = {}.toString;
-
-var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
-  ? Object.getOwnPropertyNames(window) : [];
-
-var getWindowNames = function (it) {
-  try {
-    return nativeGetOwnPropertyNames(it);
-  } catch (error) {
-    return windowNames.slice();
-  }
-};
-
-// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-module.exports.f = function getOwnPropertyNames(it) {
-  return windowNames && toString.call(it) == '[object Window]'
-    ? getWindowNames(it)
-    : nativeGetOwnPropertyNames(toIndexedObject(it));
-};
-
-
-/***/ }),
-
-/***/ "06cf":
-/***/ (function(module, exports, __nested_webpack_require_5983__) {
-
-var DESCRIPTORS = __nested_webpack_require_5983__("83ab");
-var propertyIsEnumerableModule = __nested_webpack_require_5983__("d1e7");
-var createPropertyDescriptor = __nested_webpack_require_5983__("5c6c");
-var toIndexedObject = __nested_webpack_require_5983__("fc6a");
-var toPrimitive = __nested_webpack_require_5983__("c04e");
-var has = __nested_webpack_require_5983__("5135");
-var IE8_DOM_DEFINE = __nested_webpack_require_5983__("0cfb");
-
-var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-// `Object.getOwnPropertyDescriptor` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
-exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
-  O = toIndexedObject(O);
-  P = toPrimitive(P, true);
-  if (IE8_DOM_DEFINE) try {
-    return nativeGetOwnPropertyDescriptor(O, P);
-  } catch (error) { /* empty */ }
-  if (has(O, P)) return createPropertyDescriptor(!propertyIsEnumerableModule.f.call(O, P), O[P]);
-};
-
-
-/***/ }),
-
-/***/ "0cfb":
-/***/ (function(module, exports, __nested_webpack_require_6977__) {
-
-var DESCRIPTORS = __nested_webpack_require_6977__("83ab");
-var fails = __nested_webpack_require_6977__("d039");
-var createElement = __nested_webpack_require_6977__("cc12");
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !DESCRIPTORS && !fails(function () {
-  return Object.defineProperty(createElement('div'), 'a', {
-    get: function () { return 7; }
-  }).a != 7;
-});
-
-
-/***/ }),
-
-/***/ "13d5":
-/***/ (function(module, exports, __nested_webpack_require_7409__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_7409__("23e7");
-var $reduce = __nested_webpack_require_7409__("d58f").left;
-var arrayMethodIsStrict = __nested_webpack_require_7409__("a640");
-var arrayMethodUsesToLength = __nested_webpack_require_7409__("ae40");
-
-var STRICT_METHOD = arrayMethodIsStrict('reduce');
-var USES_TO_LENGTH = arrayMethodUsesToLength('reduce', { 1: 0 });
-
-// `Array.prototype.reduce` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.reduce
-$({ target: 'Array', proto: true, forced: !STRICT_METHOD || !USES_TO_LENGTH }, {
-  reduce: function reduce(callbackfn /* , initialValue */) {
-    return $reduce(this, callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
-/***/ "14c3":
-/***/ (function(module, exports, __nested_webpack_require_8178__) {
-
-var classof = __nested_webpack_require_8178__("c6b6");
-var regexpExec = __nested_webpack_require_8178__("9263");
-
-// `RegExpExec` abstract operation
-// https://tc39.github.io/ecma262/#sec-regexpexec
-module.exports = function (R, S) {
-  var exec = R.exec;
-  if (typeof exec === 'function') {
-    var result = exec.call(R, S);
-    if (typeof result !== 'object') {
-      throw TypeError('RegExp exec method returned something other than an Object or null');
-    }
-    return result;
-  }
-
-  if (classof(R) !== 'RegExp') {
-    throw TypeError('RegExp#exec called on incompatible receiver');
-  }
-
-  return regexpExec.call(R, S);
-};
-
-
-
-/***/ }),
-
-/***/ "159b":
-/***/ (function(module, exports, __nested_webpack_require_8866__) {
-
-var global = __nested_webpack_require_8866__("da84");
-var DOMIterables = __nested_webpack_require_8866__("fdbc");
-var forEach = __nested_webpack_require_8866__("17c2");
-var createNonEnumerableProperty = __nested_webpack_require_8866__("9112");
-
-for (var COLLECTION_NAME in DOMIterables) {
-  var Collection = global[COLLECTION_NAME];
-  var CollectionPrototype = Collection && Collection.prototype;
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-}
-
-
-/***/ }),
-
-/***/ "17c2":
-/***/ (function(module, exports, __nested_webpack_require_9590__) {
-
-"use strict";
-
-var $forEach = __nested_webpack_require_9590__("b727").forEach;
-var arrayMethodIsStrict = __nested_webpack_require_9590__("a640");
-var arrayMethodUsesToLength = __nested_webpack_require_9590__("ae40");
-
-var STRICT_METHOD = arrayMethodIsStrict('forEach');
-var USES_TO_LENGTH = arrayMethodUsesToLength('forEach');
-
-// `Array.prototype.forEach` method implementation
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callbackfn /* , thisArg */) {
-  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-} : [].forEach;
-
-
-/***/ }),
-
-/***/ "1be4":
-/***/ (function(module, exports, __nested_webpack_require_10284__) {
-
-var getBuiltIn = __nested_webpack_require_10284__("d066");
-
-module.exports = getBuiltIn('document', 'documentElement');
-
-
-/***/ }),
-
-/***/ "1c0b":
-/***/ (function(module, exports) {
-
-module.exports = function (it) {
-  if (typeof it != 'function') {
-    throw TypeError(String(it) + ' is not a function');
-  } return it;
-};
-
-
-/***/ }),
-
-/***/ "1c7e":
-/***/ (function(module, exports, __nested_webpack_require_10678__) {
-
-var wellKnownSymbol = __nested_webpack_require_10678__("b622");
-
-var ITERATOR = wellKnownSymbol('iterator');
-var SAFE_CLOSING = false;
-
-try {
-  var called = 0;
-  var iteratorWithReturn = {
-    next: function () {
-      return { done: !!called++ };
-    },
-    'return': function () {
-      SAFE_CLOSING = true;
-    }
-  };
-  iteratorWithReturn[ITERATOR] = function () {
-    return this;
-  };
-  // eslint-disable-next-line no-throw-literal
-  Array.from(iteratorWithReturn, function () { throw 2; });
-} catch (error) { /* empty */ }
-
-module.exports = function (exec, SKIP_CLOSING) {
-  if (!SKIP_CLOSING && !SAFE_CLOSING) return false;
-  var ITERATION_SUPPORT = false;
-  try {
-    var object = {};
-    object[ITERATOR] = function () {
-      return {
-        next: function () {
-          return { done: ITERATION_SUPPORT = true };
-        }
-      };
-    };
-    exec(object);
-  } catch (error) { /* empty */ }
-  return ITERATION_SUPPORT;
-};
-
-
-/***/ }),
-
-/***/ "1d80":
-/***/ (function(module, exports) {
-
-// `RequireObjectCoercible` abstract operation
-// https://tc39.github.io/ecma262/#sec-requireobjectcoercible
-module.exports = function (it) {
-  if (it == undefined) throw TypeError("Can't call method on " + it);
-  return it;
-};
-
-
-/***/ }),
-
-/***/ "1dde":
-/***/ (function(module, exports, __nested_webpack_require_11975__) {
-
-var fails = __nested_webpack_require_11975__("d039");
-var wellKnownSymbol = __nested_webpack_require_11975__("b622");
-var V8_VERSION = __nested_webpack_require_11975__("2d00");
-
-var SPECIES = wellKnownSymbol('species');
-
-module.exports = function (METHOD_NAME) {
-  // We can't use this feature detection in V8 since it causes
-  // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
-  return V8_VERSION >= 51 || !fails(function () {
-    var array = [];
-    var constructor = array.constructor = {};
-    constructor[SPECIES] = function () {
-      return { foo: 1 };
-    };
-    return array[METHOD_NAME](Boolean).foo !== 1;
-  });
-};
-
-
-/***/ }),
-
-/***/ "23cb":
-/***/ (function(module, exports, __nested_webpack_require_12702__) {
-
-var toInteger = __nested_webpack_require_12702__("a691");
-
-var max = Math.max;
-var min = Math.min;
-
-// Helper for a popular repeating case of the spec:
-// Let integer be ? ToInteger(index).
-// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
-module.exports = function (index, length) {
-  var integer = toInteger(index);
-  return integer < 0 ? max(integer + length, 0) : min(integer, length);
-};
-
-
-/***/ }),
-
-/***/ "23e7":
-/***/ (function(module, exports, __nested_webpack_require_13218__) {
-
-var global = __nested_webpack_require_13218__("da84");
-var getOwnPropertyDescriptor = __nested_webpack_require_13218__("06cf").f;
-var createNonEnumerableProperty = __nested_webpack_require_13218__("9112");
-var redefine = __nested_webpack_require_13218__("6eeb");
-var setGlobal = __nested_webpack_require_13218__("ce4e");
-var copyConstructorProperties = __nested_webpack_require_13218__("e893");
-var isForced = __nested_webpack_require_13218__("94ca");
-
-/*
-  options.target      - name of the target object
-  options.global      - target is the global object
-  options.stat        - export as static methods of target
-  options.proto       - export as prototype methods of target
-  options.real        - real prototype method for the `pure` version
-  options.forced      - export even if the native feature is available
-  options.bind        - bind methods to the target, required for the `pure` version
-  options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
-  options.unsafe      - use the simple assignment of property instead of delete + defineProperty
-  options.sham        - add a flag to not completely full polyfills
-  options.enumerable  - export as enumerable property
-  options.noTargetGet - prevent calling a getter on target
-*/
-module.exports = function (options, source) {
-  var TARGET = options.target;
-  var GLOBAL = options.global;
-  var STATIC = options.stat;
-  var FORCED, target, key, targetProperty, sourceProperty, descriptor;
-  if (GLOBAL) {
-    target = global;
-  } else if (STATIC) {
-    target = global[TARGET] || setGlobal(TARGET, {});
-  } else {
-    target = (global[TARGET] || {}).prototype;
-  }
-  if (target) for (key in source) {
-    sourceProperty = source[key];
-    if (options.noTargetGet) {
-      descriptor = getOwnPropertyDescriptor(target, key);
-      targetProperty = descriptor && descriptor.value;
-    } else targetProperty = target[key];
-    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);
-    // contained in target
-    if (!FORCED && targetProperty !== undefined) {
-      if (typeof sourceProperty === typeof targetProperty) continue;
-      copyConstructorProperties(sourceProperty, targetProperty);
-    }
-    // add a flag to not completely full polyfills
-    if (options.sham || (targetProperty && targetProperty.sham)) {
-      createNonEnumerableProperty(sourceProperty, 'sham', true);
-    }
-    // extend global
-    redefine(target, key, sourceProperty, options);
-  }
-};
-
-
-/***/ }),
-
-/***/ "241c":
-/***/ (function(module, exports, __nested_webpack_require_15718__) {
-
-var internalObjectKeys = __nested_webpack_require_15718__("ca84");
-var enumBugKeys = __nested_webpack_require_15718__("7839");
-
-var hiddenKeys = enumBugKeys.concat('length', 'prototype');
-
-// `Object.getOwnPropertyNames` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertynames
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return internalObjectKeys(O, hiddenKeys);
-};
-
-
-/***/ }),
-
-/***/ "25f0":
-/***/ (function(module, exports, __nested_webpack_require_16193__) {
-
-"use strict";
-
-var redefine = __nested_webpack_require_16193__("6eeb");
-var anObject = __nested_webpack_require_16193__("825a");
-var fails = __nested_webpack_require_16193__("d039");
-var flags = __nested_webpack_require_16193__("ad6d");
-
-var TO_STRING = 'toString';
-var RegExpPrototype = RegExp.prototype;
-var nativeToString = RegExpPrototype[TO_STRING];
-
-var NOT_GENERIC = fails(function () { return nativeToString.call({ source: 'a', flags: 'b' }) != '/a/b'; });
-// FF44- RegExp#toString has a wrong name
-var INCORRECT_NAME = nativeToString.name != TO_STRING;
-
-// `RegExp.prototype.toString` method
-// https://tc39.github.io/ecma262/#sec-regexp.prototype.tostring
-if (NOT_GENERIC || INCORRECT_NAME) {
-  redefine(RegExp.prototype, TO_STRING, function toString() {
-    var R = anObject(this);
-    var p = String(R.source);
-    var rf = R.flags;
-    var f = String(rf === undefined && R instanceof RegExp && !('flags' in RegExpPrototype) ? flags.call(R) : rf);
-    return '/' + p + '/' + f;
-  }, { unsafe: true });
-}
-
-
-/***/ }),
-
-/***/ "2ca0":
-/***/ (function(module, exports, __nested_webpack_require_17241__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_17241__("23e7");
-var getOwnPropertyDescriptor = __nested_webpack_require_17241__("06cf").f;
-var toLength = __nested_webpack_require_17241__("50c4");
-var notARegExp = __nested_webpack_require_17241__("5a34");
-var requireObjectCoercible = __nested_webpack_require_17241__("1d80");
-var correctIsRegExpLogic = __nested_webpack_require_17241__("ab13");
-var IS_PURE = __nested_webpack_require_17241__("c430");
-
-var nativeStartsWith = ''.startsWith;
-var min = Math.min;
-
-var CORRECT_IS_REGEXP_LOGIC = correctIsRegExpLogic('startsWith');
-// https://github.com/zloirock/core-js/pull/702
-var MDN_POLYFILL_BUG = !IS_PURE && !CORRECT_IS_REGEXP_LOGIC && !!function () {
-  var descriptor = getOwnPropertyDescriptor(String.prototype, 'startsWith');
-  return descriptor && !descriptor.writable;
-}();
-
-// `String.prototype.startsWith` method
-// https://tc39.github.io/ecma262/#sec-string.prototype.startswith
-$({ target: 'String', proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGEXP_LOGIC }, {
-  startsWith: function startsWith(searchString /* , position = 0 */) {
-    var that = String(requireObjectCoercible(this));
-    notARegExp(searchString);
-    var index = toLength(min(arguments.length > 1 ? arguments[1] : undefined, that.length));
-    var search = String(searchString);
-    return nativeStartsWith
-      ? nativeStartsWith.call(that, search, index)
-      : that.slice(index, index + search.length) === search;
-  }
-});
-
-
-/***/ }),
-
-/***/ "2d00":
-/***/ (function(module, exports, __nested_webpack_require_18702__) {
-
-var global = __nested_webpack_require_18702__("da84");
-var userAgent = __nested_webpack_require_18702__("342f");
-
-var process = global.process;
-var versions = process && process.versions;
-var v8 = versions && versions.v8;
-var match, version;
-
-if (v8) {
-  match = v8.split('.');
-  version = match[0] + match[1];
-} else if (userAgent) {
-  match = userAgent.match(/Edge\/(\d+)/);
-  if (!match || match[1] >= 74) {
-    match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version = match[1];
-  }
-}
-
-module.exports = version && +version;
-
-
-/***/ }),
-
-/***/ "342f":
-/***/ (function(module, exports, __nested_webpack_require_19297__) {
-
-var getBuiltIn = __nested_webpack_require_19297__("d066");
-
-module.exports = getBuiltIn('navigator', 'userAgent') || '';
-
-
-/***/ }),
-
-/***/ "35a1":
-/***/ (function(module, exports, __nested_webpack_require_19489__) {
-
-var classof = __nested_webpack_require_19489__("f5df");
-var Iterators = __nested_webpack_require_19489__("3f8c");
-var wellKnownSymbol = __nested_webpack_require_19489__("b622");
-
-var ITERATOR = wellKnownSymbol('iterator');
-
-module.exports = function (it) {
-  if (it != undefined) return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
-
-
-/***/ }),
-
-/***/ "37e8":
-/***/ (function(module, exports, __nested_webpack_require_19892__) {
-
-var DESCRIPTORS = __nested_webpack_require_19892__("83ab");
-var definePropertyModule = __nested_webpack_require_19892__("9bf2");
-var anObject = __nested_webpack_require_19892__("825a");
-var objectKeys = __nested_webpack_require_19892__("df75");
-
-// `Object.defineProperties` method
-// https://tc39.github.io/ecma262/#sec-object.defineproperties
-module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperties(O, Properties) {
-  anObject(O);
-  var keys = objectKeys(Properties);
-  var length = keys.length;
-  var index = 0;
-  var key;
-  while (length > index) definePropertyModule.f(O, key = keys[index++], Properties[key]);
-  return O;
-};
-
-
-/***/ }),
-
-/***/ "3bbe":
-/***/ (function(module, exports, __nested_webpack_require_20582__) {
-
-var isObject = __nested_webpack_require_20582__("861d");
-
-module.exports = function (it) {
-  if (!isObject(it) && it !== null) {
-    throw TypeError("Can't set " + String(it) + ' as a prototype');
-  } return it;
-};
-
-
-/***/ }),
-
-/***/ "3ca3":
-/***/ (function(module, exports, __nested_webpack_require_20868__) {
-
-"use strict";
-
-var charAt = __nested_webpack_require_20868__("6547").charAt;
-var InternalStateModule = __nested_webpack_require_20868__("69f3");
-var defineIterator = __nested_webpack_require_20868__("7dd0");
-
-var STRING_ITERATOR = 'String Iterator';
-var setInternalState = InternalStateModule.set;
-var getInternalState = InternalStateModule.getterFor(STRING_ITERATOR);
-
-// `String.prototype[@@iterator]` method
-// https://tc39.github.io/ecma262/#sec-string.prototype-@@iterator
-defineIterator(String, 'String', function (iterated) {
-  setInternalState(this, {
-    type: STRING_ITERATOR,
-    string: String(iterated),
-    index: 0
-  });
-// `%StringIteratorPrototype%.next` method
-// https://tc39.github.io/ecma262/#sec-%stringiteratorprototype%.next
-}, function next() {
-  var state = getInternalState(this);
-  var string = state.string;
-  var index = state.index;
-  var point;
-  if (index >= string.length) return { value: undefined, done: true };
-  point = charAt(string, index);
-  state.index += point.length;
-  return { value: point, done: false };
-});
-
-
-/***/ }),
-
-/***/ "3f8c":
-/***/ (function(module, exports) {
-
-module.exports = {};
-
-
-/***/ }),
-
-/***/ "4160":
-/***/ (function(module, exports, __nested_webpack_require_22053__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_22053__("23e7");
-var forEach = __nested_webpack_require_22053__("17c2");
-
-// `Array.prototype.forEach` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
-  forEach: forEach
-});
-
-
-/***/ }),
-
-/***/ "428f":
-/***/ (function(module, exports, __nested_webpack_require_22424__) {
-
-var global = __nested_webpack_require_22424__("da84");
-
-module.exports = global;
-
-
-/***/ }),
-
-/***/ "44ad":
-/***/ (function(module, exports, __nested_webpack_require_22576__) {
-
-var fails = __nested_webpack_require_22576__("d039");
-var classof = __nested_webpack_require_22576__("c6b6");
-
-var split = ''.split;
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-module.exports = fails(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
-  // eslint-disable-next-line no-prototype-builtins
-  return !Object('z').propertyIsEnumerable(0);
-}) ? function (it) {
-  return classof(it) == 'String' ? split.call(it, '') : Object(it);
-} : Object;
-
-
-/***/ }),
-
-/***/ "44d2":
-/***/ (function(module, exports, __nested_webpack_require_23153__) {
-
-var wellKnownSymbol = __nested_webpack_require_23153__("b622");
-var create = __nested_webpack_require_23153__("7c73");
-var definePropertyModule = __nested_webpack_require_23153__("9bf2");
-
-var UNSCOPABLES = wellKnownSymbol('unscopables');
-var ArrayPrototype = Array.prototype;
-
-// Array.prototype[@@unscopables]
-// https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
-if (ArrayPrototype[UNSCOPABLES] == undefined) {
-  definePropertyModule.f(ArrayPrototype, UNSCOPABLES, {
-    configurable: true,
-    value: create(null)
-  });
-}
-
-// add a key to Array.prototype[@@unscopables]
-module.exports = function (key) {
-  ArrayPrototype[UNSCOPABLES][key] = true;
-};
-
-
-/***/ }),
-
-/***/ "44e7":
-/***/ (function(module, exports, __nested_webpack_require_23867__) {
-
-var isObject = __nested_webpack_require_23867__("861d");
-var classof = __nested_webpack_require_23867__("c6b6");
-var wellKnownSymbol = __nested_webpack_require_23867__("b622");
-
-var MATCH = wellKnownSymbol('match');
-
-// `IsRegExp` abstract operation
-// https://tc39.github.io/ecma262/#sec-isregexp
-module.exports = function (it) {
-  var isRegExp;
-  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) == 'RegExp');
-};
-
-
-/***/ }),
-
-/***/ "4930":
-/***/ (function(module, exports, __nested_webpack_require_24366__) {
-
-var fails = __nested_webpack_require_24366__("d039");
-
-module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-  // Chrome 38 Symbol has incorrect toString conversion
-  // eslint-disable-next-line no-undef
-  return !String(Symbol());
-});
-
-
-/***/ }),
-
-/***/ "4d64":
-/***/ (function(module, exports, __nested_webpack_require_24691__) {
-
-var toIndexedObject = __nested_webpack_require_24691__("fc6a");
-var toLength = __nested_webpack_require_24691__("50c4");
-var toAbsoluteIndex = __nested_webpack_require_24691__("23cb");
-
-// `Array.prototype.{ indexOf, includes }` methods implementation
-var createMethod = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIndexedObject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
-    var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++];
-      // eslint-disable-next-line no-self-compare
-      if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
-    } else for (;length > index; index++) {
-      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-module.exports = {
-  // `Array.prototype.includes` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.includes
-  includes: createMethod(true),
-  // `Array.prototype.indexOf` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
-  indexOf: createMethod(false)
-};
-
-
-/***/ }),
-
-/***/ "4de4":
-/***/ (function(module, exports, __nested_webpack_require_26024__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_26024__("23e7");
-var $filter = __nested_webpack_require_26024__("b727").filter;
-var arrayMethodHasSpeciesSupport = __nested_webpack_require_26024__("1dde");
-var arrayMethodUsesToLength = __nested_webpack_require_26024__("ae40");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
-// Edge 14- issue
-var USES_TO_LENGTH = arrayMethodUsesToLength('filter');
-
-// `Array.prototype.filter` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.filter
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
-  filter: function filter(callbackfn /* , thisArg */) {
-    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
-/***/ "4df4":
-/***/ (function(module, exports, __nested_webpack_require_26846__) {
-
-"use strict";
-
-var bind = __nested_webpack_require_26846__("0366");
-var toObject = __nested_webpack_require_26846__("7b0b");
-var callWithSafeIterationClosing = __nested_webpack_require_26846__("9bdd");
-var isArrayIteratorMethod = __nested_webpack_require_26846__("e95a");
-var toLength = __nested_webpack_require_26846__("50c4");
-var createProperty = __nested_webpack_require_26846__("8418");
-var getIteratorMethod = __nested_webpack_require_26846__("35a1");
-
-// `Array.from` method implementation
-// https://tc39.github.io/ecma262/#sec-array.from
-module.exports = function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
-  var O = toObject(arrayLike);
-  var C = typeof this == 'function' ? this : Array;
-  var argumentsLength = arguments.length;
-  var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
-  var mapping = mapfn !== undefined;
-  var iteratorMethod = getIteratorMethod(O);
-  var index = 0;
-  var length, result, step, iterator, next, value;
-  if (mapping) mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2);
-  // if the target is not iterable or it's an array with the default iterator - use a simple case
-  if (iteratorMethod != undefined && !(C == Array && isArrayIteratorMethod(iteratorMethod))) {
-    iterator = iteratorMethod.call(O);
-    next = iterator.next;
-    result = new C();
-    for (;!(step = next.call(iterator)).done; index++) {
-      value = mapping ? callWithSafeIterationClosing(iterator, mapfn, [step.value, index], true) : step.value;
-      createProperty(result, index, value);
-    }
-  } else {
-    length = toLength(O.length);
-    result = new C(length);
-    for (;length > index; index++) {
-      value = mapping ? mapfn(O[index], index) : O[index];
-      createProperty(result, index, value);
-    }
-  }
-  result.length = index;
-  return result;
-};
-
-
-/***/ }),
-
-/***/ "4fad":
-/***/ (function(module, exports, __nested_webpack_require_28666__) {
-
-var $ = __nested_webpack_require_28666__("23e7");
-var $entries = __nested_webpack_require_28666__("6f53").entries;
-
-// `Object.entries` method
-// https://tc39.github.io/ecma262/#sec-object.entries
-$({ target: 'Object', stat: true }, {
-  entries: function entries(O) {
-    return $entries(O);
-  }
-});
-
-
-/***/ }),
-
-/***/ "50c4":
-/***/ (function(module, exports, __nested_webpack_require_29024__) {
-
-var toInteger = __nested_webpack_require_29024__("a691");
-
-var min = Math.min;
-
-// `ToLength` abstract operation
-// https://tc39.github.io/ecma262/#sec-tolength
-module.exports = function (argument) {
-  return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
-};
-
-
-/***/ }),
-
-/***/ "5135":
-/***/ (function(module, exports) {
-
-var hasOwnProperty = {}.hasOwnProperty;
-
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-
-/***/ }),
-
-/***/ "5319":
-/***/ (function(module, exports, __nested_webpack_require_29589__) {
-
-"use strict";
-
-var fixRegExpWellKnownSymbolLogic = __nested_webpack_require_29589__("d784");
-var anObject = __nested_webpack_require_29589__("825a");
-var toObject = __nested_webpack_require_29589__("7b0b");
-var toLength = __nested_webpack_require_29589__("50c4");
-var toInteger = __nested_webpack_require_29589__("a691");
-var requireObjectCoercible = __nested_webpack_require_29589__("1d80");
-var advanceStringIndex = __nested_webpack_require_29589__("8aa5");
-var regExpExec = __nested_webpack_require_29589__("14c3");
-
-var max = Math.max;
-var min = Math.min;
-var floor = Math.floor;
-var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g;
-var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g;
-
-var maybeToString = function (it) {
-  return it === undefined ? it : String(it);
-};
-
-// @@replace logic
-fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, maybeCallNative, reason) {
-  var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = reason.REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE;
-  var REPLACE_KEEPS_$0 = reason.REPLACE_KEEPS_$0;
-  var UNSAFE_SUBSTITUTE = REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE ? '$' : '$0';
-
-  return [
-    // `String.prototype.replace` method
-    // https://tc39.github.io/ecma262/#sec-string.prototype.replace
-    function replace(searchValue, replaceValue) {
-      var O = requireObjectCoercible(this);
-      var replacer = searchValue == undefined ? undefined : searchValue[REPLACE];
-      return replacer !== undefined
-        ? replacer.call(searchValue, O, replaceValue)
-        : nativeReplace.call(String(O), searchValue, replaceValue);
-    },
-    // `RegExp.prototype[@@replace]` method
-    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
-    function (regexp, replaceValue) {
-      if (
-        (!REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE && REPLACE_KEEPS_$0) ||
-        (typeof replaceValue === 'string' && replaceValue.indexOf(UNSAFE_SUBSTITUTE) === -1)
-      ) {
-        var res = maybeCallNative(nativeReplace, regexp, this, replaceValue);
-        if (res.done) return res.value;
-      }
-
-      var rx = anObject(regexp);
-      var S = String(this);
-
-      var functionalReplace = typeof replaceValue === 'function';
-      if (!functionalReplace) replaceValue = String(replaceValue);
-
-      var global = rx.global;
-      if (global) {
-        var fullUnicode = rx.unicode;
-        rx.lastIndex = 0;
-      }
-      var results = [];
-      while (true) {
-        var result = regExpExec(rx, S);
-        if (result === null) break;
-
-        results.push(result);
-        if (!global) break;
-
-        var matchStr = String(result[0]);
-        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
-      }
-
-      var accumulatedResult = '';
-      var nextSourcePosition = 0;
-      for (var i = 0; i < results.length; i++) {
-        result = results[i];
-
-        var matched = String(result[0]);
-        var position = max(min(toInteger(result.index), S.length), 0);
-        var captures = [];
-        // NOTE: This is equivalent to
-        //   captures = result.slice(1).map(maybeToString)
-        // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
-        // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
-        // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
-        for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
-        var namedCaptures = result.groups;
-        if (functionalReplace) {
-          var replacerArgs = [matched].concat(captures, position, S);
-          if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
-          var replacement = String(replaceValue.apply(undefined, replacerArgs));
-        } else {
-          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
-        }
-        if (position >= nextSourcePosition) {
-          accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
-          nextSourcePosition = position + matched.length;
-        }
-      }
-      return accumulatedResult + S.slice(nextSourcePosition);
-    }
-  ];
-
-  // https://tc39.github.io/ecma262/#sec-getsubstitution
-  function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
-    var tailPos = position + matched.length;
-    var m = captures.length;
-    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
-    if (namedCaptures !== undefined) {
-      namedCaptures = toObject(namedCaptures);
-      symbols = SUBSTITUTION_SYMBOLS;
-    }
-    return nativeReplace.call(replacement, symbols, function (match, ch) {
-      var capture;
-      switch (ch.charAt(0)) {
-        case '$': return '$';
-        case '&': return matched;
-        case '`': return str.slice(0, position);
-        case "'": return str.slice(tailPos);
-        case '<':
-          capture = namedCaptures[ch.slice(1, -1)];
-          break;
-        default: // \d\d?
-          var n = +ch;
-          if (n === 0) return match;
-          if (n > m) {
-            var f = floor(n / 10);
-            if (f === 0) return match;
-            if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
-            return match;
-          }
-          capture = captures[n - 1];
-      }
-      return capture === undefined ? '' : capture;
-    });
-  }
-});
-
-
-/***/ }),
-
-/***/ "5692":
-/***/ (function(module, exports, __nested_webpack_require_34963__) {
-
-var IS_PURE = __nested_webpack_require_34963__("c430");
-var store = __nested_webpack_require_34963__("c6cd");
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: '3.6.5',
-  mode: IS_PURE ? 'pure' : 'global',
-  copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
-});
-
-
-/***/ }),
-
-/***/ "56ef":
-/***/ (function(module, exports, __nested_webpack_require_35385__) {
-
-var getBuiltIn = __nested_webpack_require_35385__("d066");
-var getOwnPropertyNamesModule = __nested_webpack_require_35385__("241c");
-var getOwnPropertySymbolsModule = __nested_webpack_require_35385__("7418");
-var anObject = __nested_webpack_require_35385__("825a");
-
-// all object keys, includes non-enumerable and symbols
-module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertyNamesModule.f(anObject(it));
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-  return getOwnPropertySymbols ? keys.concat(getOwnPropertySymbols(it)) : keys;
-};
-
-
-/***/ }),
-
-/***/ "5a34":
-/***/ (function(module, exports, __nested_webpack_require_36016__) {
-
-var isRegExp = __nested_webpack_require_36016__("44e7");
-
-module.exports = function (it) {
-  if (isRegExp(it)) {
-    throw TypeError("The method doesn't accept regular expressions");
-  } return it;
-};
-
-
-/***/ }),
-
-/***/ "5c6c":
-/***/ (function(module, exports) {
-
-module.exports = function (bitmap, value) {
-  return {
-    enumerable: !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable: !(bitmap & 4),
-    value: value
-  };
-};
-
-
-/***/ }),
-
-/***/ "5db7":
-/***/ (function(module, exports, __nested_webpack_require_36524__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_36524__("23e7");
-var flattenIntoArray = __nested_webpack_require_36524__("a2bf");
-var toObject = __nested_webpack_require_36524__("7b0b");
-var toLength = __nested_webpack_require_36524__("50c4");
-var aFunction = __nested_webpack_require_36524__("1c0b");
-var arraySpeciesCreate = __nested_webpack_require_36524__("65f0");
-
-// `Array.prototype.flatMap` method
-// https://github.com/tc39/proposal-flatMap
-$({ target: 'Array', proto: true }, {
-  flatMap: function flatMap(callbackfn /* , thisArg */) {
-    var O = toObject(this);
-    var sourceLen = toLength(O.length);
-    var A;
-    aFunction(callbackfn);
-    A = arraySpeciesCreate(O, 0);
-    A.length = flattenIntoArray(A, O, O, sourceLen, 0, 1, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    return A;
-  }
-});
-
-
-/***/ }),
-
-/***/ "6547":
-/***/ (function(module, exports, __nested_webpack_require_37358__) {
-
-var toInteger = __nested_webpack_require_37358__("a691");
-var requireObjectCoercible = __nested_webpack_require_37358__("1d80");
-
-// `String.prototype.{ codePointAt, at }` methods implementation
-var createMethod = function (CONVERT_TO_STRING) {
-  return function ($this, pos) {
-    var S = String(requireObjectCoercible($this));
-    var position = toInteger(pos);
-    var size = S.length;
-    var first, second;
-    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
-    first = S.charCodeAt(position);
-    return first < 0xD800 || first > 0xDBFF || position + 1 === size
-      || (second = S.charCodeAt(position + 1)) < 0xDC00 || second > 0xDFFF
-        ? CONVERT_TO_STRING ? S.charAt(position) : first
-        : CONVERT_TO_STRING ? S.slice(position, position + 2) : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
-  };
-};
-
-module.exports = {
-  // `String.prototype.codePointAt` method
-  // https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
-  codeAt: createMethod(false),
-  // `String.prototype.at` method
-  // https://github.com/mathiasbynens/String.prototype.at
-  charAt: createMethod(true)
-};
-
-
-/***/ }),
-
-/***/ "65f0":
-/***/ (function(module, exports, __nested_webpack_require_38564__) {
-
-var isObject = __nested_webpack_require_38564__("861d");
-var isArray = __nested_webpack_require_38564__("e8b5");
-var wellKnownSymbol = __nested_webpack_require_38564__("b622");
-
-var SPECIES = wellKnownSymbol('species');
-
-// `ArraySpeciesCreate` abstract operation
-// https://tc39.github.io/ecma262/#sec-arrayspeciescreate
-module.exports = function (originalArray, length) {
-  var C;
-  if (isArray(originalArray)) {
-    C = originalArray.constructor;
-    // cross-realm fallback
-    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
-    else if (isObject(C)) {
-      C = C[SPECIES];
-      if (C === null) C = undefined;
-    }
-  } return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
-};
-
-
-/***/ }),
-
-/***/ "69f3":
-/***/ (function(module, exports, __nested_webpack_require_39344__) {
-
-var NATIVE_WEAK_MAP = __nested_webpack_require_39344__("7f9a");
-var global = __nested_webpack_require_39344__("da84");
-var isObject = __nested_webpack_require_39344__("861d");
-var createNonEnumerableProperty = __nested_webpack_require_39344__("9112");
-var objectHas = __nested_webpack_require_39344__("5135");
-var sharedKey = __nested_webpack_require_39344__("f772");
-var hiddenKeys = __nested_webpack_require_39344__("d012");
-
-var WeakMap = global.WeakMap;
-var set, get, has;
-
-var enforce = function (it) {
-  return has(it) ? get(it) : set(it, {});
-};
-
-var getterFor = function (TYPE) {
-  return function (it) {
-    var state;
-    if (!isObject(it) || (state = get(it)).type !== TYPE) {
-      throw TypeError('Incompatible receiver, ' + TYPE + ' required');
-    } return state;
-  };
-};
-
-if (NATIVE_WEAK_MAP) {
-  var store = new WeakMap();
-  var wmget = store.get;
-  var wmhas = store.has;
-  var wmset = store.set;
-  set = function (it, metadata) {
-    wmset.call(store, it, metadata);
-    return metadata;
-  };
-  get = function (it) {
-    return wmget.call(store, it) || {};
-  };
-  has = function (it) {
-    return wmhas.call(store, it);
-  };
-} else {
-  var STATE = sharedKey('state');
-  hiddenKeys[STATE] = true;
-  set = function (it, metadata) {
-    createNonEnumerableProperty(it, STATE, metadata);
-    return metadata;
-  };
-  get = function (it) {
-    return objectHas(it, STATE) ? it[STATE] : {};
-  };
-  has = function (it) {
-    return objectHas(it, STATE);
-  };
-}
-
-module.exports = {
-  set: set,
-  get: get,
-  has: has,
-  enforce: enforce,
-  getterFor: getterFor
-};
-
-
-/***/ }),
-
-/***/ "6eeb":
-/***/ (function(module, exports, __nested_webpack_require_40911__) {
-
-var global = __nested_webpack_require_40911__("da84");
-var createNonEnumerableProperty = __nested_webpack_require_40911__("9112");
-var has = __nested_webpack_require_40911__("5135");
-var setGlobal = __nested_webpack_require_40911__("ce4e");
-var inspectSource = __nested_webpack_require_40911__("8925");
-var InternalStateModule = __nested_webpack_require_40911__("69f3");
-
-var getInternalState = InternalStateModule.get;
-var enforceInternalState = InternalStateModule.enforce;
-var TEMPLATE = String(String).split('String');
-
-(module.exports = function (O, key, value, options) {
-  var unsafe = options ? !!options.unsafe : false;
-  var simple = options ? !!options.enumerable : false;
-  var noTargetGet = options ? !!options.noTargetGet : false;
-  if (typeof value == 'function') {
-    if (typeof key == 'string' && !has(value, 'name')) createNonEnumerableProperty(value, 'name', key);
-    enforceInternalState(value).source = TEMPLATE.join(typeof key == 'string' ? key : '');
-  }
-  if (O === global) {
-    if (simple) O[key] = value;
-    else setGlobal(key, value);
-    return;
-  } else if (!unsafe) {
-    delete O[key];
-  } else if (!noTargetGet && O[key]) {
-    simple = true;
-  }
-  if (simple) O[key] = value;
-  else createNonEnumerableProperty(O, key, value);
-// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-})(Function.prototype, 'toString', function toString() {
-  return typeof this == 'function' && getInternalState(this).source || inspectSource(this);
-});
-
-
-/***/ }),
-
-/***/ "6f53":
-/***/ (function(module, exports, __nested_webpack_require_42446__) {
-
-var DESCRIPTORS = __nested_webpack_require_42446__("83ab");
-var objectKeys = __nested_webpack_require_42446__("df75");
-var toIndexedObject = __nested_webpack_require_42446__("fc6a");
-var propertyIsEnumerable = __nested_webpack_require_42446__("d1e7").f;
-
-// `Object.{ entries, values }` methods implementation
-var createMethod = function (TO_ENTRIES) {
-  return function (it) {
-    var O = toIndexedObject(it);
-    var keys = objectKeys(O);
-    var length = keys.length;
-    var i = 0;
-    var result = [];
-    var key;
-    while (length > i) {
-      key = keys[i++];
-      if (!DESCRIPTORS || propertyIsEnumerable.call(O, key)) {
-        result.push(TO_ENTRIES ? [key, O[key]] : O[key]);
-      }
-    }
-    return result;
-  };
-};
-
-module.exports = {
-  // `Object.entries` method
-  // https://tc39.github.io/ecma262/#sec-object.entries
-  entries: createMethod(true),
-  // `Object.values` method
-  // https://tc39.github.io/ecma262/#sec-object.values
-  values: createMethod(false)
-};
-
-
-/***/ }),
-
-/***/ "73d9":
-/***/ (function(module, exports, __nested_webpack_require_43460__) {
-
-// this method was added to unscopables after implementation
-// in popular engines, so it's moved to a separate module
-var addToUnscopables = __nested_webpack_require_43460__("44d2");
-
-addToUnscopables('flatMap');
-
-
-/***/ }),
-
-/***/ "7418":
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
-
-/***/ "746f":
-/***/ (function(module, exports, __nested_webpack_require_43850__) {
-
-var path = __nested_webpack_require_43850__("428f");
-var has = __nested_webpack_require_43850__("5135");
-var wrappedWellKnownSymbolModule = __nested_webpack_require_43850__("e538");
-var defineProperty = __nested_webpack_require_43850__("9bf2").f;
-
-module.exports = function (NAME) {
-  var Symbol = path.Symbol || (path.Symbol = {});
-  if (!has(Symbol, NAME)) defineProperty(Symbol, NAME, {
-    value: wrappedWellKnownSymbolModule.f(NAME)
-  });
-};
-
-
-/***/ }),
-
-/***/ "7839":
-/***/ (function(module, exports) {
-
-// IE8- don't enum bug keys
-module.exports = [
-  'constructor',
-  'hasOwnProperty',
-  'isPrototypeOf',
-  'propertyIsEnumerable',
-  'toLocaleString',
-  'toString',
-  'valueOf'
-];
-
-
-/***/ }),
-
-/***/ "7b0b":
-/***/ (function(module, exports, __nested_webpack_require_44570__) {
-
-var requireObjectCoercible = __nested_webpack_require_44570__("1d80");
-
-// `ToObject` abstract operation
-// https://tc39.github.io/ecma262/#sec-toobject
-module.exports = function (argument) {
-  return Object(requireObjectCoercible(argument));
-};
-
-
-/***/ }),
-
-/***/ "7c73":
-/***/ (function(module, exports, __nested_webpack_require_44887__) {
-
-var anObject = __nested_webpack_require_44887__("825a");
-var defineProperties = __nested_webpack_require_44887__("37e8");
-var enumBugKeys = __nested_webpack_require_44887__("7839");
-var hiddenKeys = __nested_webpack_require_44887__("d012");
-var html = __nested_webpack_require_44887__("1be4");
-var documentCreateElement = __nested_webpack_require_44887__("cc12");
-var sharedKey = __nested_webpack_require_44887__("f772");
-
-var GT = '>';
-var LT = '<';
-var PROTOTYPE = 'prototype';
-var SCRIPT = 'script';
-var IE_PROTO = sharedKey('IE_PROTO');
-
-var EmptyConstructor = function () { /* empty */ };
-
-var scriptTag = function (content) {
-  return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
-};
-
-// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
-var NullProtoObjectViaActiveX = function (activeXDocument) {
-  activeXDocument.write(scriptTag(''));
-  activeXDocument.close();
-  var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoid memory leak
-  return temp;
-};
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var NullProtoObjectViaIFrame = function () {
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = documentCreateElement('iframe');
-  var JS = 'java' + SCRIPT + ':';
-  var iframeDocument;
-  iframe.style.display = 'none';
-  html.appendChild(iframe);
-  // https://github.com/zloirock/core-js/issues/475
-  iframe.src = String(JS);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(scriptTag('document.F=Object'));
-  iframeDocument.close();
-  return iframeDocument.F;
-};
-
-// Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
-// see https://github.com/es-shims/es5-shim/issues/150
-// variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
-// avoid IE GC bug
-var activeXDocument;
-var NullProtoObject = function () {
-  try {
-    /* global ActiveXObject */
-    activeXDocument = document.domain && new ActiveXObject('htmlfile');
-  } catch (error) { /* ignore */ }
-  NullProtoObject = activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame();
-  var length = enumBugKeys.length;
-  while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
-  return NullProtoObject();
-};
-
-hiddenKeys[IE_PROTO] = true;
-
-// `Object.create` method
-// https://tc39.github.io/ecma262/#sec-object.create
-module.exports = Object.create || function create(O, Properties) {
-  var result;
-  if (O !== null) {
-    EmptyConstructor[PROTOTYPE] = anObject(O);
-    result = new EmptyConstructor();
-    EmptyConstructor[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = NullProtoObject();
-  return Properties === undefined ? result : defineProperties(result, Properties);
-};
-
-
-/***/ }),
-
-/***/ "7dd0":
-/***/ (function(module, exports, __nested_webpack_require_47780__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_47780__("23e7");
-var createIteratorConstructor = __nested_webpack_require_47780__("9ed3");
-var getPrototypeOf = __nested_webpack_require_47780__("e163");
-var setPrototypeOf = __nested_webpack_require_47780__("d2bb");
-var setToStringTag = __nested_webpack_require_47780__("d44e");
-var createNonEnumerableProperty = __nested_webpack_require_47780__("9112");
-var redefine = __nested_webpack_require_47780__("6eeb");
-var wellKnownSymbol = __nested_webpack_require_47780__("b622");
-var IS_PURE = __nested_webpack_require_47780__("c430");
-var Iterators = __nested_webpack_require_47780__("3f8c");
-var IteratorsCore = __nested_webpack_require_47780__("ae93");
-
-var IteratorPrototype = IteratorsCore.IteratorPrototype;
-var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
-var ITERATOR = wellKnownSymbol('iterator');
-var KEYS = 'keys';
-var VALUES = 'values';
-var ENTRIES = 'entries';
-
-var returnThis = function () { return this; };
-
-module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
-  createIteratorConstructor(IteratorConstructor, NAME, next);
-
-  var getIterationMethod = function (KIND) {
-    if (KIND === DEFAULT && defaultIterator) return defaultIterator;
-    if (!BUGGY_SAFARI_ITERATORS && KIND in IterablePrototype) return IterablePrototype[KIND];
-    switch (KIND) {
-      case KEYS: return function keys() { return new IteratorConstructor(this, KIND); };
-      case VALUES: return function values() { return new IteratorConstructor(this, KIND); };
-      case ENTRIES: return function entries() { return new IteratorConstructor(this, KIND); };
-    } return function () { return new IteratorConstructor(this); };
-  };
-
-  var TO_STRING_TAG = NAME + ' Iterator';
-  var INCORRECT_VALUES_NAME = false;
-  var IterablePrototype = Iterable.prototype;
-  var nativeIterator = IterablePrototype[ITERATOR]
-    || IterablePrototype['@@iterator']
-    || DEFAULT && IterablePrototype[DEFAULT];
-  var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
-  var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
-  var CurrentIteratorPrototype, methods, KEY;
-
-  // fix native
-  if (anyNativeIterator) {
-    CurrentIteratorPrototype = getPrototypeOf(anyNativeIterator.call(new Iterable()));
-    if (IteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
-      if (!IS_PURE && getPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype) {
-        if (setPrototypeOf) {
-          setPrototypeOf(CurrentIteratorPrototype, IteratorPrototype);
-        } else if (typeof CurrentIteratorPrototype[ITERATOR] != 'function') {
-          createNonEnumerableProperty(CurrentIteratorPrototype, ITERATOR, returnThis);
-        }
-      }
-      // Set @@toStringTag to native iterators
-      setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
-      if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
-    }
-  }
-
-  // fix Array#{values, @@iterator}.name in V8 / FF
-  if (DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
-    INCORRECT_VALUES_NAME = true;
-    defaultIterator = function values() { return nativeIterator.call(this); };
-  }
-
-  // define iterator
-  if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
-    createNonEnumerableProperty(IterablePrototype, ITERATOR, defaultIterator);
-  }
-  Iterators[NAME] = defaultIterator;
-
-  // export additional methods
-  if (DEFAULT) {
-    methods = {
-      values: getIterationMethod(VALUES),
-      keys: IS_SET ? defaultIterator : getIterationMethod(KEYS),
-      entries: getIterationMethod(ENTRIES)
-    };
-    if (FORCED) for (KEY in methods) {
-      if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
-        redefine(IterablePrototype, KEY, methods[KEY]);
-      }
-    } else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
-  }
-
-  return methods;
-};
-
-
-/***/ }),
-
-/***/ "7f9a":
-/***/ (function(module, exports, __nested_webpack_require_51759__) {
-
-var global = __nested_webpack_require_51759__("da84");
-var inspectSource = __nested_webpack_require_51759__("8925");
-
-var WeakMap = global.WeakMap;
-
-module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSource(WeakMap));
-
-
-/***/ }),
-
-/***/ "825a":
-/***/ (function(module, exports, __nested_webpack_require_52060__) {
-
-var isObject = __nested_webpack_require_52060__("861d");
-
-module.exports = function (it) {
-  if (!isObject(it)) {
-    throw TypeError(String(it) + ' is not an object');
-  } return it;
-};
-
-
-/***/ }),
-
-/***/ "83ab":
-/***/ (function(module, exports, __nested_webpack_require_52318__) {
-
-var fails = __nested_webpack_require_52318__("d039");
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !fails(function () {
-  return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] != 7;
-});
-
-
-/***/ }),
-
-/***/ "8418":
-/***/ (function(module, exports, __nested_webpack_require_52613__) {
-
-"use strict";
-
-var toPrimitive = __nested_webpack_require_52613__("c04e");
-var definePropertyModule = __nested_webpack_require_52613__("9bf2");
-var createPropertyDescriptor = __nested_webpack_require_52613__("5c6c");
-
-module.exports = function (object, key, value) {
-  var propertyKey = toPrimitive(key);
-  if (propertyKey in object) definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value));
-  else object[propertyKey] = value;
-};
-
-
-/***/ }),
-
-/***/ "861d":
-/***/ (function(module, exports) {
-
-module.exports = function (it) {
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-
-/***/ }),
-
-/***/ "8875":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// addapted from the document.currentScript polyfill by Adam Miller
-// MIT license
-// source: https://github.com/amiller-gh/currentScript-polyfill
-
-// added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505
-
-(function (root, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-}(typeof self !== 'undefined' ? self : this, function () {
-  function getCurrentScript () {
-    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
-    // for chrome
-    if (!descriptor && 'currentScript' in document && document.currentScript) {
-      return document.currentScript
-    }
-
-    // for other browsers with native support for currentScript
-    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
-      return document.currentScript
-    }
-  
-    // IE 8-10 support script readyState
-    // IE 11+ & Firefox support stack trace
-    try {
-      throw new Error();
-    }
-    catch (err) {
-      // Find the second match for the "at" string to get file src url from stack.
-      var ieStackRegExp = /.*at [^(]*\((.*):(.+):(.+)\)$/ig,
-        ffStackRegExp = /@([^@]*):(\d+):(\d+)\s*$/ig,
-        stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),
-        scriptLocation = (stackDetails && stackDetails[1]) || false,
-        line = (stackDetails && stackDetails[2]) || false,
-        currentLocation = document.location.href.replace(document.location.hash, ''),
-        pageSource,
-        inlineScriptSourceRegExp,
-        inlineScriptSource,
-        scripts = document.getElementsByTagName('script'); // Live NodeList collection
-  
-      if (scriptLocation === currentLocation) {
-        pageSource = document.documentElement.outerHTML;
-        inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
-        inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
-      }
-  
-      for (var i = 0; i < scripts.length; i++) {
-        // If ready state is interactive, return the script tag
-        if (scripts[i].readyState === 'interactive') {
-          return scripts[i];
-        }
-  
-        // If src matches, return the script tag
-        if (scripts[i].src === scriptLocation) {
-          return scripts[i];
-        }
-  
-        // If inline source matches, return the script tag
-        if (
-          scriptLocation === currentLocation &&
-          scripts[i].innerHTML &&
-          scripts[i].innerHTML.trim() === inlineScriptSource
-        ) {
-          return scripts[i];
-        }
-      }
-  
-      // If no match, return null
-      return null;
-    }
-  };
-
-  return getCurrentScript
-}));
-
-
-/***/ }),
-
-/***/ "8925":
-/***/ (function(module, exports, __nested_webpack_require_56535__) {
-
-var store = __nested_webpack_require_56535__("c6cd");
-
-var functionToString = Function.toString;
-
-// this helper broken in `3.4.1-3.4.4`, so we can't use `shared` helper
-if (typeof store.inspectSource != 'function') {
-  store.inspectSource = function (it) {
-    return functionToString.call(it);
-  };
-}
-
-module.exports = store.inspectSource;
-
-
-/***/ }),
-
-/***/ "8aa5":
-/***/ (function(module, exports, __nested_webpack_require_56948__) {
-
-"use strict";
-
-var charAt = __nested_webpack_require_56948__("6547").charAt;
-
-// `AdvanceStringIndex` abstract operation
-// https://tc39.github.io/ecma262/#sec-advancestringindex
-module.exports = function (S, index, unicode) {
-  return index + (unicode ? charAt(S, index).length : 1);
-};
-
-
-/***/ }),
-
-/***/ "8bbf":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
-
-/***/ }),
-
-/***/ "90e3":
-/***/ (function(module, exports) {
-
-var id = 0;
-var postfix = Math.random();
-
-module.exports = function (key) {
-  return 'Symbol(' + String(key === undefined ? '' : key) + ')_' + (++id + postfix).toString(36);
-};
-
-
-/***/ }),
-
-/***/ "9112":
-/***/ (function(module, exports, __nested_webpack_require_57661__) {
-
-var DESCRIPTORS = __nested_webpack_require_57661__("83ab");
-var definePropertyModule = __nested_webpack_require_57661__("9bf2");
-var createPropertyDescriptor = __nested_webpack_require_57661__("5c6c");
-
-module.exports = DESCRIPTORS ? function (object, key, value) {
-  return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
-} : function (object, key, value) {
-  object[key] = value;
-  return object;
-};
-
-
-/***/ }),
-
-/***/ "9263":
-/***/ (function(module, exports, __nested_webpack_require_58133__) {
-
-"use strict";
-
-var regexpFlags = __nested_webpack_require_58133__("ad6d");
-var stickyHelpers = __nested_webpack_require_58133__("9f7f");
-
-var nativeExec = RegExp.prototype.exec;
-// This always refers to the native implementation, because the
-// String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
-// which loads this file before patching the method.
-var nativeReplace = String.prototype.replace;
-
-var patchedExec = nativeExec;
-
-var UPDATES_LAST_INDEX_WRONG = (function () {
-  var re1 = /a/;
-  var re2 = /b*/g;
-  nativeExec.call(re1, 'a');
-  nativeExec.call(re2, 'a');
-  return re1.lastIndex !== 0 || re2.lastIndex !== 0;
-})();
-
-var UNSUPPORTED_Y = stickyHelpers.UNSUPPORTED_Y || stickyHelpers.BROKEN_CARET;
-
-// nonparticipating capturing group, copied from es5-shim's String#split patch.
-var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
-
-var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y;
-
-if (PATCH) {
-  patchedExec = function exec(str) {
-    var re = this;
-    var lastIndex, reCopy, match, i;
-    var sticky = UNSUPPORTED_Y && re.sticky;
-    var flags = regexpFlags.call(re);
-    var source = re.source;
-    var charsAdded = 0;
-    var strCopy = str;
-
-    if (sticky) {
-      flags = flags.replace('y', '');
-      if (flags.indexOf('g') === -1) {
-        flags += 'g';
-      }
-
-      strCopy = String(str).slice(re.lastIndex);
-      // Support anchored sticky behavior.
-      if (re.lastIndex > 0 && (!re.multiline || re.multiline && str[re.lastIndex - 1] !== '\n')) {
-        source = '(?: ' + source + ')';
-        strCopy = ' ' + strCopy;
-        charsAdded++;
-      }
-      // ^(? + rx + ) is needed, in combination with some str slicing, to
-      // simulate the 'y' flag.
-      reCopy = new RegExp('^(?:' + source + ')', flags);
-    }
-
-    if (NPCG_INCLUDED) {
-      reCopy = new RegExp('^' + source + '$(?!\\s)', flags);
-    }
-    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
-
-    match = nativeExec.call(sticky ? reCopy : re, strCopy);
-
-    if (sticky) {
-      if (match) {
-        match.input = match.input.slice(charsAdded);
-        match[0] = match[0].slice(charsAdded);
-        match.index = re.lastIndex;
-        re.lastIndex += match[0].length;
-      } else re.lastIndex = 0;
-    } else if (UPDATES_LAST_INDEX_WRONG && match) {
-      re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
-    }
-    if (NPCG_INCLUDED && match && match.length > 1) {
-      // Fix browsers whose `exec` methods don't consistently return `undefined`
-      // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
-      nativeReplace.call(match[0], reCopy, function () {
-        for (i = 1; i < arguments.length - 2; i++) {
-          if (arguments[i] === undefined) match[i] = undefined;
-        }
-      });
-    }
-
-    return match;
-  };
-}
-
-module.exports = patchedExec;
-
-
-/***/ }),
-
-/***/ "94ca":
-/***/ (function(module, exports, __nested_webpack_require_61029__) {
-
-var fails = __nested_webpack_require_61029__("d039");
-
-var replacement = /#|\.prototype\./;
-
-var isForced = function (feature, detection) {
-  var value = data[normalize(feature)];
-  return value == POLYFILL ? true
-    : value == NATIVE ? false
-    : typeof detection == 'function' ? fails(detection)
-    : !!detection;
-};
-
-var normalize = isForced.normalize = function (string) {
-  return String(string).replace(replacement, '.').toLowerCase();
-};
-
-var data = isForced.data = {};
-var NATIVE = isForced.NATIVE = 'N';
-var POLYFILL = isForced.POLYFILL = 'P';
-
-module.exports = isForced;
-
-
-/***/ }),
-
-/***/ "99af":
-/***/ (function(module, exports, __nested_webpack_require_61684__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_61684__("23e7");
-var fails = __nested_webpack_require_61684__("d039");
-var isArray = __nested_webpack_require_61684__("e8b5");
-var isObject = __nested_webpack_require_61684__("861d");
-var toObject = __nested_webpack_require_61684__("7b0b");
-var toLength = __nested_webpack_require_61684__("50c4");
-var createProperty = __nested_webpack_require_61684__("8418");
-var arraySpeciesCreate = __nested_webpack_require_61684__("65f0");
-var arrayMethodHasSpeciesSupport = __nested_webpack_require_61684__("1dde");
-var wellKnownSymbol = __nested_webpack_require_61684__("b622");
-var V8_VERSION = __nested_webpack_require_61684__("2d00");
-
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-
-// We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
-
-// `Array.prototype.concat` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-$({ target: 'Array', proto: true, forced: FORCED }, {
-  concat: function concat(arg) { // eslint-disable-line no-unused-vars
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-      if (isConcatSpreadable(E)) {
-        len = toLength(E.length);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty(A, n++, E);
-      }
-    }
-    A.length = n;
-    return A;
-  }
-});
-
-
-/***/ }),
-
-/***/ "9bdd":
-/***/ (function(module, exports, __nested_webpack_require_64056__) {
-
-var anObject = __nested_webpack_require_64056__("825a");
-
-// call something on iterator step with safe closing on error
-module.exports = function (iterator, fn, value, ENTRIES) {
-  try {
-    return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch (error) {
-    var returnMethod = iterator['return'];
-    if (returnMethod !== undefined) anObject(returnMethod.call(iterator));
-    throw error;
-  }
-};
-
-
-/***/ }),
-
-/***/ "9bf2":
-/***/ (function(module, exports, __nested_webpack_require_64590__) {
-
-var DESCRIPTORS = __nested_webpack_require_64590__("83ab");
-var IE8_DOM_DEFINE = __nested_webpack_require_64590__("0cfb");
-var anObject = __nested_webpack_require_64590__("825a");
-var toPrimitive = __nested_webpack_require_64590__("c04e");
-
-var nativeDefineProperty = Object.defineProperty;
-
-// `Object.defineProperty` method
-// https://tc39.github.io/ecma262/#sec-object.defineproperty
-exports.f = DESCRIPTORS ? nativeDefineProperty : function defineProperty(O, P, Attributes) {
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if (IE8_DOM_DEFINE) try {
-    return nativeDefineProperty(O, P, Attributes);
-  } catch (error) { /* empty */ }
-  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported');
-  if ('value' in Attributes) O[P] = Attributes.value;
-  return O;
-};
-
-
-/***/ }),
-
-/***/ "9ed3":
-/***/ (function(module, exports, __nested_webpack_require_65445__) {
-
-"use strict";
-
-var IteratorPrototype = __nested_webpack_require_65445__("ae93").IteratorPrototype;
-var create = __nested_webpack_require_65445__("7c73");
-var createPropertyDescriptor = __nested_webpack_require_65445__("5c6c");
-var setToStringTag = __nested_webpack_require_65445__("d44e");
-var Iterators = __nested_webpack_require_65445__("3f8c");
-
-var returnThis = function () { return this; };
-
-module.exports = function (IteratorConstructor, NAME, next) {
-  var TO_STRING_TAG = NAME + ' Iterator';
-  IteratorConstructor.prototype = create(IteratorPrototype, { next: createPropertyDescriptor(1, next) });
-  setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
-  Iterators[TO_STRING_TAG] = returnThis;
-  return IteratorConstructor;
-};
-
-
-/***/ }),
-
-/***/ "9f7f":
-/***/ (function(module, exports, __nested_webpack_require_66212__) {
-
-"use strict";
-
-
-var fails = __nested_webpack_require_66212__("d039");
-
-// babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError,
-// so we use an intermediate function.
-function RE(s, f) {
-  return RegExp(s, f);
-}
-
-exports.UNSUPPORTED_Y = fails(function () {
-  // babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
-  var re = RE('a', 'y');
-  re.lastIndex = 2;
-  return re.exec('abcd') != null;
-});
-
-exports.BROKEN_CARET = fails(function () {
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
-  var re = RE('^r', 'gy');
-  re.lastIndex = 2;
-  return re.exec('str') != null;
-});
-
-
-/***/ }),
-
-/***/ "a2bf":
-/***/ (function(module, exports, __nested_webpack_require_66910__) {
-
-"use strict";
-
-var isArray = __nested_webpack_require_66910__("e8b5");
-var toLength = __nested_webpack_require_66910__("50c4");
-var bind = __nested_webpack_require_66910__("0366");
-
-// `FlattenIntoArray` abstract operation
-// https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
-var flattenIntoArray = function (target, original, source, sourceLen, start, depth, mapper, thisArg) {
-  var targetIndex = start;
-  var sourceIndex = 0;
-  var mapFn = mapper ? bind(mapper, thisArg, 3) : false;
-  var element;
-
-  while (sourceIndex < sourceLen) {
-    if (sourceIndex in source) {
-      element = mapFn ? mapFn(source[sourceIndex], sourceIndex, original) : source[sourceIndex];
-
-      if (depth > 0 && isArray(element)) {
-        targetIndex = flattenIntoArray(target, original, element, toLength(element.length), targetIndex, depth - 1) - 1;
-      } else {
-        if (targetIndex >= 0x1FFFFFFFFFFFFF) throw TypeError('Exceed the acceptable array length');
-        target[targetIndex] = element;
-      }
-
-      targetIndex++;
-    }
-    sourceIndex++;
-  }
-  return targetIndex;
-};
-
-module.exports = flattenIntoArray;
-
-
-/***/ }),
-
-/***/ "a352":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_a352__;
-
-/***/ }),
-
-/***/ "a434":
-/***/ (function(module, exports, __nested_webpack_require_68187__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_68187__("23e7");
-var toAbsoluteIndex = __nested_webpack_require_68187__("23cb");
-var toInteger = __nested_webpack_require_68187__("a691");
-var toLength = __nested_webpack_require_68187__("50c4");
-var toObject = __nested_webpack_require_68187__("7b0b");
-var arraySpeciesCreate = __nested_webpack_require_68187__("65f0");
-var createProperty = __nested_webpack_require_68187__("8418");
-var arrayMethodHasSpeciesSupport = __nested_webpack_require_68187__("1dde");
-var arrayMethodUsesToLength = __nested_webpack_require_68187__("ae40");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
-var USES_TO_LENGTH = arrayMethodUsesToLength('splice', { ACCESSORS: true, 0: 0, 1: 2 });
-
-var max = Math.max;
-var min = Math.min;
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_LENGTH_EXCEEDED = 'Maximum allowed length exceeded';
-
-// `Array.prototype.splice` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.splice
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
-  splice: function splice(start, deleteCount /* , ...items */) {
-    var O = toObject(this);
-    var len = toLength(O.length);
-    var actualStart = toAbsoluteIndex(start, len);
-    var argumentsLength = arguments.length;
-    var insertCount, actualDeleteCount, A, k, from, to;
-    if (argumentsLength === 0) {
-      insertCount = actualDeleteCount = 0;
-    } else if (argumentsLength === 1) {
-      insertCount = 0;
-      actualDeleteCount = len - actualStart;
-    } else {
-      insertCount = argumentsLength - 2;
-      actualDeleteCount = min(max(toInteger(deleteCount), 0), len - actualStart);
-    }
-    if (len + insertCount - actualDeleteCount > MAX_SAFE_INTEGER) {
-      throw TypeError(MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
-    }
-    A = arraySpeciesCreate(O, actualDeleteCount);
-    for (k = 0; k < actualDeleteCount; k++) {
-      from = actualStart + k;
-      if (from in O) createProperty(A, k, O[from]);
-    }
-    A.length = actualDeleteCount;
-    if (insertCount < actualDeleteCount) {
-      for (k = actualStart; k < len - actualDeleteCount; k++) {
-        from = k + actualDeleteCount;
-        to = k + insertCount;
-        if (from in O) O[to] = O[from];
-        else delete O[to];
-      }
-      for (k = len; k > len - actualDeleteCount + insertCount; k--) delete O[k - 1];
-    } else if (insertCount > actualDeleteCount) {
-      for (k = len - actualDeleteCount; k > actualStart; k--) {
-        from = k + actualDeleteCount - 1;
-        to = k + insertCount - 1;
-        if (from in O) O[to] = O[from];
-        else delete O[to];
-      }
-    }
-    for (k = 0; k < insertCount; k++) {
-      O[k + actualStart] = arguments[k + 2];
-    }
-    O.length = len - actualDeleteCount + insertCount;
-    return A;
-  }
-});
-
-
-/***/ }),
-
-/***/ "a4d3":
-/***/ (function(module, exports, __nested_webpack_require_70991__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_70991__("23e7");
-var global = __nested_webpack_require_70991__("da84");
-var getBuiltIn = __nested_webpack_require_70991__("d066");
-var IS_PURE = __nested_webpack_require_70991__("c430");
-var DESCRIPTORS = __nested_webpack_require_70991__("83ab");
-var NATIVE_SYMBOL = __nested_webpack_require_70991__("4930");
-var USE_SYMBOL_AS_UID = __nested_webpack_require_70991__("fdbf");
-var fails = __nested_webpack_require_70991__("d039");
-var has = __nested_webpack_require_70991__("5135");
-var isArray = __nested_webpack_require_70991__("e8b5");
-var isObject = __nested_webpack_require_70991__("861d");
-var anObject = __nested_webpack_require_70991__("825a");
-var toObject = __nested_webpack_require_70991__("7b0b");
-var toIndexedObject = __nested_webpack_require_70991__("fc6a");
-var toPrimitive = __nested_webpack_require_70991__("c04e");
-var createPropertyDescriptor = __nested_webpack_require_70991__("5c6c");
-var nativeObjectCreate = __nested_webpack_require_70991__("7c73");
-var objectKeys = __nested_webpack_require_70991__("df75");
-var getOwnPropertyNamesModule = __nested_webpack_require_70991__("241c");
-var getOwnPropertyNamesExternal = __nested_webpack_require_70991__("057f");
-var getOwnPropertySymbolsModule = __nested_webpack_require_70991__("7418");
-var getOwnPropertyDescriptorModule = __nested_webpack_require_70991__("06cf");
-var definePropertyModule = __nested_webpack_require_70991__("9bf2");
-var propertyIsEnumerableModule = __nested_webpack_require_70991__("d1e7");
-var createNonEnumerableProperty = __nested_webpack_require_70991__("9112");
-var redefine = __nested_webpack_require_70991__("6eeb");
-var shared = __nested_webpack_require_70991__("5692");
-var sharedKey = __nested_webpack_require_70991__("f772");
-var hiddenKeys = __nested_webpack_require_70991__("d012");
-var uid = __nested_webpack_require_70991__("90e3");
-var wellKnownSymbol = __nested_webpack_require_70991__("b622");
-var wrappedWellKnownSymbolModule = __nested_webpack_require_70991__("e538");
-var defineWellKnownSymbol = __nested_webpack_require_70991__("746f");
-var setToStringTag = __nested_webpack_require_70991__("d44e");
-var InternalStateModule = __nested_webpack_require_70991__("69f3");
-var $forEach = __nested_webpack_require_70991__("b727").forEach;
-
-var HIDDEN = sharedKey('hidden');
-var SYMBOL = 'Symbol';
-var PROTOTYPE = 'prototype';
-var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
-var setInternalState = InternalStateModule.set;
-var getInternalState = InternalStateModule.getterFor(SYMBOL);
-var ObjectPrototype = Object[PROTOTYPE];
-var $Symbol = global.Symbol;
-var $stringify = getBuiltIn('JSON', 'stringify');
-var nativeGetOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-var nativeDefineProperty = definePropertyModule.f;
-var nativeGetOwnPropertyNames = getOwnPropertyNamesExternal.f;
-var nativePropertyIsEnumerable = propertyIsEnumerableModule.f;
-var AllSymbols = shared('symbols');
-var ObjectPrototypeSymbols = shared('op-symbols');
-var StringToSymbolRegistry = shared('string-to-symbol-registry');
-var SymbolToStringRegistry = shared('symbol-to-string-registry');
-var WellKnownSymbolsStore = shared('wks');
-var QObject = global.QObject;
-// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-var USE_SETTER = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
-
-// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-var setSymbolDescriptor = DESCRIPTORS && fails(function () {
-  return nativeObjectCreate(nativeDefineProperty({}, 'a', {
-    get: function () { return nativeDefineProperty(this, 'a', { value: 7 }).a; }
-  })).a != 7;
-}) ? function (O, P, Attributes) {
-  var ObjectPrototypeDescriptor = nativeGetOwnPropertyDescriptor(ObjectPrototype, P);
-  if (ObjectPrototypeDescriptor) delete ObjectPrototype[P];
-  nativeDefineProperty(O, P, Attributes);
-  if (ObjectPrototypeDescriptor && O !== ObjectPrototype) {
-    nativeDefineProperty(ObjectPrototype, P, ObjectPrototypeDescriptor);
-  }
-} : nativeDefineProperty;
-
-var wrap = function (tag, description) {
-  var symbol = AllSymbols[tag] = nativeObjectCreate($Symbol[PROTOTYPE]);
-  setInternalState(symbol, {
-    type: SYMBOL,
-    tag: tag,
-    description: description
-  });
-  if (!DESCRIPTORS) symbol.description = description;
-  return symbol;
-};
-
-var isSymbol = USE_SYMBOL_AS_UID ? function (it) {
-  return typeof it == 'symbol';
-} : function (it) {
-  return Object(it) instanceof $Symbol;
-};
-
-var $defineProperty = function defineProperty(O, P, Attributes) {
-  if (O === ObjectPrototype) $defineProperty(ObjectPrototypeSymbols, P, Attributes);
-  anObject(O);
-  var key = toPrimitive(P, true);
-  anObject(Attributes);
-  if (has(AllSymbols, key)) {
-    if (!Attributes.enumerable) {
-      if (!has(O, HIDDEN)) nativeDefineProperty(O, HIDDEN, createPropertyDescriptor(1, {}));
-      O[HIDDEN][key] = true;
-    } else {
-      if (has(O, HIDDEN) && O[HIDDEN][key]) O[HIDDEN][key] = false;
-      Attributes = nativeObjectCreate(Attributes, { enumerable: createPropertyDescriptor(0, false) });
-    } return setSymbolDescriptor(O, key, Attributes);
-  } return nativeDefineProperty(O, key, Attributes);
-};
-
-var $defineProperties = function defineProperties(O, Properties) {
-  anObject(O);
-  var properties = toIndexedObject(Properties);
-  var keys = objectKeys(properties).concat($getOwnPropertySymbols(properties));
-  $forEach(keys, function (key) {
-    if (!DESCRIPTORS || $propertyIsEnumerable.call(properties, key)) $defineProperty(O, key, properties[key]);
-  });
-  return O;
-};
-
-var $create = function create(O, Properties) {
-  return Properties === undefined ? nativeObjectCreate(O) : $defineProperties(nativeObjectCreate(O), Properties);
-};
-
-var $propertyIsEnumerable = function propertyIsEnumerable(V) {
-  var P = toPrimitive(V, true);
-  var enumerable = nativePropertyIsEnumerable.call(this, P);
-  if (this === ObjectPrototype && has(AllSymbols, P) && !has(ObjectPrototypeSymbols, P)) return false;
-  return enumerable || !has(this, P) || !has(AllSymbols, P) || has(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
-};
-
-var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
-  var it = toIndexedObject(O);
-  var key = toPrimitive(P, true);
-  if (it === ObjectPrototype && has(AllSymbols, key) && !has(ObjectPrototypeSymbols, key)) return;
-  var descriptor = nativeGetOwnPropertyDescriptor(it, key);
-  if (descriptor && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) {
-    descriptor.enumerable = true;
-  }
-  return descriptor;
-};
-
-var $getOwnPropertyNames = function getOwnPropertyNames(O) {
-  var names = nativeGetOwnPropertyNames(toIndexedObject(O));
-  var result = [];
-  $forEach(names, function (key) {
-    if (!has(AllSymbols, key) && !has(hiddenKeys, key)) result.push(key);
-  });
-  return result;
-};
-
-var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
-  var IS_OBJECT_PROTOTYPE = O === ObjectPrototype;
-  var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O));
-  var result = [];
-  $forEach(names, function (key) {
-    if (has(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || has(ObjectPrototype, key))) {
-      result.push(AllSymbols[key]);
-    }
-  });
-  return result;
-};
-
-// `Symbol` constructor
-// https://tc39.github.io/ecma262/#sec-symbol-constructor
-if (!NATIVE_SYMBOL) {
-  $Symbol = function Symbol() {
-    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor');
-    var description = !arguments.length || arguments[0] === undefined ? undefined : String(arguments[0]);
-    var tag = uid(description);
-    var setter = function (value) {
-      if (this === ObjectPrototype) setter.call(ObjectPrototypeSymbols, value);
-      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
-      setSymbolDescriptor(this, tag, createPropertyDescriptor(1, value));
-    };
-    if (DESCRIPTORS && USE_SETTER) setSymbolDescriptor(ObjectPrototype, tag, { configurable: true, set: setter });
-    return wrap(tag, description);
-  };
-
-  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
-    return getInternalState(this).tag;
-  });
-
-  redefine($Symbol, 'withoutSetter', function (description) {
-    return wrap(uid(description), description);
-  });
-
-  propertyIsEnumerableModule.f = $propertyIsEnumerable;
-  definePropertyModule.f = $defineProperty;
-  getOwnPropertyDescriptorModule.f = $getOwnPropertyDescriptor;
-  getOwnPropertyNamesModule.f = getOwnPropertyNamesExternal.f = $getOwnPropertyNames;
-  getOwnPropertySymbolsModule.f = $getOwnPropertySymbols;
-
-  wrappedWellKnownSymbolModule.f = function (name) {
-    return wrap(wellKnownSymbol(name), name);
-  };
-
-  if (DESCRIPTORS) {
-    // https://github.com/tc39/proposal-Symbol-description
-    nativeDefineProperty($Symbol[PROTOTYPE], 'description', {
-      configurable: true,
-      get: function description() {
-        return getInternalState(this).description;
-      }
-    });
-    if (!IS_PURE) {
-      redefine(ObjectPrototype, 'propertyIsEnumerable', $propertyIsEnumerable, { unsafe: true });
-    }
-  }
-}
-
-$({ global: true, wrap: true, forced: !NATIVE_SYMBOL, sham: !NATIVE_SYMBOL }, {
-  Symbol: $Symbol
-});
-
-$forEach(objectKeys(WellKnownSymbolsStore), function (name) {
-  defineWellKnownSymbol(name);
-});
-
-$({ target: SYMBOL, stat: true, forced: !NATIVE_SYMBOL }, {
-  // `Symbol.for` method
-  // https://tc39.github.io/ecma262/#sec-symbol.for
-  'for': function (key) {
-    var string = String(key);
-    if (has(StringToSymbolRegistry, string)) return StringToSymbolRegistry[string];
-    var symbol = $Symbol(string);
-    StringToSymbolRegistry[string] = symbol;
-    SymbolToStringRegistry[symbol] = string;
-    return symbol;
-  },
-  // `Symbol.keyFor` method
-  // https://tc39.github.io/ecma262/#sec-symbol.keyfor
-  keyFor: function keyFor(sym) {
-    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol');
-    if (has(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym];
-  },
-  useSetter: function () { USE_SETTER = true; },
-  useSimple: function () { USE_SETTER = false; }
-});
-
-$({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL, sham: !DESCRIPTORS }, {
-  // `Object.create` method
-  // https://tc39.github.io/ecma262/#sec-object.create
-  create: $create,
-  // `Object.defineProperty` method
-  // https://tc39.github.io/ecma262/#sec-object.defineproperty
-  defineProperty: $defineProperty,
-  // `Object.defineProperties` method
-  // https://tc39.github.io/ecma262/#sec-object.defineproperties
-  defineProperties: $defineProperties,
-  // `Object.getOwnPropertyDescriptor` method
-  // https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptors
-  getOwnPropertyDescriptor: $getOwnPropertyDescriptor
-});
-
-$({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL }, {
-  // `Object.getOwnPropertyNames` method
-  // https://tc39.github.io/ecma262/#sec-object.getownpropertynames
-  getOwnPropertyNames: $getOwnPropertyNames,
-  // `Object.getOwnPropertySymbols` method
-  // https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols
-  getOwnPropertySymbols: $getOwnPropertySymbols
-});
-
-// Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
-// https://bugs.chromium.org/p/v8/issues/detail?id=3443
-$({ target: 'Object', stat: true, forced: fails(function () { getOwnPropertySymbolsModule.f(1); }) }, {
-  getOwnPropertySymbols: function getOwnPropertySymbols(it) {
-    return getOwnPropertySymbolsModule.f(toObject(it));
-  }
-});
-
-// `JSON.stringify` method behavior with symbols
-// https://tc39.github.io/ecma262/#sec-json.stringify
-if ($stringify) {
-  var FORCED_JSON_STRINGIFY = !NATIVE_SYMBOL || fails(function () {
-    var symbol = $Symbol();
-    // MS Edge converts symbol values to JSON as {}
-    return $stringify([symbol]) != '[null]'
-      // WebKit converts symbol values to JSON as null
-      || $stringify({ a: symbol }) != '{}'
-      // V8 throws on boxed symbols
-      || $stringify(Object(symbol)) != '{}';
-  });
-
-  $({ target: 'JSON', stat: true, forced: FORCED_JSON_STRINGIFY }, {
-    // eslint-disable-next-line no-unused-vars
-    stringify: function stringify(it, replacer, space) {
-      var args = [it];
-      var index = 1;
-      var $replacer;
-      while (arguments.length > index) args.push(arguments[index++]);
-      $replacer = replacer;
-      if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
-      if (!isArray(replacer)) replacer = function (key, value) {
-        if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
-        if (!isSymbol(value)) return value;
-      };
-      args[1] = replacer;
-      return $stringify.apply(null, args);
-    }
-  });
-}
-
-// `Symbol.prototype[@@toPrimitive]` method
-// https://tc39.github.io/ecma262/#sec-symbol.prototype-@@toprimitive
-if (!$Symbol[PROTOTYPE][TO_PRIMITIVE]) {
-  createNonEnumerableProperty($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
-}
-// `Symbol.prototype[@@toStringTag]` property
-// https://tc39.github.io/ecma262/#sec-symbol.prototype-@@tostringtag
-setToStringTag($Symbol, SYMBOL);
-
-hiddenKeys[HIDDEN] = true;
-
-
-/***/ }),
-
-/***/ "a630":
-/***/ (function(module, exports, __nested_webpack_require_83743__) {
-
-var $ = __nested_webpack_require_83743__("23e7");
-var from = __nested_webpack_require_83743__("4df4");
-var checkCorrectnessOfIteration = __nested_webpack_require_83743__("1c7e");
-
-var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
-  Array.from(iterable);
-});
-
-// `Array.from` method
-// https://tc39.github.io/ecma262/#sec-array.from
-$({ target: 'Array', stat: true, forced: INCORRECT_ITERATION }, {
-  from: from
-});
-
-
-/***/ }),
-
-/***/ "a640":
-/***/ (function(module, exports, __nested_webpack_require_84230__) {
-
-"use strict";
-
-var fails = __nested_webpack_require_84230__("d039");
-
-module.exports = function (METHOD_NAME, argument) {
-  var method = [][METHOD_NAME];
-  return !!method && fails(function () {
-    // eslint-disable-next-line no-useless-call,no-throw-literal
-    method.call(null, argument || function () { throw 1; }, 1);
-  });
-};
-
-
-/***/ }),
-
-/***/ "a691":
-/***/ (function(module, exports) {
-
-var ceil = Math.ceil;
-var floor = Math.floor;
-
-// `ToInteger` abstract operation
-// https://tc39.github.io/ecma262/#sec-tointeger
-module.exports = function (argument) {
-  return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor : ceil)(argument);
-};
-
-
-/***/ }),
-
-/***/ "ab13":
-/***/ (function(module, exports, __nested_webpack_require_84953__) {
-
-var wellKnownSymbol = __nested_webpack_require_84953__("b622");
-
-var MATCH = wellKnownSymbol('match');
-
-module.exports = function (METHOD_NAME) {
-  var regexp = /./;
-  try {
-    '/./'[METHOD_NAME](regexp);
-  } catch (e) {
-    try {
-      regexp[MATCH] = false;
-      return '/./'[METHOD_NAME](regexp);
-    } catch (f) { /* empty */ }
-  } return false;
-};
-
-
-/***/ }),
-
-/***/ "ac1f":
-/***/ (function(module, exports, __nested_webpack_require_85379__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_85379__("23e7");
-var exec = __nested_webpack_require_85379__("9263");
-
-$({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
-  exec: exec
-});
-
-
-/***/ }),
-
-/***/ "ad6d":
-/***/ (function(module, exports, __nested_webpack_require_85639__) {
-
-"use strict";
-
-var anObject = __nested_webpack_require_85639__("825a");
-
-// `RegExp.prototype.flags` getter implementation
-// https://tc39.github.io/ecma262/#sec-get-regexp.prototype.flags
-module.exports = function () {
-  var that = anObject(this);
-  var result = '';
-  if (that.global) result += 'g';
-  if (that.ignoreCase) result += 'i';
-  if (that.multiline) result += 'm';
-  if (that.dotAll) result += 's';
-  if (that.unicode) result += 'u';
-  if (that.sticky) result += 'y';
-  return result;
-};
-
-
-/***/ }),
-
-/***/ "ae40":
-/***/ (function(module, exports, __nested_webpack_require_86210__) {
-
-var DESCRIPTORS = __nested_webpack_require_86210__("83ab");
-var fails = __nested_webpack_require_86210__("d039");
-var has = __nested_webpack_require_86210__("5135");
-
-var defineProperty = Object.defineProperty;
-var cache = {};
-
-var thrower = function (it) { throw it; };
-
-module.exports = function (METHOD_NAME, options) {
-  if (has(cache, METHOD_NAME)) return cache[METHOD_NAME];
-  if (!options) options = {};
-  var method = [][METHOD_NAME];
-  var ACCESSORS = has(options, 'ACCESSORS') ? options.ACCESSORS : false;
-  var argument0 = has(options, 0) ? options[0] : thrower;
-  var argument1 = has(options, 1) ? options[1] : undefined;
-
-  return cache[METHOD_NAME] = !!method && !fails(function () {
-    if (ACCESSORS && !DESCRIPTORS) return true;
-    var O = { length: -1 };
-
-    if (ACCESSORS) defineProperty(O, 1, { enumerable: true, get: thrower });
-    else O[1] = 1;
-
-    method.call(O, argument0, argument1);
-  });
-};
-
-
-/***/ }),
-
-/***/ "ae93":
-/***/ (function(module, exports, __nested_webpack_require_87178__) {
-
-"use strict";
-
-var getPrototypeOf = __nested_webpack_require_87178__("e163");
-var createNonEnumerableProperty = __nested_webpack_require_87178__("9112");
-var has = __nested_webpack_require_87178__("5135");
-var wellKnownSymbol = __nested_webpack_require_87178__("b622");
-var IS_PURE = __nested_webpack_require_87178__("c430");
-
-var ITERATOR = wellKnownSymbol('iterator');
-var BUGGY_SAFARI_ITERATORS = false;
-
-var returnThis = function () { return this; };
-
-// `%IteratorPrototype%` object
-// https://tc39.github.io/ecma262/#sec-%iteratorprototype%-object
-var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
-
-if ([].keys) {
-  arrayIterator = [].keys();
-  // Safari 8 has buggy iterators w/o `next`
-  if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
-  else {
-    PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
-    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype = PrototypeOfArrayIteratorPrototype;
-  }
-}
-
-if (IteratorPrototype == undefined) IteratorPrototype = {};
-
-// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-if (!IS_PURE && !has(IteratorPrototype, ITERATOR)) {
-  createNonEnumerableProperty(IteratorPrototype, ITERATOR, returnThis);
-}
-
-module.exports = {
-  IteratorPrototype: IteratorPrototype,
-  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS
-};
-
-
-/***/ }),
-
-/***/ "b041":
-/***/ (function(module, exports, __nested_webpack_require_88549__) {
-
-"use strict";
-
-var TO_STRING_TAG_SUPPORT = __nested_webpack_require_88549__("00ee");
-var classof = __nested_webpack_require_88549__("f5df");
-
-// `Object.prototype.toString` method implementation
-// https://tc39.github.io/ecma262/#sec-object.prototype.tostring
-module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
-  return '[object ' + classof(this) + ']';
-};
-
-
-/***/ }),
-
-/***/ "b0c0":
-/***/ (function(module, exports, __nested_webpack_require_88990__) {
-
-var DESCRIPTORS = __nested_webpack_require_88990__("83ab");
-var defineProperty = __nested_webpack_require_88990__("9bf2").f;
-
-var FunctionPrototype = Function.prototype;
-var FunctionPrototypeToString = FunctionPrototype.toString;
-var nameRE = /^\s*function ([^ (]*)/;
-var NAME = 'name';
-
-// Function instances `.name` property
-// https://tc39.github.io/ecma262/#sec-function-instances-name
-if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
-  defineProperty(FunctionPrototype, NAME, {
-    configurable: true,
-    get: function () {
-      try {
-        return FunctionPrototypeToString.call(this).match(nameRE)[1];
-      } catch (error) {
-        return '';
-      }
-    }
-  });
-}
-
-
-/***/ }),
-
-/***/ "b622":
-/***/ (function(module, exports, __nested_webpack_require_89727__) {
-
-var global = __nested_webpack_require_89727__("da84");
-var shared = __nested_webpack_require_89727__("5692");
-var has = __nested_webpack_require_89727__("5135");
-var uid = __nested_webpack_require_89727__("90e3");
-var NATIVE_SYMBOL = __nested_webpack_require_89727__("4930");
-var USE_SYMBOL_AS_UID = __nested_webpack_require_89727__("fdbf");
-
-var WellKnownSymbolsStore = shared('wks');
-var Symbol = global.Symbol;
-var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
-
-module.exports = function (name) {
-  if (!has(WellKnownSymbolsStore, name)) {
-    if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
-    else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name);
-  } return WellKnownSymbolsStore[name];
-};
-
-
-/***/ }),
-
-/***/ "b64b":
-/***/ (function(module, exports, __nested_webpack_require_90533__) {
-
-var $ = __nested_webpack_require_90533__("23e7");
-var toObject = __nested_webpack_require_90533__("7b0b");
-var nativeKeys = __nested_webpack_require_90533__("df75");
-var fails = __nested_webpack_require_90533__("d039");
-
-var FAILS_ON_PRIMITIVES = fails(function () { nativeKeys(1); });
-
-// `Object.keys` method
-// https://tc39.github.io/ecma262/#sec-object.keys
-$({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
-  keys: function keys(it) {
-    return nativeKeys(toObject(it));
-  }
-});
-
-
-/***/ }),
-
-/***/ "b727":
-/***/ (function(module, exports, __nested_webpack_require_91067__) {
-
-var bind = __nested_webpack_require_91067__("0366");
-var IndexedObject = __nested_webpack_require_91067__("44ad");
-var toObject = __nested_webpack_require_91067__("7b0b");
-var toLength = __nested_webpack_require_91067__("50c4");
-var arraySpeciesCreate = __nested_webpack_require_91067__("65f0");
-
-var push = [].push;
-
-// `Array.prototype.{ forEach, map, filter, some, every, find, findIndex }` methods implementation
-var createMethod = function (TYPE) {
-  var IS_MAP = TYPE == 1;
-  var IS_FILTER = TYPE == 2;
-  var IS_SOME = TYPE == 3;
-  var IS_EVERY = TYPE == 4;
-  var IS_FIND_INDEX = TYPE == 6;
-  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
-  return function ($this, callbackfn, that, specificCreate) {
-    var O = toObject($this);
-    var self = IndexedObject(O);
-    var boundFunction = bind(callbackfn, that, 3);
-    var length = toLength(self.length);
-    var index = 0;
-    var create = specificCreate || arraySpeciesCreate;
-    var target = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
-    var value, result;
-    for (;length > index; index++) if (NO_HOLES || index in self) {
-      value = self[index];
-      result = boundFunction(value, index, O);
-      if (TYPE) {
-        if (IS_MAP) target[index] = result; // map
-        else if (result) switch (TYPE) {
-          case 3: return true;              // some
-          case 5: return value;             // find
-          case 6: return index;             // findIndex
-          case 2: push.call(target, value); // filter
-        } else if (IS_EVERY) return false;  // every
-      }
-    }
-    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : target;
-  };
-};
-
-module.exports = {
-  // `Array.prototype.forEach` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-  forEach: createMethod(0),
-  // `Array.prototype.map` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.map
-  map: createMethod(1),
-  // `Array.prototype.filter` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.filter
-  filter: createMethod(2),
-  // `Array.prototype.some` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.some
-  some: createMethod(3),
-  // `Array.prototype.every` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.every
-  every: createMethod(4),
-  // `Array.prototype.find` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.find
-  find: createMethod(5),
-  // `Array.prototype.findIndex` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
-  findIndex: createMethod(6)
-};
-
-
-/***/ }),
-
-/***/ "c04e":
-/***/ (function(module, exports, __nested_webpack_require_93653__) {
-
-var isObject = __nested_webpack_require_93653__("861d");
-
-// `ToPrimitive` abstract operation
-// https://tc39.github.io/ecma262/#sec-toprimitive
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function (input, PREFERRED_STRING) {
-  if (!isObject(input)) return input;
-  var fn, val;
-  if (PREFERRED_STRING && typeof (fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
-  if (typeof (fn = input.valueOf) == 'function' && !isObject(val = fn.call(input))) return val;
-  if (!PREFERRED_STRING && typeof (fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
-  throw TypeError("Can't convert object to primitive value");
-};
-
-
-/***/ }),
-
-/***/ "c430":
-/***/ (function(module, exports) {
-
-module.exports = false;
-
-
-/***/ }),
-
-/***/ "c6b6":
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-
-/***/ "c6cd":
-/***/ (function(module, exports, __nested_webpack_require_94766__) {
-
-var global = __nested_webpack_require_94766__("da84");
-var setGlobal = __nested_webpack_require_94766__("ce4e");
-
-var SHARED = '__core-js_shared__';
-var store = global[SHARED] || setGlobal(SHARED, {});
-
-module.exports = store;
-
-
-/***/ }),
-
-/***/ "c740":
-/***/ (function(module, exports, __nested_webpack_require_95051__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_95051__("23e7");
-var $findIndex = __nested_webpack_require_95051__("b727").findIndex;
-var addToUnscopables = __nested_webpack_require_95051__("44d2");
-var arrayMethodUsesToLength = __nested_webpack_require_95051__("ae40");
-
-var FIND_INDEX = 'findIndex';
-var SKIPS_HOLES = true;
-
-var USES_TO_LENGTH = arrayMethodUsesToLength(FIND_INDEX);
-
-// Shouldn't skip holes
-if (FIND_INDEX in []) Array(1)[FIND_INDEX](function () { SKIPS_HOLES = false; });
-
-// `Array.prototype.findIndex` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.findindex
-$({ target: 'Array', proto: true, forced: SKIPS_HOLES || !USES_TO_LENGTH }, {
-  findIndex: function findIndex(callbackfn /* , that = undefined */) {
-    return $findIndex(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-// https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
-addToUnscopables(FIND_INDEX);
-
-
-/***/ }),
-
-/***/ "c8ba":
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ "c975":
-/***/ (function(module, exports, __nested_webpack_require_96561__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_96561__("23e7");
-var $indexOf = __nested_webpack_require_96561__("4d64").indexOf;
-var arrayMethodIsStrict = __nested_webpack_require_96561__("a640");
-var arrayMethodUsesToLength = __nested_webpack_require_96561__("ae40");
-
-var nativeIndexOf = [].indexOf;
-
-var NEGATIVE_ZERO = !!nativeIndexOf && 1 / [1].indexOf(1, -0) < 0;
-var STRICT_METHOD = arrayMethodIsStrict('indexOf');
-var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
-
-// `Array.prototype.indexOf` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.indexof
-$({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD || !USES_TO_LENGTH }, {
-  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
-    return NEGATIVE_ZERO
-      // convert -0 to +0
-      ? nativeIndexOf.apply(this, arguments) || 0
-      : $indexOf(this, searchElement, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
-/***/ "ca84":
-/***/ (function(module, exports, __nested_webpack_require_97562__) {
-
-var has = __nested_webpack_require_97562__("5135");
-var toIndexedObject = __nested_webpack_require_97562__("fc6a");
-var indexOf = __nested_webpack_require_97562__("4d64").indexOf;
-var hiddenKeys = __nested_webpack_require_97562__("d012");
-
-module.exports = function (object, names) {
-  var O = toIndexedObject(object);
-  var i = 0;
-  var result = [];
-  var key;
-  for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while (names.length > i) if (has(O, key = names[i++])) {
-    ~indexOf(result, key) || result.push(key);
-  }
-  return result;
-};
-
-
-/***/ }),
-
-/***/ "caad":
-/***/ (function(module, exports, __nested_webpack_require_98195__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_98195__("23e7");
-var $includes = __nested_webpack_require_98195__("4d64").includes;
-var addToUnscopables = __nested_webpack_require_98195__("44d2");
-var arrayMethodUsesToLength = __nested_webpack_require_98195__("ae40");
-
-var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
-
-// `Array.prototype.includes` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.includes
-$({ target: 'Array', proto: true, forced: !USES_TO_LENGTH }, {
-  includes: function includes(el /* , fromIndex = 0 */) {
-    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-// https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
-addToUnscopables('includes');
-
-
-/***/ }),
-
-/***/ "cc12":
-/***/ (function(module, exports, __nested_webpack_require_98993__) {
-
-var global = __nested_webpack_require_98993__("da84");
-var isObject = __nested_webpack_require_98993__("861d");
-
-var document = global.document;
-// typeof document.createElement is 'object' in old IE
-var EXISTS = isObject(document) && isObject(document.createElement);
-
-module.exports = function (it) {
-  return EXISTS ? document.createElement(it) : {};
-};
-
-
-/***/ }),
-
-/***/ "ce4e":
-/***/ (function(module, exports, __nested_webpack_require_99408__) {
-
-var global = __nested_webpack_require_99408__("da84");
-var createNonEnumerableProperty = __nested_webpack_require_99408__("9112");
-
-module.exports = function (key, value) {
-  try {
-    createNonEnumerableProperty(global, key, value);
-  } catch (error) {
-    global[key] = value;
-  } return value;
-};
-
-
-/***/ }),
-
-/***/ "d012":
-/***/ (function(module, exports) {
-
-module.exports = {};
-
-
-/***/ }),
-
-/***/ "d039":
-/***/ (function(module, exports) {
-
-module.exports = function (exec) {
-  try {
-    return !!exec();
-  } catch (error) {
-    return true;
-  }
-};
-
-
-/***/ }),
-
-/***/ "d066":
-/***/ (function(module, exports, __nested_webpack_require_100021__) {
-
-var path = __nested_webpack_require_100021__("428f");
-var global = __nested_webpack_require_100021__("da84");
-
-var aFunction = function (variable) {
-  return typeof variable == 'function' ? variable : undefined;
-};
-
-module.exports = function (namespace, method) {
-  return arguments.length < 2 ? aFunction(path[namespace]) || aFunction(global[namespace])
-    : path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
-};
-
-
-/***/ }),
-
-/***/ "d1e7":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var nativePropertyIsEnumerable = {}.propertyIsEnumerable;
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-// Nashorn ~ JDK8 bug
-var NASHORN_BUG = getOwnPropertyDescriptor && !nativePropertyIsEnumerable.call({ 1: 2 }, 1);
-
-// `Object.prototype.propertyIsEnumerable` method implementation
-// https://tc39.github.io/ecma262/#sec-object.prototype.propertyisenumerable
-exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
-  var descriptor = getOwnPropertyDescriptor(this, V);
-  return !!descriptor && descriptor.enumerable;
-} : nativePropertyIsEnumerable;
-
-
-/***/ }),
-
-/***/ "d28b":
-/***/ (function(module, exports, __nested_webpack_require_101210__) {
-
-var defineWellKnownSymbol = __nested_webpack_require_101210__("746f");
-
-// `Symbol.iterator` well-known symbol
-// https://tc39.github.io/ecma262/#sec-symbol.iterator
-defineWellKnownSymbol('iterator');
-
-
-/***/ }),
-
-/***/ "d2bb":
-/***/ (function(module, exports, __nested_webpack_require_101481__) {
-
-var anObject = __nested_webpack_require_101481__("825a");
-var aPossiblePrototype = __nested_webpack_require_101481__("3bbe");
-
-// `Object.setPrototypeOf` method
-// https://tc39.github.io/ecma262/#sec-object.setprototypeof
-// Works with __proto__ only. Old v8 can't work with null proto objects.
-/* eslint-disable no-proto */
-module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
-  var CORRECT_SETTER = false;
-  var test = {};
-  var setter;
-  try {
-    setter = Object.getOwnPropertyDescriptor(Object.prototype, '__proto__').set;
-    setter.call(test, []);
-    CORRECT_SETTER = test instanceof Array;
-  } catch (error) { /* empty */ }
-  return function setPrototypeOf(O, proto) {
-    anObject(O);
-    aPossiblePrototype(proto);
-    if (CORRECT_SETTER) setter.call(O, proto);
-    else O.__proto__ = proto;
-    return O;
-  };
-}() : undefined);
-
-
-/***/ }),
-
-/***/ "d3b7":
-/***/ (function(module, exports, __nested_webpack_require_102401__) {
-
-var TO_STRING_TAG_SUPPORT = __nested_webpack_require_102401__("00ee");
-var redefine = __nested_webpack_require_102401__("6eeb");
-var toString = __nested_webpack_require_102401__("b041");
-
-// `Object.prototype.toString` method
-// https://tc39.github.io/ecma262/#sec-object.prototype.tostring
-if (!TO_STRING_TAG_SUPPORT) {
-  redefine(Object.prototype, 'toString', toString, { unsafe: true });
-}
-
-
-/***/ }),
-
-/***/ "d44e":
-/***/ (function(module, exports, __nested_webpack_require_102836__) {
-
-var defineProperty = __nested_webpack_require_102836__("9bf2").f;
-var has = __nested_webpack_require_102836__("5135");
-var wellKnownSymbol = __nested_webpack_require_102836__("b622");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-
-module.exports = function (it, TAG, STATIC) {
-  if (it && !has(it = STATIC ? it : it.prototype, TO_STRING_TAG)) {
-    defineProperty(it, TO_STRING_TAG, { configurable: true, value: TAG });
-  }
-};
-
-
-/***/ }),
-
-/***/ "d58f":
-/***/ (function(module, exports, __nested_webpack_require_103312__) {
-
-var aFunction = __nested_webpack_require_103312__("1c0b");
-var toObject = __nested_webpack_require_103312__("7b0b");
-var IndexedObject = __nested_webpack_require_103312__("44ad");
-var toLength = __nested_webpack_require_103312__("50c4");
-
-// `Array.prototype.{ reduce, reduceRight }` methods implementation
-var createMethod = function (IS_RIGHT) {
-  return function (that, callbackfn, argumentsLength, memo) {
-    aFunction(callbackfn);
-    var O = toObject(that);
-    var self = IndexedObject(O);
-    var length = toLength(O.length);
-    var index = IS_RIGHT ? length - 1 : 0;
-    var i = IS_RIGHT ? -1 : 1;
-    if (argumentsLength < 2) while (true) {
-      if (index in self) {
-        memo = self[index];
-        index += i;
-        break;
-      }
-      index += i;
-      if (IS_RIGHT ? index < 0 : length <= index) {
-        throw TypeError('Reduce of empty array with no initial value');
-      }
-    }
-    for (;IS_RIGHT ? index >= 0 : length > index; index += i) if (index in self) {
-      memo = callbackfn(memo, self[index], index, O);
-    }
-    return memo;
-  };
-};
-
-module.exports = {
-  // `Array.prototype.reduce` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.reduce
-  left: createMethod(false),
-  // `Array.prototype.reduceRight` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.reduceright
-  right: createMethod(true)
-};
-
-
-/***/ }),
-
-/***/ "d784":
-/***/ (function(module, exports, __nested_webpack_require_104707__) {
-
-"use strict";
-
-// TODO: Remove from `core-js@4` since it's moved to entry points
-__nested_webpack_require_104707__("ac1f");
-var redefine = __nested_webpack_require_104707__("6eeb");
-var fails = __nested_webpack_require_104707__("d039");
-var wellKnownSymbol = __nested_webpack_require_104707__("b622");
-var regexpExec = __nested_webpack_require_104707__("9263");
-var createNonEnumerableProperty = __nested_webpack_require_104707__("9112");
-
-var SPECIES = wellKnownSymbol('species');
-
-var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
-  // #replace needs built-in support for named groups.
-  // #match works fine because it just return the exec results, even if it has
-  // a "grops" property.
-  var re = /./;
-  re.exec = function () {
-    var result = [];
-    result.groups = { a: '7' };
-    return result;
-  };
-  return ''.replace(re, '$<a>') !== '7';
-});
-
-// IE <= 11 replaces $0 with the whole match, as if it was $&
-// https://stackoverflow.com/questions/6024666/getting-ie-to-replace-a-regex-with-the-literal-string-0
-var REPLACE_KEEPS_$0 = (function () {
-  return 'a'.replace(/./, '$0') === '$0';
-})();
-
-var REPLACE = wellKnownSymbol('replace');
-// Safari <= 13.0.3(?) substitutes nth capture where n>m with an empty string
-var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = (function () {
-  if (/./[REPLACE]) {
-    return /./[REPLACE]('a', '$0') === '';
-  }
-  return false;
-})();
-
-// Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
-// Weex JS has frozen built-in prototypes, so use try / catch wrapper
-var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = !fails(function () {
-  var re = /(?:)/;
-  var originalExec = re.exec;
-  re.exec = function () { return originalExec.apply(this, arguments); };
-  var result = 'ab'.split(re);
-  return result.length !== 2 || result[0] !== 'a' || result[1] !== 'b';
-});
-
-module.exports = function (KEY, length, exec, sham) {
-  var SYMBOL = wellKnownSymbol(KEY);
-
-  var DELEGATES_TO_SYMBOL = !fails(function () {
-    // String methods call symbol-named RegEp methods
-    var O = {};
-    O[SYMBOL] = function () { return 7; };
-    return ''[KEY](O) != 7;
-  });
-
-  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails(function () {
-    // Symbol-named RegExp methods call .exec
-    var execCalled = false;
-    var re = /a/;
-
-    if (KEY === 'split') {
-      // We can't use real regex here since it causes deoptimization
-      // and serious performance degradation in V8
-      // https://github.com/zloirock/core-js/issues/306
-      re = {};
-      // RegExp[@@split] doesn't call the regex's exec method, but first creates
-      // a new one. We need to return the patched regex when creating the new one.
-      re.constructor = {};
-      re.constructor[SPECIES] = function () { return re; };
-      re.flags = '';
-      re[SYMBOL] = /./[SYMBOL];
-    }
-
-    re.exec = function () { execCalled = true; return null; };
-
-    re[SYMBOL]('');
-    return !execCalled;
-  });
-
-  if (
-    !DELEGATES_TO_SYMBOL ||
-    !DELEGATES_TO_EXEC ||
-    (KEY === 'replace' && !(
-      REPLACE_SUPPORTS_NAMED_GROUPS &&
-      REPLACE_KEEPS_$0 &&
-      !REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE
-    )) ||
-    (KEY === 'split' && !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC)
-  ) {
-    var nativeRegExpMethod = /./[SYMBOL];
-    var methods = exec(SYMBOL, ''[KEY], function (nativeMethod, regexp, str, arg2, forceStringMethod) {
-      if (regexp.exec === regexpExec) {
-        if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
-          // The native String method already delegates to @@method (this
-          // polyfilled function), leasing to infinite recursion.
-          // We avoid it by directly calling the native @@method method.
-          return { done: true, value: nativeRegExpMethod.call(regexp, str, arg2) };
-        }
-        return { done: true, value: nativeMethod.call(str, regexp, arg2) };
-      }
-      return { done: false };
-    }, {
-      REPLACE_KEEPS_$0: REPLACE_KEEPS_$0,
-      REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE: REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE
-    });
-    var stringMethod = methods[0];
-    var regexMethod = methods[1];
-
-    redefine(String.prototype, KEY, stringMethod);
-    redefine(RegExp.prototype, SYMBOL, length == 2
-      // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
-      // 21.2.5.11 RegExp.prototype[@@split](string, limit)
-      ? function (string, arg) { return regexMethod.call(string, this, arg); }
-      // 21.2.5.6 RegExp.prototype[@@match](string)
-      // 21.2.5.9 RegExp.prototype[@@search](string)
-      : function (string) { return regexMethod.call(string, this); }
-    );
-  }
-
-  if (sham) createNonEnumerableProperty(RegExp.prototype[SYMBOL], 'sham', true);
-};
-
-
-/***/ }),
-
-/***/ "d81d":
-/***/ (function(module, exports, __nested_webpack_require_109390__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_109390__("23e7");
-var $map = __nested_webpack_require_109390__("b727").map;
-var arrayMethodHasSpeciesSupport = __nested_webpack_require_109390__("1dde");
-var arrayMethodUsesToLength = __nested_webpack_require_109390__("ae40");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
-// FF49- issue
-var USES_TO_LENGTH = arrayMethodUsesToLength('map');
-
-// `Array.prototype.map` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.map
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
-  map: function map(callbackfn /* , thisArg */) {
-    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
-/***/ "da84":
-/***/ (function(module, exports, __nested_webpack_require_110182__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var check = function (it) {
-  return it && it.Math == Math && it;
-};
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-module.exports =
-  // eslint-disable-next-line no-undef
-  check(typeof globalThis == 'object' && globalThis) ||
-  check(typeof window == 'object' && window) ||
-  check(typeof self == 'object' && self) ||
-  check(typeof global == 'object' && global) ||
-  // eslint-disable-next-line no-new-func
-  Function('return this')();
-
-/* WEBPACK VAR INJECTION */}.call(this, __nested_webpack_require_110182__("c8ba")))
-
-/***/ }),
-
-/***/ "dbb4":
-/***/ (function(module, exports, __nested_webpack_require_110847__) {
-
-var $ = __nested_webpack_require_110847__("23e7");
-var DESCRIPTORS = __nested_webpack_require_110847__("83ab");
-var ownKeys = __nested_webpack_require_110847__("56ef");
-var toIndexedObject = __nested_webpack_require_110847__("fc6a");
-var getOwnPropertyDescriptorModule = __nested_webpack_require_110847__("06cf");
-var createProperty = __nested_webpack_require_110847__("8418");
-
-// `Object.getOwnPropertyDescriptors` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptors
-$({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
-  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
-    var O = toIndexedObject(object);
-    var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-    var keys = ownKeys(O);
-    var result = {};
-    var index = 0;
-    var key, descriptor;
-    while (keys.length > index) {
-      descriptor = getOwnPropertyDescriptor(O, key = keys[index++]);
-      if (descriptor !== undefined) createProperty(result, key, descriptor);
-    }
-    return result;
-  }
-});
-
-
-/***/ }),
-
-/***/ "dbf1":
-/***/ (function(module, __webpack_exports__, __nested_webpack_require_111898__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __nested_webpack_require_111898__.d(__webpack_exports__, "a", function() { return console; });
-function getConsole() {
-  if (typeof window !== "undefined") {
-    return window.console;
-  }
-
-  return global.console;
-}
-
-var console = getConsole();
-
-/* WEBPACK VAR INJECTION */}.call(this, __nested_webpack_require_111898__("c8ba")))
-
-/***/ }),
-
-/***/ "ddb0":
-/***/ (function(module, exports, __nested_webpack_require_112375__) {
-
-var global = __nested_webpack_require_112375__("da84");
-var DOMIterables = __nested_webpack_require_112375__("fdbc");
-var ArrayIteratorMethods = __nested_webpack_require_112375__("e260");
-var createNonEnumerableProperty = __nested_webpack_require_112375__("9112");
-var wellKnownSymbol = __nested_webpack_require_112375__("b622");
-
-var ITERATOR = wellKnownSymbol('iterator');
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var ArrayValues = ArrayIteratorMethods.values;
-
-for (var COLLECTION_NAME in DOMIterables) {
-  var Collection = global[COLLECTION_NAME];
-  var CollectionPrototype = Collection && Collection.prototype;
-  if (CollectionPrototype) {
-    // some Chrome versions have non-configurable methods on DOMTokenList
-    if (CollectionPrototype[ITERATOR] !== ArrayValues) try {
-      createNonEnumerableProperty(CollectionPrototype, ITERATOR, ArrayValues);
-    } catch (error) {
-      CollectionPrototype[ITERATOR] = ArrayValues;
-    }
-    if (!CollectionPrototype[TO_STRING_TAG]) {
-      createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG, COLLECTION_NAME);
-    }
-    if (DOMIterables[COLLECTION_NAME]) for (var METHOD_NAME in ArrayIteratorMethods) {
-      // some Chrome versions have non-configurable methods on DOMTokenList
-      if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME]) try {
-        createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
-      } catch (error) {
-        CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
-      }
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ "df75":
-/***/ (function(module, exports, __nested_webpack_require_113958__) {
-
-var internalObjectKeys = __nested_webpack_require_113958__("ca84");
-var enumBugKeys = __nested_webpack_require_113958__("7839");
-
-// `Object.keys` method
-// https://tc39.github.io/ecma262/#sec-object.keys
-module.exports = Object.keys || function keys(O) {
-  return internalObjectKeys(O, enumBugKeys);
-};
-
-
-/***/ }),
-
-/***/ "e01a":
-/***/ (function(module, exports, __nested_webpack_require_114318__) {
-
-"use strict";
-// `Symbol.prototype.description` getter
-// https://tc39.github.io/ecma262/#sec-symbol.prototype.description
-
-var $ = __nested_webpack_require_114318__("23e7");
-var DESCRIPTORS = __nested_webpack_require_114318__("83ab");
-var global = __nested_webpack_require_114318__("da84");
-var has = __nested_webpack_require_114318__("5135");
-var isObject = __nested_webpack_require_114318__("861d");
-var defineProperty = __nested_webpack_require_114318__("9bf2").f;
-var copyConstructorProperties = __nested_webpack_require_114318__("e893");
-
-var NativeSymbol = global.Symbol;
-
-if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('description' in NativeSymbol.prototype) ||
-  // Safari 12 bug
-  NativeSymbol().description !== undefined
-)) {
-  var EmptyStringDescriptionStore = {};
-  // wrap Symbol constructor for correct work with undefined description
-  var SymbolWrapper = function Symbol() {
-    var description = arguments.length < 1 || arguments[0] === undefined ? undefined : String(arguments[0]);
-    var result = this instanceof SymbolWrapper
-      ? new NativeSymbol(description)
-      // in Edge 13, String(Symbol(undefined)) === 'Symbol(undefined)'
-      : description === undefined ? NativeSymbol() : NativeSymbol(description);
-    if (description === '') EmptyStringDescriptionStore[result] = true;
-    return result;
-  };
-  copyConstructorProperties(SymbolWrapper, NativeSymbol);
-  var symbolPrototype = SymbolWrapper.prototype = NativeSymbol.prototype;
-  symbolPrototype.constructor = SymbolWrapper;
-
-  var symbolToString = symbolPrototype.toString;
-  var native = String(NativeSymbol('test')) == 'Symbol(test)';
-  var regexp = /^Symbol\((.*)\)[^)]+$/;
-  defineProperty(symbolPrototype, 'description', {
-    configurable: true,
-    get: function description() {
-      var symbol = isObject(this) ? this.valueOf() : this;
-      var string = symbolToString.call(symbol);
-      if (has(EmptyStringDescriptionStore, symbol)) return '';
-      var desc = native ? string.slice(7, -1) : string.replace(regexp, '$1');
-      return desc === '' ? undefined : desc;
-    }
-  });
-
-  $({ global: true, forced: true }, {
-    Symbol: SymbolWrapper
-  });
-}
-
-
-/***/ }),
-
-/***/ "e163":
-/***/ (function(module, exports, __nested_webpack_require_116469__) {
-
-var has = __nested_webpack_require_116469__("5135");
-var toObject = __nested_webpack_require_116469__("7b0b");
-var sharedKey = __nested_webpack_require_116469__("f772");
-var CORRECT_PROTOTYPE_GETTER = __nested_webpack_require_116469__("e177");
-
-var IE_PROTO = sharedKey('IE_PROTO');
-var ObjectPrototype = Object.prototype;
-
-// `Object.getPrototypeOf` method
-// https://tc39.github.io/ecma262/#sec-object.getprototypeof
-module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function (O) {
-  O = toObject(O);
-  if (has(O, IE_PROTO)) return O[IE_PROTO];
-  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
-    return O.constructor.prototype;
-  } return O instanceof Object ? ObjectPrototype : null;
-};
-
-
-/***/ }),
-
-/***/ "e177":
-/***/ (function(module, exports, __nested_webpack_require_117232__) {
-
-var fails = __nested_webpack_require_117232__("d039");
-
-module.exports = !fails(function () {
-  function F() { /* empty */ }
-  F.prototype.constructor = null;
-  return Object.getPrototypeOf(new F()) !== F.prototype;
-});
-
-
-/***/ }),
-
-/***/ "e260":
-/***/ (function(module, exports, __nested_webpack_require_117522__) {
-
-"use strict";
-
-var toIndexedObject = __nested_webpack_require_117522__("fc6a");
-var addToUnscopables = __nested_webpack_require_117522__("44d2");
-var Iterators = __nested_webpack_require_117522__("3f8c");
-var InternalStateModule = __nested_webpack_require_117522__("69f3");
-var defineIterator = __nested_webpack_require_117522__("7dd0");
-
-var ARRAY_ITERATOR = 'Array Iterator';
-var setInternalState = InternalStateModule.set;
-var getInternalState = InternalStateModule.getterFor(ARRAY_ITERATOR);
-
-// `Array.prototype.entries` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.entries
-// `Array.prototype.keys` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.keys
-// `Array.prototype.values` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.values
-// `Array.prototype[@@iterator]` method
-// https://tc39.github.io/ecma262/#sec-array.prototype-@@iterator
-// `CreateArrayIterator` internal method
-// https://tc39.github.io/ecma262/#sec-createarrayiterator
-module.exports = defineIterator(Array, 'Array', function (iterated, kind) {
-  setInternalState(this, {
-    type: ARRAY_ITERATOR,
-    target: toIndexedObject(iterated), // target
-    index: 0,                          // next index
-    kind: kind                         // kind
-  });
-// `%ArrayIteratorPrototype%.next` method
-// https://tc39.github.io/ecma262/#sec-%arrayiteratorprototype%.next
-}, function () {
-  var state = getInternalState(this);
-  var target = state.target;
-  var kind = state.kind;
-  var index = state.index++;
-  if (!target || index >= target.length) {
-    state.target = undefined;
-    return { value: undefined, done: true };
-  }
-  if (kind == 'keys') return { value: index, done: false };
-  if (kind == 'values') return { value: target[index], done: false };
-  return { value: [index, target[index]], done: false };
-}, 'values');
-
-// argumentsList[@@iterator] is %ArrayProto_values%
-// https://tc39.github.io/ecma262/#sec-createunmappedargumentsobject
-// https://tc39.github.io/ecma262/#sec-createmappedargumentsobject
-Iterators.Arguments = Iterators.Array;
-
-// https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
-
-
-/***/ }),
-
-/***/ "e439":
-/***/ (function(module, exports, __nested_webpack_require_119765__) {
-
-var $ = __nested_webpack_require_119765__("23e7");
-var fails = __nested_webpack_require_119765__("d039");
-var toIndexedObject = __nested_webpack_require_119765__("fc6a");
-var nativeGetOwnPropertyDescriptor = __nested_webpack_require_119765__("06cf").f;
-var DESCRIPTORS = __nested_webpack_require_119765__("83ab");
-
-var FAILS_ON_PRIMITIVES = fails(function () { nativeGetOwnPropertyDescriptor(1); });
-var FORCED = !DESCRIPTORS || FAILS_ON_PRIMITIVES;
-
-// `Object.getOwnPropertyDescriptor` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
-$({ target: 'Object', stat: true, forced: FORCED, sham: !DESCRIPTORS }, {
-  getOwnPropertyDescriptor: function getOwnPropertyDescriptor(it, key) {
-    return nativeGetOwnPropertyDescriptor(toIndexedObject(it), key);
-  }
-});
-
-
-/***/ }),
-
-/***/ "e538":
-/***/ (function(module, exports, __nested_webpack_require_120569__) {
-
-var wellKnownSymbol = __nested_webpack_require_120569__("b622");
-
-exports.f = wellKnownSymbol;
-
-
-/***/ }),
-
-/***/ "e893":
-/***/ (function(module, exports, __nested_webpack_require_120734__) {
-
-var has = __nested_webpack_require_120734__("5135");
-var ownKeys = __nested_webpack_require_120734__("56ef");
-var getOwnPropertyDescriptorModule = __nested_webpack_require_120734__("06cf");
-var definePropertyModule = __nested_webpack_require_120734__("9bf2");
-
-module.exports = function (target, source) {
-  var keys = ownKeys(source);
-  var defineProperty = definePropertyModule.f;
-  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    if (!has(target, key)) defineProperty(target, key, getOwnPropertyDescriptor(source, key));
-  }
-};
-
-
-/***/ }),
-
-/***/ "e8b5":
-/***/ (function(module, exports, __nested_webpack_require_121379__) {
-
-var classof = __nested_webpack_require_121379__("c6b6");
-
-// `IsArray` abstract operation
-// https://tc39.github.io/ecma262/#sec-isarray
-module.exports = Array.isArray || function isArray(arg) {
-  return classof(arg) == 'Array';
-};
-
-
-/***/ }),
-
-/***/ "e95a":
-/***/ (function(module, exports, __nested_webpack_require_121681__) {
-
-var wellKnownSymbol = __nested_webpack_require_121681__("b622");
-var Iterators = __nested_webpack_require_121681__("3f8c");
-
-var ITERATOR = wellKnownSymbol('iterator');
-var ArrayPrototype = Array.prototype;
-
-// check on default Array iterator
-module.exports = function (it) {
-  return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
-};
-
-
-/***/ }),
-
-/***/ "f5df":
-/***/ (function(module, exports, __nested_webpack_require_122106__) {
-
-var TO_STRING_TAG_SUPPORT = __nested_webpack_require_122106__("00ee");
-var classofRaw = __nested_webpack_require_122106__("c6b6");
-var wellKnownSymbol = __nested_webpack_require_122106__("b622");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-// ES3 wrong here
-var CORRECT_ARGUMENTS = classofRaw(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (error) { /* empty */ }
-};
-
-// getting tag from ES6+ `Object.prototype.toString`
-module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
-  var O, tag, result;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (tag = tryGet(O = Object(it), TO_STRING_TAG)) == 'string' ? tag
-    // builtinTag case
-    : CORRECT_ARGUMENTS ? classofRaw(O)
-    // ES3 arguments fallback
-    : (result = classofRaw(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : result;
-};
-
-
-/***/ }),
-
-/***/ "f772":
-/***/ (function(module, exports, __nested_webpack_require_123159__) {
-
-var shared = __nested_webpack_require_123159__("5692");
-var uid = __nested_webpack_require_123159__("90e3");
-
-var keys = shared('keys');
-
-module.exports = function (key) {
-  return keys[key] || (keys[key] = uid(key));
-};
-
-
-/***/ }),
-
-/***/ "fb15":
-/***/ (function(module, __webpack_exports__, __nested_webpack_require_123448__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__nested_webpack_require_123448__.r(__webpack_exports__);
-
-// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
-// This file is imported into lib/wc client bundles.
-
-if (typeof window !== 'undefined') {
-  var currentScript = window.document.currentScript
-  if (true) {
-    var getCurrentScript = __nested_webpack_require_123448__("8875")
-    currentScript = getCurrentScript()
-
-    // for backward compatibility, because previously we directly included the polyfill
-    if (!('currentScript' in document)) {
-      Object.defineProperty(document, 'currentScript', { get: getCurrentScript })
-    }
-  }
-
-  var src = currentScript && currentScript.src.match(/(.+\/)[^/]+\.js(\?.*)?$/)
-  if (src) {
-    __nested_webpack_require_123448__.p = src[1] // eslint-disable-line
-  }
-}
-
-// Indicate to webpack that this file can be concatenated
-/* harmony default export */ var setPublicPath = (null);
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __nested_webpack_require_123448__("99af");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __nested_webpack_require_123448__("4de4");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
-var es_array_for_each = __nested_webpack_require_123448__("4160");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.index-of.js
-var es_array_index_of = __nested_webpack_require_123448__("c975");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __nested_webpack_require_123448__("d81d");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.splice.js
-var es_array_splice = __nested_webpack_require_123448__("a434");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __nested_webpack_require_123448__("159b");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
-var es_symbol = __nested_webpack_require_123448__("a4d3");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
-var es_object_get_own_property_descriptor = __nested_webpack_require_123448__("e439");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
-var es_object_get_own_property_descriptors = __nested_webpack_require_123448__("dbb4");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
-var es_object_keys = __nested_webpack_require_123448__("b64b");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-
-
-
-
-
-
-
-
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
-var es_symbol_description = __nested_webpack_require_123448__("e01a");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
-var es_symbol_iterator = __nested_webpack_require_123448__("d28b");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
-var es_array_iterator = __nested_webpack_require_123448__("e260");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __nested_webpack_require_123448__("d3b7");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
-var es_string_iterator = __nested_webpack_require_123448__("3ca3");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __nested_webpack_require_123448__("ddb0");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-
-
-
-
-
-
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
-var es_array_from = __nested_webpack_require_123448__("a630");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __nested_webpack_require_123448__("fb6a");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __nested_webpack_require_123448__("b0c0");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
-var es_regexp_to_string = __nested_webpack_require_123448__("25f0");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
-
-
-
-
-
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js
-
-
-
-
-
-
-
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
-
-
-
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-// EXTERNAL MODULE: external {"commonjs":"sortablejs","commonjs2":"sortablejs","amd":"sortablejs","root":"Sortable"}
-var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_ = __nested_webpack_require_123448__("a352");
-var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default = /*#__PURE__*/__nested_webpack_require_123448__.n(external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_);
-
-// CONCATENATED MODULE: ./src/util/htmlHelper.js
-function removeNode(node) {
-  if (node.parentElement !== null) {
-    node.parentElement.removeChild(node);
-  }
-}
-
-function insertNodeAt(fatherNode, node, position) {
-  var refNode = position === 0 ? fatherNode.children[0] : fatherNode.children[position - 1].nextSibling;
-  fatherNode.insertBefore(node, refNode);
-}
-
-
-// EXTERNAL MODULE: ./src/util/console.js
-var console = __nested_webpack_require_123448__("dbf1");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.reduce.js
-var es_array_reduce = __nested_webpack_require_123448__("13d5");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.entries.js
-var es_object_entries = __nested_webpack_require_123448__("4fad");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __nested_webpack_require_123448__("ac1f");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
-var es_string_replace = __nested_webpack_require_123448__("5319");
-
-// CONCATENATED MODULE: ./src/util/string.js
-
-
-
-function cached(fn) {
-  var cache = Object.create(null);
-  return function cachedFn(str) {
-    var hit = cache[str];
-    return hit || (cache[str] = fn(str));
-  };
-}
-
-var regex = /-(\w)/g;
-var camelize = cached(function (str) {
-  return str.replace(regex, function (_, c) {
-    return c.toUpperCase();
-  });
-});
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.flat-map.js
-var es_array_flat_map = __nested_webpack_require_123448__("5db7");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.unscopables.flat-map.js
-var es_array_unscopables_flat_map = __nested_webpack_require_123448__("73d9");
-
-// CONCATENATED MODULE: ./src/core/sortableEvents.js
-
-
-
-
-var manageAndEmit = ["Start", "Add", "Remove", "Update", "End"];
-var emit = ["Choose", "Unchoose", "Sort", "Filter", "Clone"];
-var manage = ["Move"];
-var eventHandlerNames = [manage, manageAndEmit, emit].flatMap(function (events) {
-  return events;
-}).map(function (evt) {
-  return "on".concat(evt);
-});
-var events = {
-  manage: manage,
-  manageAndEmit: manageAndEmit,
-  emit: emit
-};
-
-function isReadOnly(eventName) {
-  return eventHandlerNames.indexOf(eventName) !== -1;
-}
-
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
-var es_array_includes = __nested_webpack_require_123448__("caad");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.starts-with.js
-var es_string_starts_with = __nested_webpack_require_123448__("2ca0");
-
-// CONCATENATED MODULE: ./src/util/tags.js
-
-
-var tags = ["a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "label", "legend", "li", "link", "main", "map", "mark", "math", "menu", "menuitem", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "picture", "pre", "progress", "q", "rb", "rp", "rt", "rtc", "ruby", "s", "samp", "script", "section", "select", "slot", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr"];
-
-function isHtmlTag(name) {
-  return tags.includes(name);
-}
-
-function isTransition(name) {
-  return ["transition-group", "TransitionGroup"].includes(name);
-}
-
-function isHtmlAttribute(value) {
-  return ["id", "class", "role", "style"].includes(value) || value.startsWith("data-") || value.startsWith("aria-") || value.startsWith("on");
-}
-
-
-// CONCATENATED MODULE: ./src/core/componentBuilderHelper.js
-
-
-
-
-
-
-
-
-
-
-
-
-function project(entries) {
-  return entries.reduce(function (res, _ref) {
-    var _ref2 = _slicedToArray(_ref, 2),
-        key = _ref2[0],
-        value = _ref2[1];
-
-    res[key] = value;
-    return res;
-  }, {});
-}
-
-function getComponentAttributes(_ref3) {
-  var $attrs = _ref3.$attrs,
-      _ref3$componentData = _ref3.componentData,
-      componentData = _ref3$componentData === void 0 ? {} : _ref3$componentData;
-  var attributes = project(Object.entries($attrs).filter(function (_ref4) {
-    var _ref5 = _slicedToArray(_ref4, 2),
-        key = _ref5[0],
-        _ = _ref5[1];
-
-    return isHtmlAttribute(key);
-  }));
-  return _objectSpread2(_objectSpread2({}, attributes), componentData);
-}
-
-function createSortableOption(_ref6) {
-  var $attrs = _ref6.$attrs,
-      callBackBuilder = _ref6.callBackBuilder;
-  var options = project(getValidSortableEntries($attrs));
-  Object.entries(callBackBuilder).forEach(function (_ref7) {
-    var _ref8 = _slicedToArray(_ref7, 2),
-        eventType = _ref8[0],
-        eventBuilder = _ref8[1];
-
-    events[eventType].forEach(function (event) {
-      options["on".concat(event)] = eventBuilder(event);
-    });
-  });
-  var draggable = "[data-draggable]".concat(options.draggable || "");
-  return _objectSpread2(_objectSpread2({}, options), {}, {
-    draggable: draggable
-  });
-}
-
-function getValidSortableEntries(value) {
-  return Object.entries(value).filter(function (_ref9) {
-    var _ref10 = _slicedToArray(_ref9, 2),
-        key = _ref10[0],
-        _ = _ref10[1];
-
-    return !isHtmlAttribute(key);
-  }).map(function (_ref11) {
-    var _ref12 = _slicedToArray(_ref11, 2),
-        key = _ref12[0],
-        value = _ref12[1];
-
-    return [camelize(key), value];
-  }).filter(function (_ref13) {
-    var _ref14 = _slicedToArray(_ref13, 2),
-        key = _ref14[0],
-        _ = _ref14[1];
-
-    return !isReadOnly(key);
-  });
-}
-
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find-index.js
-var es_array_find_index = __nested_webpack_require_123448__("c740");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-// CONCATENATED MODULE: ./src/core/componentStructure.js
-
-
-
-
-
-
-
-
-var getHtmlElementFromNode = function getHtmlElementFromNode(_ref) {
-  var el = _ref.el;
-  return el;
-};
-
-var addContext = function addContext(domElement, context) {
-  return domElement.__draggable_context = context;
-};
-
-var getContext = function getContext(domElement) {
-  return domElement.__draggable_context;
-};
-
-var componentStructure_ComponentStructure = /*#__PURE__*/function () {
-  function ComponentStructure(_ref2) {
-    var _ref2$nodes = _ref2.nodes,
-        header = _ref2$nodes.header,
-        defaultNodes = _ref2$nodes.default,
-        footer = _ref2$nodes.footer,
-        root = _ref2.root,
-        realList = _ref2.realList;
-
-    _classCallCheck(this, ComponentStructure);
-
-    this.defaultNodes = defaultNodes;
-    this.children = [].concat(_toConsumableArray(header), _toConsumableArray(defaultNodes), _toConsumableArray(footer));
-    this.externalComponent = root.externalComponent;
-    this.rootTransition = root.transition;
-    this.tag = root.tag;
-    this.realList = realList;
-  }
-
-  _createClass(ComponentStructure, [{
-    key: "render",
-    value: function render(h, attributes) {
-      var tag = this.tag,
-          children = this.children,
-          _isRootComponent = this._isRootComponent;
-      var option = !_isRootComponent ? children : {
-        default: function _default() {
-          return children;
-        }
-      };
-      return h(tag, attributes, option);
-    }
-  }, {
-    key: "updated",
-    value: function updated() {
-      var defaultNodes = this.defaultNodes,
-          realList = this.realList;
-      defaultNodes.forEach(function (node, index) {
-        addContext(getHtmlElementFromNode(node), {
-          element: realList[index],
-          index: index
-        });
-      });
-    }
-  }, {
-    key: "getUnderlyingVm",
-    value: function getUnderlyingVm(domElement) {
-      return getContext(domElement);
-    }
-  }, {
-    key: "getVmIndexFromDomIndex",
-    value: function getVmIndexFromDomIndex(domIndex, element) {
-      var defaultNodes = this.defaultNodes;
-      var length = defaultNodes.length;
-      var domChildren = element.children;
-      var domElement = domChildren.item(domIndex);
-
-      if (domElement === null) {
-        return length;
-      }
-
-      var context = getContext(domElement);
-
-      if (context) {
-        return context.index;
-      }
-
-      if (length === 0) {
-        return 0;
-      }
-
-      var firstDomListElement = getHtmlElementFromNode(defaultNodes[0]);
-
-      var indexFirstDomListElement = _toConsumableArray(domChildren).findIndex(function (element) {
-        return element === firstDomListElement;
-      });
-
-      return domIndex < indexFirstDomListElement ? 0 : length;
-    }
-  }, {
-    key: "_isRootComponent",
-    get: function get() {
-      return this.externalComponent || this.rootTransition;
-    }
-  }]);
-
-  return ComponentStructure;
-}();
-
-
-// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
-var external_commonjs_vue_commonjs2_vue_root_Vue_ = __nested_webpack_require_123448__("8bbf");
-
-// CONCATENATED MODULE: ./src/core/renderHelper.js
-
-
-
-
-
-
-
-
-
-function getSlot(slots, key) {
-  var slotValue = slots[key];
-  return slotValue ? slotValue() : [];
-}
-
-function computeNodes(_ref) {
-  var $slots = _ref.$slots,
-      realList = _ref.realList,
-      getKey = _ref.getKey;
-  var normalizedList = realList || [];
-
-  var _map = ["header", "footer"].map(function (name) {
-    return getSlot($slots, name);
-  }),
-      _map2 = _slicedToArray(_map, 2),
-      header = _map2[0],
-      footer = _map2[1];
-
-  var item = $slots.item;
-
-  if (!item) {
-    throw new Error("draggable element must have an item slot");
-  }
-
-  var defaultNodes = normalizedList.flatMap(function (element, index) {
-    return item({
-      element: element,
-      index: index
-    }).map(function (node) {
-      node.key = getKey(element);
-      node.props = _objectSpread2(_objectSpread2({}, node.props || {}), {}, {
-        "data-draggable": true
-      });
-      return node;
-    });
-  });
-
-  if (defaultNodes.length !== normalizedList.length) {
-    throw new Error("Item slot must have only one child");
-  }
-
-  return {
-    header: header,
-    footer: footer,
-    default: defaultNodes
-  };
-}
-
-function getRootInformation(tag) {
-  var transition = isTransition(tag);
-  var externalComponent = !isHtmlTag(tag) && !transition;
-  return {
-    transition: transition,
-    externalComponent: externalComponent,
-    tag: externalComponent ? Object(external_commonjs_vue_commonjs2_vue_root_Vue_["resolveComponent"])(tag) : transition ? external_commonjs_vue_commonjs2_vue_root_Vue_["TransitionGroup"] : tag
-  };
-}
-
-function computeComponentStructure(_ref2) {
-  var $slots = _ref2.$slots,
-      tag = _ref2.tag,
-      realList = _ref2.realList,
-      getKey = _ref2.getKey;
-  var nodes = computeNodes({
-    $slots: $slots,
-    realList: realList,
-    getKey: getKey
-  });
-  var root = getRootInformation(tag);
-  return new componentStructure_ComponentStructure({
-    nodes: nodes,
-    root: root,
-    realList: realList
-  });
-}
-
-
-// CONCATENATED MODULE: ./src/vuedraggable.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _emit(evtName, evtData) {
-  var _this = this;
-
-  Object(external_commonjs_vue_commonjs2_vue_root_Vue_["nextTick"])(function () {
-    return _this.$emit(evtName.toLowerCase(), evtData);
-  });
-}
-
-function _manage(evtName) {
-  var _this2 = this;
-
-  return function (evtData, originalElement) {
-    if (_this2.realList !== null) {
-      return _this2["onDrag".concat(evtName)](evtData, originalElement);
-    }
-  };
-}
-
-function _manageAndEmit(evtName) {
-  var _this3 = this;
-
-  var delegateCallBack = _manage.call(this, evtName);
-
-  return function (evtData, originalElement) {
-    delegateCallBack.call(_this3, evtData, originalElement);
-
-    _emit.call(_this3, evtName, evtData);
-  };
-}
-
-var draggingElement = null;
-var props = {
-  list: {
-    type: Array,
-    required: false,
-    default: null
-  },
-  modelValue: {
-    type: Array,
-    required: false,
-    default: null
-  },
-  itemKey: {
-    type: [String, Function],
-    required: true
-  },
-  clone: {
-    type: Function,
-    default: function _default(original) {
-      return original;
-    }
-  },
-  tag: {
-    type: String,
-    default: "div"
-  },
-  move: {
-    type: Function,
-    default: null
-  },
-  componentData: {
-    type: Object,
-    required: false,
-    default: null
-  }
-};
-var emits = ["update:modelValue", "change"].concat(_toConsumableArray([].concat(_toConsumableArray(events.manageAndEmit), _toConsumableArray(events.emit)).map(function (evt) {
-  return evt.toLowerCase();
-})));
-var draggableComponent = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["defineComponent"])({
-  name: "draggable",
-  inheritAttrs: false,
-  props: props,
-  emits: emits,
-  data: function data() {
-    return {
-      error: false
-    };
-  },
-  render: function render() {
-    try {
-      this.error = false;
-      var $slots = this.$slots,
-          $attrs = this.$attrs,
-          tag = this.tag,
-          componentData = this.componentData,
-          realList = this.realList,
-          getKey = this.getKey;
-      var componentStructure = computeComponentStructure({
-        $slots: $slots,
-        tag: tag,
-        realList: realList,
-        getKey: getKey
-      });
-      this.componentStructure = componentStructure;
-      var attributes = getComponentAttributes({
-        $attrs: $attrs,
-        componentData: componentData
-      });
-      return componentStructure.render(external_commonjs_vue_commonjs2_vue_root_Vue_["h"], attributes);
-    } catch (err) {
-      this.error = true;
-      return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["h"])("pre", {
-        style: {
-          color: "red"
-        }
-      }, err.stack);
-    }
-  },
-  created: function created() {
-    if (this.list !== null && this.modelValue !== null) {
-      console["a" /* console */].error("modelValue and list props are mutually exclusive! Please set one or another.");
-    }
-  },
-  mounted: function mounted() {
-    var _this4 = this;
-
-    if (this.error) {
-      return;
-    }
-
-    var $attrs = this.$attrs,
-        $el = this.$el,
-        componentStructure = this.componentStructure;
-    componentStructure.updated();
-    var sortableOptions = createSortableOption({
-      $attrs: $attrs,
-      callBackBuilder: {
-        manageAndEmit: function manageAndEmit(event) {
-          return _manageAndEmit.call(_this4, event);
-        },
-        emit: function emit(event) {
-          return _emit.bind(_this4, event);
-        },
-        manage: function manage(event) {
-          return _manage.call(_this4, event);
-        }
-      }
-    });
-    var targetDomElement = $el.nodeType === 1 ? $el : $el.parentElement;
-    this._sortable = new external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default.a(targetDomElement, sortableOptions);
-    this.targetDomElement = targetDomElement;
-    targetDomElement.__draggable_component__ = this;
-  },
-  updated: function updated() {
-    this.componentStructure.updated();
-  },
-  beforeUnmount: function beforeUnmount() {
-    if (this._sortable !== undefined) this._sortable.destroy();
-  },
-  computed: {
-    realList: function realList() {
-      var list = this.list;
-      return list ? list : this.modelValue;
-    },
-    getKey: function getKey() {
-      var itemKey = this.itemKey;
-
-      if (typeof itemKey === "function") {
-        return itemKey;
-      }
-
-      return function (element) {
-        return element[itemKey];
-      };
-    }
-  },
-  watch: {
-    $attrs: {
-      handler: function handler(newOptionValue) {
-        var _sortable = this._sortable;
-        if (!_sortable) return;
-        getValidSortableEntries(newOptionValue).forEach(function (_ref) {
-          var _ref2 = _slicedToArray(_ref, 2),
-              key = _ref2[0],
-              value = _ref2[1];
-
-          _sortable.option(key, value);
-        });
-      },
-      deep: true
-    }
-  },
-  methods: {
-    getUnderlyingVm: function getUnderlyingVm(domElement) {
-      return this.componentStructure.getUnderlyingVm(domElement) || null;
-    },
-    getUnderlyingPotencialDraggableComponent: function getUnderlyingPotencialDraggableComponent(htmElement) {
-      //TODO check case where you need to see component children
-      return htmElement.__draggable_component__;
-    },
-    emitChanges: function emitChanges(evt) {
-      var _this5 = this;
-
-      Object(external_commonjs_vue_commonjs2_vue_root_Vue_["nextTick"])(function () {
-        return _this5.$emit("change", evt);
-      });
-    },
-    alterList: function alterList(onList) {
-      if (this.list) {
-        onList(this.list);
-        return;
-      }
-
-      var newList = _toConsumableArray(this.modelValue);
-
-      onList(newList);
-      this.$emit("update:modelValue", newList);
-    },
-    spliceList: function spliceList() {
-      var _arguments = arguments;
-
-      var spliceList = function spliceList(list) {
-        return list.splice.apply(list, _toConsumableArray(_arguments));
-      };
-
-      this.alterList(spliceList);
-    },
-    updatePosition: function updatePosition(oldIndex, newIndex) {
-      var updatePosition = function updatePosition(list) {
-        return list.splice(newIndex, 0, list.splice(oldIndex, 1)[0]);
-      };
-
-      this.alterList(updatePosition);
-    },
-    getRelatedContextFromMoveEvent: function getRelatedContextFromMoveEvent(_ref3) {
-      var to = _ref3.to,
-          related = _ref3.related;
-      var component = this.getUnderlyingPotencialDraggableComponent(to);
-
-      if (!component) {
-        return {
-          component: component
-        };
-      }
-
-      var list = component.realList;
-      var context = {
-        list: list,
-        component: component
-      };
-
-      if (to !== related && list) {
-        var destination = component.getUnderlyingVm(related) || {};
-        return _objectSpread2(_objectSpread2({}, destination), context);
-      }
-
-      return context;
-    },
-    getVmIndexFromDomIndex: function getVmIndexFromDomIndex(domIndex) {
-      return this.componentStructure.getVmIndexFromDomIndex(domIndex, this.targetDomElement);
-    },
-    onDragStart: function onDragStart(evt) {
-      this.context = this.getUnderlyingVm(evt.item);
-      evt.item._underlying_vm_ = this.clone(this.context.element);
-      draggingElement = evt.item;
-    },
-    onDragAdd: function onDragAdd(evt) {
-      var element = evt.item._underlying_vm_;
-
-      if (element === undefined) {
-        return;
-      }
-
-      removeNode(evt.item);
-      var newIndex = this.getVmIndexFromDomIndex(evt.newIndex);
-      this.spliceList(newIndex, 0, element);
-      var added = {
-        element: element,
-        newIndex: newIndex
-      };
-      this.emitChanges({
-        added: added
-      });
-    },
-    onDragRemove: function onDragRemove(evt) {
-      insertNodeAt(this.$el, evt.item, evt.oldIndex);
-
-      if (evt.pullMode === "clone") {
-        removeNode(evt.clone);
-        return;
-      }
-
-      var _this$context = this.context,
-          oldIndex = _this$context.index,
-          element = _this$context.element;
-      this.spliceList(oldIndex, 1);
-      var removed = {
-        element: element,
-        oldIndex: oldIndex
-      };
-      this.emitChanges({
-        removed: removed
-      });
-    },
-    onDragUpdate: function onDragUpdate(evt) {
-      removeNode(evt.item);
-      insertNodeAt(evt.from, evt.item, evt.oldIndex);
-      var oldIndex = this.context.index;
-      var newIndex = this.getVmIndexFromDomIndex(evt.newIndex);
-      this.updatePosition(oldIndex, newIndex);
-      var moved = {
-        element: this.context.element,
-        oldIndex: oldIndex,
-        newIndex: newIndex
-      };
-      this.emitChanges({
-        moved: moved
-      });
-    },
-    computeFutureIndex: function computeFutureIndex(relatedContext, evt) {
-      if (!relatedContext.element) {
-        return 0;
-      }
-
-      var domChildren = _toConsumableArray(evt.to.children).filter(function (el) {
-        return el.style["display"] !== "none";
-      });
-
-      var currentDomIndex = domChildren.indexOf(evt.related);
-      var currentIndex = relatedContext.component.getVmIndexFromDomIndex(currentDomIndex);
-      var draggedInList = domChildren.indexOf(draggingElement) !== -1;
-      return draggedInList || !evt.willInsertAfter ? currentIndex : currentIndex + 1;
-    },
-    onDragMove: function onDragMove(evt, originalEvent) {
-      var move = this.move,
-          realList = this.realList;
-
-      if (!move || !realList) {
-        return true;
-      }
-
-      var relatedContext = this.getRelatedContextFromMoveEvent(evt);
-      var futureIndex = this.computeFutureIndex(relatedContext, evt);
-
-      var draggedContext = _objectSpread2(_objectSpread2({}, this.context), {}, {
-        futureIndex: futureIndex
-      });
-
-      var sendEvent = _objectSpread2(_objectSpread2({}, evt), {}, {
-        relatedContext: relatedContext,
-        draggedContext: draggedContext
-      });
-
-      return move(sendEvent, originalEvent);
-    },
-    onDragEnd: function onDragEnd() {
-      draggingElement = null;
-    }
-  }
-});
-/* harmony default export */ var vuedraggable = (draggableComponent);
-// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-
-
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (vuedraggable);
-
-
-
-/***/ }),
-
-/***/ "fb6a":
-/***/ (function(module, exports, __nested_webpack_require_154160__) {
-
-"use strict";
-
-var $ = __nested_webpack_require_154160__("23e7");
-var isObject = __nested_webpack_require_154160__("861d");
-var isArray = __nested_webpack_require_154160__("e8b5");
-var toAbsoluteIndex = __nested_webpack_require_154160__("23cb");
-var toLength = __nested_webpack_require_154160__("50c4");
-var toIndexedObject = __nested_webpack_require_154160__("fc6a");
-var createProperty = __nested_webpack_require_154160__("8418");
-var wellKnownSymbol = __nested_webpack_require_154160__("b622");
-var arrayMethodHasSpeciesSupport = __nested_webpack_require_154160__("1dde");
-var arrayMethodUsesToLength = __nested_webpack_require_154160__("ae40");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
-var USES_TO_LENGTH = arrayMethodUsesToLength('slice', { ACCESSORS: true, 0: 0, 1: 2 });
-
-var SPECIES = wellKnownSymbol('species');
-var nativeSlice = [].slice;
-var max = Math.max;
-
-// `Array.prototype.slice` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.slice
-// fallback for not array-like ES3 strings and DOM objects
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
-  slice: function slice(start, end) {
-    var O = toIndexedObject(this);
-    var length = toLength(O.length);
-    var k = toAbsoluteIndex(start, length);
-    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
-    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
-    var Constructor, result, n;
-    if (isArray(O)) {
-      Constructor = O.constructor;
-      // cross-realm fallback
-      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
-        Constructor = undefined;
-      } else if (isObject(Constructor)) {
-        Constructor = Constructor[SPECIES];
-        if (Constructor === null) Constructor = undefined;
-      }
-      if (Constructor === Array || Constructor === undefined) {
-        return nativeSlice.call(O, k, fin);
-      }
-    }
-    result = new (Constructor === undefined ? Array : Constructor)(max(fin - k, 0));
-    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
-    result.length = n;
-    return result;
-  }
-});
-
-
-/***/ }),
-
-/***/ "fc6a":
-/***/ (function(module, exports, __nested_webpack_require_156302__) {
-
-// toObject with fallback for non-array-like ES3 strings
-var IndexedObject = __nested_webpack_require_156302__("44ad");
-var requireObjectCoercible = __nested_webpack_require_156302__("1d80");
-
-module.exports = function (it) {
-  return IndexedObject(requireObjectCoercible(it));
-};
-
-
-/***/ }),
-
-/***/ "fdbc":
-/***/ (function(module, exports) {
-
-// iterable DOM collections
-// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
-module.exports = {
-  CSSRuleList: 0,
-  CSSStyleDeclaration: 0,
-  CSSValueList: 0,
-  ClientRectList: 0,
-  DOMRectList: 0,
-  DOMStringList: 0,
-  DOMTokenList: 1,
-  DataTransferItemList: 0,
-  FileList: 0,
-  HTMLAllCollection: 0,
-  HTMLCollection: 0,
-  HTMLFormElement: 0,
-  HTMLSelectElement: 0,
-  MediaList: 0,
-  MimeTypeArray: 0,
-  NamedNodeMap: 0,
-  NodeList: 1,
-  PaintRequestList: 0,
-  Plugin: 0,
-  PluginArray: 0,
-  SVGLengthList: 0,
-  SVGNumberList: 0,
-  SVGPathSegList: 0,
-  SVGPointList: 0,
-  SVGStringList: 0,
-  SVGTransformList: 0,
-  SourceBufferList: 0,
-  StyleSheetList: 0,
-  TextTrackCueList: 0,
-  TextTrackList: 0,
-  TouchList: 0
-};
-
-
-/***/ }),
-
-/***/ "fdbf":
-/***/ (function(module, exports, __nested_webpack_require_157455__) {
-
-var NATIVE_SYMBOL = __nested_webpack_require_157455__("4930");
-
-module.exports = NATIVE_SYMBOL
-  // eslint-disable-next-line no-undef
-  && !Symbol.sham
-  // eslint-disable-next-line no-undef
-  && typeof Symbol.iterator == 'symbol';
-
-
-/***/ })
-
-/******/ })["default"];
-});
-//# sourceMappingURL=vuedraggable.umd.js.map
-
-/***/ }),
-
-/***/ "./node_modules/vuedraggable/node_modules/sortablejs/modular/sortable.esm.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/vuedraggable/node_modules/sortablejs/modular/sortable.esm.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MultiDrag": () => (/* binding */ MultiDragPlugin),
-/* harmony export */   "Sortable": () => (/* binding */ Sortable),
-/* harmony export */   "Swap": () => (/* binding */ SwapPlugin),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**!
- * Sortable 1.14.0
- * @author	RubaXa   <trash@rubaxa.org>
- * @author	owenm    <owen23355@gmail.com>
- * @license MIT
- */
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-
-    if (enumerableOnly) {
-      symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-    }
-
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-  return arr2;
-}
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var version = "1.14.0";
-
-function userAgent(pattern) {
-  if (typeof window !== 'undefined' && window.navigator) {
-    return !! /*@__PURE__*/navigator.userAgent.match(pattern);
-  }
-}
-
-var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
-var Edge = userAgent(/Edge/i);
-var FireFox = userAgent(/firefox/i);
-var Safari = userAgent(/safari/i) && !userAgent(/chrome/i) && !userAgent(/android/i);
-var IOS = userAgent(/iP(ad|od|hone)/i);
-var ChromeForAndroid = userAgent(/chrome/i) && userAgent(/android/i);
-
-var captureMode = {
-  capture: false,
-  passive: false
-};
-
-function on(el, event, fn) {
-  el.addEventListener(event, fn, !IE11OrLess && captureMode);
-}
-
-function off(el, event, fn) {
-  el.removeEventListener(event, fn, !IE11OrLess && captureMode);
-}
-
-function matches(
-/**HTMLElement*/
-el,
-/**String*/
-selector) {
-  if (!selector) return;
-  selector[0] === '>' && (selector = selector.substring(1));
-
-  if (el) {
-    try {
-      if (el.matches) {
-        return el.matches(selector);
-      } else if (el.msMatchesSelector) {
-        return el.msMatchesSelector(selector);
-      } else if (el.webkitMatchesSelector) {
-        return el.webkitMatchesSelector(selector);
-      }
-    } catch (_) {
-      return false;
-    }
-  }
-
-  return false;
-}
-
-function getParentOrHost(el) {
-  return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
-}
-
-function closest(
-/**HTMLElement*/
-el,
-/**String*/
-selector,
-/**HTMLElement*/
-ctx, includeCTX) {
-  if (el) {
-    ctx = ctx || document;
-
-    do {
-      if (selector != null && (selector[0] === '>' ? el.parentNode === ctx && matches(el, selector) : matches(el, selector)) || includeCTX && el === ctx) {
-        return el;
-      }
-
-      if (el === ctx) break;
-      /* jshint boss:true */
-    } while (el = getParentOrHost(el));
-  }
-
-  return null;
-}
-
-var R_SPACE = /\s+/g;
-
-function toggleClass(el, name, state) {
-  if (el && name) {
-    if (el.classList) {
-      el.classList[state ? 'add' : 'remove'](name);
-    } else {
-      var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
-      el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
-    }
-  }
-}
-
-function css(el, prop, val) {
-  var style = el && el.style;
-
-  if (style) {
-    if (val === void 0) {
-      if (document.defaultView && document.defaultView.getComputedStyle) {
-        val = document.defaultView.getComputedStyle(el, '');
-      } else if (el.currentStyle) {
-        val = el.currentStyle;
-      }
-
-      return prop === void 0 ? val : val[prop];
-    } else {
-      if (!(prop in style) && prop.indexOf('webkit') === -1) {
-        prop = '-webkit-' + prop;
-      }
-
-      style[prop] = val + (typeof val === 'string' ? '' : 'px');
-    }
-  }
-}
-
-function matrix(el, selfOnly) {
-  var appliedTransforms = '';
-
-  if (typeof el === 'string') {
-    appliedTransforms = el;
-  } else {
-    do {
-      var transform = css(el, 'transform');
-
-      if (transform && transform !== 'none') {
-        appliedTransforms = transform + ' ' + appliedTransforms;
-      }
-      /* jshint boss:true */
-
-    } while (!selfOnly && (el = el.parentNode));
-  }
-
-  var matrixFn = window.DOMMatrix || window.WebKitCSSMatrix || window.CSSMatrix || window.MSCSSMatrix;
-  /*jshint -W056 */
-
-  return matrixFn && new matrixFn(appliedTransforms);
-}
-
-function find(ctx, tagName, iterator) {
-  if (ctx) {
-    var list = ctx.getElementsByTagName(tagName),
-        i = 0,
-        n = list.length;
-
-    if (iterator) {
-      for (; i < n; i++) {
-        iterator(list[i], i);
-      }
-    }
-
-    return list;
-  }
-
-  return [];
-}
-
-function getWindowScrollingElement() {
-  var scrollingElement = document.scrollingElement;
-
-  if (scrollingElement) {
-    return scrollingElement;
-  } else {
-    return document.documentElement;
-  }
-}
-/**
- * Returns the "bounding client rect" of given element
- * @param  {HTMLElement} el                       The element whose boundingClientRect is wanted
- * @param  {[Boolean]} relativeToContainingBlock  Whether the rect should be relative to the containing block of (including) the container
- * @param  {[Boolean]} relativeToNonStaticParent  Whether the rect should be relative to the relative parent of (including) the contaienr
- * @param  {[Boolean]} undoScale                  Whether the container's scale() should be undone
- * @param  {[HTMLElement]} container              The parent the element will be placed in
- * @return {Object}                               The boundingClientRect of el, with specified adjustments
- */
-
-
-function getRect(el, relativeToContainingBlock, relativeToNonStaticParent, undoScale, container) {
-  if (!el.getBoundingClientRect && el !== window) return;
-  var elRect, top, left, bottom, right, height, width;
-
-  if (el !== window && el.parentNode && el !== getWindowScrollingElement()) {
-    elRect = el.getBoundingClientRect();
-    top = elRect.top;
-    left = elRect.left;
-    bottom = elRect.bottom;
-    right = elRect.right;
-    height = elRect.height;
-    width = elRect.width;
-  } else {
-    top = 0;
-    left = 0;
-    bottom = window.innerHeight;
-    right = window.innerWidth;
-    height = window.innerHeight;
-    width = window.innerWidth;
-  }
-
-  if ((relativeToContainingBlock || relativeToNonStaticParent) && el !== window) {
-    // Adjust for translate()
-    container = container || el.parentNode; // solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
-    // Not needed on <= IE11
-
-    if (!IE11OrLess) {
-      do {
-        if (container && container.getBoundingClientRect && (css(container, 'transform') !== 'none' || relativeToNonStaticParent && css(container, 'position') !== 'static')) {
-          var containerRect = container.getBoundingClientRect(); // Set relative to edges of padding box of container
-
-          top -= containerRect.top + parseInt(css(container, 'border-top-width'));
-          left -= containerRect.left + parseInt(css(container, 'border-left-width'));
-          bottom = top + elRect.height;
-          right = left + elRect.width;
-          break;
-        }
-        /* jshint boss:true */
-
-      } while (container = container.parentNode);
-    }
-  }
-
-  if (undoScale && el !== window) {
-    // Adjust for scale()
-    var elMatrix = matrix(container || el),
-        scaleX = elMatrix && elMatrix.a,
-        scaleY = elMatrix && elMatrix.d;
-
-    if (elMatrix) {
-      top /= scaleY;
-      left /= scaleX;
-      width /= scaleX;
-      height /= scaleY;
-      bottom = top + height;
-      right = left + width;
-    }
-  }
-
-  return {
-    top: top,
-    left: left,
-    bottom: bottom,
-    right: right,
-    width: width,
-    height: height
-  };
-}
-/**
- * Checks if a side of an element is scrolled past a side of its parents
- * @param  {HTMLElement}  el           The element who's side being scrolled out of view is in question
- * @param  {String}       elSide       Side of the element in question ('top', 'left', 'right', 'bottom')
- * @param  {String}       parentSide   Side of the parent in question ('top', 'left', 'right', 'bottom')
- * @return {HTMLElement}               The parent scroll element that the el's side is scrolled past, or null if there is no such element
- */
-
-
-function isScrolledPast(el, elSide, parentSide) {
-  var parent = getParentAutoScrollElement(el, true),
-      elSideVal = getRect(el)[elSide];
-  /* jshint boss:true */
-
-  while (parent) {
-    var parentSideVal = getRect(parent)[parentSide],
-        visible = void 0;
-
-    if (parentSide === 'top' || parentSide === 'left') {
-      visible = elSideVal >= parentSideVal;
-    } else {
-      visible = elSideVal <= parentSideVal;
-    }
-
-    if (!visible) return parent;
-    if (parent === getWindowScrollingElement()) break;
-    parent = getParentAutoScrollElement(parent, false);
-  }
-
-  return false;
-}
-/**
- * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
- * and non-draggable elements
- * @param  {HTMLElement} el       The parent element
- * @param  {Number} childNum      The index of the child
- * @param  {Object} options       Parent Sortable's options
- * @return {HTMLElement}          The child at index childNum, or null if not found
- */
-
-
-function getChild(el, childNum, options, includeDragEl) {
-  var currentChild = 0,
-      i = 0,
-      children = el.children;
-
-  while (i < children.length) {
-    if (children[i].style.display !== 'none' && children[i] !== Sortable.ghost && (includeDragEl || children[i] !== Sortable.dragged) && closest(children[i], options.draggable, el, false)) {
-      if (currentChild === childNum) {
-        return children[i];
-      }
-
-      currentChild++;
-    }
-
-    i++;
-  }
-
-  return null;
-}
-/**
- * Gets the last child in the el, ignoring ghostEl or invisible elements (clones)
- * @param  {HTMLElement} el       Parent element
- * @param  {selector} selector    Any other elements that should be ignored
- * @return {HTMLElement}          The last child, ignoring ghostEl
- */
-
-
-function lastChild(el, selector) {
-  var last = el.lastElementChild;
-
-  while (last && (last === Sortable.ghost || css(last, 'display') === 'none' || selector && !matches(last, selector))) {
-    last = last.previousElementSibling;
-  }
-
-  return last || null;
-}
-/**
- * Returns the index of an element within its parent for a selected set of
- * elements
- * @param  {HTMLElement} el
- * @param  {selector} selector
- * @return {number}
- */
-
-
-function index(el, selector) {
-  var index = 0;
-
-  if (!el || !el.parentNode) {
-    return -1;
-  }
-  /* jshint boss:true */
-
-
-  while (el = el.previousElementSibling) {
-    if (el.nodeName.toUpperCase() !== 'TEMPLATE' && el !== Sortable.clone && (!selector || matches(el, selector))) {
-      index++;
-    }
-  }
-
-  return index;
-}
-/**
- * Returns the scroll offset of the given element, added with all the scroll offsets of parent elements.
- * The value is returned in real pixels.
- * @param  {HTMLElement} el
- * @return {Array}             Offsets in the format of [left, top]
- */
-
-
-function getRelativeScrollOffset(el) {
-  var offsetLeft = 0,
-      offsetTop = 0,
-      winScroller = getWindowScrollingElement();
-
-  if (el) {
-    do {
-      var elMatrix = matrix(el),
-          scaleX = elMatrix.a,
-          scaleY = elMatrix.d;
-      offsetLeft += el.scrollLeft * scaleX;
-      offsetTop += el.scrollTop * scaleY;
-    } while (el !== winScroller && (el = el.parentNode));
-  }
-
-  return [offsetLeft, offsetTop];
-}
-/**
- * Returns the index of the object within the given array
- * @param  {Array} arr   Array that may or may not hold the object
- * @param  {Object} obj  An object that has a key-value pair unique to and identical to a key-value pair in the object you want to find
- * @return {Number}      The index of the object in the array, or -1
- */
-
-
-function indexOfObject(arr, obj) {
-  for (var i in arr) {
-    if (!arr.hasOwnProperty(i)) continue;
-
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key) && obj[key] === arr[i][key]) return Number(i);
-    }
-  }
-
-  return -1;
-}
-
-function getParentAutoScrollElement(el, includeSelf) {
-  // skip to window
-  if (!el || !el.getBoundingClientRect) return getWindowScrollingElement();
-  var elem = el;
-  var gotSelf = false;
-
-  do {
-    // we don't need to get elem css if it isn't even overflowing in the first place (performance)
-    if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
-      var elemCSS = css(elem);
-
-      if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')) {
-        if (!elem.getBoundingClientRect || elem === document.body) return getWindowScrollingElement();
-        if (gotSelf || includeSelf) return elem;
-        gotSelf = true;
-      }
-    }
-    /* jshint boss:true */
-
-  } while (elem = elem.parentNode);
-
-  return getWindowScrollingElement();
-}
-
-function extend(dst, src) {
-  if (dst && src) {
-    for (var key in src) {
-      if (src.hasOwnProperty(key)) {
-        dst[key] = src[key];
-      }
-    }
-  }
-
-  return dst;
-}
-
-function isRectEqual(rect1, rect2) {
-  return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
-}
-
-var _throttleTimeout;
-
-function throttle(callback, ms) {
-  return function () {
-    if (!_throttleTimeout) {
-      var args = arguments,
-          _this = this;
-
-      if (args.length === 1) {
-        callback.call(_this, args[0]);
-      } else {
-        callback.apply(_this, args);
-      }
-
-      _throttleTimeout = setTimeout(function () {
-        _throttleTimeout = void 0;
-      }, ms);
-    }
-  };
-}
-
-function cancelThrottle() {
-  clearTimeout(_throttleTimeout);
-  _throttleTimeout = void 0;
-}
-
-function scrollBy(el, x, y) {
-  el.scrollLeft += x;
-  el.scrollTop += y;
-}
-
-function clone(el) {
-  var Polymer = window.Polymer;
-  var $ = window.jQuery || window.Zepto;
-
-  if (Polymer && Polymer.dom) {
-    return Polymer.dom(el).cloneNode(true);
-  } else if ($) {
-    return $(el).clone(true)[0];
-  } else {
-    return el.cloneNode(true);
-  }
-}
-
-function setRect(el, rect) {
-  css(el, 'position', 'absolute');
-  css(el, 'top', rect.top);
-  css(el, 'left', rect.left);
-  css(el, 'width', rect.width);
-  css(el, 'height', rect.height);
-}
-
-function unsetRect(el) {
-  css(el, 'position', '');
-  css(el, 'top', '');
-  css(el, 'left', '');
-  css(el, 'width', '');
-  css(el, 'height', '');
-}
-
-var expando = 'Sortable' + new Date().getTime();
-
-function AnimationStateManager() {
-  var animationStates = [],
-      animationCallbackId;
-  return {
-    captureAnimationState: function captureAnimationState() {
-      animationStates = [];
-      if (!this.options.animation) return;
-      var children = [].slice.call(this.el.children);
-      children.forEach(function (child) {
-        if (css(child, 'display') === 'none' || child === Sortable.ghost) return;
-        animationStates.push({
-          target: child,
-          rect: getRect(child)
-        });
-
-        var fromRect = _objectSpread2({}, animationStates[animationStates.length - 1].rect); // If animating: compensate for current animation
-
-
-        if (child.thisAnimationDuration) {
-          var childMatrix = matrix(child, true);
-
-          if (childMatrix) {
-            fromRect.top -= childMatrix.f;
-            fromRect.left -= childMatrix.e;
-          }
-        }
-
-        child.fromRect = fromRect;
-      });
-    },
-    addAnimationState: function addAnimationState(state) {
-      animationStates.push(state);
-    },
-    removeAnimationState: function removeAnimationState(target) {
-      animationStates.splice(indexOfObject(animationStates, {
-        target: target
-      }), 1);
-    },
-    animateAll: function animateAll(callback) {
-      var _this = this;
-
-      if (!this.options.animation) {
-        clearTimeout(animationCallbackId);
-        if (typeof callback === 'function') callback();
-        return;
-      }
-
-      var animating = false,
-          animationTime = 0;
-      animationStates.forEach(function (state) {
-        var time = 0,
-            target = state.target,
-            fromRect = target.fromRect,
-            toRect = getRect(target),
-            prevFromRect = target.prevFromRect,
-            prevToRect = target.prevToRect,
-            animatingRect = state.rect,
-            targetMatrix = matrix(target, true);
-
-        if (targetMatrix) {
-          // Compensate for current animation
-          toRect.top -= targetMatrix.f;
-          toRect.left -= targetMatrix.e;
-        }
-
-        target.toRect = toRect;
-
-        if (target.thisAnimationDuration) {
-          // Could also check if animatingRect is between fromRect and toRect
-          if (isRectEqual(prevFromRect, toRect) && !isRectEqual(fromRect, toRect) && // Make sure animatingRect is on line between toRect & fromRect
-          (animatingRect.top - toRect.top) / (animatingRect.left - toRect.left) === (fromRect.top - toRect.top) / (fromRect.left - toRect.left)) {
-            // If returning to same place as started from animation and on same axis
-            time = calculateRealTime(animatingRect, prevFromRect, prevToRect, _this.options);
-          }
-        } // if fromRect != toRect: animate
-
-
-        if (!isRectEqual(toRect, fromRect)) {
-          target.prevFromRect = fromRect;
-          target.prevToRect = toRect;
-
-          if (!time) {
-            time = _this.options.animation;
-          }
-
-          _this.animate(target, animatingRect, toRect, time);
-        }
-
-        if (time) {
-          animating = true;
-          animationTime = Math.max(animationTime, time);
-          clearTimeout(target.animationResetTimer);
-          target.animationResetTimer = setTimeout(function () {
-            target.animationTime = 0;
-            target.prevFromRect = null;
-            target.fromRect = null;
-            target.prevToRect = null;
-            target.thisAnimationDuration = null;
-          }, time);
-          target.thisAnimationDuration = time;
-        }
-      });
-      clearTimeout(animationCallbackId);
-
-      if (!animating) {
-        if (typeof callback === 'function') callback();
-      } else {
-        animationCallbackId = setTimeout(function () {
-          if (typeof callback === 'function') callback();
-        }, animationTime);
-      }
-
-      animationStates = [];
-    },
-    animate: function animate(target, currentRect, toRect, duration) {
-      if (duration) {
-        css(target, 'transition', '');
-        css(target, 'transform', '');
-        var elMatrix = matrix(this.el),
-            scaleX = elMatrix && elMatrix.a,
-            scaleY = elMatrix && elMatrix.d,
-            translateX = (currentRect.left - toRect.left) / (scaleX || 1),
-            translateY = (currentRect.top - toRect.top) / (scaleY || 1);
-        target.animatingX = !!translateX;
-        target.animatingY = !!translateY;
-        css(target, 'transform', 'translate3d(' + translateX + 'px,' + translateY + 'px,0)');
-        this.forRepaintDummy = repaint(target); // repaint
-
-        css(target, 'transition', 'transform ' + duration + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
-        css(target, 'transform', 'translate3d(0,0,0)');
-        typeof target.animated === 'number' && clearTimeout(target.animated);
-        target.animated = setTimeout(function () {
-          css(target, 'transition', '');
-          css(target, 'transform', '');
-          target.animated = false;
-          target.animatingX = false;
-          target.animatingY = false;
-        }, duration);
-      }
-    }
-  };
-}
-
-function repaint(target) {
-  return target.offsetWidth;
-}
-
-function calculateRealTime(animatingRect, fromRect, toRect, options) {
-  return Math.sqrt(Math.pow(fromRect.top - animatingRect.top, 2) + Math.pow(fromRect.left - animatingRect.left, 2)) / Math.sqrt(Math.pow(fromRect.top - toRect.top, 2) + Math.pow(fromRect.left - toRect.left, 2)) * options.animation;
-}
-
-var plugins = [];
-var defaults = {
-  initializeByDefault: true
-};
-var PluginManager = {
-  mount: function mount(plugin) {
-    // Set default static properties
-    for (var option in defaults) {
-      if (defaults.hasOwnProperty(option) && !(option in plugin)) {
-        plugin[option] = defaults[option];
-      }
-    }
-
-    plugins.forEach(function (p) {
-      if (p.pluginName === plugin.pluginName) {
-        throw "Sortable: Cannot mount plugin ".concat(plugin.pluginName, " more than once");
-      }
-    });
-    plugins.push(plugin);
-  },
-  pluginEvent: function pluginEvent(eventName, sortable, evt) {
-    var _this = this;
-
-    this.eventCanceled = false;
-
-    evt.cancel = function () {
-      _this.eventCanceled = true;
-    };
-
-    var eventNameGlobal = eventName + 'Global';
-    plugins.forEach(function (plugin) {
-      if (!sortable[plugin.pluginName]) return; // Fire global events if it exists in this sortable
-
-      if (sortable[plugin.pluginName][eventNameGlobal]) {
-        sortable[plugin.pluginName][eventNameGlobal](_objectSpread2({
-          sortable: sortable
-        }, evt));
-      } // Only fire plugin event if plugin is enabled in this sortable,
-      // and plugin has event defined
-
-
-      if (sortable.options[plugin.pluginName] && sortable[plugin.pluginName][eventName]) {
-        sortable[plugin.pluginName][eventName](_objectSpread2({
-          sortable: sortable
-        }, evt));
-      }
-    });
-  },
-  initializePlugins: function initializePlugins(sortable, el, defaults, options) {
-    plugins.forEach(function (plugin) {
-      var pluginName = plugin.pluginName;
-      if (!sortable.options[pluginName] && !plugin.initializeByDefault) return;
-      var initialized = new plugin(sortable, el, sortable.options);
-      initialized.sortable = sortable;
-      initialized.options = sortable.options;
-      sortable[pluginName] = initialized; // Add default options from plugin
-
-      _extends(defaults, initialized.defaults);
-    });
-
-    for (var option in sortable.options) {
-      if (!sortable.options.hasOwnProperty(option)) continue;
-      var modified = this.modifyOption(sortable, option, sortable.options[option]);
-
-      if (typeof modified !== 'undefined') {
-        sortable.options[option] = modified;
-      }
-    }
-  },
-  getEventProperties: function getEventProperties(name, sortable) {
-    var eventProperties = {};
-    plugins.forEach(function (plugin) {
-      if (typeof plugin.eventProperties !== 'function') return;
-
-      _extends(eventProperties, plugin.eventProperties.call(sortable[plugin.pluginName], name));
-    });
-    return eventProperties;
-  },
-  modifyOption: function modifyOption(sortable, name, value) {
-    var modifiedValue;
-    plugins.forEach(function (plugin) {
-      // Plugin must exist on the Sortable
-      if (!sortable[plugin.pluginName]) return; // If static option listener exists for this option, call in the context of the Sortable's instance of this plugin
-
-      if (plugin.optionListeners && typeof plugin.optionListeners[name] === 'function') {
-        modifiedValue = plugin.optionListeners[name].call(sortable[plugin.pluginName], value);
-      }
-    });
-    return modifiedValue;
-  }
-};
-
-function dispatchEvent(_ref) {
-  var sortable = _ref.sortable,
-      rootEl = _ref.rootEl,
-      name = _ref.name,
-      targetEl = _ref.targetEl,
-      cloneEl = _ref.cloneEl,
-      toEl = _ref.toEl,
-      fromEl = _ref.fromEl,
-      oldIndex = _ref.oldIndex,
-      newIndex = _ref.newIndex,
-      oldDraggableIndex = _ref.oldDraggableIndex,
-      newDraggableIndex = _ref.newDraggableIndex,
-      originalEvent = _ref.originalEvent,
-      putSortable = _ref.putSortable,
-      extraEventProperties = _ref.extraEventProperties;
-  sortable = sortable || rootEl && rootEl[expando];
-  if (!sortable) return;
-  var evt,
-      options = sortable.options,
-      onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1); // Support for new CustomEvent feature
-
-  if (window.CustomEvent && !IE11OrLess && !Edge) {
-    evt = new CustomEvent(name, {
-      bubbles: true,
-      cancelable: true
-    });
-  } else {
-    evt = document.createEvent('Event');
-    evt.initEvent(name, true, true);
-  }
-
-  evt.to = toEl || rootEl;
-  evt.from = fromEl || rootEl;
-  evt.item = targetEl || rootEl;
-  evt.clone = cloneEl;
-  evt.oldIndex = oldIndex;
-  evt.newIndex = newIndex;
-  evt.oldDraggableIndex = oldDraggableIndex;
-  evt.newDraggableIndex = newDraggableIndex;
-  evt.originalEvent = originalEvent;
-  evt.pullMode = putSortable ? putSortable.lastPutMode : undefined;
-
-  var allEventProperties = _objectSpread2(_objectSpread2({}, extraEventProperties), PluginManager.getEventProperties(name, sortable));
-
-  for (var option in allEventProperties) {
-    evt[option] = allEventProperties[option];
-  }
-
-  if (rootEl) {
-    rootEl.dispatchEvent(evt);
-  }
-
-  if (options[onName]) {
-    options[onName].call(sortable, evt);
-  }
-}
-
-var _excluded = ["evt"];
-
-var pluginEvent = function pluginEvent(eventName, sortable) {
-  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
-      originalEvent = _ref.evt,
-      data = _objectWithoutProperties(_ref, _excluded);
-
-  PluginManager.pluginEvent.bind(Sortable)(eventName, sortable, _objectSpread2({
-    dragEl: dragEl,
-    parentEl: parentEl,
-    ghostEl: ghostEl,
-    rootEl: rootEl,
-    nextEl: nextEl,
-    lastDownEl: lastDownEl,
-    cloneEl: cloneEl,
-    cloneHidden: cloneHidden,
-    dragStarted: moved,
-    putSortable: putSortable,
-    activeSortable: Sortable.active,
-    originalEvent: originalEvent,
-    oldIndex: oldIndex,
-    oldDraggableIndex: oldDraggableIndex,
-    newIndex: newIndex,
-    newDraggableIndex: newDraggableIndex,
-    hideGhostForTarget: _hideGhostForTarget,
-    unhideGhostForTarget: _unhideGhostForTarget,
-    cloneNowHidden: function cloneNowHidden() {
-      cloneHidden = true;
-    },
-    cloneNowShown: function cloneNowShown() {
-      cloneHidden = false;
-    },
-    dispatchSortableEvent: function dispatchSortableEvent(name) {
-      _dispatchEvent({
-        sortable: sortable,
-        name: name,
-        originalEvent: originalEvent
-      });
-    }
-  }, data));
-};
-
-function _dispatchEvent(info) {
-  dispatchEvent(_objectSpread2({
-    putSortable: putSortable,
-    cloneEl: cloneEl,
-    targetEl: dragEl,
-    rootEl: rootEl,
-    oldIndex: oldIndex,
-    oldDraggableIndex: oldDraggableIndex,
-    newIndex: newIndex,
-    newDraggableIndex: newDraggableIndex
-  }, info));
-}
-
-var dragEl,
-    parentEl,
-    ghostEl,
-    rootEl,
-    nextEl,
-    lastDownEl,
-    cloneEl,
-    cloneHidden,
-    oldIndex,
-    newIndex,
-    oldDraggableIndex,
-    newDraggableIndex,
-    activeGroup,
-    putSortable,
-    awaitingDragStarted = false,
-    ignoreNextClick = false,
-    sortables = [],
-    tapEvt,
-    touchEvt,
-    lastDx,
-    lastDy,
-    tapDistanceLeft,
-    tapDistanceTop,
-    moved,
-    lastTarget,
-    lastDirection,
-    pastFirstInvertThresh = false,
-    isCircumstantialInvert = false,
-    targetMoveDistance,
-    // For positioning ghost absolutely
-ghostRelativeParent,
-    ghostRelativeParentInitialScroll = [],
-    // (left, top)
-_silent = false,
-    savedInputChecked = [];
-/** @const */
-
-var documentExists = typeof document !== 'undefined',
-    PositionGhostAbsolutely = IOS,
-    CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
-    // This will not pass for IE9, because IE9 DnD only works on anchors
-supportDraggable = documentExists && !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
-    supportCssPointerEvents = function () {
-  if (!documentExists) return; // false when <= IE11
-
-  if (IE11OrLess) {
-    return false;
-  }
-
-  var el = document.createElement('x');
-  el.style.cssText = 'pointer-events:auto';
-  return el.style.pointerEvents === 'auto';
-}(),
-    _detectDirection = function _detectDirection(el, options) {
-  var elCSS = css(el),
-      elWidth = parseInt(elCSS.width) - parseInt(elCSS.paddingLeft) - parseInt(elCSS.paddingRight) - parseInt(elCSS.borderLeftWidth) - parseInt(elCSS.borderRightWidth),
-      child1 = getChild(el, 0, options),
-      child2 = getChild(el, 1, options),
-      firstChildCSS = child1 && css(child1),
-      secondChildCSS = child2 && css(child2),
-      firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + getRect(child1).width,
-      secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + getRect(child2).width;
-
-  if (elCSS.display === 'flex') {
-    return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse' ? 'vertical' : 'horizontal';
-  }
-
-  if (elCSS.display === 'grid') {
-    return elCSS.gridTemplateColumns.split(' ').length <= 1 ? 'vertical' : 'horizontal';
-  }
-
-  if (child1 && firstChildCSS["float"] && firstChildCSS["float"] !== 'none') {
-    var touchingSideChild2 = firstChildCSS["float"] === 'left' ? 'left' : 'right';
-    return child2 && (secondChildCSS.clear === 'both' || secondChildCSS.clear === touchingSideChild2) ? 'vertical' : 'horizontal';
-  }
-
-  return child1 && (firstChildCSS.display === 'block' || firstChildCSS.display === 'flex' || firstChildCSS.display === 'table' || firstChildCSS.display === 'grid' || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === 'none' || child2 && elCSS[CSSFloatProperty] === 'none' && firstChildWidth + secondChildWidth > elWidth) ? 'vertical' : 'horizontal';
-},
-    _dragElInRowColumn = function _dragElInRowColumn(dragRect, targetRect, vertical) {
-  var dragElS1Opp = vertical ? dragRect.left : dragRect.top,
-      dragElS2Opp = vertical ? dragRect.right : dragRect.bottom,
-      dragElOppLength = vertical ? dragRect.width : dragRect.height,
-      targetS1Opp = vertical ? targetRect.left : targetRect.top,
-      targetS2Opp = vertical ? targetRect.right : targetRect.bottom,
-      targetOppLength = vertical ? targetRect.width : targetRect.height;
-  return dragElS1Opp === targetS1Opp || dragElS2Opp === targetS2Opp || dragElS1Opp + dragElOppLength / 2 === targetS1Opp + targetOppLength / 2;
-},
-
-/**
- * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
- * @param  {Number} x      X position
- * @param  {Number} y      Y position
- * @return {HTMLElement}   Element of the first found nearest Sortable
- */
-_detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
-  var ret;
-  sortables.some(function (sortable) {
-    var threshold = sortable[expando].options.emptyInsertThreshold;
-    if (!threshold || lastChild(sortable)) return;
-    var rect = getRect(sortable),
-        insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold,
-        insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
-
-    if (insideHorizontally && insideVertically) {
-      return ret = sortable;
-    }
-  });
-  return ret;
-},
-    _prepareGroup = function _prepareGroup(options) {
-  function toFn(value, pull) {
-    return function (to, from, dragEl, evt) {
-      var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
-
-      if (value == null && (pull || sameGroup)) {
-        // Default pull value
-        // Default pull and put value if same group
-        return true;
-      } else if (value == null || value === false) {
-        return false;
-      } else if (pull && value === 'clone') {
-        return value;
-      } else if (typeof value === 'function') {
-        return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
-      } else {
-        var otherGroup = (pull ? to : from).options.group.name;
-        return value === true || typeof value === 'string' && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
-      }
-    };
-  }
-
-  var group = {};
-  var originalGroup = options.group;
-
-  if (!originalGroup || _typeof(originalGroup) != 'object') {
-    originalGroup = {
-      name: originalGroup
-    };
-  }
-
-  group.name = originalGroup.name;
-  group.checkPull = toFn(originalGroup.pull, true);
-  group.checkPut = toFn(originalGroup.put);
-  group.revertClone = originalGroup.revertClone;
-  options.group = group;
-},
-    _hideGhostForTarget = function _hideGhostForTarget() {
-  if (!supportCssPointerEvents && ghostEl) {
-    css(ghostEl, 'display', 'none');
-  }
-},
-    _unhideGhostForTarget = function _unhideGhostForTarget() {
-  if (!supportCssPointerEvents && ghostEl) {
-    css(ghostEl, 'display', '');
-  }
-}; // #1184 fix - Prevent click event on fallback if dragged but item not changed position
-
-
-if (documentExists) {
-  document.addEventListener('click', function (evt) {
-    if (ignoreNextClick) {
-      evt.preventDefault();
-      evt.stopPropagation && evt.stopPropagation();
-      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
-      ignoreNextClick = false;
-      return false;
-    }
-  }, true);
-}
-
-var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
-  if (dragEl) {
-    evt = evt.touches ? evt.touches[0] : evt;
-
-    var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
-
-    if (nearest) {
-      // Create imitation event
-      var event = {};
-
-      for (var i in evt) {
-        if (evt.hasOwnProperty(i)) {
-          event[i] = evt[i];
-        }
-      }
-
-      event.target = event.rootEl = nearest;
-      event.preventDefault = void 0;
-      event.stopPropagation = void 0;
-
-      nearest[expando]._onDragOver(event);
-    }
-  }
-};
-
-var _checkOutsideTargetEl = function _checkOutsideTargetEl(evt) {
-  if (dragEl) {
-    dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
-  }
-};
-/**
- * @class  Sortable
- * @param  {HTMLElement}  el
- * @param  {Object}       [options]
- */
-
-
-function Sortable(el, options) {
-  if (!(el && el.nodeType && el.nodeType === 1)) {
-    throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(el));
-  }
-
-  this.el = el; // root element
-
-  this.options = options = _extends({}, options); // Export instance
-
-  el[expando] = this;
-  var defaults = {
-    group: null,
-    sort: true,
-    disabled: false,
-    store: null,
-    handle: null,
-    draggable: /^[uo]l$/i.test(el.nodeName) ? '>li' : '>*',
-    swapThreshold: 1,
-    // percentage; 0 <= x <= 1
-    invertSwap: false,
-    // invert always
-    invertedSwapThreshold: null,
-    // will be set to same as swapThreshold if default
-    removeCloneOnHide: true,
-    direction: function direction() {
-      return _detectDirection(el, this.options);
-    },
-    ghostClass: 'sortable-ghost',
-    chosenClass: 'sortable-chosen',
-    dragClass: 'sortable-drag',
-    ignore: 'a, img',
-    filter: null,
-    preventOnFilter: true,
-    animation: 0,
-    easing: null,
-    setData: function setData(dataTransfer, dragEl) {
-      dataTransfer.setData('Text', dragEl.textContent);
-    },
-    dropBubble: false,
-    dragoverBubble: false,
-    dataIdAttr: 'data-id',
-    delay: 0,
-    delayOnTouchOnly: false,
-    touchStartThreshold: (Number.parseInt ? Number : window).parseInt(window.devicePixelRatio, 10) || 1,
-    forceFallback: false,
-    fallbackClass: 'sortable-fallback',
-    fallbackOnBody: false,
-    fallbackTolerance: 0,
-    fallbackOffset: {
-      x: 0,
-      y: 0
-    },
-    supportPointer: Sortable.supportPointer !== false && 'PointerEvent' in window && !Safari,
-    emptyInsertThreshold: 5
-  };
-  PluginManager.initializePlugins(this, el, defaults); // Set default options
-
-  for (var name in defaults) {
-    !(name in options) && (options[name] = defaults[name]);
-  }
-
-  _prepareGroup(options); // Bind all private methods
-
-
-  for (var fn in this) {
-    if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
-      this[fn] = this[fn].bind(this);
-    }
-  } // Setup drag mode
-
-
-  this.nativeDraggable = options.forceFallback ? false : supportDraggable;
-
-  if (this.nativeDraggable) {
-    // Touch start threshold cannot be greater than the native dragstart threshold
-    this.options.touchStartThreshold = 1;
-  } // Bind events
-
-
-  if (options.supportPointer) {
-    on(el, 'pointerdown', this._onTapStart);
-  } else {
-    on(el, 'mousedown', this._onTapStart);
-    on(el, 'touchstart', this._onTapStart);
-  }
-
-  if (this.nativeDraggable) {
-    on(el, 'dragover', this);
-    on(el, 'dragenter', this);
-  }
-
-  sortables.push(this.el); // Restore sorting
-
-  options.store && options.store.get && this.sort(options.store.get(this) || []); // Add animation state manager
-
-  _extends(this, AnimationStateManager());
-}
-
-Sortable.prototype =
-/** @lends Sortable.prototype */
-{
-  constructor: Sortable,
-  _isOutsideThisEl: function _isOutsideThisEl(target) {
-    if (!this.el.contains(target) && target !== this.el) {
-      lastTarget = null;
-    }
-  },
-  _getDirection: function _getDirection(evt, target) {
-    return typeof this.options.direction === 'function' ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
-  },
-  _onTapStart: function _onTapStart(
-  /** Event|TouchEvent */
-  evt) {
-    if (!evt.cancelable) return;
-
-    var _this = this,
-        el = this.el,
-        options = this.options,
-        preventOnFilter = options.preventOnFilter,
-        type = evt.type,
-        touch = evt.touches && evt.touches[0] || evt.pointerType && evt.pointerType === 'touch' && evt,
-        target = (touch || evt).target,
-        originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target,
-        filter = options.filter;
-
-    _saveInputCheckedState(el); // Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
-
-
-    if (dragEl) {
-      return;
-    }
-
-    if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
-      return; // only left button and enabled
-    } // cancel dnd if original target is content editable
-
-
-    if (originalTarget.isContentEditable) {
-      return;
-    } // Safari ignores further event handling after mousedown
-
-
-    if (!this.nativeDraggable && Safari && target && target.tagName.toUpperCase() === 'SELECT') {
-      return;
-    }
-
-    target = closest(target, options.draggable, el, false);
-
-    if (target && target.animated) {
-      return;
-    }
-
-    if (lastDownEl === target) {
-      // Ignoring duplicate `down`
-      return;
-    } // Get the index of the dragged element within its parent
-
-
-    oldIndex = index(target);
-    oldDraggableIndex = index(target, options.draggable); // Check filter
-
-    if (typeof filter === 'function') {
-      if (filter.call(this, evt, target, this)) {
-        _dispatchEvent({
-          sortable: _this,
-          rootEl: originalTarget,
-          name: 'filter',
-          targetEl: target,
-          toEl: el,
-          fromEl: el
-        });
-
-        pluginEvent('filter', _this, {
-          evt: evt
-        });
-        preventOnFilter && evt.cancelable && evt.preventDefault();
-        return; // cancel dnd
-      }
-    } else if (filter) {
-      filter = filter.split(',').some(function (criteria) {
-        criteria = closest(originalTarget, criteria.trim(), el, false);
-
-        if (criteria) {
-          _dispatchEvent({
-            sortable: _this,
-            rootEl: criteria,
-            name: 'filter',
-            targetEl: target,
-            fromEl: el,
-            toEl: el
-          });
-
-          pluginEvent('filter', _this, {
-            evt: evt
-          });
-          return true;
-        }
-      });
-
-      if (filter) {
-        preventOnFilter && evt.cancelable && evt.preventDefault();
-        return; // cancel dnd
-      }
-    }
-
-    if (options.handle && !closest(originalTarget, options.handle, el, false)) {
-      return;
-    } // Prepare `dragstart`
-
-
-    this._prepareDragStart(evt, touch, target);
-  },
-  _prepareDragStart: function _prepareDragStart(
-  /** Event */
-  evt,
-  /** Touch */
-  touch,
-  /** HTMLElement */
-  target) {
-    var _this = this,
-        el = _this.el,
-        options = _this.options,
-        ownerDocument = el.ownerDocument,
-        dragStartFn;
-
-    if (target && !dragEl && target.parentNode === el) {
-      var dragRect = getRect(target);
-      rootEl = el;
-      dragEl = target;
-      parentEl = dragEl.parentNode;
-      nextEl = dragEl.nextSibling;
-      lastDownEl = target;
-      activeGroup = options.group;
-      Sortable.dragged = dragEl;
-      tapEvt = {
-        target: dragEl,
-        clientX: (touch || evt).clientX,
-        clientY: (touch || evt).clientY
-      };
-      tapDistanceLeft = tapEvt.clientX - dragRect.left;
-      tapDistanceTop = tapEvt.clientY - dragRect.top;
-      this._lastX = (touch || evt).clientX;
-      this._lastY = (touch || evt).clientY;
-      dragEl.style['will-change'] = 'all';
-
-      dragStartFn = function dragStartFn() {
-        pluginEvent('delayEnded', _this, {
-          evt: evt
-        });
-
-        if (Sortable.eventCanceled) {
-          _this._onDrop();
-
-          return;
-        } // Delayed drag has been triggered
-        // we can re-enable the events: touchmove/mousemove
-
-
-        _this._disableDelayedDragEvents();
-
-        if (!FireFox && _this.nativeDraggable) {
-          dragEl.draggable = true;
-        } // Bind the events: dragstart/dragend
-
-
-        _this._triggerDragStart(evt, touch); // Drag start event
-
-
-        _dispatchEvent({
-          sortable: _this,
-          name: 'choose',
-          originalEvent: evt
-        }); // Chosen item
-
-
-        toggleClass(dragEl, options.chosenClass, true);
-      }; // Disable "draggable"
-
-
-      options.ignore.split(',').forEach(function (criteria) {
-        find(dragEl, criteria.trim(), _disableDraggable);
-      });
-      on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
-      on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
-      on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
-      on(ownerDocument, 'mouseup', _this._onDrop);
-      on(ownerDocument, 'touchend', _this._onDrop);
-      on(ownerDocument, 'touchcancel', _this._onDrop); // Make dragEl draggable (must be before delay for FireFox)
-
-      if (FireFox && this.nativeDraggable) {
-        this.options.touchStartThreshold = 4;
-        dragEl.draggable = true;
-      }
-
-      pluginEvent('delayStart', this, {
-        evt: evt
-      }); // Delay is impossible for native DnD in Edge or IE
-
-      if (options.delay && (!options.delayOnTouchOnly || touch) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
-        if (Sortable.eventCanceled) {
-          this._onDrop();
-
-          return;
-        } // If the user moves the pointer or let go the click or touch
-        // before the delay has been reached:
-        // disable the delayed drag
-
-
-        on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
-        on(ownerDocument, 'touchend', _this._disableDelayedDrag);
-        on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
-        on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
-        on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
-        options.supportPointer && on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
-        _this._dragStartTimer = setTimeout(dragStartFn, options.delay);
-      } else {
-        dragStartFn();
-      }
-    }
-  },
-  _delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler(
-  /** TouchEvent|PointerEvent **/
-  e) {
-    var touch = e.touches ? e.touches[0] : e;
-
-    if (Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) >= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))) {
-      this._disableDelayedDrag();
-    }
-  },
-  _disableDelayedDrag: function _disableDelayedDrag() {
-    dragEl && _disableDraggable(dragEl);
-    clearTimeout(this._dragStartTimer);
-
-    this._disableDelayedDragEvents();
-  },
-  _disableDelayedDragEvents: function _disableDelayedDragEvents() {
-    var ownerDocument = this.el.ownerDocument;
-    off(ownerDocument, 'mouseup', this._disableDelayedDrag);
-    off(ownerDocument, 'touchend', this._disableDelayedDrag);
-    off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
-    off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
-    off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
-    off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
-  },
-  _triggerDragStart: function _triggerDragStart(
-  /** Event */
-  evt,
-  /** Touch */
-  touch) {
-    touch = touch || evt.pointerType == 'touch' && evt;
-
-    if (!this.nativeDraggable || touch) {
-      if (this.options.supportPointer) {
-        on(document, 'pointermove', this._onTouchMove);
-      } else if (touch) {
-        on(document, 'touchmove', this._onTouchMove);
-      } else {
-        on(document, 'mousemove', this._onTouchMove);
-      }
-    } else {
-      on(dragEl, 'dragend', this);
-      on(rootEl, 'dragstart', this._onDragStart);
-    }
-
-    try {
-      if (document.selection) {
-        // Timeout neccessary for IE9
-        _nextTick(function () {
-          document.selection.empty();
-        });
-      } else {
-        window.getSelection().removeAllRanges();
-      }
-    } catch (err) {}
-  },
-  _dragStarted: function _dragStarted(fallback, evt) {
-
-    awaitingDragStarted = false;
-
-    if (rootEl && dragEl) {
-      pluginEvent('dragStarted', this, {
-        evt: evt
-      });
-
-      if (this.nativeDraggable) {
-        on(document, 'dragover', _checkOutsideTargetEl);
-      }
-
-      var options = this.options; // Apply effect
-
-      !fallback && toggleClass(dragEl, options.dragClass, false);
-      toggleClass(dragEl, options.ghostClass, true);
-      Sortable.active = this;
-      fallback && this._appendGhost(); // Drag start event
-
-      _dispatchEvent({
-        sortable: this,
-        name: 'start',
-        originalEvent: evt
-      });
-    } else {
-      this._nulling();
-    }
-  },
-  _emulateDragOver: function _emulateDragOver() {
-    if (touchEvt) {
-      this._lastX = touchEvt.clientX;
-      this._lastY = touchEvt.clientY;
-
-      _hideGhostForTarget();
-
-      var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
-      var parent = target;
-
-      while (target && target.shadowRoot) {
-        target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
-        if (target === parent) break;
-        parent = target;
-      }
-
-      dragEl.parentNode[expando]._isOutsideThisEl(target);
-
-      if (parent) {
-        do {
-          if (parent[expando]) {
-            var inserted = void 0;
-            inserted = parent[expando]._onDragOver({
-              clientX: touchEvt.clientX,
-              clientY: touchEvt.clientY,
-              target: target,
-              rootEl: parent
-            });
-
-            if (inserted && !this.options.dragoverBubble) {
-              break;
-            }
-          }
-
-          target = parent; // store last element
-        }
-        /* jshint boss:true */
-        while (parent = parent.parentNode);
-      }
-
-      _unhideGhostForTarget();
-    }
-  },
-  _onTouchMove: function _onTouchMove(
-  /**TouchEvent*/
-  evt) {
-    if (tapEvt) {
-      var options = this.options,
-          fallbackTolerance = options.fallbackTolerance,
-          fallbackOffset = options.fallbackOffset,
-          touch = evt.touches ? evt.touches[0] : evt,
-          ghostMatrix = ghostEl && matrix(ghostEl, true),
-          scaleX = ghostEl && ghostMatrix && ghostMatrix.a,
-          scaleY = ghostEl && ghostMatrix && ghostMatrix.d,
-          relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && getRelativeScrollOffset(ghostRelativeParent),
-          dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX || 1) + (relativeScrollOffset ? relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0] : 0) / (scaleX || 1),
-          dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY || 1) + (relativeScrollOffset ? relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1] : 0) / (scaleY || 1); // only set the status to dragging, when we are actually dragging
-
-      if (!Sortable.active && !awaitingDragStarted) {
-        if (fallbackTolerance && Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) < fallbackTolerance) {
-          return;
-        }
-
-        this._onDragStart(evt, true);
-      }
-
-      if (ghostEl) {
-        if (ghostMatrix) {
-          ghostMatrix.e += dx - (lastDx || 0);
-          ghostMatrix.f += dy - (lastDy || 0);
-        } else {
-          ghostMatrix = {
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-            e: dx,
-            f: dy
-          };
-        }
-
-        var cssMatrix = "matrix(".concat(ghostMatrix.a, ",").concat(ghostMatrix.b, ",").concat(ghostMatrix.c, ",").concat(ghostMatrix.d, ",").concat(ghostMatrix.e, ",").concat(ghostMatrix.f, ")");
-        css(ghostEl, 'webkitTransform', cssMatrix);
-        css(ghostEl, 'mozTransform', cssMatrix);
-        css(ghostEl, 'msTransform', cssMatrix);
-        css(ghostEl, 'transform', cssMatrix);
-        lastDx = dx;
-        lastDy = dy;
-        touchEvt = touch;
-      }
-
-      evt.cancelable && evt.preventDefault();
-    }
-  },
-  _appendGhost: function _appendGhost() {
-    // Bug if using scale(): https://stackoverflow.com/questions/2637058
-    // Not being adjusted for
-    if (!ghostEl) {
-      var container = this.options.fallbackOnBody ? document.body : rootEl,
-          rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
-          options = this.options; // Position absolutely
-
-      if (PositionGhostAbsolutely) {
-        // Get relatively positioned parent
-        ghostRelativeParent = container;
-
-        while (css(ghostRelativeParent, 'position') === 'static' && css(ghostRelativeParent, 'transform') === 'none' && ghostRelativeParent !== document) {
-          ghostRelativeParent = ghostRelativeParent.parentNode;
-        }
-
-        if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
-          if (ghostRelativeParent === document) ghostRelativeParent = getWindowScrollingElement();
-          rect.top += ghostRelativeParent.scrollTop;
-          rect.left += ghostRelativeParent.scrollLeft;
-        } else {
-          ghostRelativeParent = getWindowScrollingElement();
-        }
-
-        ghostRelativeParentInitialScroll = getRelativeScrollOffset(ghostRelativeParent);
-      }
-
-      ghostEl = dragEl.cloneNode(true);
-      toggleClass(ghostEl, options.ghostClass, false);
-      toggleClass(ghostEl, options.fallbackClass, true);
-      toggleClass(ghostEl, options.dragClass, true);
-      css(ghostEl, 'transition', '');
-      css(ghostEl, 'transform', '');
-      css(ghostEl, 'box-sizing', 'border-box');
-      css(ghostEl, 'margin', 0);
-      css(ghostEl, 'top', rect.top);
-      css(ghostEl, 'left', rect.left);
-      css(ghostEl, 'width', rect.width);
-      css(ghostEl, 'height', rect.height);
-      css(ghostEl, 'opacity', '0.8');
-      css(ghostEl, 'position', PositionGhostAbsolutely ? 'absolute' : 'fixed');
-      css(ghostEl, 'zIndex', '100000');
-      css(ghostEl, 'pointerEvents', 'none');
-      Sortable.ghost = ghostEl;
-      container.appendChild(ghostEl); // Set transform-origin
-
-      css(ghostEl, 'transform-origin', tapDistanceLeft / parseInt(ghostEl.style.width) * 100 + '% ' + tapDistanceTop / parseInt(ghostEl.style.height) * 100 + '%');
-    }
-  },
-  _onDragStart: function _onDragStart(
-  /**Event*/
-  evt,
-  /**boolean*/
-  fallback) {
-    var _this = this;
-
-    var dataTransfer = evt.dataTransfer;
-    var options = _this.options;
-    pluginEvent('dragStart', this, {
-      evt: evt
-    });
-
-    if (Sortable.eventCanceled) {
-      this._onDrop();
-
-      return;
-    }
-
-    pluginEvent('setupClone', this);
-
-    if (!Sortable.eventCanceled) {
-      cloneEl = clone(dragEl);
-      cloneEl.draggable = false;
-      cloneEl.style['will-change'] = '';
-
-      this._hideClone();
-
-      toggleClass(cloneEl, this.options.chosenClass, false);
-      Sortable.clone = cloneEl;
-    } // #1143: IFrame support workaround
-
-
-    _this.cloneId = _nextTick(function () {
-      pluginEvent('clone', _this);
-      if (Sortable.eventCanceled) return;
-
-      if (!_this.options.removeCloneOnHide) {
-        rootEl.insertBefore(cloneEl, dragEl);
-      }
-
-      _this._hideClone();
-
-      _dispatchEvent({
-        sortable: _this,
-        name: 'clone'
-      });
-    });
-    !fallback && toggleClass(dragEl, options.dragClass, true); // Set proper drop events
-
-    if (fallback) {
-      ignoreNextClick = true;
-      _this._loopId = setInterval(_this._emulateDragOver, 50);
-    } else {
-      // Undo what was set in _prepareDragStart before drag started
-      off(document, 'mouseup', _this._onDrop);
-      off(document, 'touchend', _this._onDrop);
-      off(document, 'touchcancel', _this._onDrop);
-
-      if (dataTransfer) {
-        dataTransfer.effectAllowed = 'move';
-        options.setData && options.setData.call(_this, dataTransfer, dragEl);
-      }
-
-      on(document, 'drop', _this); // #1276 fix:
-
-      css(dragEl, 'transform', 'translateZ(0)');
-    }
-
-    awaitingDragStarted = true;
-    _this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
-    on(document, 'selectstart', _this);
-    moved = true;
-
-    if (Safari) {
-      css(document.body, 'user-select', 'none');
-    }
-  },
-  // Returns true - if no further action is needed (either inserted or another condition)
-  _onDragOver: function _onDragOver(
-  /**Event*/
-  evt) {
-    var el = this.el,
-        target = evt.target,
-        dragRect,
-        targetRect,
-        revert,
-        options = this.options,
-        group = options.group,
-        activeSortable = Sortable.active,
-        isOwner = activeGroup === group,
-        canSort = options.sort,
-        fromSortable = putSortable || activeSortable,
-        vertical,
-        _this = this,
-        completedFired = false;
-
-    if (_silent) return;
-
-    function dragOverEvent(name, extra) {
-      pluginEvent(name, _this, _objectSpread2({
-        evt: evt,
-        isOwner: isOwner,
-        axis: vertical ? 'vertical' : 'horizontal',
-        revert: revert,
-        dragRect: dragRect,
-        targetRect: targetRect,
-        canSort: canSort,
-        fromSortable: fromSortable,
-        target: target,
-        completed: completed,
-        onMove: function onMove(target, after) {
-          return _onMove(rootEl, el, dragEl, dragRect, target, getRect(target), evt, after);
-        },
-        changed: changed
-      }, extra));
-    } // Capture animation state
-
-
-    function capture() {
-      dragOverEvent('dragOverAnimationCapture');
-
-      _this.captureAnimationState();
-
-      if (_this !== fromSortable) {
-        fromSortable.captureAnimationState();
-      }
-    } // Return invocation when dragEl is inserted (or completed)
-
-
-    function completed(insertion) {
-      dragOverEvent('dragOverCompleted', {
-        insertion: insertion
-      });
-
-      if (insertion) {
-        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
-        if (isOwner) {
-          activeSortable._hideClone();
-        } else {
-          activeSortable._showClone(_this);
-        }
-
-        if (_this !== fromSortable) {
-          // Set ghost class to new sortable's ghost class
-          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
-          toggleClass(dragEl, options.ghostClass, true);
-        }
-
-        if (putSortable !== _this && _this !== Sortable.active) {
-          putSortable = _this;
-        } else if (_this === Sortable.active && putSortable) {
-          putSortable = null;
-        } // Animation
-
-
-        if (fromSortable === _this) {
-          _this._ignoreWhileAnimating = target;
-        }
-
-        _this.animateAll(function () {
-          dragOverEvent('dragOverAnimationComplete');
-          _this._ignoreWhileAnimating = null;
-        });
-
-        if (_this !== fromSortable) {
-          fromSortable.animateAll();
-          fromSortable._ignoreWhileAnimating = null;
-        }
-      } // Null lastTarget if it is not inside a previously swapped element
-
-
-      if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
-        lastTarget = null;
-      } // no bubbling and not fallback
-
-
-      if (!options.dragoverBubble && !evt.rootEl && target !== document) {
-        dragEl.parentNode[expando]._isOutsideThisEl(evt.target); // Do not detect for empty insert if already inserted
-
-
-        !insertion && nearestEmptyInsertDetectEvent(evt);
-      }
-
-      !options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
-      return completedFired = true;
-    } // Call when dragEl has been inserted
-
-
-    function changed() {
-      newIndex = index(dragEl);
-      newDraggableIndex = index(dragEl, options.draggable);
-
-      _dispatchEvent({
-        sortable: _this,
-        name: 'change',
-        toEl: el,
-        newIndex: newIndex,
-        newDraggableIndex: newDraggableIndex,
-        originalEvent: evt
-      });
-    }
-
-    if (evt.preventDefault !== void 0) {
-      evt.cancelable && evt.preventDefault();
-    }
-
-    target = closest(target, options.draggable, el, true);
-    dragOverEvent('dragOver');
-    if (Sortable.eventCanceled) return completedFired;
-
-    if (dragEl.contains(evt.target) || target.animated && target.animatingX && target.animatingY || _this._ignoreWhileAnimating === target) {
-      return completed(false);
-    }
-
-    ignoreNextClick = false;
-
-    if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = parentEl !== rootEl) // Reverting item into the original list
-    : putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
-      vertical = this._getDirection(evt, target) === 'vertical';
-      dragRect = getRect(dragEl);
-      dragOverEvent('dragOverValid');
-      if (Sortable.eventCanceled) return completedFired;
-
-      if (revert) {
-        parentEl = rootEl; // actualization
-
-        capture();
-
-        this._hideClone();
-
-        dragOverEvent('revert');
-
-        if (!Sortable.eventCanceled) {
-          if (nextEl) {
-            rootEl.insertBefore(dragEl, nextEl);
-          } else {
-            rootEl.appendChild(dragEl);
-          }
-        }
-
-        return completed(true);
-      }
-
-      var elLastChild = lastChild(el, options.draggable);
-
-      if (!elLastChild || _ghostIsLast(evt, vertical, this) && !elLastChild.animated) {
-        // Insert to end of list
-        // If already at end of list: Do not insert
-        if (elLastChild === dragEl) {
-          return completed(false);
-        } // if there is a last element, it is the target
-
-
-        if (elLastChild && el === evt.target) {
-          target = elLastChild;
-        }
-
-        if (target) {
-          targetRect = getRect(target);
-        }
-
-        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
-          capture();
-          el.appendChild(dragEl);
-          parentEl = el; // actualization
-
-          changed();
-          return completed(true);
-        }
-      } else if (elLastChild && _ghostIsFirst(evt, vertical, this)) {
-        // Insert to start of list
-        var firstChild = getChild(el, 0, options, true);
-
-        if (firstChild === dragEl) {
-          return completed(false);
-        }
-
-        target = firstChild;
-        targetRect = getRect(target);
-
-        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, false) !== false) {
-          capture();
-          el.insertBefore(dragEl, firstChild);
-          parentEl = el; // actualization
-
-          changed();
-          return completed(true);
-        }
-      } else if (target.parentNode === el) {
-        targetRect = getRect(target);
-        var direction = 0,
-            targetBeforeFirstSwap,
-            differentLevel = dragEl.parentNode !== el,
-            differentRowCol = !_dragElInRowColumn(dragEl.animated && dragEl.toRect || dragRect, target.animated && target.toRect || targetRect, vertical),
-            side1 = vertical ? 'top' : 'left',
-            scrolledPastTop = isScrolledPast(target, 'top', 'top') || isScrolledPast(dragEl, 'top', 'top'),
-            scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
-
-        if (lastTarget !== target) {
-          targetBeforeFirstSwap = targetRect[side1];
-          pastFirstInvertThresh = false;
-          isCircumstantialInvert = !differentRowCol && options.invertSwap || differentLevel;
-        }
-
-        direction = _getSwapDirection(evt, target, targetRect, vertical, differentRowCol ? 1 : options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
-        var sibling;
-
-        if (direction !== 0) {
-          // Check if target is beside dragEl in respective direction (ignoring hidden elements)
-          var dragIndex = index(dragEl);
-
-          do {
-            dragIndex -= direction;
-            sibling = parentEl.children[dragIndex];
-          } while (sibling && (css(sibling, 'display') === 'none' || sibling === ghostEl));
-        } // If dragEl is already beside target: Do not insert
-
-
-        if (direction === 0 || sibling === target) {
-          return completed(false);
-        }
-
-        lastTarget = target;
-        lastDirection = direction;
-        var nextSibling = target.nextElementSibling,
-            after = false;
-        after = direction === 1;
-
-        var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
-
-        if (moveVector !== false) {
-          if (moveVector === 1 || moveVector === -1) {
-            after = moveVector === 1;
-          }
-
-          _silent = true;
-          setTimeout(_unsilent, 30);
-          capture();
-
-          if (after && !nextSibling) {
-            el.appendChild(dragEl);
-          } else {
-            target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
-          } // Undo chrome's scroll adjustment (has no effect on other browsers)
-
-
-          if (scrolledPastTop) {
-            scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
-          }
-
-          parentEl = dragEl.parentNode; // actualization
-          // must be done before animation
-
-          if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
-            targetMoveDistance = Math.abs(targetBeforeFirstSwap - getRect(target)[side1]);
-          }
-
-          changed();
-          return completed(true);
-        }
-      }
-
-      if (el.contains(dragEl)) {
-        return completed(false);
-      }
-    }
-
-    return false;
-  },
-  _ignoreWhileAnimating: null,
-  _offMoveEvents: function _offMoveEvents() {
-    off(document, 'mousemove', this._onTouchMove);
-    off(document, 'touchmove', this._onTouchMove);
-    off(document, 'pointermove', this._onTouchMove);
-    off(document, 'dragover', nearestEmptyInsertDetectEvent);
-    off(document, 'mousemove', nearestEmptyInsertDetectEvent);
-    off(document, 'touchmove', nearestEmptyInsertDetectEvent);
-  },
-  _offUpEvents: function _offUpEvents() {
-    var ownerDocument = this.el.ownerDocument;
-    off(ownerDocument, 'mouseup', this._onDrop);
-    off(ownerDocument, 'touchend', this._onDrop);
-    off(ownerDocument, 'pointerup', this._onDrop);
-    off(ownerDocument, 'touchcancel', this._onDrop);
-    off(document, 'selectstart', this);
-  },
-  _onDrop: function _onDrop(
-  /**Event*/
-  evt) {
-    var el = this.el,
-        options = this.options; // Get the index of the dragged element within its parent
-
-    newIndex = index(dragEl);
-    newDraggableIndex = index(dragEl, options.draggable);
-    pluginEvent('drop', this, {
-      evt: evt
-    });
-    parentEl = dragEl && dragEl.parentNode; // Get again after plugin event
-
-    newIndex = index(dragEl);
-    newDraggableIndex = index(dragEl, options.draggable);
-
-    if (Sortable.eventCanceled) {
-      this._nulling();
-
-      return;
-    }
-
-    awaitingDragStarted = false;
-    isCircumstantialInvert = false;
-    pastFirstInvertThresh = false;
-    clearInterval(this._loopId);
-    clearTimeout(this._dragStartTimer);
-
-    _cancelNextTick(this.cloneId);
-
-    _cancelNextTick(this._dragStartId); // Unbind events
-
-
-    if (this.nativeDraggable) {
-      off(document, 'drop', this);
-      off(el, 'dragstart', this._onDragStart);
-    }
-
-    this._offMoveEvents();
-
-    this._offUpEvents();
-
-    if (Safari) {
-      css(document.body, 'user-select', '');
-    }
-
-    css(dragEl, 'transform', '');
-
-    if (evt) {
-      if (moved) {
-        evt.cancelable && evt.preventDefault();
-        !options.dropBubble && evt.stopPropagation();
-      }
-
-      ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
-
-      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
-        // Remove clone(s)
-        cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
-      }
-
-      if (dragEl) {
-        if (this.nativeDraggable) {
-          off(dragEl, 'dragend', this);
-        }
-
-        _disableDraggable(dragEl);
-
-        dragEl.style['will-change'] = ''; // Remove classes
-        // ghostClass is added in dragStarted
-
-        if (moved && !awaitingDragStarted) {
-          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
-        }
-
-        toggleClass(dragEl, this.options.chosenClass, false); // Drag stop event
-
-        _dispatchEvent({
-          sortable: this,
-          name: 'unchoose',
-          toEl: parentEl,
-          newIndex: null,
-          newDraggableIndex: null,
-          originalEvent: evt
-        });
-
-        if (rootEl !== parentEl) {
-          if (newIndex >= 0) {
-            // Add event
-            _dispatchEvent({
-              rootEl: parentEl,
-              name: 'add',
-              toEl: parentEl,
-              fromEl: rootEl,
-              originalEvent: evt
-            }); // Remove event
-
-
-            _dispatchEvent({
-              sortable: this,
-              name: 'remove',
-              toEl: parentEl,
-              originalEvent: evt
-            }); // drag from one list and drop into another
-
-
-            _dispatchEvent({
-              rootEl: parentEl,
-              name: 'sort',
-              toEl: parentEl,
-              fromEl: rootEl,
-              originalEvent: evt
-            });
-
-            _dispatchEvent({
-              sortable: this,
-              name: 'sort',
-              toEl: parentEl,
-              originalEvent: evt
-            });
-          }
-
-          putSortable && putSortable.save();
-        } else {
-          if (newIndex !== oldIndex) {
-            if (newIndex >= 0) {
-              // drag & drop within the same list
-              _dispatchEvent({
-                sortable: this,
-                name: 'update',
-                toEl: parentEl,
-                originalEvent: evt
-              });
-
-              _dispatchEvent({
-                sortable: this,
-                name: 'sort',
-                toEl: parentEl,
-                originalEvent: evt
-              });
-            }
-          }
-        }
-
-        if (Sortable.active) {
-          /* jshint eqnull:true */
-          if (newIndex == null || newIndex === -1) {
-            newIndex = oldIndex;
-            newDraggableIndex = oldDraggableIndex;
-          }
-
-          _dispatchEvent({
-            sortable: this,
-            name: 'end',
-            toEl: parentEl,
-            originalEvent: evt
-          }); // Save sorting
-
-
-          this.save();
-        }
-      }
-    }
-
-    this._nulling();
-  },
-  _nulling: function _nulling() {
-    pluginEvent('nulling', this);
-    rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = cloneHidden = tapEvt = touchEvt = moved = newIndex = newDraggableIndex = oldIndex = oldDraggableIndex = lastTarget = lastDirection = putSortable = activeGroup = Sortable.dragged = Sortable.ghost = Sortable.clone = Sortable.active = null;
-    savedInputChecked.forEach(function (el) {
-      el.checked = true;
-    });
-    savedInputChecked.length = lastDx = lastDy = 0;
-  },
-  handleEvent: function handleEvent(
-  /**Event*/
-  evt) {
-    switch (evt.type) {
-      case 'drop':
-      case 'dragend':
-        this._onDrop(evt);
-
-        break;
-
-      case 'dragenter':
-      case 'dragover':
-        if (dragEl) {
-          this._onDragOver(evt);
-
-          _globalDragOver(evt);
-        }
-
-        break;
-
-      case 'selectstart':
-        evt.preventDefault();
-        break;
-    }
-  },
-
-  /**
-   * Serializes the item into an array of string.
-   * @returns {String[]}
-   */
-  toArray: function toArray() {
-    var order = [],
-        el,
-        children = this.el.children,
-        i = 0,
-        n = children.length,
-        options = this.options;
-
-    for (; i < n; i++) {
-      el = children[i];
-
-      if (closest(el, options.draggable, this.el, false)) {
-        order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
-      }
-    }
-
-    return order;
-  },
-
-  /**
-   * Sorts the elements according to the array.
-   * @param  {String[]}  order  order of the items
-   */
-  sort: function sort(order, useAnimation) {
-    var items = {},
-        rootEl = this.el;
-    this.toArray().forEach(function (id, i) {
-      var el = rootEl.children[i];
-
-      if (closest(el, this.options.draggable, rootEl, false)) {
-        items[id] = el;
-      }
-    }, this);
-    useAnimation && this.captureAnimationState();
-    order.forEach(function (id) {
-      if (items[id]) {
-        rootEl.removeChild(items[id]);
-        rootEl.appendChild(items[id]);
-      }
-    });
-    useAnimation && this.animateAll();
-  },
-
-  /**
-   * Save the current sorting
-   */
-  save: function save() {
-    var store = this.options.store;
-    store && store.set && store.set(this);
-  },
-
-  /**
-   * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
-   * @param   {HTMLElement}  el
-   * @param   {String}       [selector]  default: `options.draggable`
-   * @returns {HTMLElement|null}
-   */
-  closest: function closest$1(el, selector) {
-    return closest(el, selector || this.options.draggable, this.el, false);
-  },
-
-  /**
-   * Set/get option
-   * @param   {string} name
-   * @param   {*}      [value]
-   * @returns {*}
-   */
-  option: function option(name, value) {
-    var options = this.options;
-
-    if (value === void 0) {
-      return options[name];
-    } else {
-      var modifiedValue = PluginManager.modifyOption(this, name, value);
-
-      if (typeof modifiedValue !== 'undefined') {
-        options[name] = modifiedValue;
-      } else {
-        options[name] = value;
-      }
-
-      if (name === 'group') {
-        _prepareGroup(options);
-      }
-    }
-  },
-
-  /**
-   * Destroy
-   */
-  destroy: function destroy() {
-    pluginEvent('destroy', this);
-    var el = this.el;
-    el[expando] = null;
-    off(el, 'mousedown', this._onTapStart);
-    off(el, 'touchstart', this._onTapStart);
-    off(el, 'pointerdown', this._onTapStart);
-
-    if (this.nativeDraggable) {
-      off(el, 'dragover', this);
-      off(el, 'dragenter', this);
-    } // Remove draggable attributes
-
-
-    Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
-      el.removeAttribute('draggable');
-    });
-
-    this._onDrop();
-
-    this._disableDelayedDragEvents();
-
-    sortables.splice(sortables.indexOf(this.el), 1);
-    this.el = el = null;
-  },
-  _hideClone: function _hideClone() {
-    if (!cloneHidden) {
-      pluginEvent('hideClone', this);
-      if (Sortable.eventCanceled) return;
-      css(cloneEl, 'display', 'none');
-
-      if (this.options.removeCloneOnHide && cloneEl.parentNode) {
-        cloneEl.parentNode.removeChild(cloneEl);
-      }
-
-      cloneHidden = true;
-    }
-  },
-  _showClone: function _showClone(putSortable) {
-    if (putSortable.lastPutMode !== 'clone') {
-      this._hideClone();
-
-      return;
-    }
-
-    if (cloneHidden) {
-      pluginEvent('showClone', this);
-      if (Sortable.eventCanceled) return; // show clone at dragEl or original position
-
-      if (dragEl.parentNode == rootEl && !this.options.group.revertClone) {
-        rootEl.insertBefore(cloneEl, dragEl);
-      } else if (nextEl) {
-        rootEl.insertBefore(cloneEl, nextEl);
-      } else {
-        rootEl.appendChild(cloneEl);
-      }
-
-      if (this.options.group.revertClone) {
-        this.animate(dragEl, cloneEl);
-      }
-
-      css(cloneEl, 'display', '');
-      cloneHidden = false;
-    }
-  }
-};
-
-function _globalDragOver(
-/**Event*/
-evt) {
-  if (evt.dataTransfer) {
-    evt.dataTransfer.dropEffect = 'move';
-  }
-
-  evt.cancelable && evt.preventDefault();
-}
-
-function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvent, willInsertAfter) {
-  var evt,
-      sortable = fromEl[expando],
-      onMoveFn = sortable.options.onMove,
-      retVal; // Support for new CustomEvent feature
-
-  if (window.CustomEvent && !IE11OrLess && !Edge) {
-    evt = new CustomEvent('move', {
-      bubbles: true,
-      cancelable: true
-    });
-  } else {
-    evt = document.createEvent('Event');
-    evt.initEvent('move', true, true);
-  }
-
-  evt.to = toEl;
-  evt.from = fromEl;
-  evt.dragged = dragEl;
-  evt.draggedRect = dragRect;
-  evt.related = targetEl || toEl;
-  evt.relatedRect = targetRect || getRect(toEl);
-  evt.willInsertAfter = willInsertAfter;
-  evt.originalEvent = originalEvent;
-  fromEl.dispatchEvent(evt);
-
-  if (onMoveFn) {
-    retVal = onMoveFn.call(sortable, evt, originalEvent);
-  }
-
-  return retVal;
-}
-
-function _disableDraggable(el) {
-  el.draggable = false;
-}
-
-function _unsilent() {
-  _silent = false;
-}
-
-function _ghostIsFirst(evt, vertical, sortable) {
-  var rect = getRect(getChild(sortable.el, 0, sortable.options, true));
-  var spacer = 10;
-  return vertical ? evt.clientX < rect.left - spacer || evt.clientY < rect.top && evt.clientX < rect.right : evt.clientY < rect.top - spacer || evt.clientY < rect.bottom && evt.clientX < rect.left;
-}
-
-function _ghostIsLast(evt, vertical, sortable) {
-  var rect = getRect(lastChild(sortable.el, sortable.options.draggable));
-  var spacer = 10;
-  return vertical ? evt.clientX > rect.right + spacer || evt.clientX <= rect.right && evt.clientY > rect.bottom && evt.clientX >= rect.left : evt.clientX > rect.right && evt.clientY > rect.top || evt.clientX <= rect.right && evt.clientY > rect.bottom + spacer;
-}
-
-function _getSwapDirection(evt, target, targetRect, vertical, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
-  var mouseOnAxis = vertical ? evt.clientY : evt.clientX,
-      targetLength = vertical ? targetRect.height : targetRect.width,
-      targetS1 = vertical ? targetRect.top : targetRect.left,
-      targetS2 = vertical ? targetRect.bottom : targetRect.right,
-      invert = false;
-
-  if (!invertSwap) {
-    // Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
-    if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
-      // multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
-      // check if past first invert threshold on side opposite of lastDirection
-      if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
-        // past first invert threshold, do not restrict inverted threshold to dragEl shadow
-        pastFirstInvertThresh = true;
-      }
-
-      if (!pastFirstInvertThresh) {
-        // dragEl shadow (target move distance shadow)
-        if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
-        : mouseOnAxis > targetS2 - targetMoveDistance) {
-          return -lastDirection;
-        }
-      } else {
-        invert = true;
-      }
-    } else {
-      // Regular
-      if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
-        return _getInsertDirection(target);
-      }
-    }
-  }
-
-  invert = invert || invertSwap;
-
-  if (invert) {
-    // Invert of regular
-    if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
-      return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
-    }
-  }
-
-  return 0;
-}
-/**
- * Gets the direction dragEl must be swapped relative to target in order to make it
- * seem that dragEl has been "inserted" into that element's position
- * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
- * @return {Number}                   Direction dragEl must be swapped
- */
-
-
-function _getInsertDirection(target) {
-  if (index(dragEl) < index(target)) {
-    return 1;
-  } else {
-    return -1;
-  }
-}
-/**
- * Generate id
- * @param   {HTMLElement} el
- * @returns {String}
- * @private
- */
-
-
-function _generateId(el) {
-  var str = el.tagName + el.className + el.src + el.href + el.textContent,
-      i = str.length,
-      sum = 0;
-
-  while (i--) {
-    sum += str.charCodeAt(i);
-  }
-
-  return sum.toString(36);
-}
-
-function _saveInputCheckedState(root) {
-  savedInputChecked.length = 0;
-  var inputs = root.getElementsByTagName('input');
-  var idx = inputs.length;
-
-  while (idx--) {
-    var el = inputs[idx];
-    el.checked && savedInputChecked.push(el);
-  }
-}
-
-function _nextTick(fn) {
-  return setTimeout(fn, 0);
-}
-
-function _cancelNextTick(id) {
-  return clearTimeout(id);
-} // Fixed #973:
-
-
-if (documentExists) {
-  on(document, 'touchmove', function (evt) {
-    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
-      evt.preventDefault();
-    }
-  });
-} // Export utils
-
-
-Sortable.utils = {
-  on: on,
-  off: off,
-  css: css,
-  find: find,
-  is: function is(el, selector) {
-    return !!closest(el, selector, el, false);
-  },
-  extend: extend,
-  throttle: throttle,
-  closest: closest,
-  toggleClass: toggleClass,
-  clone: clone,
-  index: index,
-  nextTick: _nextTick,
-  cancelNextTick: _cancelNextTick,
-  detectDirection: _detectDirection,
-  getChild: getChild
-};
-/**
- * Get the Sortable instance of an element
- * @param  {HTMLElement} element The element
- * @return {Sortable|undefined}         The instance of Sortable
- */
-
-Sortable.get = function (element) {
-  return element[expando];
-};
-/**
- * Mount a plugin to Sortable
- * @param  {...SortablePlugin|SortablePlugin[]} plugins       Plugins being mounted
- */
-
-
-Sortable.mount = function () {
-  for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
-    plugins[_key] = arguments[_key];
-  }
-
-  if (plugins[0].constructor === Array) plugins = plugins[0];
-  plugins.forEach(function (plugin) {
-    if (!plugin.prototype || !plugin.prototype.constructor) {
-      throw "Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(plugin));
-    }
-
-    if (plugin.utils) Sortable.utils = _objectSpread2(_objectSpread2({}, Sortable.utils), plugin.utils);
-    PluginManager.mount(plugin);
-  });
-};
-/**
- * Create sortable instance
- * @param {HTMLElement}  el
- * @param {Object}      [options]
- */
-
-
-Sortable.create = function (el, options) {
-  return new Sortable(el, options);
-}; // Export
-
-
-Sortable.version = version;
-
-var autoScrolls = [],
-    scrollEl,
-    scrollRootEl,
-    scrolling = false,
-    lastAutoScrollX,
-    lastAutoScrollY,
-    touchEvt$1,
-    pointerElemChangedInterval;
-
-function AutoScrollPlugin() {
-  function AutoScroll() {
-    this.defaults = {
-      scroll: true,
-      forceAutoScrollFallback: false,
-      scrollSensitivity: 30,
-      scrollSpeed: 10,
-      bubbleScroll: true
-    }; // Bind all private methods
-
-    for (var fn in this) {
-      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
-        this[fn] = this[fn].bind(this);
-      }
-    }
-  }
-
-  AutoScroll.prototype = {
-    dragStarted: function dragStarted(_ref) {
-      var originalEvent = _ref.originalEvent;
-
-      if (this.sortable.nativeDraggable) {
-        on(document, 'dragover', this._handleAutoScroll);
-      } else {
-        if (this.options.supportPointer) {
-          on(document, 'pointermove', this._handleFallbackAutoScroll);
-        } else if (originalEvent.touches) {
-          on(document, 'touchmove', this._handleFallbackAutoScroll);
-        } else {
-          on(document, 'mousemove', this._handleFallbackAutoScroll);
-        }
-      }
-    },
-    dragOverCompleted: function dragOverCompleted(_ref2) {
-      var originalEvent = _ref2.originalEvent;
-
-      // For when bubbling is canceled and using fallback (fallback 'touchmove' always reached)
-      if (!this.options.dragOverBubble && !originalEvent.rootEl) {
-        this._handleAutoScroll(originalEvent);
-      }
-    },
-    drop: function drop() {
-      if (this.sortable.nativeDraggable) {
-        off(document, 'dragover', this._handleAutoScroll);
-      } else {
-        off(document, 'pointermove', this._handleFallbackAutoScroll);
-        off(document, 'touchmove', this._handleFallbackAutoScroll);
-        off(document, 'mousemove', this._handleFallbackAutoScroll);
-      }
-
-      clearPointerElemChangedInterval();
-      clearAutoScrolls();
-      cancelThrottle();
-    },
-    nulling: function nulling() {
-      touchEvt$1 = scrollRootEl = scrollEl = scrolling = pointerElemChangedInterval = lastAutoScrollX = lastAutoScrollY = null;
-      autoScrolls.length = 0;
-    },
-    _handleFallbackAutoScroll: function _handleFallbackAutoScroll(evt) {
-      this._handleAutoScroll(evt, true);
-    },
-    _handleAutoScroll: function _handleAutoScroll(evt, fallback) {
-      var _this = this;
-
-      var x = (evt.touches ? evt.touches[0] : evt).clientX,
-          y = (evt.touches ? evt.touches[0] : evt).clientY,
-          elem = document.elementFromPoint(x, y);
-      touchEvt$1 = evt; // IE does not seem to have native autoscroll,
-      // Edge's autoscroll seems too conditional,
-      // MACOS Safari does not have autoscroll,
-      // Firefox and Chrome are good
-
-      if (fallback || this.options.forceAutoScrollFallback || Edge || IE11OrLess || Safari) {
-        autoScroll(evt, this.options, elem, fallback); // Listener for pointer element change
-
-        var ogElemScroller = getParentAutoScrollElement(elem, true);
-
-        if (scrolling && (!pointerElemChangedInterval || x !== lastAutoScrollX || y !== lastAutoScrollY)) {
-          pointerElemChangedInterval && clearPointerElemChangedInterval(); // Detect for pointer elem change, emulating native DnD behaviour
-
-          pointerElemChangedInterval = setInterval(function () {
-            var newElem = getParentAutoScrollElement(document.elementFromPoint(x, y), true);
-
-            if (newElem !== ogElemScroller) {
-              ogElemScroller = newElem;
-              clearAutoScrolls();
-            }
-
-            autoScroll(evt, _this.options, newElem, fallback);
-          }, 10);
-          lastAutoScrollX = x;
-          lastAutoScrollY = y;
-        }
-      } else {
-        // if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
-        if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
-          clearAutoScrolls();
-          return;
-        }
-
-        autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
-      }
-    }
-  };
-  return _extends(AutoScroll, {
-    pluginName: 'scroll',
-    initializeByDefault: true
-  });
-}
-
-function clearAutoScrolls() {
-  autoScrolls.forEach(function (autoScroll) {
-    clearInterval(autoScroll.pid);
-  });
-  autoScrolls = [];
-}
-
-function clearPointerElemChangedInterval() {
-  clearInterval(pointerElemChangedInterval);
-}
-
-var autoScroll = throttle(function (evt, options, rootEl, isFallback) {
-  // Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
-  if (!options.scroll) return;
-  var x = (evt.touches ? evt.touches[0] : evt).clientX,
-      y = (evt.touches ? evt.touches[0] : evt).clientY,
-      sens = options.scrollSensitivity,
-      speed = options.scrollSpeed,
-      winScroller = getWindowScrollingElement();
-  var scrollThisInstance = false,
-      scrollCustomFn; // New scroll root, set scrollEl
-
-  if (scrollRootEl !== rootEl) {
-    scrollRootEl = rootEl;
-    clearAutoScrolls();
-    scrollEl = options.scroll;
-    scrollCustomFn = options.scrollFn;
-
-    if (scrollEl === true) {
-      scrollEl = getParentAutoScrollElement(rootEl, true);
-    }
-  }
-
-  var layersOut = 0;
-  var currentParent = scrollEl;
-
-  do {
-    var el = currentParent,
-        rect = getRect(el),
-        top = rect.top,
-        bottom = rect.bottom,
-        left = rect.left,
-        right = rect.right,
-        width = rect.width,
-        height = rect.height,
-        canScrollX = void 0,
-        canScrollY = void 0,
-        scrollWidth = el.scrollWidth,
-        scrollHeight = el.scrollHeight,
-        elCSS = css(el),
-        scrollPosX = el.scrollLeft,
-        scrollPosY = el.scrollTop;
-
-    if (el === winScroller) {
-      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll' || elCSS.overflowX === 'visible');
-      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll' || elCSS.overflowY === 'visible');
-    } else {
-      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll');
-      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll');
-    }
-
-    var vx = canScrollX && (Math.abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (Math.abs(left - x) <= sens && !!scrollPosX);
-    var vy = canScrollY && (Math.abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (Math.abs(top - y) <= sens && !!scrollPosY);
-
-    if (!autoScrolls[layersOut]) {
-      for (var i = 0; i <= layersOut; i++) {
-        if (!autoScrolls[i]) {
-          autoScrolls[i] = {};
-        }
-      }
-    }
-
-    if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
-      autoScrolls[layersOut].el = el;
-      autoScrolls[layersOut].vx = vx;
-      autoScrolls[layersOut].vy = vy;
-      clearInterval(autoScrolls[layersOut].pid);
-
-      if (vx != 0 || vy != 0) {
-        scrollThisInstance = true;
-        /* jshint loopfunc:true */
-
-        autoScrolls[layersOut].pid = setInterval(function () {
-          // emulate drag over during autoscroll (fallback), emulating native DnD behaviour
-          if (isFallback && this.layer === 0) {
-            Sortable.active._onTouchMove(touchEvt$1); // To move ghost if it is positioned absolutely
-
-          }
-
-          var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
-          var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
-
-          if (typeof scrollCustomFn === 'function') {
-            if (scrollCustomFn.call(Sortable.dragged.parentNode[expando], scrollOffsetX, scrollOffsetY, evt, touchEvt$1, autoScrolls[this.layer].el) !== 'continue') {
-              return;
-            }
-          }
-
-          scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
-        }.bind({
-          layer: layersOut
-        }), 24);
-      }
-    }
-
-    layersOut++;
-  } while (options.bubbleScroll && currentParent !== winScroller && (currentParent = getParentAutoScrollElement(currentParent, false)));
-
-  scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
-}, 30);
-
-var drop = function drop(_ref) {
-  var originalEvent = _ref.originalEvent,
-      putSortable = _ref.putSortable,
-      dragEl = _ref.dragEl,
-      activeSortable = _ref.activeSortable,
-      dispatchSortableEvent = _ref.dispatchSortableEvent,
-      hideGhostForTarget = _ref.hideGhostForTarget,
-      unhideGhostForTarget = _ref.unhideGhostForTarget;
-  if (!originalEvent) return;
-  var toSortable = putSortable || activeSortable;
-  hideGhostForTarget();
-  var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
-  var target = document.elementFromPoint(touch.clientX, touch.clientY);
-  unhideGhostForTarget();
-
-  if (toSortable && !toSortable.el.contains(target)) {
-    dispatchSortableEvent('spill');
-    this.onSpill({
-      dragEl: dragEl,
-      putSortable: putSortable
-    });
-  }
-};
-
-function Revert() {}
-
-Revert.prototype = {
-  startIndex: null,
-  dragStart: function dragStart(_ref2) {
-    var oldDraggableIndex = _ref2.oldDraggableIndex;
-    this.startIndex = oldDraggableIndex;
-  },
-  onSpill: function onSpill(_ref3) {
-    var dragEl = _ref3.dragEl,
-        putSortable = _ref3.putSortable;
-    this.sortable.captureAnimationState();
-
-    if (putSortable) {
-      putSortable.captureAnimationState();
-    }
-
-    var nextSibling = getChild(this.sortable.el, this.startIndex, this.options);
-
-    if (nextSibling) {
-      this.sortable.el.insertBefore(dragEl, nextSibling);
-    } else {
-      this.sortable.el.appendChild(dragEl);
-    }
-
-    this.sortable.animateAll();
-
-    if (putSortable) {
-      putSortable.animateAll();
-    }
-  },
-  drop: drop
-};
-
-_extends(Revert, {
-  pluginName: 'revertOnSpill'
-});
-
-function Remove() {}
-
-Remove.prototype = {
-  onSpill: function onSpill(_ref4) {
-    var dragEl = _ref4.dragEl,
-        putSortable = _ref4.putSortable;
-    var parentSortable = putSortable || this.sortable;
-    parentSortable.captureAnimationState();
-    dragEl.parentNode && dragEl.parentNode.removeChild(dragEl);
-    parentSortable.animateAll();
-  },
-  drop: drop
-};
-
-_extends(Remove, {
-  pluginName: 'removeOnSpill'
-});
-
-var lastSwapEl;
-
-function SwapPlugin() {
-  function Swap() {
-    this.defaults = {
-      swapClass: 'sortable-swap-highlight'
-    };
-  }
-
-  Swap.prototype = {
-    dragStart: function dragStart(_ref) {
-      var dragEl = _ref.dragEl;
-      lastSwapEl = dragEl;
-    },
-    dragOverValid: function dragOverValid(_ref2) {
-      var completed = _ref2.completed,
-          target = _ref2.target,
-          onMove = _ref2.onMove,
-          activeSortable = _ref2.activeSortable,
-          changed = _ref2.changed,
-          cancel = _ref2.cancel;
-      if (!activeSortable.options.swap) return;
-      var el = this.sortable.el,
-          options = this.options;
-
-      if (target && target !== el) {
-        var prevSwapEl = lastSwapEl;
-
-        if (onMove(target) !== false) {
-          toggleClass(target, options.swapClass, true);
-          lastSwapEl = target;
-        } else {
-          lastSwapEl = null;
-        }
-
-        if (prevSwapEl && prevSwapEl !== lastSwapEl) {
-          toggleClass(prevSwapEl, options.swapClass, false);
-        }
-      }
-
-      changed();
-      completed(true);
-      cancel();
-    },
-    drop: function drop(_ref3) {
-      var activeSortable = _ref3.activeSortable,
-          putSortable = _ref3.putSortable,
-          dragEl = _ref3.dragEl;
-      var toSortable = putSortable || this.sortable;
-      var options = this.options;
-      lastSwapEl && toggleClass(lastSwapEl, options.swapClass, false);
-
-      if (lastSwapEl && (options.swap || putSortable && putSortable.options.swap)) {
-        if (dragEl !== lastSwapEl) {
-          toSortable.captureAnimationState();
-          if (toSortable !== activeSortable) activeSortable.captureAnimationState();
-          swapNodes(dragEl, lastSwapEl);
-          toSortable.animateAll();
-          if (toSortable !== activeSortable) activeSortable.animateAll();
-        }
-      }
-    },
-    nulling: function nulling() {
-      lastSwapEl = null;
-    }
-  };
-  return _extends(Swap, {
-    pluginName: 'swap',
-    eventProperties: function eventProperties() {
-      return {
-        swapItem: lastSwapEl
-      };
-    }
-  });
-}
-
-function swapNodes(n1, n2) {
-  var p1 = n1.parentNode,
-      p2 = n2.parentNode,
-      i1,
-      i2;
-  if (!p1 || !p2 || p1.isEqualNode(n2) || p2.isEqualNode(n1)) return;
-  i1 = index(n1);
-  i2 = index(n2);
-
-  if (p1.isEqualNode(p2) && i1 < i2) {
-    i2++;
-  }
-
-  p1.insertBefore(n2, p1.children[i1]);
-  p2.insertBefore(n1, p2.children[i2]);
-}
-
-var multiDragElements = [],
-    multiDragClones = [],
-    lastMultiDragSelect,
-    // for selection with modifier key down (SHIFT)
-multiDragSortable,
-    initialFolding = false,
-    // Initial multi-drag fold when drag started
-folding = false,
-    // Folding any other time
-dragStarted = false,
-    dragEl$1,
-    clonesFromRect,
-    clonesHidden;
-
-function MultiDragPlugin() {
-  function MultiDrag(sortable) {
-    // Bind all private methods
-    for (var fn in this) {
-      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
-        this[fn] = this[fn].bind(this);
-      }
-    }
-
-    if (sortable.options.supportPointer) {
-      on(document, 'pointerup', this._deselectMultiDrag);
-    } else {
-      on(document, 'mouseup', this._deselectMultiDrag);
-      on(document, 'touchend', this._deselectMultiDrag);
-    }
-
-    on(document, 'keydown', this._checkKeyDown);
-    on(document, 'keyup', this._checkKeyUp);
-    this.defaults = {
-      selectedClass: 'sortable-selected',
-      multiDragKey: null,
-      setData: function setData(dataTransfer, dragEl) {
-        var data = '';
-
-        if (multiDragElements.length && multiDragSortable === sortable) {
-          multiDragElements.forEach(function (multiDragElement, i) {
-            data += (!i ? '' : ', ') + multiDragElement.textContent;
-          });
-        } else {
-          data = dragEl.textContent;
-        }
-
-        dataTransfer.setData('Text', data);
-      }
-    };
-  }
-
-  MultiDrag.prototype = {
-    multiDragKeyDown: false,
-    isMultiDrag: false,
-    delayStartGlobal: function delayStartGlobal(_ref) {
-      var dragged = _ref.dragEl;
-      dragEl$1 = dragged;
-    },
-    delayEnded: function delayEnded() {
-      this.isMultiDrag = ~multiDragElements.indexOf(dragEl$1);
-    },
-    setupClone: function setupClone(_ref2) {
-      var sortable = _ref2.sortable,
-          cancel = _ref2.cancel;
-      if (!this.isMultiDrag) return;
-
-      for (var i = 0; i < multiDragElements.length; i++) {
-        multiDragClones.push(clone(multiDragElements[i]));
-        multiDragClones[i].sortableIndex = multiDragElements[i].sortableIndex;
-        multiDragClones[i].draggable = false;
-        multiDragClones[i].style['will-change'] = '';
-        toggleClass(multiDragClones[i], this.options.selectedClass, false);
-        multiDragElements[i] === dragEl$1 && toggleClass(multiDragClones[i], this.options.chosenClass, false);
-      }
-
-      sortable._hideClone();
-
-      cancel();
-    },
-    clone: function clone(_ref3) {
-      var sortable = _ref3.sortable,
-          rootEl = _ref3.rootEl,
-          dispatchSortableEvent = _ref3.dispatchSortableEvent,
-          cancel = _ref3.cancel;
-      if (!this.isMultiDrag) return;
-
-      if (!this.options.removeCloneOnHide) {
-        if (multiDragElements.length && multiDragSortable === sortable) {
-          insertMultiDragClones(true, rootEl);
-          dispatchSortableEvent('clone');
-          cancel();
-        }
-      }
-    },
-    showClone: function showClone(_ref4) {
-      var cloneNowShown = _ref4.cloneNowShown,
-          rootEl = _ref4.rootEl,
-          cancel = _ref4.cancel;
-      if (!this.isMultiDrag) return;
-      insertMultiDragClones(false, rootEl);
-      multiDragClones.forEach(function (clone) {
-        css(clone, 'display', '');
-      });
-      cloneNowShown();
-      clonesHidden = false;
-      cancel();
-    },
-    hideClone: function hideClone(_ref5) {
-      var _this = this;
-
-      var sortable = _ref5.sortable,
-          cloneNowHidden = _ref5.cloneNowHidden,
-          cancel = _ref5.cancel;
-      if (!this.isMultiDrag) return;
-      multiDragClones.forEach(function (clone) {
-        css(clone, 'display', 'none');
-
-        if (_this.options.removeCloneOnHide && clone.parentNode) {
-          clone.parentNode.removeChild(clone);
-        }
-      });
-      cloneNowHidden();
-      clonesHidden = true;
-      cancel();
-    },
-    dragStartGlobal: function dragStartGlobal(_ref6) {
-      var sortable = _ref6.sortable;
-
-      if (!this.isMultiDrag && multiDragSortable) {
-        multiDragSortable.multiDrag._deselectMultiDrag();
-      }
-
-      multiDragElements.forEach(function (multiDragElement) {
-        multiDragElement.sortableIndex = index(multiDragElement);
-      }); // Sort multi-drag elements
-
-      multiDragElements = multiDragElements.sort(function (a, b) {
-        return a.sortableIndex - b.sortableIndex;
-      });
-      dragStarted = true;
-    },
-    dragStarted: function dragStarted(_ref7) {
-      var _this2 = this;
-
-      var sortable = _ref7.sortable;
-      if (!this.isMultiDrag) return;
-
-      if (this.options.sort) {
-        // Capture rects,
-        // hide multi drag elements (by positioning them absolute),
-        // set multi drag elements rects to dragRect,
-        // show multi drag elements,
-        // animate to rects,
-        // unset rects & remove from DOM
-        sortable.captureAnimationState();
-
-        if (this.options.animation) {
-          multiDragElements.forEach(function (multiDragElement) {
-            if (multiDragElement === dragEl$1) return;
-            css(multiDragElement, 'position', 'absolute');
-          });
-          var dragRect = getRect(dragEl$1, false, true, true);
-          multiDragElements.forEach(function (multiDragElement) {
-            if (multiDragElement === dragEl$1) return;
-            setRect(multiDragElement, dragRect);
-          });
-          folding = true;
-          initialFolding = true;
-        }
-      }
-
-      sortable.animateAll(function () {
-        folding = false;
-        initialFolding = false;
-
-        if (_this2.options.animation) {
-          multiDragElements.forEach(function (multiDragElement) {
-            unsetRect(multiDragElement);
-          });
-        } // Remove all auxiliary multidrag items from el, if sorting enabled
-
-
-        if (_this2.options.sort) {
-          removeMultiDragElements();
-        }
-      });
-    },
-    dragOver: function dragOver(_ref8) {
-      var target = _ref8.target,
-          completed = _ref8.completed,
-          cancel = _ref8.cancel;
-
-      if (folding && ~multiDragElements.indexOf(target)) {
-        completed(false);
-        cancel();
-      }
-    },
-    revert: function revert(_ref9) {
-      var fromSortable = _ref9.fromSortable,
-          rootEl = _ref9.rootEl,
-          sortable = _ref9.sortable,
-          dragRect = _ref9.dragRect;
-
-      if (multiDragElements.length > 1) {
-        // Setup unfold animation
-        multiDragElements.forEach(function (multiDragElement) {
-          sortable.addAnimationState({
-            target: multiDragElement,
-            rect: folding ? getRect(multiDragElement) : dragRect
-          });
-          unsetRect(multiDragElement);
-          multiDragElement.fromRect = dragRect;
-          fromSortable.removeAnimationState(multiDragElement);
-        });
-        folding = false;
-        insertMultiDragElements(!this.options.removeCloneOnHide, rootEl);
-      }
-    },
-    dragOverCompleted: function dragOverCompleted(_ref10) {
-      var sortable = _ref10.sortable,
-          isOwner = _ref10.isOwner,
-          insertion = _ref10.insertion,
-          activeSortable = _ref10.activeSortable,
-          parentEl = _ref10.parentEl,
-          putSortable = _ref10.putSortable;
-      var options = this.options;
-
-      if (insertion) {
-        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
-        if (isOwner) {
-          activeSortable._hideClone();
-        }
-
-        initialFolding = false; // If leaving sort:false root, or already folding - Fold to new location
-
-        if (options.animation && multiDragElements.length > 1 && (folding || !isOwner && !activeSortable.options.sort && !putSortable)) {
-          // Fold: Set all multi drag elements's rects to dragEl's rect when multi-drag elements are invisible
-          var dragRectAbsolute = getRect(dragEl$1, false, true, true);
-          multiDragElements.forEach(function (multiDragElement) {
-            if (multiDragElement === dragEl$1) return;
-            setRect(multiDragElement, dragRectAbsolute); // Move element(s) to end of parentEl so that it does not interfere with multi-drag clones insertion if they are inserted
-            // while folding, and so that we can capture them again because old sortable will no longer be fromSortable
-
-            parentEl.appendChild(multiDragElement);
-          });
-          folding = true;
-        } // Clones must be shown (and check to remove multi drags) after folding when interfering multiDragElements are moved out
-
-
-        if (!isOwner) {
-          // Only remove if not folding (folding will remove them anyways)
-          if (!folding) {
-            removeMultiDragElements();
-          }
-
-          if (multiDragElements.length > 1) {
-            var clonesHiddenBefore = clonesHidden;
-
-            activeSortable._showClone(sortable); // Unfold animation for clones if showing from hidden
-
-
-            if (activeSortable.options.animation && !clonesHidden && clonesHiddenBefore) {
-              multiDragClones.forEach(function (clone) {
-                activeSortable.addAnimationState({
-                  target: clone,
-                  rect: clonesFromRect
-                });
-                clone.fromRect = clonesFromRect;
-                clone.thisAnimationDuration = null;
-              });
-            }
-          } else {
-            activeSortable._showClone(sortable);
-          }
-        }
-      }
-    },
-    dragOverAnimationCapture: function dragOverAnimationCapture(_ref11) {
-      var dragRect = _ref11.dragRect,
-          isOwner = _ref11.isOwner,
-          activeSortable = _ref11.activeSortable;
-      multiDragElements.forEach(function (multiDragElement) {
-        multiDragElement.thisAnimationDuration = null;
-      });
-
-      if (activeSortable.options.animation && !isOwner && activeSortable.multiDrag.isMultiDrag) {
-        clonesFromRect = _extends({}, dragRect);
-        var dragMatrix = matrix(dragEl$1, true);
-        clonesFromRect.top -= dragMatrix.f;
-        clonesFromRect.left -= dragMatrix.e;
-      }
-    },
-    dragOverAnimationComplete: function dragOverAnimationComplete() {
-      if (folding) {
-        folding = false;
-        removeMultiDragElements();
-      }
-    },
-    drop: function drop(_ref12) {
-      var evt = _ref12.originalEvent,
-          rootEl = _ref12.rootEl,
-          parentEl = _ref12.parentEl,
-          sortable = _ref12.sortable,
-          dispatchSortableEvent = _ref12.dispatchSortableEvent,
-          oldIndex = _ref12.oldIndex,
-          putSortable = _ref12.putSortable;
-      var toSortable = putSortable || this.sortable;
-      if (!evt) return;
-      var options = this.options,
-          children = parentEl.children; // Multi-drag selection
-
-      if (!dragStarted) {
-        if (options.multiDragKey && !this.multiDragKeyDown) {
-          this._deselectMultiDrag();
-        }
-
-        toggleClass(dragEl$1, options.selectedClass, !~multiDragElements.indexOf(dragEl$1));
-
-        if (!~multiDragElements.indexOf(dragEl$1)) {
-          multiDragElements.push(dragEl$1);
-          dispatchEvent({
-            sortable: sortable,
-            rootEl: rootEl,
-            name: 'select',
-            targetEl: dragEl$1,
-            originalEvt: evt
-          }); // Modifier activated, select from last to dragEl
-
-          if (evt.shiftKey && lastMultiDragSelect && sortable.el.contains(lastMultiDragSelect)) {
-            var lastIndex = index(lastMultiDragSelect),
-                currentIndex = index(dragEl$1);
-
-            if (~lastIndex && ~currentIndex && lastIndex !== currentIndex) {
-              // Must include lastMultiDragSelect (select it), in case modified selection from no selection
-              // (but previous selection existed)
-              var n, i;
-
-              if (currentIndex > lastIndex) {
-                i = lastIndex;
-                n = currentIndex;
-              } else {
-                i = currentIndex;
-                n = lastIndex + 1;
-              }
-
-              for (; i < n; i++) {
-                if (~multiDragElements.indexOf(children[i])) continue;
-                toggleClass(children[i], options.selectedClass, true);
-                multiDragElements.push(children[i]);
-                dispatchEvent({
-                  sortable: sortable,
-                  rootEl: rootEl,
-                  name: 'select',
-                  targetEl: children[i],
-                  originalEvt: evt
-                });
-              }
-            }
-          } else {
-            lastMultiDragSelect = dragEl$1;
-          }
-
-          multiDragSortable = toSortable;
-        } else {
-          multiDragElements.splice(multiDragElements.indexOf(dragEl$1), 1);
-          lastMultiDragSelect = null;
-          dispatchEvent({
-            sortable: sortable,
-            rootEl: rootEl,
-            name: 'deselect',
-            targetEl: dragEl$1,
-            originalEvt: evt
-          });
-        }
-      } // Multi-drag drop
-
-
-      if (dragStarted && this.isMultiDrag) {
-        folding = false; // Do not "unfold" after around dragEl if reverted
-
-        if ((parentEl[expando].options.sort || parentEl !== rootEl) && multiDragElements.length > 1) {
-          var dragRect = getRect(dragEl$1),
-              multiDragIndex = index(dragEl$1, ':not(.' + this.options.selectedClass + ')');
-          if (!initialFolding && options.animation) dragEl$1.thisAnimationDuration = null;
-          toSortable.captureAnimationState();
-
-          if (!initialFolding) {
-            if (options.animation) {
-              dragEl$1.fromRect = dragRect;
-              multiDragElements.forEach(function (multiDragElement) {
-                multiDragElement.thisAnimationDuration = null;
-
-                if (multiDragElement !== dragEl$1) {
-                  var rect = folding ? getRect(multiDragElement) : dragRect;
-                  multiDragElement.fromRect = rect; // Prepare unfold animation
-
-                  toSortable.addAnimationState({
-                    target: multiDragElement,
-                    rect: rect
-                  });
-                }
-              });
-            } // Multi drag elements are not necessarily removed from the DOM on drop, so to reinsert
-            // properly they must all be removed
-
-
-            removeMultiDragElements();
-            multiDragElements.forEach(function (multiDragElement) {
-              if (children[multiDragIndex]) {
-                parentEl.insertBefore(multiDragElement, children[multiDragIndex]);
-              } else {
-                parentEl.appendChild(multiDragElement);
-              }
-
-              multiDragIndex++;
-            }); // If initial folding is done, the elements may have changed position because they are now
-            // unfolding around dragEl, even though dragEl may not have his index changed, so update event
-            // must be fired here as Sortable will not.
-
-            if (oldIndex === index(dragEl$1)) {
-              var update = false;
-              multiDragElements.forEach(function (multiDragElement) {
-                if (multiDragElement.sortableIndex !== index(multiDragElement)) {
-                  update = true;
-                  return;
-                }
-              });
-
-              if (update) {
-                dispatchSortableEvent('update');
-              }
-            }
-          } // Must be done after capturing individual rects (scroll bar)
-
-
-          multiDragElements.forEach(function (multiDragElement) {
-            unsetRect(multiDragElement);
-          });
-          toSortable.animateAll();
-        }
-
-        multiDragSortable = toSortable;
-      } // Remove clones if necessary
-
-
-      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
-        multiDragClones.forEach(function (clone) {
-          clone.parentNode && clone.parentNode.removeChild(clone);
-        });
-      }
-    },
-    nullingGlobal: function nullingGlobal() {
-      this.isMultiDrag = dragStarted = false;
-      multiDragClones.length = 0;
-    },
-    destroyGlobal: function destroyGlobal() {
-      this._deselectMultiDrag();
-
-      off(document, 'pointerup', this._deselectMultiDrag);
-      off(document, 'mouseup', this._deselectMultiDrag);
-      off(document, 'touchend', this._deselectMultiDrag);
-      off(document, 'keydown', this._checkKeyDown);
-      off(document, 'keyup', this._checkKeyUp);
-    },
-    _deselectMultiDrag: function _deselectMultiDrag(evt) {
-      if (typeof dragStarted !== "undefined" && dragStarted) return; // Only deselect if selection is in this sortable
-
-      if (multiDragSortable !== this.sortable) return; // Only deselect if target is not item in this sortable
-
-      if (evt && closest(evt.target, this.options.draggable, this.sortable.el, false)) return; // Only deselect if left click
-
-      if (evt && evt.button !== 0) return;
-
-      while (multiDragElements.length) {
-        var el = multiDragElements[0];
-        toggleClass(el, this.options.selectedClass, false);
-        multiDragElements.shift();
-        dispatchEvent({
-          sortable: this.sortable,
-          rootEl: this.sortable.el,
-          name: 'deselect',
-          targetEl: el,
-          originalEvt: evt
-        });
-      }
-    },
-    _checkKeyDown: function _checkKeyDown(evt) {
-      if (evt.key === this.options.multiDragKey) {
-        this.multiDragKeyDown = true;
-      }
-    },
-    _checkKeyUp: function _checkKeyUp(evt) {
-      if (evt.key === this.options.multiDragKey) {
-        this.multiDragKeyDown = false;
-      }
-    }
-  };
-  return _extends(MultiDrag, {
-    // Static methods & properties
-    pluginName: 'multiDrag',
-    utils: {
-      /**
-       * Selects the provided multi-drag item
-       * @param  {HTMLElement} el    The element to be selected
-       */
-      select: function select(el) {
-        var sortable = el.parentNode[expando];
-        if (!sortable || !sortable.options.multiDrag || ~multiDragElements.indexOf(el)) return;
-
-        if (multiDragSortable && multiDragSortable !== sortable) {
-          multiDragSortable.multiDrag._deselectMultiDrag();
-
-          multiDragSortable = sortable;
-        }
-
-        toggleClass(el, sortable.options.selectedClass, true);
-        multiDragElements.push(el);
-      },
-
-      /**
-       * Deselects the provided multi-drag item
-       * @param  {HTMLElement} el    The element to be deselected
-       */
-      deselect: function deselect(el) {
-        var sortable = el.parentNode[expando],
-            index = multiDragElements.indexOf(el);
-        if (!sortable || !sortable.options.multiDrag || !~index) return;
-        toggleClass(el, sortable.options.selectedClass, false);
-        multiDragElements.splice(index, 1);
-      }
-    },
-    eventProperties: function eventProperties() {
-      var _this3 = this;
-
-      var oldIndicies = [],
-          newIndicies = [];
-      multiDragElements.forEach(function (multiDragElement) {
-        oldIndicies.push({
-          multiDragElement: multiDragElement,
-          index: multiDragElement.sortableIndex
-        }); // multiDragElements will already be sorted if folding
-
-        var newIndex;
-
-        if (folding && multiDragElement !== dragEl$1) {
-          newIndex = -1;
-        } else if (folding) {
-          newIndex = index(multiDragElement, ':not(.' + _this3.options.selectedClass + ')');
-        } else {
-          newIndex = index(multiDragElement);
-        }
-
-        newIndicies.push({
-          multiDragElement: multiDragElement,
-          index: newIndex
-        });
-      });
-      return {
-        items: _toConsumableArray(multiDragElements),
-        clones: [].concat(multiDragClones),
-        oldIndicies: oldIndicies,
-        newIndicies: newIndicies
-      };
-    },
-    optionListeners: {
-      multiDragKey: function multiDragKey(key) {
-        key = key.toLowerCase();
-
-        if (key === 'ctrl') {
-          key = 'Control';
-        } else if (key.length > 1) {
-          key = key.charAt(0).toUpperCase() + key.substr(1);
-        }
-
-        return key;
-      }
-    }
-  });
-}
-
-function insertMultiDragElements(clonesInserted, rootEl) {
-  multiDragElements.forEach(function (multiDragElement, i) {
-    var target = rootEl.children[multiDragElement.sortableIndex + (clonesInserted ? Number(i) : 0)];
-
-    if (target) {
-      rootEl.insertBefore(multiDragElement, target);
-    } else {
-      rootEl.appendChild(multiDragElement);
-    }
-  });
-}
-/**
- * Insert multi-drag clones
- * @param  {[Boolean]} elementsInserted  Whether the multi-drag elements are inserted
- * @param  {HTMLElement} rootEl
- */
-
-
-function insertMultiDragClones(elementsInserted, rootEl) {
-  multiDragClones.forEach(function (clone, i) {
-    var target = rootEl.children[clone.sortableIndex + (elementsInserted ? Number(i) : 0)];
-
-    if (target) {
-      rootEl.insertBefore(clone, target);
-    } else {
-      rootEl.appendChild(clone);
-    }
-  });
-}
-
-function removeMultiDragElements() {
-  multiDragElements.forEach(function (multiDragElement) {
-    if (multiDragElement === dragEl$1) return;
-    multiDragElement.parentNode && multiDragElement.parentNode.removeChild(multiDragElement);
-  });
-}
-
-Sortable.mount(new AutoScrollPlugin());
-Sortable.mount(Remove, Revert);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sortable);
-
-
-
-/***/ }),
-
 /***/ "./node_modules/pinia/dist/pinia.mjs":
 /*!*******************************************!*\
   !*** ./node_modules/pinia/dist/pinia.mjs ***!
   \*******************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MutationType": () => (/* binding */ MutationType),
@@ -33044,7 +22544,6 @@ const PiniaVuePlugin = function (_Vue) {
   \****************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* reexport safe */ vue__WEBPACK_IMPORTED_MODULE_0__.BaseTransition),
@@ -33247,31 +22746,19 @@ function del(target, key) {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
+/******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -33312,54 +22799,245 @@ function del(target, key) {
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/nonce */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nc = undefined;
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!***********************************************!*\
   !*** ./web/assets/src/js/address-settings.js ***!
   \***********************************************/
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _vue_address_settings_address_settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../vue/address-settings/address-settings */ "./web/assets/src/vue/address-settings/address-settings.vue");
-// Import Vue components
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var _vue_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../vue/stores/AddressSettingsStore */ "./web/assets/src/vue/stores/AddressSettingsStore.js");
+/* harmony import */ var _vue_stores_AddressStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vue/stores/AddressStore */ "./web/assets/src/vue/stores/AddressStore.js");
+/* harmony import */ var _address_settings_hydrator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./address-settings-hydrator */ "./web/assets/src/js/address-settings-hydrator.js");
 
 
 
 
-// Initialize Vue instance
-window.initAddressFieldSettings = function () {
-  // Get all matching DOM elements
-  var elements = document.querySelectorAll('.address-settings-container');
 
-  // If no matching elements found, bail
-  if (!elements.length) {
-    console.warn('[GM] Unable to load Vue. Cannot find an `address-settings-container`.');
+// Hydrator component to wire up the Address preview
+
+
+/**
+ * Ensure Vue mounts into a fresh child without wiping Twig-rendered DOM.
+ */
+function ensureEmptyChildMount(container, className) {
+  // Try to find an existing mount element
+  var mountEl = container.querySelector(".".concat(className));
+
+  // If none exists, create it
+  if (!mountEl) {
+    mountEl = document.createElement('div');
+    mountEl.className = className;
+    mountEl.style.display = 'contents';
+    container.appendChild(mountEl);
+    return mountEl;
+  }
+
+  // If it exists but has children, create a fresh child to mount into
+  if (mountEl.childNodes.length) {
+    var fresh = document.createElement('div');
+    fresh.style.display = 'contents';
+    mountEl.appendChild(fresh);
+    return fresh;
+  }
+
+  // Return the existing empty mount element
+  return mountEl;
+}
+
+/**
+ * Parse JSON safely with a fallback value.
+ */
+function safeParseJson(value) {
+  var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  try {
+    // Attempt to parse the JSON value
+    return JSON.parse(value);
+  } catch (e) {
+    // On failure, return the provided fallback
+    return fallback;
+  }
+}
+
+/**
+ * Initialize the Address field settings UI and live preview.
+ */
+function initAddressSettings(rootEl) {
+  // If root element is missing, bail
+  if (!rootEl) {
+    console.warn('[GM] initAddressSettings called without a rootEl');
     return;
   }
 
-  // Loop through each element
-  elements.forEach(function (container) {
-    // Get the config data
-    var config = JSON.parse(container.dataset.config);
+  // If settings have already been initialized for this element, bail
+  if (rootEl.__gmSettingsInitialized) {
+    return;
+  }
 
-    // Initialize new Vue instance
-    var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_vue_address_settings_address_settings__WEBPACK_IMPORTED_MODULE_1__["default"], config);
+  // Mark settings as initialized to prevent double-initialization
+  rootEl.__gmSettingsInitialized = true;
 
-    // Initialize Pinia
-    app.use((0,pinia__WEBPACK_IMPORTED_MODULE_2__.createPinia)());
+  // Create a shared Pinia instance for settings and preview
+  var pinia = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.createPinia)();
 
-    // Mount to the container
-    app.mount(container);
+  // Mount the live Address preview first so it can receive updates
+  var previewRoot = rootEl.querySelector('[data-gm-preview-root]');
+
+  // If a preview root exists, mount the preview app
+  if (previewRoot) {
+    var _addressRoot$dataset, _baseConfig$namespace;
+    // Ensure a fresh mount element under the preview root
+    var previewMount = ensureEmptyChildMount(previewRoot, 'gm-address-vue-root');
+
+    // Locate the address root within the preview, or use the preview root itself
+    var addressRoot = previewRoot.querySelector('[data-gm-address-root]') || previewRoot;
+
+    // Parse base config from the address root dataset
+    var baseConfig = safeParseJson((_addressRoot$dataset = addressRoot.dataset) === null || _addressRoot$dataset === void 0 ? void 0 : _addressRoot$dataset.config, {});
+
+    // Get or create namespace in the config
+    (_baseConfig$namespace = baseConfig.namespace) !== null && _baseConfig$namespace !== void 0 ? _baseConfig$namespace : baseConfig.namespace = {};
+
+    // Ensure a stable namespace ID for this preview instance
+    var id = baseConfig.namespace.id || previewRoot.id || 'gm-preview';
+
+    // Assign the ID into config and preview root
+    baseConfig.namespace.id = id;
+    previewRoot.id || (previewRoot.id = id);
+
+    // Create the Vue app for the Address preview
+    var previewApp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_address_settings_hydrator__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      rootEl: addressRoot,
+      config: baseConfig
+    });
+
+    // Install Pinia so the hydrator can create and use the store
+    previewApp.use(pinia);
+
+    // Mount the preview app into the mount element
+    previewApp.mount(previewMount);
+  } else {
+    console.warn('[GM] No [data-gm-preview-root] found under settings root');
+  }
+
+  // Mount the settings shell that reads DOM and syncs stores
+  var settingsWrapper = rootEl.querySelector('[data-gm-settings-vue-mount]') || rootEl;
+
+  // Ensure a fresh mount element under the settings wrapper
+  var settingsMount = ensureEmptyChildMount(settingsWrapper, 'gm-settings-vue-root');
+
+  // Create the Vue app that will manage settings state
+  var settingsApp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
+    setup: function setup() {
+      // Access the settings and address stores
+      var settings = (0,_vue_stores_AddressSettingsStore__WEBPACK_IMPORTED_MODULE_1__.useAddressSettingsStore)();
+      var address = (0,_vue_stores_AddressStore__WEBPACK_IMPORTED_MODULE_2__.useAddressStore)();
+
+      // Read initial settings state from DOM
+      settings.setFromDom(rootEl);
+
+      // Bind DOM listeners so settings changes update store state
+      settings.bindDomListeners(rootEl);
+
+      // Whenever settings.previewConfig changes, apply to preview address
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        return settings.previewConfig;
+      }, function (config) {
+        // If no preview address instance, bail
+        if (!config) {
+          return;
+        }
+        // If applySettings method exists, call it with new config
+        if (typeof address.applySettings === 'function') {
+          address.applySettings(config);
+        }
+      }, {
+        deep: true,
+        immediate: true
+      });
+
+      // Whenever address.coords changes, update hidden input fields
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        var _address$data;
+        return address === null || address === void 0 ? void 0 : (_address$data = address.data) === null || _address$data === void 0 ? void 0 : _address$data.coords;
+      }, function (coords) {
+        // If no coords, bail
+        if (!coords) {
+          return;
+        }
+
+        // Helper to set a hidden input value by path
+        var setVal = function setVal(path, val) {
+          // Find the input element by name suffix
+          var el = rootEl.querySelector("[name$=\"".concat(path, "\"]"));
+
+          // If element is missing, bail
+          if (!el) {
+            return;
+          }
+
+          // Normalize value to string
+          var next = String(val !== null && val !== void 0 ? val : '');
+
+          // If value is unchanged, bail
+          if (el.value === next) {
+            return;
+          }
+
+          // Update value and dispatch events
+          el.value = next;
+          el.dispatchEvent(new Event('input', {
+            bubbles: true
+          }));
+          el.dispatchEvent(new Event('change', {
+            bubbles: true
+          }));
+        };
+
+        // Update hidden inputs for lat, lng, and zoom
+        setVal('[coordinatesDefault][lat]', coords.lat);
+        setVal('[coordinatesDefault][lng]', coords.lng);
+        setVal('[coordinatesDefault][zoom]', coords.zoom);
+      }, {
+        deep: true
+      });
+
+      // Return empty render function
+      return {};
+    },
+    template: '<div></div>' // headless; logic only
   });
-};
+
+  // Use Pinia and mount the settings app
+  settingsApp.use(pinia);
+  settingsApp.mount(settingsMount);
+}
+
+// Expose initializer for Craft to call when settings page loads
+window.initAddressSettings = initAddressSettings;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initAddressSettings);
+
+// Auto-bootstrap Address settings on DOM ready
+(function () {
+  // Boot function to initialize all settings roots
+  var boot = function boot() {
+    document.querySelectorAll('[data-gm-settings-root]').forEach(initAddressSettings);
+  };
+  // Run boot on DOMContentLoaded, or immediately if already ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, {
+      once: true
+    });
+  } else {
+    boot();
+  }
+})();
 })();
 
 /******/ })()

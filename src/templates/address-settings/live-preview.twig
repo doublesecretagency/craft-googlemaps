@@ -1,0 +1,39 @@
+<div class="field">
+    <div class="heading">
+        <label>Preview</label>
+        <div class="instructions">
+            <p>This is how the field will look...</p>
+        </div>
+    </div>
+    <div>
+        <div data-gm-preview-root data-gm-preview-id="gm-preview">
+            {% set previewConfig = config|merge({
+                namespace: (config.namespace ?? {})|merge({
+                    handle: 'settingsPreview',
+                    name: 'settingsPreview',
+                })
+            }) %}
+
+            {% include 'google-maps/address' with { config: previewConfig } %}
+
+            {# Get the default coordinates from the settings #}
+            {% set coords = config.settings.coordinatesDefault ?? {} %}
+
+            {# Whether the coordinates are valid #}
+            {% set validCoords = (coords.lat ?? null) and (coords.lng ?? null) %}
+
+            {# Set the default coordinates #}
+            {% set coordinatesDefault = validCoords ? coords : {
+                'lat':  null,
+                'lng':  null,
+                'zoom': null
+            } %}
+
+            <div class="default-coords">
+                <input type="hidden" name="coordinatesDefault[lat]" value="{{ coordinatesDefault.lat ?? '' }}">
+                <input type="hidden" name="coordinatesDefault[lng]" value="{{ coordinatesDefault.lng ?? '' }}">
+                <input type="hidden" name="coordinatesDefault[zoom]" value="{{ coordinatesDefault.zoom ?? '' }}">
+            </div>
+        </div>
+    </div>
+</div>

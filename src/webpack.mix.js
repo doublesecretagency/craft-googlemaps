@@ -20,6 +20,7 @@ mix
 
     // Compile all Sass
     .sass(`${src}/sass/address.scss`, `${dist}/css`)
+    .sass(`${src}/sass/address-settings.scss`, `${dist}/css`)
 
     // Compile all JavaScript
     .js(`${src}/js/address.js`, `${dist}/js`)
