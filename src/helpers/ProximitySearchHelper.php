@@ -74,7 +74,7 @@ class ProximitySearchHelper
         static::_applyProximitySearch($options);
 
         // Apply 'subfields' option
-        if (static::$_subfieldFilter) {
+        if (static::$_subfieldFilter && is_array(static::$_subfieldFilter)) {
             static::_applySubfields(static::$_subfieldFilter);
         }
 
@@ -264,7 +264,7 @@ class ProximitySearchHelper
             }
 
             // Re-organize WHERE filters
-            if (1 == count($where)) {
+            if (1 === count($where)) {
                 $where = $where[0];
             } else {
                 array_unshift($where, 'or');

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed bug in subfield filter fallback. ([#151](https://github.com/doublesecretagency/craft-googlemaps/issues/151))
+
 ## 4.6.7 - 2025-04-04
 
 ### Fixed
