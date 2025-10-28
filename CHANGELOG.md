@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed Postgres proximity search bug.
+
 ## 5.1.6 - 2025-04-04
 
 ### Fixed

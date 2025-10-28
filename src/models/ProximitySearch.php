@@ -181,7 +181,7 @@ class ProximitySearch extends Model
             $this->query->subQuery->having($condition, $params);
         } else {
             // Postgres
-            $this->query->subQuery->andWhere($condition, $params);
+            $this->query->query->andWhere($condition, $params);
         }
 
     }
