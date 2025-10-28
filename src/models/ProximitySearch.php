@@ -307,12 +307,28 @@ class ProximitySearch extends Model
         if (Craft::$app->getDb()->getIsMysql()) {
             // Configure for MySQL
             $this->query->subQuery->andHaving(
-                "[[distance]] <= [[gm_reverseRadius]]"
+                "[[distance]] <= CAST(NULLIF(({$sql}), '') AS DECIMAL(10,4))"
             );
         } else {
             // Configure for Postgres
+
+            // Get the target which defines the center point
+            $target = ($this->options['target'] ?? null);
+
+            // If target is defined, convert it to coordinates
+            $coords = $target ? $this->_getTargetCoords($target) : null;
+
+            // If unable to resolve coordinates, bail
+            if (!$coords) {
+                return;
+            }
+
+            // Implement haversine formula via SQL
+            $haversine = $this->_haversineSql($coords['lat'], $coords['lng']);
+
+            // Apply Postgres-specific reverse radius filter
             $this->query->subQuery->andWhere(
-                "[[distance]] <= [[gm_reverseRadius]]"
+                "({$haversine}) <= CAST(NULLIF(({$sql}), '') AS double precision)"
             );
         }
 

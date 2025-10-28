@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed Postgres proximity search bug.
+- Fixed Postgres reverse proximity search bug.
 
 ## 5.1.6 - 2025-04-04
 
