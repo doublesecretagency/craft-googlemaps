@@ -18858,14 +18858,21 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
         path = _ref.path;
       // If input does not exist for this binding, bail
       var el = rootEl.querySelector(selector);
+
+      // If no element, bail
       if (!el) {
         return;
       }
 
       // Normalize input value so numbers become numbers and empty values become null
       var handler = function handler() {
+        // Get the raw input value
         var raw = el.value;
+
+        // Get the normalized value
         var v = el.type === 'number' ? raw === '' ? null : Number.isFinite(Number(raw)) ? Number(raw) : null : raw;
+
+        // Set the nested value in the store
         setNestedValue(data.value, path, v);
       };
 
@@ -18882,8 +18889,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     bindings.forEach(function (_ref2) {
       var selector = _ref2.selector,
         path = _ref2.path;
-      // If input does not exist for this binding, bail
+      // Get input for this binding
       var el = rootEl.querySelector(selector);
+
+      // If no element, bail
       if (!el) {
         return;
       }
@@ -19133,22 +19142,33 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
               }); // Update subfield zoom when map is zoomed
               zoomListener = window.google.maps.event.addListener(_map, 'zoom_changed', function () {
                 var _data$value$coords3;
+                // Get current map zoom
                 var z = _map.getZoom();
+
+                // If zoom is not a finite number, bail
                 if (!isFinite(+z)) {
+                  console.warn('[GM] zoom_changed ignored (non-finite)', z);
                   return;
                 }
+
+                // If zoom changed
                 if (+((_data$value$coords3 = data.value.coords) === null || _data$value$coords3 === void 0 ? void 0 : _data$value$coords3.zoom) !== +z) {
+                  // Update store zoom
                   data.value.coords = _objectSpread(_objectSpread({}, data.value.coords), {}, {
                     zoom: +z
                   });
                 }
               }); // Helper to remove a listener
               removeListener = function removeListener(h) {
-                var _window$google$maps$e3, _window$google$maps$e4;
                 if (!h) {
                   return;
                 }
-                if (typeof h.remove === 'function') h.remove();else (_window$google$maps$e3 = window.google.maps.event) === null || _window$google$maps$e3 === void 0 ? void 0 : (_window$google$maps$e4 = _window$google$maps$e3.removeListener) === null || _window$google$maps$e4 === void 0 ? void 0 : _window$google$maps$e4.call(_window$google$maps$e3, h);
+                if (typeof h.remove === 'function') {
+                  h.remove();
+                } else {
+                  var _window$google$maps$e3, _window$google$maps$e4;
+                  (_window$google$maps$e3 = window.google.maps.event) === null || _window$google$maps$e3 === void 0 ? void 0 : (_window$google$maps$e4 = _window$google$maps$e3.removeListener) === null || _window$google$maps$e4 === void 0 ? void 0 : _window$google$maps$e4.call(_window$google$maps$e3, h);
+                }
               }; // Cleanup both listeners on disconnect
               _domUnbinders.push(function () {
                 return removeListener(dragListener);
@@ -19173,15 +19193,23 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 })) {
                   return;
                 }
+
+                // If coordinates are not finite numbers, bail
                 if (!isFinite(+lat) || !isFinite(+lng)) {
                   return;
                 }
+
+                // Get current marker position
                 var pos = {
                   lat: +lat,
                   lng: +lng
                 };
                 var cur = (_marker$getPosition = (_marker2 = _marker).getPosition) === null || _marker$getPosition === void 0 ? void 0 : _marker$getPosition.call(_marker2);
+
+                // Check if position is already correct
                 var same = cur && Math.abs(cur.lat() - pos.lat) < 1e-9 && Math.abs(cur.lng() - pos.lng) < 1e-9;
+
+                // If position is already correct, bail
                 if (!same) {
                   _marker.setPosition(pos);
                   _centerMap();
@@ -19194,11 +19222,21 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 return (_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.zoom;
               }, function (zoom) {
                 var _map$getZoom2, _map2;
+                // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {
                   return;
                 }
+
+                // Get safe zoom level
                 var next = _safeZoom(zoom);
-                if (((_map$getZoom2 = (_map2 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map2)) !== next) _map.setZoom(next);
+
+                // If zoom is already correct, bail
+                if (((_map$getZoom2 = (_map2 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map2)) === next) {
+                  return;
+                }
+
+                // Set map zoom
+                _map.setZoom(next);
               }, {
                 immediate: true
               }); // Cleanup watchers on disconnect

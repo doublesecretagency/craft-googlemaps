@@ -277,16 +277,24 @@ export const useAddressStore = defineStore('address', () => {
         bindings.forEach(({ selector, path }) => {
             // If input does not exist for this binding, bail
             const el = rootEl.querySelector(selector);
+
+            // If no element, bail
             if (!el) {
                 return;
             }
 
             // Normalize input value so numbers become numbers and empty values become null
             const handler = () => {
+
+                // Get the raw input value
                 const raw = el.value;
+
+                // Get the normalized value
                 const v = (el.type === 'number')
                     ? (raw === '' ? null : (Number.isFinite(Number(raw)) ? Number(raw) : null))
                     : raw;
+
+                // Set the nested value in the store
                 setNestedValue(data.value, path, v);
             };
 
@@ -301,8 +309,11 @@ export const useAddressStore = defineStore('address', () => {
 
         // Bind Store → DOM so programmatic updates (map, autocomplete, preview settings) reflect in inputs
         bindings.forEach(({ selector, path }) => {
-            // If input does not exist for this binding, bail
+
+            // Get input for this binding
             const el = rootEl.querySelector(selector);
+
+            // If no element, bail
             if (!el) {
                 return;
             }
@@ -511,11 +522,19 @@ export const useAddressStore = defineStore('address', () => {
 
         // Update subfield zoom when map is zoomed
         const zoomListener = window.google.maps.event.addListener(_map, 'zoom_changed', () => {
+
+            // Get current map zoom
             const z = _map.getZoom();
+
+            // If zoom is not a finite number, bail
             if (!isFinite(+z)) {
+                console.warn('[GM] zoom_changed ignored (non-finite)', z);
                 return;
             }
+
+            // If zoom changed
             if (+data.value.coords?.zoom !== +z) {
+                // Update store zoom
                 data.value.coords = { ...data.value.coords, zoom: +z };
             }
         });
@@ -525,8 +544,11 @@ export const useAddressStore = defineStore('address', () => {
             if (!h) {
                 return;
             }
-            if (typeof h.remove === 'function') h.remove();
-            else window.google.maps.event?.removeListener?.(h);
+            if (typeof h.remove === 'function') {
+                h.remove();
+            } else {
+                window.google.maps.event?.removeListener?.(h);
+            }
         };
 
         // Cleanup both listeners on disconnect
@@ -543,13 +565,23 @@ export const useAddressStore = defineStore('address', () => {
                     return;
                 }
 
+                // If coordinates are not finite numbers, bail
                 if (!isFinite(+lat) || !isFinite(+lng)) {
                     return;
                 }
+
+                // Get current marker position
                 const pos = { lat: +lat, lng: +lng };
                 const cur = _marker.getPosition?.();
+
+                // Check if position is already correct
                 const same = cur && Math.abs(cur.lat() - pos.lat) < 1e-9 && Math.abs(cur.lng() - pos.lng) < 1e-9;
-                if (!same) { _marker.setPosition(pos); _centerMap(); }
+
+                // If position is already correct, bail
+                if (!same) {
+                    _marker.setPosition(pos);
+                    _centerMap();
+                }
             },
             { immediate: true }
         );
@@ -558,11 +590,22 @@ export const useAddressStore = defineStore('address', () => {
         const stopZoom = watch(
             () => data.value.coords?.zoom,
             (zoom) => {
+
+                // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {
                     return;
                 }
+
+                // Get safe zoom level
                 const next = _safeZoom(zoom);
-                if (_map.getZoom?.() !== next) _map.setZoom(next);
+
+                // If zoom is already correct, bail
+                if (_map.getZoom?.() === next) {
+                    return;
+                }
+
+                // Set map zoom
+                _map.setZoom(next);
             },
             { immediate: true }
         );
