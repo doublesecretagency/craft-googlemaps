@@ -275,6 +275,7 @@ export const useAddressStore = defineStore('address', () => {
 
         // Bind DOM → Store so user edits immediately update reactive state
         bindings.forEach(({ selector, path }) => {
+
             // If input does not exist for this binding, bail
             const el = rootEl.querySelector(selector);
 
@@ -283,8 +284,114 @@ export const useAddressStore = defineStore('address', () => {
                 return;
             }
 
+            // Manage the zoom input
+            let prev = el.value;
+            let lastPointerDownAt = 0;
+            let isAdjusting = false;
+            let spinnerDirection = 0; // +1 = up, -1 = down
+
+            // Helper to check if a value is empty/null/zero
+            const isEmptyOrZero = (v) => {
+                // If string is null or undefined, return true
+                if (v === null || v === undefined) {
+                    return true;
+                }
+                // Trim string
+                const s = String(v).trim();
+                // If string is empty, return true
+                if (s === '') {
+                    return true;
+                }
+                // Convert to number
+                const n = Number(s);
+                // Return whether number is not finite or zero
+                return !Number.isFinite(n) || n === 0;
+            };
+
+            // Track pointer activity
+            const onPointerDown = (e) => {
+                lastPointerDownAt = performance.now();
+
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Heuristic: spinner buttons live on the right side
+                const SPINNER_GUTTER_PX = 22;
+
+                if (x < rect.width - SPINNER_GUTTER_PX) {
+                    spinnerDirection = 0;
+                    return;
+                }
+
+                // Top half = increment, bottom half = decrement
+                spinnerDirection = (y < rect.height / 2) ? 1 : -1;
+            };
+            const onFocus = () => {
+                prev = el.value;
+            };
+            // Adjust zoom via keyboard
+            const onKeyDown = (e) => {
+                if (e.key === 'ArrowUp') {
+                    spinnerDirection = 1;
+                    lastPointerDownAt = performance.now();
+                } else if (e.key === 'ArrowDown') {
+                    spinnerDirection = -1;
+                    lastPointerDownAt = performance.now();
+                }
+            };
+
+            // Wire these helpers for zoom
+            if (path === 'coords.zoom') {
+                el.addEventListener('pointerdown', onPointerDown);
+                el.addEventListener('focus', onFocus);
+                el.addEventListener('keydown', onKeyDown);
+                _domUnbinders.push(() => {
+                    el.removeEventListener('pointerdown', onPointerDown);
+                    el.removeEventListener('focus', onFocus);
+                    el.removeEventListener('keydown', onKeyDown);
+                });
+            }
+
             // Normalize input value so numbers become numbers and empty values become null
             const handler = () => {
+
+                // Ignore synthetic input events
+                if (e && e.isTrusted === false) {
+                    return;
+                }
+
+                // Prevent re-entrancy if we mutate the input while handling input
+                if (isAdjusting) {
+                    return;
+                }
+
+                // Special behavior ONLY for zoom spinner clicks
+                if (path === 'coords.zoom' && el.type === 'number') {
+
+                    // Whether the input was changed via spinner click
+                    const wasSpinner = (performance.now() - lastPointerDownAt) < 400;
+
+                    // If changed via spinner from empty/zero value
+                    if (wasSpinner && spinnerDirection !== 0 && isEmptyOrZero(prev)) {
+
+                        // Mark as adjusting to prevent loops
+                        isAdjusting = true;
+                        _suppressDomEvents = true;
+
+                        try {
+                            // Get current map zoom level
+                            const mapZoom = _map?.getZoom?.();
+                            const seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
+
+                            // Apply baseline + direction
+                            el.value = String(seed + spinnerDirection);
+                        } finally {
+                            _suppressDomEvents = false;
+                            isAdjusting = false;
+                        }
+                    }
+                }
 
                 // Get the raw input value
                 const raw = el.value;
@@ -296,6 +403,9 @@ export const useAddressStore = defineStore('address', () => {
 
                 // Set the nested value in the store
                 setNestedValue(data.value, path, v);
+
+                // Update previous zoom value
+                prev = el.value;
             };
 
             // Listen to both input and change so Craft/Garnish-style widgets stay in sync

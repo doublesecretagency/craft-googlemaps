@@ -18572,7 +18572,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x3) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x4) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -18864,8 +18864,110 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
         return;
       }
 
+      // Manage the zoom input
+      var prev = el.value;
+      var lastPointerDownAt = 0;
+      var isAdjusting = false;
+      var spinnerDirection = 0; // +1 = up, -1 = down
+
+      // Helper to check if a value is empty/null/zero
+      var isEmptyOrZero = function isEmptyOrZero(v) {
+        // If string is null or undefined, return true
+        if (v === null || v === undefined) {
+          return true;
+        }
+        // Trim string
+        var s = String(v).trim();
+        // If string is empty, return true
+        if (s === '') {
+          return true;
+        }
+        // Convert to number
+        var n = Number(s);
+        // Return whether number is not finite or zero
+        return !Number.isFinite(n) || n === 0;
+      };
+
+      // Track pointer activity
+      var onPointerDown = function onPointerDown(e) {
+        lastPointerDownAt = performance.now();
+        var rect = el.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+
+        // Heuristic: spinner buttons live on the right side
+        var SPINNER_GUTTER_PX = 22;
+        if (x < rect.width - SPINNER_GUTTER_PX) {
+          spinnerDirection = 0;
+          return;
+        }
+
+        // Top half = increment, bottom half = decrement
+        spinnerDirection = y < rect.height / 2 ? 1 : -1;
+      };
+      var onFocus = function onFocus() {
+        prev = el.value;
+      };
+      // Adjust zoom via keyboard
+      var onKeyDown = function onKeyDown(e) {
+        if (e.key === 'ArrowUp') {
+          spinnerDirection = 1;
+          lastPointerDownAt = performance.now();
+        } else if (e.key === 'ArrowDown') {
+          spinnerDirection = -1;
+          lastPointerDownAt = performance.now();
+        }
+      };
+
+      // Wire these helpers for zoom
+      if (path === 'coords.zoom') {
+        el.addEventListener('pointerdown', onPointerDown);
+        el.addEventListener('focus', onFocus);
+        el.addEventListener('keydown', onKeyDown);
+        _domUnbinders.push(function () {
+          el.removeEventListener('pointerdown', onPointerDown);
+          el.removeEventListener('focus', onFocus);
+          el.removeEventListener('keydown', onKeyDown);
+        });
+      }
+
       // Normalize input value so numbers become numbers and empty values become null
       var handler = function handler() {
+        // Ignore synthetic input events
+        if (e && e.isTrusted === false) {
+          return;
+        }
+
+        // Prevent re-entrancy if we mutate the input while handling input
+        if (isAdjusting) {
+          return;
+        }
+
+        // Special behavior ONLY for zoom spinner clicks
+        if (path === 'coords.zoom' && el.type === 'number') {
+          // Whether the input was changed via spinner click
+          var wasSpinner = performance.now() - lastPointerDownAt < 400;
+
+          // If changed via spinner from empty/zero value
+          if (wasSpinner && spinnerDirection !== 0 && isEmptyOrZero(prev)) {
+            // Mark as adjusting to prevent loops
+            isAdjusting = true;
+            _suppressDomEvents = true;
+            try {
+              var _map2, _map2$getZoom;
+              // Get current map zoom level
+              var mapZoom = (_map2 = _map) === null || _map2 === void 0 ? void 0 : (_map2$getZoom = _map2.getZoom) === null || _map2$getZoom === void 0 ? void 0 : _map2$getZoom.call(_map2);
+              var seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
+
+              // Apply baseline + direction
+              el.value = String(seed + spinnerDirection);
+            } finally {
+              _suppressDomEvents = false;
+              isAdjusting = false;
+            }
+          }
+        }
+
         // Get the raw input value
         var raw = el.value;
 
@@ -18874,6 +18976,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
 
         // Set the nested value in the store
         setNestedValue(data.value, path, v);
+
+        // Update previous zoom value
+        prev = el.value;
       };
 
       // Listen to both input and change so Craft/Garnish-style widgets stay in sync
@@ -19221,7 +19326,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 var _data$value$coords6;
                 return (_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.zoom;
               }, function (zoom) {
-                var _map$getZoom2, _map2;
+                var _map$getZoom2, _map3;
                 // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {
                   return;
@@ -19231,7 +19336,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 var next = _safeZoom(zoom);
 
                 // If zoom is already correct, bail
-                if (((_map$getZoom2 = (_map2 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map2)) === next) {
+                if (((_map$getZoom2 = (_map3 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map3)) === next) {
                   return;
                 }
 
