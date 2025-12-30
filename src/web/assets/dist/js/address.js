@@ -18927,19 +18927,33 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
               return _context.abrupt("return");
             case 34:
               // Update subfield coords when marker is dragged
+              // noinspection JSVoidFunctionReturnValueUsed
               dragListener = window.google.maps.event.addListener(_marker, 'dragend', function () {
                 var _map$getZoom;
+                // Get marker position
                 var p = _marker.getPosition();
-                var next = {
+
+                // Update store coordinates
+                data.value.coords = {
                   lat: +p.lat().toFixed(7),
                   lng: +p.lng().toFixed(7),
                   zoom: (_map$getZoom = _map.getZoom()) !== null && _map$getZoom !== void 0 ? _map$getZoom : _safeZoom(11)
                 };
-                data.value.coords = next;
+
+                // Center map on marker
                 _centerMap();
               }); // Update subfield zoom when map is zoomed
+              // noinspection JSVoidFunctionReturnValueUsed
               zoomListener = window.google.maps.event.addListener(_map, 'zoom_changed', function () {
                 var _data$value$coords3;
+                // Get the existing zoom from store
+                var existingZoom = +((_data$value$coords3 = data.value.coords) === null || _data$value$coords3 === void 0 ? void 0 : _data$value$coords3.zoom);
+
+                // If no existing zoom, bail
+                if (!existingZoom) {
+                  return;
+                }
+
                 // Get current map zoom
                 var z = _map.getZoom();
 
@@ -18950,7 +18964,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 }
 
                 // If zoom changed
-                if (+((_data$value$coords3 = data.value.coords) === null || _data$value$coords3 === void 0 ? void 0 : _data$value$coords3.zoom) !== +z) {
+                if (existingZoom !== +z) {
                   // Update store zoom
                   data.value.coords = _objectSpread(_objectSpread({}, data.value.coords), {}, {
                     zoom: +z
@@ -19112,6 +19126,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 });
 
                 // Apply selected place data into store state
+                // noinspection JSVoidFunctionReturnValueUsed
                 var placeListener = ac.addListener('place_changed', function () {
                   var _ac$getPlace;
                   // Get the selected place
@@ -19126,6 +19141,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                   // do not re-trigger Autocomplete or other listeners
                   _suppressDomEvents = true;
                   try {
+                    // Apply place data to store
                     _applyPlaceToData(place);
                   } finally {
                     // Re-enable DOM events after Vue has flushed updates
@@ -19162,7 +19178,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 // Install a form-level submit guard as a final backstop
                 var formEl = el.form || rootEl.closest('form') || document.querySelector('form');
 
-                // If the form exists and we haven't already installed a guard on it
+                // If the form exists, and we haven't already installed a guard on it
                 if (formEl && !_formSubmitGuards.has(formEl)) {
                   // Define the submit handler
                   var onSubmit = function onSubmit(ev) {
@@ -19341,6 +19357,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     var coords = place.geometry.location;
     data.value.coords.lat = parseFloat(coords.lat().toFixed(7));
     data.value.coords.lng = parseFloat(coords.lng().toFixed(7));
+
+    // Zoom fallback to 11 if not already set
+    data.value.coords.zoom = data.value.coords.zoom || 11;
 
     // If coords are invalid, clear meta subfields
     if (!data.value.coords.lat || !data.value.coords.lng) {
