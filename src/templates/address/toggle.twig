@@ -1,31 +1,33 @@
-<span class="map-toggle-container">
-  <button
-      type="button"
-      class="map-toggle"
-      data-gm-toggle
-  >
-    <span
-        class="map-toggle-text"
-        data-gm-toggle-text
-    >
-      Toggle Map
-    </span>
-    <img
-        class="map-toggle-icon"
-        data-gm-toggle-icon
-        alt="Toggle Map"
-    />
-  </button>
-</span>
+{% if 'hidden' != config.settings.visibilityToggle %}
+    <teleport to="#{{ config.namespace.id }}-field .heading">
+        <span
+            class="map-toggle-container"
+            data-gm-field="{{ config.namespace.id }}"
+        >
+          <button
+              type="button"
+              class="map-toggle"
+              data-gm-toggle
+              data-gm-field="{{ config.namespace.id }}"
+          >
+            <span
+                class="map-toggle-text"
+                data-gm-toggle-text
+            >
+              Toggle Map
+            </span>
+            <img
+                class="map-toggle-icon"
+                data-gm-toggle-icon
+                alt="Toggle Map"
+            />
+          </button>
+        </span>
+    </teleport>
+{% endif %}
 
 {% css %}
-[data-gm-address-root] {
-    position: relative;
-}
 .map-toggle-container {
-    position: absolute;
-    top: -27px;
-    right: 4px;
     opacity: 0;
     pointer-events: none;
     transition: opacity .07s ease-in-out;
@@ -35,6 +37,7 @@
     pointer-events: auto;
 }
 .map-toggle {
+    text-align: right;
     cursor: pointer;
     border: 0;
     background: none;
@@ -45,6 +48,7 @@
     display: inline-block;
     height: 14px;
     margin-left: 5px;
-    margin-bottom: -2px;
+    margin-right: 1px;
+    margin-bottom: 2px;
 }
 {% endcss %}

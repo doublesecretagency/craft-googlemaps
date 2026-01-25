@@ -104,7 +104,20 @@ export default defineComponent({
             store.connectMap(root);
 
             // Locate map visibility toggle rendered by Twig
-            const toggleEl = root.querySelector('[data-gm-toggle]');
+            const key = props.config?.namespace?.id;
+            let toggleEl = root.querySelector('[data-gm-toggle]');
+
+            // Teleport-safe global lookup
+            if (!toggleEl && key) {
+                toggleEl = document.querySelector(
+                    `[data-gm-toggle][data-gm-field="${key}"]`
+                );
+            }
+
+            // If still missing, bail
+            if (!toggleEl) {
+                return;
+            }
 
             // If no toggle element, bail
             if (!toggleEl) {
@@ -138,19 +151,21 @@ export default defineComponent({
 
             // Keep toggle offset in sync with layout changes
             const stopMarginWatch = watch(
-                () => store.marginTop,
+                () => store.toggleWidth,
                 (offset) => {
                     const px = typeof offset === 'number' ? offset : 0;
-                    toggleEl.style.marginTop = `${px}px`;
+                    toggleEl.style.width = `${px}px`;
                 },
                 { immediate: true }
             );
             registerCleanup(stopMarginWatch);
 
-            // Mark the toggle container as hydrated
-            const toggleContainer = root.querySelector('.map-toggle-container');
+            // Get the closest toggle container
+            let toggleContainer =
+                root.querySelector('.map-toggle-container') ||
+                toggleEl.closest('.map-toggle-container');
 
-            // If toggle container exists, add hydrated class
+            // If toggle container exists, mark it as hydrated
             if (toggleContainer) {
                 toggleContainer.classList.add('is-hydrated');
             }

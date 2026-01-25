@@ -95,7 +95,7 @@ export const useAddressStore = defineStore('address', () => {
     const formatting = ref(formatCountries);
 
     // Margin top for the map toggle button
-    const marginTop = ref(-25);
+    const toggleWidth = ref(2285);
 
     // Internal variables
     let _rootEl = null;                         // Root element for this Address field instance
@@ -500,12 +500,12 @@ export const useAddressStore = defineStore('address', () => {
         );
         _unsubscribers.push(stopRequireCoords);
 
-        // Defer toggle positioning until layout is stable so measurements reflect final DOM geometry
-        requestAnimationFrame(_updateTogglePosition);
+        // Defer toggle sizing until layout is stable so measurements reflect final DOM geometry
+        requestAnimationFrame(_updateToggleWidth);
 
-        // Recompute toggle positioning when toggle style changes so layout stays visually aligned
+        // Recompute toggle sizing when toggle style changes so layout stays visually aligned
         const stopStyle = watch(() => settings.value.visibilityToggle, () => {
-            requestAnimationFrame(_updateTogglePosition);
+            requestAnimationFrame(_updateToggleWidth);
         });
         _unsubscribers.push(stopStyle);
     }
@@ -1229,84 +1229,27 @@ export const useAddressStore = defineStore('address', () => {
     }
 
     /**
-     * Calculate and apply the toggle UI offset so it sits correctly alongside Craft’s field chrome.
+     * Calculate width of visibility toggle.
      */
-    function _updateTogglePosition() {
-        // Start with the default offset used when no extra UI elements affect layout
-        let offset = -27;
+    function _updateToggleWidth() {
 
-        // Get the current visibility toggle style from settings
-        const style = settings.value.visibilityToggle; // 'both' | 'text' | 'icon' | 'hidden'
-
-        // If toggle is hidden or root element is missing, bail
-        if (style === 'hidden' || !_rootEl) {
-            marginTop.value = offset;
-            return;
+        // Set width based on visibility toggle setting
+        switch (settings.value.visibilityToggle) {
+            case 'both':
+                toggleWidth.value = 94;
+                break;
+            case 'text':
+                toggleWidth.value = 79;
+                break;
+            case 'icon':
+                toggleWidth.value = 21;
+                break;
+            case 'hidden':
+                toggleWidth.value = 0;
+                break;
+            default:
+                toggleWidth.value = 132;
         }
-
-        // Find the Craft field container so we can target nearby UI elements consistently
-        const container = _rootEl.closest('.field');
-
-        // Build a stable class name so CSS can style the right UI variant
-        const toggleClass = `gm-toggle-${style}`;
-
-        // Support Craft < 5.6 where the copy UI uses the legacy button class
-        const copyTextBtn = container.getElementsByClassName('copytextbtn');
-        if (copyTextBtn.length) {
-            copyTextBtn[0].classList.add(toggleClass);
-        }
-
-        // Support Craft 5.6+ where the copy UI may be a web component or action button
-        const copyAttribute = container.getElementsByTagName('craft-copy-attribute');
-
-        // Also support action-btn variant used in some Craft builds
-        const actionBtn = container.getElementsByClassName('action-btn');
-
-        // If either copy UI variant exists, apply the toggle class to it
-        if (copyAttribute.length) {
-            copyAttribute[0].classList.add(toggleClass);
-        } else if (actionBtn.length) {
-            actionBtn[0].classList.add(toggleClass);
-        }
-
-        // If instructions are present, subtract their height so the toggle doesn’t overlap them
-        const instructions = container.getElementsByClassName('instructions');
-
-        // If instructions exist, adjust offset accordingly
-        if (instructions.length) {
-
-            // Subtract the height of the instructions element
-            const h = instructions[0].clientHeight || 0;
-            offset -= h;
-
-            // If a previous observer exists, disconnect it before attaching a new one
-            if (_resizeObs) {
-                try {
-                    _resizeObs.disconnect();
-                } catch(_) {}
-            }
-
-            // Attach a ResizeObserver to the instructions to react to size changes
-            if (typeof ResizeObserver !== 'undefined') {
-                // Create and attach the observer
-                _resizeObs = new ResizeObserver(() => {
-                    // Recalculate on the next frame to avoid layout thrash during resize
-                    requestAnimationFrame(_updateTogglePosition);
-                });
-                // Observe the instructions element
-                _resizeObs.observe(instructions[0]);
-                // Unbind observer on disconnect
-                _domUnbinders.push(() => {
-                    try {
-                        _resizeObs.disconnect();
-                    } catch(_) {}
-                    _resizeObs = null;
-                });
-            }
-        }
-
-        // Publish the final computed offset for the UI to consume
-        marginTop.value = offset;
     }
 
     /**
@@ -1654,7 +1597,7 @@ export const useAddressStore = defineStore('address', () => {
     // Return reactive values
     return {
         // State
-        namespace, settings, data, images, formatting, marginTop,
+        namespace, settings, data, images, formatting, toggleWidth,
 
         // Getters
         configToggle, configCoords, subfields,

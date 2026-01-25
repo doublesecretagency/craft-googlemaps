@@ -17928,6 +17928,7 @@ __webpack_require__.r(__webpack_exports__);
      * Wire field behavior once the DOM is ready.
      */
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      var _props$config, _props$config$namespa;
       // Get root element for this field instance
       var root = props.rootEl;
 
@@ -17941,7 +17942,18 @@ __webpack_require__.r(__webpack_exports__);
       store.connectMap(root);
 
       // Locate map visibility toggle rendered by Twig
+      var key = (_props$config = props.config) === null || _props$config === void 0 ? void 0 : (_props$config$namespa = _props$config.namespace) === null || _props$config$namespa === void 0 ? void 0 : _props$config$namespa.id;
       var toggleEl = root.querySelector('[data-gm-toggle]');
+
+      // Teleport-safe global lookup
+      if (!toggleEl && key) {
+        toggleEl = document.querySelector("[data-gm-toggle][data-gm-field=\"".concat(key, "\"]"));
+      }
+
+      // If still missing, bail
+      if (!toggleEl) {
+        return;
+      }
 
       // If no toggle element, bail
       if (!toggleEl) {
@@ -17980,19 +17992,19 @@ __webpack_require__.r(__webpack_exports__);
 
       // Keep toggle offset in sync with layout changes
       var stopMarginWatch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
-        return store.marginTop;
+        return store.toggleWidth;
       }, function (offset) {
         var px = typeof offset === 'number' ? offset : 0;
-        toggleEl.style.marginTop = "".concat(px, "px");
+        toggleEl.style.width = "".concat(px, "px");
       }, {
         immediate: true
       });
       registerCleanup(stopMarginWatch);
 
-      // Mark the toggle container as hydrated
-      var toggleContainer = root.querySelector('.map-toggle-container');
+      // Get the closest toggle container
+      var toggleContainer = root.querySelector('.map-toggle-container') || toggleEl.closest('.map-toggle-container');
 
-      // If toggle container exists, add hydrated class
+      // If toggle container exists, mark it as hydrated
       if (toggleContainer) {
         toggleContainer.classList.add('is-hydrated');
       }
@@ -18354,7 +18366,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   var formatting = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(formatCountries);
 
   // Margin top for the map toggle button
-  var marginTop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(-25);
+  var toggleWidth = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(2285);
 
   // Internal variables
   var _rootEl = null; // Root element for this Address field instance
@@ -18781,14 +18793,14 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     });
     _unsubscribers.push(stopRequireCoords);
 
-    // Defer toggle positioning until layout is stable so measurements reflect final DOM geometry
-    requestAnimationFrame(_updateTogglePosition);
+    // Defer toggle sizing until layout is stable so measurements reflect final DOM geometry
+    requestAnimationFrame(_updateToggleWidth);
 
-    // Recompute toggle positioning when toggle style changes so layout stays visually aligned
+    // Recompute toggle sizing when toggle style changes so layout stays visually aligned
     var stopStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
       return settings.value.visibilityToggle;
     }, function () {
-      requestAnimationFrame(_updateTogglePosition);
+      requestAnimationFrame(_updateToggleWidth);
     });
     _unsubscribers.push(stopStyle);
   }
@@ -19591,83 +19603,26 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   }
 
   /**
-   * Calculate and apply the toggle UI offset so it sits correctly alongside Craft’s field chrome.
+   * Calculate width of visibility toggle.
    */
-  function _updateTogglePosition() {
-    // Start with the default offset used when no extra UI elements affect layout
-    var offset = -27;
-
-    // Get the current visibility toggle style from settings
-    var style = settings.value.visibilityToggle; // 'both' | 'text' | 'icon' | 'hidden'
-
-    // If toggle is hidden or root element is missing, bail
-    if (style === 'hidden' || !_rootEl) {
-      marginTop.value = offset;
-      return;
+  function _updateToggleWidth() {
+    // Set width based on visibility toggle setting
+    switch (settings.value.visibilityToggle) {
+      case 'both':
+        toggleWidth.value = 94;
+        break;
+      case 'text':
+        toggleWidth.value = 79;
+        break;
+      case 'icon':
+        toggleWidth.value = 21;
+        break;
+      case 'hidden':
+        toggleWidth.value = 0;
+        break;
+      default:
+        toggleWidth.value = 132;
     }
-
-    // Find the Craft field container so we can target nearby UI elements consistently
-    var container = _rootEl.closest('.field');
-
-    // Build a stable class name so CSS can style the right UI variant
-    var toggleClass = "gm-toggle-".concat(style);
-
-    // Support Craft < 5.6 where the copy UI uses the legacy button class
-    var copyTextBtn = container.getElementsByClassName('copytextbtn');
-    if (copyTextBtn.length) {
-      copyTextBtn[0].classList.add(toggleClass);
-    }
-
-    // Support Craft 5.6+ where the copy UI may be a web component or action button
-    var copyAttribute = container.getElementsByTagName('craft-copy-attribute');
-
-    // Also support action-btn variant used in some Craft builds
-    var actionBtn = container.getElementsByClassName('action-btn');
-
-    // If either copy UI variant exists, apply the toggle class to it
-    if (copyAttribute.length) {
-      copyAttribute[0].classList.add(toggleClass);
-    } else if (actionBtn.length) {
-      actionBtn[0].classList.add(toggleClass);
-    }
-
-    // If instructions are present, subtract their height so the toggle doesn’t overlap them
-    var instructions = container.getElementsByClassName('instructions');
-
-    // If instructions exist, adjust offset accordingly
-    if (instructions.length) {
-      // Subtract the height of the instructions element
-      var h = instructions[0].clientHeight || 0;
-      offset -= h;
-
-      // If a previous observer exists, disconnect it before attaching a new one
-      if (_resizeObs) {
-        try {
-          _resizeObs.disconnect();
-        } catch (_) {}
-      }
-
-      // Attach a ResizeObserver to the instructions to react to size changes
-      if (typeof ResizeObserver !== 'undefined') {
-        // Create and attach the observer
-        _resizeObs = new ResizeObserver(function () {
-          // Recalculate on the next frame to avoid layout thrash during resize
-          requestAnimationFrame(_updateTogglePosition);
-        });
-        // Observe the instructions element
-        _resizeObs.observe(instructions[0]);
-        // Unbind observer on disconnect
-        _domUnbinders.push(function () {
-          try {
-            _resizeObs.disconnect();
-          } catch (_) {}
-          _resizeObs = null;
-        });
-      }
-    }
-
-    // Publish the final computed offset for the UI to consume
-    marginTop.value = offset;
   }
 
   /**
@@ -20120,7 +20075,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     data: data,
     images: images,
     formatting: formatting,
-    marginTop: marginTop,
+    toggleWidth: toggleWidth,
     // Getters
     configToggle: configToggle,
     configCoords: configCoords,
