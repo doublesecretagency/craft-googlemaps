@@ -278,18 +278,8 @@ export const useAddressSettingsStore = defineStore('AddressSettings', () => {
         // Determine whether the subfield is enabled
         const isEnabled = enabledEl ? !!enabledEl.checked : true;
 
-        // Toggle the disabled class on the row
+        // Toggle disabled class on the row
         row.classList.toggle('disabled', !isEnabled);
-
-        // Get the label element
-        const labelEl = row.querySelector(
-            `textarea[name$="[${index}][label]"], input[type="text"][name$="[${index}][label]"]`
-        );
-
-        // If label element found, disable/enable it
-        if (labelEl) {
-            labelEl.disabled = !isEnabled;
-        }
     }
 
     /**

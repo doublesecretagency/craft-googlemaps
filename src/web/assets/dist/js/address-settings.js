@@ -18396,16 +18396,8 @@ var useAddressSettingsStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)
     // Determine whether the subfield is enabled
     var isEnabled = enabledEl ? !!enabledEl.checked : true;
 
-    // Toggle the disabled class on the row
+    // Toggle disabled class on the row
     row.classList.toggle('disabled', !isEnabled);
-
-    // Get the label element
-    var labelEl = row.querySelector("textarea[name$=\"[".concat(index, "][label]\"], input[type=\"text\"][name$=\"[").concat(index, "][label]\"]"));
-
-    // If label element found, disable/enable it
-    if (labelEl) {
-      labelEl.disabled = !isEnabled;
-    }
   }
 
   /**
