@@ -1,29 +1,31 @@
 {% if 'hidden' != config.settings.visibilityToggle %}
-    <teleport to="#{{ config.namespace.id }}-field .heading">
-        <span
-            class="map-toggle-container"
-            data-gm-field="{{ config.namespace.id }}"
-        >
-          <button
-              type="button"
-              class="map-toggle"
-              data-gm-toggle
-              data-gm-field="{{ config.namespace.id }}"
-          >
+    <div class="map-toggle-original-container">
+        <teleport to="#{{ config.namespace.id }}-field .heading">
             <span
-                class="map-toggle-text"
-                data-gm-toggle-text
+                class="map-toggle-container"
+                data-gm-field="{{ config.namespace.id }}"
             >
-              Toggle Map
+              <button
+                  type="button"
+                  class="map-toggle"
+                  data-gm-toggle
+                  data-gm-field="{{ config.namespace.id }}"
+              >
+                <span
+                    class="map-toggle-text"
+                    data-gm-toggle-text
+                >
+                  Toggle Map
+                </span>
+                <img
+                    class="map-toggle-icon"
+                    data-gm-toggle-icon
+                    alt="Toggle Map"
+                />
+              </button>
             </span>
-            <img
-                class="map-toggle-icon"
-                data-gm-toggle-icon
-                alt="Toggle Map"
-            />
-          </button>
-        </span>
-    </teleport>
+        </teleport>
+    </div>
 {% endif %}
 
 {% css %}
@@ -50,5 +52,20 @@
     margin-left: 5px;
     margin-right: 1px;
     margin-bottom: 2px;
+}
+
+/**
+ * Fallback if teleport fails
+ * (ie: the field's settings page)
+ */
+.map-toggle-original-container {
+    text-align: right;
+}
+.map-toggle-original-container .map-toggle-container {
+    display: block;
+    margin-right: 1%;
+    padding-right: 2px;
+    margin-top: -26px;
+    margin-bottom: 5px;
 }
 {% endcss %}
