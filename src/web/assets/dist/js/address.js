@@ -19430,14 +19430,23 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
       if (!el) {
         return;
       }
+
+      // If hidden
       if (mode === 'hidden') {
-        // Hide input while preserving its value
+        // Hide input
         el.type = 'hidden';
         el.readOnly = false;
       } else {
-        // Show input and toggle editability based on mode
+        // Show as a number input
         el.type = 'number';
-        el.readOnly = mode !== 'editable';
+        // If read-only
+        if (mode === 'readOnly') {
+          el.readOnly = true;
+          el.classList.add('disabled');
+        } else {
+          el.readOnly = false;
+          el.classList.remove('disabled');
+        }
       }
     });
   }
