@@ -107,10 +107,10 @@ class AddressField extends Field implements PreviewableFieldInterface
     /**
      * Dead-end recipient of Preview data
      * when field settings are saved.
-     * 
+     *
      * NOT USED ANYWHERE:
      * Only exists to satisfy saving the field settings.
-     * 
+     *
      * @var array
      */
     public array $settingsPreview = [];

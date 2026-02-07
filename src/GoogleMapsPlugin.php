@@ -330,18 +330,26 @@ class GoogleMapsPlugin extends Plugin
         Event::on(
             Field::class,
             Field::EVENT_BEFORE_SAVE,
-            function (ModelEvent $event) {
+            static function (ModelEvent $event) {
 
-                // Get field settings
-                $fieldSettings = $event->sender;
+                // Get field
+                $field = $event->sender;
+
+                // If not an Address field, bail
+                if (!($field instanceof AddressField)) {
+                    return;
+                }
+
+                // Empty settings preview to prevent storing in project config
+                $field->settingsPreview = [];
 
                 // If no subfield config, bail
-                if (!($fieldSettings->subfieldConfig ?? false)) {
+                if (!($field->subfieldConfig ?? false)) {
                     return;
                 }
 
                 // Strictly typecast all subfield settings
-                AddressField::typecastSubfieldConfig($fieldSettings->subfieldConfig);
+                AddressField::typecastSubfieldConfig($field->subfieldConfig);
             }
         );
     }
