@@ -384,8 +384,43 @@ export const useAddressStore = defineStore('address', () => {
                             const mapZoom = _map?.getZoom?.();
                             const seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
 
-                            // Apply baseline + direction
+                            // Set zoom value based on the spinner direction
                             el.value = String(seed + spinnerDirection);
+
+                            // Get existing lat/lng values from the store
+                            const existingLat = data.value.coords?.lat;
+                            const existingLng = data.value.coords?.lng;
+
+                            // Whether the existing lat/lng values are valid finite numbers
+                            const hasLat =
+                                existingLat !== null &&
+                                existingLat !== undefined &&
+                                String(existingLat).trim() !== '' &&
+                                Number.isFinite(+existingLat);
+                            const hasLng =
+                                existingLng !== null &&
+                                existingLng !== undefined &&
+                                String(existingLng).trim() !== '' &&
+                                Number.isFinite(+existingLng);
+
+                            // If either lat or lng is missing, attempt to seed from the map
+                            if ((!hasLat || !hasLng) && _map) {
+                                // Get marker position if available, otherwise fall back to map center
+                                const markerPos = _marker?.getPosition?.();
+                                const centerPos = _map.getCenter?.();
+                                const pos = markerPos || centerPos;
+
+                                // If we got a position and it has valid finite lat/lng
+                                if (pos && Number.isFinite(+pos.lat?.()) && Number.isFinite(+pos.lng?.())) {
+                                    // Update store coordinates with the seeded lat/lng
+                                    data.value.coords = {
+                                        ...data.value.coords,
+                                        lat: +pos.lat().toFixed(7),
+                                        lng: +pos.lng().toFixed(7),
+                                    };
+                                }
+                            }
+
                         } finally {
                             _suppressDomEvents = false;
                             isAdjusting = false;

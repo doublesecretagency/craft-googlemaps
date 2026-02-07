@@ -18958,13 +18958,39 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
             isAdjusting = true;
             _suppressDomEvents = true;
             try {
-              var _map2, _map2$getZoom;
+              var _map2, _map2$getZoom, _data$value$coords, _data$value$coords2;
               // Get current map zoom level
               var mapZoom = (_map2 = _map) === null || _map2 === void 0 ? void 0 : (_map2$getZoom = _map2.getZoom) === null || _map2$getZoom === void 0 ? void 0 : _map2$getZoom.call(_map2);
               var seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
 
-              // Apply baseline + direction
+              // Set zoom value based on the spinner direction
               el.value = String(seed + spinnerDirection);
+
+              // Get existing lat/lng values from the store
+              var existingLat = (_data$value$coords = data.value.coords) === null || _data$value$coords === void 0 ? void 0 : _data$value$coords.lat;
+              var existingLng = (_data$value$coords2 = data.value.coords) === null || _data$value$coords2 === void 0 ? void 0 : _data$value$coords2.lng;
+
+              // Whether the existing lat/lng values are valid finite numbers
+              var hasLat = existingLat !== null && existingLat !== undefined && String(existingLat).trim() !== '' && Number.isFinite(+existingLat);
+              var hasLng = existingLng !== null && existingLng !== undefined && String(existingLng).trim() !== '' && Number.isFinite(+existingLng);
+
+              // If either lat or lng is missing, attempt to seed from the map
+              if ((!hasLat || !hasLng) && _map) {
+                var _marker2, _marker2$getPosition, _map$getCenter, _map3, _pos$lat, _pos$lng;
+                // Get marker position if available, otherwise fall back to map center
+                var markerPos = (_marker2 = _marker) === null || _marker2 === void 0 ? void 0 : (_marker2$getPosition = _marker2.getPosition) === null || _marker2$getPosition === void 0 ? void 0 : _marker2$getPosition.call(_marker2);
+                var centerPos = (_map$getCenter = (_map3 = _map).getCenter) === null || _map$getCenter === void 0 ? void 0 : _map$getCenter.call(_map3);
+                var pos = markerPos || centerPos;
+
+                // If we got a position and it has valid finite lat/lng
+                if (pos && Number.isFinite(+((_pos$lat = pos.lat) === null || _pos$lat === void 0 ? void 0 : _pos$lat.call(pos))) && Number.isFinite(+((_pos$lng = pos.lng) === null || _pos$lng === void 0 ? void 0 : _pos$lng.call(pos)))) {
+                  // Update store coordinates with the seeded lat/lng
+                  data.value.coords = _objectSpread(_objectSpread({}, data.value.coords), {}, {
+                    lat: +pos.lat().toFixed(7),
+                    lng: +pos.lng().toFixed(7)
+                  });
+                }
+              }
             } finally {
               _suppressDomEvents = false;
               isAdjusting = false;
@@ -19256,9 +19282,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
               }); // Update subfield zoom when map is zoomed
               // noinspection JSVoidFunctionReturnValueUsed
               zoomListener = window.google.maps.event.addListener(_map, 'zoom_changed', function () {
-                var _data$value$coords3;
+                var _data$value$coords5;
                 // Get the existing zoom from store
-                var existingZoom = +((_data$value$coords3 = data.value.coords) === null || _data$value$coords3 === void 0 ? void 0 : _data$value$coords3.zoom);
+                var existingZoom = +((_data$value$coords5 = data.value.coords) === null || _data$value$coords5 === void 0 ? void 0 : _data$value$coords5.zoom);
 
                 // If no existing zoom, bail
                 if (!existingZoom) {
@@ -19302,10 +19328,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
 
               // Stop watching for changes to coordinates
               stopCoords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
-                var _data$value$coords4, _data$value$coords5;
-                return [(_data$value$coords4 = data.value.coords) === null || _data$value$coords4 === void 0 ? void 0 : _data$value$coords4.lat, (_data$value$coords5 = data.value.coords) === null || _data$value$coords5 === void 0 ? void 0 : _data$value$coords5.lng];
+                var _data$value$coords6, _data$value$coords7;
+                return [(_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.lat, (_data$value$coords7 = data.value.coords) === null || _data$value$coords7 === void 0 ? void 0 : _data$value$coords7.lng];
               }, function (_ref6) {
-                var _marker$getPosition, _marker2;
+                var _marker$getPosition, _marker3;
                 var _ref7 = _slicedToArray(_ref6, 2),
                   lat = _ref7[0],
                   lng = _ref7[1];
@@ -19327,7 +19353,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                   lat: +lat,
                   lng: +lng
                 };
-                var cur = (_marker$getPosition = (_marker2 = _marker).getPosition) === null || _marker$getPosition === void 0 ? void 0 : _marker$getPosition.call(_marker2);
+                var cur = (_marker$getPosition = (_marker3 = _marker).getPosition) === null || _marker$getPosition === void 0 ? void 0 : _marker$getPosition.call(_marker3);
 
                 // Check if position is already correct
                 var same = cur && Math.abs(cur.lat() - pos.lat) < 1e-9 && Math.abs(cur.lng() - pos.lng) < 1e-9;
@@ -19341,10 +19367,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 immediate: true
               }); // Stop watching for changes to zoom
               stopZoom = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
-                var _data$value$coords6;
-                return (_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.zoom;
+                var _data$value$coords8;
+                return (_data$value$coords8 = data.value.coords) === null || _data$value$coords8 === void 0 ? void 0 : _data$value$coords8.zoom;
               }, function (zoom) {
-                var _map$getZoom2, _map3;
+                var _map$getZoom2, _map4;
                 // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {
                   return;
@@ -19354,7 +19380,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 var next = _safeZoom(zoom);
 
                 // If zoom is already correct, bail
-                if (((_map$getZoom2 = (_map3 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map3)) === next) {
+                if (((_map$getZoom2 = (_map4 = _map).getZoom) === null || _map$getZoom2 === void 0 ? void 0 : _map$getZoom2.call(_map4)) === next) {
                   return;
                 }
 
@@ -20156,10 +20182,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     // If coordinates are valid in field data
     if (_areCoordsValid(data.value.coords)) {
       // Extract coordinates from field data
-      var _data$value$coords = data.value.coords,
-        lat = _data$value$coords.lat,
-        lng = _data$value$coords.lng,
-        zoom = _data$value$coords.zoom;
+      var _data$value$coords3 = data.value.coords,
+        lat = _data$value$coords3.lat,
+        lng = _data$value$coords3.lng,
+        zoom = _data$value$coords3.zoom;
       // Return normalized coordinates
       return {
         lat: +lat,
@@ -20193,14 +20219,14 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * Center the map on the current coordinate values.
    */
   function _centerMap() {
-    var _data$value$coords2;
+    var _data$value$coords4;
     // If map or marker is not initialized, bail
     if (!_map || !_marker) {
       return;
     }
 
     // Read current coordinates from store
-    var _ref5 = (_data$value$coords2 = data.value.coords) !== null && _data$value$coords2 !== void 0 ? _data$value$coords2 : {},
+    var _ref5 = (_data$value$coords4 = data.value.coords) !== null && _data$value$coords4 !== void 0 ? _data$value$coords4 : {},
       lat = _ref5.lat,
       lng = _ref5.lng;
 
