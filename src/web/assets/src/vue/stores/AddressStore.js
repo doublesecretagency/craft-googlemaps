@@ -99,7 +99,6 @@ export const useAddressStore = defineStore('address', () => {
 
     // Internal variables
     let _rootEl = null;                         // Root element for this Address field instance
-    let _resizeObs = null;                      // ResizeObserver for instruction height changes
     let _unsubscribers = [];                   // Reactive watchers / observers to dispose
     let _domUnbinders = [];                    // DOM event listeners to remove
     let _map = null;                            // google.maps.Map instance
@@ -385,7 +384,15 @@ export const useAddressStore = defineStore('address', () => {
                             const seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
 
                             // Set zoom value based on the spinner direction
-                            el.value = String(seed + spinnerDirection);
+                            let zoom = String(seed + spinnerDirection);
+
+                            // Prevent negative zoom
+                            if (zoom < 0) {
+                                zoom = 0;
+                            }
+
+                            // Set zoom
+                            el.value = zoom;
 
                             // Get existing lat/lng values from the store
                             const existingLat = data.value.coords?.lat;
@@ -750,6 +757,11 @@ export const useAddressStore = defineStore('address', () => {
         const stopZoom = watch(
             () => data.value.coords?.zoom,
             (zoom) => {
+
+                // If zoom is empty/null/undefined, bail
+                if (zoom === null || zoom === undefined || zoom === '') {
+                    return;
+                }
 
                 // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {

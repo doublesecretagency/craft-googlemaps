@@ -18370,7 +18370,6 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
 
   // Internal variables
   var _rootEl = null; // Root element for this Address field instance
-  var _resizeObs = null; // ResizeObserver for instruction height changes
   var _unsubscribers = []; // Reactive watchers / observers to dispose
   var _domUnbinders = []; // DOM event listeners to remove
   var _map = null; // google.maps.Map instance
@@ -18665,7 +18664,15 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
               var seed = Number.isFinite(+mapZoom) ? +mapZoom : 11;
 
               // Set zoom value based on the spinner direction
-              el.value = String(seed + spinnerDirection);
+              var zoom = String(seed + spinnerDirection);
+
+              // Prevent negative zoom
+              if (zoom < 0) {
+                zoom = 0;
+              }
+
+              // Set zoom
+              el.value = zoom;
 
               // Get existing lat/lng values from the store
               var existingLat = (_data$value$coords = data.value.coords) === null || _data$value$coords === void 0 ? void 0 : _data$value$coords.lat;
@@ -19072,6 +19079,11 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 return (_data$value$coords8 = data.value.coords) === null || _data$value$coords8 === void 0 ? void 0 : _data$value$coords8.zoom;
               }, function (zoom) {
                 var _map$getZoom2, _map4;
+                // If zoom is empty/null/undefined, bail
+                if (zoom === null || zoom === undefined || zoom === '') {
+                  return;
+                }
+
                 // Get current map zoom
                 if (!isFinite(+zoom) || !_map) {
                   return;
