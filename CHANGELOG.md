@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.2.0 - 2026-02-08
 
 ### Changed
 - Progressively enhanced Address fields (loads everything via Twig, then hydrates with Vue).
