@@ -1,5 +1,26 @@
 ---
 description: For projects with multiple sites, each site can store a different Address field value.
+meta:
+  - property: og:type
+    content: website
+  - property: og:url
+    content: https://plugins.doublesecretagency.com/google-maps/address-field/multisite-support/
+  - property: og:title
+    content: Multisite Support | Google Maps plugin for Craft CMS
+  - property: og:description
+    content: For projects with multiple sites, each site can store a different Address field value.
+  - property: og:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/address-field/translatable.png
+  - property: twitter:card
+    content: summary_large_image
+  - property: twitter:url
+    content: https://plugins.doublesecretagency.com/google-maps/address-field/multisite-support/
+  - property: twitter:title
+    content: Multisite Support | Google Maps plugin for Craft CMS
+  - property: twitter:description
+    content: For projects with multiple sites, each site can store a different Address field value.
+  - property: twitter:image
+    content: https://plugins.doublesecretagency.com/google-maps/images/address-field/translatable.png
 ---
 
 # Multisite Support
