@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Added check for malformed content.
+
 ## 5.2.0 - 2026-02-08
 
 ### Changed

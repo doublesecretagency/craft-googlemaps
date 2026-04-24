@@ -272,6 +272,11 @@ SQL;
                 continue;
             }
 
+            // If content is a string, throw error
+            if (is_string($content)) {
+                throw new Exception("Invalid content for element site [{$elementSite['id']}]: {$content}");
+            }
+
             // Get current time as a fallback
             $now = DateTimeHelper::currentUTCDateTime()->format('Y-m-d H:i:s');
 
