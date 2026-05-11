@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.2.2 - 2026-05-11
 
 ### Fixed
 - Restored the "Map/Satellite" buttons on Address field maps. ([#156](https://github.com/doublesecretagency/craft-googlemaps/issues/156))
