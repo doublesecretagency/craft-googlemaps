@@ -634,7 +634,6 @@ export const useAddressStore = defineStore('address', () => {
             zoom: _safeZoom(center.zoom),
             streetViewControl: false,
             fullscreenControl: false,
-            mapTypeControl: false,
             controlSize: settings.value.controlSize,
         };
 

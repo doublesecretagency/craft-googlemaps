@@ -19246,7 +19246,6 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                 zoom: _safeZoom(center.zoom),
                 streetViewControl: false,
                 fullscreenControl: false,
-                mapTypeControl: false,
                 controlSize: settings.value.controlSize
               }; // Build the map
               _map = new window.google.maps.Map(mapEl, mapOptions);
