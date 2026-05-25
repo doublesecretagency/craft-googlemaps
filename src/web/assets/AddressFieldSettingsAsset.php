@@ -14,6 +14,7 @@ namespace doublesecretagency\googlemaps\web\assets;
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 use craft\web\assets\vue\VueAsset;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**
@@ -43,12 +44,16 @@ class AddressFieldSettingsAsset extends AssetBundle
         $this->js = [
             'js/Sortable.min.js',
             'js/address-settings.js',
-            GoogleMaps::getApiUrl([
+        ];
+
+        if (GoogleMapsPlugin::getInstance()) {
+            $this->js[] = GoogleMaps::getApiUrl([
                 'loading' => 'async',
                 'libraries' => 'places',
                 'callback' => 'initAddressFieldSettings',
-            ]),
-        ];
+            ]);
+        }
+
     }
 
 }

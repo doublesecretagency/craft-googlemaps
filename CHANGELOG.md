@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.6.8 - 2025-09-19
+
+### Fixed
+- Fixed bug in subfield filter fallback. ([#151](https://github.com/doublesecretagency/craft-googlemaps/issues/151))
+
+## 4.6.7 - 2025-04-04
+
+### Fixed
+- Fixed compatibility issue with Craft Cloud. ([#121](https://github.com/doublesecretagency/craft-googlemaps/issues/121))
+
 ## 4.6.6 - 2025-03-17
 
 ### Changed
