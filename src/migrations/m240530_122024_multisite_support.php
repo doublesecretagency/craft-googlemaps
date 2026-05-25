@@ -87,7 +87,7 @@ class m240530_122024_multisite_support extends Migration
             "DELETE a FROM $t a"
             . " INNER JOIN $t b"
             . " ON a.elementId = b.elementId"
-            . " AND a.siteId = b.siteId"
+            . " AND a.siteId <=> b.siteId"
             . " AND a.fieldId = b.fieldId"
             . " AND (a.dateUpdated < b.dateUpdated"
             . "   OR (a.dateUpdated = b.dateUpdated AND a.id < b.id))"
