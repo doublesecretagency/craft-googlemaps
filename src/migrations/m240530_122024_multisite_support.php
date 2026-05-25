@@ -39,6 +39,9 @@ class m240530_122024_multisite_support extends Migration
         // Add new columns
         $this->_newColumns();
 
+        // Clean up any existing duplicates before proceeding
+        $this->_cleanupDuplicates();
+
         // Populate new columns with existing data
         $this->_populateData();
 
@@ -75,6 +78,23 @@ class m240530_122024_multisite_support extends Migration
     }
 
     /**
+     * Clean up any existing duplicate entries.
+     */
+    private function _cleanupDuplicates(): void
+    {
+        $t = Install::GM_ADDRESSES;
+        $this->execute(
+            "DELETE a FROM $t a"
+            . " INNER JOIN $t b"
+            . " ON a.elementId = b.elementId"
+            . " AND a.siteId <=> b.siteId"
+            . " AND a.fieldId = b.fieldId"
+            . " AND (a.dateUpdated < b.dateUpdated"
+            . "   OR (a.dateUpdated = b.dateUpdated AND a.id < b.id))"
+        );
+    }
+
+    /**
      * Add new column indexes.
      */
     private function _newIndexes(): void
@@ -102,21 +122,6 @@ class m240530_122024_multisite_support extends Migration
      */
     private function _populateData(): void
     {
-        // Get all existing Address data
-        $rows = (new Query())
-            ->select('*')
-            ->from(Install::GM_ADDRESSES)
-            ->orderBy('[[id]]')
-            ->all();
-
-        // If no existing rows, bail
-        if (!$rows) {
-            return;
-        }
-
-        // Get columns
-        $columns = array_keys($rows[0]);
-
         // Get sites service
         $sites = Craft::$app->getSites();
 
@@ -132,45 +137,59 @@ class m240530_122024_multisite_support extends Migration
         // Set date updated to right now
         $dateUpdated = DateTimeHelper::currentUTCDateTime()->format('Y-m-d H:i:s');
 
+        // Set batch size
+        $batchSize = 100;
+        $offset = 0;
+
         // Loop over all available sites
         foreach ($siteIds as $siteId) {
-
             // Skip the primary site (it will be handled later via `update`)
             if ($siteId === $primarySiteId) {
                 continue;
             }
 
-            // Initialize row data
-            $data = [];
+            // Reset offset for each site
+            $offset = 0;
 
-            // Loop over all existing rows
-            foreach ($rows as $row) {
+            while (true) {
+                // Get batch of original (unassigned) Address data only
+                $rows = (new Query())
+                    ->select('*')
+                    ->from(Install::GM_ADDRESSES)
+                    ->where(['siteId' => null])
+                    ->orderBy('[[id]]')
+                    ->limit($batchSize)
+                    ->offset($offset)
+                    ->all();
 
-                // Compile row data
-                $r = [];
-                foreach ($columns as $col) {
-                    $r[$col] = ($row[$col] ?? null);
+                // If no more rows, break
+                if (empty($rows)) {
+                    break;
                 }
 
-                // Update row data
-                $r['id'] = null;                  // Allow fresh ID
-                $r['siteId'] = $siteId;           // Specify each site ID
-                $r['dateUpdated'] = $dateUpdated; // Update date updated
-                $r['uid'] = StringHelper::UUID(); // Generate new UUID
+                // Get columns from first row
+                $columns = array_keys($rows[0]);
 
-                // Add row data to array
-                $data[] = $r;
-            }
+                // Process this batch of rows
+                foreach ($rows as $row) {
+                    // Compile row data
+                    $r = [];
+                    foreach ($columns as $col) {
+                        $r[$col] = ($row[$col] ?? null);
+                    }
 
-            // If no data, skip
-            if (!$data) {
-                continue;
-            }
+                    // Update row data
+                    $r['id'] = null;                  // Allow fresh ID
+                    $r['siteId'] = $siteId;           // Specify each site ID
+                    $r['dateUpdated'] = $dateUpdated; // Update date updated
+                    $r['uid'] = StringHelper::UUID(); // Generate new UUID
 
-            // Use upsert to handle conflicts
-            foreach ($data as $rowData) {
-                // Upsert the data of a single row
-                $this->upsert(Install::GM_ADDRESSES, $rowData, false);
+                    // Upsert the data of a single row
+                    $this->upsert(Install::GM_ADDRESSES, $r, false);
+                }
+
+                // Increment offset for next batch
+                $offset += $batchSize;
             }
         }
 
