@@ -82,39 +82,16 @@ class m240530_122024_multisite_support extends Migration
      */
     private function _cleanupDuplicates(): void
     {
-        // Get all duplicate combinations
-        $duplicates = (new Query())
-            ->select(['elementId', 'siteId', 'fieldId'])
-            ->from(Install::GM_ADDRESSES)
-            ->groupBy(['elementId', 'siteId', 'fieldId'])
-            ->having('COUNT(*) > 1')
-            ->all();
-
-        // For each duplicate combination, keep only the most recent entry
-        foreach ($duplicates as $duplicate) {
-            // Get all IDs for this combination
-            $ids = (new Query())
-                ->select('id')
-                ->from(Install::GM_ADDRESSES)
-                ->where([
-                    'elementId' => $duplicate['elementId'],
-                    'siteId' => $duplicate['siteId'],
-                    'fieldId' => $duplicate['fieldId']
-                ])
-                ->orderBy(['dateUpdated' => SORT_DESC])
-                ->all();
-
-            // Keep the most recent entry, delete others
-            if (count($ids) > 1) {
-                $keepId = array_shift($ids)['id'];
-                $deleteIds = array_column($ids, 'id');
-                
-                $this->delete(
-                    Install::GM_ADDRESSES,
-                    ['id' => $deleteIds]
-                );
-            }
-        }
+        $t = Install::GM_ADDRESSES;
+        $this->execute(
+            "DELETE a FROM $t a"
+            . " INNER JOIN $t b"
+            . " ON a.elementId = b.elementId"
+            . " AND a.siteId = b.siteId"
+            . " AND a.fieldId = b.fieldId"
+            . " AND (a.dateUpdated < b.dateUpdated"
+            . "   OR (a.dateUpdated = b.dateUpdated AND a.id < b.id))"
+        );
     }
 
     /**
@@ -175,10 +152,11 @@ class m240530_122024_multisite_support extends Migration
             $offset = 0;
 
             while (true) {
-                // Get batch of existing Address data
+                // Get batch of original (unassigned) Address data only
                 $rows = (new Query())
                     ->select('*')
                     ->from(Install::GM_ADDRESSES)
+                    ->where(['siteId' => null])
                     ->orderBy('[[id]]')
                     ->limit($batchSize)
                     ->offset($offset)
@@ -192,27 +170,8 @@ class m240530_122024_multisite_support extends Migration
                 // Get columns from first row
                 $columns = array_keys($rows[0]);
 
-                // Initialize row data
-                $data = [];
-
                 // Process this batch of rows
                 foreach ($rows as $row) {
-                    // Check if an entry already exists for this combination
-                    $exists = (new Query())
-                        ->select('id')
-                        ->from(Install::GM_ADDRESSES)
-                        ->where([
-                            'elementId' => $row['elementId'],
-                            'siteId' => $siteId,
-                            'fieldId' => $row['fieldId']
-                        ])
-                        ->exists();
-
-                    // Skip if entry already exists
-                    if ($exists) {
-                        continue;
-                    }
-
                     // Compile row data
                     $r = [];
                     foreach ($columns as $col) {
@@ -225,15 +184,8 @@ class m240530_122024_multisite_support extends Migration
                     $r['dateUpdated'] = $dateUpdated; // Update date updated
                     $r['uid'] = StringHelper::UUID(); // Generate new UUID
 
-                    // Add row data to array
-                    $data[] = $r;
-                }
-
-                // If we have data, upsert it
-                if (!empty($data)) {
-                    foreach ($data as $rowData) {
-                        $this->upsert(Install::GM_ADDRESSES, $rowData, false);
-                    }
+                    // Upsert the data of a single row
+                    $this->upsert(Install::GM_ADDRESSES, $r, false);
                 }
 
                 // Increment offset for next batch
