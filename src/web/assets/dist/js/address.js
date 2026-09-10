@@ -18278,11 +18278,15 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x3) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x4) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -18295,6 +18299,31 @@ var formatCountries = {
   numberFirst: ['Australia', 'Canada', 'France', 'Hong Kong', 'India', 'Ireland', 'Malaysia', 'New Zealand', 'Pakistan', 'Singapore', 'Sri Lanka', 'Taiwan', 'Thailand', 'United Kingdom', 'United States'],
   // Put comma after the street name
   commaAfterStreet: ['Italy']
+};
+
+// Every address subfield handle
+var addressSubfields = ['name', 'street1', 'street2', 'city', 'state', 'zip', 'neighborhood', 'county', 'country', 'countryCode', 'placeId'];
+
+/**
+ * Serialize a value for a hidden input which carries JSON.
+ */
+var toJson = function toJson(value) {
+  // If nothing to serialize, return an empty string
+  if (null === value || undefined === value) {
+    return '';
+  }
+
+  // If already a string, return as-is
+  if ('string' === typeof value) {
+    return value;
+  }
+
+  // Attempt to serialize the value
+  try {
+    return JSON.stringify(value);
+  } catch (e) {
+    return '';
+  }
 };
 
 /**
@@ -18516,33 +18545,39 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * and settings-driven UI all stay synchronized.
    */
   function connectDom(rootEl) {
+    var _settings$value$subfi;
     // Capture root element so other helpers can query within this field instance
     _rootEl = rootEl;
+
+    // Get every subfield handle, including any missing from the canonical list
+    var handles = _toConsumableArray(new Set([].concat(addressSubfields, _toConsumableArray(((_settings$value$subfi = settings.value.subfieldConfig) !== null && _settings$value$subfi !== void 0 ? _settings$value$subfi : []).map(function (sf) {
+      return sf.handle;
+    }).filter(Boolean)))));
+
+    // Derive one binding per subfield, so a new subfield is never left out
+    var subfieldBindings = handles.map(function (handle) {
+      return {
+        selector: "input[name$=\"[".concat(handle, "]\"]"),
+        path: "address.".concat(handle)
+      };
+    });
 
     // Define DOM-to-store bindings using name suffixes so this works across Craft namespaces
     // - entry fields: fields[address][street1]
     // - settings preview: types[...][street1] (or other Craft namespaces)
-    var bindings = [{
-      selector: "input[name$=\"[street1]\"]",
-      path: 'address.street1'
+    var bindings = [].concat(_toConsumableArray(subfieldBindings), [
+    // Meta fields, which are hidden inputs with no subfield of their own.
+    // Write to the DOM only, since nobody types into a hidden input,
+    // and `raw` arrives from PHP as an object which must be serialized.
+    {
+      selector: "input[name$=\"[formatted]\"]",
+      path: 'address.formatted',
+      domOnly: true
     }, {
-      selector: "input[name$=\"[street2]\"]",
-      path: 'address.street2'
-    }, {
-      selector: "input[name$=\"[city]\"]",
-      path: 'address.city'
-    }, {
-      selector: "input[name$=\"[state]\"]",
-      path: 'address.state'
-    }, {
-      selector: "input[name$=\"[zip]\"]",
-      path: 'address.zip'
-    }, {
-      selector: "input[name$=\"[country]\"]",
-      path: 'address.country'
-    }, {
-      selector: "input[name$=\"[countryCode]\"]",
-      path: 'address.countryCode'
+      selector: "input[name$=\"[raw]\"]",
+      path: 'address.raw',
+      domOnly: true,
+      toDom: toJson
     },
     // Support coords inputs named either [lat] or [coords][lat] (and same for lng/zoom)
     {
@@ -18554,12 +18589,18 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     }, {
       selector: "input[name$=\"[zoom]\"], input[name$=\"[coords][zoom]\"]",
       path: 'coords.zoom'
-    }];
+    }]);
 
     // Bind DOM → Store so user edits immediately update reactive state
     bindings.forEach(function (_ref) {
       var selector = _ref.selector,
-        path = _ref.path;
+        path = _ref.path,
+        domOnly = _ref.domOnly;
+      // If the binding only writes to the DOM, skip it
+      if (domOnly) {
+        return;
+      }
+
       // If input does not exist for this binding, bail
       var el = rootEl.querySelector(selector);
 
@@ -18731,7 +18772,8 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     // Bind Store → DOM so programmatic updates (map, autocomplete, preview settings) reflect in inputs
     bindings.forEach(function (_ref2) {
       var selector = _ref2.selector,
-        path = _ref2.path;
+        path = _ref2.path,
+        toDom = _ref2.toDom;
       // Get input for this binding
       var el = rootEl.querySelector(selector);
 
@@ -18745,7 +18787,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
         return getNestedValue(data.value, path);
       }, function (val) {
         // Get the next input value as a string
-        var next = (val !== null && val !== void 0 ? val : '') + '';
+        var next = toDom ? toDom(val) : (val !== null && val !== void 0 ? val : '') + '';
 
         // If the input value is already correct, bail
         if (el.value === next) {
@@ -19979,12 +20021,12 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
    * Select which subfield input elements should have autocomplete enabled.
    */
   function _selectAutocompleteTargets(rootEl) {
-    var _settings$value$subfi;
+    var _settings$value$subfi2;
     // Initialize selected elements array
     var selected = [];
 
     // Loop over the subfield config
-    (_settings$value$subfi = settings.value.subfieldConfig) === null || _settings$value$subfi === void 0 ? void 0 : _settings$value$subfi.forEach(function (sf) {
+    (_settings$value$subfi2 = settings.value.subfieldConfig) === null || _settings$value$subfi2 === void 0 ? void 0 : _settings$value$subfi2.forEach(function (sf) {
       // If subfield is disabled, skip it
       if (!(sf !== null && sf !== void 0 && sf.enabled)) {
         return;

@@ -27,6 +27,43 @@ const formatCountries = {
     ]
 };
 
+// Every address subfield handle
+const addressSubfields = [
+    'name',
+    'street1',
+    'street2',
+    'city',
+    'state',
+    'zip',
+    'neighborhood',
+    'county',
+    'country',
+    'countryCode',
+    'placeId',
+];
+
+/**
+ * Serialize a value for a hidden input which carries JSON.
+ */
+const toJson = (value) => {
+    // If nothing to serialize, return an empty string
+    if (null === value || undefined === value) {
+        return '';
+    }
+
+    // If already a string, return as-is
+    if ('string' === typeof value) {
+        return value;
+    }
+
+    // Attempt to serialize the value
+    try {
+        return JSON.stringify(value);
+    } catch (e) {
+        return '';
+    }
+};
+
 /**
  * Read a value from a nested object using a dot-notation path.
  */
@@ -254,17 +291,31 @@ export const useAddressStore = defineStore('address', () => {
         // Capture root element so other helpers can query within this field instance
         _rootEl = rootEl;
 
+        // Get every subfield handle, including any missing from the canonical list
+        const handles = [...new Set([
+            ...addressSubfields,
+            ...(settings.value.subfieldConfig ?? []).map(sf => sf.handle).filter(Boolean),
+        ])];
+
+        // Derive one binding per subfield, so a new subfield is never left out
+        const subfieldBindings = handles.map(handle => ({
+            selector: `input[name$="[${handle}]"]`,
+            path: `address.${handle}`,
+        }));
+
         // Define DOM-to-store bindings using name suffixes so this works across Craft namespaces
         // - entry fields: fields[address][street1]
         // - settings preview: types[...][street1] (or other Craft namespaces)
         const bindings = [
-            { selector: `input[name$="[street1]"]`,     path: 'address.street1' },
-            { selector: `input[name$="[street2]"]`,     path: 'address.street2' },
-            { selector: `input[name$="[city]"]`,        path: 'address.city' },
-            { selector: `input[name$="[state]"]`,       path: 'address.state' },
-            { selector: `input[name$="[zip]"]`,         path: 'address.zip' },
-            { selector: `input[name$="[country]"]`,     path: 'address.country' },
-            { selector: `input[name$="[countryCode]"]`, path: 'address.countryCode' },
+
+            // One binding per subfield
+            ...subfieldBindings,
+
+            // Meta fields, which are hidden inputs with no subfield of their own.
+            // Write to the DOM only, since nobody types into a hidden input,
+            // and `raw` arrives from PHP as an object which must be serialized.
+            { selector: `input[name$="[formatted]"]`, path: 'address.formatted', domOnly: true },
+            { selector: `input[name$="[raw]"]`,       path: 'address.raw',       domOnly: true, toDom: toJson },
 
             // Support coords inputs named either [lat] or [coords][lat] (and same for lng/zoom)
             { selector: `input[name$="[lat]"],  input[name$="[coords][lat]"]`,   path: 'coords.lat' },
@@ -273,7 +324,12 @@ export const useAddressStore = defineStore('address', () => {
         ];
 
         // Bind DOM → Store so user edits immediately update reactive state
-        bindings.forEach(({ selector, path }) => {
+        bindings.forEach(({ selector, path, domOnly }) => {
+
+            // If the binding only writes to the DOM, skip it
+            if (domOnly) {
+                return;
+            }
 
             // If input does not exist for this binding, bail
             const el = rootEl.querySelector(selector);
@@ -460,7 +516,7 @@ export const useAddressStore = defineStore('address', () => {
         });
 
         // Bind Store → DOM so programmatic updates (map, autocomplete, preview settings) reflect in inputs
-        bindings.forEach(({ selector, path }) => {
+        bindings.forEach(({ selector, path, toDom }) => {
 
             // Get input for this binding
             const el = rootEl.querySelector(selector);
@@ -476,7 +532,7 @@ export const useAddressStore = defineStore('address', () => {
                 (val) => {
 
                     // Get the next input value as a string
-                    const next = (val ?? '') + '';
+                    const next = (toDom ? toDom(val) : (val ?? '') + '');
 
                     // If the input value is already correct, bail
                     if (el.value === next) {
