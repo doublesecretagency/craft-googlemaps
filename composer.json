@@ -34,10 +34,11 @@
         "craftcms/cms": "^5.0.0"
     },
     "require-dev": {
-        "craftcms/wp-import": "dev-main"
+        "craftcms/wp-import": "dev-main",
+        "phpunit/phpunit": "^10.0"
     },
     "replace": {
-        "doublesecretagency/craft-smartmap":"3.*"
+        "doublesecretagency/craft-smartmap": "3.*"
     },
     "autoload": {
         "psr-4": {
@@ -45,9 +46,17 @@
             "doublesecretagency\\smartmap\\": "legacy/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "doublesecretagency\\googlemaps\\tests\\": "tests/"
+        }
+    },
     "extra": {
         "name": "Google Maps",
         "handle": "google-maps",
         "class": "doublesecretagency\\googlemaps\\GoogleMapsPlugin"
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

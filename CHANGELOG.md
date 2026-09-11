@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Added
+- Added a PHPUnit test suite.
+
+### Changed
+- Removed the obsolete Codeception test suite.
+
 ### Fixed
 - Restored Address field values which were not being saved (`formatted`, `raw`, `name`, `neighborhood`, `county`, and `placeId`). ([#158](https://github.com/doublesecretagency/craft-googlemaps/issues/158))
 - Fixed a missing import in an asset bundle.
