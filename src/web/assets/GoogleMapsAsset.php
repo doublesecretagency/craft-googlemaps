@@ -12,6 +12,7 @@
 namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
+use doublesecretagency\googlemaps\GoogleMapsPlugin;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
 
 /**

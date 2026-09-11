@@ -4,6 +4,7 @@
 
 ### Fixed
 - Restored Address field values which were not being saved (`formatted`, `raw`, `name`, `neighborhood`, `county`, and `placeId`). ([#158](https://github.com/doublesecretagency/craft-googlemaps/issues/158))
+- Fixed a missing import in an asset bundle.
 
 ## 5.2.2 - 2026-05-11
 
