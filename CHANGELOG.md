@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.2.3 - 2026-09-18
 
 ### Added
 - Added a PHPUnit test suite.
