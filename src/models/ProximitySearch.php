@@ -153,10 +153,13 @@ class ProximitySearch extends Model
             "{$haversine} AS [[distance]]"
         );
 
-        // Briefly store the distance under the field handle
-        $this->query->query->addSelect(
-            "[[distance]] AS [[{$this->field->handle}]]"
-        );
+        // If not counting results
+        if (!$this->_isAggregate()) {
+            // Briefly store the distance under the field handle
+            $this->query->query->addSelect(
+                "[[distance]] AS [[{$this->field->handle}]]"
+            );
+        }
 
         // Get the reverse radius
         $reverseRadius = ($this->options['reverseRadius'] ?? null);
@@ -492,6 +495,32 @@ class ProximitySearch extends Model
         return Defaults::COORDINATES;
     }
 
+    /**
+     * Check whether the query is selecting an aggregate, like `count()` does.
+     *
+     * Adding the distance column beside `COUNT(*)` breaks MySQL's `only_full_group_by` mode.
+     *
+     * @return bool Whether the query selects an aggregate.
+     */
+    private function _isAggregate(): bool
+    {
+        // Get the selected columns
+        $select = ($this->query->query->select ?? []);
+
+        // Loop through each selected column
+        foreach ($select as $column) {
+
+            // If the column is an aggregate function, return true
+            if (is_string($column) && preg_match('/^(COUNT|SUM|AVG|MIN|MAX)\s*\(/i', trim($column))) {
+                return true;
+            }
+
+        }
+
+        // Not an aggregate
+        return false;
+    }
+
     // ========================================================================= //
 
     /**
@@ -506,15 +535,15 @@ class ProximitySearch extends Model
         // Determine radius
         $radius = self::haversineRadius($this->options['units'] ?? $this->_defaultUnits);
 
-        // Calculate haversine formula
+        // Calculate haversine formula, clamped so rounding can't push acos out of range
         return "(
-            {$radius} * acos(
+            {$radius} * acos(LEAST(1, GREATEST(-1,
                 cos(radians({$lat})) *
                 cos(radians([[gm_addresses.lat]])) *
                 cos(radians([[gm_addresses.lng]]) - radians({$lng})) +
                 sin(radians({$lat})) *
                 sin(radians([[gm_addresses.lat]]))
-            )
+            )))
         )";
     }
 

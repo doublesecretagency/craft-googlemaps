@@ -242,4 +242,74 @@ class ProximitySearchTest extends TestCase
                 ->getMethod('queryCondition')->isStatic()
         );
     }
+
+    // ========================================================================= //
+    // Counting results (#115)
+    // ========================================================================= //
+
+    public function testDistanceColumnIsSkippedWhenCounting(): void
+    {
+        // `count()` and `{% paginate %}` select COUNT(*). Adding the distance
+        // column beside it crashed MySQL's only_full_group_by mode (and Postgres).
+        $this->assertMatchesRegularExpression(
+            '/if \(!\$this->_isAggregate\(\)\) \{\s*\n(?:\s*\/\/[^\n]*\n)*\s*\$this->query->query->addSelect\(\s*"\[\[distance\]\] AS/',
+            $this->source,
+            'The outer distance column must only be added when the query is not an aggregate.'
+        );
+    }
+
+    public function testAggregateDetectionCoversTheAggregateFunctions(): void
+    {
+        $this->assertStringContainsString(
+            "preg_match('/^(COUNT|SUM|AVG|MIN|MAX)\s*\(/i', trim(\$column))",
+            $this->source
+        );
+    }
+
+    // ========================================================================= //
+    // An address exactly at the target (#115)
+    // ========================================================================= //
+
+    public function testTheSqlHaversineClampsTheAcosArgument(): void
+    {
+        // For identical points rounding can land the argument a hair above 1,
+        // and acos() of that is NULL in MySQL and an error in Postgres.
+        $this->assertStringContainsString('acos(LEAST(1, GREATEST(-1,', $this->source);
+    }
+
+    public function testThePhpHaversineClampsTheAcosArgument(): void
+    {
+        $location = file_get_contents(dirname(__DIR__, 2) . '/src/models/Location.php');
+
+        $this->assertStringContainsString('acos(max(-1, min(1,', $location);
+    }
+
+    /**
+     * A sandbox address whose distance to itself came back NAN before the clamp.
+     */
+    public function testDistanceFromAKnownOvershootingPointToItselfIsZero(): void
+    {
+        $point = ['lat' => 34.04572160, 'lng' => -118.58438140];
+
+        $this->assertSame(0.0, (new Location($point))->getDistance($point));
+    }
+
+    public function testDistanceFromAPointToItselfIsNeverNan(): void
+    {
+        // Before the clamp roughly 4% of identical-point pairs returned NAN
+        for ($lat = -89.5; $lat < 90; $lat += 0.37) {
+            $point = ['lat' => $lat, 'lng' => -118.58438140];
+            $distance = (new Location($point))->getDistance($point);
+
+            $this->assertFalse(is_nan($distance), "Distance at latitude {$lat} is NAN.");
+        }
+    }
+
+    public function testAZeroDistanceIsKeptOnTheAddress(): void
+    {
+        // A distance of 0 is falsy, so a truthiness check dropped it to null
+        $field = file_get_contents(dirname(__DIR__, 2) . '/src/fields/AddressField.php');
+
+        $this->assertStringContainsString("if (is_numeric(\$value)) {\n            \$attr['distance'] = (float) \$value;", $field);
+    }
 }

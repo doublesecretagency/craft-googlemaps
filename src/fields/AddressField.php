@@ -332,7 +332,7 @@ class AddressField extends Field implements PreviewableFieldInterface
         $attr['enabledSubfields'] = $this->_getEnabledSubfields();
 
         // If part of a proximity search, get the distance
-        if ($value && is_numeric($value)) {
+        if (is_numeric($value)) {
             $attr['distance'] = (float) $value;
         }
 

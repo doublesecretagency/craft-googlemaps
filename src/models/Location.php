@@ -147,15 +147,15 @@ class Location extends Model
         $latB = (float) $pointB['lat'];
         $lngB = (float) $pointB['lng'];
 
-        // Calculate haversine formula
+        // Calculate haversine formula, clamped so rounding can't push acos out of range
         return (
-            $radius * acos(
+            $radius * acos(max(-1, min(1,
                 cos(deg2rad($latA)) *
                 cos(deg2rad($latB)) *
                 cos(deg2rad($lngB) - deg2rad($lngA)) +
                 sin(deg2rad($latA)) *
                 sin(deg2rad($latB))
-            )
+            )))
         );
     }
 

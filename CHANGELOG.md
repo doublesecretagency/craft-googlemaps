@@ -5,6 +5,8 @@
 ### Fixed
 - Fixed a bug which prevented saving coordinates from Live Preview. ([#144](https://github.com/doublesecretagency/craft-googlemaps/issues/144))
 - Fixed a bug where choosing an Autocomplete suggestion could leave the full address in the street subfield. ([#41](https://github.com/doublesecretagency/craft-googlemaps/issues/41))
+- Fixed a SQL error when counting the results of a proximity search. ([#115](https://github.com/doublesecretagency/craft-googlemaps/issues/115))
+- Fixed a bug with proximity searches when an address is located exactly at the target.
 
 ## 5.2.3 - 2026-09-18
 
