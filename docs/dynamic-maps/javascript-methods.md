@@ -18,7 +18,7 @@ map.tag({'parentId': 'target-parent-id'});
 :::
 
 :::warning Same But Different
-The `tag` method also exists in [Twig & PHP](/dynamic-maps/twig-php-methods/#tag-init-true), but beware that the usage is notably different.
+The `tag` method also exists in [Twig & PHP](/dynamic-maps/twig-php-methods/#tag-options), but beware that the usage is notably different.
 :::
 
 #### Arguments

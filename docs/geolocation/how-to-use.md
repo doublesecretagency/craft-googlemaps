@@ -40,7 +40,7 @@ The `getVisitor` method is simple, yet flexible. You can override the `ip` or `s
 | Option    | Type     | Default               | Description                       |
 |-----------|:--------:|:---------------------:|-----------------------------------|
 | `ip`      | _string_ | (autodetects)         | The visitor's IP address.         |
-| `service` | _string_ | (uses [setting](/getting-started/settings/#geolocation-service-dropdown-options)) | Which geolocation service to use. |
+| `service` | _string_ | (uses [setting](/getting-started/settings/#geolocation-service-options)) | Which geolocation service to use. |
 
 #### Returns
 

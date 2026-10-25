@@ -82,7 +82,7 @@ To end the chain, apply the `tag` method to wrap it all up. Depending on which l
 
 ### Twig
 
-In Twig, the `tag` method [renders a finished map](/dynamic-maps/twig-php-methods/#tag-init-true).
+In Twig, the `tag` method [renders a finished map](/dynamic-maps/twig-php-methods/#tag-options).
 
 :::code
 ```twig
@@ -93,7 +93,7 @@ In Twig, the `tag` method [renders a finished map](/dynamic-maps/twig-php-method
 
 ### PHP
 
-In PHP, the `tag` method [creates a new `Twig\Markup` object](/dynamic-maps/twig-php-methods/#tag-init-true).
+In PHP, the `tag` method [creates a new `Twig\Markup` object](/dynamic-maps/twig-php-methods/#tag-options).
 
 :::code
 ```php

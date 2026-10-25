@@ -36,7 +36,7 @@ $options = [
 ```
 :::
 
-This produces a standard set of marker clusters, as demonstrated in the screenshot [above](#).
+This produces a standard set of marker clusters, as demonstrated in the screenshot above.
 
 ## Advanced Clustering
 
