@@ -103,9 +103,9 @@ const options = {
 ```
 ```php
 // Using a named JS function
-$options = {
-    'markerClick': 'myCallbackFunction'
-};
+$options = [
+    'markerClick' => 'myCallbackFunction'
+];
 
 // Using an anonymous JS function
 $options = [

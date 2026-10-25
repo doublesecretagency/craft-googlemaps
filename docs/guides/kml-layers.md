@@ -139,10 +139,10 @@ map.hideKml('my-kml');
 map.showKml('my-kml');
 ```
 ```twig
-// Hide the KML layer
+{# Hide the KML layer #}
 {% do map.hideKml('my-kml') %}
 
-// Show the KML layer
+{# Show the KML layer #}
 {% do map.showKml('my-kml') %}
 ```
 ```php

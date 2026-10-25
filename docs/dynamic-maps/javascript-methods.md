@@ -35,7 +35,7 @@ If the `parentId` is provided, the new HTML element will be automatically inject
 ```js Automatic Placement
 // Place the HTML element automatically
 map.tag({'parentId': 'target-parent-id'});
-````
+```
 ```js Manual Placement
 // Place the HTML element manually
 const mapDiv = map.tag();

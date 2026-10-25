@@ -29,7 +29,7 @@ Returns a single [Address Model](/models/address-model/), or `null` if nothing i
 ```
 ```php
 $address = GoogleMaps::lookup($target)->one();
-````
+```
 :::
 
 ## `coords()`
@@ -42,5 +42,5 @@ Returns a single set of [coordinates](/models/coordinates/), or `null` if nothin
 ```
 ```php
 $coords = GoogleMaps::lookup($target)->coords();
-````
+```
 :::

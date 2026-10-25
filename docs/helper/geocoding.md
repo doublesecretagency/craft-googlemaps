@@ -23,13 +23,13 @@ You can then determine how to retrieve the results of that lookup (`all`, `one`,
 ```
 ```php
 // Get all matching results (sorted by best match)
-$allMatches = GoogleMaps::lookup($target).all();
+$allMatches = GoogleMaps::lookup($target)->all();
 
 // Get the first (best) matching result
-$bestMatch = GoogleMaps::lookup($target).one();
+$bestMatch = GoogleMaps::lookup($target)->one();
 
 // Get only the coordinates of the first matching address
-$coords = GoogleMaps::lookup($target).coords();
+$coords = GoogleMaps::lookup($target)->coords();
 ```
 :::
 

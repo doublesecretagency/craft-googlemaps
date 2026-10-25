@@ -68,7 +68,7 @@ mutation setAddress($id: ID, $myAddressField: GoogleMaps_AddressInput) {
     "zip": "82930",
     "country": "United States",
     "lat": 41.2614458,
-    "lng": -110.9574582,
+    "lng": -110.9574582
   }
 }
 ```

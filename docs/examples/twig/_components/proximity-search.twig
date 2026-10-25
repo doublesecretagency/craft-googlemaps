@@ -35,7 +35,7 @@
 {# Conduct the proximity search #}
 {% set locations = craft.entries
     .section('locations')
-    .address(searchOptions)
+    .myAddressField(searchOptions)
     .orderBy('distance')
     .all() %}
 
@@ -65,9 +65,9 @@
     <div id="search-results" class="w-1/3 pr-2">
         {% for entry in locations %}
             <div class="py-2 px-3 border-t border-gray-400">
-                <div class="italic text-sm text-gray-500">{{ entry.address.distance|number_format(1) }} mi.</div>
+                <div class="italic text-sm text-gray-500">{{ entry.myAddressField.distance|number_format(1) }} mi.</div>
                 <div class="font-bold">{{ entry.title }}</div>
-                <div>{{ entry.address.multiline(2) }}</div>
+                <div>{{ entry.myAddressField.multiline(2) }}</div>
             </div>
         {% endfor %}
     </div>

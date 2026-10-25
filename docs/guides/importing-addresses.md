@@ -89,7 +89,7 @@ function geocode() {
   for (let i = 1; i < cells.length; i++) {
 
     // Blank coords by default
-    let lat = lng = f = r = '';
+    let lat = '', lng = '', f = '', r = '';
     
     /**
      * You may need to adjust the column numbers below.
@@ -121,7 +121,7 @@ function geocode() {
       }
 
       // Slow it down so Google doesn't get mad
-      if (5 == i) {
+      if (0 === i % 5) {
         Utilities.sleep(500);
       }
 
