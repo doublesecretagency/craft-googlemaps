@@ -277,7 +277,82 @@ class ProximitySearchTest extends TestCase
     {
         // For identical points rounding can land the argument a hair above 1,
         // and acos() of that is NULL in MySQL and an error in Postgres.
-        $this->assertStringContainsString('acos(LEAST(1, GREATEST(-1,', $this->source);
+        $sql = $this->_haversine();
+
+        $this->assertStringContainsString('acos(CASE', $sql);
+        $this->assertMatchesRegularExpression('/WHEN \(.+\) > 1 THEN 1/s', $sql);
+        $this->assertMatchesRegularExpression('/WHEN \(.+\) < -1 THEN -1/s', $sql);
+    }
+
+    public function testTheClampKeepsAMissingAddressNull(): void
+    {
+        // Postgres' LEAST() and GREATEST() skip NULLs, so LEAST(1, GREATEST(-1, NULL))
+        // is -1 and an element without an address got a distance of 3959π miles.
+        // CASE falls through to the NULL argument on both databases.
+        $sql = $this->_haversine();
+
+        $this->assertStringNotContainsString('LEAST(', $sql);
+        $this->assertStringNotContainsString('GREATEST(', $sql);
+        $this->assertMatchesRegularExpression('/ELSE \(.+\)\s*END\)/s', $sql);
+    }
+
+    /**
+     * The real haversine SQL, in miles.
+     */
+    private function _haversine(): string
+    {
+        $search = $this->reflection->newInstanceWithoutConstructor();
+
+        return $this->reflection->getMethod('_haversineSql')->invoke($search, 34.1, -118.3);
+    }
+
+    // ========================================================================= //
+    // Postgres range filter
+    // ========================================================================= //
+
+    public function testThePostgresRangeIsFilteredInTheSubquery(): void
+    {
+        // Craft's count(), sum() and exists() run only the subquery unless it has
+        // a HAVING, so an outer WHERE made them ignore the range on Postgres.
+        $body = $this->_methodBody('_applyTarget');
+
+        $this->assertStringContainsString('$this->query->subQuery->andWhere($condition, $params);', $body);
+        $this->assertStringNotContainsString('$this->query->query->andWhere(', $body);
+    }
+
+    public function testThePostgresRangeRepeatsTheFormula(): void
+    {
+        // Postgres can't filter a subquery by its own column alias
+        $this->assertStringContainsString(
+            "\$distance = (\$isMysql ? '[[distance]]' : \"({\$haversine})\");",
+            $this->_methodBody('_applyTarget')
+        );
+    }
+
+    public function testTheMysqlRangeStaysAHaving(): void
+    {
+        $this->assertStringContainsString(
+            '$this->query->subQuery->having($condition, $params);',
+            $this->_methodBody('_applyTarget')
+        );
+    }
+
+    // ========================================================================= //
+    // A search which throws
+    // ========================================================================= //
+
+    public function testTheSearchIsClearedBeforeItRuns(): void
+    {
+        // Clearing it afterward meant a search which threw (a bad `reverseRadius`)
+        // stayed queued, and the next query of any kind threw the same error.
+        $field = file_get_contents(dirname(__DIR__, 2) . '/src/fields/AddressField.php');
+
+        $clearedAt = strpos($field, 'static::$proximitySearch = null;');
+        $runAt = strpos($field, 'new ProximitySearch([');
+
+        $this->assertNotFalse($clearedAt);
+        $this->assertNotFalse($runAt);
+        $this->assertLessThan($runAt, $clearedAt, 'The search must be cleared before it runs.');
     }
 
     public function testThePhpHaversineClampsTheAcosArgument(): void
@@ -412,7 +487,7 @@ class ProximitySearchTest extends TestCase
     {
         $field = file_get_contents(dirname(__DIR__, 2) . '/src/fields/AddressField.php');
 
-        $this->assertStringContainsString("'fields'  => static::\$proximitySearch['fields'],", $field);
+        $this->assertStringContainsString("'fields'  => \$search['fields'],", $field);
     }
 
     public function testTheJoinUsesTheFieldCondition(): void

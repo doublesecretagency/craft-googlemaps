@@ -179,22 +179,28 @@ class ProximitySearch extends Model
             return;
         }
 
+        // Whether the database is MySQL
+        $isMysql = Craft::$app->getDb()->getIsMysql();
+
+        // Postgres can't filter by the alias, so it repeats the formula
+        $distance = ($isMysql ? '[[distance]]' : "({$haversine})");
+
         // If a range was specified
         if ($this->options['range']) {
-            $condition = '[[distance]] <= :range';
+            $condition = "{$distance} <= :range";
             $params = [':range' => $this->options['range']];
         } else {
-            $condition = '[[distance]] IS NOT NULL';
+            $condition = "{$distance} IS NOT NULL";
             $params = [];
         }
 
-        // Filter based on database type
-        if (Craft::$app->getDb()->getIsMysql()) {
+        // Filter the subquery, since `count()` and `exists()` only run the subquery
+        if ($isMysql) {
             // MySQL
             $this->query->subQuery->having($condition, $params);
         } else {
             // Postgres
-            $this->query->query->andWhere($condition, $params);
+            $this->query->subQuery->andWhere($condition, $params);
         }
 
     }
@@ -697,15 +703,23 @@ class ProximitySearch extends Model
         // Determine radius
         $radius = self::haversineRadius($this->options['units'] ?? $this->_defaultUnits);
 
+        // Calculate the cosine of the angle between both points
+        $cos = "(
+            cos(radians({$lat})) *
+            cos(radians([[gm_addresses.lat]])) *
+            cos(radians([[gm_addresses.lng]]) - radians({$lng})) +
+            sin(radians({$lat})) *
+            sin(radians([[gm_addresses.lat]]))
+        )";
+
         // Calculate haversine formula, clamped so rounding can't push acos out of range
+        // (CASE keeps a missing address NULL, Postgres' LEAST and GREATEST would skip it)
         return "(
-            {$radius} * acos(LEAST(1, GREATEST(-1,
-                cos(radians({$lat})) *
-                cos(radians([[gm_addresses.lat]])) *
-                cos(radians([[gm_addresses.lng]]) - radians({$lng})) +
-                sin(radians({$lat})) *
-                sin(radians([[gm_addresses.lat]]))
-            )))
+            {$radius} * acos(CASE
+                WHEN {$cos} > 1 THEN 1
+                WHEN {$cos} < -1 THEN -1
+                ELSE {$cos}
+            END)
         )";
     }
 

@@ -9,6 +9,8 @@
 - Fixed a bug with proximity searches when an address is located exactly at the target.
 - Fixed a bug where proximity searches could miss results when different Address fields share the same handle.
 - Fixed a bug where reverse radius searches could miss results across multiple field layouts.
+- Fixed a bug where counting or paginating proximity search results ignored the range on Postgres.
+- Fixed a bug where a proximity search which failed could also break the next query.
 
 ## 5.2.3 - 2026-09-18
 

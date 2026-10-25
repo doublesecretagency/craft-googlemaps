@@ -721,20 +721,23 @@ class AddressField extends Field implements PreviewableFieldInterface
                     return;
                 }
 
+                // Get search parameters
+                $search = static::$proximitySearch;
+
+                // Nullify search parameters first
+                // (prevent duplicate execution, even if the search throws)
+                static::$proximitySearch = null;
+
                 // This is a proximity search
-                $this->isProximitySearch = static::$proximitySearch;
+                $this->isProximitySearch = $search;
 
                 // Adjust query
                 new ProximitySearch([
                     'query'   => $query,
-                    'field'   => static::$proximitySearch['field'],
-                    'fields'  => static::$proximitySearch['fields'],
-                    'options' => static::$proximitySearch['options'],
+                    'field'   => $search['field'],
+                    'fields'  => $search['fields'],
+                    'options' => $search['options'],
                 ]);
-
-                // Nullify search parameters
-                // (prevent duplicate execution)
-                static::$proximitySearch = null;
             }
         );
         // Before each element is populated
