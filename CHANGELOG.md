@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.2.4 - 2026-10-25
 
 ### Fixed
 - Fixed a bug which prevented saving coordinates from Live Preview. ([#144](https://github.com/doublesecretagency/craft-googlemaps/issues/144))
