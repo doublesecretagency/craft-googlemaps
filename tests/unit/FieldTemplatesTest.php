@@ -216,6 +216,39 @@ class FieldTemplatesTest extends TestCase
         }
     }
 
+    public function testLatAndLngInputsAcceptAnyDecimal(): void
+    {
+        // Without `step="any"` a number input steps by 1, so every real
+        // coordinate fails browser validation. Live Preview's form validates
+        // on submit and blocked saves (#144).
+        $coords = $this->_template('address/coords.twig');
+
+        foreach (['lat', 'lng'] as $key) {
+            $this->assertMatchesRegularExpression(
+                "/key: '{$key}',[^}]*step: 'any'/",
+                $coords,
+                "Coordinate input `{$key}` does not declare `step: 'any'`."
+            );
+        }
+
+        // Only the value is printed, since autoescaping a whole `step="..."`
+        // string turns its quotes into entities and breaks the attribute
+        $this->assertStringContainsString(
+            '{% if input.step is defined %}step="{{ input.step }}"{% endif %}',
+            $coords,
+            'The coordinate inputs do not render their `step`.'
+        );
+    }
+
+    public function testZoomInputKeepsTheDefaultStep(): void
+    {
+        // Zoom is stored as an integer, so it keeps the default step of 1
+        $this->assertDoesNotMatchRegularExpression(
+            "/key: 'zoom',[^}]*step:/",
+            $this->_template('address/coords.twig')
+        );
+    }
+
     public function testCoordinateInputNamesAreBuiltFromTheConfigKey(): void
     {
         $this->assertStringContainsString(

@@ -3,12 +3,14 @@
     {
         key: 'lat',
         label: 'Latitude',
-        styles: 'width:43%;'
+        styles: 'width:43%;',
+        step: 'any'
     },
     {
         key: 'lng',
         label: 'Longitude',
-        styles: 'width:43%;'
+        styles: 'width:43%;',
+        step: 'any'
     },
     {
         key: 'zoom',
@@ -36,6 +38,7 @@
     {% for input in coordsConfig -%}
         <input
             type="{{ mode == 'hidden' ? 'hidden' : 'number' }}"
+            {% if input.step is defined %}step="{{ input.step }}"{% endif %}
             placeholder="{{ input.label }}"
             {{ mode not in ['editable','hidden'] ? 'readonly' }}
             value="{{ coordsData[input.key] }}"
