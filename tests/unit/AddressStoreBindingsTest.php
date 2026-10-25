@@ -383,4 +383,47 @@ class AddressStoreBindingsTest extends TestCase
             ));
         }
     }
+
+    // ========================================================================= //
+    // Outside writers (#41)
+    // ========================================================================= //
+
+    public function testStoreToDomLoopRegistersEachSync(): void
+    {
+        // Places Autocomplete writes into the input behind the store's back, so
+        // the sync must be callable outside the watcher, not only from it.
+        $this->assertMatchesRegularExpression(
+            '/_domSyncers\.set\(el, sync\);\s*\n(?:\s*\n|\s*\/\/[^\n]*\n)*\s*const stop = watch\(\s*\(\) => getNestedValue\(data\.value, path\),\s*sync,/',
+            $this->storeSource,
+            'The store-to-DOM loop must register its sync function and watch with that same function.'
+        );
+    }
+
+    public function testPlaceChangedResyncsTheInputAfterApplyingThePlace(): void
+    {
+        // A watcher only fires when the store value changes. Picking a place
+        // whose parsed value equals the current one left Google's full
+        // prediction in the input, so the listener resyncs it directly.
+        $this->assertMatchesRegularExpression(
+            '/_applyPlaceToData\(place\);\s*\n(?:\s*\n|\s*\/\/[^\n]*\n)*\s*_domSyncers\.get\(el\)\?\.\(\);/',
+            $this->storeSource,
+            'The place_changed listener must resync the input after applying the place.'
+        );
+    }
+
+    public function testSyncFunctionsAreClearedOnDisconnect(): void
+    {
+        $this->assertMatchesRegularExpression(
+            '/function disconnectDom\(\) \{[^}]*?_domSyncers\.clear\(\);/s',
+            $this->storeSource
+        );
+    }
+
+    public function testInputHandlerDeclaresItsEvent(): void
+    {
+        // Without the parameter, `e` resolved to whatever global happened to
+        // be named `e`, and threw a ReferenceError where none existed.
+        $this->assertStringContainsString('const handler = (e) => {', $this->storeSource);
+        $this->assertStringNotContainsString('const handler = () => {', $this->storeSource);
+    }
 }

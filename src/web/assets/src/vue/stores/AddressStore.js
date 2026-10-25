@@ -141,6 +141,7 @@ export const useAddressStore = defineStore('address', () => {
     let _map = null;                            // google.maps.Map instance
     let _marker = null;                         // Map marker synced to coordinates
     let _autocompletes = [];                   // Active Places Autocomplete instances
+    let _domSyncers = new Map();              // input element -> Store→DOM sync function
     let _formSubmitGuards = new Map(); // formEl -> submit handler mapping
     let _blockNextSubmit = false;            // One-shot guard to prevent accidental submit
     let _suppressDomEvents = false;          // Prevent Store→DOM updates from re-triggering Autocomplete
@@ -409,7 +410,7 @@ export const useAddressStore = defineStore('address', () => {
             }
 
             // Normalize input value so numbers become numbers and empty values become null
-            const handler = () => {
+            const handler = (e) => {
 
                 // Ignore synthetic input events
                 if (e && e.isTrusted === false) {
@@ -526,29 +527,38 @@ export const useAddressStore = defineStore('address', () => {
                 return;
             }
 
+            // Sync the input value to the store value
+            const sync = () => {
+
+                // Get the current store value
+                const val = getNestedValue(data.value, path);
+
+                // Get the next input value as a string
+                const next = (toDom ? toDom(val) : (val ?? '') + '');
+
+                // If the input value is already correct, bail
+                if (el.value === next) {
+                    return;
+                }
+
+                // Update the input value to reflect the store state
+                el.value = next;
+
+                // If DOM events are not suppressed, dispatch events so dependent behaviors can react
+                // (e.g. Craft UI, masks, other listeners, etc.)
+                if (!_suppressDomEvents) {
+                    el.dispatchEvent(new Event('input', {bubbles: true}));
+                    el.dispatchEvent(new Event('change', {bubbles: true}));
+                }
+            };
+
+            // Keep the sync available for writers outside the store (e.g. Places Autocomplete)
+            _domSyncers.set(el, sync);
+
             // Watch the specific nested value so we only update DOM when that value changes
             const stop = watch(
                 () => getNestedValue(data.value, path),
-                (val) => {
-
-                    // Get the next input value as a string
-                    const next = (toDom ? toDom(val) : (val ?? '') + '');
-
-                    // If the input value is already correct, bail
-                    if (el.value === next) {
-                        return;
-                    }
-
-                    // Update the input value to reflect the store state
-                    el.value = next;
-
-                    // If DOM events are not suppressed, dispatch events so dependent behaviors can react
-                    // (e.g. Craft UI, masks, other listeners, etc.)
-                    if (!_suppressDomEvents) {
-                        el.dispatchEvent(new Event('input', {bubbles: true}));
-                        el.dispatchEvent(new Event('change', {bubbles: true}));
-                    }
-                },
+                sync,
                 { immediate: true }
             );
             _unsubscribers.push(stop);
@@ -619,6 +629,9 @@ export const useAddressStore = defineStore('address', () => {
         // Remove DOM event listeners
         _domUnbinders.forEach(fn => fn());
         _domUnbinders = [];
+
+        // Forget the Store→DOM sync functions
+        _domSyncers.clear();
     }
 
     /**
@@ -909,6 +922,10 @@ export const useAddressStore = defineStore('address', () => {
                 try {
                     // Apply place data to store
                     _applyPlaceToData(place);
+
+                    // Google writes the full prediction into the input directly, and the
+                    // store watcher won't fire if the parsed value is unchanged (#41)
+                    _domSyncers.get(el)?.();
                 } finally {
                     // Re-enable DOM events after Vue has flushed updates
                     nextTick(() => {

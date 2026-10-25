@@ -18277,7 +18277,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x3) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x4) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -18404,6 +18404,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   var _map = null; // google.maps.Map instance
   var _marker = null; // Map marker synced to coordinates
   var _autocompletes = []; // Active Places Autocomplete instances
+  var _domSyncers = new Map(); // input element -> Store→DOM sync function
   var _formSubmitGuards = new Map(); // formEl -> submit handler mapping
   var _blockNextSubmit = false; // One-shot guard to prevent accidental submit
   var _suppressDomEvents = false; // Prevent Store→DOM updates from re-triggering Autocomplete
@@ -18677,7 +18678,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
       }
 
       // Normalize input value so numbers become numbers and empty values become null
-      var handler = function handler() {
+      var handler = function handler(e) {
         // Ignore synthetic input events
         if (e && e.isTrusted === false) {
           return;
@@ -18782,10 +18783,11 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
         return;
       }
 
-      // Watch the specific nested value so we only update DOM when that value changes
-      var stop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
-        return getNestedValue(data.value, path);
-      }, function (val) {
+      // Sync the input value to the store value
+      var sync = function sync() {
+        // Get the current store value
+        var val = getNestedValue(data.value, path);
+
         // Get the next input value as a string
         var next = toDom ? toDom(val) : (val !== null && val !== void 0 ? val : '') + '';
 
@@ -18807,7 +18809,15 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
             bubbles: true
           }));
         }
-      }, {
+      };
+
+      // Keep the sync available for writers outside the store (e.g. Places Autocomplete)
+      _domSyncers.set(el, sync);
+
+      // Watch the specific nested value so we only update DOM when that value changes
+      var stop = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
+        return getNestedValue(data.value, path);
+      }, sync, {
         immediate: true
       });
       _unsubscribers.push(stop);
@@ -18895,6 +18905,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
       return fn();
     });
     _domUnbinders = [];
+
+    // Forget the Store→DOM sync functions
+    _domSyncers.clear();
   }
 
   /**
@@ -19232,8 +19245,13 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                   // do not re-trigger Autocomplete or other listeners
                   _suppressDomEvents = true;
                   try {
+                    var _domSyncers$get;
                     // Apply place data to store
                     _applyPlaceToData(place);
+
+                    // Google writes the full prediction into the input directly, and the
+                    // store watcher won't fire if the parsed value is unchanged (#41)
+                    (_domSyncers$get = _domSyncers.get(el)) === null || _domSyncers$get === void 0 ? void 0 : _domSyncers$get();
                   } finally {
                     // Re-enable DOM events after Vue has flushed updates
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)(function () {
