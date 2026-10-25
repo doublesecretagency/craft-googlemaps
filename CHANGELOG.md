@@ -7,6 +7,8 @@
 - Fixed a bug where choosing an Autocomplete suggestion could leave the full address in the street subfield. ([#41](https://github.com/doublesecretagency/craft-googlemaps/issues/41))
 - Fixed a SQL error when counting the results of a proximity search. ([#115](https://github.com/doublesecretagency/craft-googlemaps/issues/115))
 - Fixed a bug with proximity searches when an address is located exactly at the target.
+- Fixed a bug where proximity searches could miss results when different Address fields share the same handle.
+- Fixed a bug where reverse radius searches could miss results across multiple field layouts.
 
 ## 5.2.3 - 2026-09-18
 

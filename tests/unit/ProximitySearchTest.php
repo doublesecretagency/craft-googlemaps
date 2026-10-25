@@ -2,6 +2,9 @@
 namespace doublesecretagency\googlemaps\tests\unit;
 
 use craft\base\Model;
+use craft\fieldlayoutelements\CustomField;
+use craft\models\FieldLayout;
+use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\models\Location;
 use doublesecretagency\googlemaps\models\ProximitySearch;
 use PHPUnit\Framework\TestCase;
@@ -311,5 +314,202 @@ class ProximitySearchTest extends TestCase
         $field = file_get_contents(dirname(__DIR__, 2) . '/src/fields/AddressField.php');
 
         $this->assertStringContainsString("if (is_numeric(\$value)) {\n            \$attr['distance'] = (float) \$value;", $field);
+    }
+
+    // ========================================================================= //
+    // Fields sharing a handle (Craft 5 multi-instance fields)
+    // ========================================================================= //
+
+    /**
+     * An Address field instance as Craft hands it to queryCondition(): a field
+     * with a handle, placed in one layout. Built without constructors so no
+     * Craft container is needed.
+     */
+    private function _instance(int $fieldId, string $handle, int $layoutId): AddressField
+    {
+        $layout = (new ReflectionClass(FieldLayout::class))->newInstanceWithoutConstructor();
+        $layout->id = $layoutId;
+
+        $element = (new ReflectionClass(CustomField::class))->newInstanceWithoutConstructor();
+        $element->setLayout($layout);
+
+        $field = (new ReflectionClass(AddressField::class))->newInstanceWithoutConstructor();
+        $field->id = $fieldId;
+        $field->handle = $handle;
+        $field->layoutElement = $element;
+
+        return $field;
+    }
+
+    /**
+     * A stand-in layout which only answers getCustomFields().
+     */
+    private function _layout(AddressField ...$fields): object
+    {
+        return new class($fields) {
+            public function __construct(private array $fields) {}
+            public function getCustomFields(): array { return $this->fields; }
+        };
+    }
+
+    /**
+     * Calls a private ProximitySearch method on a search over the given instances.
+     */
+    private function _call(string $method, array $instances, mixed ...$args): mixed
+    {
+        $search = (new ReflectionClass(ProximitySearch::class))->newInstanceWithoutConstructor();
+        $search->field = $instances[0];
+        $search->fields = $instances;
+
+        return $this->reflection->getMethod($method)->invoke($search, ...$args);
+    }
+
+    public function testQueryConditionCollectsEveryFieldSharingAHandle(): void
+    {
+        // Craft calls queryCondition() once per field behind a handle. Before
+        // the fix each call overwrote the last, so only one field was searched.
+        $a = $this->_instance(1, 'address', 2);
+        $b = $this->_instance(8, 'address', 6);
+        $options = ['range' => 5];
+
+        $params = [];
+
+        try {
+            AddressField::$proximitySearch = null;
+            AddressField::queryCondition([$a], $options, $params);
+            AddressField::queryCondition([$b], $options, $params);
+
+            $this->assertSame([$a, $b], AddressField::$proximitySearch['fields']);
+            $this->assertSame($a, AddressField::$proximitySearch['field']);
+            $this->assertSame($options, AddressField::$proximitySearch['options']);
+        } finally {
+            AddressField::$proximitySearch = null;
+        }
+    }
+
+    public function testQueryConditionStartsOverForADifferentHandle(): void
+    {
+        // Two proximity params in one query is a known limitation (the last
+        // wins). Their fields must not merge into one search.
+        $a = $this->_instance(1, 'address', 2);
+        $b = $this->_instance(6, 'venue', 3);
+
+        $params = [];
+
+        try {
+            AddressField::$proximitySearch = null;
+            AddressField::queryCondition([$a], ['range' => 5], $params);
+            AddressField::queryCondition([$b], ['range' => 9], $params);
+
+            $this->assertSame([$b], AddressField::$proximitySearch['fields']);
+            $this->assertSame($b, AddressField::$proximitySearch['field']);
+        } finally {
+            AddressField::$proximitySearch = null;
+        }
+    }
+
+    public function testTheFieldHandsEveryInstanceToTheSearch(): void
+    {
+        $field = file_get_contents(dirname(__DIR__, 2) . '/src/fields/AddressField.php');
+
+        $this->assertStringContainsString("'fields'  => static::\$proximitySearch['fields'],", $field);
+    }
+
+    public function testTheJoinUsesTheFieldCondition(): void
+    {
+        $this->assertStringContainsString('$this->_fieldCondition(),', $this->_methodBody('init'));
+        $this->assertStringNotContainsString(':fieldId', $this->_methodBody('init'));
+    }
+
+    public function testASingleFieldIsMatchedEverywhere(): void
+    {
+        // The common case keeps the original join: no layout restriction
+        $instances = [$this->_instance(1, 'address', 2), $this->_instance(1, 'address', 13)];
+        $layouts = [$this->_layout($instances[0]), $this->_layout($instances[1])];
+
+        $this->assertSame(
+            ['gm_addresses.fieldId' => 1],
+            $this->_call('_fieldCondition', $instances, $layouts)
+        );
+    }
+
+    public function testSeveralFieldsSharingAHandleAreAllMatched(): void
+    {
+        // The sandbox repro: field 1 and field 8 both answer to `address`
+        $instances = [$this->_instance(1, 'address', 2), $this->_instance(8, 'address', 6)];
+        $layouts = [$this->_layout($instances[0]), $this->_layout($instances[1])];
+
+        $this->assertSame(
+            ['gm_addresses.fieldId' => [1, 8]],
+            $this->_call('_fieldCondition', $instances, $layouts)
+        );
+    }
+
+    public function testAFieldUsedUnderAnotherHandleIsOnlyMatchedInItsOwnLayouts(): void
+    {
+        // Layout 16 holds field 8 as `address2` beside field 1 as `address`, so
+        // matching field 8 everywhere would join a second, wrong address there.
+        $instances = [$this->_instance(1, 'address', 16), $this->_instance(8, 'address', 6)];
+        $layouts = [
+            $this->_layout($instances[1]),
+            $this->_layout($instances[0], $this->_instance(8, 'address2', 16)),
+        ];
+
+        $this->assertSame(
+            ['or',
+                ['gm_addresses.fieldId' => 8, 'elements.fieldLayoutId' => [6]],
+                ['gm_addresses.fieldId' => 1],
+            ],
+            $this->_call('_fieldCondition', $instances, $layouts)
+        );
+    }
+
+    public function testAnOverriddenHandleOnItsOwnIsOnlyMatchedInItsOwnLayouts(): void
+    {
+        // Searching `address2` must not match elements storing field 8 as `address`
+        $instances = [$this->_instance(8, 'address2', 16)];
+        $layouts = [
+            $this->_layout($this->_instance(8, 'address', 6)),
+            $this->_layout($this->_instance(1, 'address', 16), $instances[0]),
+        ];
+
+        $this->assertSame(
+            ['gm_addresses.fieldId' => 8, 'elements.fieldLayoutId' => [16]],
+            $this->_call('_fieldCondition', $instances, $layouts)
+        );
+    }
+
+    public function testEachLayoutIsListedOnce(): void
+    {
+        $instances = [
+            $this->_instance(1, 'address', 2),
+            $this->_instance(8, 'address', 6),
+            $this->_instance(1, 'address', 2),
+        ];
+
+        $layoutIds = array_map(static fn($layout) => $layout->id, $this->_call('_layouts', $instances));
+
+        $this->assertSame([2, 6], $layoutIds);
+    }
+
+    public function testTheReverseRadiusIsReadFromEveryLayout(): void
+    {
+        // Each layout stores the radius under its own instance UID. Reading only
+        // the first layout's UID dropped every element in the other layouts.
+        $body = $this->_methodBody('_applyReverseRadius');
+
+        $this->assertStringContainsString('foreach ($this->_layouts() as $layout) {', $body);
+        $this->assertStringContainsString("'COALESCE('.implode(', ', \$radii).')'", $body);
+        $this->assertStringNotContainsString('$this->field->layoutElement->getLayout()', $body);
+    }
+
+    public function testAReverseRadiusMissingFromALayoutIsSkipped(): void
+    {
+        // getField() throws for a missing field, which crashed the search
+        // whenever the first layout lacked the Number field
+        $body = $this->_methodBody('_applyReverseRadius');
+
+        $this->assertStringContainsString('$layout->getFieldByHandle($reverseRadius)', $body);
+        $this->assertStringNotContainsString('->getField($reverseRadius)', $body);
     }
 }

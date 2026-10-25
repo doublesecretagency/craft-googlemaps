@@ -16,6 +16,7 @@ use craft\base\Model;
 use craft\db\Connection;
 use craft\elements\db\ElementQueryInterface;
 use craft\fields\Number;
+use craft\models\FieldLayout;
 use doublesecretagency\googlemaps\enums\Defaults;
 use doublesecretagency\googlemaps\fields\AddressField;
 use doublesecretagency\googlemaps\helpers\GeocodingHelper;
@@ -45,6 +46,11 @@ class ProximitySearch extends Model
     public ?AddressField $field = null;
 
     /**
+     * @var AddressField[] Every instance of the Address field(s) sharing the queried handle.
+     */
+    public array $fields = [];
+
+    /**
      * @var array|null Array of options for configuring the proximity search.
      */
     public ?array $options = null;
@@ -65,8 +71,12 @@ class ProximitySearch extends Model
         // Join with plugin table
         $this->query->subQuery->leftJoin(
             '{{%googlemaps_addresses}} gm_addresses',
-            '[[gm_addresses.elementId]] = [[elements.id]] AND [[gm_addresses.siteId]] = [[elements_sites.siteId]] AND [[gm_addresses.fieldId]] = :fieldId',
-            [':fieldId' => $this->field->id]
+            [
+                'and',
+                '[[gm_addresses.elementId]] = [[elements.id]]',
+                '[[gm_addresses.siteId]] = [[elements_sites.siteId]]',
+                $this->_fieldCondition(),
+            ]
         );
 
         // Apply each option
@@ -284,24 +294,43 @@ class ProximitySearch extends Model
             "[[elements_sites.content]]"
         );
 
-        // Get reverse radius field UID
-        $layoutField = $this->field->layoutElement->getLayout()->getField($reverseRadius);
-
-        // Get the actual reverse field
-        $reverseField = $layoutField->getField();
-
-        // If not a Number field type
-        if (!is_a($reverseField, Number::class)) {
-            // Get the actual field class
-            $actualClass = get_class($reverseField);
-            // Throw an error
-            throw new HttpException(500, "The \"{$reverseRadius}\" field is a {$actualClass}. Please specify a Number field for the `reverseRadius` option.");
-        }
-
         /** @var Connection $db */
         $db = Craft::$app->getDb();
         $qb = $db->getQueryBuilder();
-        $sql = $qb->jsonExtract('elements_sites.content', [$layoutField->uid]);
+
+        // Initialize the reverse radius of each layout
+        $radii = [];
+
+        // Loop through each layout being searched
+        foreach ($this->_layouts() as $layout) {
+
+            // Get this layout's reverse radius field
+            $reverseField = $layout->getFieldByHandle($reverseRadius);
+
+            // If not in this layout, skip it
+            if (!$reverseField) {
+                continue;
+            }
+
+            // If not a Number field type
+            if (!is_a($reverseField, Number::class)) {
+                // Get the actual field class
+                $actualClass = get_class($reverseField);
+                // Throw an error
+                throw new HttpException(500, "The \"{$reverseRadius}\" field is a {$actualClass}. Please specify a Number field for the `reverseRadius` option.");
+            }
+
+            // Each layout stores the value under its own instance UID
+            $radii[] = $qb->jsonExtract('elements_sites.content', [$reverseField->layoutElement->uid]);
+        }
+
+        // If no layout has the field, throw an error
+        if (!$radii) {
+            throw new HttpException(500, "The \"{$reverseRadius}\" field doesn't exist. Please specify a Number field for the `reverseRadius` option.");
+        }
+
+        // Only one layout's value will exist per element
+        $sql = (1 === count($radii) ? $radii[0] : 'COALESCE('.implode(', ', $radii).')');
 
         // Add reverse radius result to query
         $this->query->subQuery->addSelect("{$sql} AS [[gm_reverseRadius]]");
@@ -493,6 +522,139 @@ class ProximitySearch extends Model
 
         // Something's not right, return default coordinates
         return Defaults::COORDINATES;
+    }
+
+    /**
+     * Get every instance of the Address field(s) being searched.
+     *
+     * @return AddressField[]
+     */
+    private function _instances(): array
+    {
+        // If no instances were specified, use the field itself
+        return ($this->fields ?: array_filter([$this->field]));
+    }
+
+    /**
+     * Get each field layout being searched.
+     *
+     * @return FieldLayout[]
+     */
+    private function _layouts(): array
+    {
+        // Initialize layouts
+        $layouts = [];
+
+        // Loop through each field instance
+        foreach ($this->_instances() as $instance) {
+
+            // Get the instance's layout
+            $layout = $instance->layoutElement?->getLayout();
+
+            // If a layout exists, add it once
+            if ($layout) {
+                $layouts[$layout->id] = $layout;
+            }
+
+        }
+
+        // Return layouts
+        return array_values($layouts);
+    }
+
+    /**
+     * Get the join condition which matches addresses to the field(s) being searched.
+     *
+     * With Craft's multi-instance fields, one handle can belong to different
+     * Address fields in different layouts, and one Address field can appear
+     * under different handles. A field which appears under another handle
+     * is only matched within the layouts using the searched handle.
+     *
+     * @param FieldLayout[]|null $layouts Every layout of the queried element type, or null to look them up.
+     * @return array
+     */
+    private function _fieldCondition(?array $layouts = null): array
+    {
+        // Initialize layout IDs of each field
+        $layoutIds = [];
+
+        // Loop through each field instance
+        foreach ($this->_instances() as $instance) {
+            $layoutIds[$instance->id][] = $instance->layoutElement?->getLayout()->id;
+        }
+
+        // Get fields which appear under another handle
+        $elsewhere = $this->_fieldsUnderOtherHandles($layouts);
+
+        // Initialize fields to match everywhere
+        $everywhere = [];
+
+        // Initialize condition
+        $condition = ['or'];
+
+        // Loop through each field
+        foreach ($layoutIds as $fieldId => $ids) {
+
+            // If only ever used under this handle, match it everywhere
+            if (!isset($elsewhere[$fieldId])) {
+                $everywhere[] = $fieldId;
+                continue;
+            }
+
+            // Match within the layouts using this handle
+            $condition[] = [
+                'gm_addresses.fieldId' => $fieldId,
+                'elements.fieldLayoutId' => array_values(array_unique($ids)),
+            ];
+        }
+
+        // Match the remaining fields everywhere
+        if ($everywhere) {
+            $condition[] = ['gm_addresses.fieldId' => (1 === count($everywhere) ? $everywhere[0] : $everywhere)];
+        }
+
+        // Return the condition, without nesting a lone match
+        return (2 === count($condition) ? $condition[1] : $condition);
+    }
+
+    /**
+     * Get the IDs of fields which appear under a different handle than the one being searched.
+     *
+     * @param FieldLayout[]|null $layouts Every layout of the queried element type, or null to look them up.
+     * @return array Field IDs as keys.
+     */
+    private function _fieldsUnderOtherHandles(?array $layouts = null): array
+    {
+        // If no layouts were specified
+        if (null === $layouts) {
+
+            // Get the element type being queried
+            $elementType = ($this->query->elementType ?? null);
+
+            // If no element type, bail
+            if (!$elementType) {
+                return [];
+            }
+
+            // Get every layout of the element type
+            $layouts = Craft::$app->getFields()->getLayoutsByType($elementType);
+        }
+
+        // Initialize field IDs
+        $fieldIds = [];
+
+        // Loop through every custom field of every layout
+        foreach ($layouts as $layout) {
+            foreach ($layout->getCustomFields() as $field) {
+                // If using a different handle, keep it
+                if ($field->handle !== $this->field->handle) {
+                    $fieldIds[$field->id] = true;
+                }
+            }
+        }
+
+        // Return field IDs
+        return $fieldIds;
     }
 
     /**

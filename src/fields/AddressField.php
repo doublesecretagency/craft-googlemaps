@@ -686,9 +686,16 @@ class AddressField extends Field implements PreviewableFieldInterface
             return [];
         }
 
+        // Get the previous call's parameters
+        $previous = static::$proximitySearch;
+
+        // Craft calls this once per field sharing a handle, so keep the earlier fields
+        $sameHandle = (($previous['field']->handle ?? null) === ($instances[0]->handle ?? null));
+
         // Get parameters of the proximity search
         static::$proximitySearch = [
-            'field'   => ($instances[0] ?? null),
+            'field'   => ($sameHandle ? $previous['field'] : ($instances[0] ?? null)),
+            'fields'  => [...($sameHandle ? ($previous['fields'] ?? []) : []), ...$instances],
             'options' => $value,
         ];
 
@@ -721,6 +728,7 @@ class AddressField extends Field implements PreviewableFieldInterface
                 new ProximitySearch([
                     'query'   => $query,
                     'field'   => static::$proximitySearch['field'],
+                    'fields'  => static::$proximitySearch['fields'],
                     'options' => static::$proximitySearch['options'],
                 ]);
 
