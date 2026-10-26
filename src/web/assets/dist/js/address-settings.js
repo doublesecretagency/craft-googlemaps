@@ -18112,6 +18112,550 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./web/assets/src/vue/places/PlacesAutocomplete.js":
+/*!*********************************************************!*\
+  !*** ./web/assets/src/vue/places/PlacesAutocomplete.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "attachAutocomplete": () => (/* binding */ attachAutocomplete),
+/* harmony export */   "getProvider": () => (/* binding */ getProvider),
+/* harmony export */   "isAnyMenuOpen": () => (/* binding */ isAnyMenuOpen),
+/* harmony export */   "isPermissionError": () => (/* binding */ isPermissionError),
+/* harmony export */   "toLegacyPlace": () => (/* binding */ toLegacyPlace)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/**
+ * Places Autocomplete, powered by Places API (New).
+ *
+ * Attaches a suggestion menu to an existing input. Google's legacy Places API
+ * is unavailable to Cloud projects created after March 1st, 2025, but the new
+ * API must be enabled on older projects. If the new API is not enabled, every
+ * input on the page falls back to the legacy Places Autocomplete.
+ */
+
+// Page-wide provider: null (not yet known), 'new', or 'legacy'
+var _provider = null;
+
+// Every attached menu on the page
+var _instances = new Set();
+
+// Whether the legacy fallback has already been reported
+var _reported = false;
+
+// Whether the menu styles have been injected
+var _styled = false;
+
+// Unique ID counter for menus
+var _uid = 0;
+
+// Place fields needed to fill the Address subfields
+var PLACE_FIELDS = ['addressComponents', 'formattedAddress', 'location', 'displayName', 'id'];
+
+// Delay between keystrokes and suggestion requests (in milliseconds)
+var DEBOUNCE = 150;
+
+// ========================================================================= //
+
+/**
+ * Get the page-wide provider.
+ */
+function getProvider() {
+  return _provider;
+}
+
+/**
+ * Whether a request failed because Places API (New) is unavailable to the API key.
+ */
+function isPermissionError(error) {
+  // gRPC code 7 is PERMISSION_DENIED (API disabled or restricted)
+  if ('RpcError' === (error === null || error === void 0 ? void 0 : error.name) && 7 === (error === null || error === void 0 ? void 0 : error.code)) {
+    return true;
+  }
+
+  // Otherwise, check the message
+  return /has not been used|is disabled|not authorized/i.test(String((error === null || error === void 0 ? void 0 : error.message) || ''));
+}
+
+/**
+ * Convert a Places API (New) place into the legacy `PlaceResult` shape.
+ *
+ * Everything downstream (subfields, `raw`, coordinates) reads the legacy shape,
+ * so a place looks the same whichever API produced it.
+ */
+function toLegacyPlace(place) {
+  var _place$formattedAddre, _place$location, _place$displayName, _place$id;
+  // If no place, bail
+  if (!place) {
+    return null;
+  }
+
+  // Return the legacy shape
+  return {
+    address_components: (place.addressComponents || []).map(function (c) {
+      return {
+        long_name: c.longText,
+        short_name: c.shortText,
+        types: c.types || []
+      };
+    }),
+    formatted_address: (_place$formattedAddre = place.formattedAddress) !== null && _place$formattedAddre !== void 0 ? _place$formattedAddre : null,
+    geometry: {
+      location: (_place$location = place.location) !== null && _place$location !== void 0 ? _place$location : null
+    },
+    html_attributions: [],
+    name: (_place$displayName = place.displayName) !== null && _place$displayName !== void 0 ? _place$displayName : null,
+    place_id: (_place$id = place.id) !== null && _place$id !== void 0 ? _place$id : null
+  };
+}
+
+/**
+ * Whether any suggestion menu on the page is open.
+ */
+function isAnyMenuOpen() {
+  var _iterator = _createForOfIteratorHelper(_instances),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var instance = _step.value;
+      if (instance.isOpen()) {
+        return true;
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return false;
+}
+
+/**
+ * Attach a suggestion menu to an input.
+ *
+ * Returns null if the page is already using the legacy API, so the
+ * caller can wire up the legacy Autocomplete instead.
+ */
+function attachAutocomplete(input, _ref) {
+  var _window$google, _window$google$maps;
+  var onPlace = _ref.onPlace,
+    onFallback = _ref.onFallback;
+  // Get the Places library
+  var places = (_window$google = window.google) === null || _window$google === void 0 ? void 0 : (_window$google$maps = _window$google.maps) === null || _window$google$maps === void 0 ? void 0 : _window$google$maps.places;
+
+  // If already using legacy, or the new API is missing from Maps JS, bail
+  if ('legacy' === _provider || !(places !== null && places !== void 0 && places.AutocompleteSuggestion)) {
+    return null;
+  }
+
+  // Inject the menu styles
+  _injectStyles();
+
+  // Create the menu
+  var id = "gm-places-menu-".concat(++_uid);
+  var menu = document.createElement('div');
+  menu.className = 'gm-places-menu';
+  menu.style.display = 'none';
+
+  // Create the list of suggestions
+  var list = document.createElement('ul');
+  list.id = id;
+  list.setAttribute('role', 'listbox');
+  list.setAttribute('aria-label', 'Address suggestions');
+  menu.appendChild(list);
+
+  // Add the Google Maps attribution
+  var attribution = document.createElement('div');
+  attribution.className = 'gm-places-attribution';
+  attribution.setAttribute('translate', 'no');
+  attribution.textContent = 'Google Maps';
+  menu.appendChild(attribution);
+
+  // Add the menu to the page
+  document.body.appendChild(menu);
+
+  // Make the input a combobox
+  input.setAttribute('role', 'combobox');
+  input.setAttribute('aria-autocomplete', 'list');
+  input.setAttribute('aria-expanded', 'false');
+  input.setAttribute('aria-controls', id);
+  input.setAttribute('autocomplete', 'off');
+
+  // Current suggestions and highlighted index
+  var suggestions = [];
+  var active = -1;
+
+  // Session token, debounce timer, and latest request number
+  var token = null;
+  var timer = null;
+  var request = 0;
+
+  // Whether the menu is open
+  var isOpen = function isOpen() {
+    return 'none' !== menu.style.display;
+  };
+
+  // Position the menu under the input
+  var position = function position() {
+    var rect = input.getBoundingClientRect();
+    menu.style.top = "".concat(rect.bottom + window.scrollY, "px");
+    menu.style.left = "".concat(rect.left + window.scrollX, "px");
+    menu.style.width = "".concat(rect.width, "px");
+  };
+
+  // Close the menu
+  var close = function close() {
+    menu.style.display = 'none';
+    input.setAttribute('aria-expanded', 'false');
+    input.removeAttribute('aria-activedescendant');
+    active = -1;
+  };
+
+  // Highlight a suggestion
+  var highlight = function highlight(index) {
+    active = index;
+    list.querySelectorAll('[role="option"]').forEach(function (li, i) {
+      li.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+    if (index < 0) {
+      input.removeAttribute('aria-activedescendant');
+    } else {
+      input.setAttribute('aria-activedescendant', "".concat(id, "-").concat(index));
+    }
+  };
+
+  // Render the suggestions
+  var render = function render() {
+    // Clear the list
+    list.textContent = '';
+
+    // If no suggestions, close the menu
+    if (!suggestions.length) {
+      close();
+      return;
+    }
+
+    // Add each suggestion
+    suggestions.forEach(function (s, i) {
+      var _ref2, _prediction$mainText$, _prediction$mainText, _prediction$text, _prediction$secondary, _prediction$secondary2;
+      var prediction = s.placePrediction;
+      var li = document.createElement('li');
+      li.id = "".concat(id, "-").concat(i);
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', 'false');
+      var main = document.createElement('span');
+      main.className = 'gm-places-main';
+      main.textContent = (_ref2 = (_prediction$mainText$ = (_prediction$mainText = prediction.mainText) === null || _prediction$mainText === void 0 ? void 0 : _prediction$mainText.text) !== null && _prediction$mainText$ !== void 0 ? _prediction$mainText$ : (_prediction$text = prediction.text) === null || _prediction$text === void 0 ? void 0 : _prediction$text.text) !== null && _ref2 !== void 0 ? _ref2 : '';
+      var secondary = document.createElement('span');
+      secondary.className = 'gm-places-secondary';
+      secondary.textContent = (_prediction$secondary = (_prediction$secondary2 = prediction.secondaryText) === null || _prediction$secondary2 === void 0 ? void 0 : _prediction$secondary2.text) !== null && _prediction$secondary !== void 0 ? _prediction$secondary : '';
+      li.append(main, ' ', secondary);
+      // Keep focus in the input when choosing with the mouse
+      li.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        select(i);
+      });
+      li.addEventListener('mousemove', function () {
+        return highlight(i);
+      });
+      list.appendChild(li);
+    });
+
+    // Open the menu
+    active = -1;
+    position();
+    menu.style.display = '';
+    input.setAttribute('aria-expanded', 'true');
+  };
+
+  // Fall back to the legacy API, page-wide
+  var fallBack = function fallBack() {
+    _provider = 'legacy';
+    _reportLegacy();
+    for (var _i = 0, _arr = _toConsumableArray(_instances); _i < _arr.length; _i++) {
+      var _instance = _arr[_i];
+      _instance.fallBack();
+    }
+  };
+
+  // Fetch suggestions for the current input value
+  var fetchSuggestions = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var text, current, response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              // Get the search text
+              text = input.value.trim(); // If nothing to search, close the menu
+              if (text) {
+                _context.next = 5;
+                break;
+              }
+              suggestions = [];
+              render();
+              return _context.abrupt("return");
+            case 5:
+              // Start a new session if needed
+              token = token || new places.AutocompleteSessionToken();
+
+              // Number this request, so stale responses are ignored
+              current = ++request;
+              _context.prev = 7;
+              _context.next = 10;
+              return places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+                input: text,
+                sessionToken: token
+              });
+            case 10:
+              response = _context.sent;
+              if (!(current !== request || !_instances.has(instance))) {
+                _context.next = 13;
+                break;
+              }
+              return _context.abrupt("return");
+            case 13:
+              // The new API works
+              _provider = 'new';
+              // Keep only place predictions
+              suggestions = (response.suggestions || []).filter(function (s) {
+                return s.placePrediction;
+              });
+              render();
+              _context.next = 26;
+              break;
+            case 18:
+              _context.prev = 18;
+              _context.t0 = _context["catch"](7);
+              if (!isPermissionError(_context.t0)) {
+                _context.next = 23;
+                break;
+              }
+              fallBack();
+              return _context.abrupt("return");
+            case 23:
+              // Otherwise, log it and close the menu
+              console.warn('[GM] Unable to fetch address suggestions.', _context.t0);
+              suggestions = [];
+              render();
+            case 26:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[7, 18]]);
+    }));
+    return function fetchSuggestions() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  // Select a suggestion
+  var select = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(index) {
+      var _suggestions$index;
+      var prediction, place;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              // Get the suggestion
+              prediction = (_suggestions$index = suggestions[index]) === null || _suggestions$index === void 0 ? void 0 : _suggestions$index.placePrediction; // If no suggestion, bail
+              if (prediction) {
+                _context2.next = 3;
+                break;
+              }
+              return _context2.abrupt("return");
+            case 3:
+              // Close the menu
+              close();
+              _context2.prev = 4;
+              // Get the place details (ends the billing session)
+              place = prediction.toPlace();
+              _context2.next = 8;
+              return place.fetchFields({
+                fields: PLACE_FIELDS
+              });
+            case 8:
+              // Start a new session next time
+              token = null;
+              // Hand the place over in the legacy shape
+              onPlace(toLegacyPlace(place));
+              _context2.next = 15;
+              break;
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2["catch"](4);
+              console.warn('[GM] Unable to get the selected address.', _context2.t0);
+            case 15:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[4, 12]]);
+    }));
+    return function select(_x) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  // Debounce typing
+  var onInput = function onInput() {
+    clearTimeout(timer);
+    timer = setTimeout(fetchSuggestions, DEBOUNCE);
+  };
+
+  // Keyboard navigation
+  var onKeydown = function onKeydown(e) {
+    // If the event is part of an IME composition, ignore it
+    if (e.isComposing) {
+      return;
+    }
+
+    // If the menu is closed, ignore it
+    if (!isOpen()) {
+      return;
+    }
+
+    // Handle navigation keys
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        highlight((active + 1) % suggestions.length);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        highlight((active <= 0 ? suggestions.length : active) - 1);
+        break;
+      case 'Enter':
+        // Never submit the form while the menu is open
+        e.preventDefault();
+        if (active < 0) {
+          close();
+        } else {
+          select(active);
+        }
+        break;
+      case 'Tab':
+        if (active >= 0) {
+          select(active);
+        } else {
+          close();
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        close();
+        break;
+    }
+  };
+
+  // Close when focus leaves the input
+  var onBlur = function onBlur() {
+    return close();
+  };
+
+  // Keep the menu under the input when the page moves
+  var onMove = function onMove() {
+    if (isOpen()) {
+      position();
+    }
+  };
+
+  // Attach the listeners
+  input.addEventListener('input', onInput);
+  input.addEventListener('keydown', onKeydown, {
+    capture: true
+  });
+  input.addEventListener('blur', onBlur);
+  window.addEventListener('resize', onMove);
+  window.addEventListener('scroll', onMove, true);
+
+  // Remove everything from the page
+  var destroy = function destroy() {
+    clearTimeout(timer);
+    input.removeEventListener('input', onInput);
+    input.removeEventListener('keydown', onKeydown, {
+      capture: true
+    });
+    input.removeEventListener('blur', onBlur);
+    window.removeEventListener('resize', onMove);
+    window.removeEventListener('scroll', onMove, true);
+    ['role', 'aria-autocomplete', 'aria-expanded', 'aria-controls', 'aria-activedescendant'].forEach(function (a) {
+      return input.removeAttribute(a);
+    });
+    menu.remove();
+    _instances["delete"](instance);
+  };
+
+  // Register this instance
+  var instance = {
+    isOpen: isOpen,
+    destroy: destroy,
+    fallBack: function fallBack() {
+      destroy();
+      onFallback();
+    }
+  };
+  _instances.add(instance);
+
+  // Return the controls
+  return {
+    isOpen: isOpen,
+    destroy: destroy
+  };
+}
+
+// ========================================================================= //
+
+/**
+ * Report the legacy fallback once per page.
+ */
+function _reportLegacy() {
+  var _window$Craft, _window$Craft$sendAct;
+  // If already reported, bail
+  if (_reported) {
+    return;
+  }
+  _reported = true;
+
+  // Tell the developer
+  console.warn('[GM] Places API (New) is not enabled for the browser key. Address autocompletion is using the legacy Places API, which is deprecated. Please enable "Places API (New)" in your Google Cloud project.');
+
+  // Log a deprecation warning in the control panel
+  (_window$Craft = window.Craft) === null || _window$Craft === void 0 ? void 0 : (_window$Craft$sendAct = _window$Craft.sendActionRequest) === null || _window$Craft$sendAct === void 0 ? void 0 : _window$Craft$sendAct.call(_window$Craft, 'POST', 'google-maps/deprecation/legacy-places')["catch"](function () {});
+}
+
+/**
+ * Inject the menu styles once.
+ */
+function _injectStyles() {
+  // If already injected, bail
+  if (_styled) {
+    return;
+  }
+  _styled = true;
+
+  // Add the styles
+  var style = document.createElement('style');
+  style.textContent = "\n.gm-places-menu {\n    position: absolute;\n    z-index: 1000;\n    box-sizing: border-box;\n    background: #fff;\n    border-top: 1px solid #d9d9d9;\n    border-radius: 0 0 2px 2px;\n    box-shadow: 0 2px 6px rgba(0,0,0,.3);\n    font-family: Arial, sans-serif;\n    overflow: hidden;\n}\n.gm-places-menu ul {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.gm-places-menu li {\n    padding: 4px 8px;\n    border-top: 1px solid #e6e6e6;\n    font-size: 13px;\n    line-height: 26px;\n    color: #515151;\n    cursor: default;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.gm-places-menu li:first-child {\n    border-top: 0;\n}\n.gm-places-menu li[aria-selected=\"true\"] {\n    background: #ebf2fe;\n}\n.gm-places-main {\n    color: #000;\n}\n.gm-places-secondary {\n    color: #5e5e5e;\n}\n.gm-places-attribution {\n    padding: 4px 10px 5px;\n    border-top: 1px solid #e6e6e6;\n    text-align: right;\n    font-family: Roboto, sans-serif;\n    font-size: 12px;\n    font-weight: 400;\n    color: #5e5e5e;\n}\n";
+  document.head.appendChild(style);
+}
+
+/***/ }),
+
 /***/ "./web/assets/src/vue/stores/AddressSettingsStore.js":
 /*!***********************************************************!*\
   !*** ./web/assets/src/vue/stores/AddressSettingsStore.js ***!
@@ -18570,7 +19114,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "useAddressStore": () => (/* binding */ useAddressStore)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var _places_PlacesAutocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../places/PlacesAutocomplete */ "./web/assets/src/vue/places/PlacesAutocomplete.js");
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -18589,6 +19134,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -18662,7 +19208,7 @@ var setNestedValue = function setNestedValue(object, path, value) {
 };
 
 // Define the Pinia store for address fields
-var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('address', function () {
+var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('address', function () {
   // ========================================================================= //
   // State
 
@@ -18703,6 +19249,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
   var _map = null; // google.maps.Map instance
   var _marker = null; // Map marker synced to coordinates
   var _autocompletes = []; // Active Places Autocomplete instances
+  var _keyGuards = []; // Enter-key guards on Autocomplete inputs
   var _domSyncers = new Map(); // input element -> Store→DOM sync function
   var _formSubmitGuards = new Map(); // formEl -> submit handler mapping
   var _blockNextSubmit = false; // One-shot guard to prevent accidental submit
@@ -19391,11 +19938,11 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
               stopCoords = (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
                 var _data$value$coords6, _data$value$coords7;
                 return [(_data$value$coords6 = data.value.coords) === null || _data$value$coords6 === void 0 ? void 0 : _data$value$coords6.lat, (_data$value$coords7 = data.value.coords) === null || _data$value$coords7 === void 0 ? void 0 : _data$value$coords7.lng];
-              }, function (_ref6) {
+              }, function (_ref7) {
                 var _marker$getPosition, _marker3;
-                var _ref7 = _slicedToArray(_ref6, 2),
-                  lat = _ref7[0],
-                  lng = _ref7[1];
+                var _ref8 = _slicedToArray(_ref7, 2),
+                  lat = _ref8[0],
+                  lng = _ref8[1];
                 // If coordinates are not valid, bail
                 if (!_areCoordsValid({
                   lat: lat,
@@ -19486,7 +20033,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     return _connectAutocomplete.apply(this, arguments);
   }
   /**
-   * Disconnect all Places Autocomplete instances and remove related submit guards.
+   * Attach the legacy Places Autocomplete to an input.
+   *
+   * Only used when Places API (New) isn't enabled for the browser key.
    */
   function _connectAutocomplete() {
     _connectAutocomplete = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(rootEl) {
@@ -19522,42 +20071,29 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
             case 13:
               // Loop through targets and wire up Autocomplete
               targets.forEach(function (el) {
-                // Initialize Places Autocomplete on the input
-                var ac = new window.google.maps.places.Autocomplete(el, {
-                  fields: ['address_components', 'formatted_address', 'geometry', 'name', 'place_id']
-                  // types: ['address'] // optional
-                });
-
-                // Apply selected place data into store state
-                // noinspection JSVoidFunctionReturnValueUsed
-                var placeListener = ac.addListener('place_changed', function () {
-                  var _ac$getPlace;
-                  // Get the selected place
-                  var place = (_ac$getPlace = ac.getPlace) === null || _ac$getPlace === void 0 ? void 0 : _ac$getPlace.call(ac);
-
-                  // If no place selected, bail
-                  if (!place) {
-                    return;
-                  }
-
-                  // Temporarily suppress DOM events so programmatic updates
-                  // do not re-trigger Autocomplete or other listeners
-                  _suppressDomEvents = true;
-                  try {
-                    var _domSyncers$get;
-                    // Apply place data to store
-                    _applyPlaceToData(place);
-
-                    // Google writes the full prediction into the input directly, and the
-                    // store watcher won't fire if the parsed value is unchanged (#41)
-                    (_domSyncers$get = _domSyncers.get(el)) === null || _domSyncers$get === void 0 ? void 0 : _domSyncers$get();
-                  } finally {
-                    // Re-enable DOM events after Vue has flushed updates
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)(function () {
-                      _suppressDomEvents = false;
+                // Try Places API (New) first, falling back to legacy if it isn't enabled
+                var menu = (0,_places_PlacesAutocomplete__WEBPACK_IMPORTED_MODULE_1__.attachAutocomplete)(el, {
+                  onPlace: function onPlace(place) {
+                    return _selectPlace(el, place);
+                  },
+                  onFallback: function onFallback() {
+                    _autocompletes = _autocompletes.filter(function (a) {
+                      return a.el !== el;
                     });
+                    _refocusWhenLegacyReady(el);
+                    _connectLegacyAutocomplete(el);
                   }
                 });
+
+                // If the page already fell back, use legacy right away
+                if (menu) {
+                  _autocompletes.push({
+                    el: el,
+                    menu: menu
+                  });
+                } else {
+                  _connectLegacyAutocomplete(el);
+                }
 
                 // Intercept Enter key presses while the Places menu is open
                 // so selection does not implicitly submit the form
@@ -19622,13 +20158,10 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                   });
                 }
 
-                // Track this Autocomplete instance so it can be cleaned up later
-                _autocompletes.push({
+                // Track the Enter-key guard so it can be cleaned up later
+                _keyGuards.push({
                   el: el,
-                  ac: ac,
-                  listener: placeListener,
-                  keydown: keydown,
-                  formEl: formEl
+                  keydown: keydown
                 });
               });
             case 14:
@@ -19640,46 +20173,146 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     }));
     return _connectAutocomplete.apply(this, arguments);
   }
+  function _connectLegacyAutocomplete(el) {
+    // Initialize Places Autocomplete on the input
+    var ac = new window.google.maps.places.Autocomplete(el, {
+      fields: ['address_components', 'formatted_address', 'geometry', 'name', 'place_id']
+      // types: ['address'] // optional
+    });
+
+    // Apply selected place data into store state
+    // noinspection JSVoidFunctionReturnValueUsed
+    var listener = ac.addListener('place_changed', function () {
+      var _ac$getPlace;
+      return _selectPlace(el, (_ac$getPlace = ac.getPlace) === null || _ac$getPlace === void 0 ? void 0 : _ac$getPlace.call(ac));
+    });
+
+    // Track this Autocomplete instance so it can be cleaned up later
+    _autocompletes.push({
+      el: el,
+      ac: ac,
+      listener: listener
+    });
+  }
+
+  /**
+   * Refocus an input once the legacy Autocomplete has set itself up.
+   *
+   * The legacy menu only opens after the input gains focus, so an input
+   * which falls back mid-typing would otherwise never show suggestions.
+   */
+  function _refocusWhenLegacyReady(el) {
+    // If the input isn't focused, bail
+    if (document.activeElement !== el) {
+      return;
+    }
+
+    // Count the existing legacy menus
+    var count = document.querySelectorAll('.pac-container').length;
+
+    // Refocus as soon as Google adds the new menu
+    var observer = new MutationObserver(function () {
+      // If the menu isn't there yet, keep waiting
+      if (document.querySelectorAll('.pac-container').length <= count) {
+        return;
+      }
+      observer.disconnect();
+      // If the input is still focused, refocus it
+      if (document.activeElement === el) {
+        el.blur();
+        el.focus();
+      }
+    });
+    observer.observe(document.body, {
+      childList: true
+    });
+
+    // Stop waiting eventually
+    setTimeout(function () {
+      return observer.disconnect();
+    }, 10000);
+  }
+
+  /**
+   * Apply a selected place to the field.
+   */
+  function _selectPlace(el, place) {
+    // If no place selected, bail
+    if (!place) {
+      return;
+    }
+
+    // Temporarily suppress DOM events so programmatic updates
+    // do not re-trigger Autocomplete or other listeners
+    _suppressDomEvents = true;
+    try {
+      var _domSyncers$get;
+      // Apply place data to store
+      _applyPlaceToData(place);
+
+      // Google writes the full prediction into the input directly, and the
+      // store watcher won't fire if the parsed value is unchanged (#41)
+      (_domSyncers$get = _domSyncers.get(el)) === null || _domSyncers$get === void 0 ? void 0 : _domSyncers$get();
+    } finally {
+      // Re-enable DOM events after Vue has flushed updates
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)(function () {
+        _suppressDomEvents = false;
+      });
+    }
+  }
+
+  /**
+   * Disconnect all Places Autocomplete instances and remove related submit guards.
+   */
   function disconnectAutocomplete() {
-    // Tear down Autocomplete listeners and input-level key handlers
+    // Tear down Autocomplete menus and listeners
     _autocompletes.forEach(function (_ref3) {
-      var el = _ref3.el,
-        ac = _ref3.ac,
+      var ac = _ref3.ac,
         listener = _ref3.listener,
-        keydown = _ref3.keydown;
+        menu = _ref3.menu;
+      try {
+        menu === null || menu === void 0 ? void 0 : menu.destroy();
+      } catch (_unused) {}
       try {
         var _window$google, _window$google$maps, _window$google$maps$e, _window$google$maps$e2;
         (_window$google = window.google) === null || _window$google === void 0 ? void 0 : (_window$google$maps = _window$google.maps) === null || _window$google$maps === void 0 ? void 0 : (_window$google$maps$e = _window$google$maps.event) === null || _window$google$maps$e === void 0 ? void 0 : (_window$google$maps$e2 = _window$google$maps$e.removeListener) === null || _window$google$maps$e2 === void 0 ? void 0 : _window$google$maps$e2.call(_window$google$maps$e, listener);
-      } catch (_unused) {}
+      } catch (_unused2) {}
       try {
         var _window$google2, _window$google2$maps, _window$google2$maps$, _window$google2$maps$2;
         (_window$google2 = window.google) === null || _window$google2 === void 0 ? void 0 : (_window$google2$maps = _window$google2.maps) === null || _window$google2$maps === void 0 ? void 0 : (_window$google2$maps$ = _window$google2$maps.event) === null || _window$google2$maps$ === void 0 ? void 0 : (_window$google2$maps$2 = _window$google2$maps$.clearInstanceListeners) === null || _window$google2$maps$2 === void 0 ? void 0 : _window$google2$maps$2.call(_window$google2$maps$, ac);
-      } catch (_unused2) {}
+      } catch (_unused3) {}
+    });
+    _autocompletes = [];
+
+    // Remove input-level key handlers
+    _keyGuards.forEach(function (_ref4) {
+      var el = _ref4.el,
+        keydown = _ref4.keydown;
       try {
         var _el$removeEventListen;
         el === null || el === void 0 ? void 0 : (_el$removeEventListen = el.removeEventListener) === null || _el$removeEventListen === void 0 ? void 0 : _el$removeEventListen.call(el, 'keydown', keydown, {
           capture: true
         });
-      } catch (_unused3) {}
+      } catch (_unused4) {}
     });
-    _autocompletes = [];
+    _keyGuards = [];
 
     // Remove form-level submit guards installed for Autocomplete protection
-    _formSubmitGuards.forEach(function (_ref4, formEl) {
-      var onSubmit = _ref4.onSubmit,
-        onKeypress = _ref4.onKeypress;
+    _formSubmitGuards.forEach(function (_ref5, formEl) {
+      var onSubmit = _ref5.onSubmit,
+        onKeypress = _ref5.onKeypress;
       try {
         var _formEl$removeEventLi;
         formEl === null || formEl === void 0 ? void 0 : (_formEl$removeEventLi = formEl.removeEventListener) === null || _formEl$removeEventLi === void 0 ? void 0 : _formEl$removeEventLi.call(formEl, 'submit', onSubmit, {
           capture: true
         });
-      } catch (_unused4) {}
+      } catch (_unused5) {}
       try {
         var _formEl$removeEventLi2;
         formEl === null || formEl === void 0 ? void 0 : (_formEl$removeEventLi2 = formEl.removeEventListener) === null || _formEl$removeEventLi2 === void 0 ? void 0 : _formEl$removeEventLi2.call(formEl, 'keypress', onKeypress, {
           capture: true
         });
-      } catch (_unused5) {}
+      } catch (_unused6) {}
     });
     _formSubmitGuards.clear();
 
@@ -20060,7 +20693,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
 
                   // Define polling tick function
                   var tick = /*#__PURE__*/function () {
-                    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                       var g, m;
                       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                         while (1) {
@@ -20108,7 +20741,7 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
                       }, _callee3, null, [[3, 10]]);
                     }));
                     return function tick() {
-                      return _ref8.apply(this, arguments);
+                      return _ref9.apply(this, arguments);
                     };
                   }();
 
@@ -20213,7 +20846,12 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     return _ensurePlaces2.apply(this, arguments);
   }
   function _isPlacesMenuOpen() {
-    // Query all possible Places dropdown containers
+    // If a Places API (New) menu is open
+    if ((0,_places_PlacesAutocomplete__WEBPACK_IMPORTED_MODULE_1__.isAnyMenuOpen)()) {
+      return true;
+    }
+
+    // Query all possible legacy Places dropdown containers
     var containers = document.querySelectorAll('.pac-container');
 
     // Look for any container that is visible and has suggestion items
@@ -20297,9 +20935,9 @@ var useAddressStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)('addres
     }
 
     // Read current coordinates from store
-    var _ref5 = (_data$value$coords4 = data.value.coords) !== null && _data$value$coords4 !== void 0 ? _data$value$coords4 : {},
-      lat = _ref5.lat,
-      lng = _ref5.lng;
+    var _ref6 = (_data$value$coords4 = data.value.coords) !== null && _data$value$coords4 !== void 0 ? _data$value$coords4 : {},
+      lat = _ref6.lat,
+      lng = _ref6.lng;
 
     // If coordinates are not valid numbers, bail
     if (!isFinite(+lat) || !isFinite(+lng)) {

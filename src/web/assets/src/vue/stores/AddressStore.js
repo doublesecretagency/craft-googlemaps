@@ -1,5 +1,6 @@
 import { ref, computed, watch, nextTick } from 'vue';
 import { defineStore } from 'pinia';
+import { attachAutocomplete, isAnyMenuOpen } from '../places/PlacesAutocomplete';
 
 // Adjust formatting for specific countries
 const formatCountries = {
@@ -141,6 +142,7 @@ export const useAddressStore = defineStore('address', () => {
     let _map = null;                            // google.maps.Map instance
     let _marker = null;                         // Map marker synced to coordinates
     let _autocompletes = [];                   // Active Places Autocomplete instances
+    let _keyGuards = [];                       // Enter-key guards on Autocomplete inputs
     let _domSyncers = new Map();              // input element -> Store→DOM sync function
     let _formSubmitGuards = new Map(); // formEl -> submit handler mapping
     let _blockNextSubmit = false;            // One-shot guard to prevent accidental submit
@@ -897,42 +899,22 @@ export const useAddressStore = defineStore('address', () => {
         // Loop through targets and wire up Autocomplete
         targets.forEach(el => {
 
-            // Initialize Places Autocomplete on the input
-            const ac = new window.google.maps.places.Autocomplete(el, {
-                fields: ['address_components','formatted_address','geometry','name','place_id'],
-                // types: ['address'] // optional
+            // Try Places API (New) first, falling back to legacy if it isn't enabled
+            const menu = attachAutocomplete(el, {
+                onPlace: (place) => _selectPlace(el, place),
+                onFallback: () => {
+                    _autocompletes = _autocompletes.filter(a => a.el !== el);
+                    _refocusWhenLegacyReady(el);
+                    _connectLegacyAutocomplete(el);
+                },
             });
 
-            // Apply selected place data into store state
-            // noinspection JSVoidFunctionReturnValueUsed
-            const placeListener = ac.addListener('place_changed', () => {
-
-                // Get the selected place
-                const place = ac.getPlace?.();
-
-                // If no place selected, bail
-                if (!place) {
-                    return;
-                }
-
-                // Temporarily suppress DOM events so programmatic updates
-                // do not re-trigger Autocomplete or other listeners
-                _suppressDomEvents = true;
-
-                try {
-                    // Apply place data to store
-                    _applyPlaceToData(place);
-
-                    // Google writes the full prediction into the input directly, and the
-                    // store watcher won't fire if the parsed value is unchanged (#41)
-                    _domSyncers.get(el)?.();
-                } finally {
-                    // Re-enable DOM events after Vue has flushed updates
-                    nextTick(() => {
-                        _suppressDomEvents = false;
-                    });
-                }
-            });
+            // If the page already fell back, use legacy right away
+            if (menu) {
+                _autocompletes.push({ el, menu });
+            } else {
+                _connectLegacyAutocomplete(el);
+            }
 
             // Intercept Enter key presses while the Places menu is open
             // so selection does not implicitly submit the form
@@ -989,9 +971,94 @@ export const useAddressStore = defineStore('address', () => {
                 _formSubmitGuards.set(formEl, { onSubmit, onKeypress });
             }
 
-            // Track this Autocomplete instance so it can be cleaned up later
-            _autocompletes.push({ el, ac, listener: placeListener, keydown, formEl });
+            // Track the Enter-key guard so it can be cleaned up later
+            _keyGuards.push({ el, keydown });
         });
+    }
+
+    /**
+     * Attach the legacy Places Autocomplete to an input.
+     *
+     * Only used when Places API (New) isn't enabled for the browser key.
+     */
+    function _connectLegacyAutocomplete(el) {
+
+        // Initialize Places Autocomplete on the input
+        const ac = new window.google.maps.places.Autocomplete(el, {
+            fields: ['address_components','formatted_address','geometry','name','place_id'],
+            // types: ['address'] // optional
+        });
+
+        // Apply selected place data into store state
+        // noinspection JSVoidFunctionReturnValueUsed
+        const listener = ac.addListener('place_changed', () => _selectPlace(el, ac.getPlace?.()));
+
+        // Track this Autocomplete instance so it can be cleaned up later
+        _autocompletes.push({ el, ac, listener });
+    }
+
+    /**
+     * Refocus an input once the legacy Autocomplete has set itself up.
+     *
+     * The legacy menu only opens after the input gains focus, so an input
+     * which falls back mid-typing would otherwise never show suggestions.
+     */
+    function _refocusWhenLegacyReady(el) {
+
+        // If the input isn't focused, bail
+        if (document.activeElement !== el) {
+            return;
+        }
+
+        // Count the existing legacy menus
+        const count = document.querySelectorAll('.pac-container').length;
+
+        // Refocus as soon as Google adds the new menu
+        const observer = new MutationObserver(() => {
+            // If the menu isn't there yet, keep waiting
+            if (document.querySelectorAll('.pac-container').length <= count) {
+                return;
+            }
+            observer.disconnect();
+            // If the input is still focused, refocus it
+            if (document.activeElement === el) {
+                el.blur();
+                el.focus();
+            }
+        });
+        observer.observe(document.body, { childList: true });
+
+        // Stop waiting eventually
+        setTimeout(() => observer.disconnect(), 10000);
+    }
+
+    /**
+     * Apply a selected place to the field.
+     */
+    function _selectPlace(el, place) {
+
+        // If no place selected, bail
+        if (!place) {
+            return;
+        }
+
+        // Temporarily suppress DOM events so programmatic updates
+        // do not re-trigger Autocomplete or other listeners
+        _suppressDomEvents = true;
+
+        try {
+            // Apply place data to store
+            _applyPlaceToData(place);
+
+            // Google writes the full prediction into the input directly, and the
+            // store watcher won't fire if the parsed value is unchanged (#41)
+            _domSyncers.get(el)?.();
+        } finally {
+            // Re-enable DOM events after Vue has flushed updates
+            nextTick(() => {
+                _suppressDomEvents = false;
+            });
+        }
     }
 
     /**
@@ -999,13 +1066,19 @@ export const useAddressStore = defineStore('address', () => {
      */
     function disconnectAutocomplete() {
 
-        // Tear down Autocomplete listeners and input-level key handlers
-        _autocompletes.forEach(({ el, ac, listener, keydown }) => {
+        // Tear down Autocomplete menus and listeners
+        _autocompletes.forEach(({ ac, listener, menu }) => {
+            try { menu?.destroy(); } catch {}
             try { window.google?.maps?.event?.removeListener?.(listener); } catch {}
             try { window.google?.maps?.event?.clearInstanceListeners?.(ac); } catch {}
-            try { el?.removeEventListener?.('keydown', keydown, { capture: true }); } catch {}
         });
         _autocompletes = [];
+
+        // Remove input-level key handlers
+        _keyGuards.forEach(({ el, keydown }) => {
+            try { el?.removeEventListener?.('keydown', keydown, { capture: true }); } catch {}
+        });
+        _keyGuards = [];
 
         // Remove form-level submit guards installed for Autocomplete protection
         _formSubmitGuards.forEach(({ onSubmit, onKeypress }, formEl) => {
@@ -1480,7 +1553,12 @@ export const useAddressStore = defineStore('address', () => {
      */
     function _isPlacesMenuOpen() {
 
-        // Query all possible Places dropdown containers
+        // If a Places API (New) menu is open
+        if (isAnyMenuOpen()) {
+            return true;
+        }
+
+        // Query all possible legacy Places dropdown containers
         const containers = document.querySelectorAll('.pac-container');
 
         // Look for any container that is visible and has suggestion items

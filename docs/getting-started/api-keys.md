@@ -26,9 +26,15 @@ Each of the following API services must be enabled for this plugin to function p
 | Maps JavaScript API | [Enable Service](https://console.cloud.google.com/apis/library/maps-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/javascript/overview)
 | Maps Static API | [Enable Service](https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/maps-static/overview)
 | Geocoding API | [Enable Service](https://console.cloud.google.com/apis/library/geocoding-backend.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/geocoding/overview)
-| Places API | [Enable Service](https://console.cloud.google.com/apis/library/places-backend.googleapis.com) | [More Info](https://developers.google.com/places/web-service/overview)
+| Places API (New) | [Enable Service](https://console.cloud.google.com/apis/library/places.googleapis.com) | [More Info](https://developers.google.com/maps/documentation/javascript/place-autocomplete-data)
 
 Please enable each of these APIs before moving on to create API keys.
+
+:::warning Places API (New)
+Be sure to enable **Places API (New)**, not the legacy "Places API". Google Cloud projects created after March 1st, 2025 cannot use the legacy version at all.
+
+If your project already has the legacy Places API enabled, Address field autocompletion will keep working for now, but a deprecation warning will appear in your control panel until Places API (New) is enabled.
+:::
 
 :::tip Complete Google API Library
 [https://console.cloud.google.com/apis/library](https://console.cloud.google.com/apis/library) _(login required)_

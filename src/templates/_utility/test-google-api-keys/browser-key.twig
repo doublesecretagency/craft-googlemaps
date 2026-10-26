@@ -5,18 +5,57 @@ window._gmData.logging = false;
 // Delay the success message
 let successTimeout;
 
+// Display the status of an API service
+function gm_setStatus(id, state, label, detail) {
+    // Get the status cell and the matching template
+    const cell = document.getElementById(id);
+    const template = document.getElementById(`gm-status-template-${state}`);
+    // Replace the status
+    cell.innerHTML = template.innerHTML;
+    cell.querySelector('.gm-status-label').textContent = label;
+    // If details were provided, show them
+    if (detail) {
+        const p = cell.querySelector('.gm-status-detail');
+        p.innerHTML = detail;
+        p.hidden = false;
+    }
+}
+
+// Test Places API (New), and whether the legacy Places API is still in use
+async function gm_testPlaces() {
+    try {
+        // Request suggestions from Places API (New)
+        const {AutocompleteSuggestion} = await google.maps.importLibrary('places');
+        await AutocompleteSuggestion.fetchAutocompleteSuggestions({input: 'usa'});
+        // Success
+        gm_setStatus('gm-status-places', 'valid', 'Working');
+    } catch (error) {
+        // Check whether the legacy Places API still works
+        const legacy = await new Promise(resolve => {
+            try {
+                new google.maps.places.AutocompleteService().getPlacePredictions({input: 'usa'}, (p, status) => resolve('OK' === status));
+            } catch (e) {
+                resolve(false);
+            }
+            setTimeout(() => resolve(false), 8000);
+        });
+        // Display the results
+        if (legacy) {
+            gm_setStatus('gm-status-places', 'legacy', 'Using legacy API', 'Address autocompletion still works, using the legacy Places API, which is deprecated. Enable Places API (New) to keep it working.');
+        } else {
+            gm_setStatus('gm-status-places', 'invalid', 'Not working', 'Address autocompletion will not work until Places API (New) is enabled.');
+        }
+    }
+}
+
 // 1. Fired every time the API connects
 function gm_authSuccess() {
     // Whether the browser key exists (via Twig)
     const browserKeyExists = {{ googleMaps.browserKey ? 'true' : 'false' }};
     // If the browser key is missing
     if (!browserKeyExists) {
-        // Change the error message
-        $('.browser-key-error').html(
-            `No browser key provided. For more information, see <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">the documentation...</a>`
-        );
         // Show the error message
-        gm_authFailure();
+        gm_authFailure(`No browser key provided. For more information, see <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">the documentation...</a>`);
         // Bail
         return;
     }
@@ -24,51 +63,22 @@ function gm_authSuccess() {
     successTimeout = setTimeout(() => {
         console.log('[GM] Browser key authentication successful ✅');
         // Display status message
-        $('.browser-key-results').hide();
-        $('.results-valid').show();
-        // Highlight browser key
-        $('#browser-key-status').removeClass('invalid').addClass('valid');
-        // If the server key map was loaded
-        if (document.getElementById('test-server-key')) {
-            // Initialize the map
-            googleMaps.init('test-server-key');
-        }
+        gm_setStatus('gm-status-maps-js', 'valid', 'Working');
+        // Test the Places API
+        gm_testPlaces();
     }, 1000);
 }
 
 // 2. Additionally fired when the API key fails
-function gm_authFailure() {
+function gm_authFailure(message) {
     console.log('[GM] Browser key authentication failed ❌');
     // Stop success message
     clearTimeout(successTimeout);
-    // Display status message
-    $('.browser-key-results').hide();
-    $('.results-invalid').show();
-    // Highlight browser key
-    $('#browser-key-status').removeClass('valid').addClass('invalid');
+    // Display status messages
+    gm_setStatus('gm-status-maps-js', 'invalid', 'Not working', ('string' === typeof message) ? message : 'The browser key is not valid.');
+    gm_setStatus('gm-status-places', 'invalid', 'Not working', 'Requires a working browser key.');
 }
 </script>
-
-<h2>Browser Key</h2>
-
-{# Pending results #}
-<div class="readable browser-key-results">
-    <blockquote class="note tip">
-        <p>Checking the browser key...</p>
-    </blockquote>
-</div>
-
-{# Show success message #}
-<div class="pane browser-key-results results-valid" style="display:none">
-    <p><span class="checkmark-icon"></span> Success, the browser key is valid!</p>
-</div>
-
-{# Show error message #}
-<div class="readable browser-key-results results-invalid" style="display:none">
-    <blockquote class="note warning">
-        <p class="browser-key-error">The browser key is not valid.</p>
-    </blockquote>
-</div>
 
 {# Load required JavaScript files, then trigger the callback #}
 {% do googleMaps.loadAssets({'callback': 'gm_authSuccess'}) %}

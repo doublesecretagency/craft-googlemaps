@@ -29,6 +29,10 @@ If you are uncertain about the health of your [Google API keys](/getting-started
 
 In your site's control panel, go to **Utilities > Test Google API Keys**.
 
-<img class="dropshadow" :src="$withBase('/images/guides/test-google-api-keys.png')" alt="" width="600" style="margin-top:4px">
+<img class="dropshadow" :src="$withBase('/images/guides/test-google-api-keys.png')" alt="" width="642" style="margin-top:4px">
 
-If either key is missing or invalid, an error message will appear with further details.
+Each of the [required API services](/getting-started/api-keys/#authorize-required-services) will be tested with the appropriate key. If a service is not working, its status will include further details, and you can follow the "Enable" link to turn it on in your Google Cloud project.
+
+If Address field autocompletion is still using the legacy Places API, the **Places API (New)** status will say so.
+
+<img class="dropshadow" :src="$withBase('/images/guides/test-google-api-keys-legacy-places.png')" alt="" width="788" style="margin-top:4px">

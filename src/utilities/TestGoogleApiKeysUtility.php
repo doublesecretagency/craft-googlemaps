@@ -13,7 +13,9 @@ namespace doublesecretagency\googlemaps\utilities;
 
 use Craft;
 use craft\base\Utility;
+use craft\helpers\UrlHelper;
 use doublesecretagency\googlemaps\helpers\GoogleMaps;
+use Throwable;
 
 /**
  * Class TestGoogleApiKeysUtility
@@ -63,10 +65,63 @@ class TestGoogleApiKeysUtility extends Utility
         // Render the utility template
         return Craft::$app->getView()->renderTemplate('google-maps/_utility/test-google-api-keys', [
             'results' => static::_testServerKey(),
+            'staticMap' => static::_testStaticMaps(),
         ]);
     }
 
     // ========================================================================= //
+
+    /**
+     * Test the Maps Static API with the browser key.
+     *
+     * Static map images are loaded by the browser, so the browser key is
+     * tested with the site's own URL as the referrer.
+     *
+     * @return array
+     */
+    private static function _testStaticMaps(): array
+    {
+        // Get the browser key
+        $key = GoogleMaps::getBrowserKey();
+
+        // If no browser key, return an error
+        if (!$key) {
+            return [
+                'success' => false,
+                'error' => 'No browser key provided.',
+            ];
+        }
+
+        try {
+            // Request the smallest possible static map
+            $response = Craft::createGuzzleClient()->get('https://maps.googleapis.com/maps/api/staticmap', [
+                'query' => ['center' => '0,0', 'zoom' => 1, 'size' => '1x1', 'key' => $key],
+                'headers' => ['Referer' => UrlHelper::siteUrl()],
+                'http_errors' => false,
+                'timeout' => 10,
+            ]);
+        } catch (Throwable $e) {
+            // Unable to reach Google
+            return [
+                'success' => false,
+                'error' => 'Unable to reach the Maps Static API.',
+            ];
+        }
+
+        // If the request was successful, return success
+        if (200 === $response->getStatusCode()) {
+            return [
+                'success' => true,
+                'error' => null,
+            ];
+        }
+
+        // Otherwise, return an error
+        return [
+            'success' => false,
+            'error' => 'The browser key cannot load static maps. The Maps Static API may not be enabled, or the key may be restricted.',
+        ];
+    }
 
     /**
      * Test the server key.

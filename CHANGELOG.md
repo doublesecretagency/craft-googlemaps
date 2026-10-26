@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Added support for [Places API (New)](https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/#authorize-required-services) in Address field autocompletion. ([#140](https://github.com/doublesecretagency/craft-googlemaps/issues/140))
+- Added a check for every required Google API to the "Test Google API Keys" utility.
+
+### Changed
+- Sites still using the legacy Places API will now see a deprecation warning.
+- Improved accessibility of the "Test Google API Keys" utility.
+
 ## 5.2.4 - 2026-10-25
 
 ### Fixed

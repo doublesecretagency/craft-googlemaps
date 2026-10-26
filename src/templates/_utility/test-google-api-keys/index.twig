@@ -1,40 +1,138 @@
 {% css %}
 /* Table */
-table.api-keys {
-    border: 1px solid rgba(123,135,147,.5)
+table.gm-api-status th,
+table.gm-api-status td {
+    vertical-align: top;
 }
-table.api-keys td:first-child {
-    padding-left: 12px;
+table.gm-api-status td.gm-key-cell {
+    white-space: nowrap;
 }
-table.api-keys td:last-child {
-    padding-right: 12px;
+table.gm-api-status td.gm-status-cell {
+    width: 45%;
 }
-/* Highlight test results */
-tr.valid td {
+/* Status label (always text and icon, color only reinforces it) */
+.gm-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.gm-status svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+.gm-status-pending {
+    background-color: #e4e7eb;
+    color: #3e4c59;
+}
+.gm-status-valid {
     background-color: #c6f7e2;
+    color: #014d40;
 }
-tr.invalid td {
+.gm-status-legacy {
+    background-color: #fff3c4;
+    color: #5c3c00;
+}
+.gm-status-invalid {
     background-color: #ffe3e3;
+    color: #780a0a;
+}
+.gm-status-detail {
+    margin: 6px 0 0;
 }
 {% endcss %}
 
-{# Determine status of server key #}
-{% set serverKeyStatus = (results.success ?? false) ? 'valid' : 'invalid' %}
+{# Icons for each status, distinct in shape as well as color #}
+{% set icons = {
+    pending: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="3" cy="8" r="1.6" fill="currentColor"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><circle cx="13" cy="8" r="1.6" fill="currentColor"/></svg>',
+    valid: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    legacy: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5l7 13H1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12.2" r="1" fill="currentColor"/></svg>',
+    invalid: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+} %}
 
-<p>For the Google Maps plugin to function properly, a valid set of <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">API keys</a> is required.</p>
+{# Render a status label #}
+{% macro status(icons, state, label, detail) %}
+    <span class="gm-status gm-status-{{ state }}">{{ icons[state]|raw }}<span class="gm-status-label">{{ label }}</span></span>
+    <p class="gm-status-detail"{{ detail ? '' : ' hidden' }}>{{ detail }}</p>
+{% endmacro %}
+{% from _self import status %}
 
-<table class="api-keys">
-    <tr class="{{ serverKeyStatus }}">
-        <td><strong>Server Key</strong></td>
-        <td>{{ googleMaps.serverKey ?: '[server key missing]' }}</td>
-    </tr>
-    <tr id="browser-key-status">
-        <td><strong>Browser Key</strong></td>
-        <td>{{ googleMaps.browserKey ?: '[browser key missing]' }}</td>
-    </tr>
+{# Results of the server-side tests #}
+{% set geocodingValid = (results.success ?? false) %}
+{% set staticValid = (staticMap.success ?? false) %}
+
+<p>For the Google Maps plugin to function properly, a valid set of <a href="https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/" target="_blank">API keys</a> is required, and each of the following API services must be enabled in your Google Cloud project.</p>
+
+<table class="data fullwidth">
+    <tbody>
+        <tr>
+            <th scope="row">Browser Key</th>
+            <td><code>{{ googleMaps.browserKey ?: '[browser key missing]' }}</code></td>
+        </tr>
+        <tr>
+            <th scope="row">Server Key</th>
+            <td><code>{{ googleMaps.serverKey ?: '[server key missing]' }}</code></td>
+        </tr>
+    </tbody>
 </table>
 
 <hr>
-{% include 'google-maps/_utility/test-google-api-keys/server-key' %}
-<hr>
+
+<table class="data fullwidth gm-api-status">
+    <thead>
+        <tr>
+            <th scope="col">API Service</th>
+            <th scope="col">Key</th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="visually-hidden">Google Cloud Console</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Maps JavaScript API</th>
+            <td class="gm-key-cell">Browser key</td>
+            <td class="gm-status-cell" id="gm-status-maps-js" aria-live="polite">{{ status(icons, 'pending', 'Checking...') }}</td>
+            <td><a href="https://console.cloud.google.com/apis/library/maps-backend.googleapis.com" target="_blank">Enable<span class="visually-hidden"> the Maps JavaScript API</span></a></td>
+        </tr>
+        <tr>
+            <th scope="row">Maps Static API</th>
+            <td class="gm-key-cell">Browser key</td>
+            <td class="gm-status-cell">
+                {% if staticValid %}
+                    {{ status(icons, 'valid', 'Working') }}
+                {% else %}
+                    {{ status(icons, 'invalid', 'Not working', staticMap.error ?? null) }}
+                {% endif %}
+            </td>
+            <td><a href="https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com" target="_blank">Enable<span class="visually-hidden"> the Maps Static API</span></a></td>
+        </tr>
+        <tr>
+            <th scope="row">Places API (New)</th>
+            <td class="gm-key-cell">Browser key</td>
+            <td class="gm-status-cell" id="gm-status-places" aria-live="polite">{{ status(icons, 'pending', 'Checking...') }}</td>
+            <td><a href="https://console.cloud.google.com/apis/library/places.googleapis.com" target="_blank">Enable<span class="visually-hidden"> Places API (New)</span></a></td>
+        </tr>
+        <tr>
+            <th scope="row">Geocoding API</th>
+            <td class="gm-key-cell">Server key</td>
+            <td class="gm-status-cell">
+                {% if geocodingValid %}
+                    {{ status(icons, 'valid', 'Working') }}
+                {% else %}
+                    {{ status(icons, 'invalid', 'Not working', results.error ?? 'An unknown error occurred.') }}
+                {% endif %}
+            </td>
+            <td><a href="https://console.cloud.google.com/apis/library/geocoding-backend.googleapis.com" target="_blank">Enable<span class="visually-hidden"> the Geocoding API</span></a></td>
+        </tr>
+    </tbody>
+</table>
+
+{# Status templates for the browser-side checks #}
+{% for state in ['valid', 'legacy', 'invalid'] %}
+    <template id="gm-status-template-{{ state }}">{{ status(icons, state, '') }}</template>
+{% endfor %}
+
 {% include 'google-maps/_utility/test-google-api-keys/browser-key' %}

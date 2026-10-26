@@ -103,9 +103,13 @@ If you don't want the coordinates to be editable, you can use `hidden` inputs in
 
 ## Using the Places API
 
-Once you have the form fields in place, you can activate the [Google Places Autocomplete](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete).
+Once you have the form fields in place, you can activate [Google Places Autocomplete](https://developers.google.com/maps/documentation/javascript/place-autocomplete-data).
 
 For your convenience, we've provided a script that you can **copy & paste** to a folder in your public directory. When this JavaScript file is available on the front-end of your site, you can then link to it and enable Google Places autocompletion on your custom form.
+
+:::warning Requires Places API (New)
+This script uses **Places API (New)**, which must be [enabled in your Google Cloud project](/getting-started/api-keys/#authorize-required-services).
+:::
 
 ### 1. Configure the HTML form inputs
 

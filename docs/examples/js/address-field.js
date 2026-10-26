@@ -46,10 +46,12 @@ window.addressField = window.addressField || {
      * Specify the input ID of the primary subfield.
      *
      *   addressField.activateSubfield('myAddressField-street1')
+     *
+     * Requires "Places API (New)" to be enabled in your Google Cloud project.
      */
 
-    // Activate the Google Places Autocomplete on a specified input
-    activateSubfield: function (id) {
+    // Activate Google Places Autocomplete on a specified input
+    activateSubfield: async function (id) {
 
         // Specify which subfield to use for autocompletion
         const subfield = document.getElementById(id);
@@ -57,34 +59,75 @@ window.addressField = window.addressField || {
         // Get the shared ID prefix of all subfields (ie: "myAddressField")
         const prefix = id.substring(0, id.lastIndexOf('-'));
 
-        // Create an Autocomplete object
-        const autocomplete = new google.maps.places.Autocomplete(subfield, {
-            types: ['geocode'],
-            fields: [
-                'address_components',
-                'formatted_address',
-                'geometry.location',
-                'name',
-                'place_id'
-            ]
-        });
+        // Load the Places library
+        const places = await google.maps.importLibrary('places');
 
-        // Listen for autocomplete trigger
-        autocomplete.addListener('place_changed', () => {
+        // Create a list of suggestions below the input
+        const list = document.createElement('ul');
+        list.id = `${id}-suggestions`;
+        list.setAttribute('role', 'listbox');
+        list.style.cssText = 'position:absolute; z-index:1000; margin:0; padding:0; list-style:none; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.3); display:none;';
+        subfield.insertAdjacentElement('afterend', list);
 
-            // Get newly selected place
-            let place = autocomplete.getPlace();
+        // Turn the input into a combobox
+        subfield.setAttribute('role', 'combobox');
+        subfield.setAttribute('aria-autocomplete', 'list');
+        subfield.setAttribute('aria-controls', list.id);
+        subfield.setAttribute('aria-expanded', 'false');
+        subfield.setAttribute('autocomplete', 'off');
 
-            // Get new address info
-            let components = place.address_components;
-            let coords = place.geometry.location;
+        // Current suggestions, highlighted suggestion, session token, and typing timer
+        let suggestions = [];
+        let active = -1;
+        let token = null;
+        let timer = null;
+
+        // Close the list of suggestions
+        const close = () => {
+            list.style.display = 'none';
+            subfield.setAttribute('aria-expanded', 'false');
+            subfield.removeAttribute('aria-activedescendant');
+            active = -1;
+        };
+
+        // Highlight a suggestion
+        const highlight = (index) => {
+            active = index;
+            [...list.querySelectorAll('[role="option"]')].forEach((li, i) => {
+                li.setAttribute('aria-selected', (i === index) ? 'true' : 'false');
+                li.style.background = (i === index) ? '#ebf2fe' : '';
+            });
+            subfield.setAttribute('aria-activedescendant', `${list.id}-${index}`);
+        };
+
+        // Select a suggestion, and fill in each subfield
+        const select = async (index) => {
+
+            // Get the selected suggestion
+            const prediction = suggestions[index]?.placePrediction;
+            if (!prediction) {
+                return;
+            }
+            close();
+
+            // Get the place details (this ends the session)
+            const place = prediction.toPlace();
+            await place.fetchFields({fields: ['addressComponents', 'formattedAddress', 'location', 'displayName', 'id']});
+            token = null;
+
+            // Convert the address components
+            const components = (place.addressComponents || []).map(c => ({
+                long_name: c.longText,
+                short_name: c.shortText,
+                types: c.types,
+            }));
 
             // Set all subfield data
             let address = this._addressComponents(components);
 
             // Collect all subfield values
             const values = {
-                name:         place.name,
+                name:         place.displayName,
                 street1:      address.street1,
                 street2:      address.street2,
                 city:         address.city,
@@ -94,10 +137,10 @@ window.addressField = window.addressField || {
                 county:       address.county,
                 country:      address.country,
                 countryCode:  address.countryCode,
-                placeId:      place.place_id,
-                lat:          parseFloat(coords.lat().toFixed(7)),
-                lng:          parseFloat(coords.lng().toFixed(7)),
-                formatted:    place.formatted_address,
+                placeId:      place.id,
+                lat:          parseFloat(place.location.lat().toFixed(7)),
+                lng:          parseFloat(place.location.lng().toFixed(7)),
+                formatted:    place.formattedAddress,
                 raw:          JSON.stringify(place),
             };
 
@@ -108,14 +151,87 @@ window.addressField = window.addressField || {
                     input.value = value ?? '';
                 }
             }
+        };
+
+        // Fetch suggestions as the user types
+        subfield.addEventListener('input', () => {
+            clearTimeout(timer);
+            timer = setTimeout(async () => {
+
+                // If nothing to search, close the list
+                const text = subfield.value.trim();
+                if (!text) {
+                    close();
+                    return;
+                }
+
+                // Request suggestions (one session per address)
+                token = token || new places.AutocompleteSessionToken();
+                const response = await places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+                    input: text,
+                    sessionToken: token,
+                });
+                suggestions = (response.suggestions || []).filter(s => s.placePrediction);
+
+                // Display the suggestions
+                list.textContent = '';
+                suggestions.forEach((s, i) => {
+                    const li = document.createElement('li');
+                    li.id = `${list.id}-${i}`;
+                    li.setAttribute('role', 'option');
+                    li.style.cssText = 'padding:6px 10px; cursor:pointer;';
+                    li.textContent = s.placePrediction.text.text;
+                    li.addEventListener('mousedown', (event) => {
+                        event.preventDefault();
+                        select(i);
+                    });
+                    list.appendChild(li);
+                });
+
+                // Show the Google Maps attribution (required by Google)
+                const attribution = document.createElement('li');
+                attribution.setAttribute('translate', 'no');
+                attribution.style.cssText = 'padding:4px 10px; text-align:right; font:12px Roboto, sans-serif; color:#5e5e5e;';
+                attribution.textContent = 'Google Maps';
+                list.appendChild(attribution);
+
+                // Open the list, as wide as the input
+                list.style.width = `${subfield.offsetWidth}px`;
+                list.style.display = suggestions.length ? '' : 'none';
+                subfield.setAttribute('aria-expanded', suggestions.length ? 'true' : 'false');
+                active = -1;
+            }, 150);
         });
 
-        // Prevent address selection from attempting to submit the form
+        // Navigate the suggestions with the keyboard
         subfield.addEventListener('keydown', (event) => {
+
+            // Never let Enter submit the form from this input
             if (event.key === 'Enter') {
                 event.preventDefault();
             }
+
+            // If the list is closed, bail
+            if ('none' === list.style.display) {
+                return;
+            }
+
+            // Handle navigation keys
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                highlight((active + 1) % suggestions.length);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                highlight((active <= 0 ? suggestions.length : active) - 1);
+            } else if (event.key === 'Enter') {
+                select(active);
+            } else if (event.key === 'Escape') {
+                close();
+            }
         });
+
+        // Close the suggestions when leaving the input
+        subfield.addEventListener('blur', close);
 
     },
 
