@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.3.0 - 2026-10-26
 
 ### Added
 - Added support for [Places API (New)](https://plugins.doublesecretagency.com/google-maps/getting-started/api-keys/#authorize-required-services) in Address field autocompletion. ([#140](https://github.com/doublesecretagency/craft-googlemaps/issues/140))
