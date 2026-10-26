@@ -54,6 +54,9 @@ window.addressField = window.addressField || {
         // Specify which subfield to use for autocompletion
         const subfield = document.getElementById(id);
 
+        // Get the shared ID prefix of all subfields (ie: "myAddressField")
+        const prefix = id.substring(0, id.lastIndexOf('-'));
+
         // Create an Autocomplete object
         const autocomplete = new google.maps.places.Autocomplete(subfield, {
             types: ['geocode'],
@@ -79,22 +82,32 @@ window.addressField = window.addressField || {
             // Set all subfield data
             let address = this._addressComponents(components);
 
-            // Set all input values
-            document.getElementById('address-name').value         = place.name           || null;
-            document.getElementById('address-street1').value      = address.street1      || null;
-            document.getElementById('address-street2').value      = address.street2      || null;
-            document.getElementById('address-city').value         = address.city         || null;
-            document.getElementById('address-state').value        = address.state        || null;
-            document.getElementById('address-zip').value          = address.zip          || null;
-            document.getElementById('address-neighborhood').value = address.neighborhood || null;
-            document.getElementById('address-county').value       = address.county       || null;
-            document.getElementById('address-country').value      = address.country      || null;
-            document.getElementById('address-countryCode').value  = address.countryCode  || null;
-            document.getElementById('address-placeId').value      = place.placeId        || null;
-            document.getElementById('address-lat').value          = parseFloat(coords.lat().toFixed(7)) || null;
-            document.getElementById('address-lng').value          = parseFloat(coords.lng().toFixed(7)) || null;
-            document.getElementById('address-formatted').value    = place.formatted_address || null;
-            document.getElementById('address-raw').value          = JSON.stringify(place) || null;
+            // Collect all subfield values
+            const values = {
+                name:         place.name,
+                street1:      address.street1,
+                street2:      address.street2,
+                city:         address.city,
+                state:        address.state,
+                zip:          address.zip,
+                neighborhood: address.neighborhood,
+                county:       address.county,
+                country:      address.country,
+                countryCode:  address.countryCode,
+                placeId:      place.place_id,
+                lat:          parseFloat(coords.lat().toFixed(7)),
+                lng:          parseFloat(coords.lng().toFixed(7)),
+                formatted:    place.formatted_address,
+                raw:          JSON.stringify(place),
+            };
+
+            // Set each input which exists in the form
+            for (const [handle, value] of Object.entries(values)) {
+                const input = document.getElementById(`${prefix}-${handle}`);
+                if (input) {
+                    input.value = value ?? '';
+                }
+            }
         });
 
         // Prevent address selection from attempting to submit the form
@@ -169,7 +182,7 @@ window.addressField = window.addressField || {
         data.state        = formatted['administrative_area_level_1'];
         data.zip          = formatted['postal_code'];
         data.neighborhood = formatted['neighborhood'];
-        data.county       = formatted['county'];
+        data.county       = formatted['administrative_area_level_2'];
         data.country      = formatted['country'];
         data.countryCode  = formatted['countryCode'];
 

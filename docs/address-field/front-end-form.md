@@ -109,7 +109,7 @@ For your convenience, we've provided a script that you can **copy & paste** to a
 
 ### 1. Configure the HTML form inputs
 
-We'll assume that your HTML form looks a lot like the [sample above](#sample-address-field). It's important that the IDs of each `input` align with the JavaScript code provided.
+We'll assume that your HTML form looks a lot like the [sample above](#sample-address-field). It's important that the IDs of each `input` follow the same pattern (ie: `myAddressField-street1`, `myAddressField-city`, etc). The script will fill in whichever subfields exist in your form.
 
 ### 2. Download the `address-field.js` file 
 
