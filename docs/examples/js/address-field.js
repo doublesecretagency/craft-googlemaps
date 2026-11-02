@@ -59,6 +59,11 @@ window.addressField = window.addressField || {
         // Get the shared ID prefix of all subfields (ie: "myAddressField")
         const prefix = id.substring(0, id.lastIndexOf('-'));
 
+        // If the plugin can tell when the API is ready, wait for it
+        if (window.googleMaps?.ready) {
+            await window.googleMaps.ready();
+        }
+
         // Load the Places library
         const places = await google.maps.importLibrary('places');
 

@@ -141,6 +141,32 @@ googleMaps.init('my-map', function () {
 });
 ```
 
+#### Returns
+
+ - A promise, resolved once the map has finished loading.
+
+### `ready(libraries = null)`
+
+```js
+googleMaps.ready().then(function () {
+    // The Google Maps API is ready
+});
+```
+
+Wait until the Google Maps API has finished loading. This is mostly relevant when the API is [loaded asynchronously](/getting-started/config/#loadapiasync).
+
+#### Arguments
+
+ - `libraries` (_string_|_array_|_null_) - Any additional [Google libraries](https://developers.google.com/maps/documentation/javascript/libraries) to load (ie: `'places'`).
+
+#### Returns
+
+ - A promise, resolved once the Google Maps API (and any additional libraries) are ready.
+
+:::tip Only needed for your own Google code
+Maps created via `googleMaps.map()` (or via Twig/PHP) will already wait for the API on their own. You only need `ready()` if your own JavaScript uses `google.maps` directly when the page loads.
+:::
+
 ---
 ---
 

@@ -91,6 +91,7 @@ class SettingsModelTest extends TestCase
             'maxmindService'      => ['maxmindService', null],
             'enableJsLogging'     => ['enableJsLogging', true],
             'minifyJsFiles'       => ['minifyJsFiles', false],
+            'loadApiAsync'        => ['loadApiAsync', false],
             'fieldControlSize'    => ['fieldControlSize', 27],
             'fieldParams'         => ['fieldParams', []],
         ];
@@ -141,6 +142,7 @@ class SettingsModelTest extends TestCase
             'maxmindService'      => ['maxmindService', 'string', true],
             'enableJsLogging'     => ['enableJsLogging', 'bool', false],
             'minifyJsFiles'       => ['minifyJsFiles', 'bool', false],
+            'loadApiAsync'        => ['loadApiAsync', 'bool', false],
             'fieldControlSize'    => ['fieldControlSize', 'int', false],
             'fieldParams'         => ['fieldParams', 'array', false],
         ];

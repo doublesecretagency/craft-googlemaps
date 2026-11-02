@@ -117,6 +117,9 @@ class ApiHelper
             $params['callback'] = 'Function.prototype';
         }
 
+        // Omit any parameters which were explicitly disabled
+        $params = array_filter($params, static fn($value) => false !== $value);
+
         // Return the fully compiled URL
         return UrlHelper::urlWithParams($apiUrl, $params);
     }

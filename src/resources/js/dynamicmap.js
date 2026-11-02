@@ -36,8 +36,8 @@ function DynamicMap(locations, options) {
         // If no map ID was specified, generate one
         this.id = options.id || this._generateId('map');
 
-        // Get map container
-        this.div = document.getElementById(options.id);
+        // Get the map container, or the one prepared while waiting for the API
+        this.div = options._div || document.getElementById(options.id);
 
         // If container does not exist
         if (!this.div) {
@@ -1111,6 +1111,11 @@ function DynamicMap(locations, options) {
         // Log status
         if (googleMaps.log) {
             console.log(`[${this.id}] Creating map`);
+        }
+
+        // If the API hasn't loaded yet, explain how to wait for it
+        if (!window.google?.maps?.Map) {
+            throw new Error('[GM] The Google Maps API is not ready yet. Wrap JS-only maps in googleMaps.ready()');
         }
 
         // Initialize map data

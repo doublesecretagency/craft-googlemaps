@@ -7,6 +7,62 @@ window.googleMaps = window.googleMaps || {
     // Initialize collection of maps
     _maps: {},
 
+    // Initialize the promise of a ready API
+    _ready: null,
+
+    // Initialize the calls waiting for each map
+    _pending: {},
+
+    // How long to wait for the API before giving up
+    _readyTimeout: 15000,
+
+    // Map methods which can wait until the API is ready
+    _chainable: [
+        'markers', 'circles', 'kml', 'styles', 'zoom', 'center', 'fit', 'refresh',
+        'panToMarker', 'setMarkerIcon', 'hideMarker', 'showMarker',
+        'openInfoWindow', 'closeInfoWindow', 'hideCircle', 'showCircle', 'hideKml', 'showKml',
+    ],
+
+    // Map methods which return a value, so can't wait
+    _getters: [
+        'getMarker', 'getInfoWindow', 'getCircle', 'getKml', 'getMarkerClusterer',
+        'getZoom', 'getCenter', 'getBounds',
+    ],
+
+    // ========================================================================= //
+
+    // Wait until the Google Maps API is ready
+    ready: function (libraries) {
+
+        // If not already waiting, start waiting
+        if (!this._ready) {
+            this._ready = this._waitForApi();
+        }
+
+        // If no additional libraries were specified, return the promise
+        if (!libraries) {
+            return this._ready;
+        }
+
+        // Ensure libraries are an array
+        libraries = Array.isArray(libraries) ? libraries : [libraries];
+
+        // Return the promise, with each additional library loaded
+        return this._ready.then(function () {
+
+            // If the API can't import libraries, return as-is
+            if (!google.maps.importLibrary) {
+                return;
+            }
+
+            // Import each additional library
+            return Promise.all(libraries.map(function (library) {
+                return google.maps.importLibrary(library);
+            }));
+
+        });
+    },
+
     // ========================================================================= //
 
     // Create a new map object
@@ -16,6 +72,11 @@ window.googleMaps = window.googleMaps || {
         if (this.log) {
             console.log(`============================================================`);
             console.log(`Creating a new map object`);
+        }
+
+        // If the API isn't ready yet, return a stand-in map
+        if (!this._isApiReady()) {
+            return this._standIn(locations, options);
         }
 
         // Create a new map object
@@ -53,6 +114,38 @@ window.googleMaps = window.googleMaps || {
 
     // Initialize specified maps
     init: function(mapId, callback) {
+
+        // If the API is ready, initialize immediately
+        if (this._isApiReady()) {
+            this._init(mapId, callback);
+            return Promise.resolve();
+        }
+
+        // Get selected map containers
+        var containers = this._whichMaps(mapId);
+
+        // Loop through containers
+        for (var i in containers) {
+
+            // Get each container
+            var container = containers[i];
+
+            // If container has no DNA or is already known, skip it
+            if (!container || !container.dataset.dna || this._maps[container.id]) {
+                continue;
+            }
+
+            // Stand in for the map until it's created
+            this._standIn(null, {'id': container.id}, false);
+
+        }
+
+        // Initialize once the API is ready (the timeout has already been logged)
+        return this.ready().then(() => this._init(mapId, callback), () => {});
+    },
+
+    // Initialize specified maps (once the API is ready)
+    _init: function(mapId, callback) {
 
         // Initialize
         var map, dna, matchingContainers;
@@ -158,6 +251,9 @@ window.googleMaps = window.googleMaps || {
 
             }
 
+            // Replay any calls made while the map was waiting
+            this._replay(map.id, dynamicMap);
+
         }
 
         // If map callback was specified and is a function
@@ -173,6 +269,191 @@ window.googleMaps = window.googleMaps || {
 
         }
 
+    },
+
+    // ========================================================================= //
+
+    // Whether the Maps API has finished loading
+    _isApiReady: function () {
+        return !!(window.google && google.maps && google.maps.Map);
+    },
+
+    // Poll until the Maps API has finished loading
+    _waitForApi: function () {
+
+        // Get the plugin object
+        var gm = this;
+
+        // Get the time we started waiting
+        var started = Date.now();
+
+        // Return a promise of the loaded API
+        return new Promise(function (resolve, reject) {
+
+            // Check whether the API has loaded
+            (function check() {
+
+                // Get the Maps API (if it exists yet)
+                var maps = (window.google && google.maps) || {};
+
+                // If the API loaded asynchronously, import the core libraries
+                if (maps.importLibrary) {
+                    Promise.all([maps.importLibrary('maps'), maps.importLibrary('marker')])
+                        .then(function () { resolve(); }, reject);
+                    return;
+                }
+
+                // If the API loaded directly, it's ready
+                if (maps.Map) {
+                    resolve();
+                    return;
+                }
+
+                // If we've waited too long, give up
+                if (gm._readyTimeout < (Date.now() - started)) {
+                    console.error(`[GM] The Google Maps API did not load within ${gm._readyTimeout / 1000} seconds`);
+                    reject(new Error('[GM] The Google Maps API did not load'));
+                    return;
+                }
+
+                // Check again shortly
+                setTimeout(check, 50);
+
+            })();
+
+        });
+    },
+
+    // Create a stand-in map, which records each call until the API is ready
+    _standIn: function (locations, options, build) {
+
+        // Get the plugin object
+        var gm = this;
+
+        // Copy the options
+        options = Object.assign({}, options || {});
+
+        // Get the map ID (or generate one)
+        var id = options.id || this._generateId('map');
+
+        // Get the map container (or create one)
+        var div = document.getElementById(id) || document.createElement('div');
+
+        // Configure the map container
+        div.id = id;
+        div.classList.add('gm-map');
+
+        // Initialize the calls waiting for this map
+        var calls = this._pending[id] = [];
+
+        // Create a stand-in which records each call
+        var standIn = new Proxy({}, {
+            get: function (target, property) {
+
+                // If asking for the map ID, return it now
+                if ('id' === property) {
+                    return id;
+                }
+
+                // If asking for the map container, return it now
+                if ('div' === property) {
+                    return div;
+                }
+
+                // If rendering the map, place the container now
+                if ('tag' === property) {
+                    return function (tagOptions) {
+
+                        // Get the ID of the parent container
+                        var parentId = (tagOptions || {}).parentId;
+
+                        // Get the parent container
+                        var parent = ('string' === typeof parentId ? document.getElementById(parentId) : null);
+
+                        // If the parent container exists, add the map to it
+                        if (parent) {
+                            parent.appendChild(div);
+                        }
+
+                        // Record the call
+                        calls.push(['tag', [tagOptions]]);
+
+                        // Return the map container
+                        return div;
+                    };
+                }
+
+                // If the method can wait, record it
+                if (gm._chainable.includes(property)) {
+                    return function () {
+
+                        // Record the call
+                        calls.push([property, Array.prototype.slice.call(arguments)]);
+
+                        // Return the stand-in for chaining
+                        return standIn;
+                    };
+                }
+
+                // If the method returns a value, explain why it can't yet
+                if (gm._getters.includes(property)) {
+                    return function () {
+                        console.warn(`[GM] ${property}() was called before the Google Maps API was ready. See googleMaps.ready()`);
+                    };
+                }
+
+                // Anything else doesn't exist yet
+                return undefined;
+            }
+        });
+
+        // Store stand-in for future reference
+        this._maps[id] = standIn;
+
+        // If the map won't be built elsewhere, build it once the API is ready
+        if (false !== build) {
+            this.ready().then(function () {
+
+                // Build the real map in the same container
+                var map = new DynamicMap(locations, Object.assign(options, {'id': id, '_div': div}));
+
+                // Store map object for future reference
+                gm._maps[id] = map;
+
+                // Replay any calls made while the map was waiting
+                gm._replay(id, map);
+
+            }, function () {});
+        }
+
+        // Return the stand-in
+        return standIn;
+    },
+
+    // Replay the calls made while a map was waiting
+    _replay: function (mapId, map) {
+
+        // Get the calls waiting for this map
+        var calls = this._pending[mapId];
+
+        // If no calls are waiting, bail
+        if (!calls || !map) {
+            return;
+        }
+
+        // Clear the waiting calls
+        delete this._pending[mapId];
+
+        // Loop through each call
+        calls.forEach(function (call) {
+            // Make each call on the real map
+            map[call[0]].apply(map, call[1]);
+        });
+    },
+
+    // Generate a random ID
+    _generateId: function (prefix) {
+        return `${prefix}-${Math.random().toString(36).slice(2, 8)}`;
     },
 
     // ========================================================================= //

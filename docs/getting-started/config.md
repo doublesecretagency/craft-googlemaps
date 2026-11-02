@@ -41,6 +41,7 @@ return [
     // Manage JS resources (when rendering a dynamic map on the front-end)
     'enableJsLogging' => true,
     'minifyJsFiles' => false,
+    'loadApiAsync' => false,
 
     // Control the size of map UI elements in Address fields
     'fieldControlSize' => 27,
@@ -82,6 +83,29 @@ Whether to use minified JavaScript files when rendering a dynamic map on the fro
 // Use minified JS files to render a map on the front-end
 'minifyJsFiles' => true
 ```
+
+### `loadApiAsync`
+
+_bool_ - Defaults to `false`.
+
+Whether to load the Google Maps API asynchronously when rendering a dynamic map on the front-end.
+
+:::warning Fixes console warning
+Enabling `loadApiAsync` clears the "loaded directly without loading=async" warning from the JavaScript console.
+:::
+
+Maps created via Twig, PHP, or `googleMaps.map()` require no additional changes.
+
+However, any **custom JavaScript** which uses `google.maps` directly should be wrapped in [`googleMaps.ready()`](/javascript/googlemaps.js/#ready-libraries-null) before enabling this setting.
+
+```php
+// Load the Google Maps API asynchronously
+'loadApiAsync' => true
+```
+
+:::tip Will be enabled by default in Google Maps v6.0
+In the next major version, the Google Maps API will always load asynchronously. If your maps work properly with this setting enabled, they'll be ready for the upgrade.
+:::
 
 ### `fieldControlSize`
 

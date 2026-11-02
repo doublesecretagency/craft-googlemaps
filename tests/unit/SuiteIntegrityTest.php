@@ -180,6 +180,7 @@ class SuiteIntegrityTest extends TestCase
             'AddressModelTest.php',
             'AddressStoreBindingsTest.php',
             'AssetBundlesTest.php',
+            'AsyncLoadingTest.php',
             'ControlPanelSurfaceTest.php',
             'DefaultsEnumTest.php',
             'FieldConversionTest.php',

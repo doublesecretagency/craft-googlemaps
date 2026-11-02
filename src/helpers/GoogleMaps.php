@@ -53,20 +53,19 @@ class GoogleMaps
         $manager = Craft::$app->getAssetManager();
         $assets = '@doublesecretagency/googlemaps/resources';
 
+        // Get plugin settings
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
         // Whether to use minified JavaScript files
-        $minifyJsFiles = (GoogleMapsPlugin::$plugin->getSettings()->minifyJsFiles ?? false);
+        $minifyJsFiles = ($settings->minifyJsFiles ?? false);
 
         // Optionally use minified files
         $min = ($minifyJsFiles ? 'min.' : '');
 
-        /**
-         * Temporarily disabled async loading, see:
-         * - https://github.com/doublesecretagency/craft-googlemaps/issues/117
-         * - https://github.com/doublesecretagency/craft-googlemaps/issues/133
-         */
-
-//        // Load asynchronously
-//        $params = array_merge($params, ['loading' => 'async']);
+        // If enabled, load the API asynchronously, unless the params say otherwise
+        if ($settings->loadApiAsync ?? false) {
+            $params = array_merge(['loading' => 'async'], $params);
+        }
 
         // Link to Google Maps JavaScript API URL
         $files = [self::getApiUrl($params)];

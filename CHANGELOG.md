@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+> [!WARNING]  
+> Enable the new [`loadApiAsync`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#loadapiasync) setting to clear the "loaded directly without loading=async" console warning.
+> 
+> This setting will be permanently enabled when Google Maps v6.0 is eventually released.
+>
+> For future-proofing (or if you enable the setting now), wrap any custom JS using `google.maps` in [`googleMaps.ready()`](https://plugins.doublesecretagency.com/google-maps/javascript/googlemaps.js/#ready-libraries-null).
+
+### Added
+- Added a [`loadApiAsync`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#loadapiasync) setting, to load the Google Maps API asynchronously. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
+- Added the [`googleMaps.ready()`](https://plugins.doublesecretagency.com/google-maps/javascript/googlemaps.js/#ready-libraries-null) JavaScript method.
+
+### Changed
+- The `googleMaps.init()` JavaScript method now returns a promise.
+
 ## 5.3.0 - 2026-10-26
 
 ### Added

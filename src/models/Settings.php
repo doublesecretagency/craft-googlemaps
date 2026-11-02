@@ -66,6 +66,11 @@ class Settings extends Model
     public bool $minifyJsFiles = false;
 
     /**
+     * @var bool Whether to load the Google Maps API asynchronously. Only relevant when rendering a dynamic map.
+     */
+    public bool $loadApiAsync = false;
+
+    /**
      * @var int Control the size of map UI elements in Address fields.
      */
     public int $fieldControlSize = 27;

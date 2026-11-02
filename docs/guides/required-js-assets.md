@@ -129,3 +129,34 @@ $assets = GoogleMaps::getAssets();
 :::
 
 Like `loadAssets`, the `getAssets` method can accept an optional array of [query parameters](https://developers.google.com/maps/documentation/javascript/url-params) for the Google Maps API URL.
+
+## Loading Asynchronously
+
+To load the Google Maps API asynchronously, enable the [`loadApiAsync`](/getting-started/config/#loadapiasync) setting. The API URL will then include `loading=async` on every page.
+
+:::warning Using google.maps directly?
+When the API loads asynchronously, it may not be ready when the page finishes loading. Wrap any of your own code which uses `google.maps` in [`googleMaps.ready()`](/javascript/googlemaps.js/#ready-libraries-null).
+:::
+
+### Direct Loading Override
+
+If you need to revert this behavior (load the API directly) on a specific page, set the `loading` parameter to `false`.
+
+:::code
+```twig
+{# Load the API directly on this page #}
+{{ map.tag({
+    'params': {
+        'loading': false
+    }
+}) }}
+```
+```php
+// Load the API directly on this page
+$twigMarkup = $map->tag([
+    'params' => [
+        'loading' => false
+    ]
+]);
+```
+:::

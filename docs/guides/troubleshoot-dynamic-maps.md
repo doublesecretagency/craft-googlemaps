@@ -46,3 +46,9 @@ It's possible to have a more granular control over how and when the necessary as
 :::tip More Info
 Check out the guide about [Required JS Assets...](/guides/required-js-assets/)
 :::
+
+## Console says the API was "loaded directly without loading=async"
+
+This warning comes from Google, and it's harmless. Your maps will still work normally.
+
+To fix the warning, enable the [`loadApiAsync`](/getting-started/config/#loadapiasync) setting.

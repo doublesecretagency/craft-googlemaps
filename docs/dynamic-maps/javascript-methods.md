@@ -97,6 +97,10 @@ googleMaps.init('my-custom-map', function () {
 ```
 :::
 
+#### Returns
+
+ - A promise, resolved once the map has finished loading.
+
 ---
 ---
 

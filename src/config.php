@@ -34,6 +34,7 @@ return [
     // Manage JS resources (when rendering a dynamic map on the front-end)
     //'enableJsLogging' => true,
     //'minifyJsFiles' => false,
+    //'loadApiAsync' => false,
 
     // Control the size of map UI elements in Address fields
     //'fieldControlSize' => 27,
