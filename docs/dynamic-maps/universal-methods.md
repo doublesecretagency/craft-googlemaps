@@ -101,19 +101,176 @@ Applies a KML layer to the map.
 
 #### Arguments
 
-- `url` (_string_) - The URL of a given KML layer. It **must** be publicly hosted on the internet. Google needs to parse the KML file, so it will not work if hosted locally or behind a private URL.
+- `url` (_string_) - The URL of a KML or KMZ file. Relative and local URLs work fine. A file on another domain must allow [cross-origin requests](/guides/kml-layers/#files-on-another-domain).
 - `options` (_array_|_null_) - The `options` parameter allows you to configure this KML layer in greater detail.
 
-| Option             | Available            | Description |
-|--------------------|:--------------------:|-------------|
-| `id`               | JavaScript, Twig/PHP | Reference point for each KML layer. |
-| `kmlLayerOptions`  | JavaScript, Twig/PHP | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+| Option                | Available            | Description |
+|-----------------------|:--------------------:|-------------|
+| `id`                  | JavaScript, Twig/PHP | Reference point for each KML layer. |
+| `preserveViewport`    | JavaScript, Twig/PHP | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | JavaScript, Twig/PHP | If `true`, clicking a shape will not open an info window. |
+| `clickable`           | JavaScript, Twig/PHP | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | JavaScript, Twig/PHP | Stacking order of the layer, relative to other layers. |
+| `style`               | JavaScript, Twig/PHP | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. Overrides the styles from the KML file. |
+| `kmlLayerOptions`     | JavaScript, Twig/PHP | Any of the options above, nested. If an option is set both ways, the nested value wins. |
 
 :::warning ID required to dynamically adjust KML layers
 In order to [further manipulate](/guides/kml-layers/#further-manipulating-kml-layers) a KML layer, you must provide an `id` option value.
 :::
 
 For more information, see the [KML Layers](/guides/kml-layers/) guide.
+
+## `geoJson(source, options)`
+
+:::code
+```js
+map.geoJson(source, options);
+```
+```twig
+{% do map.geoJson(source, options) %}
+```
+```php
+$map->geoJson($source, $options);
+```
+:::
+
+Applies a GeoJSON layer to the map.
+
+#### Arguments
+
+- `source` (_string_|_array_) - The URL of a GeoJSON file, a JSON string, or the GeoJSON data itself.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure this GeoJSON layer in greater detail.
+
+| Option                | Available            | Description |
+|-----------------------|:--------------------:|-------------|
+| `id`                  | JavaScript, Twig/PHP | Reference point for each GeoJSON layer. |
+| `preserveViewport`    | JavaScript, Twig/PHP | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | JavaScript, Twig/PHP | If `true`, clicking a shape will not open an info window. |
+| `clickable`           | JavaScript, Twig/PHP | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | JavaScript, Twig/PHP | Stacking order of the layer, relative to other layers. |
+| `style`               | JavaScript, Twig/PHP | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. Overrides the styles from the GeoJSON data. |
+
+For more information, see the [GeoJSON Layers](/guides/geojson-layers/) guide.
+
+## `gpx(url, options)`
+
+:::code
+```js
+map.gpx(url, options);
+```
+```twig
+{% do map.gpx(url, options) %}
+```
+```php
+$map->gpx($url, $options);
+```
+:::
+
+Applies a GPX layer (tracks, routes, and waypoints) to the map.
+
+#### Arguments
+
+- `url` (_string_) - The URL of a GPX file. Relative and local URLs work fine. A file on another domain must allow [cross-origin requests](/guides/kml-layers/#files-on-another-domain).
+- `options` (_array_|_null_) - The `options` parameter allows you to configure this GPX layer in greater detail.
+
+| Option                | Available            | Description |
+|-----------------------|:--------------------:|-------------|
+| `id`                  | JavaScript, Twig/PHP | Reference point for each GPX layer. |
+| `preserveViewport`    | JavaScript, Twig/PHP | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | JavaScript, Twig/PHP | If `true`, clicking a track or waypoint will not open an info window. |
+| `clickable`           | JavaScript, Twig/PHP | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | JavaScript, Twig/PHP | Stacking order of the layer, relative to other layers. |
+| `style`               | JavaScript, Twig/PHP | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. |
+
+For more information, see the [GPX Tracks](/guides/gpx-tracks/) guide.
+
+## `groundOverlay(url, bounds, options)`
+
+:::code
+```js
+map.groundOverlay(url, bounds, options);
+```
+```twig
+{% do map.groundOverlay(url, bounds, options) %}
+```
+```php
+$map->groundOverlay($url, $bounds, $options);
+```
+:::
+
+Places an image onto the map, stretched to fit the specified bounds.
+
+#### Arguments
+
+- `url` (_string_) - The URL of the image.
+- `bounds` (_array_) - The edges of the image, as `north`, `south`, `east`, and `west` values.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure this ground overlay in greater detail.
+
+| Option      | Available            | Description |
+|-------------|:--------------------:|-------------|
+| `id`        | JavaScript, Twig/PHP | Reference point for each ground overlay. |
+| `opacity`   | JavaScript, Twig/PHP | Opacity of the image, from `0` (invisible) to `1` (solid). |
+| `clickable` | JavaScript, Twig/PHP | If `false`, the image will ignore clicks. |
+
+For more information, see the [Ground Overlays](/guides/ground-overlays/) guide.
+
+## `dataset(datasetId, options)`
+
+:::code
+```js
+map.dataset(datasetId, options);
+```
+```twig
+{% do map.dataset(datasetId, options) %}
+```
+```php
+$map->dataset($datasetId, $options);
+```
+:::
+
+Shows a dataset which has been uploaded to Google Cloud. Requires a vector Map ID.
+
+#### Arguments
+
+- `datasetId` (_string_) - The ID of the dataset in Google Cloud.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure this dataset in greater detail.
+
+| Option                | Available            | Description |
+|-----------------------|:--------------------:|-------------|
+| `id`                  | JavaScript, Twig/PHP | Reference point for the dataset. Defaults to the dataset ID. |
+| `style`               | JavaScript, Twig/PHP | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties. |
+| `suppressInfoWindows` | JavaScript, Twig/PHP | If `true`, clicking a shape will not open an info window. |
+
+For more information, see the [Datasets & Boundaries](/guides/datasets-and-boundaries/) guide.
+
+## `boundaries(featureType, placeIds, options)`
+
+:::code
+```js
+map.boundaries(featureType, placeIds, options);
+```
+```twig
+{% do map.boundaries(featureType, placeIds, options) %}
+```
+```php
+$map->boundaries($featureType, $placeIds, $options);
+```
+:::
+
+Shades Google's own boundaries of countries, states, cities, and more. Requires a vector Map ID.
+
+#### Arguments
+
+- `featureType` (_string_) - The type of boundary. One of `COUNTRY`, `ADMINISTRATIVE_AREA_LEVEL_1`, `ADMINISTRATIVE_AREA_LEVEL_2`, `LOCALITY`, `POSTAL_CODE`, or `SCHOOL_DISTRICT`.
+- `placeIds` (_string_|_array_) - A Place ID, or array of Place IDs, of the areas to shade.
+- `options` (_array_|_null_) - The `options` parameter allows you to configure these boundaries in greater detail.
+
+| Option  | Available            | Description |
+|---------|:--------------------:|-------------|
+| `id`    | JavaScript, Twig/PHP | Reference point for the boundaries. Defaults to the feature type. |
+| `style` | JavaScript, Twig/PHP | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties. |
+
+For more information, see the [Datasets & Boundaries](/guides/datasets-and-boundaries/) guide.
 
 ## `styles(styleSet)`
 
@@ -194,7 +351,11 @@ $map->fit();
 ```
 :::
 
-Zoom map to automatically fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+Zoom map to automatically fit all markers and layers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+
+:::tip Which layers are included?
+KML, GeoJSON, and GPX layers and ground overlays are included, as long as they are visible and have finished loading. Datasets and boundaries are left out, since Google doesn't provide their bounds.
+:::
 
 ## `refresh()`
 
@@ -427,3 +588,203 @@ Show a KML layer. The KML layer will be re-attached to the map.
 #### Arguments
 
 - `kmlId` (_string_|_array_|`'*'`) - A KML layer ID, array of KML layer IDs, or `'*'` for all KML layers.
+
+## `hideGeoJson(geoJsonId)`
+
+:::code
+```js
+map.hideGeoJson(geoJsonId);
+```
+```twig
+{% do map.hideGeoJson(geoJsonId) %}
+```
+```php
+$map->hideGeoJson($geoJsonId);
+```
+:::
+
+Hide a GeoJSON layer. The GeoJSON layer will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+## `showGeoJson(geoJsonId)`
+
+:::code
+```js
+map.showGeoJson(geoJsonId);
+```
+```twig
+{% do map.showGeoJson(geoJsonId) %}
+```
+```php
+$map->showGeoJson($geoJsonId);
+```
+:::
+
+Show a GeoJSON layer. The GeoJSON layer will be re-attached to the map.
+
+#### Arguments
+
+- `geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+## `hideGpx(gpxId)`
+
+:::code
+```js
+map.hideGpx(gpxId);
+```
+```twig
+{% do map.hideGpx(gpxId) %}
+```
+```php
+$map->hideGpx($gpxId);
+```
+:::
+
+Hide a GPX layer. The GPX layer will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+## `showGpx(gpxId)`
+
+:::code
+```js
+map.showGpx(gpxId);
+```
+```twig
+{% do map.showGpx(gpxId) %}
+```
+```php
+$map->showGpx($gpxId);
+```
+:::
+
+Show a GPX layer. The GPX layer will be re-attached to the map.
+
+#### Arguments
+
+- `gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+## `hideGroundOverlay(overlayId)`
+
+:::code
+```js
+map.hideGroundOverlay(overlayId);
+```
+```twig
+{% do map.hideGroundOverlay(overlayId) %}
+```
+```php
+$map->hideGroundOverlay($overlayId);
+```
+:::
+
+Hide a ground overlay. The ground overlay will not be destroyed, it will simply be detached from the map.
+
+#### Arguments
+
+- `overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+## `showGroundOverlay(overlayId)`
+
+:::code
+```js
+map.showGroundOverlay(overlayId);
+```
+```twig
+{% do map.showGroundOverlay(overlayId) %}
+```
+```php
+$map->showGroundOverlay($overlayId);
+```
+:::
+
+Show a ground overlay. The ground overlay will be re-attached to the map.
+
+#### Arguments
+
+- `overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+## `hideDataset(datasetId)`
+
+:::code
+```js
+map.hideDataset(datasetId);
+```
+```twig
+{% do map.hideDataset(datasetId) %}
+```
+```php
+$map->hideDataset($datasetId);
+```
+:::
+
+Hide a dataset. The dataset will not be destroyed, it will simply be hidden from view.
+
+#### Arguments
+
+- `datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+## `showDataset(datasetId)`
+
+:::code
+```js
+map.showDataset(datasetId);
+```
+```twig
+{% do map.showDataset(datasetId) %}
+```
+```php
+$map->showDataset($datasetId);
+```
+:::
+
+Show a dataset. The dataset will be shown again.
+
+#### Arguments
+
+- `datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+## `hideBoundaries(boundariesId)`
+
+:::code
+```js
+map.hideBoundaries(boundariesId);
+```
+```twig
+{% do map.hideBoundaries(boundariesId) %}
+```
+```php
+$map->hideBoundaries($boundariesId);
+```
+:::
+
+Hide boundaries. The boundaries will not be destroyed, they will simply be hidden from view.
+
+#### Arguments
+
+- `boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.
+
+## `showBoundaries(boundariesId)`
+
+:::code
+```js
+map.showBoundaries(boundariesId);
+```
+```twig
+{% do map.showBoundaries(boundariesId) %}
+```
+```php
+$map->showBoundaries($boundariesId);
+```
+:::
+
+Show boundaries. The boundaries will be shown again.
+
+#### Arguments
+
+- `boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.

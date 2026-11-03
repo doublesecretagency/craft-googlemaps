@@ -18,16 +18,32 @@ window.googleMaps = window.googleMaps || {
 
     // Map methods which can wait until the API is ready
     _chainable: [
-        'markers', 'circles', 'kml', 'styles', 'zoom', 'center', 'fit', 'refresh',
+        'markers', 'circles', 'kml', 'geoJson', 'gpx', 'groundOverlay', 'dataset', 'boundaries',
+        'styles', 'zoom', 'center', 'fit', 'refresh',
         'panToMarker', 'setMarkerIcon', 'hideMarker', 'showMarker',
         'openInfoWindow', 'closeInfoWindow', 'hideCircle', 'showCircle', 'hideKml', 'showKml',
+        'hideGeoJson', 'showGeoJson', 'hideGpx', 'showGpx', 'hideGroundOverlay', 'showGroundOverlay',
+        'hideDataset', 'showDataset', 'hideBoundaries', 'showBoundaries',
     ],
 
     // Map methods which return a value, so can't wait
     _getters: [
-        'getMarker', 'getInfoWindow', 'getCircle', 'getKml', 'getMarkerClusterer',
+        'getMarker', 'getInfoWindow', 'getCircle', 'getKml', 'getGeoJson', 'getGpx',
+        'getGroundOverlay', 'getDataset', 'getBoundaries', 'getMarkerClusterer',
         'getZoom', 'getCenter', 'getBounds',
     ],
+
+    // Libraries bundled with the plugin, loaded only when a layer needs them
+    _libraries: {
+        'togeojson': {'file': 'togeojson-7.1.2.umd.js', 'global': 'toGeoJSON'},
+        'jszip':     {'file': 'jszip-3.10.2.min.js',    'global': 'JSZip'},
+    },
+
+    // Initialize the promise of each library
+    _loadedLibraries: {},
+
+    // Get the folder of the bundled libraries (beside this file)
+    _libraryUrl: (document.currentScript ? new URL('lib/', document.currentScript.src).href : null),
 
     // ========================================================================= //
 
@@ -458,6 +474,57 @@ window.googleMaps = window.googleMaps || {
 
     // ========================================================================= //
 
+    // Load a bundled library (once)
+    _loadLibrary: function (name) {
+
+        // Get the library details
+        var library = this._libraries[name];
+
+        // If the library is already available, use it
+        if (window[library.global]) {
+            return Promise.resolve();
+        }
+
+        // If the library is already loading, wait for it
+        if (this._loadedLibraries[name]) {
+            return this._loadedLibraries[name];
+        }
+
+        // If the folder of the libraries is unknown, find it via this file
+        if (!this._libraryUrl) {
+            var script = document.querySelector('script[src*="/googlemaps.js"], script[src*="/googlemaps.min.js"]');
+            this._libraryUrl = (script ? new URL('lib/', script.src).href : 'lib/');
+        }
+
+        // Get the URL of the library
+        var url = this._libraryUrl + library.file;
+
+        // Load the library
+        return this._loadedLibraries[name] = new Promise(function (resolve, reject) {
+
+            // Create a script tag
+            var script = document.createElement('script');
+
+            // Point to the library
+            script.src = url;
+
+            // When loaded, resolve or explain why it can't be used
+            script.onload = function () {
+                window[library.global] ? resolve() : reject(new Error(`[GM] The ${name} library loaded, but couldn't be used: ${url}`));
+            };
+
+            // If it fails, explain why
+            script.onerror = function () {
+                reject(new Error(`[GM] Unable to load the ${name} library: ${url}`));
+            };
+
+            // Add the script to the page
+            document.head.appendChild(script);
+        });
+    },
+
+    // ========================================================================= //
+
     // Determine which maps to compile
     _whichMaps: function(selection) {
 
@@ -550,6 +617,31 @@ window.googleMaps = window.googleMaps || {
                     map.kml(block.url, block.options);
                     break;
 
+                // Add GeoJSON layer to the map
+                case 'geoJson':
+                    map.geoJson(block.source, block.options);
+                    break;
+
+                // Add GPX layer to the map
+                case 'gpx':
+                    map.gpx(block.url, block.options);
+                    break;
+
+                // Add ground overlay to the map
+                case 'groundOverlay':
+                    map.groundOverlay(block.url, block.bounds, block.options);
+                    break;
+
+                // Add dataset to the map
+                case 'dataset':
+                    map.dataset(block.datasetId, block.options);
+                    break;
+
+                // Add boundaries to the map
+                case 'boundaries':
+                    map.boundaries(block.featureType, block.placeIds, block.options);
+                    break;
+
                 // Style the map
                 case 'styles':
                     map.styles(block.styleSet);
@@ -623,6 +715,56 @@ window.googleMaps = window.googleMaps || {
                 // Show a KML layer
                 case 'showKml':
                     map.showKml(block.kmlId);
+                    break;
+
+                // Hide a GeoJSON layer
+                case 'hideGeoJson':
+                    map.hideGeoJson(block.geoJsonId);
+                    break;
+
+                // Show a GeoJSON layer
+                case 'showGeoJson':
+                    map.showGeoJson(block.geoJsonId);
+                    break;
+
+                // Hide a GPX layer
+                case 'hideGpx':
+                    map.hideGpx(block.gpxId);
+                    break;
+
+                // Show a GPX layer
+                case 'showGpx':
+                    map.showGpx(block.gpxId);
+                    break;
+
+                // Hide a ground overlay
+                case 'hideGroundOverlay':
+                    map.hideGroundOverlay(block.overlayId);
+                    break;
+
+                // Show a ground overlay
+                case 'showGroundOverlay':
+                    map.showGroundOverlay(block.overlayId);
+                    break;
+
+                // Hide a dataset
+                case 'hideDataset':
+                    map.hideDataset(block.datasetId);
+                    break;
+
+                // Show a dataset
+                case 'showDataset':
+                    map.showDataset(block.datasetId);
+                    break;
+
+                // Hide boundaries
+                case 'hideBoundaries':
+                    map.hideBoundaries(block.boundariesId);
+                    break;
+
+                // Show boundaries
+                case 'showBoundaries':
+                    map.showBoundaries(block.boundariesId);
                     break;
 
             }

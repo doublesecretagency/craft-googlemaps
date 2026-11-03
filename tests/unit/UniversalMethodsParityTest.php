@@ -109,9 +109,14 @@ class UniversalMethodsParityTest extends TestCase
         $jsOnly = array_values(array_diff($this->_jsMethods(), $this->_phpMethods()));
 
         $expected = [
+            'getBoundaries',
             'getBounds',
             'getCenter',
             'getCircle',
+            'getDataset',
+            'getGeoJson',
+            'getGpx',
+            'getGroundOverlay',
             'getInfoWindow',
             'getKml',
             'getMarker',
@@ -151,6 +156,10 @@ class UniversalMethodsParityTest extends TestCase
             'refresh', 'panToMarker', 'setMarkerIcon', 'hideMarker', 'showMarker',
             'openInfoWindow', 'closeInfoWindow', 'hideCircle', 'showCircle',
             'hideKml', 'showKml', 'tag',
+            'geoJson', 'gpx', 'groundOverlay', 'dataset', 'boundaries',
+            'hideGeoJson', 'showGeoJson', 'hideGpx', 'showGpx',
+            'hideGroundOverlay', 'showGroundOverlay', 'hideDataset', 'showDataset',
+            'hideBoundaries', 'showBoundaries',
         ];
         return array_combine(
             $methods,

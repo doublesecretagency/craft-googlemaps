@@ -138,19 +138,24 @@ $map->circles($locations);
 ---
 ---
 
-### `kml($files, $options = [])`
+### `kml($url, $options = [])`
 
-Append one or more KML layers to an existing map object.
+Append a KML layer to an existing map object.
 
 #### Arguments
 
-- `$files` (_mixed_)
-- `$options` (_array_) - Optional parameters to configure the KML layers. (see below)
+- `$url` (_string_) - URL of the KML or KMZ file.
+- `$options` (_array_) - Optional parameters to configure the KML layer. (see below)
  
-| Option             | Type     | Default | Description |
-|:-------------------|:--------:|:-------:|:------------|
-| `id`               | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer. |
-| `kmlLayerOptions`  | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties. |
+| Option                | Type     | Default | Description |
+|:----------------------|:--------:|:-------:|:------------|
+| `id`                  | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer. |
+| `preserveViewport`    | _bool_   | `false` | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | _bool_   | `false` | If `true`, clicking a shape will not open an info window. |
+| `clickable`           | _bool_   | `true`  | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | _int_    | _null_  | Stacking order of the layer, relative to other layers. |
+| `style`               | _array_  | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. Overrides the styles from the KML file. |
+| `kmlLayerOptions`     | _array_  | _null_  | Any of the options above, nested. If an option is set both ways, the nested value wins. |
 
 #### Returns
 
@@ -158,10 +163,172 @@ Append one or more KML layers to an existing map object.
 
 :::code
 ```twig
-{% do map.kml(files) %}
+{% do map.kml(url) %}
 ```
 ```php
-$map->kml($files);
+$map->kml($url);
+```
+:::
+
+---
+---
+
+### `geoJson($source, $options = [])`
+
+Append a GeoJSON layer to an existing map object.
+
+#### Arguments
+
+- `$source` (_string_|_array_) - URL of a GeoJSON file, a JSON string, or the GeoJSON data itself.
+- `$options` (_array_) - Optional parameters to configure the GeoJSON layer. (see below)
+
+| Option                | Type     | Default | Description |
+|:----------------------|:--------:|:-------:|:------------|
+| `id`                  | _string_ | <span style="white-space:nowrap">`"geojson-{random}"`</span> | Reference point for each GeoJSON layer. |
+| `preserveViewport`    | _bool_   | `false` | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | _bool_   | `false` | If `true`, clicking a shape will not open an info window. |
+| `clickable`           | _bool_   | `true`  | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | _int_    | _null_  | Stacking order of the layer, relative to other layers. |
+| `style`               | _array_  | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. Overrides the styles from the GeoJSON data. |
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.geoJson(source) %}
+```
+```php
+$map->geoJson($source);
+```
+:::
+
+---
+---
+
+### `gpx($url, $options = [])`
+
+Append a GPX layer (tracks, routes, and waypoints) to an existing map object.
+
+#### Arguments
+
+- `$url` (_string_) - URL of the GPX file.
+- `$options` (_array_) - Optional parameters to configure the GPX layer. (see below)
+
+| Option                | Type     | Default | Description |
+|:----------------------|:--------:|:-------:|:------------|
+| `id`                  | _string_ | <span style="white-space:nowrap">`"gpx-{random}"`</span> | Reference point for each GPX layer. |
+| `preserveViewport`    | _bool_   | `false` | If `true`, the map will not zoom to fit the layer once it loads. |
+| `suppressInfoWindows` | _bool_   | `false` | If `true`, clicking a track or waypoint will not open an info window. |
+| `clickable`           | _bool_   | `true`  | If `false`, the layer will ignore clicks entirely. |
+| `zIndex`              | _int_    | _null_  | Stacking order of the layer, relative to other layers. |
+| `style`               | _array_  | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties. |
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.gpx(url) %}
+```
+```php
+$map->gpx($url);
+```
+:::
+
+---
+---
+
+### `groundOverlay($url, $bounds, $options = [])`
+
+Place an image onto an existing map object, stretched to fit the specified bounds.
+
+#### Arguments
+
+- `$url` (_string_) - URL of the image.
+- `$bounds` (_array_) - The edges of the image, as `north`, `south`, `east`, and `west` values.
+- `$options` (_array_) - Optional parameters to configure the ground overlay. (see below)
+
+| Option      | Type     | Default | Description |
+|:------------|:--------:|:-------:|:------------|
+| `id`        | _string_ | <span style="white-space:nowrap">`"ground-overlay-{random}"`</span> | Reference point for each ground overlay. |
+| `opacity`   | _float_  | `1`     | Opacity of the image, from `0` (invisible) to `1` (solid). |
+| `clickable` | _bool_   | `true`  | If `false`, the image will ignore clicks. |
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.groundOverlay(url, bounds) %}
+```
+```php
+$map->groundOverlay($url, $bounds);
+```
+:::
+
+---
+---
+
+### `dataset($datasetId, $options = [])`
+
+Show a dataset which has been uploaded to Google Cloud. Requires a vector Map ID.
+
+#### Arguments
+
+- `$datasetId` (_string_) - The ID of the dataset in Google Cloud.
+- `$options` (_array_) - Optional parameters to configure the dataset. (see below)
+
+| Option                | Type     | Default | Description |
+|:----------------------|:--------:|:-------:|:------------|
+| `id`                  | _string_ | _(the dataset ID)_ | Reference point for the dataset. |
+| `style`               | _array_  | _(blue)_ | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties. |
+| `suppressInfoWindows` | _bool_   | `false` | If `true`, clicking a shape will not open an info window. |
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.dataset(datasetId) %}
+```
+```php
+$map->dataset($datasetId);
+```
+:::
+
+---
+---
+
+### `boundaries($featureType, $placeIds, $options = [])`
+
+Shade Google's own boundaries of countries, states, cities, and more. Requires a vector Map ID.
+
+#### Arguments
+
+- `$featureType` (_string_) - The type of boundary. One of `COUNTRY`, `ADMINISTRATIVE_AREA_LEVEL_1`, `ADMINISTRATIVE_AREA_LEVEL_2`, `LOCALITY`, `POSTAL_CODE`, or `SCHOOL_DISTRICT`.
+- `$placeIds` (_string_|_array_) - A Place ID, or array of Place IDs, of the areas to shade.
+- `$options` (_array_) - Optional parameters to configure the boundaries. (see below)
+
+| Option  | Type     | Default | Description |
+|:--------|:--------:|:-------:|:------------|
+| `id`    | _string_ | _(the feature type)_ | Reference point for the boundaries. |
+| `style` | _array_  | _(blue)_ | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties. |
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.boundaries(featureType, placeIds) %}
+```
+```php
+$map->boundaries($featureType, $placeIds);
 ```
 :::
 
@@ -246,7 +413,11 @@ $map->center($coords);
 
 ### `fit()`
 
-Zoom map to automatically fit all markers within the viewing area.
+Zoom map to automatically fit all markers and layers within the viewing area.
+
+:::tip Which layers are included?
+KML, GeoJSON, and GPX layers and ground overlays are included, as long as they are visible and have finished loading. Datasets and boundaries are left out, since Google doesn't provide their bounds.
+:::
 
 #### Returns
 
@@ -523,6 +694,246 @@ Show a KML layer.
 ```
 ```php
 $map->showKml($kmlId);
+```
+:::
+
+---
+---
+
+### `hideGeoJson($geoJsonId)`
+
+Hide a GeoJSON layer.
+
+#### Arguments
+
+- `$geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideGeoJson(geoJsonId) %}
+```
+```php
+$map->hideGeoJson($geoJsonId);
+```
+:::
+
+---
+---
+
+### `showGeoJson($geoJsonId)`
+
+Show a GeoJSON layer.
+
+#### Arguments
+
+- `$geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showGeoJson(geoJsonId) %}
+```
+```php
+$map->showGeoJson($geoJsonId);
+```
+:::
+
+---
+---
+
+### `hideGpx($gpxId)`
+
+Hide a GPX layer.
+
+#### Arguments
+
+- `$gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideGpx(gpxId) %}
+```
+```php
+$map->hideGpx($gpxId);
+```
+:::
+
+---
+---
+
+### `showGpx($gpxId)`
+
+Show a GPX layer.
+
+#### Arguments
+
+- `$gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showGpx(gpxId) %}
+```
+```php
+$map->showGpx($gpxId);
+```
+:::
+
+---
+---
+
+### `hideGroundOverlay($overlayId)`
+
+Hide a ground overlay.
+
+#### Arguments
+
+- `$overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideGroundOverlay(overlayId) %}
+```
+```php
+$map->hideGroundOverlay($overlayId);
+```
+:::
+
+---
+---
+
+### `showGroundOverlay($overlayId)`
+
+Show a ground overlay.
+
+#### Arguments
+
+- `$overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showGroundOverlay(overlayId) %}
+```
+```php
+$map->showGroundOverlay($overlayId);
+```
+:::
+
+---
+---
+
+### `hideDataset($datasetId)`
+
+Hide a dataset.
+
+#### Arguments
+
+- `$datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideDataset(datasetId) %}
+```
+```php
+$map->hideDataset($datasetId);
+```
+:::
+
+---
+---
+
+### `showDataset($datasetId)`
+
+Show a dataset.
+
+#### Arguments
+
+- `$datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showDataset(datasetId) %}
+```
+```php
+$map->showDataset($datasetId);
+```
+:::
+
+---
+---
+
+### `hideBoundaries($boundariesId)`
+
+Hide boundaries.
+
+#### Arguments
+
+- `$boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.hideBoundaries(boundariesId) %}
+```
+```php
+$map->hideBoundaries($boundariesId);
+```
+:::
+
+---
+---
+
+### `showBoundaries($boundariesId)`
+
+Show boundaries.
+
+#### Arguments
+
+- `$boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+:::code
+```twig
+{% do map.showBoundaries(boundariesId) %}
+```
+```php
+$map->showBoundaries($boundariesId);
 ```
 :::
 

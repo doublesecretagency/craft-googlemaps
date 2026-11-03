@@ -172,7 +172,7 @@ const circle = map.getCircle(circleId);
 
 ## `getKml(kmlId)`
 
-Get the Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object of the specified KML layer.
+Get the Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object of the specified KML layer.
 
 :::code
 ```js
@@ -187,7 +187,121 @@ const kml = map.getKml(kmlId);
 
 #### Returns
 
-- A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+:::warning Returns a Data layer
+This method returns a `google.maps.Data` object, not a `google.maps.KmlLayer`. If your own JavaScript calls any `KmlLayer` methods directly, it will need to be updated to work with a `Data` object instead.
+:::
+
+---
+---
+
+## `getGeoJson(geoJsonId)`
+
+Get the Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object of the specified GeoJSON layer.
+
+:::code
+```js
+// Get the specified GeoJSON layer object
+const geoJson = map.getGeoJson(geoJsonId);
+```
+:::
+
+#### Arguments
+
+- `geoJsonId` (_string_) - The ID of the GeoJSON layer that you want to access.
+
+#### Returns
+
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+---
+---
+
+## `getGpx(gpxId)`
+
+Get the Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object of the specified GPX layer.
+
+:::code
+```js
+// Get the specified GPX layer object
+const gpx = map.getGpx(gpxId);
+```
+:::
+
+#### Arguments
+
+- `gpxId` (_string_) - The ID of the GPX layer that you want to access.
+
+#### Returns
+
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+---
+---
+
+## `getGroundOverlay(overlayId)`
+
+Get the Google Maps [Ground Overlay](https://developers.google.com/maps/documentation/javascript/reference/image-overlay#GroundOverlay) object of the specified ground overlay.
+
+:::code
+```js
+// Get the specified ground overlay object
+const overlay = map.getGroundOverlay(overlayId);
+```
+:::
+
+#### Arguments
+
+- `overlayId` (_string_) - The ID of the ground overlay that you want to access.
+
+#### Returns
+
+- A Google Maps [Ground Overlay](https://developers.google.com/maps/documentation/javascript/reference/image-overlay#GroundOverlay) object.
+
+---
+---
+
+## `getDataset(datasetId)`
+
+Get the Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object of the specified dataset.
+
+:::code
+```js
+// Get the specified dataset object
+const dataset = map.getDataset(datasetId);
+```
+:::
+
+#### Arguments
+
+- `datasetId` (_string_) - The ID of the dataset that you want to access.
+
+#### Returns
+
+- A Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object.
+
+---
+---
+
+## `getBoundaries(boundariesId)`
+
+Get the Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object of the specified boundaries.
+
+:::code
+```js
+// Get the specified boundaries object
+const boundaries = map.getBoundaries(boundariesId);
+```
+:::
+
+#### Arguments
+
+- `boundariesId` (_string_) - The ID of the boundaries that you want to access.
+
+#### Returns
+
+- A Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object.
 
 ---
 ---

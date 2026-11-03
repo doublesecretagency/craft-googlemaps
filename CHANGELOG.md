@@ -12,9 +12,22 @@
 ### Added
 - Added a [`loadApiAsync`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#loadapiasync) setting, to load the Google Maps API asynchronously. ([#117](https://github.com/doublesecretagency/craft-googlemaps/issues/117))
 - Added the [`googleMaps.ready()`](https://plugins.doublesecretagency.com/google-maps/javascript/googlemaps.js/#ready-libraries-null) JavaScript method.
+- Added [GeoJSON layers](https://plugins.doublesecretagency.com/google-maps/guides/geojson-layers/) to dynamic maps.
+- Added [GPX tracks](https://plugins.doublesecretagency.com/google-maps/guides/gpx-tracks/) to dynamic maps.
+- Added [ground overlays](https://plugins.doublesecretagency.com/google-maps/guides/ground-overlays/) to dynamic maps.
+- Added [datasets and boundaries](https://plugins.doublesecretagency.com/google-maps/guides/datasets-and-boundaries/) to dynamic maps (requires a vector Map ID).
+- Added support for KMZ files in [KML layers](https://plugins.doublesecretagency.com/google-maps/guides/kml-layers/).
 
 ### Changed
 - The `googleMaps.init()` JavaScript method now returns a promise.
+- The `getKml()` JavaScript method now returns a `google.maps.Data` object.
+- The `fit()` method now includes visible KML, GeoJSON, and GPX layers and ground overlays.
+- KML files on another domain now need [CORS headers](https://plugins.doublesecretagency.com/google-maps/guides/kml-layers/#files-on-another-domain) (or a copy hosted on your own site).
+
+### Fixed
+- Fixed KML layers, which stopped working in version 3.66 of the Google Maps API. ([#157](https://github.com/doublesecretagency/craft-googlemaps/issues/157))
+- Fixed a bug where `kmlLayerOptions` were ignored.
+- Fixed a bug where chaining `center()` in Twig or PHP centered the map at 0,0.
 
 ## 5.3.0 - 2026-10-26
 

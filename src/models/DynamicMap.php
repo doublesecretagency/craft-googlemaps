@@ -229,6 +229,139 @@ class DynamicMap extends Model
         return $this;
     }
 
+    /**
+     * Add a GeoJSON layer to the map.
+     *
+     * @param string|array $source URL of a GeoJSON file, a JSON string, or GeoJSON data.
+     * @param array $options
+     * @return $this
+     */
+    public function geoJson(string|array $source, array $options = []): DynamicMap
+    {
+        // If no source was specified, bail
+        if (!$source) {
+            return $this;
+        }
+
+        // Add GeoJSON layer to DNA
+        $this->_dna[] = [
+            'type' => 'geoJson',
+            'source' => $source,
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Add a GPX layer to the map.
+     *
+     * @param string $url
+     * @param array $options
+     * @return $this
+     */
+    public function gpx(string $url, array $options = []): DynamicMap
+    {
+        // If no url was specified, bail
+        if (!$url) {
+            return $this;
+        }
+
+        // Add GPX layer to DNA
+        $this->_dna[] = [
+            'type' => 'gpx',
+            'url' => $url,
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Add a ground overlay (an image placed on the map) to the map.
+     *
+     * @param string $url
+     * @param array $bounds The edges of the image (north, south, east, west).
+     * @param array $options
+     * @return $this
+     */
+    public function groundOverlay(string $url, array $bounds, array $options = []): DynamicMap
+    {
+        // If no url or bounds were specified, bail
+        if (!$url || !$bounds) {
+            return $this;
+        }
+
+        // Add ground overlay to DNA
+        $this->_dna[] = [
+            'type' => 'groundOverlay',
+            'url' => $url,
+            'bounds' => $bounds,
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Add a dataset (uploaded to Google Cloud) to the map.
+     *
+     * Requires a vector Map ID.
+     *
+     * @param string $datasetId
+     * @param array $options
+     * @return $this
+     */
+    public function dataset(string $datasetId, array $options = []): DynamicMap
+    {
+        // If no dataset ID was specified, bail
+        if (!$datasetId) {
+            return $this;
+        }
+
+        // Add dataset to DNA
+        $this->_dna[] = [
+            'type' => 'dataset',
+            'datasetId' => $datasetId,
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Add boundaries (countries, states, cities, etc.) to the map.
+     *
+     * Requires a vector Map ID.
+     *
+     * @param string $featureType The type of boundary (`COUNTRY`, `LOCALITY`, etc).
+     * @param string|array $placeIds One or more Place IDs to show.
+     * @param array $options
+     * @return $this
+     */
+    public function boundaries(string $featureType, string|array $placeIds, array $options = []): DynamicMap
+    {
+        // If no feature type or Place IDs were specified, bail
+        if (!$featureType || !$placeIds) {
+            return $this;
+        }
+
+        // Add boundaries to DNA
+        $this->_dna[] = [
+            'type' => 'boundaries',
+            'featureType' => $featureType,
+            'placeIds' => $placeIds,
+            'options' => $options,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
     // ========================================================================= //
 
     /**
@@ -503,6 +636,186 @@ class DynamicMap extends Model
         $this->_dna[] = [
             'type' => 'showKml',
             'kmlId' => $kmlId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide a GeoJSON layer.
+     *
+     * @param string|array $geoJsonId
+     * @return $this
+     */
+    public function hideGeoJson(string|array $geoJsonId): DynamicMap
+    {
+        // Add call to hide GeoJSON layer
+        $this->_dna[] = [
+            'type' => 'hideGeoJson',
+            'geoJsonId' => $geoJsonId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a GeoJSON layer.
+     *
+     * @param string|array $geoJsonId
+     * @return $this
+     */
+    public function showGeoJson(string|array $geoJsonId): DynamicMap
+    {
+        // Add call to show GeoJSON layer
+        $this->_dna[] = [
+            'type' => 'showGeoJson',
+            'geoJsonId' => $geoJsonId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide a GPX layer.
+     *
+     * @param string|array $gpxId
+     * @return $this
+     */
+    public function hideGpx(string|array $gpxId): DynamicMap
+    {
+        // Add call to hide GPX layer
+        $this->_dna[] = [
+            'type' => 'hideGpx',
+            'gpxId' => $gpxId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a GPX layer.
+     *
+     * @param string|array $gpxId
+     * @return $this
+     */
+    public function showGpx(string|array $gpxId): DynamicMap
+    {
+        // Add call to show GPX layer
+        $this->_dna[] = [
+            'type' => 'showGpx',
+            'gpxId' => $gpxId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide a ground overlay.
+     *
+     * @param string|array $overlayId
+     * @return $this
+     */
+    public function hideGroundOverlay(string|array $overlayId): DynamicMap
+    {
+        // Add call to hide ground overlay
+        $this->_dna[] = [
+            'type' => 'hideGroundOverlay',
+            'overlayId' => $overlayId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a ground overlay.
+     *
+     * @param string|array $overlayId
+     * @return $this
+     */
+    public function showGroundOverlay(string|array $overlayId): DynamicMap
+    {
+        // Add call to show ground overlay
+        $this->_dna[] = [
+            'type' => 'showGroundOverlay',
+            'overlayId' => $overlayId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide a dataset.
+     *
+     * @param string|array $datasetId
+     * @return $this
+     */
+    public function hideDataset(string|array $datasetId): DynamicMap
+    {
+        // Add call to hide dataset
+        $this->_dna[] = [
+            'type' => 'hideDataset',
+            'datasetId' => $datasetId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show a dataset.
+     *
+     * @param string|array $datasetId
+     * @return $this
+     */
+    public function showDataset(string|array $datasetId): DynamicMap
+    {
+        // Add call to show dataset
+        $this->_dna[] = [
+            'type' => 'showDataset',
+            'datasetId' => $datasetId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Hide boundaries.
+     *
+     * @param string|array $boundariesId
+     * @return $this
+     */
+    public function hideBoundaries(string|array $boundariesId): DynamicMap
+    {
+        // Add call to hide boundaries
+        $this->_dna[] = [
+            'type' => 'hideBoundaries',
+            'boundariesId' => $boundariesId,
+        ];
+
+        // Keep the party going
+        return $this;
+    }
+
+    /**
+     * Show boundaries.
+     *
+     * @param string|array $boundariesId
+     * @return $this
+     */
+    public function showBoundaries(string|array $boundariesId): DynamicMap
+    {
+        // Add call to show boundaries
+        $this->_dna[] = [
+            'type' => 'showBoundaries',
+            'boundariesId' => $boundariesId,
         ];
 
         // Keep the party going

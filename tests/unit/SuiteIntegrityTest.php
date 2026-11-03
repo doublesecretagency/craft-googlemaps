@@ -191,6 +191,7 @@ class SuiteIntegrityTest extends TestCase
             'InstallMigrationTest.php',
             'LocationModelTest.php',
             'MapHelperTest.php',
+            'MapLayersTest.php',
             'PlacesAutocompleteTest.php',
             'PluginRegistrationTest.php',
             'ProximitySearchTest.php',

@@ -100,13 +100,18 @@ Append a KML layer to an existing map object.
 
 #### Arguments
 
-- `url` (_string_) - Publicly accessible URL of the KML file.
+- `url` (_string_) - URL of the KML or KMZ file.
 - `options` (_array_) - Optional parameters to configure the KML layer. (see below)
  
-| Option | Type     | Default | Description
-|--------|:--------:|:-------:|-------------
-| `id`   | _string_ | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
-| `kmlLayerOptions` | _object_ | _null_  | Accepts any [`google.maps.KmlLayerOptions`](https://developers.google.com/maps/documentation/javascript/reference/kml#KmlLayerOptions) properties.
+| Option                | Type                 | Default | Description
+|-----------------------|:--------------------:|:-------:|-------------
+| `id`                  | _string_             | <span style="white-space:nowrap">`"kml-{random}"`</span> | Reference point for each KML layer.
+| `preserveViewport`    | _bool_               | `false` | If `true`, the map will not zoom to fit the layer once it loads.
+| `suppressInfoWindows` | _bool_               | `false` | If `true`, clicking a shape will not open an info window.
+| `clickable`           | _bool_               | `true`  | If `false`, the layer will ignore clicks entirely.
+| `zIndex`              | _int_                | _null_  | Stacking order of the layer, relative to other layers.
+| `style`               | _object_\|_function_ | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties, or a [styling function](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StylingFunction). Overrides the styles from the KML file.
+| `kmlLayerOptions`     | _object_             | _null_  | Any of the options above, nested. If an option is set both ways, the nested value wins.
 
 ```js
 map.kml('https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml');
@@ -116,8 +121,170 @@ map.kml('https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml');
 KML files can be created using [Google My Maps](https://www.google.com/maps/about/mymaps/) or a similar service.
 :::
 
-:::warning Must be publicly accessible
-In order for a KML file to work, it must exist at a publicly available URL.
+:::warning Files on another domain
+A KML file on another domain will only load if that server allows [cross-origin requests](/guides/kml-layers/#files-on-another-domain).
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `geoJson(source, options = [])`
+
+Append a GeoJSON layer to an existing map object.
+
+#### Arguments
+
+- `source` (_string_|_object_) - URL of a GeoJSON file, a JSON string, or the GeoJSON data itself.
+- `options` (_array_) - Optional parameters to configure the GeoJSON layer. (see below)
+
+| Option                | Type                 | Default | Description
+|-----------------------|:--------------------:|:-------:|-------------
+| `id`                  | _string_             | <span style="white-space:nowrap">`"geojson-{random}"`</span> | Reference point for each GeoJSON layer.
+| `preserveViewport`    | _bool_               | `false` | If `true`, the map will not zoom to fit the layer once it loads.
+| `suppressInfoWindows` | _bool_               | `false` | If `true`, clicking a shape will not open an info window.
+| `clickable`           | _bool_               | `true`  | If `false`, the layer will ignore clicks entirely.
+| `zIndex`              | _int_                | _null_  | Stacking order of the layer, relative to other layers.
+| `style`               | _object_\|_function_ | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties, or a [styling function](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StylingFunction). Overrides the styles from the GeoJSON data.
+
+```js
+map.geoJson('/files/parks.geojson', {'id': 'my-geojson'});
+```
+
+:::tip GeoJSON Layers
+For a more elaborate explanation, see the guide for [GeoJSON Layers...](/guides/geojson-layers/)
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `gpx(url, options = [])`
+
+Append a GPX layer (tracks, routes, and waypoints) to an existing map object.
+
+#### Arguments
+
+- `url` (_string_) - URL of the GPX file.
+- `options` (_array_) - Optional parameters to configure the GPX layer. (see below)
+
+| Option                | Type                 | Default | Description
+|-----------------------|:--------------------:|:-------:|-------------
+| `id`                  | _string_             | <span style="white-space:nowrap">`"gpx-{random}"`</span> | Reference point for each GPX layer.
+| `preserveViewport`    | _bool_               | `false` | If `true`, the map will not zoom to fit the layer once it loads.
+| `suppressInfoWindows` | _bool_               | `false` | If `true`, clicking a track or waypoint will not open an info window.
+| `clickable`           | _bool_               | `true`  | If `false`, the layer will ignore clicks entirely.
+| `zIndex`              | _int_                | _null_  | Stacking order of the layer, relative to other layers.
+| `style`               | _object_\|_function_ | _null_  | Any [`google.maps.Data.StyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StyleOptions) properties, or a [styling function](https://developers.google.com/maps/documentation/javascript/reference/data#Data.StylingFunction).
+
+```js
+map.gpx('/files/morning-hike.gpx', {'id': 'my-gpx'});
+```
+
+:::tip GPX Tracks
+For a more elaborate explanation, see the guide for [GPX Tracks...](/guides/gpx-tracks/)
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `groundOverlay(url, bounds, options = [])`
+
+Place an image onto an existing map object, stretched to fit the specified bounds.
+
+#### Arguments
+
+- `url` (_string_) - URL of the image.
+- `bounds` (_object_) - The edges of the image, as `north`, `south`, `east`, and `west` values.
+- `options` (_array_) - Optional parameters to configure the ground overlay. (see below)
+
+| Option      | Type     | Default | Description
+|-------------|:--------:|:-------:|-------------
+| `id`        | _string_ | <span style="white-space:nowrap">`"ground-overlay-{random}"`</span> | Reference point for each ground overlay.
+| `opacity`   | _float_  | `1`     | Opacity of the image, from `0` (invisible) to `1` (solid).
+| `clickable` | _bool_   | `true`  | If `false`, the image will ignore clicks.
+
+```js
+map.groundOverlay('/images/historic-bermuda.jpg', {
+    'north': 32.3960,
+    'south': 32.2460,
+    'east': -64.6420,
+    'west': -64.8880
+}, {'id': 'my-overlay'});
+```
+
+:::tip Ground Overlays
+For a more elaborate explanation, see the guide for [Ground Overlays...](/guides/ground-overlays/)
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `dataset(datasetId, options = [])`
+
+Show a dataset which has been uploaded to Google Cloud. Requires a vector Map ID.
+
+#### Arguments
+
+- `datasetId` (_string_) - The ID of the dataset in Google Cloud.
+- `options` (_array_) - Optional parameters to configure the dataset. (see below)
+
+| Option                | Type     | Default | Description
+|-----------------------|:--------:|:-------:|-------------
+| `id`                  | _string_ | _(the dataset ID)_ | Reference point for the dataset.
+| `style`               | _object_ | _(blue)_ | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties.
+| `suppressInfoWindows` | _bool_   | `false` | If `true`, clicking a shape will not open an info window.
+
+```js
+map.dataset('YOUR_DATASET_ID', {'id': 'my-dataset'});
+```
+
+:::tip Datasets & Boundaries
+For a more elaborate explanation, see the guide for [Datasets & Boundaries...](/guides/datasets-and-boundaries/)
+:::
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `boundaries(featureType, placeIds, options = [])`
+
+Shade Google's own boundaries of countries, states, cities, and more. Requires a vector Map ID.
+
+#### Arguments
+
+- `featureType` (_string_) - The type of boundary. One of `COUNTRY`, `ADMINISTRATIVE_AREA_LEVEL_1`, `ADMINISTRATIVE_AREA_LEVEL_2`, `LOCALITY`, `POSTAL_CODE`, or `SCHOOL_DISTRICT`.
+- `placeIds` (_string_|_array_) - A Place ID, or array of Place IDs, of the areas to shade.
+- `options` (_array_) - Optional parameters to configure the boundaries. (see below)
+
+| Option  | Type     | Default | Description
+|---------|:--------:|:-------:|-------------
+| `id`    | _string_ | _(the feature type)_ | Reference point for the boundaries.
+| `style` | _object_ | _(blue)_ | Any [`google.maps.FeatureStyleOptions`](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureStyleOptions) properties.
+
+```js
+map.boundaries('ADMINISTRATIVE_AREA_LEVEL_1', placeId, {'id': 'my-boundaries'});
+```
+
+:::tip Datasets & Boundaries
+For a more elaborate explanation, see the guide for [Datasets & Boundaries...](/guides/datasets-and-boundaries/)
 :::
 
 #### Returns
@@ -213,11 +380,15 @@ map.center({
 
 ### `fit()`
 
-Zoom and center map to fit all markers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
+Zoom and center map to fit all markers and layers within the viewing area. Internally uses [`fitBounds`](https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds).
 
 ```js
 map.fit();
 ```
+
+:::tip Which layers are included?
+KML, GeoJSON, and GPX layers and ground overlays are included, as long as they are visible and have finished loading. Datasets and boundaries are left out, since Google doesn't provide their bounds.
+:::
 
 #### Returns
 
@@ -458,6 +629,196 @@ map.showKml('my-kml');
 ---
 ---
 
+### `hideGeoJson(geoJsonId)`
+
+Hide a GeoJSON layer. The GeoJSON layer will not be destroyed, it will simply be detached from the map.
+
+```js
+map.hideGeoJson('my-geojson');
+```
+
+#### Arguments
+
+- `geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showGeoJson(geoJsonId)`
+
+Show a GeoJSON layer. The GeoJSON layer will be re-attached to the map.
+
+```js
+map.showGeoJson('my-geojson');
+```
+
+#### Arguments
+
+- `geoJsonId` (_string_|_array_|`'*'`) - A GeoJSON layer ID, array of GeoJSON layer IDs, or `'*'` for all GeoJSON layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `hideGpx(gpxId)`
+
+Hide a GPX layer. The GPX layer will not be destroyed, it will simply be detached from the map.
+
+```js
+map.hideGpx('my-gpx');
+```
+
+#### Arguments
+
+- `gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showGpx(gpxId)`
+
+Show a GPX layer. The GPX layer will be re-attached to the map.
+
+```js
+map.showGpx('my-gpx');
+```
+
+#### Arguments
+
+- `gpxId` (_string_|_array_|`'*'`) - A GPX layer ID, array of GPX layer IDs, or `'*'` for all GPX layers.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `hideGroundOverlay(overlayId)`
+
+Hide a ground overlay. The ground overlay will not be destroyed, it will simply be detached from the map.
+
+```js
+map.hideGroundOverlay('my-overlay');
+```
+
+#### Arguments
+
+- `overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showGroundOverlay(overlayId)`
+
+Show a ground overlay. The ground overlay will be re-attached to the map.
+
+```js
+map.showGroundOverlay('my-overlay');
+```
+
+#### Arguments
+
+- `overlayId` (_string_|_array_|`'*'`) - A ground overlay ID, array of ground overlay IDs, or `'*'` for all ground overlays.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `hideDataset(datasetId)`
+
+Hide a dataset. The dataset will not be destroyed, it will simply be hidden from view.
+
+```js
+map.hideDataset('my-dataset');
+```
+
+#### Arguments
+
+- `datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showDataset(datasetId)`
+
+Show a dataset. The dataset will be shown again.
+
+```js
+map.showDataset('my-dataset');
+```
+
+#### Arguments
+
+- `datasetId` (_string_|_array_|`'*'`) - A dataset ID, array of dataset IDs, or `'*'` for all datasets.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `hideBoundaries(boundariesId)`
+
+Hide boundaries. The boundaries will not be destroyed, they will simply be hidden from view.
+
+```js
+map.hideBoundaries('my-boundaries');
+```
+
+#### Arguments
+
+- `boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
+### `showBoundaries(boundariesId)`
+
+Show boundaries. The boundaries will be shown again.
+
+```js
+map.showBoundaries('my-boundaries');
+```
+
+#### Arguments
+
+- `boundariesId` (_string_|_array_|`'*'`) - A boundaries ID, array of boundaries IDs, or `'*'` for all boundaries.
+
+#### Returns
+
+- _self_ - A chainable self-reference to this `DynamicMap` object.
+
+---
+---
+
 ## Non-Chainable Methods
 
 :::warning Breaking the Chain
@@ -523,7 +884,7 @@ const circle = map.getCircle('my-circle');
 
 ### `getKml(kmlId)`
 
-Get the [Google Maps KML Layer object](https://developers.google.com/maps/documentation/javascript/kml) of a specified KML layer.
+Get the [Google Maps Data layer object](https://developers.google.com/maps/documentation/javascript/reference/data#Data) of a specified KML layer.
 
 ```js
 const kml = map.getKml('my-kml');
@@ -535,7 +896,106 @@ const kml = map.getKml('my-kml');
 
 #### Returns
 
-- A Google Maps [KML Layer](https://developers.google.com/maps/documentation/javascript/kml) object.
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+:::warning Returns a Data layer
+This method returns a `google.maps.Data` object, not a `google.maps.KmlLayer`. If your own JavaScript calls any `KmlLayer` methods directly, it will need to be updated to work with a `Data` object instead.
+:::
+
+---
+---
+
+### `getGeoJson(geoJsonId)`
+
+Get the [Google Maps Data layer object](https://developers.google.com/maps/documentation/javascript/reference/data#Data) of a specified GeoJSON layer.
+
+```js
+const geoJson = map.getGeoJson('my-geojson');
+```
+
+#### Arguments
+
+- `geoJsonId` (_string_) - The ID of the GeoJSON layer that you want to access.
+
+#### Returns
+
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+---
+---
+
+### `getGpx(gpxId)`
+
+Get the [Google Maps Data layer object](https://developers.google.com/maps/documentation/javascript/reference/data#Data) of a specified GPX layer.
+
+```js
+const gpx = map.getGpx('my-gpx');
+```
+
+#### Arguments
+
+- `gpxId` (_string_) - The ID of the GPX layer that you want to access.
+
+#### Returns
+
+- A Google Maps [Data layer](https://developers.google.com/maps/documentation/javascript/reference/data#Data) object.
+
+---
+---
+
+### `getGroundOverlay(overlayId)`
+
+Get the [Google Maps Ground Overlay object](https://developers.google.com/maps/documentation/javascript/reference/image-overlay#GroundOverlay) of a specified ground overlay.
+
+```js
+const overlay = map.getGroundOverlay('my-overlay');
+```
+
+#### Arguments
+
+- `overlayId` (_string_) - The ID of the ground overlay that you want to access.
+
+#### Returns
+
+- A Google Maps [Ground Overlay](https://developers.google.com/maps/documentation/javascript/reference/image-overlay#GroundOverlay) object.
+
+---
+---
+
+### `getDataset(datasetId)`
+
+Get the [Google Maps Feature Layer object](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) of a specified dataset.
+
+```js
+const dataset = map.getDataset('my-dataset');
+```
+
+#### Arguments
+
+- `datasetId` (_string_) - The ID of the dataset that you want to access.
+
+#### Returns
+
+- A Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object.
+
+---
+---
+
+### `getBoundaries(boundariesId)`
+
+Get the [Google Maps Feature Layer object](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) of a specified set of boundaries.
+
+```js
+const boundaries = map.getBoundaries('my-boundaries');
+```
+
+#### Arguments
+
+- `boundariesId` (_string_) - The ID of the boundaries that you want to access.
+
+#### Returns
+
+- A Google Maps [Feature Layer](https://developers.google.com/maps/documentation/javascript/reference/data-driven-styling#FeatureLayer) object.
 
 ---
 ---
