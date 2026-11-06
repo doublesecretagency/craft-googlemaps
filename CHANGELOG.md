@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 5.4.0 - 2026-11-06
 
 > [!WARNING]  
 > Enable the new [`loadApiAsync`](https://plugins.doublesecretagency.com/google-maps/getting-started/config/#loadapiasync) setting to clear the "loaded directly without loading=async" console warning.
