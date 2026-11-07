@@ -5,6 +5,11 @@
 ### Added
 - Added the [`distanceBand`](https://plugins.doublesecretagency.com/google-maps/proximity-search/options/#distanceband) proximity search option, for sorting nearby results by something other than distance. ([#113](https://github.com/doublesecretagency/craft-googlemaps/pull/113)) (thanks @Mosnar)
 
+### Fixed
+- Fixed a bug where the multisite migration could fail when upgrading from 4.5.x or earlier, due to duplicate Address data. ([#139](https://github.com/doublesecretagency/craft-googlemaps/pull/139)) (thanks @DavidStrada)
+- Fixed a bug where the multisite migration could fail on Postgres when upgrading from 4.5.x or earlier.
+- Fixed a bug where upgrading from 4.5.x or earlier could leave Address data on only one site of a multisite install.
+
 ## 5.4.0 - 2026-11-06
 
 > [!WARNING]  
