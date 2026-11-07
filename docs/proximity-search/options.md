@@ -35,6 +35,7 @@ meta:
 | [`subfields`](#subfields)         | _mixed_  | `null`  | Filter by contents of specific subfields.                             |
 | [`requireCoords`](#requirecoords) |  _bool_  | `false` | Whether results should only include Addresses with valid coordinates. |
 | [`reverseRadius`](#reverseradius) | _string_ | `null`  | Handle of field to use for a reverse proximity search.                |
+| [`distanceBand`](#distanceband)   | _number_ | `null`  | Group distances into bands, to sort nearby results by another field.  |
 
 ## `target`
 
@@ -104,3 +105,44 @@ A set of coordinates is considered valid only if both the `latitude` and `longit
 When specified, this will **invert** the proximity search logic. Instead of using a single radius, centered around the given target, <u>each location can specify its own individual range</u>.
 
 For complete details, see the guide for a [Reverse Proximity Search...](/guides/reverse-proximity-search/)
+
+## `distanceBand`
+
+Sometimes the nearest result isn't the best one to show first. For example, a dealer locator might want to list its **preferred dealers** ahead of the rest, as long as they're still nearby.
+
+When you specify a `distanceBand`, results will be grouped into **bands of that width**, measured in `units`. With a band of `10` miles, the first band is everything within 0-10 miles, the second band is everything within 10-20 miles, and so on.
+
+Sort by `distanceBand` first, so the nearest group comes first. Sort by any other field(s) you want, with the actual [`distance`](/proximity-search/query-parameters/#orderby-distance) as the final tiebreaker.
+
+:::code
+```twig
+{# Group results into 10-mile bands #}
+{% set options = {
+    'target': 'Los Angeles',
+    'range': 100,
+    'distanceBand': 10,
+} %}
+
+{# Sort by band, then by a custom "dealerWeight" field, then actual distance #}
+{% set dealers = craft.entries
+    .dealerAddress(options)
+    .orderBy('distanceBand, dealerWeight DESC, distance')
+    .all() %}
+```
+```php
+// Group results into 10-mile bands
+$options = [
+    'target' => 'Los Angeles',
+    'range' => 100,
+    'distanceBand' => 10,
+];
+
+// Sort by band, then by a custom "dealerWeight" field, then actual distance
+$dealers = Entry::find()
+    ->dealerAddress($options)
+    ->orderBy('distanceBand, dealerWeight DESC, distance')
+    ->all();
+```
+:::
+
+<img class="dropshadow" :src="$withBase('/images/proximity-search/distance-band.png')" alt="Map of search results around Los Angeles, with three colored rings marking the first three distance bands" width="795" style="max-width:100%; margin-top:4px;">

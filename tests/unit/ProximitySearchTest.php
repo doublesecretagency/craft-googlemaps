@@ -181,8 +181,8 @@ class ProximitySearchTest extends TestCase
     public static function optionApplierProvider(): array
     {
         $methods = [
-            '_applyRange', '_applyUnits', '_applyTarget', '_applySubfields',
-            '_applyRequireCoords', '_applyReverseRadius',
+            '_applyRange', '_applyUnits', '_applyDistanceBand', '_applyTarget',
+            '_applySubfields', '_applyRequireCoords', '_applyReverseRadius',
         ];
         return array_combine($methods, array_map(static fn(string $m): array => [$m], $methods));
     }
@@ -335,6 +335,96 @@ class ProximitySearchTest extends TestCase
             '$this->query->subQuery->having($condition, $params);',
             $this->_methodBody('_applyTarget')
         );
+    }
+
+    // ========================================================================= //
+    // Distance bands (#113)
+    // ========================================================================= //
+
+    public function testTheBandWidthIsResolvedBeforeTheTarget(): void
+    {
+        // The band column is built inside _applyTarget(), in the resolved units.
+        $init = $this->_methodBody('init');
+
+        $unitsAt = strpos($init, '_applyUnits');
+        $bandAt = strpos($init, '_applyDistanceBand');
+        $targetAt = strpos($init, '_applyTarget');
+
+        $this->assertNotFalse($bandAt, 'init() does not apply the distance band.');
+        $this->assertLessThan($bandAt, $unitsAt, 'Units must be resolved before the band.');
+        $this->assertLessThan($targetAt, $bandAt, 'The band must be resolved before the target.');
+    }
+
+    /**
+     * @dataProvider bandWidthProvider
+     */
+    public function testTheBandWidthIsValidated(mixed $given, ?float $expected): void
+    {
+        $this->assertSame($expected, $this->_resolveBand($given));
+    }
+
+    public static function bandWidthProvider(): array
+    {
+        return [
+            'integer'          => [20, 20.0],
+            'numeric string'   => ['20', 20.0],
+            'decimal'          => [0.5, 0.5],
+            'zero'             => [0, null],
+            'negative'         => [-5, null],
+            'non-numeric'      => ['far', null],
+            'missing'          => [null, null],
+            'injection string' => ['1) OR (1', null],
+        ];
+    }
+
+    public function testTheBandIsAFloorOfTheSharedHaversine(): void
+    {
+        // Repeat the formula rather than the alias: neither database lets a
+        // SELECT reference its own column alias.
+        $body = $this->_methodBody('_applyTarget');
+
+        $this->assertStringContainsString(
+            '"FLOOR({$haversine} / {$this->options[\'distanceBand\']}) AS [[distanceBand]]"',
+            $body
+        );
+    }
+
+    public function testTheBandColumnIsOnlyAddedWhenRequested(): void
+    {
+        // A search without the option must produce exactly the SQL it did before.
+        $body = $this->_methodBody('_applyTarget');
+
+        $this->assertSame(2, substr_count($body, "if (\$this->options['distanceBand']) {"));
+        $this->assertSame(2, substr_count($body, 'AS [[distanceBand]]'));
+    }
+
+    public function testASearchWithoutATargetStillHasABandColumn(): void
+    {
+        // So orderBy('distanceBand') doesn't error on an empty search form.
+        $this->assertStringContainsString('"NULL AS [[distanceBand]]"', $this->_methodBody('_applyTarget'));
+    }
+
+    public function testTheBandIsNeverAddedToTheOuterQuery(): void
+    {
+        // It is only for sorting, which Craft applies to the subquery. An outer
+        // column would crash count() and paginate (#115).
+        $this->assertDoesNotMatchRegularExpression(
+            '/query->query->addSelect\(\s*"[^"]*distanceBand/',
+            $this->source
+        );
+    }
+
+    /**
+     * Run the real validation on one value.
+     */
+    private function _resolveBand(mixed $given): ?float
+    {
+        $search = $this->reflection->newInstanceWithoutConstructor();
+        $search->options = ['distanceBand' => $given];
+
+        $this->reflection->getMethod('_applyDistanceBand')->invoke($search);
+
+        return $search->options['distanceBand'];
     }
 
     // ========================================================================= //

@@ -82,6 +82,7 @@ class ProximitySearch extends Model
         // Apply each option
         $this->_applyRange();
         $this->_applyUnits();
+        $this->_applyDistanceBand();
         $this->_applyTarget();
         $this->_applySubfields();
         $this->_applyRequireCoords();
@@ -126,6 +127,23 @@ class ProximitySearch extends Model
     }
 
     /**
+     * Apply the `distanceBand` option.
+     */
+    private function _applyDistanceBand(): void
+    {
+        // Get specified band width
+        $distanceBand = ($this->options['distanceBand'] ?? null);
+
+        // If band width is not valid, nullify it
+        if (!is_numeric($distanceBand) || $distanceBand <= 0) {
+            $distanceBand = null;
+        }
+
+        // Update options array
+        $this->options['distanceBand'] = (null === $distanceBand ? null : (float) $distanceBand);
+    }
+
+    /**
      * Apply the `target` option.
      */
     private function _applyTarget(): void
@@ -139,6 +157,12 @@ class ProximitySearch extends Model
             $this->query->subQuery->addSelect(
                 "NULL AS [[distance]]"
             );
+            // If using distance bands, append empty band column
+            if ($this->options['distanceBand']) {
+                $this->query->subQuery->addSelect(
+                    "NULL AS [[distanceBand]]"
+                );
+            }
             // Bail
             return;
         }
@@ -162,6 +186,14 @@ class ProximitySearch extends Model
         $this->query->subQuery->addSelect(
             "{$haversine} AS [[distance]]"
         );
+
+        // If using distance bands
+        if ($this->options['distanceBand']) {
+            // Modify subquery, group each distance into its band
+            $this->query->subQuery->addSelect(
+                "FLOOR({$haversine} / {$this->options['distanceBand']}) AS [[distanceBand]]"
+            );
+        }
 
         // If not counting results
         if (!$this->_isAggregate()) {

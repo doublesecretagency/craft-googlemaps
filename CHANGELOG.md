@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Added the [`distanceBand`](https://plugins.doublesecretagency.com/google-maps/proximity-search/options/#distanceband) proximity search option, for sorting nearby results by something other than distance. ([#113](https://github.com/doublesecretagency/craft-googlemaps/pull/113)) (thanks @Mosnar)
+
 ## 5.4.0 - 2026-11-06
 
 > [!WARNING]  

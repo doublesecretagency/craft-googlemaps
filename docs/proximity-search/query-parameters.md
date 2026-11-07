@@ -59,3 +59,7 @@ See the [Options](/proximity-search/options/) page for a complete list of availa
 `orderBy` is a standard element query parameter, but it must be set to `'distance'` in order to retrieve the results from nearest to farthest.
 
 `distance` is not a real field or column in your database. It is a dynamically created column which allows us to properly sort the results. Additionally, this allows the resulting [Address Models](/models/address-model/) to contain a special pre-populated `distance` value.
+
+:::tip Sorting Nearby Results
+If distance isn't the only thing that matters, you can also group results by [`distanceBand`](/proximity-search/options/#distanceband), then sort by other values within each group.
+:::
