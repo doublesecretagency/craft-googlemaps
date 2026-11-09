@@ -137,8 +137,8 @@ function DynamicMap(locations, options) {
         // Ensure options are valid
         options = options || {};
 
-        // Ensure marker options are valid
-        options.markerOptions = options.markerOptions || this._d.markerOptions;
+        // Copy the marker options, so an icon doesn't leak into later markers
+        options.markerOptions = Object.assign({}, options.markerOptions || this._d.markerOptions);
 
         // Ensure info window options are valid
         options.infoWindowOptions = options.infoWindowOptions || this._d.infoWindowOptions;

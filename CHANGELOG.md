@@ -9,6 +9,7 @@
 - Fixed a bug where the multisite migration could fail when upgrading from 4.5.x or earlier, due to duplicate Address data. ([#139](https://github.com/doublesecretagency/craft-googlemaps/pull/139)) (thanks @DavidStrada)
 - Fixed a bug where the multisite migration could fail on Postgres when upgrading from 4.5.x or earlier.
 - Fixed a bug where upgrading from 4.5.x or earlier could leave Address data on only one site of a multisite install.
+- Fixed a bug where a marker icon could carry over to markers added later on the same map.
 
 ## 5.4.0 - 2026-11-06
 
