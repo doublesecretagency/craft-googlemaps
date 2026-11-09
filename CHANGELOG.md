@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed a bug where the multisite migration could fail on multisite Postgres installs when upgrading from 4.5.x or earlier. ([#129](https://github.com/doublesecretagency/craft-googlemaps/issues/129))
+- Fixed a bug where the multisite migration could fail on duplicate Address data when upgrading from 4.5.x or earlier. ([#139](https://github.com/doublesecretagency/craft-googlemaps/pull/139)) (thanks @DavidStrada)
+- Fixed a bug where the multisite migration could run out of memory on sites with a large number of Addresses.
+
 ## 4.6.8 - 2025-09-19
 
 ### Fixed
