@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.6.9 - 2026-11-09
 
 ### Fixed
 - Fixed a bug where the multisite migration could fail on multisite Postgres installs when upgrading from 4.5.x or earlier. ([#129](https://github.com/doublesecretagency/craft-googlemaps/issues/129))
