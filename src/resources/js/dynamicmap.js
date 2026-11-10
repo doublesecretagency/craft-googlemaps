@@ -2228,6 +2228,13 @@ function DynamicMap(locations, options) {
             return;
         }
 
+        // If the clustering library couldn't be loaded, show the markers without clustering
+        if (!window.markerClusterer) {
+            console.warn(`[GM] [${this.id}] Marker clustering is unavailable, showing markers individually`);
+            this._cluster = false;
+            return;
+        }
+
         // Set clustering options
         const options = {
             'map': this._map,

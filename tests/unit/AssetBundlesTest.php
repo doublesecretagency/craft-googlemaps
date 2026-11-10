@@ -6,17 +6,17 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 /**
- * Structural tests for the five asset bundles.
+ * Structural tests for the seven asset bundles.
  *
  * These exist because of a defect this suite was written to catch.
  * `GoogleMapsAsset` called `GoogleMapsPlugin::getInstance()` without importing
  * the class, so PHP resolved the name relative to the bundle's own namespace
  * and it did not exist. Registering the bundle threw a class-not-found error.
  *
- * It was latent rather than live, because nothing registers it: the front end
- * loads its JavaScript through `GoogleMaps::getAssets()` and `registerJsFile()`
- * instead, bypassing asset bundles entirely. So the bug sat behind dead code,
- * invisible to every runtime check, and only a reference audit finds it.
+ * It was latent rather than live, because at the time nothing registered it: the
+ * front end hand-built its script URLs. Since #143 the front end registers
+ * `DynamicMapAsset` and `MarkerClustererAsset`, and Craft Cloud publishes every
+ * bundle at build time, so a bundle that cannot be constructed breaks real sites.
  *
  * The test below is the audit, generalized: any class naming `GoogleMapsPlugin`
  * must import it.
@@ -26,8 +26,10 @@ class AssetBundlesTest extends TestCase
     private const BUNDLES = [
         'AddressFieldAsset',
         'AddressFieldSettingsAsset',
+        'DynamicMapAsset',
         'GoogleMapsAsset',
         'JsApiAsset',
+        'MarkerClustererAsset',
         'SettingsAsset',
     ];
 
@@ -208,7 +210,8 @@ class AssetBundlesTest extends TestCase
             'control panel field'    => ['AddressFieldAsset', '@doublesecretagency/googlemaps/web/assets/dist'],
             'field settings'         => ['AddressFieldSettingsAsset', '@doublesecretagency/googlemaps/web/assets/dist'],
             'plugin settings'        => ['SettingsAsset', '@doublesecretagency/googlemaps/web/assets/dist'],
-            'front-end map scripts'  => ['JsApiAsset', '@doublesecretagency/googlemaps/resources'],
+            'front-end map scripts'  => ['DynamicMapAsset', '@doublesecretagency/googlemaps/resources'],
+            'clustering library'     => ['MarkerClustererAsset', '@doublesecretagency/googlemaps/resources'],
         ];
     }
 
@@ -220,13 +223,74 @@ class AssetBundlesTest extends TestCase
         $this->assertArrayHasKey('doublesecretagency\\googlemaps\\', $composer['autoload']['psr-4']);
     }
 
-    public function testJsApiAssetHonorsTheMinifyJsFilesSetting(): void
+    public function testDynamicMapAssetHonorsTheMinifyJsFilesSetting(): void
     {
-        $source = file_get_contents($this->_path('JsApiAsset'));
+        $source = file_get_contents($this->_path('DynamicMapAsset'));
 
         $this->assertStringContainsString('minifyJsFiles', $source);
         $this->assertStringContainsString('js/googlemaps.{$min}js', $source);
         $this->assertStringContainsString('js/dynamicmap.{$min}js', $source);
+    }
+
+    public function testDynamicMapAssetLeavesTheClustererToItsOwnBundle(): void
+    {
+        // The clusterer is optional per map, so it can't ride along with the core scripts
+        $this->assertStringNotContainsString('markerclusterer', file_get_contents($this->_path('DynamicMapAsset')));
+    }
+
+    public function testJsApiAssetStillLoadsEverythingAMapNeeds(): void
+    {
+        // Sites register JsApiAsset by hand (the #121 workaround), so it must keep pulling in the API and the scripts
+        $source = file_get_contents($this->_path('JsApiAsset'));
+
+        $this->assertStringContainsString('GoogleMapsAsset::class', $source);
+        $this->assertStringContainsString('DynamicMapAsset::class', $source);
+        $this->assertLessThan(strpos($source, 'DynamicMapAsset::class'), strpos($source, 'GoogleMapsAsset::class'));
+    }
+
+    /**
+     * @dataProvider deferredBundleProvider
+     */
+    public function testFrontEndBundlesDeferTheirScripts(string $bundle): void
+    {
+        // Matches the deferred API tag, so execution order stays API, clusterer, plugin scripts
+        $this->assertStringContainsString("'defer' => true", file_get_contents($this->_path($bundle)));
+    }
+
+    public static function deferredBundleProvider(): array
+    {
+        return [
+            'map scripts' => ['DynamicMapAsset'],
+            'clusterer'   => ['MarkerClustererAsset'],
+            'maps api'    => ['GoogleMapsAsset'],
+        ];
+    }
+
+    public function testTheClustererShipsWithThePluginAtOneVersion(): void
+    {
+        // #137: no third-party CDN, and every reference names the same vendored file
+        $root = dirname(__DIR__, 2) . '/src';
+        $files = glob("{$root}/resources/js/lib/markerclusterer-*.min.js");
+
+        $this->assertCount(1, $files, 'Exactly one vendored markerclusterer file should exist.');
+        $name = basename($files[0]);
+
+        $this->assertStringContainsString("js/lib/{$name}", file_get_contents($this->_path('MarkerClustererAsset')));
+        $this->assertStringContainsString("'file': '{$name}'", file_get_contents("{$root}/resources/js/googlemaps.js"));
+        $this->assertStringStartsWith('/*! @googlemaps/markerclusterer', file_get_contents($files[0]), 'Keep the Apache-2.0 notice.');
+    }
+
+    public function testNoPluginCodeLoadsFromUnpkg(): void
+    {
+        $root = dirname(__DIR__, 2) . '/src';
+        foreach (['helpers', 'models', 'web/assets', 'resources/js'] as $dir) {
+            $it = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator("{$root}/{$dir}", \FilesystemIterator::SKIP_DOTS));
+            foreach ($it as $file) {
+                if (preg_match('/\.(php|js)$/', $file->getFilename()) && !str_contains($file->getPathname(), '/lib/')) {
+                    $this->assertStringNotContainsString('unpkg.com', file_get_contents($file->getPathname()), $file->getPathname());
+                }
+            }
+        }
     }
 
     public function testGoogleMapsAssetLoadsTheApiUrl(): void
@@ -239,18 +303,22 @@ class AssetBundlesTest extends TestCase
 
     public function testEveryBundleGuardsAgainstTheUninstantiatedPlugin(): void
     {
-        // A bundle can be constructed before the plugin instance exists, and
-        // dereferencing a typed static property that is unset is a fatal.
-        foreach (['GoogleMapsAsset', 'JsApiAsset', 'AddressFieldAsset', 'AddressFieldSettingsAsset'] as $bundle) {
+        // A bundle can be constructed before the plugin instance exists (Craft Cloud
+        // builds with no database), and dereferencing an unset typed static is a fatal.
+        // Derived from the files: any bundle that reaches the plugin must use getInstance().
+        $checked = 0;
+        foreach (self::BUNDLES as $bundle) {
             $source = file_get_contents($this->_path($bundle));
+            if (!str_contains($source, 'GoogleMapsPlugin')) {
+                continue;
+            }
+            $checked++;
 
-            $this->assertMatchesRegularExpression(
-                '/GoogleMapsPlugin::getInstance\(\)/',
-                $source,
-                "{$bundle} should reach the plugin through getInstance(), which returns "
-                . 'null when uninstantiated, rather than the static property.'
-            );
+            $this->assertMatchesRegularExpression('/GoogleMapsPlugin::getInstance\(\)/', $source, "{$bundle} should reach the plugin through getInstance(), which returns null when uninstantiated.");
         }
+
+        // Prove the derivation still finds the bundles that touch settings
+        $this->assertGreaterThanOrEqual(4, $checked);
     }
 
     // ========================================================================= //

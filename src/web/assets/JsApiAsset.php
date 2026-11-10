@@ -12,7 +12,6 @@
 namespace doublesecretagency\googlemaps\web\assets;
 
 use craft\web\AssetBundle;
-use doublesecretagency\googlemaps\GoogleMapsPlugin;
 
 /**
  * Class JsApiAsset
@@ -28,21 +27,10 @@ class JsApiAsset extends AssetBundle
     {
         parent::init();
 
-        $this->sourcePath = '@doublesecretagency/googlemaps/resources';
+        // Load the Google Maps API, then the plugin's own JavaScript
         $this->depends = [
             GoogleMapsAsset::class,
-        ];
-
-        // Whether to use minified JavaScript files
-        $minifyJsFiles = (GoogleMapsPlugin::getInstance()?->getSettings()->minifyJsFiles ?? false);
-
-        // Optionally use minified files
-        $min = ($minifyJsFiles ? 'min.' : '');
-
-        // Load JS files
-        $this->js = [
-            "js/googlemaps.{$min}js",
-            "js/dynamicmap.{$min}js",
+            DynamicMapAsset::class,
         ];
     }
 

@@ -871,8 +871,8 @@ class DynamicMap extends Model
 
         // If we're permitted to load JS assets
         if ($options['assets']) {
-            // Load assets with optional API parameters
-            GoogleMaps::loadAssets($options['params']);
+            // Load assets with optional API parameters (and the clustering library only if needed)
+            GoogleMaps::loadAssets($options['params'], (bool) ($this->_dna[0]['options']['cluster'] ?? false));
         }
 
         // Compile map container

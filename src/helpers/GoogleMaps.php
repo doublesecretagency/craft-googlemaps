@@ -19,6 +19,8 @@ use doublesecretagency\googlemaps\models\Location;
 use doublesecretagency\googlemaps\models\Lookup;
 use doublesecretagency\googlemaps\models\StaticMap;
 use doublesecretagency\googlemaps\models\Visitor;
+use doublesecretagency\googlemaps\web\assets\DynamicMapAsset;
+use doublesecretagency\googlemaps\web\assets\MarkerClustererAsset;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Collection;
 use yii\base\Exception;
@@ -46,36 +48,23 @@ class GoogleMaps
      *
      * @param array $params Optional parameters for the Google Maps API.
      * @return string[] Collection of JS files required to display maps.
+     * @throws InvalidConfigException
      */
     public static function getAssets(array $params = []): array
     {
+        // Link to Google Maps JavaScript API URL
+        $files = [self::_getMapsApiUrl($params)];
+
         // Get asset manager
         $manager = Craft::$app->getAssetManager();
-        $assets = '@doublesecretagency/googlemaps/resources';
 
-        // Get plugin settings
-        $settings = GoogleMapsPlugin::$plugin->getSettings();
-
-        // Whether to use minified JavaScript files
-        $minifyJsFiles = ($settings->minifyJsFiles ?? false);
-
-        // Optionally use minified files
-        $min = ($minifyJsFiles ? 'min.' : '');
-
-        // If enabled, load the API asynchronously, unless the params say otherwise
-        if ($settings->loadApiAsync ?? false) {
-            $params = array_merge(['loading' => 'async'], $params);
+        // Append the clustering library, then the plugin's own JavaScript
+        foreach ([MarkerClustererAsset::class, DynamicMapAsset::class] as $class) {
+            $bundle = $manager->getBundle($class);
+            foreach ($bundle->js as $file) {
+                $files[] = $manager->getAssetUrl($bundle, $file);
+            }
         }
-
-        // Link to Google Maps JavaScript API URL
-        $files = [self::getApiUrl($params)];
-
-        // Bundled MarkerClusterer library
-        $files[] = $manager->getPublishedUrl($assets, true, 'js/lib/markerclusterer-2.6.2.min.js');
-
-        // Append both JS files required by plugin
-        $files[] = $manager->getPublishedUrl($assets, true, "js/googlemaps.{$min}js");
-        $files[] = $manager->getPublishedUrl($assets, true, "js/dynamicmap.{$min}js");
 
         // Return list of files
         return $files;
@@ -85,20 +74,44 @@ class GoogleMaps
      * Load the JavaScript assets necessary for displaying Dynamic Maps.
      *
      * @param array $params Optional parameters for the Google Maps API.
+     * @param bool $cluster Whether to load the marker clustering library up front.
      * @throws InvalidConfigException
      */
-    public static function loadAssets(array $params = []): void
+    public static function loadAssets(array $params = [], bool $cluster = true): void
     {
         // Get view service
         $view = Craft::$app->getView();
 
-        // Get all required assets
-        $assets = static::getAssets($params);
+        // Load the Google Maps API (outside the bundle, since its URL varies by params)
+        $view->registerJsFile(self::_getMapsApiUrl($params), ['defer' => true]);
 
-        // Load each JS file
-        foreach ($assets as $file) {
-            $view->registerJsFile($file, ['defer' => true]);
+        // Optionally load the clustering library (otherwise it loads on demand)
+        if ($cluster) {
+            $view->registerAssetBundle(MarkerClustererAsset::class);
         }
+
+        // Load the plugin's own JavaScript
+        $view->registerAssetBundle(DynamicMapAsset::class);
+    }
+
+    /**
+     * Get the Google Maps API URL for dynamic maps.
+     *
+     * @param array $params Optional parameters for the Google Maps API.
+     * @return string Google Maps API URL.
+     */
+    private static function _getMapsApiUrl(array $params): string
+    {
+        // Get plugin settings
+        $settings = GoogleMapsPlugin::$plugin->getSettings();
+
+        // If enabled, load the API asynchronously, unless the params say otherwise
+        if ($settings->loadApiAsync ?? false) {
+            $params = array_merge(['loading' => 'async'], $params);
+        }
+
+        // Return the API URL
+        return self::getApiUrl($params);
     }
 
     // ========================================================================= //

@@ -157,14 +157,14 @@ Wait until the Google Maps API has finished loading. This is mostly relevant whe
 
 #### Arguments
 
- - `libraries` (_string_|_array_|_null_) - Any additional [Google libraries](https://developers.google.com/maps/documentation/javascript/libraries) to load (ie: `'places'`).
+ - `libraries` (_string_|_array_|_null_) - Any additional [Google libraries](https://developers.google.com/maps/documentation/javascript/libraries) to load (ie: `'places'`). Can also include `'markerclusterer'`, the [marker clustering](/dynamic-maps/clustering-markers/) library which comes with the plugin.
 
 #### Returns
 
  - A promise, resolved once the Google Maps API (and any additional libraries) are ready.
 
 :::tip Only needed for your own Google code
-Maps created via `googleMaps.map()` (or via Twig/PHP) will already wait for the API on their own. You only need `ready()` if your own JavaScript uses `google.maps` directly when the page loads.
+Maps created via `googleMaps.map()` (or via Twig/PHP) will already wait for the API on their own. You only need `ready()` if your own JavaScript uses `google.maps` (or `markerClusterer`) directly when the page loads.
 :::
 
 ---

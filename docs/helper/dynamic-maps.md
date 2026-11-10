@@ -58,11 +58,11 @@ $assets = GoogleMaps::getAssets();
 ```
 :::
 
-## loadAssets(params = {})
+## loadAssets(params = {}, cluster = true)
 
 Load all required JavaScript assets necessary to render dynamic maps.
 
-Optionally add [parameters](https://developers.google.com/maps/documentation/javascript/url-params) to the Google Maps API URL.
+Optionally add [parameters](https://developers.google.com/maps/documentation/javascript/url-params) to the Google Maps API URL. Set `cluster` to `false` to skip the [marker clustering](/dynamic-maps/clustering-markers/) library (it will still be loaded on demand, if a map needs it).
 
 :::code
 ```twig

@@ -33,10 +33,11 @@ window.googleMaps = window.googleMaps || {
         'getZoom', 'getCenter', 'getBounds',
     ],
 
-    // Libraries bundled with the plugin, loaded only when a layer needs them
+    // Libraries bundled with the plugin, loaded only when a map needs them
     _libraries: {
-        'togeojson': {'file': 'togeojson-7.1.2.umd.js', 'global': 'toGeoJSON'},
-        'jszip':     {'file': 'jszip-3.10.2.min.js',    'global': 'JSZip'},
+        'togeojson':       {'file': 'togeojson-7.1.2.umd.js',       'global': 'toGeoJSON'},
+        'jszip':           {'file': 'jszip-3.10.2.min.js',          'global': 'JSZip'},
+        'markerclusterer': {'file': 'markerclusterer-2.6.2.min.js', 'global': 'markerClusterer'},
     },
 
     // Initialize the promise of each library
@@ -63,17 +64,28 @@ window.googleMaps = window.googleMaps || {
         // Ensure libraries are an array
         libraries = Array.isArray(libraries) ? libraries : [libraries];
 
+        // Get the plugin object
+        var gm = this;
+
         // Return the promise, with each additional library loaded
         return this._ready.then(function () {
 
-            // If the API can't import libraries, return as-is
-            if (!google.maps.importLibrary) {
-                return;
-            }
-
-            // Import each additional library
+            // Load each additional library
             return Promise.all(libraries.map(function (library) {
+
+                // If the library ships with the plugin, load it from there
+                if (gm._libraries[library]) {
+                    return gm._loadLibrary(library);
+                }
+
+                // If the API can't import libraries, skip it
+                if (!google.maps.importLibrary) {
+                    return;
+                }
+
+                // Import the Google library
                 return google.maps.importLibrary(library);
+
             }));
 
         });
@@ -90,8 +102,8 @@ window.googleMaps = window.googleMaps || {
             console.log(`Creating a new map object`);
         }
 
-        // If the API isn't ready yet, return a stand-in map
-        if (!this._isApiReady()) {
+        // If the API (or the clustering library) isn't ready yet, return a stand-in map
+        if (!this._isReady(this._clusters(options))) {
             return this._standIn(locations, options);
         }
 
@@ -131,14 +143,17 @@ window.googleMaps = window.googleMaps || {
     // Initialize specified maps
     init: function(mapId, callback) {
 
-        // If the API is ready, initialize immediately
-        if (this._isApiReady()) {
+        // Get selected map containers
+        var containers = this._whichMaps(mapId);
+
+        // Whether any of the maps uses marker clustering
+        var cluster = this._dnaClusters(containers);
+
+        // If everything is ready, initialize immediately
+        if (this._isReady(cluster)) {
             this._init(mapId, callback);
             return Promise.resolve();
         }
-
-        // Get selected map containers
-        var containers = this._whichMaps(mapId);
 
         // Loop through containers
         for (var i in containers) {
@@ -156,8 +171,8 @@ window.googleMaps = window.googleMaps || {
 
         }
 
-        // Initialize once the API is ready (the timeout has already been logged)
-        return this.ready().then(() => this._init(mapId, callback), () => {});
+        // Initialize once everything is ready (the timeout has already been logged)
+        return this._whenReady(cluster).then(() => this._init(mapId, callback), () => {});
     },
 
     // Initialize specified maps (once the API is ready)
@@ -294,6 +309,62 @@ window.googleMaps = window.googleMaps || {
         return !!(window.google && google.maps && google.maps.Map);
     },
 
+    // Whether the Maps API (and the clustering library, if needed) has finished loading
+    _isReady: function (cluster) {
+        return this._isApiReady() && (!cluster || !!window.markerClusterer);
+    },
+
+    // Wait for the Maps API (and the clustering library, if needed)
+    _whenReady: function (cluster) {
+
+        // If not clustering, only wait for the API
+        if (!cluster) {
+            return this.ready();
+        }
+
+        // Wait for both, but still build the map if the clustering library fails
+        return Promise.all([
+            this.ready(),
+            this._loadLibrary('markerclusterer').catch(function (error) {
+                console.error(error.message);
+            })
+        ]);
+    },
+
+    // Whether a map's options call for marker clustering
+    _clusters: function (options) {
+        return !!(options || {}).cluster;
+    },
+
+    // Whether any of the map containers calls for marker clustering
+    _dnaClusters: function (containers) {
+
+        // Loop through containers
+        for (var i in containers) {
+
+            // Get the DNA of each container
+            var dna = (containers[i] && containers[i].dataset.dna);
+
+            // If no DNA, skip it
+            if (!dna) {
+                continue;
+            }
+
+            // If the map uses clustering, we're done
+            try {
+                if (JSON.parse(dna).some(block => 'map' === block.type && this._clusters(block.options))) {
+                    return true;
+                }
+            } catch (e) {
+                // Invalid DNA is reported when the map is initialized
+            }
+
+        }
+
+        // No clustering found
+        return false;
+    },
+
     // Poll until the Maps API has finished loading
     _waitForApi: function () {
 
@@ -426,9 +497,9 @@ window.googleMaps = window.googleMaps || {
         // Store stand-in for future reference
         this._maps[id] = standIn;
 
-        // If the map won't be built elsewhere, build it once the API is ready
+        // If the map won't be built elsewhere, build it once everything is ready
         if (false !== build) {
-            this.ready().then(function () {
+            this._whenReady(this._clusters(options)).then(function () {
 
                 // Build the real map in the same container
                 var map = new DynamicMap(locations, Object.assign(options, {'id': id, '_div': div}));

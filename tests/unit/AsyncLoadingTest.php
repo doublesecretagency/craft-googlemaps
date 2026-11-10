@@ -99,9 +99,12 @@ class AsyncLoadingTest extends TestCase
         // Deferring every init would break `init('x'); getMap('x')` on sites that never opted in
         $init = $this->_member('init');
 
-        $this->assertMatchesRegularExpression('/^\s*\/\/ If the API is ready, initialize immediately\s*\n\s*if \(this\._isApiReady\(\)\) \{\s*\n\s*this\._init\(mapId, callback\);/m', $init);
-        $this->assertNotFalse(strpos($init, 'this.ready()'));
-        $this->assertLessThan(strpos($init, 'this.ready()'), strpos($init, 'this._isApiReady()'));
+        // Since #143 "ready" also covers the clustering library, but only for maps that cluster,
+        // and a Twig map that clusters loads the library up front, so it stays synchronous too
+        $this->assertMatchesRegularExpression('/^\s*\/\/ If everything is ready, initialize immediately\s*\n\s*if \(this\._isReady\(cluster\)\) \{\s*\n\s*this\._init\(mapId, callback\);/m', $init);
+        $this->assertNotFalse(strpos($init, 'this._whenReady(cluster)'));
+        $this->assertLessThan(strpos($init, 'this._whenReady(cluster)'), strpos($init, 'this._isReady(cluster)'));
+        $this->assertStringContainsString('return this._isApiReady() && (!cluster || !!window.markerClusterer);', $this->_member('_isReady'));
     }
 
     public function testDeferredInitDoesNotSwallowErrors(): void
@@ -109,8 +112,12 @@ class AsyncLoadingTest extends TestCase
         // Only the timeout is caught; a map that throws must still surface (e.g. #157's KmlLayer)
         $init = $this->_member('init');
 
-        $this->assertStringContainsString('this.ready().then(() => this._init(mapId, callback), () => {});', $init);
-        $this->assertStringNotContainsString('.catch(', $this->googlemaps);
+        $this->assertStringContainsString('this._whenReady(cluster).then(() => this._init(mapId, callback), () => {});', $init);
+
+        // The one catch is on loading the clusterer (logged, then the map builds unclustered),
+        // never on building a map
+        $this->assertSame(1, substr_count($this->googlemaps, '.catch('));
+        $this->assertStringContainsString("this._loadLibrary('markerclusterer').catch(function (error) {", $this->_member('_whenReady'));
     }
 
     public function testDeferredInitStandsInForEachMap(): void
@@ -130,7 +137,7 @@ class AsyncLoadingTest extends TestCase
     {
         $map = $this->_member('map');
 
-        $this->assertMatchesRegularExpression('/if \(!this\._isApiReady\(\)\) \{\s*\n\s*return this\._standIn\(locations, options\);/', $map);
+        $this->assertMatchesRegularExpression('/if \(!this\._isReady\(this\._clusters\(options\)\)\) \{\s*\n\s*return this\._standIn\(locations, options\);/', $map);
     }
 
     public function testTheStandInAnswersIdentityImmediately(): void
@@ -191,12 +198,12 @@ class AsyncLoadingTest extends TestCase
         $dir = dirname(__DIR__, 2) . '/src/resources/js';
 
         $min = file_get_contents("{$dir}/googlemaps.min.js");
-        foreach (['_standIn', '_waitForApi', '_isApiReady', '_replay', 'importLibrary', '15e3'] as $token) {
+        foreach (['_standIn', '_waitForApi', '_isApiReady', '_replay', 'importLibrary', '15e3', '_whenReady', '_dnaClusters', 'markerclusterer-2.6.2.min.js'] as $token) {
             $this->assertStringContainsString($token, $min, "googlemaps.min.js is missing `{$token}`. Regenerate it.");
         }
 
         $min = file_get_contents("{$dir}/dynamicmap.min.js");
-        foreach (['options._div', 'Wrap JS-only maps in googleMaps.ready()'] as $token) {
+        foreach (['options._div', 'Wrap JS-only maps in googleMaps.ready()', 'Marker clustering is unavailable'] as $token) {
             $this->assertStringContainsString($token, $min, "dynamicmap.min.js is missing `{$token}`. Regenerate it.");
         }
     }

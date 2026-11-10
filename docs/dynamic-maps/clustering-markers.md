@@ -93,3 +93,16 @@ const clusterer = map.getMarkerClusterer();
 ```
 
 This provides you with a [MarkerClusterer object](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html). What you choose to do with it is entirely up to you.
+
+## The Clustering Library
+
+The marker clustering library comes bundled with the plugin, and it only gets loaded when a map actually uses clustering.
+
+If your own JavaScript needs the `markerClusterer` library before any clustered map has been created, wait for it with [`googleMaps.ready()`](/javascript/googlemaps.js/#ready-libraries-null)...
+
+```js
+// Wait for the marker clustering library
+googleMaps.ready('markerclusterer').then(function () {
+    // The markerClusterer library is ready
+});
+```

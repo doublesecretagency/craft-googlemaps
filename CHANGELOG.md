@@ -4,6 +4,8 @@
 
 ### Changed
 - The marker clustering library now ships with the plugin (pinned to 2.6.2), instead of loading from unpkg. ([#137](https://github.com/doublesecretagency/craft-googlemaps/issues/137))
+- Dynamic map JavaScript now loads through asset bundles, as recommended for Craft Cloud. ([#143](https://github.com/doublesecretagency/craft-googlemaps/issues/143))
+- The [marker clustering](https://plugins.doublesecretagency.com/google-maps/dynamic-maps/clustering-markers/#the-clustering-library) library now only loads on pages where a map uses clustering.
 
 ## 5.5.0 - 2026-11-09
 

@@ -31,6 +31,8 @@ For various reasons, you may not want these files to be loaded automatically. It
 
 In addition to the Google Maps API reference, there are two [JavaScript files](/javascript/) which are required whenever a dynamic map is present. For your convenience, these files will be loaded into the page automatically when rendering a map in Twig or PHP.
 
+If the map uses [marker clustering](/dynamic-maps/clustering-markers/), the clustering library will be loaded as well.
+
 :::warning No autoloading for JavaScript-only maps
 If your map is being rendered exclusively in JavaScript, the required assets will _not_ be loaded automatically. For purely JS maps, ensure that you load the required assets [manually](#loaded-manually).
 :::
@@ -112,6 +114,21 @@ GoogleMaps::loadAssets([
 ]);
 ```
 :::
+
+By default, `loadAssets` will also load the [marker clustering](/dynamic-maps/clustering-markers/) library. If none of your maps use clustering, you can skip it by setting the second parameter to `false`...
+
+:::code
+```twig
+{# Load the required JavaScript files, without the clustering library #}
+{% do googleMaps.loadAssets({}, false) %}
+```
+```php
+// Load the required JavaScript files, without the clustering library
+GoogleMaps::loadAssets([], false);
+```
+:::
+
+If a map turns out to need clustering anyway, the clustering library will be loaded on demand.
 
 If you really don't want Twig/PHP to load the assets on your behalf, and you are determined to take matters into your own hands, there is one other tool available to you.
 
