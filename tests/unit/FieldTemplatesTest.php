@@ -339,4 +339,37 @@ class FieldTemplatesTest extends TestCase
     {
         $this->assertNotSame('', trim($this->_template($path)));
     }
+
+    // ========================================================================= //
+    // Welcome icon on Craft Cloud
+    // ========================================================================= //
+
+    /**
+     * Cloud only serves folders an asset bundle declares, and none declares
+     * `src/`, so a published `icon.svg` URL 404s there. The icon is inlined.
+     */
+    public function testWelcomeIconIsInlinedRatherThanPublished(): void
+    {
+        $twig = $this->_template('settings.twig');
+
+        $this->assertStringContainsString("svg('@doublesecretagency/googlemaps/icon.svg', namespace=true)", $twig);
+        $this->assertStringNotContainsString('icon.svg\', true)', $twig);
+    }
+
+    public function testNoTemplatePublishesTheIconAtRuntime(): void
+    {
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(dirname(__DIR__, 2) . '/src/templates'));
+
+        foreach ($iterator as $file) {
+            if (!str_ends_with($file->getFilename(), '.twig')) {
+                continue;
+            }
+            $this->assertDoesNotMatchRegularExpression(
+                "/getPublishedUrl\\([^)]*icon\\.svg/",
+                file_get_contents($file->getPathname()),
+                $file->getFilename() . ' publishes icon.svg at runtime, which 404s on Craft Cloud.'
+            );
+        }
+    }
+
 }

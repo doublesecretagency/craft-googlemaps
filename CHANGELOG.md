@@ -4,6 +4,7 @@
 
 ### Fixed
 - Fixed `getDistance()` measuring to 0,0 when the target location has no coordinates.
+- Fixed the welcome screen icon on Craft Cloud.
 
 ## 5.5.1 - 2026-11-10
 
