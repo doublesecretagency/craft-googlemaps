@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed `getDistance()` measuring to 0,0 when the target location has no coordinates.
+
 ## 5.5.1 - 2026-11-10
 
 ### Changed

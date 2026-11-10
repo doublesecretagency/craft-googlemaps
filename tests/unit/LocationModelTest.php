@@ -149,17 +149,22 @@ class LocationModelTest extends TestCase
     }
 
     /**
-     * 🛑 A target with no coordinates is treated as 0,0 rather than rejected.
+     * A target Location with no coordinates has no distance.
      *
-     * That is a real quirk rather than an oversight worth fixing blind: the
-     * guard is on the starting point only. Pinned so a future change to it is
-     * a deliberate decision rather than an accident.
+     * Until 2026-11-10 it was measured as 0,0, giving the distance to a point
+     * off the coast of Africa (7813.8 miles from LA). Changed deliberately, on
+     * Lindsey's call, alongside the same fix in Mapbox.
      */
-    public function testTargetWithoutCoordinatesIsTreatedAsNullIsland(): void
+    public function testDistanceIsNullWhenTheTargetHasNoCoordinates(): void
     {
-        $distance = (new Location(self::LA))->getDistance(new Location());
+        $this->assertNull((new Location(self::LA))->getDistance(new Location()));
+    }
 
-        // Distance from LA to 0,0 off the coast of Africa.
+    public function testATargetAtNullIslandStillHasADistance(): void
+    {
+        // 0,0 is a real place, so a target that genuinely sits there is measured
+        $distance = (new Location(self::LA))->getDistance(new Location(['lat' => 0.0, 'lng' => 0.0]));
+
         $this->assertEqualsWithDelta(7813.822689932664, $distance, 0.0001);
     }
 

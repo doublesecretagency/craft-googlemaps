@@ -124,6 +124,11 @@ class Location extends Model
             return null;
         }
 
+        // If the Location Model has no coordinates, bail
+        if (!$location->hasCoords()) {
+            return null;
+        }
+
         // Return coordinates of the Location Model
         return $location->getCoords();
     }
