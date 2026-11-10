@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- The marker clustering library now ships with the plugin (pinned to 2.6.2), instead of loading from unpkg. ([#137](https://github.com/doublesecretagency/craft-googlemaps/issues/137))
+
 ## 5.5.0 - 2026-11-09
 
 ### Added

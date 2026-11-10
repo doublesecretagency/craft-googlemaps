@@ -70,8 +70,8 @@ class GoogleMaps
         // Link to Google Maps JavaScript API URL
         $files = [self::getApiUrl($params)];
 
-        // CDN for MarkerClusterer library
-        $files[] = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
+        // Bundled MarkerClusterer library
+        $files[] = $manager->getPublishedUrl($assets, true, 'js/lib/markerclusterer-2.6.2.min.js');
 
         // Append both JS files required by plugin
         $files[] = $manager->getPublishedUrl($assets, true, "js/googlemaps.{$min}js");
